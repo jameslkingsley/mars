@@ -1,0 +1,14 @@
+name = "ARCOMM Mission Controller";
+picture = "logo.paa";
+actionName = "Website";
+action = "https://github.com/ARCOMM/ARCMC";
+description = "ARCOMM's in-house mission control modification.";
+logo = "logo.paa";
+logoOver = "logo.paa";
+tooltip = "ARCOMM Mission Controller";
+tooltipOwned = "ARCOMM Mission Controller";
+overview = "ARCOMM's in-house mission control modification.";
+author = "Kingsley";
+overviewPicture = "logo.paa";
+overviewText = "ARCOMM's in-house mission control modification.";
+overviewFootnote = "This mod is only to be used by the ARCOMM community.";
