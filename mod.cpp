@@ -1,12 +1,12 @@
-name = "ARCOMM Mission Controller";
+name = "ARCOMM Mission Control";
 picture = "logo.paa";
 actionName = "Website";
 action = "https://github.com/ARCOMM/ARCMC";
 description = "ARCOMM's in-house mission control modification.";
 logo = "logo.paa";
 logoOver = "logo.paa";
-tooltip = "ARCOMM Mission Controller";
-tooltipOwned = "ARCOMM Mission Controller";
+tooltip = "ARCOMM Mission Control";
+tooltipOwned = "ARCOMM Mission Control";
 overview = "ARCOMM's in-house mission control modification.";
 author = "Kingsley";
 overviewPicture = "logo.paa";
