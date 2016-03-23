@@ -1,1 +1,1 @@
-diag_log "[ARCMC] XEH_preInit";
+diag_log "[ARCMC] preInit";

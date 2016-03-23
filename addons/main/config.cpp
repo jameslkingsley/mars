@@ -1,31 +1,42 @@
+#include "script_component.hpp"
+
 class CfgPatches {
-    class arcmc_main {
+    class ADDON {
         units[] = {};
         weapons[] = {};
-        requiredVersion = 1.54;
+        requiredVersion = REQUIRED_VERSION;
         author[] = {"Kingsley"};
         authorUrl = "https://github.com/ARCOMM/ARCMC";
+        VERSION_CONFIG;
         requiredAddons[] = {
             "ace_common"
         };
     };
 };
 
-class Extended_PreStart_EventHandlers {
-    class arcmc_main {
-        init = "\arcmc_main\XEH_preStart.sqf";
+class CfgMods {
+    class PREFIX {
+        dir = "@ARCMC";
+        name = "ARCOMM Mission Control";
+        picture = "A3\Ui_f\data\Logos\arma3_expansion_alpha_ca";
+        hidePicture = "true";
+        hideName = "true";
+        actionName = "Website";
+        action = "https://github.com/ARCOMM/ARCMC";
+        description = "Issue Tracker: https://github.com/ARCOMM/ARCMC/issues";
     };
 };
 
-class Extended_PreInit_EventHandlers {
-    class arcmc_main {
-        init = "\arcmc_main\XEH_preInit.sqf";
-        disableModuload = true;
+class CfgSettings {
+    class CBA {
+        class Versioning {
+            class ARCMC {
+                class dependencies {
+                    CBA[] = {"cba_main", REQUIRED_CBA_VERSION, "(true)"};
+                };
+            };
+        };
     };
 };
 
-class Extended_PostInit_EventHandlers {
-    class arcmc_main {
-        init = "\arcmc_main\XEH_postInit.sqf";
-    };
-};
+#include "CfgEventHandlers.hpp"

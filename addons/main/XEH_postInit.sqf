@@ -1,1 +1,1 @@
-diag_log "[ARCMC] XEH_postInit";
+diag_log "[ARCMC] postInit";
