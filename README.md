@@ -7,5 +7,5 @@
 </p>
 
 <p align="center">
-The aim of this mod is to provide players with an easy-to-use interface to change mission attributes mid-game. This includes features such as a low latency 3D interface to manage entities (*like Zeus, just not a desync fest*) and auto-pilot AI modes (*like GAIA*).
+The aim of this mod is to provide players with an easy-to-use interface to change mission attributes mid-game. This includes features such as a low latency 3D interface to manage entities and auto-pilot AI modes.
 </p>
