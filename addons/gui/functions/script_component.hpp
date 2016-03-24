@@ -1,0 +1,1 @@
+#include "\z\mars\addons\gui\script_component.hpp"

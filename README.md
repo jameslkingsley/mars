@@ -2,8 +2,6 @@
 	<img src="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/logo_a.png">
 	<br /><br />
 	<img src="https://travis-ci.org/jameslkingsley/Mars.svg?branch=master">
-    <br />
-    <h1 align="center">Mars</h1>
 </p>
 
 <p align="center">
