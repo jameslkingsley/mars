@@ -15,7 +15,7 @@ This project follows the [ACE3 coding guidelines](http://ace3mod.com/wiki/develo
 * Use 4 spaces for indentation
 * Use camel case
 * Use the standard [function header](http://ace3mod.com/wiki/development/coding-guidelines.html#headers)
-* Braces should be on the same line for example
+* Braces should be on the same line, for example
     
     ```sqf
     if (true) then {
