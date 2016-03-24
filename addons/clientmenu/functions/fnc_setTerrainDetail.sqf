@@ -3,14 +3,13 @@
  * Sets the terrain detail
  *
  * Arguments:
- * 0: Combo Box <CONTROL>
- * 1: Selection Index <SCALAR>
+ * 0: Terrain grid detail <SCALAR>
  *
  * Return Value:
  * None
  *
  * Example:
- * N/A
+ * [6.25] call arcmc_clientmenu_fnc_setTerrainDetail;
  *
  * Public: No
  */

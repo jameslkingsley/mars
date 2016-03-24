@@ -3,14 +3,13 @@
  * Sets the view distance
  *
  * Arguments:
- * 0: Combo Box <CONTROL>
- * 1: Selection Index <SCALAR>
+ * 0: View distance in meters <SCALAR>
  *
  * Return Value:
  * None
  *
  * Example:
- * N/A
+ * [5000] call arcmc_clientmenu_fnc_setViewDistance;
  *
  * Public: No
  */
