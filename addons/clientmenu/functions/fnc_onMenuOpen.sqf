@@ -16,7 +16,7 @@
 
 #include "script_component.hpp"
 
-#define GRASS_DETAIL (_display displayCtrl 101)
+#define TERRAIN_DETAIL (_display displayCtrl 101)
 #define VIEW_DISTANCE (_display displayCtrl 103)
 
 params ["_display"];
@@ -26,9 +26,9 @@ if (isNil "_display") exitWith {};
 disableSerialization;
 
 {
-    _index = GRASS_DETAIL lbAdd (_x select 0);
-    GRASS_DETAIL lbSetData [_index, str (_x select 1)];
-    if ((_x select 0) == "Low") then {GRASS_DETAIL lbSetCurSel _index;};
+    _index = TERRAIN_DETAIL lbAdd (_x select 0);
+    TERRAIN_DETAIL lbSetData [_index, str (_x select 1)];
+    if ((_x select 0) == "Low") then {TERRAIN_DETAIL lbSetCurSel _index;};
 } forEach [
     ["Low", 25],
     ["Medium", 12.5],
