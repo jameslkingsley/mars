@@ -1,0 +1,1 @@
+#include "\z\arcmc\addons\clientmenu\script_component.hpp"
