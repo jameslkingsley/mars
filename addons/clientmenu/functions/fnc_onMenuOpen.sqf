@@ -9,7 +9,7 @@
  * None
  *
  * Example:
- * [clientmenu] call arcmc_clientmenu_fnc_onMenuOpen;
+ * [clientmenu] call mars_clientmenu_fnc_onMenuOpen;
  *
  * Public: No
  */

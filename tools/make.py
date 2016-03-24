@@ -58,7 +58,7 @@ if sys.platform == "win32":
     import winreg
 
 ######## GLOBALS #########
-project = "@ARCMC"
+project = "@mars"
 project_version = "1.0.0"
 arma3tools_path = ""
 work_drive = ""
@@ -67,11 +67,11 @@ make_root = ""
 release_dir = ""
 module_root_parent = ""
 optionals_root = ""
-key_name = "arcmc"
+key_name = "mars"
 key = ""
 dssignfile = ""
-prefix = "arcmc"
-pbo_name_prefix = "arcmc_"
+prefix = "mars"
+pbo_name_prefix = "mars_"
 signature_blacklist = []
 importantFiles = ["mod.cpp", "README.md"]
 versionFiles = ["README.md", "mod.cpp"]

@@ -1,4 +1,4 @@
-#include "\z\arcmc\addons\common\define.hpp"
+#include "\z\mars\addons\common\define.hpp"
 
 class GVAR(clientMenu) {
     idd = 600001;
@@ -12,7 +12,7 @@ class GVAR(clientMenu) {
             y = 0.3328 * safezoneH + safezoneY;
             w = 0.195987 * safezoneW;
             h = 0.022 * safezoneH;
-            text = "ARCOMM Mission Control";
+            text = "Mars";
         };
         class CenterBackground: ARC_gui_backgroundBase {
             idc = -1;

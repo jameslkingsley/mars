@@ -9,7 +9,7 @@
  * None
  *
  * Example:
- * [5000] call arcmc_clientmenu_fnc_setViewDistance;
+ * [5000] call mars_clientmenu_fnc_setViewDistance;
  *
  * Public: No
  */

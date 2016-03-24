@@ -6,7 +6,7 @@ import subprocess
 
 ######## GLOBALS #########
 MAINPREFIX = "z"
-PREFIX = "arcmc_"
+PREFIX = "mars_"
 ##########################
 
 def mod_time(path):

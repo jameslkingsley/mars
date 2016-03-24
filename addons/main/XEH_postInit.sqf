@@ -1,4 +1,4 @@
-diag_log "[ARCMC] postInit";
+diag_log "[mars] postInit";
 
 if !(hasInterface) exitWith {};
 

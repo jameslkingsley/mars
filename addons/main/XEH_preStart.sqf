@@ -1,1 +1,1 @@
-diag_log "[ARCMC] preStart";
+diag_log "[mars] preStart";

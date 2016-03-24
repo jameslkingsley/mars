@@ -13,7 +13,7 @@ import winreg
 
 ######## GLOBALS #########
 MAINDIR = "z"
-PROJECTDIR = "arcmc"
+PROJECTDIR = "mars"
 CBA = "P:\\x\\cba"
 ##########################
 
