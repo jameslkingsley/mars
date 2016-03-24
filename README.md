@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="http://i.imgur.com/7nkLRBB.png">
+	<img src="https://raw.githubusercontent.com/ARCOMM/Mars/master/extras/logo/logo_a.png">
 	<br /><br />
 	<img src="https://travis-ci.org/ARCOMM/Mars.svg?branch=master">
     <br />
