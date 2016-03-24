@@ -27,3 +27,7 @@ This project follows the [ACE3 coding guidelines](http://ace3mod.com/wiki/develo
         // stuff
     };
     ```
+
+## Dependencies
+* Arma 3 1.56 (onwards)
+* CBA_A3 - https://github.com/CBATeam/CBA_A3
