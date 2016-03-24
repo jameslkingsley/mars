@@ -8,10 +8,9 @@ class CfgPatches {
         author[] = {"Kingsley"};
         authorUrl = "https://github.com/ARCOMM/ARCMC";
         VERSION_CONFIG;
-        requiredAddons[] = {
-            "arcmc_main"
-        };
+        requiredAddons[] = {"arcmc_common"};
     };
 };
 
 #include "CfgEventHandlers.hpp"
+#include "ui\menu.hpp"

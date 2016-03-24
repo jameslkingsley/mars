@@ -81,17 +81,24 @@
 #define LB_TEXTURES       0x10
 #define LB_MULTI          0x20
 #define FONT_ARC       "RobotoCondensed"
+#define BG_OPACITY 0.8
+#define ACCENT_COLOR {0.741,0.173,0.173,1}
 
 class ARC_gui_backgroundBase {
-  type = CT_STATIC;
-  idc = -1;
-  style = ST_PICTURE;
-  colorBackground[] = {0,0,0,0};
-  colorText[] = {1, 1, 1, 1};
-  font = FONT_ARC;
-  text = "";
-  sizeEx = 0.032;
+    type = 0;
+    idc = -1;
+    style = 128;
+    colorBackground[] = {0,0,0,BG_OPACITY};
+    colorText[] = {1,1,1,1};
+    font = FONT_ARC;
+    text = "";
+    sizeEx = 0.032;
 };
+
+class ARC_gui_accentBase: ARC_gui_backgroundBase {
+    colorBackground[] = ACCENT_COLOR;
+};
+
 class ARC_gui_editBase
 {
     access = 0;
@@ -137,75 +144,76 @@ class ARC_gui_editBase
     };
 };
 
-
-
 class ARC_gui_buttonBase {
-  idc = -1;
-  type = 16;
-  style = ST_LEFT;
-  text = "";
-  action = "";
-  x = 0.0;
-  y = 0.0;
-  w = 0.25;
-  h = 0.04;
-  size = 0.03921;
-  sizeEx = 0.03921;
-  color[] = {1.0, 1.0, 1.0, 1};
-  color2[] = {1.0, 1.0, 1.0, 1};
-  colorBackground[] = {1,1,1,0.95};
-  colorbackground2[] = {1,1,1,0.95};
-  colorDisabled[] = {1,1,1,0.6};
-  colorFocused[] = {1,1,1,1};
-  colorBackgroundFocused[] = {1,1,1,1};
-  periodFocus = 1.2;
-  periodOver = 0.8;
-  default = false;
-  class HitZone {
-    left = 0.00;
-    top = 0.00;
-    right = 0.00;
-    bottom = 0.00;
-  };
-
-  class ShortcutPos {
-    left = 0.00;
-    top = 0.00;
-    w = 0.00;
-    h = 0.00;
-  };
-
-  class TextPos {
-    left = 0.002;
-    top = 0.0004;
-    right = 0.0;
-    bottom = 0.00;
-  };
-  textureNoShortcut = "";
-  animTextureNormal = "#(argb,8,8,3)color(0,0,0,0.9)";
-  animTextureDisabled = "#(argb,8,8,3)color(0,0,0,0.8)";
-  animTextureOver = "#(argb,8,8,3)color(1,1,1,1)";
-  animTextureFocused = "#(argb,8,8,3)color(1,1,1,1)";
-  animTexturePressed = "#(argb,8,8,3)color(1,1,1,1)";
-  animTextureDefault = "#(argb,8,8,3)color(1,1,1,1)";
-  period = 0.5;
-  font = FONT_ARC;
-  soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick",0.09,1};
-  soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.0,0};
-  soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.07,1};
-  soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1};
-  class Attributes {
+    idc = -1;
+    type = 16;
+    style = ST_LEFT;
+    text = "";
+    action = "";
+    x = 0.0;
+    y = 0.0;
+    w = 0.25;
+    h = 0.04;
+    size = 0.03921;
+    sizeEx = 0.03921;
+    colorBackground[] = {0,0,0,BG_OPACITY};
+    colorBackgroundFocused[] = {1,1,1,1};
+    colorBackground2[] = {0.75,0.75,0.75,1};
+    color[] = {1,1,1,1};
+    colorFocused[] = {0,0,0,1};
+    color2[] = {0,0,0,1};
+    colorText[] = {1,1,1,1};
+    colorDisabled[] = {1,1,1,0.25};
+    period = 1.2;
+    periodFocus = 1.2;
+    periodOver = 1.2;
+    default = 0;
+    textureNoShortcut = "#(argb,8,8,3)color(0,0,0,0)";
+    animTextureNormal = "#(argb,8,8,3)color(1,1,1,1)";
+    animTextureDisabled = "#(argb,8,8,3)color(1,1,1,1)";
+    animTextureOver = "#(argb,8,8,3)color(1,1,1,1)";
+    animTextureFocused = "#(argb,8,8,3)color(1,1,1,1)";
+    animTexturePressed = "#(argb,8,8,3)color(1,1,1,1)";
+    animTextureDefault = "#(argb,8,8,3)color(1,1,1,1)";
     font = FONT_ARC;
-    color = "#E5E5E5";
-    align = "center";
-    shadow = "true";
-  };
-  class AttributesImage {
-    font = FONT_ARC;
-    color = "#E5E5E5";
-    align = "left";
-    shadow = "true";
-  };
+    soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick",0.09,1};
+    soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.0,0};
+    soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.07,1};
+    soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1};
+    
+    class HitZone {
+        left = 0.00;
+        top = 0.00;
+        right = 0.00;
+        bottom = 0.00;
+    };
+
+    class ShortcutPos {
+        left = 0.00;
+        top = 0.00;
+        w = 0.00;
+        h = 0.00;
+    };
+
+    class TextPos {
+        left = 0.002;
+        top = 0.0004;
+        right = 0.0;
+        bottom = 0.00;
+    };
+    
+    class Attributes {
+        font = FONT_ARC;
+        color = "#E5E5E5";
+        align = "center";
+        shadow = "true";
+    };
+    class AttributesImage {
+        font = FONT_ARC;
+        color = "#E5E5E5";
+        align = "left";
+        shadow = "true";
+    };
 };
 
 class ARC_gui_RscProgress {
@@ -230,7 +238,7 @@ class ARC_gui_staticBase {
   h = 0.104575;
   style = ST_LEFT;
   font = FONT_ARC;
-  sizeEx = 0.03921;
+  sizeEx = 0.032;
   colorText[] = {0.95, 0.95, 0.95, 1.0};
   colorBackground[] = {0, 0, 0, 0};
   text = "";
@@ -356,58 +364,51 @@ class ARC_gui_listNBox {
 
 class RscCombo;
 class ARC_gui_comboBoxBase: RscCombo {
- idc = -1;
- type = 4;
- style = "0x10 + 0x200";
- x = 0;
- y = 0;
- w = 0.3;
- h = 0.035;
- color[] = {0,0,0,0.6};
- colorActive[] = {1,0,0,1};
- colorBackground[] = {0,0,0,1};
- colorDisabled[] = {1,1,1,0.25};
- colorScrollbar[] = {1,0,0,1};
- colorSelect[] = {0,0,0,1};
- colorSelectBackground[] = {1,1,1,0.7};
- colorText[] = {1,1,1,1};
-
- arrowEmpty = "";
- arrowFull = "";
- wholeHeight = 0.45;
- font = FONT_ARC;
- sizeEx = 0.031;
- soundSelect[] = {"\A3\ui_f\data\sound\RscCombo\soundSelect",0.1,1};
- soundExpand[] = {"\A3\ui_f\data\sound\RscCombo\soundExpand",0.1,1};
- soundCollapse[] = {"\A3\ui_f\data\sound\RscCombo\soundCollapse",0.1,1};
- maxHistoryDelay = 1.0;
- class ScrollBar
- {
-  color[] = {0.3,0.3,0.3,0.6};
-  colorActive[] = {0.3,0.3,0.3,1};
-  colorDisabled[] = {0.3,0.3,0.3,0.3};
-  thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
-  arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
-  arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
-  border = "";
- };
-  class ComboScrollBar {
-    arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
-    arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
-    autoScrollDelay = 5;
-    autoScrollEnabled = 0;
-    autoScrollRewind = 0;
-    autoScrollSpeed = -1;
-    border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
-    color[] = {0.3,0.3,0.3,0.6};
-    colorActive[] = {0.3,0.3,0.3,1};
-    colorDisabled[] = {0.3,0.3,0.3,0.3};
-    height = 0;
-    scrollSpeed = 0.06;
+    deletable = 0;
+    fade = 0;
+    access = 0;
+    type = 4;
+    colorSelect[] = {0,0,0,1};
+    colorText[] = {1,1,1,1};
+    colorBackground[] = {0,0,0,1};
+    colorScrollbar[] = {1,0,0,1};
+    colorDisabled[] = {1,1,1,0.25};
+    colorPicture[] = {1,1,1,1};
+    colorPictureSelected[] = {1,1,1,1};
+    colorPictureDisabled[] = {1,1,1,0.25};
+    colorPictureRight[] = {1,1,1,1};
+    colorPictureRightSelected[] = {1,1,1,1};
+    colorPictureRightDisabled[] = {1,1,1,0.25};
+    colorTextRight[] = {1,1,1,1};
+    colorSelectRight[] = {0,0,0,1};
+    colorSelect2Right[] = {0,0,0,1};
+    tooltipColorText[] = {1,1,1,1};
+    tooltipColorBox[] = {1,1,1,1};
+    tooltipColorShade[] = {0,0,0,0.65};
+    soundSelect[] = {"\A3\ui_f\data\sound\RscCombo\soundSelect", 0.1, 1};
+    soundExpand[] = {"\A3\ui_f\data\sound\RscCombo\soundExpand", 0.1, 1};
+    soundCollapse[] = {"\A3\ui_f\data\sound\RscCombo\soundCollapse", 0.1, 1};
+    maxHistoryDelay = 1;
+    class ComboScrollBar {
+        color[] = {1, 1, 1, 1};
+        arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa"; // Arrow
+        arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa"; // Arrow when clicked on
+        border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa"; // Slider background (stretched vertically)
+        thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa"; // Dragging element (stretched vertically)
+    };
+    style = "0x10 + 0x200";
+    font = FONT_ARC;
+    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
     shadow = 0;
-    thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
-    width = 0;
-  };
+    x = 0;
+    y = 0;
+    w = 0.12;
+    h = 0.035;
+    colorSelectBackground[] = {1, 1, 1, 0.7};
+    arrowEmpty = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_ca.paa";
+    arrowFull = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_active_ca.paa";
+    wholeHeight = 0.45;
+    colorActive[] = {1, 0, 0, 1};
 };
 
 
