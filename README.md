@@ -1,7 +1,7 @@
 <p align="center">
 	<img src="http://i.imgur.com/7nkLRBB.png">
 	<br /><br />
-	<img src="https://travis-ci.org/ARCOMM/mars.svg?branch=master">
+	<img src="https://travis-ci.org/ARCOMM/Mars.svg?branch=master">
     <br />
     <h1 align="center">Mars</h1>
 </p>
