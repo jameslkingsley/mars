@@ -4,7 +4,6 @@ class GVAR(clientMenu) {
     idd = 600001;
     movingEnable = true;
     onLoad = QUOTE([_this select 0] call FUNC(onMenuOpen););
-    onUnload = QUOTE(call FUNC(onMenuClose));
     
     class controls {
         class HeaderBackground: ARC_gui_accentBase {
