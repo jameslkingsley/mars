@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-    The aim of this mod is to provide players with an easy-to-use interface to change mission attributes mid-game. This includes features such as a low latency 3D interface to manage entities and auto-pilot AI modes.
+    Mars is a collection of tools that work together to accomplish a common goal; which is to give players full control over how their mission is played, in real time. Its primary focus is AI behaviour and interaction; for example the default waypointing system fails to give players complete control when it comes to making sure units reach their destination. Mars prevents this from happening and at the very least gives you the tools to waypoint units knowing they are going to carry out your orders.
 </p>
 
 ## Coding Guidelines
@@ -13,19 +13,8 @@ This project follows the [ACE3 coding guidelines](http://ace3mod.com/wiki/develo
 * Use 4 spaces for indentation
 * Use camel case
 * Use the standard [function header](http://ace3mod.com/wiki/development/coding-guidelines.html#headers)
-* Braces should be on the same line, for example
-    
-    ```sqf
-    if (true) then {
-        // code
-    };
-    ```
-    ```c++
-    class myClass: baseClass {
-        // stuff
-    };
-    ```
+* Braces should be on the same line
 
 ## Dependencies
 * Arma 3 1.56 (onwards)
-* CBA_A3 - https://github.com/CBATeam/CBA_A3
+* CBA A3 (latest) - https://github.com/CBATeam/CBA_A3
