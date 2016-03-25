@@ -12,4 +12,4 @@
 #include "\z\mars\addons\main\script_macros.hpp"
 
 #define MENU_Y (0 * safeZoneH + safeZoneY)
-#define MENU_HEIGHT (0.04 * safeZoneH)
+#define MENU_HEIGHT (0.025 * safeZoneH)

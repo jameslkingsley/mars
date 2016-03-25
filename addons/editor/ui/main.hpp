@@ -11,7 +11,7 @@ class GVAR(guiMain) {
             x = 0 * safeZoneW + safeZoneX;
             y = 0 * safeZoneH + safeZoneY;
             w = safeZoneW;
-            h = 0.04 * safeZoneH;
+            h = 0.025 * safeZoneH;
             colorBackground[] = {0.05,0.05,0.05,1};
         };
         class LeftPanel: MARS_gui_backgroundBaseSolid {

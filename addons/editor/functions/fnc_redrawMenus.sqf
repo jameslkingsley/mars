@@ -47,6 +47,8 @@ if (count GVAR(menus) > 0) then {
         _ctrl ctrlShow true;
         _ctrl ctrlCommit 0;
         
+        // Add button action
+        
         _axisX = _axisX + _menuWidth;
         
         GVAR(topNavControls) pushBack _idc;

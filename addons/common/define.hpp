@@ -216,6 +216,7 @@ class MARS_gui_buttonBase {
 };
 
 class MARS_gui_menuBase {
+    access = 0;
     idc = -1;
     type = 1;
     style = 0x02 + 160;
@@ -225,21 +226,26 @@ class MARS_gui_menuBase {
     y = 0.0;
     w = 0.25;
     h = 0.04;
+    offsetPressedX = 0;
+	offsetPressedY = 0;
+	offsetX = 0;
+	offsetY = 0;
+	shadow = 0;
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.005)";
     borderSize = 0;
-    colorBorder[] = {0.2, 0.2, 0.2, 1};
+    colorBorder[] = {0,0,0,1};
     colorBackgroundActive[] = ACCENT_COLOR;
-    colorBackgroundDisabled[] = {0, 0, 0, 0.75};
-    colorDisabled[] = {0.4, 0.4, 0.4, 1};
-    colorFocused[] = {0.2, 0.2, 0.2, 1};
-    colorShadow[] = {0.2, 0.2, 0.2, 1};
-    colorText[] = {0.2, 0.2, 0.2, 1};
-    color[] = {1, 1, 1, 1};
-    colorBackground[] = {0.2, 0.2, 0.2, 1};
+    colorBackgroundDisabled[] = {1,1,1,0.25};
+    colorDisabled[] = {1,1,1,0.5};
+    colorFocused[] = {0,0,0,1};
+    colorShadow[] = {0,0,0,1};
+    colorText[] = {1,1,1,1};
+    color[] = {1,1,1,1};
+    colorBackground[] = {0,0,0,1};
     blinkingPeriod = 0;
-    tooltipColorShade[] = {0, 0, 0, 1};
-    tooltipColorText[] = {1, 1, 1, 1};
-    tooltipColorBox[] = {0, 0, 0, 1};
+    tooltipColorShade[] = {0,0,0,1};
+    tooltipColorText[] = {1,1,1,1};
+    tooltipColorBox[] = {0,0,0,1};
     font = FONT_MARS;
     soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick", 0.09, 1};
     soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush", 0.0, 0};
