@@ -9,7 +9,8 @@
 </p>
 
 ## Coding Guidelines
-This project follows the [ACE3 coding guidelines](http://ace3mod.com/wiki/development/coding-guidelines.html). Here's some basic editor rules:
+This project follows the [ACE3 coding guidelines](http://ace3mod.com/wiki/development/coding-guidelines.html). Here's some basic rules:
+* Addons must be modular and must not depend on anything other than **main** and/or **common**.
 * Use 4 spaces for indentation
 * Use camel case
 * Use the standard [function header](http://ace3mod.com/wiki/development/coding-guidelines.html#headers)
