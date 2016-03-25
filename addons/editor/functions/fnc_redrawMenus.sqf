@@ -25,7 +25,7 @@ if (count GVAR(topNavControls) > 0) then {
         if (!isNull (_display displayCtrl _x)) then {
             _deleted = ctrlDelete (_display displayCtrl _x);
             if (!_deleted) then {
-                [QCOMPONENT, format["Menu failed to delete - supplied array: %1", GVAR(topNavControls)]] call EFUNC(common,log);
+                MARS_LOGERROR_1("Menu failed to delete - supplied array:", GVAR(topNavControls));
             };
         };
     } forEach GVAR(topNavControls);

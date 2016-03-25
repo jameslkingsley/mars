@@ -23,7 +23,7 @@ private _indexExists = false;
 
 {
     if (toLower (_x select 0) == toLower _index) exitWith {
-        [QCOMPONENT, format["Menu %1 is already in use", _index]] call EFUNC(common,log);
+        MARS_LOGERROR_1("Menu is already in use", _index);
         _indexExists = true;
     };
 } forEach GVAR(menus);
