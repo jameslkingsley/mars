@@ -7,7 +7,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"mars_common"};
         author[] = {"Kingsley"};
-        authorUrl = "https://github.com/ARCOMM/mars";
+        authorUrl = "https://github.com/jameslkingsley/mars";
         VERSION_CONFIG;
     };
 };

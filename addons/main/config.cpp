@@ -6,7 +6,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         author[] = {"Kingsley"};
-        authorUrl = "https://github.com/ARCOMM/mars";
+        authorUrl = "https://github.com/jameslkingsley/mars";
         VERSION_CONFIG;
         requiredAddons[] = {
             "3den",
@@ -579,8 +579,8 @@ class CfgMods {
         hidePicture = "true";
         hideName = "true";
         actionName = "Website";
-        action = "https://github.com/ARCOMM/mars";
-        description = "Issue Tracker: https://github.com/ARCOMM/mars/issues";
+        action = "https://github.com/jameslkingsley/mars";
+        description = "Issue Tracker: https://github.com/jameslkingsley/mars/issues";
     };
 };
 

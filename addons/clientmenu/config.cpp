@@ -6,7 +6,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         author[] = {"Kingsley"};
-        authorUrl = "https://github.com/ARCOMM/mars";
+        authorUrl = "https://github.com/jameslkingsley/mars";
         VERSION_CONFIG;
         requiredAddons[] = {"mars_common"};
     };
