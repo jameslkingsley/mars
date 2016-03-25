@@ -6,7 +6,7 @@ class GVAR(clientMenu) {
     onLoad = QUOTE([_this select 0] call FUNC(onMenuOpen););
     
     class controls {
-        class HeaderBackground: ARC_gui_accentBase {
+        class HeaderBackground: MARS_gui_accentBase {
             idc = -1;
             x = 0.396849 * safezoneW + safezoneX;
             y = 0.3328 * safezoneH + safezoneY;
@@ -14,21 +14,21 @@ class GVAR(clientMenu) {
             h = 0.022 * safezoneH;
             text = "Mars";
         };
-        class CenterBackground: ARC_gui_backgroundBase {
+        class CenterBackground: MARS_gui_backgroundBase {
             idc = -1;
             x = 0.396849 * safezoneW + safezoneX;
             y = 0.357 * safezoneH + safezoneY;
             w = 0.195987 * safezoneW;
             h = 0.077 * safezoneH;
         };
-        class FooterBackground: ARC_gui_backgroundBase {
+        class FooterBackground: MARS_gui_backgroundBase {
             idc = -1;
             x = 0.396849 * safezoneW + safezoneX;
             y = 0.4362 * safezoneH + safezoneY;
             w = 0.143379 * safezoneW;
             h = 0.022 * safezoneH;
         };
-        class Option1_Label: ARC_gui_staticBase {
+        class Option1_Label: MARS_gui_staticBase {
             idc = 100;
             text = "Terrain Detail";
             x = 0.402007 * safezoneW + safezoneX;
@@ -36,7 +36,7 @@ class GVAR(clientMenu) {
             w = 0.0928357 * safezoneW;
             h = 0.022 * safezoneH;
         };
-        class Option1_Combo: ARC_gui_comboBoxBase {
+        class Option1_Combo: MARS_gui_comboBoxBase {
             idc = 101;
             x = 0.494842 * safezoneW + safezoneX;
             y = 0.368 * safezoneH + safezoneY;
@@ -44,7 +44,7 @@ class GVAR(clientMenu) {
             h = 0.022 * safezoneH;
             onLBSelChanged = QUOTE([(parseNumber ((_this select 0) lbData (_this select 1)))] call FUNC(setTerrainDetail));
         };
-        class Option2_Label: ARC_gui_staticBase {
+        class Option2_Label: MARS_gui_staticBase {
             idc = 102;
             text = "View Distance (meters)";
             x = 0.402007 * safezoneW + safezoneX;
@@ -52,7 +52,7 @@ class GVAR(clientMenu) {
             w = 0.0928357 * safezoneW;
             h = 0.022 * safezoneH;
         };
-        class Option2_Combo: ARC_gui_comboBoxBase {
+        class Option2_Combo: MARS_gui_comboBoxBase {
             idc = 103;
             x = 0.494842 * safezoneW + safezoneX;
             y = 0.401 * safezoneH + safezoneY;
@@ -60,7 +60,7 @@ class GVAR(clientMenu) {
             h = 0.022 * safezoneH;
             onLBSelChanged = QUOTE([(parseNumber ((_this select 0) lbData (_this select 1)))] call FUNC(setViewDistance));
         };
-        class BtnClose: ARC_gui_buttonBase {
+        class BtnClose: MARS_gui_buttonBase {
             idc = 104;
             text = "Close";
             x = 0.54126 * safezoneW + safezoneX;

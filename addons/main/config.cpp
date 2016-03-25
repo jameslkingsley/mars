@@ -595,5 +595,3 @@ class CfgSettings {
         };
     };
 };
-
-#include "CfgEventHandlers.hpp"

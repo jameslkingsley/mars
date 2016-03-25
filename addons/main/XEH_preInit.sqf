@@ -1,1 +1,0 @@
-diag_log "[mars] preInit";

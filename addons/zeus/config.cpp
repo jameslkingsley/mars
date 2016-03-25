@@ -5,12 +5,11 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
+        requiredAddons[] = {"mars_editor"};
         author[] = {"Kingsley"};
         authorUrl = "https://github.com/ARCOMM/mars";
         VERSION_CONFIG;
-        requiredAddons[] = {"mars_main"};
     };
 };
 
 #include "CfgEventHandlers.hpp"
-#include "define.hpp"
