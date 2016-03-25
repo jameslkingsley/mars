@@ -18,3 +18,8 @@
 
 GVAR(camera) setDir GVAR(cam_angleX);
 [GVAR(camera), [direction GVAR(camera), GVAR(cam_angleY), 0]] call BIS_fnc_setObjectRotation;
+
+systemChat format["cam_mouseMoving: %1", GVAR(cam_mouseMoving)];
+systemChat format["cam_rightMouseDown: %1", GVAR(cam_rightMouseDown)];
+systemChat format["cam_angleX: %1", GVAR(cam_angleX)];
+systemChat format["cam_angleY: %1", GVAR(cam_angleY)];
