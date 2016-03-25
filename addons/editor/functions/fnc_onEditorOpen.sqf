@@ -18,6 +18,18 @@
 
 params ["_display"];
 
-if (ADDON) then {
-    [_display] call FUNC(redrawMenus);
-};
+if (!ADDON) exitWith {};
+
+[_display] call FUNC(redrawMenus);
+
+GVAR(camera) = "camera" camCreate [(getPos player) select 0, (getPos player) select 1, 3];
+GVAR(camera) cameraEffect ["External", "Back"];
+GVAR(camera) camSetFov 1.2;
+GVAR(camera) camCommit 0;
+
+cameraEffectEnableHUD false;
+showCinemaBorder false;
+
+[{[] call FUNC(onFrame)}, 0, []] call CBA_fnc_addPerFrameHandler;
+
+GVAR(cam_active) = true;
