@@ -33,8 +33,8 @@ if (count GVAR(topNavControls) > 0) then {
 
 if (count GVAR(menus) > 0) then {
     _menuWidth = safeZoneW / (count GVAR(menus));
-	_axisX = 0 * safeZoneW + safeZoneX;
-	
+    _axisX = 0 * safeZoneW + safeZoneX;
+    
     {
         _index = _x select 0;
         _displayName = _x select 1;
