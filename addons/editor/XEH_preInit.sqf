@@ -4,25 +4,25 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
+// Reset the stored display
+SETUVAR(GVAR(interface),displayNull);
+
+// Permanent variables
+GVAR(camAgent) = objNull;
+GVAR(camDistance) = 10;
+GVAR(camMode) = 0;
+GVAR(camPan) = 0;
+GVAR(camPos) = ATLtoASL [worldSize * 0.5, worldSize * 0.5, 20];
+GVAR(camSpeed) = 1.5;
+GVAR(camTilt) = -10;
+GVAR(camUnit) = objNull;
+GVAR(camVision) = -2;
+GVAR(camZoom) = 1.25;
+
+GVAR(interrupts) = [];
+GVAR(isSet) = false;
+
 GVAR(menus) = [];
 GVAR(topNavControls) = [];
-
-GVAR(camera) = objNull;
-GVAR(cam_active) = false;
-GVAR(cam_mouseMoving) = false;
-GVAR(cam_leftMouseDown) = false;
-GVAR(cam_leftMouseUp) = false;
-GVAR(cam_rightMouseDown) = false;
-GVAR(cam_rightMouseUp) = false;
-GVAR(cam_middleMouseDown) = false;
-GVAR(cam_middleMouseUp) = false;
-GVAR(cam_angleX) = 0;
-GVAR(cam_angleY) = 60;
-GVAR(cam_mouseDeltaX) = 0.5;
-GVAR(cam_mouseDeltaY) = 0.5;
-GVAR(cam_mouseLastX) = 0.5;
-GVAR(cam_mouseLastY) = 0.5;
-
-GVAR(mouseCord) = [0.5, 0.5];
 
 ADDON = true;

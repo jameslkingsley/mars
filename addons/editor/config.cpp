@@ -6,11 +6,11 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"mars_common"};
-        author[] = {"Kingsley"};
+        author[] = {"ACE3 Project","Kingsley"};
         authorUrl = "https://github.com/jameslkingsley/mars";
         VERSION_CONFIG;
     };
 };
 
 #include "CfgEventHandlers.hpp"
-#include "ui\main.hpp"
+#include "ui\interface.hpp"
