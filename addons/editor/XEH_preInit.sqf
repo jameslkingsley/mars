@@ -36,4 +36,6 @@ GVAR(cachedUnits) = [];
 GVAR(selectionPFH) = 0;
 GVAR(selection) = [];
 
+GVAR(shiftKey) = false;
+
 ADDON = true;

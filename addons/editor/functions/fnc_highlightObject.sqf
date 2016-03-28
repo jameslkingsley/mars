@@ -20,5 +20,6 @@
 params ["_object", "_isVehicle"];
 
 if (_object in GVAR(selection)) exitWith {};
+if (!GVAR(shiftKey)) then {GVAR(selection) = []};
 
 GVAR(selection) pushBack _object;

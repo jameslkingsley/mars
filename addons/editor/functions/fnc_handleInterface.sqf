@@ -83,6 +83,8 @@ switch (toLower _mode) do {
     };
     case "onkeydown": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
+        
+        GVAR(shiftKey) = _shift;
 
         // Handle held keys (prevent repeat calling)
         if (GVAR(heldKeys) param [_dik,false]) exitWith {};
@@ -154,6 +156,8 @@ switch (toLower _mode) do {
     };
     case "onkeyup": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
+        
+        GVAR(shiftKey) = _shift;
 
         // No longer being held
         GVAR(heldKeys) set [_dik,nil];

@@ -19,3 +19,5 @@
 #define MENU_Y (0 * safeZoneH + safeZoneY)
 #define MENU_HEIGHT (0.03 * safeZoneH)
 #define CAM_SHIFT_SPEED_COEF 5
+
+#define TYPE_SEARCH ["Man","LandVehicle","Air"]

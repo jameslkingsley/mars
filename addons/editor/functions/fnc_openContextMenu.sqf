@@ -19,7 +19,7 @@
 private ["_worldPos"];
 
 _worldPos = screenToWorld GVAR(mousePos);
-_objects = nearestObjects [_worldPos, ["Man","LandVehicle","Air"], 3.5];
+_objects = nearestObjects [_worldPos, TYPE_SEARCH, 3.5];
 
 if (count _objects > 0) then {
     systemChat str (_objects select 0);

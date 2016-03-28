@@ -19,7 +19,7 @@
 private ["_worldPos","_objects"];
 
 _worldPos = screenToWorld GVAR(mousePos);
-_objects = nearestObjects [_worldPos, ["Man","LandVehicle","Air"], 5];
+_objects = nearestObjects [_worldPos, TYPE_SEARCH, 5];
 
 if (count _objects > 0) then {
     private _target = (_objects select 0);
