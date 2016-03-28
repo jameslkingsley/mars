@@ -58,9 +58,16 @@ _display = (findDisplay 46) createDisplay QGVAR(interface);
 GVAR(interrupts) = [];
 
 // Start the object tagging handler
-GVAR(objectTagger) = [{[] call FUNC(handleObjectTagging);}, 0, []] call CBA_fnc_addPerFrameHandler;
+GVAR(objectTagger) = [{[] call FUNC(handleObjectBoxes);}, 0, []] call CBA_fnc_addPerFrameHandler;
 
 // Start the object icons handler
 GVAR(objectIcons) = [{[] call FUNC(handleObjectIcons);}, 0, []] call CBA_fnc_addPerFrameHandler;
+
+// Start the object selection handler
+GVAR(selectionPFH) = [{
+    {
+        [_x, ([side _x] call EFUNC(common,getSideColor))] call FUNC(drawBoundingBox);
+    } forEach GVAR(selection);
+}, 0, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(isSet) = true;

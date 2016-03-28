@@ -52,7 +52,12 @@ switch (toLower _mode) do {
         _args params ["_ctrl","_button"];
 
         GVAR(mouse) set [_button,false];
-        if (_button == 0) then { GVAR(camDolly) = [0,0]; };
+        
+        if (_button == 0) then {GVAR(camDolly) = [0,0];};
+        
+        if (_button == 0 && GVAR(canContext)) then {
+            [] call FUNC(selectObject);
+        };
         
         if (_button == 1 && GVAR(canContext)) then {
             [] call FUNC(openContextMenu);

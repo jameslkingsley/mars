@@ -197,4 +197,6 @@
    #define TRACE_10(MESSAGE,A,B,C,D,E,F,G,H,I,J) /* disabled */
 #endif
 
+#define MARS_SIDECOLOR(side) ([(side)] call EFUNC(common,getSideColor))
+
 #include "script_debug.hpp"

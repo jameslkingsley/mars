@@ -11,5 +11,7 @@ PREP(redrawMenus);
 PREP(shutdown);
 PREP(openContextMenu);
 PREP(drawBoundingBox);
-PREP(handleObjectTagging);
+PREP(handleObjectBoxes);
 PREP(handleObjectIcons);
+PREP(selectObject);
+PREP(highlightObject);

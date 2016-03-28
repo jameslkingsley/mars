@@ -19,8 +19,20 @@
 private ["_worldPos"];
 
 _worldPos = screenToWorld GVAR(mousePos);
-_objects = nearestObjects [_worldPos, ["Man","LandVehicle","Air"], 5];
+_objects = nearestObjects [_worldPos, ["Man","LandVehicle","Air"], 3.5];
 
 if (count _objects > 0) then {
     systemChat str (_objects select 0);
+} else {
+    // Add waypoint (temporary)
+    if (count GVAR(selection) > 0) then {
+        {
+            _x disableAI "AUTOCOMBAT";
+            _x disableAI "SUPPRESSION";
+            _x allowFleeing 0;
+            _x setBehaviour "AWARE";
+            _x setSpeedMode "FULL";
+            _x doMove _worldPos;
+        } forEach GVAR(selection);
+    };
 };

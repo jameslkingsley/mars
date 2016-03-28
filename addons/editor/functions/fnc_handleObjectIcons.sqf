@@ -22,8 +22,8 @@
     _iconPos = [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 5];
     
     drawIcon3D [
-        "\A3\ui_f\data\map\markers\nato\n_unknown.paa",
-        ([side _grp] call BIS_fnc_sideColor),
+        ([([_grp] call EFUNC(common,getMarkerType))] call EFUNC(common,getMarkerTexture)),
+        MARS_SIDECOLOR(side _grp),
         _iconPos,
         1,
         1,
@@ -36,15 +36,17 @@
     drawLine3D [
         _leaderPos,
         _iconPos,
-        ([side _grp] call BIS_fnc_sideColor)
+        MARS_SIDECOLOR(side _grp)
     ];
     
     {
         _unit = _x;
-        _side = side _unit;
+        _unitPos = _unit modelToWorld (boundingCenter _unit);
         
-        
-        
-        GVAR(cachedUnits) pushBack _unit;
-    } forEach (units _x) - GVAR(cachedUnits);
+        drawLine3D [
+            [(_unitPos select 0), (_unitPos select 1), (_unitPos select 2) + 1],
+            [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 1],
+            MARS_SIDECOLOR(side _unit)
+        ];
+    } forEach (units _x);
 } forEach allGroups;

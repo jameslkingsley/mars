@@ -33,4 +33,7 @@ GVAR(objectIcons) = 0;
 GVAR(cachedGroups) = [];
 GVAR(cachedUnits) = [];
 
+GVAR(selectionPFH) = 0;
+GVAR(selection) = [];
+
 ADDON = true;
