@@ -30,8 +30,12 @@ private _box = boundingBoxReal _target;
             (_target modelToWorld (_x select 1)),
             _color
         ];
-    } forEach _x;
-} forEach [
+        
+        false
+    } count _x;
+    
+    false
+} count [
     // Left
     [
         // P1 to P2

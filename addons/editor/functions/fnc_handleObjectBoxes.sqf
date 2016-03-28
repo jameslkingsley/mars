@@ -23,5 +23,6 @@ _objects = nearestObjects [_worldPos, TYPE_SEARCH, 5];
 
 if (count _objects > 0) then {
     private _target = (_objects select 0);
-    [_target, MARS_SIDECOLOR(side _target)] call FUNC(drawBoundingBox);
+    private _color = if (alive _target) then {MARS_SIDECOLOR(side _target)} else {[0,0,0,1]};
+    [_target, _color] call FUNC(drawBoundingBox);
 };

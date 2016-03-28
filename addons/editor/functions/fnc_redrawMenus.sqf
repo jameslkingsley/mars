@@ -28,7 +28,8 @@ if (count GVAR(topNavControls) > 0) then {
                 MARS_LOGERROR_1("Menu failed to delete - supplied array:", GVAR(topNavControls));
             };
         };
-    } forEach GVAR(topNavControls);
+        false
+    } count GVAR(topNavControls);
 };
 
 if (count GVAR(menus) > 0) then {

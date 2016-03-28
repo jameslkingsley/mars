@@ -20,7 +20,8 @@
     _grp = _x;
     
     if (count (units _grp) > 0) then {
-        _leaderPos = (leader _grp) modelToWorld (boundingCenter (leader _grp));
+        _leaderPos = ASLtoAGL (getPosASLVisual (leader _grp));
+        
         if (alive (leader _grp)) then {
             _iconPos = [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 5];
             
@@ -46,7 +47,7 @@
         {
             _unit = _x;
             if (alive _unit) then {
-                _unitPos = _unit modelToWorld (boundingCenter _unit);
+                _unitPos = ASLtoAGL (getPosASLVisual _unit);
                 
                 drawLine3D [
                     [(_unitPos select 0), (_unitPos select 1), (_unitPos select 2) + 1],
@@ -54,6 +55,10 @@
                     MARS_SIDECOLOR(side _unit)
                 ];
             };
-        } forEach (units _x);
+            
+            false
+        } count (units _x);
     };
-} forEach allGroups;
+    
+    false
+} count allGroups;

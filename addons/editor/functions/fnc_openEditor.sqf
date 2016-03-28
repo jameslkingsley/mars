@@ -67,7 +67,8 @@ GVAR(objectIcons) = [{[] call FUNC(handleObjectIcons);}, 0, []] call CBA_fnc_add
 GVAR(selectionPFH) = [{
     {
         [_x, ([side _x] call EFUNC(common,getSideColor))] call FUNC(drawBoundingBox);
-    } forEach GVAR(selection);
+        false
+    } count GVAR(selection);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(isSet) = true;

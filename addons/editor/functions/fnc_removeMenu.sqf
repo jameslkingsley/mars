@@ -25,7 +25,8 @@ private _indexExists = false;
         _indexExists = true;
         GVAR(menus) = GVAR(menus) - _x;
     };
-} forEach GVAR(menus);
+    false
+} count GVAR(menus);
 
 if (!_indexExists) exitWith {false};
 

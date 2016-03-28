@@ -24,7 +24,7 @@ _objects = nearestObjects [_worldPos, TYPE_SEARCH, 3.5];
 if (count _objects > 0) then {
     systemChat str (_objects select 0);
 } else {
-    // Add waypoint (temporary)
+    // Add waypoint (temporary - needs to be replaced by extension when ready)
     if (count GVAR(selection) > 0) then {
         {
             _x disableAI "AUTOCOMBAT";
@@ -33,6 +33,8 @@ if (count _objects > 0) then {
             _x setBehaviour "AWARE";
             _x setSpeedMode "FULL";
             _x doMove _worldPos;
-        } forEach GVAR(selection);
+            
+            false
+        } count GVAR(selection);
     };
 };

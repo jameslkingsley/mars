@@ -11,8 +11,7 @@
 
 #include "\z\mars\addons\main\script_macros.hpp"
 
-//#define WEST_COLOR ([west] call BIS_fnc_sideColor)
-#define WEST_COLOR ([0,0,1,1])
+#define WEST_COLOR ([west] call BIS_fnc_sideColor)
 #define EAST_COLOR ([east] call BIS_fnc_sideColor)
 #define GUER_COLOR ([resistance] call BIS_fnc_sideColor)
 #define CIV_COLOR ([civilian] call BIS_fnc_sideColor)

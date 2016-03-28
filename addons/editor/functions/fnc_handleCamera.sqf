@@ -34,9 +34,9 @@ _oldPos = GVAR(camPos);
 _zoomMod = (GVAR(camZoom) * 0.8) max 1;
 _altMod = ((((getPos _camera) select 2) * 0.025) max 0.1) min 1;
 
-_mX = (GVAR(camDolly) select 0) * _altMod / _zoomMod;
-_mY = (GVAR(camDolly) select 1) * _altMod / _zoomMod;
-_mZ = GVAR(camBoom) * _altMod / _zoomMod;
+_mX = (GVAR(camDolly) select 0)/* * _altMod*/ / _zoomMod;
+_mY = (GVAR(camDolly) select 1)/* * _altMod*/ / _zoomMod;
+_mZ = GVAR(camBoom)/* * _altMod*/ / _zoomMod;
 
 _x = (_oldPos select 0) + (_mX * cos(_pan)) + (_mY * sin(_pan));
 _y = (_oldPos select 1) - (_mX * sin(_pan)) + (_mY * cos(_pan));

@@ -26,7 +26,9 @@ private _indexExists = false;
         MARS_LOGERROR_1("Menu is already in use", _index);
         _indexExists = true;
     };
-} forEach GVAR(menus);
+    
+    false
+} count GVAR(menus);
 
 if (_indexExists) exitWith {""};
 
