@@ -31,5 +31,6 @@ camDestroy GVAR(targetCamera);
 BIS_fnc_feedback_allowPP = true;
 
 [GVAR(camHandler)] call CBA_fnc_removePerFrameHandler;
+[GVAR(objectTagger)] call CBA_fnc_removePerFrameHandler;
 
 GVAR(isSet) = false;

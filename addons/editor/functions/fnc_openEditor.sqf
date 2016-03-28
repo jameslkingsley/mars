@@ -57,4 +57,10 @@ _display = (findDisplay 46) createDisplay QGVAR(interface);
 // Reset interruptions
 GVAR(interrupts) = [];
 
+// Start the object tagging handler
+GVAR(objectTagger) = [{[] call FUNC(handleObjectTagging);}, 0, []] call CBA_fnc_addPerFrameHandler;
+
+// Start the object icons handler
+GVAR(objectIcons) = [{[] call FUNC(handleObjectIcons);}, 0, []] call CBA_fnc_addPerFrameHandler;
+
 GVAR(isSet) = true;

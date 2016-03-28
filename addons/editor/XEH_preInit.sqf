@@ -26,6 +26,11 @@ GVAR(menus) = [];
 GVAR(topNavControls) = [];
 
 GVAR(canContext) = true;
-GVAR(hasMouseWaited) = false;
+
+GVAR(objectTagger) = 0;
+GVAR(objectIcons) = 0;
+
+GVAR(cachedGroups) = [];
+GVAR(cachedUnits) = [];
 
 ADDON = true;

@@ -9,3 +9,7 @@ PREP(addMenu);
 PREP(removeMenu);
 PREP(redrawMenus);
 PREP(shutdown);
+PREP(openContextMenu);
+PREP(drawBoundingBox);
+PREP(handleObjectTagging);
+PREP(handleObjectIcons);
