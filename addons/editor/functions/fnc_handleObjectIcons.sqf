@@ -21,25 +21,27 @@
     
     if (count (units _grp) > 0) then {
         _leaderPos = (leader _grp) modelToWorld (boundingCenter (leader _grp));
-        _iconPos = [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 5];
-        
-        drawIcon3D [
-            ([([_grp] call EFUNC(common,getMarkerType))] call EFUNC(common,getMarkerTexture)),
-            MARS_SIDECOLOR(side _grp),
-            _iconPos,
-            1,
-            1,
-            0,
-            "",
-            0,
-            0
-        ];
-        
-        drawLine3D [
-            _leaderPos,
-            _iconPos,
-            MARS_SIDECOLOR(side _grp)
-        ];
+        if (alive (leader _grp)) then {
+            _iconPos = [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 5];
+            
+            drawIcon3D [
+                ([([_grp] call EFUNC(common,getMarkerType))] call EFUNC(common,getMarkerTexture)),
+                MARS_SIDECOLOR(side _grp),
+                _iconPos,
+                1,
+                1,
+                0,
+                "",
+                0,
+                0
+            ];
+            
+            drawLine3D [
+                _leaderPos,
+                _iconPos,
+                MARS_SIDECOLOR(side _grp)
+            ];
+        };
         
         {
             _unit = _x;
