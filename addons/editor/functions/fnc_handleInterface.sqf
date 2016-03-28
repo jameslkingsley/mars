@@ -65,18 +65,6 @@ switch (toLower _mode) do {
     };
     case "onmousezchanged": {
         _args params ["_ctrl","_zChange"];
-
-        // Scroll to modify distance value in third person
-        if (GVAR(camMode) == 0) then {
-            // Scroll to change speed, modifier for zoom
-            if (GVAR(ctrlKey)) then {
-                [nil,nil,nil,nil,nil,nil,nil, GVAR(camSpeed) + _zChange * 0.2] call FUNC(setCameraAttributes);
-            } else {
-                [nil,nil,nil,nil,nil,nil, GVAR(camZoom) + _zChange * 0.1] call FUNC(setCameraAttributes);
-            };
-        } else {
-            GVAR(camDistance) = ((GVAR(camDistance) - _zChange * 2) max 5) min 50;
-        };
     };
     case "onmousemoving": {
         _args params ["_ctrl","_x","_y"];
@@ -120,25 +108,25 @@ switch (toLower _mode) do {
             case 14: { // Backspace
             };
             case 16: { // Q
-                GVAR(camBoom) = 0.5 * GVAR(camSpeed) * ([1, 2] select _shift);
+                GVAR(camBoom) = 0.5 * GVAR(camSpeed) * ([1, CAM_SHIFT_SPEED_COEF] select _shift);
             };
             case 17: { // W
-                GVAR(camDolly) set [1, GVAR(camSpeed) * ([1, 2] select _shift)];
+                GVAR(camDolly) set [1, GVAR(camSpeed) * ([1, CAM_SHIFT_SPEED_COEF] select _shift)];
             };
             case 29: { // Ctrl
                 GVAR(ctrlKey) = true;
             };
             case 30: { // A
-                GVAR(camDolly) set [0, -GVAR(camSpeed) * ([1, 2] select _shift)];
+                GVAR(camDolly) set [0, -GVAR(camSpeed) * ([1, CAM_SHIFT_SPEED_COEF] select _shift)];
             };
             case 31: { // S
-                GVAR(camDolly) set [1, -GVAR(camSpeed) * ([1, 2] select _shift)];
+                GVAR(camDolly) set [1, -GVAR(camSpeed) * ([1, CAM_SHIFT_SPEED_COEF] select _shift)];
             };
             case 32: { // D
-                GVAR(camDolly) set [0, GVAR(camSpeed) * ([1, 2] select _shift)];
+                GVAR(camDolly) set [0, GVAR(camSpeed) * ([1, CAM_SHIFT_SPEED_COEF] select _shift)];
             };
             case 44: { // Z
-                GVAR(camBoom) = -0.5 * GVAR(camSpeed) * ([1, 2] select _shift);
+                GVAR(camBoom) = -0.5 * GVAR(camSpeed) * ([1, CAM_SHIFT_SPEED_COEF] select _shift);
             };
             case 49: { // N
             };

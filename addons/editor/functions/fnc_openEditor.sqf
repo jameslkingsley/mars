@@ -17,6 +17,7 @@
 #include "script_component.hpp"
 
 if !(hasInterface) exitWith {};
+if (GVAR(isSet)) exitWith {};
 
 // Initalize camera variables
 GVAR(camBoom) = 0;
@@ -55,3 +56,5 @@ _display = (findDisplay 46) createDisplay QGVAR(interface);
 
 // Reset interruptions
 GVAR(interrupts) = [];
+
+GVAR(isSet) = true;
