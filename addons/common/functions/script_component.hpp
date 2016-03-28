@@ -1,1 +1,1 @@
-#include "\z\mars\addons\editor\script_component.hpp"
+#include "\z\mars\addons\common\script_component.hpp"

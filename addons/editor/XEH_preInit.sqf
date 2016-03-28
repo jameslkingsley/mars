@@ -25,4 +25,7 @@ GVAR(isSet) = false;
 GVAR(menus) = [];
 GVAR(topNavControls) = [];
 
+GVAR(canContext) = true;
+GVAR(hasMouseWaited) = false;
+
 ADDON = true;

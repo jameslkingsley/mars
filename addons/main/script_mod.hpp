@@ -2,6 +2,7 @@
 
 #define MAINPREFIX z
 #define PREFIX mars
+#define QMODNAME "Mars"
 
 #define MAJOR 1
 #define MINOR 0

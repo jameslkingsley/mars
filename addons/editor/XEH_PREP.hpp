@@ -8,3 +8,4 @@ PREP(transitionCamera);
 PREP(addMenu);
 PREP(removeMenu);
 PREP(redrawMenus);
+PREP(shutdown);

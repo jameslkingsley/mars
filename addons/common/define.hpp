@@ -78,7 +78,7 @@
 #define LB_MULTI 0x20
 #define FONT_MARS "RobotoCondensed"
 #define BG_OPACITY 0.8
-#define ACCENT_COLOR {0.035,0.333,0.635,1}
+#define ACCENT_COLOR {"(profileNamespace getVariable ['GUI_BCG_RGB_R',0.3843])", "(profileNamespace getVariable ['GUI_BCG_RGB_G',0.7019])", "(profileNamespace getVariable ['GUI_BCG_RGB_B',0.8862])", "(profileNamespace getVariable ['GUI_BCG_RGB_A',1])"}
 
 class MARS_gui_backgroundBase {
     type = 0;

@@ -32,7 +32,7 @@ class GVAR(interface) {
             onMouseButtonUp = QUOTE([ARR_2('onMouseButtonUp',_this)] call FUNC(handleInterface));
             onMouseZChanged = QUOTE([ARR_2('onMouseZChanged',_this)] call FUNC(handleInterface));
             onMouseMoving = QUOTE([ARR_2('onMouseMoving',_this)] call FUNC(handleInterface));
-            onMouseHolding = QUOTE([ARR_2('onMouseMoving',_this)] call FUNC(handleInterface));
+            onMouseHolding = QUOTE([ARR_2('onMouseHolding',_this)] call FUNC(handleInterface));
         };
     };
     class controls {
@@ -44,13 +44,13 @@ class GVAR(interface) {
             h = 0.025 * safeZoneH;
             colorBackground[] = {0.05,0.05,0.05,1};
         };
-        class LeftPanel: MARS_gui_backgroundBaseSolid {
+        /*class LeftPanel: MARS_gui_backgroundBaseSolid {
             idc = 101;
             x = 0 * safeZoneW + safeZoneX;
             y = 0.04 * safeZoneH + safeZoneY;
             w = 0.15 * safeZoneW;
             h = safeZoneH - 0.04;
             colorBackground[] = {0.1,0.1,0.1,1};
-        };
+        };*/
     };
 };

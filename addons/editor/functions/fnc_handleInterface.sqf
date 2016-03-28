@@ -53,6 +53,15 @@ switch (toLower _mode) do {
 
         GVAR(mouse) set [_button,false];
         if (_button == 0) then { GVAR(camDolly) = [0,0]; };
+        
+        if (_button == 1 && GVAR(canContext) && GVAR(hasMouseWaited)) then {
+            systemChat "Context";
+        };
+        
+        if (_button == 1 && !GVAR(canContext)) then {
+            GVAR(canContext) = true;
+            [{GVAR(hasMouseWaited) = true;}, [], 0.1] call EFUNC(common,waitAndExecute);
+        };
     };
     case "onmousezchanged": {
         _args params ["_ctrl","_zChange"];
@@ -71,7 +80,16 @@ switch (toLower _mode) do {
     };
     case "onmousemoving": {
         _args params ["_ctrl","_x","_y"];
+        
+        if !(GVAR(mouse) select 1) then {
+            GVAR(canContext) = false;
+            GVAR(hasMouseWaited) = false;
+        };
+        
         [_x,_y] call FUNC(handleMouse);
+    };
+    case "onmouseholding": {
+        _args params ["_ctrl","_x","_y"];
     };
     case "onkeydown": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
@@ -85,8 +103,9 @@ switch (toLower _mode) do {
 
         switch (_dik) do {
             case 1: { // Esc
-                [QGVAR(escape)] call FUNC(interrupt);
-                ["escape"] call FUNC(handleInterface);
+                //[QGVAR(escape)] call FUNC(interrupt);
+                //["escape"] call FUNC(handleInterface);
+                [] call FUNC(shutdown);
             };
             case 2: { // 1
             };
