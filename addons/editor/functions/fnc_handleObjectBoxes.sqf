@@ -19,10 +19,11 @@
 private ["_worldPos","_objects"];
 
 _worldPos = screenToWorld GVAR(mousePos);
-_objects = nearestObjects [_worldPos, TYPE_SEARCH, 5];
+_objects = nearestObjects FULL_TYPE_SEARCH;
 
 if (count _objects > 0) then {
     private _target = (_objects select 0);
     private _color = if (alive _target) then {MARS_SIDECOLOR(side _target)} else {[0,0,0,1]};
+    GVAR(cursorOverObjectIsVehicle) = !(_target isKindOf "CAManBase");
     [_target, _color] call FUNC(drawBoundingBox);
 };

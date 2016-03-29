@@ -21,3 +21,7 @@
 #define CAM_SHIFT_SPEED_COEF 5
 
 #define TYPE_SEARCH ["Man","LandVehicle","Air"]
+#define FULL_TYPE_SEARCH [_worldPos, TYPE_SEARCH, 5]
+
+#define CONTEXT_OPTION_WIDTH (0.1 * safeZoneW)
+#define CONTEXT_OPTION_HEIGHT (0.025 * safeZoneH)

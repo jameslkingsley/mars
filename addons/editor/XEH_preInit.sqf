@@ -7,7 +7,7 @@ ADDON = false;
 // Reset the stored display
 SETUVAR(GVAR(interface),displayNull);
 
-// Permanent variables
+// Camera
 GVAR(availableModes) = [0];
 GVAR(availableVisions) = [-2,-1,0,1];
 GVAR(camAgent) = objNull;
@@ -22,19 +22,34 @@ GVAR(camVision) = -2;
 GVAR(camZoom) = 1;
 GVAR(interrupts) = [];
 GVAR(isSet) = false;
+
+// Interface
 GVAR(menus) = [];
 GVAR(topNavControls) = [];
+GVAR(hasLeftClicked) = false;
+GVAR(isWaitingForLeftClick) = false;
 
+// Context Menu
 GVAR(canContext) = true;
+GVAR(contextOptions) = [];
+GVAR(childContextOptions) = [];
+GVAR(contextControls) = [];
+GVAR(tempParentIDC) = -1;
 
+// Objects
 GVAR(objectTagger) = 0;
 GVAR(objectIcons) = 0;
 
+// Caches
 GVAR(cachedGroups) = [];
 GVAR(cachedUnits) = [];
 
+// Selection
 GVAR(selectionPFH) = 0;
 GVAR(selection) = [];
+GVAR(cursorOverObjectIsVehicle) = false;
+GVAR(movingObjectsPFH) = 0;
+GVAR(movingObjects) = [];
 
 GVAR(shiftKey) = false;
 

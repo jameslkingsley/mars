@@ -16,15 +16,44 @@
 
 #include "script_component.hpp"
 
-private ["_worldPos","_objects"];
+if (GVAR(cursorOverObjectIsVehicle)) then {
+    private ["_target","_worldPos","_objects"];
+    
+    _target = objNull;
+    _worldPos = screenToWorld GVAR(mousePos);
+    _objects = lineIntersectsWith [GVAR(camPos), AGLtoASL _worldPos, objNull, objNull, true];
 
-_worldPos = screenToWorld GVAR(mousePos);
-_objects = nearestObjects [_worldPos, TYPE_SEARCH, 5];
+    {
+        private _obj = _x;
+        if ({_obj isKindOf _x} count TYPE_SEARCH > 0) then {
+            _target = _obj;
+        };
+        false
+    } count _objects;
 
-if (count _objects > 0) then {
-    private _target = (_objects select 0);
-    [_target, !(vehicle _target == _target)] call FUNC(highlightObject);
+    if (isNull _target) then {
+        // Clear Selection
+        GVAR(selection) = [];
+        
+        // Default to true to allow selecting vehicles
+        GVAR(cursorOverObjectIsVehicle) = true;
+    } else {
+        [_target, !(vehicle _target == _target)] call FUNC(highlightObject);
+    };
 } else {
-    // Clear Selection
-    GVAR(selection) = [];
+    private ["_worldPos","_objects"];
+    
+    _worldPos = screenToWorld GVAR(mousePos);
+    _objects = nearestObjects FULL_TYPE_SEARCH;
+
+    if (count _objects > 0) then {
+        private _target = (_objects select 0);
+        [_target, !(vehicle _target == _target)] call FUNC(highlightObject);
+    } else {
+        // Clear Selection
+        GVAR(selection) = [];
+        
+        // Default to true to allow selecting vehicles
+        GVAR(cursorOverObjectIsVehicle) = true;
+    };
 };

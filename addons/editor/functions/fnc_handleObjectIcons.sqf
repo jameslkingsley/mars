@@ -22,7 +22,7 @@
     if (count (units _grp) > 0) then {
         _leaderPos = ASLtoAGL (getPosASLVisual (leader _grp));
         
-        if (alive (leader _grp)) then {
+        if (alive (leader _grp) && (_leaderPos distance GVAR(camPos)) < 2500) then {
             _iconPos = [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 5];
             
             drawIcon3D [
@@ -46,9 +46,8 @@
         
         {
             _unit = _x;
-            if (alive _unit) then {
-                _unitPos = ASLtoAGL (getPosASLVisual _unit);
-                
+            _unitPos = ASLtoAGL (getPosASLVisual _unit);
+            if (alive _unit && (_unitPos distance GVAR(camPos)) < 500) then {
                 drawLine3D [
                     [(_unitPos select 0), (_unitPos select 1), (_unitPos select 2) + 1],
                     [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 1],

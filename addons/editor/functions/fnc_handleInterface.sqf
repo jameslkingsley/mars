@@ -52,15 +52,20 @@ switch (toLower _mode) do {
         _args params ["_ctrl","_button"];
 
         GVAR(mouse) set [_button,false];
+        [] call FUNC(closeContextMenu);
         
-        if (_button == 0) then {GVAR(camDolly) = [0,0];};
+        if (_button == 0) then {
+            GVAR(camDolly) = [0,0];
+            if (GVAR(isWaitingForLeftClick)) then {GVAR(hasLeftClicked) = true;};
+            //[false] call FUNC(handleLeftDrag);
+        };
         
         if (_button == 0 && GVAR(canContext)) then {
             [] call FUNC(selectObject);
         };
         
         if (_button == 1 && GVAR(canContext)) then {
-            [] call FUNC(openContextMenu);
+            [] call FUNC(handleContextMenu);
         };
     };
     case "onmousezchanged": {
@@ -73,6 +78,10 @@ switch (toLower _mode) do {
             GVAR(canContext) = false;
         };
         
+        /*if (GVAR(mouse) select 0) then {
+            [] call FUNC(handleLeftDrag);
+        };*/
+        
         [_x,_y] call FUNC(handleMouse);
     };
     case "onmouseholding": {
@@ -84,7 +93,7 @@ switch (toLower _mode) do {
     case "onkeydown": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
         
-        GVAR(shiftKey) = _shift;
+        if (!GVAR(shiftKey)) then {GVAR(shiftKey) = true};
 
         // Handle held keys (prevent repeat calling)
         if (GVAR(heldKeys) param [_dik,false]) exitWith {};
@@ -157,7 +166,7 @@ switch (toLower _mode) do {
     case "onkeyup": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
         
-        GVAR(shiftKey) = _shift;
+        if (GVAR(shiftKey)) then {GVAR(shiftKey) = false};
 
         // No longer being held
         GVAR(heldKeys) set [_dik,nil];

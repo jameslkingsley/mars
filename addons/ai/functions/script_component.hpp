@@ -1,0 +1,1 @@
+#include "\z\mars\addons\ai\script_component.hpp"
