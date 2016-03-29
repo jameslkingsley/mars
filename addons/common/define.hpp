@@ -106,25 +106,22 @@ class MARS_gui_editBase {
     y = 0;
     h = 0.04;
     w = 0.2;
-    colorBackground[] =
-    {
+    colorBackground[] = {
         0,
         0,
         0,
         1
     };
-    colorText[] =
-    {
+    colorText[] = {
         0.95,
         0.95,
         0.95,
         1
     };
-    colorSelection[] =
-    {
-        "(profilenamespMARS getVariable ['GUI_BCG_RGB_R',0.3843])",
-        "(profilenamespMARS getVariable ['GUI_BCG_RGB_G',0.7019])",
-        "(profilenamespMARS getVariable ['GUI_BCG_RGB_B',0.8862])",
+    colorSelection[] = {
+        "(profileNamespace getVariable ['GUI_BCG_RGB_R',0.3843])",
+        "(profileNamespace getVariable ['GUI_BCG_RGB_G',0.7019])",
+        "(profileNamespace getVariable ['GUI_BCG_RGB_B',0.8862])",
         1
     };
     autocomplete = "";
@@ -134,8 +131,7 @@ class MARS_gui_editBase {
     font = "RobotoCondensed";
     shadow = 2;
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
-    colorDisabled[] =
-    {
+    colorDisabled[] = {
         1,
         1,
         1,
@@ -294,7 +290,7 @@ class MARS_gui_listBoxBase : RscListBox {
     colorSelect2[] = {0.95, 0.95, 0.95, 1};
     colorSelectBackground[] = {0, 0, 0, 1};
     colorSelectBackground2[] = {0.543, 0.5742, 0.4102, 1.0};
-    colorDisabled[] = {"(profilenamespMARS getVariable ['GUI_BCG_RGB_R',0.69])", "(profilenamespMARS getVariable ['GUI_BCG_RGB_G',0.75])", "(profilenamespMARS getVariable ['GUI_BCG_RGB_B',0.5])", 0.25};
+    colorDisabled[] = {"(profileNamespace getVariable ['GUI_BCG_RGB_R',0.69])", "(profileNamespace getVariable ['GUI_BCG_RGB_G',0.75])", "(profileNamespace getVariable ['GUI_BCG_RGB_B',0.5])", 0.25};
     period = 1.2;
     rowHeight = 0.03;
     colorBackground[] = {0, 0, 0, 1};
@@ -453,9 +449,9 @@ class MARS_gui_comboBoxBase : RscCombo {
 class MARS_gui_mapBase {
     moveOnEdges = 1;
     x = "SafeZoneXAbs";
-    y = "SafeZoneY + 1.5 *           (     (     ((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    y = "SafeZoneY + 1.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     w = "SafeZoneWAbs";
-    h = "SafeZoneH - 1.5 *           (     (     ((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    h = "SafeZoneH - 1.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     type = 100; // Use 100 to hide markers
     style = 48;
     shadow = 0;
@@ -509,15 +505,15 @@ class MARS_gui_mapBase {
     onMouseButtonDblClick = "";
 
     fontLabel = "RobotoCondensed";
-    sizeExLabel = "(     (     (     ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+    sizeExLabel = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
     fontGrid = "TahomaB";
     sizeExGrid = 0.02;
     fontUnits = "TahomaB";
-    sizeExUnits = "(     (     (     ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+    sizeExUnits = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
     fontNames = "RobotoCondensed";
-    sizeExNames = "(     (     (     ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8) * 2";
+    sizeExNames = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8) * 2";
     fontInfo = "RobotoCondensed";
-    sizeExInfo = "(      (     (     ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+    sizeExInfo = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
     fontLevel = "TahomaB";
     sizeExLevel = 0.02;
     text = "#(argb,8,8,3)color(1,1,1,1)";
@@ -526,12 +522,12 @@ class MARS_gui_mapBase {
         size = 50;
     };
     class Legend {
-        x = "SafeZoneX +          (     ((safezoneW / safezoneH) min 1.2) / 40)";
-        y = "SafeZoneY + safezoneH - 4.5 *          (     (     ((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-        w = "10 *           (     ((safezoneW / safezoneH) min 1.2) / 40)";
-        h = "3.5 *          (     (     ((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        x = "SafeZoneX + (((safezoneW / safezoneH) min 1.2) / 40)";
+        y = "SafeZoneY + safezoneH - 4.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        w = "10 * (((safezoneW / safezoneH) min 1.2) / 40)";
+        h = "3.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         font = "RobotoCondensed";
-        sizeEx = "(     (     (     ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
         colorBackground[] = {1, 1, 1, 0.5};
         color[] = {0, 0, 0, 1};
     };
@@ -541,7 +537,7 @@ class MARS_gui_mapBase {
         iconCanceled = "\A3\ui_f\data\map\mapcontrol\taskIconCanceled_CA.paa";
         iconDone = "\A3\ui_f\data\map\mapcontrol\taskIconDone_CA.paa";
         iconFailed = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_CA.paa";
-        color[] = {"(profilenamespMARS getVariable ['IGUI_TEXT_RGB_R',0])", "(profilenamespMARS getVariable ['IGUI_TEXT_RGB_G',1])", "(profilenamespMARS getVariable ['IGUI_TEXT_RGB_B',1])", "(profilenamespMARS getVariable ['IGUI_TEXT_RGB_A',0.8])"};
+        color[] = {"(profileNamespace getVariable ['IGUI_TEXT_RGB_R',0])", "(profileNamespace getVariable ['IGUI_TEXT_RGB_G',1])", "(profileNamespace getVariable ['IGUI_TEXT_RGB_B',1])", "(profileNamespace getVariable ['IGUI_TEXT_RGB_A',0.8])"};
         colorCreated[] = {1, 1, 1, 1};
         colorCanceled[] = {0.7, 0.7, 0.7, 1};
         colorDone[] = {0.7, 1, 0.3, 1};

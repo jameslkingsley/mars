@@ -78,7 +78,7 @@ disableSerialization;
                         _ctrl = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_menuBase", _idc];
                         _ctrl ctrlSetText _name;
                         _ctrl ctrlSetPosition [
-                            (_parentPos select 0) + CONTEXT_OPTION_WIDTH,
+                            (_parentPos select 0) + CONTEXT_OPTION_WIDTH + 0.05,
                             ((_parentPos select 1) + (CONTEXT_OPTION_HEIGHT * _forEachIndex)),
                             CONTEXT_OPTION_WIDTH,
                             CONTEXT_OPTION_HEIGHT

@@ -50,7 +50,7 @@ if (_isActive) then {
     };
 } else {  
     [GVAR(movingObjectsPFH)] call CBA_fnc_removePerFrameHandler;
-    GVAR(movingObjectsPFH) = 0;    
+    GVAR(movingObjectsPFH) = 0;
 
     {
         (vehicle _x) allowDamage true;
