@@ -23,6 +23,8 @@ switch (toLower _mode) do {
     case "onload": {
         _args params ["_display"];
         SETUVAR(GVAR(interface),_display);
+        // Start the entity list handler
+        [] call FUNC(createEntityList);
     };
     case "onunload": {
         // Kill GUI PFHs

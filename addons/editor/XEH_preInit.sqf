@@ -28,6 +28,14 @@ GVAR(menus) = [];
 GVAR(topNavControls) = [];
 GVAR(hasLeftClicked) = false;
 GVAR(isWaitingForLeftClick) = false;
+GVAR(entityListPFH) = 0;
+GVAR(entityListGroups) = [];
+GVAR(entityListUnits) = [];
+GVAR(entityList_west) = 0;
+GVAR(entityList_east) = 0;
+GVAR(entityList_guer) = 0;
+GVAR(entityList_civ) = 0;
+GVAR(entityList_empty) = 0;
 
 // Context Menu
 GVAR(canContext) = true;

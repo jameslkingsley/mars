@@ -23,5 +23,13 @@
 #define TYPE_SEARCH ["Man","LandVehicle","Air"]
 #define FULL_TYPE_SEARCH [_worldPos, TYPE_SEARCH, 5]
 
-#define CONTEXT_OPTION_WIDTH (0.15 * safeZoneW)
+#define CONTEXT_OPTION_WIDTH (0.125 * safeZoneW)
 #define CONTEXT_OPTION_HEIGHT (0.025 * safeZoneH)
+
+#define ICON_FADE_DISTANCE 2000
+#define BOX_FADE_DISTANCE 500
+
+#define IDC_MENUBAR 100
+#define IDC_LEFTPANEL 101
+#define IDC_RIGHTPANEL 102
+#define IDC_ENTITYLIST 200

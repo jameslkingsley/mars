@@ -15,3 +15,6 @@
 // MINIMAL required version for the Mod. Components can specify others..
 #define REQUIRED_VERSION 1.56
 #define REQUIRED_CBA_VERSION {2,3,1}
+
+#define ACCENT_COLOR {0.035,0.333,0.635,1}
+#define ACCENT_COLOR_ARR [0.035,0.333,0.635,1]

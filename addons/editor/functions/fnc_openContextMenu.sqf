@@ -18,8 +18,6 @@
 
 params ["_objects"];
 
-systemChat str _objects;
-
 disableSerialization;
 
 {
@@ -35,7 +33,7 @@ disableSerialization;
         if !({_x call compile _condition} count _objects > 0) exitWith {};
     };
     
-    _ctrl = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_menuBase", _idc];
+    _ctrl = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_contextBase", _idc];
     _text = if (_hasChildren) then {(format["%1...", _name])} else {_name};
     _ctrl ctrlSetText _text;
     _ctrl ctrlSetPosition [
@@ -50,7 +48,7 @@ disableSerialization;
     if (_hasChildren) then {
         GVAR(tempParentIDC) = _idc;
         
-        _action = _ctrl ctrlAddEventHandler ["MouseEnter", {
+        _ctrl ctrlAddEventHandler ["MouseEnter", {
             disableSerialization;
             params ["_ctrl"];
 
@@ -75,16 +73,16 @@ disableSerialization;
                         };
                         
                         _parentPos = ctrlPosition _parentControl;
-                        _ctrl = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_menuBase", _idc];
+                        _ctrl = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_contextBase", _idc];
                         _ctrl ctrlSetText _name;
                         _ctrl ctrlSetPosition [
-                            (_parentPos select 0) + CONTEXT_OPTION_WIDTH + 0.05,
+                            (_parentPos select 0) + CONTEXT_OPTION_WIDTH + 0.005,
                             ((_parentPos select 1) + (CONTEXT_OPTION_HEIGHT * _forEachIndex)),
                             CONTEXT_OPTION_WIDTH,
                             CONTEXT_OPTION_HEIGHT
                         ];
                         
-                        _action = _ctrl ctrlAddEventHandler ["MouseButtonUp", {
+                        _ctrl ctrlAddEventHandler ["MouseButtonUp", {
                             disableSerialization;
                             params ["_ctrl","_button"];
                             if (_button != 0) exitWith {};
@@ -101,7 +99,7 @@ disableSerialization;
                             [] call FUNC(closeContextMenu);
                         }];
                         
-                        _action = _ctrl ctrlAddEventHandler ["MouseExit", {
+                        _ctrl ctrlAddEventHandler ["MouseExit", {
                             [] call FUNC(closeChildContext);
                         }];
                         
@@ -119,7 +117,7 @@ disableSerialization;
             [] call FUNC(closeChildContext);
         }];
         
-        _action = _ctrl ctrlAddEventHandler ["MouseButtonUp", {
+        _ctrl ctrlAddEventHandler ["MouseButtonUp", {
             disableSerialization;
             params ["_ctrl","_button"];
             if (_button != 0) exitWith {};
