@@ -22,6 +22,7 @@ _ctrl = GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_ENTITYLIST;
 
 {
     _group = _x;
+    _grpPath = -1;
     
     _parentSide = switch (side _group) do {
         case west: {GVAR(entityList_west)};
@@ -67,4 +68,4 @@ _ctrl = GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_ENTITYLIST;
     } count (units _group);
     
     false
-} count allGroups;
+} count allGroups - GVAR(entityListGroups);

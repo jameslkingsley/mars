@@ -43,22 +43,20 @@ GVAR(contextOptions) = [];
 GVAR(childContextOptions) = [];
 GVAR(contextControls) = [];
 GVAR(tempParentIDC) = -1;
-
-// Objects
-GVAR(objectTagger) = 0;
-GVAR(objectIcons) = 0;
+GVAR(isMouseOverChild) = false;
 
 // Caches
 GVAR(cachedGroups) = [];
 GVAR(cachedUnits) = [];
 
 // Selection
-GVAR(selectionPFH) = 0;
 GVAR(selection) = [];
 GVAR(cursorOverObjectIsVehicle) = false;
 GVAR(movingObjectsPFH) = 0;
 GVAR(movingObjects) = [];
 
+GVAR(ctrlKey) = false;
+GVAR(altKey) = false;
 GVAR(shiftKey) = false;
 
 ADDON = true;

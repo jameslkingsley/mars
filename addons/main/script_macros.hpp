@@ -199,4 +199,15 @@
 
 #define MARS_SIDECOLOR(side) ([(side)] call EFUNC(common,getSideColor))
 
+#define HEXTORGBA(COLOR_RGBA)\
+	__EVAL(COLOR_RGBA call _fnc_colorHEXtoRGBA_2),\
+	__EVAL(COLOR_RGBA call _fnc_colorHEXtoRGBA_4),\
+	__EVAL(COLOR_RGBA call _fnc_colorHEXtoRGBA_6),\
+	__EVAL(COLOR_RGBA call _fnc_colorHEXtoRGBA_0)
+
+#define HEXTORGB(COLOR_RGB)\
+	__EVAL(COLOR_RGB call _fnc_colorHEXtoRGBA_0),\
+	__EVAL(COLOR_RGB call _fnc_colorHEXtoRGBA_2),\
+	__EVAL(COLOR_RGB call _fnc_colorHEXtoRGBA_4)
+
 #include "script_debug.hpp"

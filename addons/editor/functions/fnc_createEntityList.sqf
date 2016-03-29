@@ -36,5 +36,3 @@ GVAR(entityList_civ) = _ctrl tvAdd [[], "CIVILIAN"];
 GVAR(entityList_empty) = _ctrl tvAdd [[], "EMPTY"];
 
 GVAR(entityListPFH) = [{[] call FUNC(handleEntityList);}, 0, []] call CBA_fnc_addPerFrameHandler;
-
-//[] call FUNC(handleEntityList);

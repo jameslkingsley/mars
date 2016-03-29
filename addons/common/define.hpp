@@ -86,55 +86,46 @@ class MARS_gui_treeBase {
     style = ST_LEFT;
     default = 0;
     blinkingPeriod = 0;
-
     x = 0
     y = 0
     w = 0
     h = 0
-
     colorBorder[] = {0,0,0,0};
-
-    colorBackground[] = {0.2,0.2,0.2,1}; // Fill color
-    colorSelect[] = {1,0.5,0,1}; // Selected item fill color (when multiselectEnabled is 0)
-    colorMarked[] = {1,0.5,0,0.5}; // Marked item fill color (when multiselectEnabled is 1)
-    colorMarkedSelected[] = {1,0.5,0,1}; // Selected item fill color (when multiselectEnabled is 1)
-
+    colorBackground[] = {0,0,0,0}; // Fill color
+    colorSelect[] = {ACCENT_COLOR_RGB,0.5}; // Selected item fill color (when multiselectEnabled is 0)
+    colorMarked[] = {ACCENT_COLOR_RGB,0.25}; // Marked item fill color (when multiselectEnabled is 1)
+    colorMarkedSelected[] = {ACCENT_COLOR_RGB,0.5}; // Selected item fill color (when multiselectEnabled is 1)
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
     font = "RobotoCondensedLight";
     shadow = 0;
     colorText[] = {1,1,1,1}; // Text color
     colorSelectText[] = {1,1,1,1}; // Selected text color (when multiselectEnabled is 0)
     colorMarkedText[] = {1,1,1,1}; // Selected text color (when multiselectEnabled is 1)
-
     tooltip = ""; // Tooltip text
     tooltipColorShade[] = {0,0,0,1}; // Tooltip background color
     tooltipColorText[] = {1,1,1,1}; // Tooltip text color
     tooltipColorBox[] = {1,1,1,1}; // Tooltip frame color
-
     multiselectEnabled = 1; // Allow selecting multiple items while holding Ctrl or Shift
     expandOnDoubleclick = 1; // Expand/collapse item upon double-click
     hiddenTexture = "A3\ui_f\data\gui\rsccommon\rsctree\hiddenTexture_ca.paa"; // Expand icon
     expandedTexture = "A3\ui_f\data\gui\rsccommon\rsctree\expandedTexture_ca.paa"; // Collapse icon
-    maxHistoryDelay = 1; // Time since last keyboard type search to reset it
+    maxHistoryDelay = 0; // Time since last keyboard type search to reset it
 
     // Scrollbar configuration
     class ScrollBar
     {
-        width = 0; // width of ScrollBar
-        height = 0; // height of ScrollBar
+        width = 0.1; // width of ScrollBar
+        height = 1; // height of ScrollBar
         scrollSpeed = 0.01; // scroll speed of ScrollBar
-
         arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa"; // Arrow
         arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa"; // Arrow when clicked on
         border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa"; // Slider background (stretched vertically)
         thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa"; // Dragging element (stretched vertically)
-
         color[] = {1,1,1,1}; // Scrollbar color
     };
 
     colorDisabled[] = {0,0,0,0}; // Does nothing, but must be present, otherwise an error is shown
     colorArrow[] = {0,0,0,0}; // Does nothing, but must be present, otherwise an error is shown
-
     onCanDestroy = "systemChat str ['onCanDestroy',_this]; true";
     onDestroy = "systemChat str ['onDestroy',_this]; false";
     onMouseEnter = "systemChat str ['onMouseEnter',_this]; false";
@@ -150,7 +141,6 @@ class MARS_gui_treeBase {
     onMouseZChanged = "systemChat str ['onMouseZChanged',_this]; false";
     onMouseMoving = "";
     onMouseHolding = "";
-
     onTreeSelChanged = "systemChat str ['onTreeSelChanged',_this]; false";
     onTreeLButtonDown = "systemChat str ['onTreeLButtonDown',_this]; false";
     onTreeDblClick = "systemChat str ['onTreeDblClick',_this]; false";
@@ -165,15 +155,15 @@ class MARS_gui_backgroundBase {
     type = 0;
     idc = -1;
     style = 128;
-    colorBackground[] = {0, 0, 0, BG_OPACITY};
-    colorText[] = {1, 1, 1, 1};
+    colorBackground[] = {0,0,0,BG_OPACITY};
+    colorText[] = {1,1,1,1};
     font = FONT_MARS;
     text = "";
     sizeEx = 0.032;
 };
 
 class MARS_gui_backgroundBaseSolid : MARS_gui_backgroundBase {
-    colorBackground[] = {0, 0, 0, 1};
+    colorBackground[] = {0.133,0.133,0.133,1};
 };
 
 class MARS_gui_accentBase : MARS_gui_backgroundBase {
@@ -302,7 +292,7 @@ class MARS_gui_menuBase {
     x = 0.0;
     y = 0.0;
     w = 0.25;
-    h = 0.04;
+    h = (0.03 * safeZoneH);
     offsetPressedX = 0;
 	offsetPressedY = 0;
 	offsetX = 0;
@@ -310,15 +300,15 @@ class MARS_gui_menuBase {
 	shadow = 0;
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.005)";
     borderSize = 0;
-    colorBorder[] = {0,0,0,1};
+    colorBorder[] = {0,0,0,0};
     colorBackgroundActive[] = ACCENT_COLOR;
     colorBackgroundDisabled[] = {1,1,1,0.25};
     colorDisabled[] = {1,1,1,0.5};
-    colorFocused[] = {0,0,0,1};
-    colorShadow[] = {0,0,0,1};
+    colorFocused[] = {0,0,0,0};
+    colorShadow[] = {0,0,0,0};
     colorText[] = {1,1,1,1};
     color[] = {1,1,1,1};
-    colorBackground[] = {0,0,0,1};
+    colorBackground[] = {0,0,0,0};
     blinkingPeriod = 0;
     tooltipColorShade[] = {0,0,0,1};
     tooltipColorText[] = {1,1,1,1};

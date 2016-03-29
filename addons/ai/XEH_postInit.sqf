@@ -1,7 +1,13 @@
 #include "script_component.hpp"
 
-_parent = ["AI", "AI", "alive _this && !isPlayer _this", ""] call EFUNC(editor,addContextParent);
-
-[_parent, "FleeArea", "Flee Area", "", {
+["FleeArea", "Flee Area", "alive _this && !isPlayer _this", {
     _this allowFleeing 1;
-}] call EFUNC(editor,addContextChild);
+}] call EFUNC(editor,addContextParent);
+
+["Patrol", "Patrol Area", "alive _this && !isPlayer _this", {
+    [(group _this), (group _this)] call CBA_fnc_taskPatrol;
+}] call EFUNC(editor,addContextParent);
+
+["Destroy", "Destroy Object", "", {
+    _this setDamage 1;
+}] call EFUNC(editor,addContextParent);

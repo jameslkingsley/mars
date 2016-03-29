@@ -57,18 +57,17 @@ _display = (findDisplay 46) createDisplay QGVAR(interface);
 // Reset interruptions
 GVAR(interrupts) = [];
 
-// Start the object tagging handler
-GVAR(objectTagger) = [{[] call FUNC(handleObjectBoxes);}, 0, []] call CBA_fnc_addPerFrameHandler;
-
-// Start the object icons handler
-GVAR(objectIcons) = [{[] call FUNC(handleObjectIcons);}, 0, []] call CBA_fnc_addPerFrameHandler;
-
-// Start the object selection handler
-GVAR(selectionPFH) = [{
-    {
-        [_x, ([side _x] call EFUNC(common,getSideColor))] call FUNC(drawBoundingBox);
-        false
-    } count GVAR(selection);
+GVAR(pfh) = [{
+    // Tagging handler
+    [] call FUNC(handleObjectBoxes);
+    
+    // Icons handler
+    [] call FUNC(handleObjectIcons);
+    
+    // Selection handler
+    {[_x, ([side _x] call EFUNC(common,getSideColor))] call FUNC(drawBoundingBox);false} count GVAR(selection);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
+
+player playActionNow "gear";
 
 GVAR(isSet) = true;
