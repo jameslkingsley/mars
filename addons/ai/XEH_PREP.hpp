@@ -1,1 +1,1 @@
-PREP(addWaypoint);
+PREP(patrolArea);
