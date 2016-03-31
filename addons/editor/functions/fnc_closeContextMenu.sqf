@@ -17,9 +17,10 @@
 #include "script_component.hpp"
 
 {
-    ctrlDelete (GETUVAR(GVAR(interface),displayNull) displayCtrl (_x select 0));
+    ctrlDelete (GETUVAR(GVAR(interface),displayNull) displayCtrl _x);
     false
-} count GVAR(contextControls);
+} count (GVAR(parentContextControls) + GVAR(childContextControls));
 
-GVAR(tempParentIDC) = -1;
-GVAR(contextControls) = [];
+GVAR(parentContextControls) = [];
+GVAR(childContextControls) = [];
+GVAR(isMouseOverChild) = false;

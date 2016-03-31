@@ -16,16 +16,21 @@
 
 #include "script_component.hpp"
 
-// configfile >> "MARS_Context" >> "mars_ai" >> "mars_ai_patrolArea"
+_components = "true" configClasses (configFile >> QGVARMAIN(Context));
 
-_sections = "true" configClasses (configFile >> GVARMAIN(context));
-MARS_LOGINFO(str _sections);
+[] call FUNC(closeContextMenu);
 
 {
     _options = "true" configClasses (_x);
-    MARS_LOGINFO(str _options);
+    diag_log (str _options);
     
-    
-    
-    false
-} count _sections;
+    {
+        _config = _x;
+        _displayName = getText (_x >> "displayName");
+        _condition = getText (_x >> "condition");
+        //if !({_x call compile _condition} count GVAR(selection) > 0) exitWith {};
+        _children = "true" configClasses (_x);
+        _hasChildren = [false,true] select ((count _children) > 0);
+        [_config, _forEachIndex, _displayName, _hasChildren] call FUNC(createContextControl);
+    } forEach _options;
+} forEach _components;

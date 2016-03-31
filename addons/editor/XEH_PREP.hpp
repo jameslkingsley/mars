@@ -24,3 +24,4 @@ PREP(closeChildContext);
 PREP(openContextMenu);
 PREP(handleEntityList);
 PREP(createEntityList);
+PREP(createContextControl);

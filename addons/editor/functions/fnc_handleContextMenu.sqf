@@ -17,7 +17,7 @@
 #include "script_component.hpp"
 
 // Prevents opening menus on mission start (for some reason BIS)
-if (time < 5) exitWith {};
+if (time < 2) exitWith {};
 
 private ["_worldPos","_objects","_targets"];
 

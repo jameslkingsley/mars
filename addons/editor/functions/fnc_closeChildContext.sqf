@@ -19,7 +19,9 @@
 disableSerialization;
 
 {
-    if ((_x select 4)) then {
-        ctrlDelete (GETUVAR(GVAR(interface),displayNull) displayCtrl (_x select 0));
-    };
-} count GVAR(contextControls);
+    ctrlDelete (GETUVAR(GVAR(interface),displayNull) displayCtrl _x);
+} count GVAR(childContextControls);
+
+GVAR(childContextControls) = [];
+GVAR(isMouseOverChild) = false;
+GVAR(isChildContextOpen) = false;
