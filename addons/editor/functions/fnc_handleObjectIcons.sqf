@@ -20,16 +20,25 @@
     _grp = _x;
     
     if (count (units _grp) > 0) then {
-        _leaderPos = ASLtoAGL (getPosASLVisual (leader _grp));
-        _alpha = if ((leader _grp) in GVAR(selection)) then {1} else {(linearConversion [0, ICON_FADE_DISTANCE, (_leaderPos distance GVAR(camPos)), 1, 0, true])};
+        _leader = leader _grp;
+        _leaderPos = ASLtoAGL (getPosASLVisual _leader);
+        _leaderDistance = _leaderPos distance GVAR(camPos);
         
-        if (alive (leader _grp)) then {
-            _iconPos = [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 5];
+        if (alive _leader && _leaderDistance < ICON_FADE_DISTANCE) then {
+            _alpha = [(linearConversion [0, ICON_FADE_DISTANCE, _leaderDistance, 1, 0, true]), 1] select (_leader in GVAR(selection));
+            _iconPos = _leaderPos;
+            _iconPos set [2, ((_leaderPos select 2) + 5)];
             _color = MARS_SIDECOLOR(side _grp);
             _color set [3, (_alpha max 0.2)];
             
+            _texture = _grp getVariable [QGVAR(iconTexture), ""];
+            if (_texture == "") then {
+                _texture = [([_grp] call EFUNC(common,getMarkerType))] call EFUNC(common,getMarkerTexture);
+                _grp setVariable [QGVAR(iconTexture), _texture];
+            };
+            
             drawIcon3D [
-                ([([_grp] call EFUNC(common,getMarkerType))] call EFUNC(common,getMarkerTexture)),
+                _texture,
                 _color,
                 _iconPos,
                 1,
@@ -49,16 +58,18 @@
         
         {
             _unit = _x;
+            if (!alive _unit) exitWith {};
             _unitPos = ASLtoAGL (getPosASLVisual _unit);
-            _alpha = if (_unit in GVAR(selection)) then {1} else {(linearConversion [0, BOX_FADE_DISTANCE, (_unitPos distance GVAR(camPos)), 1, 0, true])};
+            _unitDistance = _unitPos distance GVAR(camPos);
+            if (_unitDistance > ICON_FADE_DISTANCE) exitWith {};
+            _alpha = [(linearConversion [0, BOX_FADE_DISTANCE, _unitDistance, 1, 0, true]), 1] select (_unit in GVAR(selection));
             _color = MARS_SIDECOLOR(side _unit);
             _color set [3, _alpha];
-            _iconStr = getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "icon");
-            _iconTexture = getText (configfile >> "CfgVehicleIcons" >> _iconStr);
             
-            if (vehicle _unit != _unit) then {
-                // In vehicle
-                if ((driver (vehicle _unit)) != _unit) exitWith {false};
+            _iconTexture = _unit getVariable [QGVAR(iconTexture), ""];
+            if (_iconTexture == "") then {
+                _iconTexture = getText (configfile >> "CfgVehicleIcons" >> (getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "icon")));
+                _unit setVariable [QGVAR(iconTexture), _iconTexture];
             };
             
             if (isPlayer _unit) then {
@@ -99,9 +110,12 @@
                     0
                 ];
                 
+                _unitPos set [2, ((_unitPos select 2) + 1)];
+                _leaderPos set [2, ((_leaderPos select 2) + 1)];
+                
                 drawLine3D [
-                    [(_unitPos select 0), (_unitPos select 1), (_unitPos select 2) + 1],
-                    [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 1],
+                    _unitPos,
+                    _leaderPos,
                     _color
                 ];
             };

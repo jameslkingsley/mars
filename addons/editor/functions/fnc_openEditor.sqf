@@ -33,7 +33,6 @@ GVAR(mousePos) = [0.5,0.5];
 
 // Initalize the camera objects
 GVAR(freeCamera) = "Camera" camCreate (ASLtoATL GVAR(camPos));
-GVAR(targetCamera) = "Camera" camCreate [0,0,0];
 
 // Initalize view
 [] call FUNC(transitionCamera);
@@ -59,13 +58,15 @@ GVAR(interrupts) = [];
 
 GVAR(pfh) = [{
     // Tagging handler
-    [] call FUNC(handleObjectBoxes);
+    if (GVAR(canContext)) then {
+        [] call FUNC(handleObjectBoxes);
+    };
     
     // Icons handler
     [] call FUNC(handleObjectIcons);
     
     // Selection handler
-    {[_x, ([side _x] call EFUNC(common,getSideColor))] call FUNC(drawBoundingBox);false} count GVAR(selection);
+    {[_x, MARS_SIDECOLOR(side _x)] call FUNC(drawBoundingBox);false} count GVAR(selection);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 player playActionNow "gear";

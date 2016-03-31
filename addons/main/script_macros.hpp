@@ -197,7 +197,7 @@
    #define TRACE_10(MESSAGE,A,B,C,D,E,F,G,H,I,J) /* disabled */
 #endif
 
-#define MARS_SIDECOLOR(side) ([(side)] call EFUNC(common,getSideColor))
+#define MARS_SIDECOLOR(side) ([(side)] call BIS_fnc_sideColor)
 
 #define HEXTORGBA(COLOR_RGBA)\
 	__EVAL(COLOR_RGBA call _fnc_colorHEXtoRGBA_2),\
