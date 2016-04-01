@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="http://i.imgur.com/Z91O1BY.png" height="384">
+	<img src="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/logo_min.png" height="384">
 	<br /><br />
 	<img src="https://travis-ci.org/jameslkingsley/Mars.svg?branch=master">
 </p>
