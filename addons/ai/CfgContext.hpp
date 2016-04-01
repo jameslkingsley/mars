@@ -2,7 +2,7 @@ class MARS_Context {
     class ADDON {
         class GVAR(patrolArea) {
             displayName = "Patrol Area";
-            requiresPosition = false;
+            requiresPosition = true;
             condition = "alive _this";
             action = QUOTE(_this call FUNC(patrolArea));
         };
@@ -17,17 +17,29 @@ class MARS_Context {
             requiresPosition = false;
             condition = "_this isKindOf 'Air'";
             action = "";
+            class GVAR(air_attack) {
+                displayName = "Attack";
+                requiresPosition = true;
+                condition = "alive _this";
+                action = "";
+            };
+            class GVAR(air_land) {
+                displayName = "Land";
+                requiresPosition = true;
+                condition = "alive _this";
+                action = "";
+            };
+            class GVAR(air_para) {
+                displayName = "Paradrop";
+                requiresPosition = true;
+                condition = "alive _this";
+                action = "";
+            };
             class GVAR(air_orbit) {
                 displayName = "Orbit";
-                requiresPosition = false;
-                condition = "true";
+                requiresPosition = true;
+                condition = "isPlayer (driver _this)";
                 action = "";
-                /*class GVAR(air_orbit_close) {
-                    displayName = "Close (500m)";
-                    requiresPosition = true;
-                    condition = "true";
-                    action = QUOTE(_this call FUNC(orbitArea));
-                };*/
             };
         };
     };

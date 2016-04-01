@@ -17,3 +17,4 @@
 #include "script_component.hpp"
 
 MARS_LOGINFO(_this);
+copyToClipboard str _this;

@@ -22,13 +22,12 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
 
 {
     _options = "true" configClasses (_x);
-    diag_log (str _options);
     
     {
         _config = _x;
         _displayName = getText (_x >> "displayName");
         _condition = getText (_x >> "condition");
-        //if !({_x call compile _condition} count GVAR(selection) > 0) exitWith {};
+        if !({_x call compile _condition} count GVAR(selection) > 0) exitWith {};
         _children = "true" configClasses (_x);
         _hasChildren = [false,true] select ((count _children) > 0);
         [_config, _forEachIndex, _displayName, _hasChildren] call FUNC(createContextControl);

@@ -67,6 +67,7 @@ switch (toLower _mode) do {
         };
         
         if (_button == 1 && GVAR(canContext)) then {
+            [] call FUNC(selectObject);
             [] call FUNC(handleContextMenu);
         };
     };

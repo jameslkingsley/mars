@@ -42,7 +42,7 @@ _axisY = if (count _parentCtrlPos > 0) then {((_parentCtrlPos select 1) + (CONTE
 
 _controlPos = [
     _axisX,
-    _axisY + (CONTEXT_OPTION_HEIGHT * _index),
+    _axisY /*+ (CONTEXT_OPTION_HEIGHT * _index)*/,
     CONTEXT_OPTION_WIDTH,
     CONTEXT_OPTION_HEIGHT
 ];
@@ -66,9 +66,11 @@ missionNamespace setVariable [(format ["%1_%2", QGVAR(__context_idc), _idc]), [_
 
 if (_isChild) then {
     _control ctrlAddEventHandler ["MouseExit", {
-        if !(GVAR(isMouseOverChild)) then {
-            [] call FUNC(closeChildContext);
-        };
+        [{
+            if !(GVAR(isMouseOverChild)) then {
+                [] call FUNC(closeChildContext);
+            };
+        }, []] call EFUNC(common,execNextFrame);
     }];
 } else {
     /*_control ctrlAddEventHandler ["MouseExit", {
@@ -99,10 +101,9 @@ if (_hasChildren) then {
                     _childConfig = _x;
                     _displayName = getText (_x >> "displayName");
                     _condition = getText (_x >> "condition");
-                    //if !({_x call compile _condition} count GVAR(selection) > 0) exitWith {};
+                    if !({_x call compile _condition} count GVAR(selection) > 0) exitWith {};
                     _children = "true" configClasses (_x);
                     _hasChildren = [false,true] select ((count _children) > 0);
-                    diag_log (str [_childConfig, _forEachIndex, _displayName, _hasChildren, !_hasChildren, (ctrlPosition _control)]);
                     [_childConfig, _forEachIndex, _displayName, _hasChildren, !_hasChildren, (ctrlPosition _control)] call FUNC(createContextControl);
                     GVAR(isChildContextOpen) = true;
                 } forEach _options;
@@ -137,10 +138,10 @@ if (_hasChildren) then {
                     GVAR(isWaitingForLeftClick) = true;
                     [{GVAR(hasLeftClicked)}, {
                         _worldPos = screenToWorld GVAR(mousePos);
-                        [GVAR(selection), _worldPos] call compile (_this select 0);
+                        [(_this select 1), _worldPos] call compile (_this select 0);
                         GVAR(hasLeftClicked) = false;
                         GVAR(isWaitingForLeftClick) = false;
-                    }, [_action]] call EFUNC(common,waitUntilAndExecute);
+                    }, [_action, GVAR(selection)]] call EFUNC(common,waitUntilAndExecute);
                 } else {
                     GVAR(selection) call compile _action;
                 };
@@ -152,6 +153,3 @@ if (_hasChildren) then {
 };
 
 _control ctrlCommit 0;
-
-diag_log str GVAR(parentContextControls);
-diag_log str GVAR(childContextControls);
