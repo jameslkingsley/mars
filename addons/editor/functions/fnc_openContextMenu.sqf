@@ -30,6 +30,6 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
         if !({_x call compile _condition} count GVAR(selection) > 0) exitWith {};
         _children = "true" configClasses (_x);
         _hasChildren = [false,true] select ((count _children) > 0);
-        [_config, _forEachIndex, _displayName, _hasChildren] call FUNC(createContextControl);
+        //[_config, _forEachIndex, _displayName, _hasChildren] call FUNC(createContextControl);
     } forEach _options;
 } forEach _components;
