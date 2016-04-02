@@ -19,7 +19,7 @@ PREP(handleLeftDrag);
 PREP(closeContextMenu);
 PREP(execScreenToWorldPos);
 PREP(closeChildContext);
-PREP(openContextMenu);
 PREP(handleEntityList);
 PREP(createEntityList);
 PREP(createContextMenu);
+PREP(createContextControl);

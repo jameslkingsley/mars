@@ -38,4 +38,6 @@ if (count _objects > 0 && count GVAR(selection) == 0) then {
     };
 };
 
-[_targets] call FUNC(openContextMenu);
+GVAR(currentMousePos) = GVAR(mousePos);
+[] call FUNC(closeContextMenu);
+[] call FUNC(createContextMenu);

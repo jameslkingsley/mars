@@ -18,8 +18,7 @@
 
 {
     ctrlDelete (GETUVAR(GVAR(interface),displayNull) displayCtrl _x);
-    false
-} count (GVAR(parentContextControls) + GVAR(childContextControls));
+} forEach (GVAR(parentContextControls) + GVAR(childContextControls));
 
 GVAR(parentContextControls) = [];
 GVAR(childContextControls) = [];

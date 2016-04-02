@@ -16,12 +16,9 @@
 
 #include "script_component.hpp"
 
-disableSerialization;
-
 {
     ctrlDelete (GETUVAR(GVAR(interface),displayNull) displayCtrl _x);
-} count GVAR(childContextControls);
+} forEach GVAR(childContextControls);
 
 GVAR(childContextControls) = [];
 GVAR(isMouseOverChild) = false;
-GVAR(isChildContextOpen) = false;

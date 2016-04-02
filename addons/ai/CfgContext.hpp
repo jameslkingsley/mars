@@ -20,26 +20,26 @@ class MARS_Context {
             class GVAR(air_attack) {
                 displayName = "Attack";
                 requiresPosition = true;
-                condition = "alive _this";
-                action = "";
+                condition = "";
+                action = QUOTE(_this call FUNC(airAttack));
             };
             class GVAR(air_land) {
                 displayName = "Land";
                 requiresPosition = true;
-                condition = "alive _this";
-                action = "";
+                condition = "";
+                action = QUOTE(_this call FUNC(airLand));
             };
             class GVAR(air_para) {
                 displayName = "Paradrop";
                 requiresPosition = true;
-                condition = "alive _this";
-                action = "";
+                condition = "";
+                action = QUOTE(_this call FUNC(airParadrop));
             };
             class GVAR(air_orbit) {
                 displayName = "Orbit";
                 requiresPosition = true;
-                condition = "isPlayer (driver _this)";
-                action = "";
+                condition = "";
+                action = QUOTE(_this call FUNC(airOrbit));
             };
         };
     };

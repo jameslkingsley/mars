@@ -16,62 +16,164 @@
 
 #include "script_component.hpp"
 
-_createCtrl = {
-    params ["_idc","_hasChildren"];
-    
-    _control = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_contextBase", _idc];
-    _control ctrlSetText (format ["%1%2", _text, (["","..."] select _hasChildren)]);
-
-    _axisX = if (count _parentCtrlPos > 0) then {((_parentCtrlPos select 0) + (CONTEXT_OPTION_WIDTH + 0.005))} else {(GVAR(mousePos) select 0)};
-    _axisY = if (count _parentCtrlPos > 0) then {((_parentCtrlPos select 1) + (CONTEXT_OPTION_HEIGHT * _index))} else {(GVAR(mousePos) select 1)};
-
-    _controlPos = [
-        _axisX,
-        _axisY /*+ (CONTEXT_OPTION_HEIGHT * _index)*/,
-        CONTEXT_OPTION_WIDTH,
-        CONTEXT_OPTION_HEIGHT
-    ];
-
-    _control ctrlSetPosition _controlPos;
-};
+disableSerialization;
 
 _components = "true" configClasses (configFile >> QGVARMAIN(Context));
 
 {
     // Component level
-    private ["_config","_level","_index","_parents"];
+    private ["_config","_level","_index","_parents","_forEachIndex"];
     _config = _x;
-    _level = 0;
+    _level = -1;
     _index = _forEachIndex;
     _parents = "true" configClasses (_config);
     
     {
         // Parent level
-        private ["_config","_level","_index","_children","_hasChildren","_idc"];
+        private ["_config","_level","_index","_children","_hasChildren","_idc","_displayName","_condition","_forEachIndex"];
         _config = _x;
-        _level = 1;
+        _level = 0;
         _index = _forEachIndex;
-        _idc = _index * 1000;
+        _idc = 1000 + _index;
         _children = "true" configClasses (_config);
         _hasChildren = (count _children > 0);
+        _displayName = getText (_config >> "displayName");
+        _condition = getText (_config >> "condition");
+        if (_condition == "") then {_condition = "true"};
+        _action = getText (_config >> "action");
+        _requiresPosition = [false,true] select (getNumber (_config >> "requiresPosition"));
+        
+        // Run the condition and exit if false for all in selection
+        if !(({_x call compile _condition} count GVAR(selection)) > 0) exitWith {};
         
         // Create parent
-        [_idc, _hasChildren] call _createCtrl;
+        _parent = [_idc, _index, _level, _hasChildren, _displayName, 0] call FUNC(createContextControl);
+        _parentCtrl = (GETUVAR(GVAR(interface),displayNull) displayCtrl _parent);
+        MARS_LOGINFO_1("_parent", str _parentCtrl);
+        _parentCtrlPos = ctrlPosition _parentCtrl;
+        GVAR(parentContextControls) pushBack _parent;
         
-        if (_hasChildren) then {
-            {
-                // Child level
-                private ["_config","_level","_index"];
-                _config = _x;
-                _level = 2;
-                _index = _forEachIndex;
+        missionNamespace setVariable [(format ["%1_%2", QGVAR(__context_idc), _parent]), [_hasChildren, _parentCtrlPos, _children, _index, _action, _requiresPosition]];
+        
+        if (!_hasChildren) then {
+            _parentCtrl ctrlAddEventHandler ["MouseButtonUp", {
+                disableSerialization;
                 
-                // Create child
-            } forEach _children;
+                params ["_control"];
+                private ["_idc","_parentData","_action","_requiresPosition"];
+                
+                _idc = ctrlIDC _control;
+                
+                [] call FUNC(closeContextMenu);
+                
+                _parentData = missionNamespace getVariable [(format ["%1_%2", QGVAR(__context_idc), _idc]), []];
+                
+                if (count _parentData > 0) then {
+                    _action = _parentData select 4;
+                    _requiresPosition = _parentData select 5;
+                    
+                    if (_requiresPosition) then {
+                        GVAR(isWaitingForLeftClick) = true;
+                        [{GVAR(hasLeftClicked)}, {
+                            _worldPos = screenToWorld GVAR(mousePos);
+                            [(_this select 1), _worldPos] call compile (_this select 0);
+                            GVAR(hasLeftClicked) = false;
+                            GVAR(isWaitingForLeftClick) = false;
+                        }, [_action, GVAR(selection)]] call EFUNC(common,waitUntilAndExecute);
+                    } else {
+                        GVAR(selection) call compile _action;
+                    };
+                };
+            }];
         };
+        
+        _parentCtrl ctrlAddEventHandler ["MouseEnter", {
+            disableSerialization;
+            
+            params ["_control"];
+            private ["_idc","_parentData","_hasChildren","_parentCtrlPos","_children"];
+            
+            _idc = ctrlIDC _control;
+            
+            [] call FUNC(closeChildContext);
+            
+            _parentData = missionNamespace getVariable [(format ["%1_%2", QGVAR(__context_idc), _idc]), []];
+            
+            if (count _parentData > 0) then {
+                _hasChildren = _parentData select 0;
+                _parentCtrlPos = _parentData select 1;
+                _children = _parentData select 2;
+                _offsetY = _parentData select 3;
+                
+                if (_hasChildren) then {
+                    {
+                        // Child level
+                        private ["_config","_level","_index","_idc","_displayName","_condition","_forEachIndex"];
+                        _config = _x;
+                        _level = 1;
+                        _index = _forEachIndex;
+                        _idc = 10000 + _index;
+                        _displayName = getText (_config >> "displayName");
+                        _condition = getText (_config >> "condition");
+                        if (_condition == "") then {_condition = "true"};
+                        _action = getText (_config >> "action");
+                        _requiresPosition = [false,true] select (getNumber (_config >> "requiresPosition"));
+                        
+                        if !(({_x call compile _condition} count GVAR(selection)) > 0) exitWith {};
+                        
+                        // Create child
+                        _child = [_idc, _index, _level, false, _displayName, _offsetY] call FUNC(createContextControl);
+                        _childCtrl = (GETUVAR(GVAR(interface),displayNull) displayCtrl _child);
+                        GVAR(childContextControls) pushBack _child;
+                        
+                        missionNamespace setVariable [(format ["%1_%2", QGVAR(__context_idc), _child]), [_action, _requiresPosition]];
+                        
+                        _childCtrl ctrlAddEventHandler ["MouseEnter", {
+                            GVAR(isMouseOverChild) = true;
+                        }];
+                        
+                        _childCtrl ctrlAddEventHandler ["MouseExit", {
+                            if !(GVAR(isMouseOverChild)) then {
+                                [] call FUNC(closeChildContext);
+                            };
+                        }];
+                        
+                        _childCtrl ctrlAddEventHandler ["MouseButtonUp", {
+                            disableSerialization;
+                            
+                            params ["_control"];
+                            private ["_idc","_parentData","_action","_requiresPosition"];
+                            
+                            _idc = ctrlIDC _control;
+                            
+                            [] call FUNC(closeContextMenu);
+                            
+                            _childData = missionNamespace getVariable [(format ["%1_%2", QGVAR(__context_idc), _idc]), []];
+                            
+                            if (count _childData > 0) then {
+                                _action = _childData select 0;
+                                _requiresPosition = _childData select 1;
+                                
+                                if (_requiresPosition) then {
+                                    GVAR(isWaitingForLeftClick) = true;
+                                    [{GVAR(hasLeftClicked)}, {
+                                        _worldPos = screenToWorld GVAR(mousePos);
+                                        [(_this select 1), _worldPos] call compile (_this select 0);
+                                        GVAR(hasLeftClicked) = false;
+                                        GVAR(isWaitingForLeftClick) = false;
+                                    }, [_action, GVAR(selection)]] call EFUNC(common,waitUntilAndExecute);
+                                } else {
+                                    GVAR(selection) call compile _action;
+                                };
+                            };
+                        }];
+                    } forEach _children;
+                };
+            };
+        }];
     } forEach _parents;
     
-    if ((count _components - 1) > _index) then {
+    if (((count _components) - 1) > _index) then {
         // Create spacer
     };
 } forEach _components;

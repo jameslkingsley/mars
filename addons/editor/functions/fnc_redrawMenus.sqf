@@ -40,7 +40,7 @@ if (count GVAR(menus) > 0) then {
         _index = _x select 0;
         _displayName = _x select 1;
         _options = _x select 2;
-        _idc = 1000 + _forEachIndex;
+        _idc = 2000 + _forEachIndex;
         
         _ctrl = _display ctrlCreate ["MARS_gui_menuBase", _idc];
         _ctrl ctrlSetPosition [_axisX, (0 * safeZoneH + safeZoneY), _menuWidth, MENU_HEIGHT];
