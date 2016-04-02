@@ -19,6 +19,8 @@
 if (count _this > 1) exitWith {};
 
 _this spawn {
+    sleep 1;
+    
     player remoteControl (_this select 0);
     (_this select 0) switchCamera "internal";
 
