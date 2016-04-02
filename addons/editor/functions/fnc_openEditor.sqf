@@ -16,6 +16,13 @@
 
 #include "script_component.hpp"
 
+if (GVAR(isRemoteControl)) exitWith {
+    objNull remoteControl GVAR(remoteControlUnit);
+    player switchCamera "internal";
+    GVAR(isRemoteControl) = false;
+    GVAR(remoteControlUnit) = objNull;
+};
+
 if !(hasInterface) exitWith {};
 if (GVAR(isSet)) exitWith {};
 

@@ -1,4 +1,4 @@
-class MARS_Context {
+class GVARMAIN(Context) {
     class ADDON {
         class GVAR(patrolArea) {
             displayName = "Patrol Area";

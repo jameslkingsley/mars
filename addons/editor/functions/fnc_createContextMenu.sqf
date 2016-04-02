@@ -22,10 +22,10 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
 
 {
     // Component level
-    private ["_config","_level","_index","_parents","_forEachIndex"];
+    private ["_config","_level","_parents","_forEachIndex"];
     _config = _x;
     _level = -1;
-    _index = _forEachIndex;
+    _compIndex = _forEachIndex;
     _parents = "true" configClasses (_config);
     
     {
@@ -47,9 +47,8 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
         if !(({_x call compile _condition} count GVAR(selection)) > 0) exitWith {};
         
         // Create parent
-        _parent = [_idc, _index, _level, _hasChildren, _displayName, 0] call FUNC(createContextControl);
+        _parent = [_idc, _index, _level, _hasChildren, _displayName, _compIndex] call FUNC(createContextControl);
         _parentCtrl = (GETUVAR(GVAR(interface),displayNull) displayCtrl _parent);
-        MARS_LOGINFO_1("_parent", str _parentCtrl);
         _parentCtrlPos = ctrlPosition _parentCtrl;
         GVAR(parentContextControls) pushBack _parent;
         

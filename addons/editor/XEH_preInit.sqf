@@ -58,4 +58,6 @@ GVAR(ctrlKey) = false;
 GVAR(altKey) = false;
 GVAR(shiftKey) = false;
 
+GVAR(isRemoteControl) = false;
+
 ADDON = true;
