@@ -47,15 +47,16 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
         if !(({_x call compile _condition} count GVAR(selection)) > 0) exitWith {};
         
         // Create parent
-        _parent = [_idc, _index, _level, _hasChildren, _displayName, _compIndex] call FUNC(createContextControl);
+        _parent = [_idc, _index, _level, _hasChildren, _displayName, _compIndex, 0] call FUNC(createContextControl);
         _parentCtrl = (GETUVAR(GVAR(interface),displayNull) displayCtrl _parent);
         _parentCtrlPos = ctrlPosition _parentCtrl;
         GVAR(parentContextControls) pushBack _parent;
         
-        missionNamespace setVariable [(format ["%1_%2", QGVAR(__context_idc), _parent]), [_hasChildren, _parentCtrlPos, _children, _index, _action, _requiresPosition]];
+        missionNamespace setVariable [(format ["%1_%2", QGVAR(__context_idc), _parent]), [_hasChildren, _parentCtrlPos, _children, _index, _action, _requiresPosition, _compIndex]];
         
         if (!_hasChildren) then {
             _parentCtrl ctrlAddEventHandler ["MouseButtonUp", {
+                systemChat "_parentCtrl: MouseButtonUp";
                 disableSerialization;
                 
                 params ["_control"];
@@ -70,18 +71,7 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
                 if (count _parentData > 0) then {
                     _action = _parentData select 4;
                     _requiresPosition = _parentData select 5;
-                    
-                    if (_requiresPosition) then {
-                        GVAR(isWaitingForLeftClick) = true;
-                        [{GVAR(hasLeftClicked)}, {
-                            _worldPos = screenToWorld GVAR(mousePos);
-                            [(_this select 1), _worldPos] call compile (_this select 0);
-                            GVAR(hasLeftClicked) = false;
-                            GVAR(isWaitingForLeftClick) = false;
-                        }, [_action, GVAR(selection)]] call EFUNC(common,waitUntilAndExecute);
-                    } else {
-                        GVAR(selection) call compile _action;
-                    };
+                    [_action, _requiresPosition] call FUNC(execContextAction);
                 };
             }];
         };
@@ -103,6 +93,7 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
                 _parentCtrlPos = _parentData select 1;
                 _children = _parentData select 2;
                 _offsetY = _parentData select 3;
+                _compIndex = _parentData select 6;
                 
                 if (_hasChildren) then {
                     {
@@ -121,7 +112,7 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
                         if !(({_x call compile _condition} count GVAR(selection)) > 0) exitWith {};
                         
                         // Create child
-                        _child = [_idc, _index, _level, false, _displayName, _offsetY] call FUNC(createContextControl);
+                        _child = [_idc, _index, _level, false, _displayName, _offsetY, _compIndex] call FUNC(createContextControl);
                         _childCtrl = (GETUVAR(GVAR(interface),displayNull) displayCtrl _child);
                         GVAR(childContextControls) pushBack _child;
                         
@@ -138,10 +129,11 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
                         }];
                         
                         _childCtrl ctrlAddEventHandler ["MouseButtonUp", {
+                            systemChat "_childCtrl: MouseButtonUp";
                             disableSerialization;
                             
                             params ["_control"];
-                            private ["_idc","_parentData","_action","_requiresPosition"];
+                            private ["_idc","_childData","_action","_requiresPosition"];
                             
                             _idc = ctrlIDC _control;
                             
@@ -152,18 +144,7 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
                             if (count _childData > 0) then {
                                 _action = _childData select 0;
                                 _requiresPosition = _childData select 1;
-                                
-                                if (_requiresPosition) then {
-                                    GVAR(isWaitingForLeftClick) = true;
-                                    [{GVAR(hasLeftClicked)}, {
-                                        _worldPos = screenToWorld GVAR(mousePos);
-                                        [(_this select 1), _worldPos] call compile (_this select 0);
-                                        GVAR(hasLeftClicked) = false;
-                                        GVAR(isWaitingForLeftClick) = false;
-                                    }, [_action, GVAR(selection)]] call EFUNC(common,waitUntilAndExecute);
-                                } else {
-                                    GVAR(selection) call compile _action;
-                                };
+                                [_action, _requiresPosition] call FUNC(execContextAction);
                             };
                         }];
                     } forEach _children;

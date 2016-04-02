@@ -18,14 +18,14 @@
 
 disableSerialization;
 
-params ["_idc","_index","_level","_hasChildren","_displayName","_offsetY"];
+params ["_idc","_index","_level","_hasChildren","_displayName","_offsetY","_compIndex"];
 private ["_control","_axisX","_axisY"];
 
 _control = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_contextBase", _idc];
 _control ctrlSetText (format ["%1%2", _displayName, (["","..."] select _hasChildren)]);
 
 _axisX = (GVAR(currentMousePos) select 0) + ((CONTEXT_OPTION_WIDTH + 0.005) * _level);
-_axisY = (GVAR(currentMousePos) select 1) + (CONTEXT_OPTION_HEIGHT * _index) + (CONTEXT_OPTION_HEIGHT * _offsetY);
+_axisY = (GVAR(currentMousePos) select 1) + (CONTEXT_OPTION_HEIGHT * _index) + (CONTEXT_OPTION_HEIGHT * _offsetY) + (CONTEXT_OPTION_HEIGHT * _compIndex);
 
 _control ctrlSetPosition [
     _axisX,
