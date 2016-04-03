@@ -86,10 +86,10 @@ class MARS_gui_treeBase {
     style = ST_LEFT;
     default = 0;
     blinkingPeriod = 0;
-    x = 0
-    y = 0
-    w = 0
-    h = 0
+    x = 0;
+    y = 0;
+    w = 0;
+    h = 0;
     colorBorder[] = {0,0,0,0};
     colorBackground[] = {0,0,0,0}; // Fill color
     colorSelect[] = {ACCENT_COLOR_RGB,0.5}; // Selected item fill color (when multiselectEnabled is 0)

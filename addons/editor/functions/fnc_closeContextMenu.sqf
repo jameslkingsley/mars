@@ -20,9 +20,9 @@
     ctrlDelete (GETUVAR(GVAR(interface),displayNull) displayCtrl _x);
 } forEach (GVAR(parentContextControls) + GVAR(childContextControls));
 
-if (!isNil QGVAR(contextPosLinePFH)) then {
+/*if (!isNil QGVAR(contextPosLinePFH)) then {
     [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
-};
+};*/
 
 GVAR(parentContextControls) = [];
 GVAR(childContextControls) = [];

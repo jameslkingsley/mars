@@ -56,7 +56,6 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
         
         if (!_hasChildren) then {
             _parentCtrl ctrlAddEventHandler ["MouseButtonUp", {
-                systemChat "_parentCtrl: MouseButtonUp";
                 disableSerialization;
                 
                 params ["_control"];
@@ -129,7 +128,6 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
                         }];
                         
                         _childCtrl ctrlAddEventHandler ["MouseButtonUp", {
-                            systemChat "_childCtrl: MouseButtonUp";
                             disableSerialization;
                             
                             params ["_control"];

@@ -1,16 +1,22 @@
 class GVARMAIN(Context) {
     class ADDON {
-        class GVAR(patrolArea) {
-            displayName = "Patrol Area";
-            requiresPosition = true;
-            condition = "alive _this";
-            action = QUOTE(_this call FUNC(patrolArea));
-        };
-        class GVAR(fleeArea) {
-            displayName = "Flee Area";
+        class GVAR(infantry) {
+            displayName = "Infantry";
             requiresPosition = false;
-            condition = "alive _this";
-            action = QUOTE(_this call FUNC(fleeArea));
+            condition = "_this isKindOf 'Man'";
+            action = "";
+            class GVAR(patrolArea) {
+                displayName = "Patrol Area";
+                requiresPosition = true;
+                condition = "alive _this";
+                action = QUOTE(_this call FUNC(patrolArea));
+            };
+            class GVAR(fleeArea) {
+                displayName = "Flee Area";
+                requiresPosition = false;
+                condition = "alive _this";
+                action = QUOTE(_this call FUNC(fleeArea));
+            };
         };
         class GVAR(air) {
             displayName = "Air";

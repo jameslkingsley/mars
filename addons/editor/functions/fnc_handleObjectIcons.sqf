@@ -26,8 +26,6 @@
         
         if (alive _leader && _leaderDistance < ICON_FADE_DISTANCE) then {
             _alpha = [(linearConversion [0, ICON_FADE_DISTANCE, _leaderDistance, 1, 0, true]), 1] select (_leader in GVAR(selection));
-            _iconPos = _leaderPos;
-            _iconPos set [2, ((_leaderPos select 2) + 5)];
             _color = MARS_SIDECOLOR(side _grp);
             _color set [3, (_alpha max 0.2)];
             
@@ -40,7 +38,7 @@
             drawIcon3D [
                 _texture,
                 _color,
-                _iconPos,
+                [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 5],
                 1,
                 1,
                 0,
@@ -51,7 +49,7 @@
             
             drawLine3D [
                 _leaderPos,
-                _iconPos,
+                [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 5],
                 [0,0,0,_alpha]
             ];
         };
@@ -110,12 +108,9 @@
                     0
                 ];
                 
-                _unitPos set [2, ((_unitPos select 2) + 1)];
-                _leaderPos set [2, ((_leaderPos select 2) + 1)];
-                
                 drawLine3D [
-                    _unitPos,
-                    _leaderPos,
+                    [(_unitPos select 0), (_unitPos select 1), (_unitPos select 2) + 1],
+                    [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 1],
                     _color
                 ];
             };

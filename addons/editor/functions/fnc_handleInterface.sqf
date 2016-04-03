@@ -46,7 +46,6 @@ switch (toLower _mode) do {
         // Detect right click
         if ((_button == 1) && (GVAR(camMode) == 1)) then {
             // In first person toggle sights mode
-            GVAR(camGun) = !GVAR(camGun);
             [] call FUNC(transitionCamera);
         };
     };
@@ -69,6 +68,10 @@ switch (toLower _mode) do {
         if (_button == 1 && GVAR(canContext)) then {
             [] call FUNC(selectObject);
             [] call FUNC(handleContextMenu);
+            
+            if (!isNil QGVAR(contextPosLinePFH)) then {
+                [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
+            };
         };
     };
     case "onmousezchanged": {

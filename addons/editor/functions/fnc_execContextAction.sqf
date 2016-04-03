@@ -21,13 +21,13 @@ params ["_action","_requiresPosition"];
 
 [] call FUNC(closeContextMenu);
 
-systemChat "execContextAction";
-
 if (_requiresPosition) then {
     GVAR(isWaitingForLeftClick) = true;
     
     GVAR(contextPosLinePFH) = [{
-        _groups = [GVAR(selection)] call EFUNC(common,unitsToGroup);
+        // [ [ [B Alpha 1-2:4] ], 6 ]
+        params ["_selection"];
+        _groups = [(_selection select 0)] call EFUNC(common,unitsToGroup);
         _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
         _worldPos set [2, 1];
         
@@ -35,27 +35,28 @@ if (_requiresPosition) then {
             _objectPos = ASLtoAGL (getPosASLVisual (leader _x));
             _objectPos set [2, ((_objectPos select 2) + 5)];
             
+            // Do drawLine3D 50 times to make it thicker (cheers BIS)
             for "_i" from 0 to 50 do {
                 drawLine3D [_objectPos, _worldPos, [0,0,0,1]];
             };
             
-            drawIcon3D [
-                "\A3\ui_f\data\map\groupicons\waypoint.paa",
-                [0,0,0,1],
-                _worldPos,
-                1,
-                1,
-                0,
-                "",
-                2,
-                0.03,
-                "PuristaBold",
-                "center"
-            ];
-            
             false
         } count _groups;
-    }, 0, []] call CBA_fnc_addPerFrameHandler;
+        
+        drawIcon3D [
+            "\A3\ui_f\data\map\groupicons\waypoint.paa",
+            [0,0,0,1],
+            _worldPos,
+            1,
+            1,
+            0,
+            "",
+            2,
+            0.03,
+            "PuristaBold",
+            "center"
+        ];
+    }, 0, [GVAR(selection)]] call CBA_fnc_addPerFrameHandler;
     
     [{GVAR(hasLeftClicked)}, {
         _worldPos = screenToWorld GVAR(mousePos);
@@ -69,5 +70,5 @@ if (_requiresPosition) then {
         GVAR(isWaitingForLeftClick) = false;
     }, [_action, GVAR(selection)]] call EFUNC(common,waitUntilAndExecute);
 } else {
-    GVAR(selection) call compile _action;
+    [GVAR(selection)] call compile _action;
 };

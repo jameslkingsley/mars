@@ -29,7 +29,6 @@ if (GVAR(isSet)) exitWith {};
 // Initalize camera variables
 GVAR(camBoom) = 0;
 GVAR(camDolly) = [0,0];
-GVAR(camGun) = false;
 
 // Initalize display variables
 GVAR(ctrlKey) = false;
