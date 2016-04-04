@@ -16,6 +16,8 @@
 
 #include "script_component.hpp"
 
+MARS_LOGINFO(_this);
+
 disableSerialization;
 
 params ["_idc","_index","_level","_hasChildren","_displayName","_offsetY","_compIndex"];

@@ -36,7 +36,7 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
         if (_condition == "") then {_condition = "true"};
         
         // Run the condition for all in selection
-        if (_condition == "true" || {({_x call compile _condition} count GVAR(selection)) > 0}) then {
+        if (({_x call compile _condition} count GVAR(selection)) > 0) then {
             _level = 0;
             _index = _forEachIndex;
             _idc = 1000 + _index;
@@ -47,33 +47,12 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
             _requiresPosition = [false,true] select (getNumber (_config >> "requiresPosition"));
             
             // Create parent
-            _parent = [_idc, _index, _level, _hasChildren, _displayName, _compIndex, 0] call FUNC(createContextControl);
+            _parent = [_idc, 0, _level, _hasChildren, _displayName, _compIndex, _index] call FUNC(createContextControl);
             _parentCtrl = (GETUVAR(GVAR(interface),displayNull) displayCtrl _parent);
             _parentCtrlPos = ctrlPosition _parentCtrl;
             GVAR(parentContextControls) pushBack _parent;
             
             missionNamespace setVariable [(format ["%1_%2", QGVAR(__context_idc), _parent]), [_hasChildren, _parentCtrlPos, _children, _index, _action, _requiresPosition, _compIndex]];
-            
-            if (!_hasChildren) then {
-                _parentCtrl ctrlAddEventHandler ["MouseButtonUp", {
-                    disableSerialization;
-                    
-                    params ["_control"];
-                    private ["_idc","_parentData","_action","_requiresPosition"];
-                    
-                    _idc = ctrlIDC _control;
-                    
-                    [] call FUNC(closeContextMenu);
-                    
-                    _parentData = missionNamespace getVariable [(format ["%1_%2", QGVAR(__context_idc), _idc]), []];
-                    
-                    if (count _parentData > 0) then {
-                        _action = _parentData select 4;
-                        _requiresPosition = _parentData select 5;
-                        [_action, _requiresPosition] call FUNC(execContextAction);
-                    };
-                }];
-            };
             
             _parentCtrl ctrlAddEventHandler ["MouseEnter", {
                 disableSerialization;
@@ -82,6 +61,8 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
                 private ["_idc","_parentData","_hasChildren","_parentCtrlPos","_children"];
                 
                 _idc = ctrlIDC _control;
+                
+                diag_log format["_idc: %1", _idc];
                 
                 [] call FUNC(closeChildContext);
                 
@@ -102,7 +83,7 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
                             _condition = getText (_config >> "condition");
                             if (_condition == "") then {_condition = "true"};
                             
-                            if (_condition == "true" || {({_x call compile _condition} count GVAR(selection)) > 0}) then {
+                            if (({_x call compile _condition} count GVAR(selection)) > 0) then {
                                 _level = 1;
                                 _index = _forEachIndex;
                                 _idc = 10000 + _index;
@@ -150,6 +131,27 @@ _components = "true" configClasses (configFile >> QGVARMAIN(Context));
                     };
                 };
             }];
+            
+            if (!_hasChildren) then {
+                _parentCtrl ctrlAddEventHandler ["MouseButtonUp", {
+                    disableSerialization;
+                    
+                    params ["_control"];
+                    private ["_idc","_parentData","_action","_requiresPosition"];
+                    
+                    _idc = ctrlIDC _control;
+                    
+                    [] call FUNC(closeContextMenu);
+                    
+                    _parentData = missionNamespace getVariable [(format ["%1_%2", QGVAR(__context_idc), _idc]), []];
+                    
+                    if (count _parentData > 0) then {
+                        _action = _parentData select 4;
+                        _requiresPosition = _parentData select 5;
+                        [_action, _requiresPosition] call FUNC(execContextAction);
+                    };
+                }];
+            };
         };
     } forEach _parents;
     
