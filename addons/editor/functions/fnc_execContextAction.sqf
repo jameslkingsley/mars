@@ -25,7 +25,6 @@ if (_requiresPosition) then {
     GVAR(isWaitingForLeftClick) = true;
     
     GVAR(contextPosLinePFH) = [{
-        // [ [ [B Alpha 1-2:4] ], 6 ]
         params ["_selection"];
         _groups = [(_selection select 0)] call EFUNC(common,unitsToGroup);
         _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));

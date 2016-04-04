@@ -15,7 +15,7 @@ This project follows the [ACE3 coding guidelines](http://ace3mod.com/wiki/develo
 * Braces should be on the same line
 
 ## Contributing
-You can help out with the ongoing development by looking for potential bugs in the code base, or by contributing new features. To contribute something to Mars, simply fork this repository and submit your pull requests for review by other collaborators.
+You can help out with the ongoing development by looking for potential bugs in the code base, or by contributing new features. To contribute something to Mars, simply fork this repository and submit your pull requests for review by other collaborators. Feel free to join the [Discord server](https://discord.gg/0vfzEmmrAOu1T2uk) for help on setting up Mars, building additions or just general chit chat.
 
 ## Dependencies
 * Arma 3 1.56 (onwards)

@@ -25,3 +25,5 @@ PREP(createContextMenu);
 PREP(createContextControl);
 PREP(takeControlOfUnit);
 PREP(execContextAction);
+PREP(destroyObject);
+PREP(logSelection);
