@@ -18,6 +18,10 @@
 
 private _giveZeus = isNull getAssignedCuratorLogic player;
 
+while {dialog} do {
+    closeDialog 0;
+};
+
 if (!isNil QEFUNC(editor,shutdown)) then {
     [] call EFUNC(editor,shutdown);
 };
