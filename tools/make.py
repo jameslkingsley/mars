@@ -60,7 +60,7 @@ if sys.platform == "win32":
 ######## GLOBALS #########
 project = "@mars"
 project_version = "1.0.0"
-arma3tools_path = ""
+arma3tools_path = "P:\\"
 work_drive = ""
 module_root = ""
 make_root = ""

@@ -1,3 +1,4 @@
 .vscode/
 vcproj/
+release/
 *.pbo
