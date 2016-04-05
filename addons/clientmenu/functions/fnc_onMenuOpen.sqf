@@ -18,6 +18,8 @@
 
 #define TERRAIN_DETAIL (_display displayCtrl 101)
 #define VIEW_DISTANCE (_display displayCtrl 103)
+#define ZEUS_BTN (_display displayCtrl 105)
+#define ZEUS_LABEL (_display displayCtrl 106)
 
 params ["_display"];
 
@@ -41,3 +43,12 @@ disableSerialization;
     VIEW_DISTANCE lbSetData [_index, (str _x)];
     if (_x == GVAR(viewDistance)) then {VIEW_DISTANCE lbSetCurSel _index;};
 } forEach [1000,2000,3000,4000,5000,6000,7000,8000,9000,10000];
+
+if (!isNil QEGVAR(zeus,zeusModule)) then {
+    _curator = getAssignedCuratorUnit EGVAR(zeus,zeusModule);
+    ZEUS_LABEL ctrlSetText ([(format["Curator: %1", name _curator]),"Curator: Unknown"] select (isNull _curator));
+    ZEUS_BTN ctrlEnable ([false,true] select (_curator == player || isNull _curator || (player getVariable ["MARS_allowZeus",false])));
+} else {
+    ZEUS_BTN ctrlEnable false;
+    ZEUS_LABEL ctrlSetText "Curator: Unavailable";
+};

@@ -18,10 +18,15 @@
 
 private _giveZeus = isNull getAssignedCuratorLogic player;
 
-[] call EFUNC(editor,shutdown);
-[player, _giveZeus] remoteExecCall [QFUNC(setupZeus), 2];
+if (!isNil QEFUNC(editor,shutdown)) then {
+    [] call EFUNC(editor,shutdown);
+};
+
+if (isNull getAssignedCuratorUnit GVAR(zeusModule) || {player != getAssignedCuratorUnit GVAR(zeusModule)}) then {
+    [player, _giveZeus] remoteExecCall [QFUNC(setupZeus), 2];
+};
 
 [] spawn {
-    sleep 1;
+    sleep 0.5;
     openCuratorInterface;
 };
