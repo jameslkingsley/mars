@@ -2,3 +2,4 @@
 vcproj/
 release/
 *.pbo
+tools/make.cache
