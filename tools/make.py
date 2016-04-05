@@ -60,7 +60,7 @@ if sys.platform == "win32":
 ######## GLOBALS #########
 project = "@mars"
 project_version = "1.0.0"
-arma3tools_path = "P:\\"
+arma3tools_path = ""
 work_drive = ""
 module_root = ""
 make_root = ""
@@ -73,7 +73,7 @@ dssignfile = ""
 prefix = "mars"
 pbo_name_prefix = "mars_"
 signature_blacklist = []
-importantFiles = ["mod.cpp", "README.md"]
+importantFiles = ["mod.cpp", "README.md", "LICENSE", "logo.paa"]
 versionFiles = ["README.md", "mod.cpp"]
 
 ciBuild = False # Used for CI builds
