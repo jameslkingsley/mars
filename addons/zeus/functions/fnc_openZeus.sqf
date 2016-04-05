@@ -17,13 +17,14 @@
 
 #include "script_component.hpp"
 
-systemChat "Starting Zeus";
+/*[] spawn {
+    [] call EFUNC(editor,shutdown);
+    sleep 0.1;
+    openCuratorInterface;
+};*/
 
 _activated = true;
-
-_center = createCenter sideLogic;
-_group = createGroup _center;
-_logic = _group createUnit ["VirtualCurator_F", [0,0,0], [], 0, ""];
+_logic = GVAR(curator);
 
 if (_activated) then {
     // Terminate when not created on the server
@@ -320,5 +321,11 @@ if (_activated) then {
         _logic addEventHandler ["curatorMarkerDoubleClicked",{(_this select 1) call BIS_fnc_showCuratorAttributes;}];
 
         player call BIS_fnc_curatorRespawn;
+    };
+    
+    [] spawn {
+        [] call EFUNC(editor,shutdown);
+        sleep 0.1;
+        openCuratorInterface;
     };
 };
