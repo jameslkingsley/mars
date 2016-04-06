@@ -66,7 +66,7 @@ switch (toLower _mode) do {
         if (_button == 0) then {
             GVAR(camDolly) = [0,0];
             if (GVAR(isWaitingForLeftClick)) then {GVAR(hasLeftClicked) = true;};
-            [false] call FUNC(handleLeftDrag);
+            //[false] call FUNC(handleLeftDrag);
         };
         
         if (_button == 0 && GVAR(canContext)) then {
@@ -93,7 +93,7 @@ switch (toLower _mode) do {
         };
         
         if (GVAR(mouse) select 0) then {
-            [true] call FUNC(handleLeftDrag);
+            //[true] call FUNC(handleLeftDrag);
         };
         
         [_x,_y] call FUNC(handleMouse);
