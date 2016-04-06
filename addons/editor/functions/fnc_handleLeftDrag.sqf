@@ -24,8 +24,17 @@ _setPFH = {
             _unit = _x;
             _unit allowDamage false;
             _unit enableSimulation false;
-            _camPos = screenToWorld GVAR(mousePos);
-            _unit setPosASL (AGLtoASL _camPos);
+            _mousePos = screenToWorld GVAR(mousePos);
+            _posDiff = (getPos _unit) vectorDiff (getPos leader _unit);
+            
+            if (leader group _unit == _unit) then {
+                _newPos = _mousePos;
+            } else {
+                _newPos = (getPos leader _unit) vectorAdd _posDiff;
+            };
+            
+            _unit setPos _newPos;
+            
             false
         } count GVAR(movingObjects);
     }, 6, []] call CBA_fnc_addPerFrameHandler;
@@ -48,16 +57,17 @@ if (_isActive) then {
             call _setPFH;
         };
     };
-} else {  
-    [GVAR(movingObjectsPFH)] call CBA_fnc_removePerFrameHandler;
-    GVAR(movingObjectsPFH) = 0;
+} else {
+    if (!isNil QGVAR(movingObjectsPFH)) then {
+        [GVAR(movingObjectsPFH)] call CBA_fnc_removePerFrameHandler;
+        GVAR(movingObjectsPFH) = 0;
+    };
 
     {
         (vehicle _x) allowDamage true;
         (vehicle _x) enableSimulation true;
-        (vehicle _x) setDamage 0;
         false
     } count GVAR(movingObjects);
     
-    [{GVAR(movingObjects) = [];}, []] call EFUNC(common,execNextFrame);
+    GVAR(movingObjects) = [];
 };

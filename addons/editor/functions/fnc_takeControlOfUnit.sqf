@@ -19,6 +19,8 @@
 if (count _this > 1) exitWith {};
 
 _this spawn {
+    [] call FUNC(shutdown);
+    
     sleep 1;
     
     player remoteControl (_this select 0);

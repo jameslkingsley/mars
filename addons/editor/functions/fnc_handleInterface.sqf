@@ -42,6 +42,10 @@ switch (toLower _mode) do {
     case "onmousebuttondown": {
         _args params ["_ctrl","_button"];
         GVAR(mouse) set [_button,true];
+        
+        if ((_button == 0) && GVAR(shiftKey)) then {
+            [] call FUNC(handleSelectionDir);
+        };
 
         // Detect right click
         if ((_button == 1) && (GVAR(camMode) == 1)) then {
@@ -51,6 +55,10 @@ switch (toLower _mode) do {
     };
     case "onmousebuttonup": {
         _args params ["_ctrl","_button"];
+        
+        if (!isNil QGVAR(selectionDirPFH)) then {
+            [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;
+        };
 
         GVAR(mouse) set [_button,false];
         [] call FUNC(closeContextMenu);
@@ -58,7 +66,7 @@ switch (toLower _mode) do {
         if (_button == 0) then {
             GVAR(camDolly) = [0,0];
             if (GVAR(isWaitingForLeftClick)) then {GVAR(hasLeftClicked) = true;};
-            //[false] call FUNC(handleLeftDrag);
+            [false] call FUNC(handleLeftDrag);
         };
         
         if (_button == 0 && GVAR(canContext)) then {
@@ -84,9 +92,9 @@ switch (toLower _mode) do {
             GVAR(canContext) = false;
         };
         
-        /*if (GVAR(mouse) select 0) then {
-            [] call FUNC(handleLeftDrag);
-        };*/
+        if (GVAR(mouse) select 0) then {
+            [true] call FUNC(handleLeftDrag);
+        };
         
         [_x,_y] call FUNC(handleMouse);
     };
@@ -98,6 +106,8 @@ switch (toLower _mode) do {
     };
     case "onkeydown": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
+
+        MARS_LOGINFO_1("onKeyDown: ", str _dik);
         
         if (!GVAR(shiftKey)) then {GVAR(shiftKey) = true};
 
@@ -113,6 +123,9 @@ switch (toLower _mode) do {
                 //[QGVAR(escape)] call FUNC(interrupt);
                 //["escape"] call FUNC(handleInterface);
                 [] call FUNC(shutdown);
+            };
+            case 211: { // Delete
+                [] call FUNC(deleteSelection);
             };
             case 2: { // 1
             };
@@ -171,6 +184,10 @@ switch (toLower _mode) do {
     };
     case "onkeyup": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
+        
+        if (!isNil QGVAR(selectionDirPFH)) then {
+            [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;
+        };
         
         if (GVAR(shiftKey)) then {GVAR(shiftKey) = false};
 

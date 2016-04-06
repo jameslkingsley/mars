@@ -27,3 +27,5 @@ PREP(takeControlOfUnit);
 PREP(execContextAction);
 PREP(destroyObject);
 PREP(logSelection);
+PREP(deleteSelection);
+PREP(handleSelectionDir);
