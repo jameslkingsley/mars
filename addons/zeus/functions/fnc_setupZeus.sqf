@@ -34,11 +34,14 @@ if (_giveZeus) then {
         GVAR(zeusModule) setVariable ["Forced", 0];
         _unit assignCurator GVAR(zeusModule);
         {GVAR(zeusModule) addCuratorEditableObjects [[_x],true];false} count vehicles;
-        {GVAR(zeusModule) addCuratorEditableObjects [[_x],true];false} count (entities "CaManBase");
+        {GVAR(zeusModule) addCuratorEditableObjects [[_x],true];false} count (entities "CAManBase");
+        publicVariable QGVAR(zeusModule);
     };
 } else {
     if (!isNull GVAR(zeusModule)) then {
         unassignCurator GVAR(zeusModule);
         deleteVehicle GVAR(zeusModule);
+        GVAR(zeusModule) = objNull;
+        publicVariable QGVAR(zeusModule);
     };
 };

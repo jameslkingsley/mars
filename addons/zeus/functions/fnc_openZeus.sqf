@@ -26,11 +26,10 @@ if (!isNil QEFUNC(editor,shutdown)) then {
     [] call EFUNC(editor,shutdown);
 };
 
-if (isNull getAssignedCuratorUnit GVAR(zeusModule) || {player != getAssignedCuratorUnit GVAR(zeusModule)}) then {
-    [player, _giveZeus] remoteExecCall [QFUNC(setupZeus), 2];
-};
+[player, _giveZeus] remoteExecCall [QFUNC(setupZeus), 2];
+hint (["Logged out as Zeus", "Press your Zeus key - your game might freeze for a few seconds"] select _giveZeus);
 
 [] spawn {
-    sleep 0.5;
-    openCuratorInterface;
+    uiSleep 10;
+    hintSilent "";
 };
