@@ -16,7 +16,5 @@
 
 #include "script_component.hpp"
 
-if (!isNull (findDisplay 312)) then {
-    while {dialog} do {closeDialog 0;};
-    createDialog QGVAR(clientMenu);
-};
+while {dialog} do {closeDialog 0;};
+createDialog QGVAR(clientMenu);
