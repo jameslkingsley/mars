@@ -5,4 +5,4 @@ PREP(waitUntilAndExecute);
 PREP(getSideColor);
 PREP(getMarkerType);
 PREP(getMarkerTexture);
-PREP(unitsToGroup);
+PREP(unitsToGroups);

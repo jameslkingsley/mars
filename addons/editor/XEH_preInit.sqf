@@ -48,6 +48,8 @@ GVAR(cachedUnits) = [];
 
 // Selection
 GVAR(selection) = [];
+GVAR(leftSelection) = [];
+GVAR(rightSelection) = [];
 GVAR(cursorOverObjectIsVehicle) = false;
 GVAR(movingObjectsPFH) = 0;
 GVAR(movingObjects) = [];

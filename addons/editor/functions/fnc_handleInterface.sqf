@@ -70,11 +70,11 @@ switch (toLower _mode) do {
         };
         
         if (_button == 0 && GVAR(canContext)) then {
-            [] call FUNC(selectObject);
+            [0] call FUNC(selectObject);
         };
         
         if (_button == 1 && GVAR(canContext)) then {
-            [] call FUNC(selectObject);
+            [1] call FUNC(selectObject);
             [] call FUNC(handleContextMenu);
             
             if (!isNil QGVAR(contextPosLinePFH)) then {

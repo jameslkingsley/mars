@@ -3,7 +3,7 @@
  * Handles selecting an object via left click
  *
  * Arguments:
- * None
+ * 0: Button (0 = left, 1 = right) <INT>
  *
  * Return Value:
  * None
@@ -15,6 +15,8 @@
  */
 
 #include "script_component.hpp"
+
+params [["_button", 0]];
 
 if (GVAR(cursorOverObjectIsVehicle)) then {
     private ["_target","_worldPos","_objects"];
@@ -38,7 +40,7 @@ if (GVAR(cursorOverObjectIsVehicle)) then {
         // Default to true to allow selecting vehicles
         GVAR(cursorOverObjectIsVehicle) = true;
     } else {
-        [_target, !(vehicle _target == _target)] call FUNC(highlightObject);
+        [_target, !(vehicle _target == _target), _button] call FUNC(highlightObject);
     };
 } else {
     private ["_worldPos","_objects"];
@@ -48,7 +50,7 @@ if (GVAR(cursorOverObjectIsVehicle)) then {
 
     if (count _objects > 0) then {
         private _target = (_objects select 0);
-        [_target, !(vehicle _target == _target)] call FUNC(highlightObject);
+        [_target, !(vehicle _target == _target), _button] call FUNC(highlightObject);
     } else {
         // Clear Selection
         GVAR(selection) = [];

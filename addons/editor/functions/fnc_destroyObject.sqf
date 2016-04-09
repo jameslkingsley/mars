@@ -16,6 +16,10 @@
 
 #include "script_component.hpp"
 
+if (true) exitWith {
+    MARS_LOGINFO(_this);
+};
+
 params ["_units"];
 
 {

@@ -30,3 +30,4 @@ PREP(handleSelectionDir);
 PREP(onContextHover);
 PREP(closeContextByIndex);
 PREP(onContextClick);
+PREP(handleSelToPos);

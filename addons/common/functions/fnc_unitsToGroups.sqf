@@ -9,7 +9,7 @@
  * Groups <ARRAY>
  *
  * Example:
- * [allUnits] call mars_common_fnc_unitsToGroup;
+ * [allUnits] call mars_common_fnc_unitsToGroups;
  *
  * Public: No
  */

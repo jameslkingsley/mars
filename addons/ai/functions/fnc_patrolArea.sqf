@@ -18,7 +18,7 @@
 
 params ["_units","_pos"];
 
-private _groups = [_units] call EFUNC(common,unitsToGroup);
+private _groups = [_units] call EFUNC(common,unitsToGroups);
 
 {
     [_x, _pos, 200] call CBA_fnc_taskPatrol;
