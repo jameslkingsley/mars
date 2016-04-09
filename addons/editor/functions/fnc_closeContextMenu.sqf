@@ -16,15 +16,10 @@
 
 #include "script_component.hpp"
 
-{
-    ctrlDelete (GETUVAR(GVAR(interface),displayNull) displayCtrl _x);
-} forEach GVAR(allContextControls);
+{ctrlDelete (GETUVAR(GVAR(interface),displayNull) displayCtrl _x)} forEach GVAR(allContextControls);
 
 /*if (!isNil QGVAR(contextPosLinePFH)) then {
     [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
 };*/
 
 GVAR(allContextControls) = [];
-GVAR(parentContextControls) = [];
-GVAR(childContextControls) = [];
-GVAR(isMouseOverChild) = false;

@@ -27,6 +27,24 @@ class GVARMAIN(Context) {
                     requiresPosition = false;
                     condition = "alive _this";
                     action = QUOTE(_this call FUNC(fleeArea));
+                    class GVAR(fleeArea_aa) {
+                        displayName = "Flee Area (A)";
+                        requiresPosition = false;
+                        condition = "alive _this";
+                        action = QUOTE(_this call FUNC(fleeArea));
+                    };
+                    class GVAR(fleeArea_bb) {
+                        displayName = "Flee Area (B)";
+                        requiresPosition = false;
+                        condition = "alive _this";
+                        action = QUOTE(_this call FUNC(fleeArea));
+                    };
+                    class GVAR(fleeArea_cc) {
+                        displayName = "Flee Area (C)";
+                        requiresPosition = false;
+                        condition = "alive _this";
+                        action = QUOTE(_this call FUNC(fleeArea));
+                    };
                 };
                 class GVAR(fleeArea_c) {
                     displayName = "Flee Area (C)";
