@@ -39,10 +39,12 @@ GVAR(entityList_empty) = 0;
 
 // Context Menu
 GVAR(canContext) = true;
+GVAR(allContextControls) = [];
 GVAR(parentContextControls) = [];
 GVAR(childContextControls) = [];
 GVAR(isMouseOverChild) = false;
 GVAR(isChildContextOpen) = false;
+GVAR(indexedContexts) = [];
 
 // Caches
 GVAR(cachedGroups) = [];

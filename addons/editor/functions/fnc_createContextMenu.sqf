@@ -16,26 +16,80 @@
 
 #include "script_component.hpp"
 
-params [["_contexts", []], ["_pIndex", 0]];
+params [["_contexts", []], ["_xIndex", 0], ["_yIndex", 0], ["_startYPos", -1]];
 
 if (count _contexts > 0) then {
+    _index = 0;
+    
     {
-        private ["_config","_condition","_index"];
+        private ["_config","_condition"];
         _config = _x;
-        _index = _forEachIndex;
         _condition = getText (_config >> "condition");
         if (_condition == "") then {_condition = "true"};
         
         // Run the condition for all in selection
         if (({_x call compile _condition} count GVAR(selection)) > 0) then {
-            _idc = 96300 + _index + _pIndex;
+            _idc = (9630 + _index) * ((10 * _xIndex) max 1);
             _children = "true" configClasses (_config);
             _hasChildren = (count _children > 0);
             _displayName = getText (_config >> "displayName");
             _action = getText (_config >> "action");
             _requiresPosition = [false,true] select (getNumber (_config >> "requiresPosition"));
+            
+            disableSerialization;
+            
+            _control = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_contextBase", _idc];
+            _control ctrlSetText (format ["%1%2", _displayName, (["","..."] select _hasChildren)]);
+
+            _startYPos = if (_startYPos > -1) then {
+                _startYPos
+            } else {
+                GVAR(currentMousePos) select 1
+            };
+            
+            MARS_LOGINFO(_startYPos);
+            
+            _cordX = (GVAR(currentMousePos) select 0) + (_xIndex * CONTEXT_OPTION_WIDTH);
+            _cordY = _startYPos + ((_yIndex * CONTEXT_OPTION_HEIGHT) + (_index * CONTEXT_OPTION_HEIGHT));
+
+            _control ctrlSetPosition [
+                _cordX,
+                _cordY,
+                CONTEXT_OPTION_WIDTH,
+                CONTEXT_OPTION_HEIGHT
+            ];
+            
+            _control setVariable [QGVAR(ctrlChildren), _children];
+            
+            _control ctrlAddEventHandler ["MouseEnter",
+                compile format[
+                    "[_this, %1, %2, %3, %4] call " + QUOTE(FUNC(onContextHover)),
+                    _idc,
+                    _xIndex,
+                    _index,
+                    (_cordY - (CONTEXT_OPTION_HEIGHT * _index))
+                ]
+            ];
+            
+            _control ctrlAddEventHandler ["MouseExit", ""];
+            _control ctrlAddEventHandler ["MouseButtonUp", ""];
+
+            _control ctrlCommit 0;
+            
+            GVAR(allContextControls) pushBack _idc;
+            _index = _index + 1;
+            
+            if ((count GVAR(indexedContexts) - 1) >= _xIndex) then {
+                _curCtrls = GVAR(indexedContexts) select _xIndex;
+                _curCtrls pushBackUnique _idc;
+                GVAR(indexedContexts) set [_xIndex, _curCtrls];
+            } else {
+                GVAR(indexedContexts) pushBack [_idc];
+            };
         };
-    } forEach _contexts;
+        
+        false
+    } count _contexts;
 } else {
     _contexts = [];
     
@@ -45,5 +99,5 @@ if (count _contexts > 0) then {
         } forEach ("true" configClasses (_x));
     } forEach ("true" configClasses (configFile >> QGVARMAIN(context)));
     
-    [_contexts, _pIndex] call FUNC(createContextMenu);
+    [_contexts, _xIndex, _yIndex] call FUNC(createContextMenu);
 };

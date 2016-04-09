@@ -106,8 +106,6 @@ switch (toLower _mode) do {
     };
     case "onkeydown": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
-
-        MARS_LOGINFO_1("onKeyDown: ", str _dik);
         
         if (!GVAR(shiftKey)) then {GVAR(shiftKey) = true};
 

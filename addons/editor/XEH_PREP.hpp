@@ -29,3 +29,5 @@ PREP(destroyObject);
 PREP(logSelection);
 PREP(deleteSelection);
 PREP(handleSelectionDir);
+PREP(onContextHover);
+PREP(closeContextByIndex);

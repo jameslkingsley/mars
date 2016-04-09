@@ -21,6 +21,7 @@ params [["_target", objNull], ["_color", [1,1,1,1]]];
 
 if (isNull _target) exitWith {};
 
+_color set [3,0.33];
 private _box = boundingBoxReal _target;
 
 {
