@@ -17,29 +17,13 @@
 
 #include "script_component.hpp"
 
-params ["_object", "_isVehicle", "_button"];
+params ["_object", "_isVehicle"];
 
-switch (_button) do {
-    // Left Click
-    case 0: {
-        if (_object in GVAR(leftSelection)) exitWith {};
-        if (GVAR(shiftKey) && count GVAR(leftSelection) == 0) exitWith {
-            GVAR(leftSelection) = (units (group _object));
-            GVAR(selection) = (units (group _object));
-        };
-        if (!GVAR(shiftKey)) then {GVAR(leftSelection) = []};
-        GVAR(leftSelection) pushBackUnique _object;
-        GVAR(selection) pushBackUnique _object;
-    };
-    
-    // Right Click
-    case 1: {
-        if (_object in GVAR(rightSelection)) exitWith {};
-        if (GVAR(shiftKey) && count GVAR(rightSelection) == 0) exitWith {
-            GVAR(rightSelection) = (units (group _object));
-        };
-        if (!GVAR(shiftKey)) then {GVAR(rightSelection) = []};
-        GVAR(rightSelection) pushBackUnique _object;
-        GVAR(selection) pushBackUnique _object;
-    };
+if (_object in GVAR(selection)) exitWith {};
+
+if (GVAR(shiftKey) && count GVAR(selection) == 0) exitWith {
+    GVAR(selection) = (units (group _object));
 };
+
+if (!GVAR(shiftKey)) then {GVAR(selection) = []};
+GVAR(selection) pushBackUnique _object;

@@ -56,6 +56,8 @@ switch (toLower _mode) do {
     case "onmousebuttonup": {
         _args params ["_ctrl","_button"];
         
+        TRACE_2("Button pressed", _button, GVAR(canContext));
+        
         if (!isNil QGVAR(selectionDirPFH)) then {
             [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;
         };
@@ -63,22 +65,42 @@ switch (toLower _mode) do {
         GVAR(mouse) set [_button,false];
         [] call FUNC(closeContextMenu);
         
-        if (_button == 0) then {
-            GVAR(camDolly) = [0,0];
-            if (GVAR(isWaitingForLeftClick)) then {GVAR(hasLeftClicked) = true;};
-            //[false] call FUNC(handleLeftDrag);
-        };
-        
-        if (_button == 0 && GVAR(canContext)) then {
-            [0] call FUNC(selectObject);
-        };
-        
-        if (_button == 1 && GVAR(canContext)) then {
-            [1] call FUNC(selectObject);
-            [] call FUNC(handleContextMenu);
+        switch (true) do {
+            // Left Click
+            case (_button == 0): {
+                GVAR(camDolly) = [0,0];
+                
+                // This is used for context options that require a position
+                if (GVAR(isWaitingForLeftClick)) then {
+                    GVAR(hasLeftClicked) = true;
+                };
+            };
             
-            if (!isNil QGVAR(contextPosLinePFH)) then {
-                [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
+            // Left Click & Can Context
+            case (_button == 0 && GVAR(canContext)): {
+                [] call FUNC(selectObject);
+            };
+            
+            // Right Click
+            case (_button == 1): {};
+            
+            // Right Click & Can Context
+            case (_button == 1 && GVAR(canContext)): {
+                if (count GVAR(selection) > 0) then {
+                    // Already has objects in selection
+                    TRACE_1("Handling selection to position", GVAR(selection));
+                    [] call FUNC(closeContextMenu);
+                    [] call FUNC(handleSelToPos);
+                } else {
+                    // No objects in selection, proceed to handle context menu
+                    TRACE_1("Handling context menu",nil);
+                    [] call FUNC(selectObject);
+                    [] call FUNC(handleContextMenu);
+                    
+                    if (!isNil QGVAR(contextPosLinePFH)) then {
+                        [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
+                    };
+                };
             };
         };
     };

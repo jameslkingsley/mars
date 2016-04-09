@@ -4,3 +4,4 @@ PREP(airAttack);
 PREP(airLand);
 PREP(airParadrop);
 PREP(airOrbit);
+PREP(initMan);

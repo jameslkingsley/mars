@@ -18,21 +18,41 @@
 
 #include "script_component.hpp"
 
-params [["_selection", []], ["_destination", []], ["_target", objNull]];
+private ["_worldPos","_objects","_selObject"];
 
-if (count _selection == 0 || count _pos == 0) exitWith {};
+_worldPos = screenToWorld GVAR(mousePos);
+_objects = nearestObjects FULL_TYPE_SEARCH;
+_selObject = objNull;
+
+if (count _objects > 0) then {
+    _selObject = (_objects select 0);
+};
+
+if (count GVAR(selection) == 0 || count _worldPos == 0) exitWith {};
 
 {
     private _unit = _x;
-    _unit disableAI "AUTOCOMBAT";
-    _unit disableAI "SUPPRESSION";
-    _unit setBehaviour "AWARE";
-    _unit setSpeedMode "FULL";
-    _unit allowFleeing 0;
-    _unit doMove _destination;
+    
+    switch (true) do {
+        // Infantry
+        case (_unit isKindOf "Man"): {
+            _unit doMove _worldPos;
+        };
+        
+        // Land vehicle
+        case (_unit isKindOf "LandVehicle"): {
+            _unit doMove _worldPos;
+        };
+        
+        // Air vehicle
+        case (_unit isKindOf "Air"): {
+            _unit doMove _worldPos;
+        };
+        
+        default {};
+    };
+
     false
-} count _selection;
+} count GVAR(selection);
 
 GVAR(selection) = [];
-GVAR(leftSelection) = [];
-GVAR(rightSelection) = [];
