@@ -16,7 +16,7 @@
 
 #include "script_component.hpp"
 
-#define CHECK_DISTANCE 10
+#define CHECK_DISTANCE 25
 
 params [["_position", []]];
 
