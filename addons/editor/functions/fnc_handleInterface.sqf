@@ -56,8 +56,6 @@ switch (toLower _mode) do {
     case "onmousebuttonup": {
         _args params ["_ctrl","_button"];
         
-        TRACE_2("Button pressed", _button, GVAR(canContext));
-        
         if (!isNil QGVAR(selectionDirPFH)) then {
             [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;
         };
@@ -67,7 +65,7 @@ switch (toLower _mode) do {
         
         switch (true) do {
             // Left Click
-            case (_button == 0): {
+            case (_button == 0 && !GVAR(canContext)): {
                 GVAR(camDolly) = [0,0];
                 
                 // This is used for context options that require a position
@@ -82,7 +80,7 @@ switch (toLower _mode) do {
             };
             
             // Right Click
-            case (_button == 1): {};
+            case (_button == 1 && !GVAR(canContext)): {};
             
             // Right Click & Can Context
             case (_button == 1 && GVAR(canContext)): {
@@ -93,7 +91,7 @@ switch (toLower _mode) do {
                     [] call FUNC(handleSelToPos);
                 } else {
                     // No objects in selection, proceed to handle context menu
-                    TRACE_1("Handling context menu",nil);
+                    TRACE_1("Handling context menu", nil);
                     [] call FUNC(selectObject);
                     [] call FUNC(handleContextMenu);
                     
