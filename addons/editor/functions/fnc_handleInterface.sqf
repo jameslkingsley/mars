@@ -215,6 +215,9 @@ switch (toLower _mode) do {
         GVAR(heldKeys) set [_dik,nil];
 
         switch (_dik) do {
+            case 207: { // End
+                [] call FUNC(destroySelection);
+            };
             case 16: { // Q
                 GVAR(camBoom) = 0;
             };

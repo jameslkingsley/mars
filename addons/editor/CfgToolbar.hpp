@@ -1,14 +1,14 @@
-class GVARMAIN(Toolbar) {
+class GVARMAIN(toolbar) {
     class ADDON {
-        class GVAR(toolbar_mission) {
-            displayName = "Mission";
+        class GVAR(settings) {
+            displayName = "Settings";
             action = "";
-            class GVAR(toolbar_mission_time) {
-                displayName = "Time/Date Settings";
+            class GVAR(settings_general) {
+                displayName = "General";
                 action = "";
             };
-            class GVAR(toolbar_mission_weather) {
-                displayName = "Weather Settings";
+            class GVAR(settings_controls) {
+                displayName = "Controls";
                 action = "";
             };
         };
