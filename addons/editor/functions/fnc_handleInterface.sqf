@@ -59,6 +59,10 @@ switch (toLower _mode) do {
         if (!isNil QGVAR(selectionDirPFH)) then {
             [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;
         };
+        
+        if (!isNil QGVAR(contextPosLinePFH)) then {
+            [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
+        };
 
         GVAR(mouse) set [_button,false];
         [] call FUNC(closeContextMenu);
@@ -94,10 +98,6 @@ switch (toLower _mode) do {
                     TRACE_1("Handling context menu", nil);
                     [] call FUNC(selectObject);
                     [] call FUNC(handleContextMenu);
-                    
-                    if (!isNil QGVAR(contextPosLinePFH)) then {
-                        [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
-                    };
                 };
             };
         };
@@ -202,6 +202,8 @@ switch (toLower _mode) do {
     };
     case "onkeyup": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
+        
+        TRACE_1("onKeyUp DIK: ", _dik);
         
         if (!isNil QGVAR(selectionDirPFH)) then {
             [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;

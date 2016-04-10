@@ -27,8 +27,8 @@ private _box = boundingBoxReal _target;
 {
     {
         drawLine3D [
-            (_target modelToWorld (_x select 0)),
-            (_target modelToWorld (_x select 1)),
+            (_target modelToWorldVisual (_x select 0)),
+            (_target modelToWorldVisual (_x select 1)),
             _color
         ];
         

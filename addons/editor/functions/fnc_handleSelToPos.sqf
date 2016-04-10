@@ -18,14 +18,14 @@
 
 #include "script_component.hpp"
 
-private ["_worldPos","_objects","_selObject"];
+private ["_worldPos","_objects"];
 
 _worldPos = screenToWorld GVAR(mousePos);
 _objects = nearestObjects FULL_TYPE_SEARCH;
-_selObject = objNull;
 
-if (count _objects > 0) then {
-    _selObject = (_objects select 0);
+if (count _objects > 0) exitWith {
+    [] call FUNC(selectObject);
+    [] call FUNC(handleContextMenu);
 };
 
 if (count GVAR(selection) == 0 || count _worldPos == 0) exitWith {};

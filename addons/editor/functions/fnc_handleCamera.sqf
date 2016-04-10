@@ -31,12 +31,16 @@ _oldPos = GVAR(camPos);
 
 // Dolly/Boom amount should be influnced by zoom level (it should really be exponential)
 // Dollying should also slow as the camera gets close to the ground
+_isInBuilding = [GVAR(camPos)] call EFUNC(common,isInBuilding);
+_buildingMod = [0.025,0.005] select _isInBuilding;
+_buildingMax = [0.1,0.025] select _isInBuilding;
 _zoomMod = (GVAR(camZoom) * 0.8) max 1;
-_altMod = ((((getPos _camera) select 2) * 0.025) max 0.1) min 1;
+_altMod = ((((getPos _camera) select 2) * _buildingMod) max _buildingMax) min 1;
+systemChat str _altMod;
 
-_mX = (GVAR(camDolly) select 0)/* * _altMod*/ / _zoomMod;
-_mY = (GVAR(camDolly) select 1)/* * _altMod*/ / _zoomMod;
-_mZ = GVAR(camBoom)/* * _altMod*/ / _zoomMod;
+_mX = (GVAR(camDolly) select 0) * _altMod / _zoomMod;
+_mY = (GVAR(camDolly) select 1) * _altMod / _zoomMod;
+_mZ = GVAR(camBoom) * _altMod / _zoomMod;
 
 _x = (_oldPos select 0) + (_mX * cos(_pan)) + (_mY * sin(_pan));
 _y = (_oldPos select 1) - (_mX * sin(_pan)) + (_mY * cos(_pan));

@@ -6,3 +6,4 @@ PREP(getSideColor);
 PREP(getMarkerType);
 PREP(getMarkerTexture);
 PREP(unitsToGroups);
+PREP(isInBuilding);
