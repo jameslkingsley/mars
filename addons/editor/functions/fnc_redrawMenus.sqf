@@ -32,7 +32,7 @@ if (count GVAR(topNavControls) > 0) then {
     } count GVAR(topNavControls);
 };
 
-_components = "true" configClasses (configFile >> QGVARMAIN(Toolbar));
+_components = "true" configClasses (configFile >> QGVARMAIN(toolbar));
 
 if (count _components > 0) then {
     _menuWidth = safeZoneW / (count _components);
