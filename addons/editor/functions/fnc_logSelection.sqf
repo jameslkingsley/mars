@@ -1,17 +1,17 @@
 /*
  * Author: Kingsley
- * Destroys all objects in selection
+ * Logs all objects in selection to RPT file
  *
  * Arguments:
- * 
+ * 0: Selection <ARRAY>
  *
  * Return Value:
- * 
+ * None
  *
  * Example:
- * 
+ * N/A
  *
- * Public: 
+ * Public: No
  */
 
 #include "script_component.hpp"

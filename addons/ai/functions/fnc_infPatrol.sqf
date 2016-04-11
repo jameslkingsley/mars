@@ -1,14 +1,13 @@
 /*
  * Author: Kingsley
- * Waypoints the given air vehicles to attack the given position
- * Called from context menu
+ * Tasks the given groups to patrol at area
  *
  * Arguments:
  * 0: Selection <ARRAY>
  * 1: Position <ARRAY>
  *
  * Return Value:
- * Waypoint index <INT>
+ * None
  *
  * Example:
  * N/A
@@ -23,10 +22,6 @@ params ["_units","_pos"];
 private _groups = [_units] call EFUNC(common,unitsToGroups);
 
 {
-    _wp = _x addWaypoint [_pos, 0];
-    _wp setWaypointType "SAD";
-    _wp setWaypointBehaviour "AWARE";
-    _wp setWaypointCombatMode "RED";
-
+    [_x, _pos, 200, 7, "MOVE", "AWARE", "RED", "FULL", "STAG COLUMN", "this spawn CBA_fnc_searchNearby", [3,6,9]] call CBA_fnc_taskPatrol;
     false
 } count _groups;

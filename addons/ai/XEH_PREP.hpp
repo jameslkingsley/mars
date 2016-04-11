@@ -1,7 +1,5 @@
-PREP(patrolArea);
-PREP(fleeArea);
+PREP(infPatrol);
+PREP(infDefend);
 PREP(airAttack);
-PREP(airLand);
-PREP(airParadrop);
 PREP(airOrbit);
 PREP(initMan);

@@ -23,7 +23,6 @@ PREP(createEntityList);
 PREP(createContextMenu);
 PREP(takeControlOfUnit);
 PREP(execContextAction);
-PREP(destroyObject);
 PREP(logSelection);
 PREP(deleteSelection);
 PREP(destroySelection);

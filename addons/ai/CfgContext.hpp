@@ -5,53 +5,17 @@ class GVARMAIN(Context) {
             requiresPosition = false;
             condition = "_this isKindOf 'Man'";
             action = "";
-            class GVAR(patrolArea) {
-                displayName = "Patrol Area";
+            class GVAR(patrol) {
+                displayName = "Patrol";
                 requiresPosition = true;
                 condition = "alive _this";
-                action = QUOTE(_this call FUNC(patrolArea));
+                action = QUOTE(_this call FUNC(infPatrol));
             };
-            class GVAR(fleeArea) {
-                displayName = "Flee Area";
-                requiresPosition = false;
+            class GVAR(defend) {
+                displayName = "Defend";
+                requiresPosition = true;
                 condition = "alive _this";
-                action = QUOTE(_this call FUNC(fleeArea));
-                class GVAR(fleeArea_a) {
-                    displayName = "Flee Area (A)";
-                    requiresPosition = false;
-                    condition = "alive _this";
-                    action = QUOTE(_this call FUNC(fleeArea));
-                };
-                class GVAR(fleeArea_b) {
-                    displayName = "Flee Area (B)";
-                    requiresPosition = false;
-                    condition = "alive _this";
-                    action = QUOTE(_this call FUNC(fleeArea));
-                    class GVAR(fleeArea_aa) {
-                        displayName = "Flee Area (A)";
-                        requiresPosition = false;
-                        condition = "alive _this";
-                        action = QUOTE(_this call FUNC(fleeArea));
-                    };
-                    class GVAR(fleeArea_bb) {
-                        displayName = "Flee Area (B)";
-                        requiresPosition = false;
-                        condition = "alive _this";
-                        action = QUOTE(_this call FUNC(fleeArea));
-                    };
-                    class GVAR(fleeArea_cc) {
-                        displayName = "Flee Area (C)";
-                        requiresPosition = false;
-                        condition = "alive _this";
-                        action = QUOTE(_this call FUNC(fleeArea));
-                    };
-                };
-                class GVAR(fleeArea_c) {
-                    displayName = "Flee Area (C)";
-                    requiresPosition = false;
-                    condition = "alive _this";
-                    action = QUOTE(_this call FUNC(fleeArea));
-                };
+                action = QUOTE(_this call FUNC(infDefend));
             };
         };
         class GVAR(air) {
@@ -59,47 +23,65 @@ class GVARMAIN(Context) {
             requiresPosition = false;
             condition = "_this isKindOf 'Air'";
             action = "";
-            class GVAR(air_attack) {
+            class GVAR(attack) {
                 displayName = "Attack";
                 requiresPosition = true;
                 condition = "";
                 action = QUOTE(_this call FUNC(airAttack));
             };
-            class GVAR(air_land) {
+            /*class GVAR(land) {
                 displayName = "Land";
                 requiresPosition = true;
                 condition = "";
                 action = QUOTE(_this call FUNC(airLand));
-                class GVAR(air_land_a) {
-                    displayName = "Land (A)";
-                    requiresPosition = true;
-                    condition = "";
-                    action = QUOTE(_this call FUNC(airLand));
-                };
-                class GVAR(air_land_b) {
-                    displayName = "Land (B)";
-                    requiresPosition = true;
-                    condition = "";
-                    action = QUOTE(_this call FUNC(airLand));
-                };
-                class GVAR(air_land_c) {
-                    displayName = "Land (C)";
-                    requiresPosition = true;
-                    condition = "";
-                    action = QUOTE(_this call FUNC(airLand));
-                };
             };
-            class GVAR(air_para) {
+            class GVAR(paradrop) {
                 displayName = "Paradrop";
                 requiresPosition = true;
                 condition = "";
-                action = QUOTE(_this call FUNC(airParadrop));
-            };
-            class GVAR(air_orbit) {
+                action = "";
+                class GVAR(paradrop_low) {
+                    displayName = "Low (250m)";
+                    requiresPosition = true;
+                    condition = "";
+                    action = QUOTE([_this, 250] call FUNC(airParadrop));
+                };
+                class GVAR(paradrop_med) {
+                    displayName = "Medium (500m)";
+                    requiresPosition = true;
+                    condition = "";
+                    action = QUOTE([_this, 500] call FUNC(airParadrop));
+                };
+                class GVAR(paradrop_high) {
+                    displayName = "High (750m)";
+                    requiresPosition = true;
+                    condition = "";
+                    action = QUOTE([_this, 750] call FUNC(airParadrop));
+                };
+            };*/
+            class GVAR(orbit) {
                 displayName = "Orbit";
-                requiresPosition = true;
+                requiresPosition = false;
                 condition = "";
-                action = QUOTE(_this call FUNC(airOrbit));
+                action = "";
+                class GVAR(orbit_low) {
+                    displayName = "Low (250m)";
+                    requiresPosition = true;
+                    condition = "";
+                    action = QUOTE([_this, 250] call FUNC(airOrbit));
+                };
+                class GVAR(orbit_med) {
+                    displayName = "Medium (500m)";
+                    requiresPosition = true;
+                    condition = "";
+                    action = QUOTE([_this, 500] call FUNC(airOrbit));
+                };
+                class GVAR(orbit_high) {
+                    displayName = "High (750m)";
+                    requiresPosition = true;
+                    condition = "";
+                    action = QUOTE([_this, 750] call FUNC(airOrbit));
+                };
             };
         };
     };

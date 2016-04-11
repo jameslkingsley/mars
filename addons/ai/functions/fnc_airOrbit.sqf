@@ -4,7 +4,7 @@
  * Called from context menu
  *
  * Arguments:
- * 0: Units <ARRAY>
+ * 0: Selection <ARRAY>
  * 1: Position <ARRAY>
  *
  * Return Value:
@@ -18,22 +18,24 @@
 
 #include "script_component.hpp"
 
-params ["_units","_pos"];
+TRACE_1("Orbit", _this);
 
-_curGrp = grpNull;
+params ["_args","_height"];
+_args params ["_units","_pos"];
+
+private _groups = [_units] call EFUNC(common,unitsToGroups);
 
 {
-    _grp = group _x;
-    
-    if (_grp != _curGrp) then {
-        _wp = _grp addWaypoint [_pos, 0];
-        _wp setWaypointType "LOITER";
-        _wp setWaypointBehaviour "AWARE";
-        _wp setWaypointLoiterRadius 750;
-        _wp setWaypointLoiterType "CIRCLE";
-        
-        _curGrp = _grp;
-    };
-    
+    (vehicle _x) flyInHeight _height;
     false
 } count _units;
+
+{
+    _wp = _x addWaypoint [_pos, 0];
+    _wp setWaypointType "LOITER";
+    _wp setWaypointBehaviour "AWARE";
+    _wp setWaypointLoiterRadius 750;
+    _wp setWaypointLoiterType "CIRCLE";
+    
+    false
+} count _groups;

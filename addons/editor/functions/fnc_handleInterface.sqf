@@ -90,12 +90,10 @@ switch (toLower _mode) do {
             case (_button == 1 && GVAR(canContext)): {
                 if (count GVAR(selection) > 0) then {
                     // Already has objects in selection
-                    TRACE_1("Handling selection to position", GVAR(selection));
                     [] call FUNC(closeContextMenu);
                     [] call FUNC(handleSelToPos);
                 } else {
                     // No objects in selection, proceed to handle context menu
-                    TRACE_1("Handling context menu", nil);
                     [] call FUNC(selectObject);
                     [] call FUNC(handleContextMenu);
                 };
@@ -202,8 +200,6 @@ switch (toLower _mode) do {
     };
     case "onkeyup": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
-        
-        TRACE_1("onKeyUp DIK: ", _dik);
         
         if (!isNil QGVAR(selectionDirPFH)) then {
             [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;
