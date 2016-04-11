@@ -10,7 +10,7 @@
  * RGBA <ARRAY>
  *
  * Example:
- * _color = [player] call mars_common_fnc_getSideColor;
+ * _color = [side player] call mars_common_fnc_getSideColor;
  *
  * Public: No
  */
@@ -20,10 +20,10 @@
 params [["_side", sideUnknown]];
 
 private _color = switch (_side) do {
-    case west: {WEST_COLOR};
-    case east: {EAST_COLOR};
-    case resistance: {GUER_COLOR};
-    case civilian: {CIV_COLOR};
+    case west: {COLOR_WEST_RGBA_ARR};
+    case east: {COLOR_EAST_RGBA_ARR};
+    case resistance: {COLOR_GUER_RGBA_ARR};
+    case civilian: {COLOR_CIV_RGBA_ARR};
     default {UNKNOWN_COLOR};
 };
 

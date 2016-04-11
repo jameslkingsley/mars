@@ -19,3 +19,23 @@
 #define ACCENT_COLOR_RGB 0.741,0.173,0.173
 #define ACCENT_COLOR {0.741,0.173,0.173,1}
 #define ACCENT_COLOR_ARR [0.741,0.173,0.173,1]
+
+#define COLOR_WEST_RGBA_ARR [0,0.3,0.6,1]
+#define COLOR_WEST_RGB_ARR [0,0.3,0.6]
+#define COLOR_WEST_RGBA {0,0.3,0.6,1}
+#define COLOR_WEST_RGB {0,0.3,0.6}
+
+#define COLOR_EAST_RGBA_ARR [0.5,0,0,1]
+#define COLOR_EAST_RGB_ARR [0.5,0,0]
+#define COLOR_EAST_RGBA {0.5,0,0,1}
+#define COLOR_EAST_RGB {0.5,0,0}
+
+#define COLOR_GUER_RGBA_ARR [0,0.5,0,1]
+#define COLOR_GUER_RGB_ARR [0,0.5,0]
+#define COLOR_GUER_RGBA {0,0.5,0,1}
+#define COLOR_GUER_RGB {0,0.5,0}
+
+#define COLOR_CIV_RGBA_ARR [0.4,0,0.5,1]
+#define COLOR_CIV_RGB_ARR [0.4,0,0.5]
+#define COLOR_CIV_RGBA {0.4,0,0.5,1}
+#define COLOR_CIV_RGB {0.4,0,0.5}

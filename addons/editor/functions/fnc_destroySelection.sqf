@@ -30,3 +30,5 @@
     
     false
 } count GVAR(selection);
+
+GVAR(selection) = [];

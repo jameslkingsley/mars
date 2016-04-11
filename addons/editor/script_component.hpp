@@ -26,7 +26,8 @@
 #define CONTEXT_OPTION_WIDTH (0.1 * safeZoneW)
 #define CONTEXT_OPTION_HEIGHT (0.025 * safeZoneH)
 
-#define ICON_FADE_DISTANCE (profileNamespace getVariable [QEGVAR(clientmenu,viewDistance), 2000])
+// #define ICON_FADE_DISTANCE (profileNamespace getVariable [QEGVAR(clientmenu,viewDistance), 2000])
+#define ICON_FADE_DISTANCE 1500
 #define BOX_FADE_DISTANCE 500
 
 #define IDC_MENUBAR 100
