@@ -540,7 +540,7 @@ class MARS_gui_comboBoxBase : RscCombo {
     };
     style = "0x10 + 0x200";
     font = FONT_MARS;
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+    sizeEx = 0.032;
     shadow = 0;
     x = 0;
     y = 0;
@@ -552,8 +552,6 @@ class MARS_gui_comboBoxBase : RscCombo {
     wholeHeight = 0.45;
     colorActive[] = {1, 0, 0, 1};
 };
-
-
 
 class MARS_gui_mapBase {
     moveOnEdges = 1;

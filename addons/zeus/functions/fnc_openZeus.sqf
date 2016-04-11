@@ -1,6 +1,6 @@
 /*
  * Author: BourbonWarfare
- * Sets up the Zeus interface
+ * Opens the Zeus interface
  *
  * Arguments:
  * None
@@ -27,7 +27,7 @@ if (!isNil QEFUNC(editor,shutdown)) then {
 };
 
 [player, _giveZeus] remoteExecCall [QFUNC(setupZeus), 2];
-hint (["Logged out as Zeus", "Press your Zeus key - your game might freeze for a few seconds"] select _giveZeus);
+hint (["Logged out as Zeus", "Press your Zeus key"] select _giveZeus);
 
 [] spawn {
     uiSleep 10;

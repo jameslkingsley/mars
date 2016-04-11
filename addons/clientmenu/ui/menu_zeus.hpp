@@ -90,7 +90,7 @@ class GVAR(clientMenu) {
         class ZeusLabel: MARS_gui_staticBase
         {
             idc = 106;
-            text = "Current: Unknown";
+            text = "Current: Available";
             x = 0.402007 * safezoneW + safezoneX;
             y = 0.434 * safezoneH + safezoneY;
             w = 0.123781 * safezoneW;

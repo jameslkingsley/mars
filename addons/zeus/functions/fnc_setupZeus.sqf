@@ -33,9 +33,13 @@ if (_giveZeus) then {
         GVAR(zeusModule) setVariable ["Addons", 3];
         GVAR(zeusModule) setVariable ["Forced", 0];
         _unit assignCurator GVAR(zeusModule);
-        {GVAR(zeusModule) addCuratorEditableObjects [[_x],true];false} count vehicles;
-        {GVAR(zeusModule) addCuratorEditableObjects [[_x],true];false} count (entities "CAManBase");
         publicVariable QGVAR(zeusModule);
+        
+        // This is spawned so that it doesn't cause player computers to freeze/lag
+        [] spawn {
+            {GVAR(zeusModule) addCuratorEditableObjects [[_x],true];false} count vehicles;
+            {GVAR(zeusModule) addCuratorEditableObjects [[_x],true];false} count (entities "CAManBase");
+        };
     };
 } else {
     if (!isNull GVAR(zeusModule)) then {

@@ -42,13 +42,13 @@ disableSerialization;
     _index = VIEW_DISTANCE lbAdd (str _x);
     VIEW_DISTANCE lbSetData [_index, (str _x)];
     if (_x == GVAR(viewDistance)) then {VIEW_DISTANCE lbSetCurSel _index;};
-} forEach [1000,2000,3000,4000,5000,6000,7000,8000,9000,10000];
+} forEach [1000,1500,2000,2500,3000,3500,4000,4500,5000,5500,6000,6500,7000,7500,8000,8500,9000,9500,10000];
 
 if (!isNil QEGVAR(zeus,zeusModule)) then {
     _curator = getAssignedCuratorUnit EGVAR(zeus,zeusModule);
     
     if (isNull _curator) then {
-        ZEUS_LABEL ctrlSetText "Curator: Unknown";
+        ZEUS_LABEL ctrlSetText "Curator: Available";
         ZEUS_BTN ctrlEnable true;
         ZEUS_BTN ctrlSetText "Open Zeus";
     } else {
