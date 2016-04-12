@@ -24,7 +24,8 @@ private _groups = [_units] call EFUNC(common,unitsToGroups);
 {
     [_x, {
         params ["_grp","_pos"];
-        [_grp, _pos, 100, 1, true] call CBA_fnc_taskDefend;        
+        [_grp] call EFUNC(common,removeAllWaypoints);
+        [_grp, _pos, 150, 1, true] call CBA_fnc_taskDefend;
     }, [_x, _pos]] call EFUNC(common,execWhereLocal);
     false
 } count _groups;

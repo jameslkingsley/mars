@@ -18,8 +18,6 @@
 
 #include "script_component.hpp"
 
-TRACE_1("airOrbit", _this);
-
 params ["_args","_height"];
 _args params ["_units","_pos"];
 
@@ -27,8 +25,8 @@ private _groups = [_units] call EFUNC(common,unitsToGroups);
 
 {
     [_x, {
-        //TRACE_1("airOrbit", _this);
         params ["_grp","_pos","_height"];
+        [_grp] call EFUNC(common,removeAllWaypoints);
         {if (vehicle _x != _x) then {(vehicle _x) flyInHeight _height}} forEach (units _grp);
         _wp = _grp addWaypoint [_pos, 0];
         _wp setWaypointType "LOITER";

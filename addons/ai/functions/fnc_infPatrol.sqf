@@ -24,6 +24,7 @@ private _groups = [_units] call EFUNC(common,unitsToGroups);
 {
     [_x, {
         params ["_grp","_pos"];
+        [_grp] call EFUNC(common,removeAllWaypoints);
         [_grp, _pos, 200, 7, "MOVE", "AWARE", "RED", "FULL", "STAG COLUMN", "this spawn CBA_fnc_searchNearby", [3,6,9]] call CBA_fnc_taskPatrol;
     }, [_x, _pos]] call EFUNC(common,execWhereLocal);
     false

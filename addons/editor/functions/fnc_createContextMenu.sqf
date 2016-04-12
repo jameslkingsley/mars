@@ -24,7 +24,6 @@ if (count _contexts > 0) then {
     {
         private ["_config","_condition"];
         _config = _x;
-        TRACE_1("context", _config);
         _condition = getText (_config >> "condition");
         if (_condition == "") then {_condition = "true"};
         
@@ -74,7 +73,6 @@ if (count _contexts > 0) then {
             _control ctrlAddEventHandler ["MouseButtonUp", {
                 params ["_control"];
                 _actionArgs = _control getVariable [QGVAR(ctrlAction), []];
-                TRACE_1("_actionArgs", _actionArgs);
                 if (count _actionArgs > 0) then {
                     _actionArgs call FUNC(onContextClick);
                 };

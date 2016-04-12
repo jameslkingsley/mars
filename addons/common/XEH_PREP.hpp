@@ -9,3 +9,4 @@ PREP(unitsToGroups);
 PREP(isInBuilding);
 PREP(execWhereLocal);
 PREP(_execLocalCode);
+PREP(removeAllWaypoints);

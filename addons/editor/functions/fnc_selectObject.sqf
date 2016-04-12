@@ -17,19 +17,7 @@
 #include "script_component.hpp"
 
 if (GVAR(cursorOverObjectIsVehicle)) then {
-    private ["_target","_worldPos","_objects"];
-    
-    _target = objNull;
-    _worldPos = screenToWorld GVAR(mousePos);
-    _objects = lineIntersectsWith [GVAR(camPos), AGLtoASL _worldPos, objNull, objNull, true];
-
-    {
-        private _obj = _x;
-        if ({_obj isKindOf _x} count TYPE_SEARCH > 0) then {
-            _target = _obj;
-        };
-        false
-    } count _objects;
+    private _target = [] call FUNC(objectUnderCursor);
 
     if (isNull _target) then {
         // Clear Selection

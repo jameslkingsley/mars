@@ -68,19 +68,19 @@ class GVARMAIN(Context) {
                     displayName = "Low (250m)";
                     requiresPosition = true;
                     condition = "";
-                    action = QUOTE([_this, 250] call FUNC(airOrbit));
+                    action = QUOTE([ARR_2(_this,250)] call FUNC(airOrbit));
                 };
                 class GVAR(orbit_med) {
                     displayName = "Medium (500m)";
                     requiresPosition = true;
                     condition = "";
-                    action = QUOTE([_this, 500] call FUNC(airOrbit));
+                    action = QUOTE([ARR_2(_this,500)] call FUNC(airOrbit));
                 };
                 class GVAR(orbit_high) {
                     displayName = "High (750m)";
                     requiresPosition = true;
                     condition = "";
-                    action = QUOTE([_this, 750] call FUNC(airOrbit));
+                    action = QUOTE([ARR_2(_this,750)] call FUNC(airOrbit));
                 };
             };
         };

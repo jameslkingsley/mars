@@ -24,8 +24,6 @@ params [
     ["_args", []]
 ];
 
-TRACE_1("execWhereLocal", _target);
-
 if (isNull _target) exitWith {};
 
 if (local _target) exitWith {

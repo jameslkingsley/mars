@@ -25,6 +25,7 @@ private _groups = [_units] call EFUNC(common,unitsToGroups);
 {
     [_x, {
         params ["_grp","_pos"];
+        [_grp] call EFUNC(common,removeAllWaypoints);
         _wp = _grp addWaypoint [_pos, 0];
         _wp setWaypointType "SAD";
         _wp setWaypointBehaviour "AWARE";
