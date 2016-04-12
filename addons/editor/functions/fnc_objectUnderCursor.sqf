@@ -20,12 +20,6 @@ _target = objNull;
 private _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
 private _distance = GVAR(camPos) distance _worldPos;
 
-_start = "Sign_Sphere200cm_F" createVehicleLocal GVAR(camPos);
-_start setObjectTexture [0, "#(rgb,8,8,3)color(1,0,0,1)"];
-
-_end = "Sign_Sphere200cm_F" createVehicleLocal _worldPos;
-_end setObjectTexture [0, "#(rgb,8,8,3)color(0,0,1,1)"];
-
 [{
     params ["_args","_handle"];
     _args params ["_camPos","_mousePos"];
