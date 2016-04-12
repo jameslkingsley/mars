@@ -23,10 +23,12 @@ params ["_units","_pos"];
 private _groups = [_units] call EFUNC(common,unitsToGroups);
 
 {
-    _wp = _x addWaypoint [_pos, 0];
-    _wp setWaypointType "SAD";
-    _wp setWaypointBehaviour "AWARE";
-    _wp setWaypointCombatMode "RED";
-
+    [_x, {
+        params ["_grp","_pos"];
+        _wp = _grp addWaypoint [_pos, 0];
+        _wp setWaypointType "SAD";
+        _wp setWaypointBehaviour "AWARE";
+        _wp setWaypointCombatMode "RED";
+    }, [_x, _pos]] call EFUNC(common,execWhereLocal);
     false
 } count _groups;

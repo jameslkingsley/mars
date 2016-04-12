@@ -55,14 +55,6 @@ switch (toLower _mode) do {
     };
     case "onmousebuttonup": {
         _args params ["_ctrl","_button"];
-        
-        if (!isNil QGVAR(selectionDirPFH)) then {
-            [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;
-        };
-        
-        if (!isNil QGVAR(contextPosLinePFH)) then {
-            [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
-        };
 
         GVAR(mouse) set [_button,false];
         [] call FUNC(closeContextMenu);
@@ -71,11 +63,6 @@ switch (toLower _mode) do {
             // Left Click
             case (_button == 0 && !GVAR(canContext)): {
                 GVAR(camDolly) = [0,0];
-                
-                // This is used for context options that require a position
-                if (GVAR(isWaitingForLeftClick)) then {
-                    GVAR(hasLeftClicked) = true;
-                };
             };
             
             // Left Click & Can Context
@@ -99,6 +86,25 @@ switch (toLower _mode) do {
                 };
             };
         };
+        
+        if (_button == 0) then {
+            // This is used for context options that require a position
+            if (GVAR(isWaitingForLeftClick)) then {
+                GVAR(hasLeftClicked) = true;
+            };
+        };
+        
+        [{
+            [{
+                if (!isNil QGVAR(selectionDirPFH)) then {
+                    [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;
+                };
+                
+                if (!isNil QGVAR(contextPosLinePFH)) then {
+                    [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
+                };
+            }, []] call EFUNC(common,execNextFrame);
+        }, []] call EFUNC(common,execNextFrame);
     };
     case "onmousezchanged": {
         _args params ["_ctrl","_zChange"];

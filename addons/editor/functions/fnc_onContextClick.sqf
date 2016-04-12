@@ -22,12 +22,25 @@ params [["_action", ""], ["_requiresPosition", false]];
 [] call FUNC(closeContextMenu);
 
 if (_requiresPosition) then {
+    GVAR(hasLeftClicked) = false;
     GVAR(isWaitingForLeftClick) = true;
     
     GVAR(contextPosLinePFH) = [{
-        params ["_selection"];
-        systemChat str _selection;
-        _groups = [(_selection select 0)] call EFUNC(common,unitsToGroups);
+        params ["_args","_handle"];
+        _args params ["_selection","_action"];
+        
+        if (GVAR(hasLeftClicked)) exitWith {
+            _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
+            TRACE_1("onContextClick", _args);
+            [_selection, _worldPos] call compile _action;
+            
+            [_handle] call CBA_fnc_removePerFrameHandler;
+            
+            GVAR(hasLeftClicked) = false;
+            GVAR(isWaitingForLeftClick) = false;
+        };
+        
+        _groups = [_selection] call EFUNC(common,unitsToGroups);
         _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
         _worldPos set [2, 1];
         
@@ -56,19 +69,7 @@ if (_requiresPosition) then {
             "PuristaBold",
             "center"
         ];
-    }, 0, [GVAR(selection)]] call CBA_fnc_addPerFrameHandler;
-    
-    [{GVAR(hasLeftClicked)}, {
-        _worldPos = screenToWorld GVAR(mousePos);
-        [(_this select 1), _worldPos] call compile (_this select 0);
-        
-        if (!isNil QGVAR(contextPosLinePFH)) then {
-            [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
-        };
-        
-        GVAR(hasLeftClicked) = false;
-        GVAR(isWaitingForLeftClick) = false;
-    }, [_action, GVAR(selection)]] call EFUNC(common,waitUntilAndExecute);
+    }, 0, [GVAR(selection), _action]] call CBA_fnc_addPerFrameHandler;
 } else {
     [GVAR(selection)] call compile _action;
 };

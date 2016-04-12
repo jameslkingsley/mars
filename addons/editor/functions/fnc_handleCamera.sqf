@@ -36,7 +36,6 @@ _buildingMod = [0.025,0.005] select _isInBuilding;
 _buildingMax = [0.1,0.025] select _isInBuilding;
 _zoomMod = (GVAR(camZoom) * 0.8) max 1;
 _altMod = ((((getPos _camera) select 2) * _buildingMod) max _buildingMax) min 1;
-systemChat str _altMod;
 
 _mX = (GVAR(camDolly) select 0) * _altMod / _zoomMod;
 _mY = (GVAR(camDolly) select 1) * _altMod / _zoomMod;

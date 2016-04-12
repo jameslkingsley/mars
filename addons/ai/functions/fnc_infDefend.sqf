@@ -17,13 +17,14 @@
 
 #include "script_component.hpp"
 
-TRACE_1("Defend", _this);
-
 params ["_units","_pos"];
 
 private _groups = [_units] call EFUNC(common,unitsToGroups);
 
 {
-    [_x, _pos, 200, 1, true] call CBA_fnc_taskDefend;
+    [_x, {
+        params ["_grp","_pos"];
+        [_grp, _pos, 100, 1, true] call CBA_fnc_taskDefend;        
+    }, [_x, _pos]] call EFUNC(common,execWhereLocal);
     false
 } count _groups;

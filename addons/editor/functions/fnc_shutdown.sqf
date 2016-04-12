@@ -30,8 +30,4 @@ BIS_fnc_feedback_allowPP = true;
 [GVAR(pfh)] call CBA_fnc_removePerFrameHandler;
 [GVAR(camHandler)] call CBA_fnc_removePerFrameHandler;
 
-if (!isNil QGVAR(contextPosLinePFH)) then {
-    [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
-};
-
 GVAR(isSet) = false;

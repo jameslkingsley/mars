@@ -7,3 +7,5 @@ PREP(getMarkerType);
 PREP(getMarkerTexture);
 PREP(unitsToGroups);
 PREP(isInBuilding);
+PREP(execWhereLocal);
+PREP(_execLocalCode);
