@@ -1,5 +1,5 @@
-PREP(infPatrol);
-PREP(infDefend);
 PREP(airAttack);
 PREP(airOrbit);
+PREP(infDefend);
+PREP(infPatrol);
 PREP(initMan);
