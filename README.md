@@ -1,6 +1,6 @@
 <p align="center">
-	<img src="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/logo_full.png" height="384">
-	<br /><br /><br />
+	<img src="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/logo_min.png" height="384">
+	<br />
     <a href="https://github.com/jameslkingsley/Mars/issues">
         <img src="https://img.shields.io/github/issues-raw/jameslkingsley/Mars.svg?style=flat-square&label=issues" alt="Mars Issues">
     </a>
