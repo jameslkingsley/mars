@@ -20,6 +20,7 @@ _target = objNull;
 private _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
 private _distance = GVAR(camPos) distance _worldPos;
 
+/*
 [{
     params ["_args","_handle"];
     _args params ["_camPos","_mousePos"];
@@ -32,6 +33,7 @@ private _distance = GVAR(camPos) distance _worldPos;
         ];
     };
 }, 0, [GVAR(camPos), _worldPos]] call CBA_fnc_addPerFrameHandler;
+*/
 
 private _objects = lineIntersectsObjs [GVAR(camPos), _worldPos, objNull, objNull, true, (32 + 16)];
 

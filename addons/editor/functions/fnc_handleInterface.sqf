@@ -44,7 +44,7 @@ switch (toLower _mode) do {
         GVAR(mouse) set [_button,true];
         
         if ((_button == 0) && GVAR(shiftKey)) then {
-            [] call FUNC(handleSelectionDir);
+            // [] call FUNC(handleSelectionDir); -- see #6
         };
 
         // Detect right click
@@ -94,6 +94,7 @@ switch (toLower _mode) do {
             };
         };
         
+        // This needs to be executed 2 frames later
         [{
             [{
                 if (!isNil QGVAR(selectionDirPFH)) then {

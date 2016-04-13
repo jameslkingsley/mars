@@ -72,7 +72,11 @@ GVAR(pfh) = [{
     [] call FUNC(handleObjectIcons);
     
     // Selection handler
-    {[_x, MARS_SIDECOLOR(side _x)] call FUNC(drawBoundingBox);false} count GVAR(selection);
+    {
+        private _color = [[0,0,0,1], MARS_SIDECOLOR(side _x)] select (alive _x);
+        [_x, _color] call FUNC(drawBoundingBox);
+        false
+    } count GVAR(selection);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 player playActionNow "gear";
