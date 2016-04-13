@@ -4,4 +4,6 @@ if (isServer) then {
     GVAR(zeusCenter) = createCenter sideLogic;
 };
 
-GVAR(zeusModule) = objNull;
+if (isNil QGVAR(zeusModule)) then {
+    GVAR(zeusModule) = objNull;
+};
