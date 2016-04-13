@@ -16,6 +16,9 @@
 
 #include "script_component.hpp"
 
+private _curator = getAssignedCuratorUnit GVAR(zeusModule);
+if (!isNull _curator && _curator != player) exitWith {};
+
 private _giveZeus = isNull getAssignedCuratorLogic player;
 
 while {dialog} do {
