@@ -4,7 +4,6 @@ class GVARMAIN(Context) {
             displayName = "Debug";
             requiresPosition = false;
             condition = "true";
-            action = "";
             class GVAR(logSelection) {
                 displayName = "Log Selection to RPT";
                 requiresPosition = false;

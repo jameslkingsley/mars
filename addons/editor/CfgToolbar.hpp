@@ -2,7 +2,6 @@ class GVARMAIN(toolbar) {
     class ADDON {
         class GVAR(settings) {
             displayName = "Settings";
-            action = "";
             class GVAR(settings_general) {
                 displayName = "General";
                 action = "";
