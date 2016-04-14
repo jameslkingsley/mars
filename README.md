@@ -7,6 +7,9 @@
     <a href="https://github.com/jameslkingsley/Mars/blob/master/LICENSE">
         <img src="https://img.shields.io/badge/License-GPLv3-red.svg?style=flat-square&label=license" alt="Mars License">
     </a>
+    <a href="https://mars-slackin.herokuapp.com/">
+        <img src="https://mars-slackin.herokuapp.com/badge.svg?style=flat-square&label=slack" alt="Mars Slack">
+    </a>
     <a href="https://travis-ci.org/jameslkingsley/Mars">
         <img src="https://img.shields.io/travis/jameslkingsley/Mars.svg?style=flat-square&label=build" alt="Mars Build Status">
     </a>
