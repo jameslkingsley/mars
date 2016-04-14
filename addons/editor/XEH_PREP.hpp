@@ -28,3 +28,4 @@ PREP(closeContextByIndex);
 PREP(onContextClick);
 PREP(handleSelToPos);
 PREP(objectUnderCursor);
+PREP(createAssetBrowser);

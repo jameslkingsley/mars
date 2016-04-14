@@ -24,7 +24,7 @@ if (count _contexts > 0) then {
     {
         private ["_config","_condition"];
         _config = _x;
-        _condition = ["", (getText (_config >> "condition"))] select (isText (_config >> "condition"));
+        _condition = ["", (getText (_config >> "condition"))] select (!isNull (_config >> "condition"));
         if (_condition == "") then {_condition = "true"};
         
         // Run the condition for all in selection
@@ -34,8 +34,7 @@ if (count _contexts > 0) then {
             _hasChildren = (count _children > 0);
             _displayName = getText (_config >> "displayName");
             _action = ["", (getText (_config >> "action"))] select (isText (_config >> "action"));
-            _requiresPosition = [false, [false,true] select (getNumber (_config >> "requiresPosition"))] select (isNumber (_config >> "requiresPosition"));
-            //_requiresPosition = [false,true] select (getNumber (_config >> "requiresPosition"));
+            _requiresPosition = [false, [false,true] select (getNumber (_config >> "requiresPosition"))] select (!isNull (_config >> "requiresPosition"));
             
             disableSerialization;
             

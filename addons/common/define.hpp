@@ -92,9 +92,9 @@ class MARS_gui_treeBase {
     h = 0;
     colorBorder[] = {0,0,0,0};
     colorBackground[] = {0,0,0,0}; // Fill color
-    colorSelect[] = {ACCENT_COLOR_RGB,0.5}; // Selected item fill color (when multiselectEnabled is 0)
-    colorMarked[] = {ACCENT_COLOR_RGB,0.25}; // Marked item fill color (when multiselectEnabled is 1)
-    colorMarkedSelected[] = {ACCENT_COLOR_RGB,0.5}; // Selected item fill color (when multiselectEnabled is 1)
+    colorSelect[] = {COLOR_ACCENT_RGB,0.5}; // Selected item fill color (when multiselectEnabled is 0)
+    colorMarked[] = {COLOR_ACCENT_RGB,0.25}; // Marked item fill color (when multiselectEnabled is 1)
+    colorMarkedSelected[] = {COLOR_ACCENT_RGB,0.5}; // Selected item fill color (when multiselectEnabled is 1)
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
     font = "RobotoCondensedLight";
     shadow = 0;
@@ -126,29 +126,27 @@ class MARS_gui_treeBase {
 
     colorDisabled[] = {0,0,0,0}; // Does nothing, but must be present, otherwise an error is shown
     colorArrow[] = {0,0,0,0}; // Does nothing, but must be present, otherwise an error is shown
-    onCanDestroy = "systemChat str ['onCanDestroy',_this]; true";
-    onDestroy = "systemChat str ['onDestroy',_this]; false";
-    onMouseEnter = "systemChat str ['onMouseEnter',_this]; false";
-    onMouseExit = "systemChat str ['onMouseExit',_this]; false";
-    onSetFocus = "systemChat str ['onSetFocus',_this]; false";
-    onKillFocus = "systemChat str ['onKillFocus',_this]; false";
-    onKeyDown = "systemChat str ['onKeyDown',_this]; false";
-    onKeyUp = "systemChat str ['onKeyUp',_this]; false";
-    onMouseButtonDown = "systemChat str ['onMouseButtonDown',_this]; false";
-    onMouseButtonUp = "systemChat str ['onMouseButtonUp',_this]; false";
-    onMouseButtonClick = "systemChat str ['onMouseButtonClick',_this]; false";
-    onMouseButtonDblClick = "systemChat str ['onMouseButtonDblClick',_this]; false";
-    onMouseZChanged = "systemChat str ['onMouseZChanged',_this]; false";
+    onCanDestroy = "";
+    onDestroy = "";
+    onMouseEnter = "";
+    onMouseExit = "";
+    onSetFocus = "";
+    onKillFocus = "";
+    onKeyDown = "";
+    onKeyUp = "";
+    onMouseButtonDown = "";
+    onMouseButtonUp = "";
+    onMouseButtonClick = "";
+    onMouseButtonDblClick = "";
+    onMouseZChanged = "";
     onMouseMoving = "";
     onMouseHolding = "";
-    onTreeSelChanged = "systemChat str ['onTreeSelChanged',_this]; false";
-    onTreeLButtonDown = "systemChat str ['onTreeLButtonDown',_this]; false";
-    onTreeDblClick = "systemChat str ['onTreeDblClick',_this]; false";
-    onTreeExpanded = "systemChat str ['onTreeExpanded',_this]; false";
-    onTreeCollapsed = "systemChat str ['onTreeCollapsed',_this]; false";
-    //onTreeMouseMove = "systemChat str ['onTreeMouseMove',_this]; false"; // Causing CTD
-    //onTreeMouseHold = "systemChat str ['onTreeMouseHold',_this]; false"; // Causing CTD
-    onTreeMouseExit = "systemChat str ['onTreeMouseExit',_this]; false";
+    onTreeSelChanged = "";
+    onTreeLButtonDown = "";
+    onTreeDblClick = "";
+    onTreeExpanded = "";
+    onTreeCollapsed = "";
+    onTreeMouseExit = "";
 };
 
 class MARS_gui_backgroundBase {
@@ -167,7 +165,7 @@ class MARS_gui_backgroundBaseSolid : MARS_gui_backgroundBase {
 };
 
 class MARS_gui_accentBase : MARS_gui_backgroundBase {
-    colorBackground[] = ACCENT_COLOR;
+    colorBackground[] = COLOR_ACCENT_RGBA_CFG;
 };
 
 class MARS_gui_editBase {
@@ -282,6 +280,45 @@ class MARS_gui_buttonBase {
     };
 };
 
+
+class MARS_gui_tabBase {
+    access = 0;
+    idc = -1;
+    type = CT_BUTTON;
+    style = ST_PICTURE + ST_CENTER + ST_VCENTER + ST_KEEP_ASPECT_RATIO;
+    text = "";
+    action = "";
+    x = 0.0;
+    y = 0.0;
+    w = 0.25;
+    h = 0.04;
+    offsetPressedX = 0;
+	offsetPressedY = 0;
+	offsetX = 0;
+	offsetY = 0;
+	shadow = 0;
+    sizeEx = 0.032;
+    borderSize = 0;
+    colorBorder[] = {0,0,0,0};
+    colorBackground[] = {0,0,0,0};
+    colorBackgroundActive[] = COLOR_ACCENT_RGBA_CFG;
+    colorBackgroundDisabled[] = {1,1,1,0.25};
+    colorDisabled[] = {1,1,1,0.5};
+    colorFocused[] = {0,0,0,0};
+    colorShadow[] = {0,0,0,0};
+    colorText[] = {1,1,1,1};
+    color[] = {1,1,1,1};
+    blinkingPeriod = 0;
+    tooltipColorShade[] = {0,0,0,0};
+    tooltipColorText[] = {1,1,1,1};
+    tooltipColorBox[] = {0,0,0,1};
+    font = FONT_MARS;
+    soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick", 0.09, 1};
+    soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush", 0.0, 0};
+    soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter", 0.07, 1};
+    soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape", 0.09, 1};
+};
+
 class MARS_gui_menuBase {
     access = 0;
     idc = -1;
@@ -301,7 +338,7 @@ class MARS_gui_menuBase {
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.005)";
     borderSize = 0;
     colorBorder[] = {0,0,0,0};
-    colorBackgroundActive[] = ACCENT_COLOR;
+    colorBackgroundActive[] = COLOR_ACCENT_RGBA_CFG;
     colorBackgroundDisabled[] = {1,1,1,0.25};
     colorDisabled[] = {1,1,1,0.5};
     colorFocused[] = {0,0,0,0};
@@ -339,7 +376,7 @@ class MARS_gui_contextBase {
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
     borderSize = 0;
     colorBorder[] = {0.1,0.1,0.1,0.8};
-    colorBackgroundActive[] = ACCENT_COLOR;
+    colorBackgroundActive[] = COLOR_ACCENT_RGBA_CFG;
     colorBackgroundDisabled[] = {1,1,1,0.25};
     colorDisabled[] = {1,1,1,0.5};
     colorFocused[] = {0.1,0.1,0.1,0.8};
