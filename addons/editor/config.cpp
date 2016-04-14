@@ -16,3 +16,4 @@ class CfgPatches {
 #include "ui\interface.hpp"
 #include "CfgContext.hpp"
 #include "CfgToolbar.hpp"
+#include "CfgAssetBrowser.hpp"

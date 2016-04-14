@@ -16,6 +16,8 @@
 
 #include "script_component.hpp"
 
+#define DEFAULT_TAB_OPACITY 0.33
+
 // Category Tabs
 _tabs = [
     ["Units", QUOTE(PATHTOF(data\AssetBrowser\modeunits_ca.paa))],
@@ -29,7 +31,10 @@ _tabWH = (0.15 * safeZoneW) / (count _tabs);
 
 {
     _tab = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_tabBase", IDC_ASSETBROWSER_TAB + _forEachIndex];
+    GVAR(tabs) pushBackUnique (IDC_ASSETBROWSER_TAB + _forEachIndex);
+    
     _tab ctrlSetText (_x select 1);
+    _tab ctrlSetTooltip (_x select 0);
     
     _tab ctrlSetPosition [
         (0.85 * safeZoneW + safeZoneX) + (_tabWH * _forEachIndex),
@@ -38,14 +43,31 @@ _tabWH = (0.15 * safeZoneW) / (count _tabs);
         _tabWH
     ];
     
+    _tab ctrlSetFade DEFAULT_TAB_OPACITY;
+    
     _tab ctrlAddEventHandler ["MouseEnter", {
         params ["_ctrl"];
-        // _ctrl ctrlSetBackgroundColor COLOR_ACCENT_RGBA_ARR;
     }];
     
     _tab ctrlAddEventHandler ["MouseExit", {
         params ["_ctrl"];
-        // _ctrl ctrlSetBackgroundColor [0,0,0,0];
+    }];
+    
+    _tab ctrlAddEventHandler ["MouseButtonDown", {
+        params ["_control","_button","_cordX","_cordY","_shift","_ctrl","_alt"];
+        
+        if (_button == 0) then {
+            // Reset opacity of all tabs
+            {
+                disableSerialization;
+                private _control = (GETUVAR(GVAR(interface),displayNull) displayCtrl _x);
+                _control ctrlSetFade DEFAULT_TAB_OPACITY;
+                _control ctrlCommit 0;
+            } forEach GVAR(tabs);
+            
+            _control ctrlSetFade 0;
+            _control ctrlCommit 0;
+        };
     }];
     
     _tab ctrlCommit 0;

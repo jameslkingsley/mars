@@ -1,4 +1,4 @@
-class GVARMAIN(Context) {
+class GVARMAIN(context) {
     class ADDON {
         class GVAR(debug) {
             displayName = "Debug";
