@@ -2,16 +2,16 @@
 	<img src="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/logo_min.png" height="384">
 	<br />
     <a href="https://github.com/jameslkingsley/Mars/issues">
-        <img src="https://img.shields.io/github/issues-raw/jameslkingsley/Mars.svg?style=flat-square&label=issues" alt="Mars Issues">
+        <img src="https://img.shields.io/github/issues-raw/jameslkingsley/Mars.svg?label=issues" alt="Mars Issues">
     </a>
     <a href="https://github.com/jameslkingsley/Mars/blob/master/LICENSE">
-        <img src="https://img.shields.io/badge/License-GPLv3-red.svg?style=flat-square&label=license" alt="Mars License">
+        <img src="https://img.shields.io/badge/License-GPLv3-red.svg?label=license" alt="Mars License">
     </a>
     <a href="https://mars-slackin.herokuapp.com/">
-        <img src="https://mars-slackin.herokuapp.com/badge.svg?style=flat-square&label=slack" alt="Mars Slack">
+        <img src="https://mars-slackin.herokuapp.com/badge.svg?label=slack" alt="Mars Slack">
     </a>
     <a href="https://travis-ci.org/jameslkingsley/Mars">
-        <img src="https://img.shields.io/travis/jameslkingsley/Mars.svg?style=flat-square&label=build" alt="Mars Build Status">
+        <img src="https://img.shields.io/travis/jameslkingsley/Mars.svg?label=build" alt="Mars Build Status">
     </a>
 </p>
 
