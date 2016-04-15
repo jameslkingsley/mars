@@ -25,6 +25,7 @@ switch (toLower _mode) do {
         SETUVAR(GVAR(interface),_display);
         // Start the entity list handler
         [] call FUNC(createEntityList);
+        [] call FUNC(createAssetBrowser);
     };
     case "onunload": {
         // Kill GUI PFHs
@@ -42,7 +43,7 @@ switch (toLower _mode) do {
     case "onmousebuttondown": {
         _args params ["_ctrl","_button"];
         GVAR(mouse) set [_button,true];
-        
+
         if ((_button == 0) && GVAR(shiftKey)) then {
             // [] call FUNC(handleSelectionDir); -- see #6
         };
@@ -58,21 +59,21 @@ switch (toLower _mode) do {
 
         GVAR(mouse) set [_button,false];
         [] call FUNC(closeContextMenu);
-        
+
         switch (true) do {
             // Left Click
             case (_button == 0 && !GVAR(canContext)): {
                 GVAR(camDolly) = [0,0];
             };
-            
+
             // Left Click & Can Context
             case (_button == 0 && GVAR(canContext)): {
                 [] call FUNC(selectObject);
             };
-            
+
             // Right Click
             case (_button == 1 && !GVAR(canContext)): {};
-            
+
             // Right Click & Can Context
             case (_button == 1 && GVAR(canContext)): {
                 if (count GVAR(selection) > 0) then {
@@ -86,21 +87,21 @@ switch (toLower _mode) do {
                 };
             };
         };
-        
+
         if (_button == 0) then {
             // This is used for context options that require a position
             if (GVAR(isWaitingForLeftClick)) then {
                 GVAR(hasLeftClicked) = true;
             };
         };
-        
+
         // This needs to be executed 2 frames later
         [{
             [{
                 if (!isNil QGVAR(selectionDirPFH)) then {
                     [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;
                 };
-                
+
                 if (!isNil QGVAR(contextPosLinePFH)) then {
                     [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
                 };
@@ -112,15 +113,15 @@ switch (toLower _mode) do {
     };
     case "onmousemoving": {
         _args params ["_ctrl","_x","_y"];
-        
+
         if (GVAR(mouse) select 1) then {
             GVAR(canContext) = false;
         };
-        
+
         if (GVAR(mouse) select 0) then {
             //[true] call FUNC(handleLeftDrag);
         };
-        
+
         [_x,_y] call FUNC(handleMouse);
     };
     case "onmouseholding": {
@@ -131,7 +132,7 @@ switch (toLower _mode) do {
     };
     case "onkeydown": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
-        
+
         if (!GVAR(shiftKey)) then {GVAR(shiftKey) = true};
 
         // Handle held keys (prevent repeat calling)
@@ -207,11 +208,11 @@ switch (toLower _mode) do {
     };
     case "onkeyup": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
-        
+
         if (!isNil QGVAR(selectionDirPFH)) then {
             [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;
         };
-        
+
         if (GVAR(shiftKey)) then {GVAR(shiftKey) = false};
 
         // No longer being held

@@ -58,7 +58,6 @@ while {dialog} do {
 disableSerialization;
 _display = (findDisplay 46) createDisplay QGVAR(interface);
 [_display] call FUNC(redrawMenus);
-[] call FUNC(createAssetBrowser);
 
 // Reset interruptions
 GVAR(interrupts) = [];
@@ -68,10 +67,10 @@ GVAR(pfh) = [{
     if (GVAR(canContext)) then {
         [] call FUNC(handleObjectBoxes);
     };
-    
+
     // Icons handler
     [] call FUNC(handleObjectIcons);
-    
+
     // Selection handler
     {
         private _color = [[0,0,0,1], MARS_SIDECOLOR(side _x)] select (alive _x);
