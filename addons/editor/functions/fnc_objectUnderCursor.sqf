@@ -9,7 +9,7 @@
  * Objects <ARRAY>
  *
  * Example:
- * _objects = [] call mars_editor_fnc_objectUnderCursor;
+ * _object = [] call mars_editor_fnc_objectUnderCursor;
  *
  * Public: No
  */
@@ -18,35 +18,57 @@
 
 _target = objNull;
 private _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
-private _distance = GVAR(camPos) distance _worldPos;
+private _camPos = getPosASLVisual GVAR(freeCamera);
 
-/*
 [{
     params ["_args","_handle"];
-    _args params ["_camPos","_mousePos"];
-    
-    for "_i" from 0 to 250 do {
-        drawLine3D [
-            _camPos,
-            _mousePos,
-            [1,0,1,1]
-        ];
-    };
-}, 0, [GVAR(camPos), _worldPos]] call CBA_fnc_addPerFrameHandler;
-*/
+    _args params ["_camPos","_worldPos"];
 
-private _objects = lineIntersectsObjs [GVAR(camPos), _worldPos, objNull, objNull, true, (32 + 16)];
+    drawLine3D [
+        ASLtoAGL _camPos,
+        ASLtoAGL _worldPos,
+        [1,0,1,1]
+    ];
+}, 0, [_camPos, _worldPos]] call CBA_fnc_addPerFrameHandler;
+
+/*private _objects = lineIntersectsObjs [
+    _camPos,
+    [_worldPos select 0, _worldPos select 1, 0]_worldPos,
+    objNull,
+    objNull,
+    true,
+    (32 + 16)
+];*/
+
+/*private _objects = lineIntersectsWith [
+    _camPos,
+    _worldPos,
+    objNull,
+    objNull,
+    true
+];*/
+
+private _objects = lineIntersectsSurfaces [
+    _camPos,
+    _worldPos,
+    objNull,
+    objNull,
+    true,
+    -1
+];
+
+//reverse _objects;
+
+TRACE_1("Intersects with objects",_objects);
 
 {
-    private _obj = _x;
-    
+    private _obj = _x select 2;
+
     if ({_obj isKindOf _x} count TYPE_SEARCH > 0) exitWith {
         _target = _obj;
     };
-    
+
     false
 } count _objects;
-
-TRACE_3("Found object", _worldPos, _distance, _target);
 
 _target
