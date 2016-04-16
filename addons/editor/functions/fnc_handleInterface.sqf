@@ -25,7 +25,7 @@ switch (toLower _mode) do {
         SETUVAR(GVAR(interface),_display);
         // Start the entity list handler
         [] call FUNC(createEntityList);
-        //[] call FUNC(createAssetBrowser);
+        [] call FUNC(createAssetBrowser);
     };
     case "onunload": {
         // Kill GUI PFHs
@@ -237,48 +237,7 @@ switch (toLower _mode) do {
                 GVAR(camDolly) set [0, 0];
             };
             case 31: { // S
-                // This is just for testing...
                 GVAR(camDolly) set [1, 0];
-                if (_ctrl) then {
-                    createCenter west;
-                    _grp = createGroup west;
-                    _newUnit = _grp createUnit ["B_soldier_F", [0,0,0], [], 0, "FORM"];
-                    _newUnit allowDamage false;
-                    _newUnit enableSimulation false;
-                    
-                    [{
-                        params ["_args","_handle"];
-                        _args params ["_unit"];
-                        
-                        if (GVAR(mouse) select 0) exitWith {
-                            _unit allowDamage true;
-                            _unit enableSimulation true;
-                            [_handle] call CBA_fnc_removePerFrameHandler;
-                        };
-                        
-                        private _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
-                        private _camPos = getPosASLVisual GVAR(freeCamera);
-
-                        private _surfaces = lineIntersectsSurfaces [
-                            _camPos,
-                            _worldPos,
-                            GVAR(freeCamera),
-                            objNull,
-                            true,
-                            1
-                        ];
-                        
-                        if (count _surfaces > 0) then {
-                            _surface = _surfaces select 0;
-                            _surfacePos = _surface select 0;
-                            _unit setPosASL _surfacePos;
-                        } else {
-                            _unit setPosASL _worldPos;
-                        };
-                    }, 0, [_newUnit]] call CBA_fnc_addPerFrameHandler;
-                } else {
-                    GVAR(camDolly) set [1, 0];
-                };
             };
             case 32: { // D
                 GVAR(camDolly) set [0, 0];

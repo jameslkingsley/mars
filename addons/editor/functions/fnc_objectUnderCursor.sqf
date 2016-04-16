@@ -3,7 +3,7 @@
  * Returns object underneath the cursor that matches the type search criteria
  *
  * Arguments:
- * None
+ * 0: Object to ignore at destination (optional) <OBJECT>
  *
  * Return Value:
  * Objects <ARRAY>
@@ -16,6 +16,8 @@
 
 #include "script_component.hpp"
 
+params [["_ignoreObj", objNull]];
+
 _target = objNull;
 private _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
 private _camPos = getPosASLVisual GVAR(freeCamera);
@@ -24,7 +26,7 @@ private _objects = lineIntersectsSurfaces [
     _camPos,
     _worldPos,
     GVAR(freeCamera),
-    objNull,
+    _ignoreObj,
     true,
     1
 ];
