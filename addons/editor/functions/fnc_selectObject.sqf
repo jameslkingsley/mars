@@ -16,32 +16,10 @@
 
 #include "script_component.hpp"
 
-if (GVAR(cursorOverObjectIsVehicle)) then {
-    private _target = [] call FUNC(objectUnderCursor);
+private _target = [] call FUNC(objectUnderCursor);
 
-    if (isNull _target) then {
-        // Clear Selection
-        GVAR(selection) = [];
-        
-        // Default to true to allow selecting vehicles
-        GVAR(cursorOverObjectIsVehicle) = true;
-    } else {
-        [_target, !(vehicle _target == _target)] call FUNC(highlightObject);
-    };
+if (isNull _target) then {
+    GVAR(selection) = [];
 } else {
-    private ["_worldPos","_objects"];
-    
-    _worldPos = screenToWorld GVAR(mousePos);
-    _objects = nearestObjects FULL_TYPE_SEARCH;
-
-    if (count _objects > 0) then {
-        private _target = (_objects select 0);
-        [_target, !(vehicle _target == _target)] call FUNC(highlightObject);
-    } else {
-        // Clear Selection
-        GVAR(selection) = [];
-        
-        // Default to true to allow selecting vehicles
-        GVAR(cursorOverObjectIsVehicle) = true;
-    };
+    [_target, !(vehicle _target == _target)] call FUNC(highlightObject);
 };
