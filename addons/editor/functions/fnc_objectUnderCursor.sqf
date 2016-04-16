@@ -20,55 +20,40 @@ _target = objNull;
 private _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
 private _camPos = getPosASLVisual GVAR(freeCamera);
 
-[{
-    params ["_args","_handle"];
-    _args params ["_camPos","_worldPos"];
-
-    drawLine3D [
-        ASLtoAGL _camPos,
-        ASLtoAGL _worldPos,
-        [1,0,1,1]
-    ];
-}, 0, [_camPos, _worldPos]] call CBA_fnc_addPerFrameHandler;
-
-/*private _objects = lineIntersectsObjs [
-    _camPos,
-    [_worldPos select 0, _worldPos select 1, 0]_worldPos,
-    objNull,
-    objNull,
-    true,
-    (32 + 16)
-];*/
-
-/*private _objects = lineIntersectsWith [
-    _camPos,
-    _worldPos,
-    objNull,
-    objNull,
-    true
-];*/
-
 private _objects = lineIntersectsSurfaces [
     _camPos,
     _worldPos,
-    objNull,
+    GVAR(freeCamera),
     objNull,
     true,
-    -1
+    1
 ];
 
-//reverse _objects;
+if (count _objects > 0) then {
+    {
+        private _obj = _x select 2;
 
-TRACE_1("Intersects with objects",_objects);
+        if ({_obj isKindOf _x} count TYPE_SEARCH > 0) then {
+            if (true) exitWith {
+                _target = _obj;
+            };
+        } else {
+            _nearest = nearestObjects [(ASLtoAGL (_x select 0)), TYPE_SEARCH, 3];
+            
+            if (count _nearest > 0) exitWith {
+                _target = _nearest select 0;
+            };
+        };
 
-{
-    private _obj = _x select 2;
-
-    if ({_obj isKindOf _x} count TYPE_SEARCH > 0) exitWith {
-        _target = _obj;
+        false
+    } count _objects;
+} else {
+    _nearest = nearestObjects [(ASLtoAGL _worldPos), TYPE_SEARCH, 3];
+    
+    if (count _nearest > 0) exitWith {
+        _target = _nearest select 0;
     };
+};
 
-    false
-} count _objects;
 
 _target
