@@ -1,0 +1,1 @@
+#include "\z\mars\addons\ace\script_component.hpp"
