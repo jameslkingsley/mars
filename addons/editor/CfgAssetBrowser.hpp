@@ -20,20 +20,19 @@ class GVARMAIN(assetBrowser) {
             displayName = "Units";
             tooltipText = "Units (F1)";
             icon = QUOTE(PATHTOF(data\AssetBrowser\modeunits_ca.paa));
-            init = QUOTE([ARR_1('units')] call FUNC(populateAssetBrowser));
             class subtabs {
                 class blufor: SideFilter_BLUFOR {
-                    default = true;
-                    init = QUOTE([ARR_2('units',west)] call FUNC(filterAssetBrowser));
+                    selected = true;
+                    onClick = QUOTE([ARR_2('units',west)] call FUNC(populateAssetBrowser));
                 };
                 class opfor: SideFilter_OPFOR {
-                    init = QUOTE([ARR_2('units',east)] call FUNC(filterAssetBrowser));
+                    onClick = QUOTE([ARR_2('units',east)] call FUNC(populateAssetBrowser));
                 };
                 class indfor: SideFilter_INDFOR {
-                    init = QUOTE([ARR_2('units',resistance)] call FUNC(filterAssetBrowser));
+                    onClick = QUOTE([ARR_2('units',resistance)] call FUNC(populateAssetBrowser));
                 };
                 class civilian: SideFilter_CIVILIAN {
-                    init = QUOTE([ARR_2('units',civilian)] call FUNC(filterAssetBrowser));
+                    onClick = QUOTE([ARR_2('units',civilian)] call FUNC(populateAssetBrowser));
                 };
             };
         };

@@ -29,3 +29,4 @@ PREP(onContextClick);
 PREP(handleSelToPos);
 PREP(objectUnderCursor);
 PREP(createAssetBrowser);
+PREP(populateAssetBrowser);

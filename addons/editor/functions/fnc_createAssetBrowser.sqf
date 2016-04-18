@@ -19,22 +19,23 @@
 #define DEFAULT_TAB_OPACITY 0.33
 
 // Category Tabs
-_tabs = [
-    ["Units", QUOTE(PATHTOF(data\AssetBrowser\modeunits_ca.paa))],
-    ["Groups", QUOTE(PATHTOF(data\AssetBrowser\modegroups_ca.paa))],
-    ["Props", QUOTE(PATHTOF(data\AssetBrowser\modeprops_ca.paa))],
-    ["Markers", QUOTE(PATHTOF(data\AssetBrowser\modemarkers_ca.paa))],
-    ["Favorites", QUOTE(PATHTOF(data\AssetBrowser\modefavorites_ca.paa))]
-];
+_tabs = "true" configClasses (configFile >> QGVARMAIN(assetBrowser) >> "tabs");
 
 _tabWH = (0.15 * safeZoneW) / (count _tabs);
 
 {
-    _tab = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_tabBase", IDC_ASSETBROWSER_TAB + _forEachIndex];
-    GVAR(tabs) pushBackUnique (IDC_ASSETBROWSER_TAB + _forEachIndex);
+    private _idc = IDC_ASSETBROWSER_TAB + _forEachIndex;
+    private _displayName = getText (_x >> "displayName");
+    private _tooltipText = getText (_x >> "tooltipText");
+    private _icon = getText (_x >> "icon");
     
-    _tab ctrlSetText (_x select 1);
-    _tab ctrlSetTooltip (_x select 0);
+    private _tab = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_tabBase", _idc];
+    GVAR(tabs) pushBackUnique _idc;
+    
+    _tab ctrlSetText _icon;
+    _tab ctrlSetTooltip _tooltipText;
+    
+    _tab setVariable [QGVAR(tabConfig), _x];
     
     _tab ctrlSetPosition [
         (0.85 * safeZoneW + safeZoneX) + (_tabWH * _forEachIndex),
@@ -67,6 +68,12 @@ _tabWH = (0.15 * safeZoneW) / (count _tabs);
             
             _control ctrlSetFade 0;
             _control ctrlCommit 0;
+            
+            _config = _control getVariable [QGVAR(tabConfig), configNull];
+            
+            if (!isNull _config) then {
+                
+            };
         };
     }];
     
