@@ -30,7 +30,7 @@ if (!isNil QEFUNC(editor,shutdown)) then {
 };
 
 [player, _giveZeus] remoteExecCall [QFUNC(setupZeus), 2];
-hint (["Logged out as Zeus", "Press your Zeus key"] select _giveZeus);
+hint (["Logged out of Zeus", "Press your Zeus key"] select _giveZeus);
 
 [] spawn {
     uiSleep 10;

@@ -36,10 +36,10 @@ if (_giveZeus) then {
         publicVariable QGVAR(zeusModule);
         
         // This is spawned so that it doesn't cause player computers to freeze/lag
-        [] spawn {
+        /*[] spawn {
             {GVAR(zeusModule) addCuratorEditableObjects [[_x],true];false} count vehicles;
             {GVAR(zeusModule) addCuratorEditableObjects [[_x],true];false} count (entities "CAManBase");
-        };
+        };*/
     };
 } else {
     if (!isNull GVAR(zeusModule)) then {
