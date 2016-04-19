@@ -72,7 +72,9 @@ _tabWH = (0.15 * safeZoneW) / (count _tabs);
             _config = _control getVariable [QGVAR(tabConfig), configNull];
             
             if (!isNull _config) then {
-                
+                {
+                    private _cfg = _x;
+                } forEach ("true" configClasses (_config >> "subtabs"));
             };
         };
     }];
