@@ -30,3 +30,5 @@ PREP(handleSelToPos);
 PREP(objectUnderCursor);
 PREP(createAssetBrowser);
 PREP(populateAssetBrowser);
+PREP(onABTabClick);
+PREP(onABSubtabClick);

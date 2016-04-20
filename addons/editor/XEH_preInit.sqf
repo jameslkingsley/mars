@@ -39,6 +39,7 @@ GVAR(entityList_empty) = 0;
 
 // Asset Browser
 GVAR(tabs) = [];
+GVAR(subtabs) = [];
 
 // Context Menu
 GVAR(canContext) = true;
