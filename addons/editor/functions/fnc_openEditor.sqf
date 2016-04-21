@@ -43,7 +43,7 @@ GVAR(freeCamera) = "Camera" camCreate (ASLtoATL GVAR(camPos));
 // Initalize view
 [] call FUNC(transitionCamera);
 
-// Close map and clear the chat
+// Close map
 openMap [false,false];
 
 // Disable BI damage effects
