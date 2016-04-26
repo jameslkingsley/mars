@@ -12,6 +12,8 @@ if (NOT CMAKE_BUILD_TYPE AND CMAKE_COMPILER_IS_GNUCXX)
 	set(CMAKE_BUILD_TYPE "Debug")
 endif()
 
+option(USE_STATIC_LINKING "USE_STATIC_LINKING" OFF)
+
 if(CMAKE_COMPILER_IS_GNUCXX)
 	SET(CMAKE_CXX_FLAGS "-std=c++11 -pedantic -pedantic-errors -march=i686 -m32 -O2 -s -fPIC -fpermissive")
 	set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
