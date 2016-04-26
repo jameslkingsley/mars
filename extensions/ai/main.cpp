@@ -3,14 +3,12 @@
 
 using namespace intercept;
 
-extern "C" {
-    void __cdecl intercept::post_init() {
-        Helpers::ExportConfig();
-    }
+void __cdecl intercept::post_init() {
+    Helpers::ExportConfig();
+}
 
-    void __cdecl intercept::on_frame() {
-        float frame = sqf::diag_frameno();
-    }
+void __cdecl intercept::on_frame() {
+    float frame = sqf::diag_frameno();
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule,
