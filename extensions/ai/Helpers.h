@@ -1,6 +1,6 @@
 #pragma once
 
-#include "main.h"
+#include "Main.h"
 
 using namespace std;
 

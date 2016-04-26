@@ -12,13 +12,6 @@ if (NOT CMAKE_BUILD_TYPE AND CMAKE_COMPILER_IS_GNUCXX)
 	set(CMAKE_BUILD_TYPE "Debug")
 endif()
 
-option(DEVEL "DEVEL" OFF)
-option(USE_BULLET "USE_BULLET" OFF)
-option(USE_DIRECTX "USE_DIRECTX" OFF)
-option(USE_64BIT_BUILD "USE_64BIT_BUILD" OFF)
-option(USE_STATIC_LINKING "USE_STATIC_LINKING" ON)
-
-
 if(CMAKE_COMPILER_IS_GNUCXX)
 	SET(CMAKE_CXX_FLAGS "-std=c++11 -pedantic -pedantic-errors -march=i686 -m32 -O2 -s -fPIC -fpermissive")
 	set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
@@ -33,101 +26,15 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
 	set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS} /MT /Zi /O2 /Ob1 /D NDEBUG")
 endif()
 
-include_directories("common")
+string(TIMESTAMP MARS_BUILDSTAMP "%Y-%m-%dT%H:%M:%SZ")
+set(MARS_VERSION_MAJOR 1)
+set(MARS_VERSION_MINOR 0)
+set(MARS_VERSION_REVISION 0)
+set(MARS_VERSION_BUILD 0)
 
-if(USE_BULLET)
-    # Dependencies
-    #
-    set(BACKUP_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY})
-    set(BACKUP_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
-    set(BACKUP_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
-    
-    add_definitions(-DUSE_DIRECTX)
-    add_subdirectory(lib/bullet3)
-
-    set_target_properties(App_BasicExample PROPERTIES FOLDER Bullet3)
-    set_target_properties(App_HelloWorld PROPERTIES FOLDER Bullet3)
-    set_target_properties(App_ExampleBrowser PROPERTIES FOLDER Bullet3)
-    set_target_properties(Bullet2FileLoader PROPERTIES FOLDER Bullet3)
-    set_target_properties(Bullet3Collision PROPERTIES FOLDER Bullet3)
-    set_target_properties(Bullet3Dynamics PROPERTIES FOLDER Bullet3)
-    set_target_properties(Bullet3Geometry PROPERTIES FOLDER Bullet3)
-    set_target_properties(Bullet3Common PROPERTIES FOLDER Bullet3)
-    set_target_properties(Bullet3OpenCL_clew PROPERTIES FOLDER Bullet3)
-    set_target_properties(BulletCollision PROPERTIES FOLDER Bullet3)
-    set_target_properties(BulletDynamics PROPERTIES FOLDER Bullet3)
-    set_target_properties(BulletFileLoader PROPERTIES FOLDER Bullet3)
-    set_target_properties(BulletSoftBody PROPERTIES FOLDER Bullet3)
-    
-    set_target_properties(BulletWorldImporter PROPERTIES FOLDER Bullet3)
-    set_target_properties(BulletXmlWorldImporter PROPERTIES FOLDER Bullet3)
-    set_target_properties(ConvexDecomposition PROPERTIES FOLDER Bullet3)
-    set_target_properties(GIMPACTUtils PROPERTIES FOLDER Bullet3)
-    set_target_properties(gtest PROPERTIES FOLDER Bullet3)
-    set_target_properties(gwen PROPERTIES FOLDER Bullet3)
-    set_target_properties(HACD PROPERTIES FOLDER Bullet3)
-    set_target_properties(OpenGLWindow PROPERTIES FOLDER Bullet3)
-    set_target_properties(LinearMath PROPERTIES FOLDER Bullet3)
-    
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BACKUP_ARCHIVE_OUTPUT_DIRECTORY})
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BACKUP_LIBRARY_OUTPUT_DIRECTORY})
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BACKUP_RUNTIME_OUTPUT_DIRECTORY})
-    
-    include_directories(BEFORE "lib/bullet3/src")
-endif()
-if(USE_DIRECTX)
-    add_definitions(-DUSE_DIRECTX)
-    set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
-    find_package (DirectX)
-    link_directories (BEFORE ${DirectX_D3DX11_LIBRARY})
-    include_directories (BEFORE ${DirectX_D3DX11_INCLUDE_DIR} )
-endif()
-if(DEVEL)
-    add_definitions(-DDEVEL)
-endif()
-
-
-string(TIMESTAMP ACE_BUILDSTAMP "%Y-%m-%dT%H:%M:%SZ")
-set(ACE_VERSION_MAJOR 1)
-set(ACE_VERSION_MINOR 0)
-set(ACE_VERSION_REVISION 0)
-set(ACE_VERSION_BUILD 0)
-
-message("Building for: " ${ACE_VERSION_MAJOR}.${ACE_VERSION_MINOR}.${ACE_VERSION_REVISION}-${ACE_VERSION_BUILD})
-
-configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/common/ace_version.hpp.in" 
-    "${CMAKE_CURRENT_BINARY_DIR}/common/ace_version.hpp" 
-  @ONLY)
-
-if(MSVC)
-    configure_file(
-        "${CMAKE_CURRENT_SOURCE_DIR}/common/ace_version_win32.rc.in" 
-        "${CMAKE_CURRENT_BINARY_DIR}/common/ace_version_win32.rc" 
-      @ONLY)
-    set(GLOBAL_RC ${CMAKE_CURRENT_BINARY_DIR}/common/ace_version_win32.rc)
-endif()
-
-include_directories(${CMAKE_CURRENT_BINARY_DIR}/common)
-set(GLOBAL_SOURCES ${GLOBAL_RC})
-
-
-# Add extensions to build here
-add_subdirectory(common)
+message("Building for: " ${MARS_VERSION_MAJOR}.${MARS_VERSION_MINOR}.${MARS_VERSION_REVISION}-${MARS_VERSION_BUILD})
 
 # Extensions
-
 add_subdirectory(ai)
-
-# Test Extension for dynamically loading/unloading built extensions; does not build in release
-if (DEVEL)
-    add_subdirectory(dynload)
-    add_subdirectory(tests)
-    if(USE_DIRECTX)
-        add_subdirectory(lib/directxtk)
-    endif()
-endif()
-
-
 
 message("Build Type: ${CMAKE_BUILD_TYPE}")
