@@ -27,31 +27,31 @@ _tabWH = (0.15 * safeZoneW) / (count _tabs);
     private _tooltipText = getText (_x >> "tooltipText");
     private _icon = getText (_x >> "icon");
     private _onSearch = [(getText (_x >> "onSearch")),""] select (isNull (_x >> "onSearch"));
-    
+
     private _tab = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_tabBase", _idc];
     GVAR(tabs) pushBackUnique _idc;
-    
+
     _tab ctrlSetText _icon;
     _tab ctrlSetTooltip _tooltipText;
-    
+
     _tab ctrlSetPosition [
         (0.85 * safeZoneW + safeZoneX) + (_tabWH * _forEachIndex),
         (0.035 * safeZoneH + safeZoneY),
         _tabWH,
         _tabWH
     ];
-    
+
     _tab setVariable [QGVAR(tabConfig), _x];
     _tab setVariable [QGVAR(tabWH), _tabWH];
-    
+
     _tab ctrlSetFade DEFAULT_TAB_OPACITY;
-    
+
     _tab ctrlAddEventHandler ["MouseButtonDown", {_this call FUNC(onABTabClick)}];
-    
+
     if (_forEachIndex == 0) then {
         [_tab, 0] call FUNC(onABTabClick);
     };
-    
+
     _tab ctrlCommit 0;
 } forEach _tabs;
 
