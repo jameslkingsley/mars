@@ -2,16 +2,16 @@
 
 using namespace std;
 using namespace intercept;
-using namespace intercept::types;
 
 sqf::rv_color GetSideColor(const object& unit_) {
+    sqf::rv_color test{1.0f, 2.0f, 3.0f, 1.0f};
     side unitSide = sqf::get_side(sqf::get_group(unit_));
 
     switch (unitSide.operator int) {
         case SIDE_WEST:
-        {
-            return{0.0f,0.0f,0.0f,0.0f};
-        }
+        case SIDE_EAST:
+        case SIDE_GUER:
+        case SIDE_CIV:
         default:
             break;
     }

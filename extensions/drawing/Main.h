@@ -17,3 +17,8 @@
 #define SIDE_EAST 0
 #define SIDE_GUER 2
 #define SIDE_CIV 3
+
+#define COLOR_WEST 0.0f, 0.3f, 0.6f, 1.0f
+#define COLOR_EAST 0.5f, 0.0f, 0.0f, 1.0f
+#define COLOR_GUER 0.0f, 0.5f, 0.0f, 1.0f
+#define COLOR_CIV 0.4f, 0.0f, 0.5f, 1.0f
