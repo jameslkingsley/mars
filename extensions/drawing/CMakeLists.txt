@@ -1,0 +1,11 @@
+set(MARS_EXTENSION_NAME "mars_drawing")
+
+file(GLOB SOURCES *.h *.hpp *.c *.cpp)
+add_library( ${MARS_EXTENSION_NAME} SHARED ${SOURCES} ${GLOBAL_SOURCES})
+set_target_properties(${MARS_EXTENSION_NAME} PROPERTIES PREFIX "")
+set_target_properties(${MARS_EXTENSION_NAME} PROPERTIES FOLDER Extensions)
+
+if(CMAKE_COMPILER_IS_GNUCXX)
+	set_target_properties(${MARS_EXTENSION_NAME} PROPERTIES LINK_SEARCH_START_STATIC 1)
+	set_target_properties(${MARS_EXTENSION_NAME} PROPERTIES LINK_SEARCH_END_STATIC 1)
+endif()
