@@ -1,4 +1,3 @@
-#include "Main.h"
 #include "Helpers.h"
 
 using namespace std;

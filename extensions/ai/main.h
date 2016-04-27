@@ -1,9 +1,5 @@
 #pragma once
 
-#include <Windows.h>
-#include <stdio.h>
-#include <cstdint>
-#include <sstream>
 #include "intercept.hpp"
 
 #define MODPREFIX mars
