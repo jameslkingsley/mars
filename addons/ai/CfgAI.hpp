@@ -33,5 +33,5 @@ class GVARMAIN(ai) {
                 };
             };
         };
-    }:
+    };
 };
