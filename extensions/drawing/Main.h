@@ -1,11 +1,11 @@
+#pragma once
+
 #include <Windows.h>
 #include <stdio.h>
 #include <cstdint>
 #include <atomic>
 
 #include "intercept.hpp"
-#include "client\client.hpp"
-#include "client\pointers.hpp"
 #include "uncategorized.hpp"
 
 #define MODPREFIX mars
