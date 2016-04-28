@@ -29,31 +29,17 @@ namespace Drawing {
                     color[3] = max(alpha, 0.2f);
 
                     // Texture
-                    string texture = sqf::get_variable(grp, QGVAR(iconTexture), game_value(""));
-                    if (texture == "") {
+                    game_value texture = sqf::get_variable(grp, QGVAR(iconTexture), game_value(""));
+                    if (texture.length() <= 0) {
                         game_value marker_texture;
 
                         __SQF(
                             ([([_this] call mars_common_getMarkerType)] call mars_common_getMarkerTexture)
-                            ).capture(grp, marker_texture);
+                        ).capture(grp, marker_texture);
 
                         texture = marker_texture;
                         sqf::set_variable(grp, QGVAR(iconTexture), texture);
                     }
-
-                    vector<game_value> {0.0f, 0.0f, 0.0f, 1.0f};
-
-                    /*sqf::draw_icon_3d(
-                        texture,
-                        intercept::sqf::rv_color{0, 0, 0, 0},
-                        leaderPos,
-                        1,
-                        1,
-                        0,
-                        "",
-                        0,
-                        0
-                        );*/
                 }
             }
         }

@@ -4,20 +4,6 @@
 using namespace std;
 using namespace intercept;
 
-/*sqf::rv_color GetSideColor(const object& unit_) {
-    sqf::rv_color test{1.0f, 2.0f, 3.0f, 1.0f};
-    side unitSide = sqf::get_side(sqf::get_group(unit_));
-
-    switch (unitSide.operator int) {
-        case SIDE_WEST:
-        case SIDE_EAST:
-        case SIDE_GUER:
-        case SIDE_CIV:
-        default:
-            break;
-    }
-}*/
-
 void __cdecl intercept::post_init() {}
 
 void __cdecl intercept::on_frame() {
