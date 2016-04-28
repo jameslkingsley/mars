@@ -4,12 +4,22 @@
 using namespace std;
 using namespace intercept;
 
-void __cdecl intercept::post_init() {}
+int __cdecl intercept::api_version() {
+    return 1;
+}
+
+void __cdecl intercept::post_init() {
+    sqf::system_chat("mars_drawing.dll postInit...");
+}
 
 void __cdecl intercept::on_frame() {
     bool editorIsOpen = (bool)GETVAR(isSet, game_value(false));
-    if (editorIsOpen)
+    if (editorIsOpen) {
+        sqf::system_chat("Editor is open");
         Drawing::DrawIcons();
+    } else {
+        sqf::system_chat("Editor is closed");
+    }
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule,
