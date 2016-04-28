@@ -43,7 +43,7 @@ namespace Drawing {
 
                     vector<game_value> {0.0f, 0.0f, 0.0f, 1.0f};
 
-                    sqf::draw_icon_3d(
+                    /*sqf::draw_icon_3d(
                         texture,
                         intercept::sqf::rv_color{0, 0, 0, 0},
                         leaderPos,
@@ -53,7 +53,7 @@ namespace Drawing {
                         "",
                         0,
                         0
-                    );
+                        );*/
                 }
             }
         }

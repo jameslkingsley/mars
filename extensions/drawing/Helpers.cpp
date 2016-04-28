@@ -13,4 +13,4 @@ namespace Helpers {
 
         return result;
     }
-};
+}

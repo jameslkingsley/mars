@@ -1,8 +1,8 @@
-#pragma once
-
 #include "Main.h"
 
-class Drawing {
-public:
-    static void DrawIcons();
-};
+using namespace std;
+using namespace intercept;
+
+namespace Drawing {
+    void DrawIcons();
+}
