@@ -4,7 +4,7 @@ using namespace std;
 using namespace intercept;
 
 namespace Helpers {
-    vector<object> GameValueToObjectVector(const game_value& array_) {
+    vector<object> Helpers::GameValueToObjectVector(const game_value& array_) {
         vector<object> result;
 
         for (int i = 0; i < array_.length(); i++) {

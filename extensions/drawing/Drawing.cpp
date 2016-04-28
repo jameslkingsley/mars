@@ -16,13 +16,13 @@ namespace Drawing {
                 vector3 leaderPos = sqf::asl_to_agl(sqf::get_pos_asl_visual(leader));
                 float leaderDistance = sqf::distance(leaderPos, (vector3)GETVAR(camPos, game_value(vector3{0, 0, 0})));
 
-                if (sqf::alive(leader) && leaderDistance < 2000) {
+                if (sqf::alive(leader) && leaderDistance < 2000.0f) {
                     game_value rv_selection = sqf::get_variable(sqf::mission_namespace(), QGVAR(selection));
                     vector<object> selection = Helpers::GameValueToObjectVector(rv_selection);
 
                     // Opacity
-                    float alpha = sqf::linear_conversion(0, 2000, leaderDistance, 1, 0, true);
-                    if (std::find(selection.begin(), selection.end(), leader) != selection.end()) alpha = 1.0f;
+                    float alpha = sqf::linear_conversion(0.0f, 2000.0f, leaderDistance, 1.0f, 0.0f, true);
+                    //if (find(selection.begin(), selection.end(), leader) != selection.end()) alpha = 1.0f;
 
                     // Color
                     vector<float> color = {0.0f, 0.0f, 0.0f, 1.0f};
