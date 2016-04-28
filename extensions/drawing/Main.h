@@ -30,3 +30,6 @@
 #define RGBA_EAST RGB_EAST, 1.0f
 #define RGBA_GUER RGB_GUER, 1.0f
 #define RGBA_CIV RGB_CIV, 1.0f
+
+#define ICON_FADE_DISTANCE 2000.0f
+#define BOX_FADE_DISTANCE 500.0f

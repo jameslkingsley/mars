@@ -13,4 +13,36 @@ namespace Helpers {
 
         return result;
     }
+    
+#define GET_SIDE_COLOR_SWITCH \
+    case SIDE_WEST:\
+        return vector<game_value>{RGBA_WEST};\
+    case SIDE_EAST:\
+        return vector<game_value>{RGBA_EAST};\
+    case SIDE_GUER:\
+        return vector<game_value>{RGBA_GUER};\
+    case SIDE_CIV:\
+        return vector<game_value>{RGBA_CIV};\
+    default:\
+        return vector<game_value>{0.0f, 0.0f, 0.0f, 1.0f};
+
+    sqf::rv_color Helpers::GetSideColor(const side& side_) {
+        switch (int(side_)) {
+            GET_SIDE_COLOR_SWITCH
+        }
+    }
+
+    sqf::rv_color Helpers::GetSideColor(const object& unit_) {
+        side unitSide = sqf::get_side(sqf::get_group(unit_));
+        switch (int(unitSide)) {
+            GET_SIDE_COLOR_SWITCH
+        }
+    }
+
+    sqf::rv_color Helpers::GetSideColor(const group& grp_) {
+        side grpSide = sqf::get_side(grp_);
+        switch (int(grpSide)) {
+            GET_SIDE_COLOR_SWITCH
+        }
+    }
 }
