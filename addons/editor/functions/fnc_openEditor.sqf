@@ -64,19 +64,19 @@ GVAR(interrupts) = [];
 
 GVAR(pfh) = [{
     // Tagging handler
-    if (GVAR(canContext)) then {
+    /*if (GVAR(canContext)) then {
         [] call FUNC(handleObjectBoxes);
-    };
+    };*/
 
     // Icons handler
-    [] call FUNC(handleObjectIcons);
+    //[] call FUNC(handleObjectIcons);
 
     // Selection handler
-    {
+    /*{
         private _color = [[0,0,0,1], MARS_SIDECOLOR(side _x)] select (alive _x);
         [_x, _color] call FUNC(drawBoundingBox);
         false
-    } count GVAR(selection);
+    } count GVAR(selection);*/
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 player playActionNow "gear";

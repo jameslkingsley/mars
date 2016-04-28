@@ -7,7 +7,9 @@ using namespace intercept;
 void __cdecl intercept::post_init() {}
 
 void __cdecl intercept::on_frame() {
-    Drawing::DrawIcons();
+    bool editorIsOpen = (bool)GETVAR(isSet, game_value(false));
+    if (editorIsOpen)
+        Drawing::DrawIcons();
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule,
