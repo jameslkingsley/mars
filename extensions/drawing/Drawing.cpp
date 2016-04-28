@@ -10,7 +10,8 @@ namespace Drawing {
 #define PLAYER_SELECT_ICON "\\A3\\ui_f\\data\\igui\\cfg\\islandmap\\iconplayer_ca.paa"
 
         vector<group> groups = sqf::all_groups();
-        vector3 camPos = (vector3)GETVAR(camPos, game_value(vector3{0, 0, 0}));
+        //vector3 camPos = (vector3)GETVAR(camPos, game_value(vector3{0, 0, 0}));
+        vector3 camPos = sqf::get_variable(sqf::mission_namespace(), "mars_editor_camPos", game_value(vector3{0, 0, 0}));
 
         for (group grp : groups) {
             vector<object> grpUnits = sqf::units(grp);
@@ -21,7 +22,7 @@ namespace Drawing {
                 float leaderDistance = sqf::distance(leaderPos, camPos);
 
                 if (sqf::alive(leader) && leaderDistance < ICON_FADE_DISTANCE) {
-                    game_value rv_selection = sqf::get_variable(sqf::mission_namespace(), QGVAR(selection));
+                    game_value rv_selection = sqf::get_variable(sqf::mission_namespace(), "mars_editor_selection");
                     vector<object> selection = Helpers::GameValueToObjectVector(rv_selection);
 
                     // Opacity
@@ -33,7 +34,7 @@ namespace Drawing {
                     color.alpha = max(alpha, 0.2f);
 
                     // Texture
-                    game_value texture = sqf::get_variable(grp, QGVAR(iconTexture), game_value(""));
+                    /*game_value texture = sqf::get_variable(grp, "mars_editor_iconTexture", game_value(""));
                     if (texture.length() <= 0) {
                         game_value marker_texture;
 
@@ -42,8 +43,8 @@ namespace Drawing {
                         ).capture(grp, marker_texture);
 
                         texture = marker_texture;
-                        sqf::set_variable(grp, QGVAR(iconTexture), texture);
-                    }
+                        sqf::set_variable(grp, "mars_editor_iconTexture", texture);
+                    }*/
 
                     vector3 aboveLeaderPos = {
                         leaderPos.x,
@@ -52,7 +53,7 @@ namespace Drawing {
                     };
 
                     // Draw Icon 3D
-                    sqf::draw_icon_3d(texture, color, aboveLeaderPos, 1, 1, 0, "", 0, 0);
+                    sqf::draw_icon_3d(PLAYER_SELECT_ICON, color, aboveLeaderPos, 1, 1, 0, "", 0, 0);
 
                     // Draw Line 3D
                     sqf::rv_color fadedBlack = vector<game_value>{0.0f, 0.0f, 0.0f, alpha};
@@ -73,12 +74,12 @@ namespace Drawing {
                     color.alpha = max(alpha, 0.2f);
 
                     // Texture
-                    game_value texture = sqf::get_variable(grp, QGVAR(iconTexture), game_value(""));
+                    game_value texture = sqf::get_variable(grp, "mars_editor_iconTexture", game_value(""));
                     if (texture.length() <= 0) {
                         string icon_name = sqf::get_text(sqf::config_entry(sqf::config_file()) >> "CfgVehicles" >> sqf::type_of(unit) >> "icon");
                         string icon_texture = sqf::get_text(sqf::config_entry(sqf::config_file()) >> "CfgVehicleIcons" >> icon_name);
                         texture = icon_texture;
-                        sqf::set_variable(grp, QGVAR(iconTexture), texture);
+                        sqf::set_variable(grp, "mars_editor_iconTexture", texture);
                     }
 
                     if (sqf::is_player(unit)) {

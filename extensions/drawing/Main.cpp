@@ -13,7 +13,8 @@ void __cdecl intercept::post_init() {
 }
 
 void __cdecl intercept::on_frame() {
-    bool editorIsOpen = (bool)GETVAR(isSet, game_value(false));
+    //bool editorIsOpen = GETVAR(isSet, game_value(false));
+    bool editorIsOpen = sqf::get_variable(sqf::mission_namespace(), "mars_editor_isSet", game_value(false));
     if (editorIsOpen) {
         sqf::system_chat("Editor is open");
         Drawing::DrawIcons();
