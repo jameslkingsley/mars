@@ -18,16 +18,6 @@ using namespace intercept;
     }
 }*/
 
-vector<object> game_value_to_object_vector(const game_value& array_) {
-    vector<object> result;
-
-    for (int i = 0; i < array_.length(); i++) {
-        result.push_back(array_[i]);
-    }
-
-    return result;
-}
-
 void __cdecl intercept::post_init() {}
 
 void __cdecl intercept::on_frame() {
