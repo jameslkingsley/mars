@@ -37,7 +37,8 @@ set(MARS_VERSION_BUILD 0)
 message("Building for: " ${MARS_VERSION_MAJOR}.${MARS_VERSION_MINOR}.${MARS_VERSION_REVISION}-${MARS_VERSION_BUILD})
 
 # Extensions
-add_subdirectory(ai)
+add_subdirectory(common)
 add_subdirectory(drawing)
+add_subdirectory(ai)
 
 message("Build Type: ${CMAKE_BUILD_TYPE}")

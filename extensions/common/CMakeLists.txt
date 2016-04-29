@@ -1,8 +1,7 @@
-set(MARS_EXTENSION_NAME "mars_drawing")
+set(MARS_EXTENSION_NAME "mars_common")
 
 file(GLOB SOURCES *.h *.hpp *.c *.cpp)
 add_library( ${MARS_EXTENSION_NAME} SHARED ${SOURCES} ${GLOBAL_SOURCES})
-target_link_libraries(${MARS_EXTENSION_NAME} mars_common)
 set_target_properties(${MARS_EXTENSION_NAME} PROPERTIES PREFIX "")
 set_target_properties(${MARS_EXTENSION_NAME} PROPERTIES FOLDER Extensions)
 

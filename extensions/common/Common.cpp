@@ -1,5 +1,4 @@
-#include "Main.h"
-#include "Drawing.h"
+#include "Common.h"
 
 using namespace std;
 using namespace intercept;
@@ -10,11 +9,7 @@ int __cdecl intercept::api_version() {
 
 void __cdecl intercept::post_init() {}
 
-void __cdecl intercept::on_frame() {
-    if (sqf::get_variable(sqf::mission_namespace(), "mars_editor_isSet", game_value(false))) {
-        Drawing::DrawIcons();
-    }
-}
+void __cdecl intercept::on_frame() {}
 
 BOOL APIENTRY DllMain(HMODULE hModule,
     DWORD  ul_reason_for_call,
