@@ -1,0 +1,11 @@
+﻿# MARS CONTRIBUTOR LIST
+# If you contributed, but are not listed here, contact me:
+# jameslkingsley@outlook.com
+#
+# Feel free to add yourself to this when creating a pull
+# request, preferably including an email address.
+
+# CORE TEAM
+Kingsley <jameslkingsley@outlook.com>
+
+# CONTRIBUTORS

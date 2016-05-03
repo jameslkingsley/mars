@@ -28,6 +28,31 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
 	set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS} /MD /Zi /O2 /Ob1 /D NDEBUG")
 endif()
 
+set(OUTPUT_BINDIR ${PROJECT_SOURCE_DIR}../../intercept/)
+set(OUTPUT_LIBDIR ${PROJECT_SOURCE_DIR}../../intercept/)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_LIBDIR} CACHE PATH "build directory")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_BINDIR} CACHE PATH "build directory")
+
+if(WIN32)
+	set (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_BINDIR} CACHE PATH "build directory")
+else(WIN32)
+	set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_LIBDIR} CACHE PATH "build directory")
+endif(WIN32)
+
+# For each configuration (Debug, Release, MinSizeRel... and/or anything the user chooses)
+foreach(CONF ${CMAKE_CONFIGURATION_TYPES})
+	string(TOUPPER "${CONF}" CONF)
+	set("CMAKE_ARCHIVE_OUTPUT_DIRECTORY_${CONF}" "${OUTPUT_LIBDIR}")
+	set("CMAKE_RUNTIME_OUTPUT_DIRECTORY_${CONF}" "${OUTPUT_BINDIR}")
+	
+	if(WIN32)
+		set("CMAKE_LIBRARY_OUTPUT_DIRECTORY_${CONF}" "${OUTPUT_BINDIR}")
+	else()
+		set("CMAKE_LIBRARY_OUTPUT_DIRECTORY_${CONF}" "${OUTPUT_LIBDIR}")
+	endif()
+endforeach()
+
 string(TIMESTAMP MARS_BUILDSTAMP "%Y-%m-%dT%H:%M:%SZ")
 set(MARS_VERSION_MAJOR 1)
 set(MARS_VERSION_MINOR 0)
@@ -37,8 +62,7 @@ set(MARS_VERSION_BUILD 0)
 message("Building for: " ${MARS_VERSION_MAJOR}.${MARS_VERSION_MINOR}.${MARS_VERSION_REVISION}-${MARS_VERSION_BUILD})
 
 # Extensions
-add_subdirectory(common)
-add_subdirectory(drawing)
+add_subdirectory(editor)
 add_subdirectory(ai)
 
 message("Build Type: ${CMAKE_BUILD_TYPE}")

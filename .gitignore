@@ -3,3 +3,7 @@ vcproj/
 release/
 *.pbo
 tools/intercept/
+*.ilk
+*.pdb
+*.lib
+*.exp
