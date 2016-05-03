@@ -29,6 +29,7 @@ class GVARMAIN(assetBrowser) {
             displayName = "Units";
             tooltipText = "Units (F1)";
             icon = QUOTE(PATHTOF(data\AssetBrowser\modeunits_ca.paa));
+            onClick = QUOTE([] call FUNC(handleAssetBrowser));
             onSearch = QUOTE(_this call FUNC(onABSearch));
             class subtabs {
                 class blufor: SideFilter_BLUFOR {

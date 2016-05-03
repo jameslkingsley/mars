@@ -45,6 +45,13 @@ _tabWH = (0.15 * safeZoneW) / (count _tabs);
     _tab setVariable [QGVAR(tabWH), _tabWH];
 
     _tab ctrlSetFade DEFAULT_TAB_OPACITY;
+    
+    // Create tree view
+    _treeIDC = _idc + IDC_ASSETBROWSER;
+    _tree = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_treeBase", _treeIDC];
+    _tree ctrlSetPosition AB_TREE_POS;
+    _tree ctrlCommit 0;
+    tvClear _tree;
 
     _tab ctrlAddEventHandler ["MouseButtonDown", {_this call FUNC(onABTabClick)}];
 

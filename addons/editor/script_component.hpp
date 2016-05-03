@@ -38,4 +38,11 @@
 #define IDC_ASSETBROWSER_TAB 2010
 #define IDC_ASSETBROWSER_SUBTAB 20100
 
+#define AB_TREE_POS [\
+        (0.85 * safeZoneW + safeZoneX),\
+        (0.1 * safeZoneH + safeZoneY),\
+        (0.15 * safeZoneW),\
+        (safeZoneH - 0.1)\
+    ]
+
 #define DEFAULT_TAB_OPACITY 0.33
