@@ -12,13 +12,13 @@ class CfgPatches {
     };
 };
 
-/*class Intercept {
+class Intercept {
     class GVARMAIN(intercept) {
         class ADDON {
-            pluginName = "mars_drawing";
+            pluginName = "mars_editor";
         };
     };
-};*/
+};
 
 #include "CfgEventHandlers.hpp"
 #include "ui\interface.hpp"

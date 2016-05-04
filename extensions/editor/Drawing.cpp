@@ -1,8 +1,9 @@
-#include "Helpers.h"
-#include "Drawing.h"
+#include "Helpers.hpp"
+#include "Drawing.hpp"
 
 using namespace std;
 using namespace intercept;
+using namespace intercept::types;
 
 namespace Drawing {
     void DrawIcons() {
@@ -10,7 +11,6 @@ namespace Drawing {
 #define PLAYER_SELECT_ICON "\\A3\\ui_f\\data\\igui\\cfg\\islandmap\\iconplayer_ca.paa"
 
         vector<group> groups = sqf::all_groups();
-        //vector3 camPos = (vector3)GETVAR(camPos, game_value(vector3{0, 0, 0}));
         vector3 camPos = sqf::get_variable(sqf::mission_namespace(), "mars_editor_camPos", game_value(vector3{0, 0, 0}));
 
         for (group grp : groups) {

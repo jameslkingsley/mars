@@ -62,7 +62,7 @@ _display = (findDisplay 46) createDisplay QGVAR(interface);
 // Reset interruptions
 GVAR(interrupts) = [];
 
-GVAR(pfh) = [{
+/*GVAR(pfh) = [{
     // Tagging handler
     if (GVAR(canContext)) then {
         [] call FUNC(handleObjectBoxes);
@@ -77,7 +77,9 @@ GVAR(pfh) = [{
         [_x, _color] call FUNC(drawBoundingBox);
         false
     } count GVAR(selection);
-}, 0, []] call CBA_fnc_addPerFrameHandler;
+}, 0, []] call CBA_fnc_addPerFrameHandler;*/
+
+//"intercept" callExtension ("load_extension:mars_editor");
 
 player playActionNow "gear";
 

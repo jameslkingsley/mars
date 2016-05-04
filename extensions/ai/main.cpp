@@ -1,5 +1,5 @@
-#include "Main.h"
-#include "Helpers.h"
+#include "Main.hpp"
+#include "Helpers.hpp"
 
 using namespace intercept;
 
