@@ -1,6 +1,7 @@
 /*
  * Author: Kingsley
  * Draws a bounding box around the given object in 3D space
+ * Must be called every frame
  *
  * Arguments:
  * 0: Object <OBJECT>
