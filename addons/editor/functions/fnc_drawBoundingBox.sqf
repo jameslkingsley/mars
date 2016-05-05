@@ -24,7 +24,15 @@ if (isNull _target) exitWith {};
 _color set [3,0.33];
 (boundingBoxReal _target) params ["_box0", "_box1"];
 
-_lines = [
+{
+    drawLine3D [
+        _target modelToWorldVisual (_x select 0),
+        _target modelToWorldVisual (_x select 1),
+        _color
+    ];
+
+    false
+} count [
     // Left Front Bottom -> Right Front Bottom
     [
         _box0,
@@ -97,11 +105,3 @@ _lines = [
         [_box1 select 0, _box1 select 1, _box0 select 2]
     ]
 ];
-
-for "_i" from 0 to 11 do {
-    drawLine3D [
-        _target modelToWorldVisual (_lines select _i select 0),
-        _target modelToWorldVisual (_lines select _i select 1),
-        _color
-    ];
-};
