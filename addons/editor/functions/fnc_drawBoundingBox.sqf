@@ -22,180 +22,86 @@ params [["_target", objNull], ["_color", [1,1,1,1]]];
 if (isNull _target) exitWith {};
 
 _color set [3,0.33];
-private _box = boundingBoxReal _target;
+(boundingBoxReal _target) params ["_box0", "_box1"];
 
-{
-    {
-        drawLine3D [
-            (_target modelToWorldVisual (_x select 0)),
-            (_target modelToWorldVisual (_x select 1)),
-            _color
-        ];
-        
-        false
-    } count _x;
-    
-    false
-} count [
-    // Left
+_lines = [
+    // Left Front Bottom -> Right Front Bottom
     [
-        // P1 to P2
-        [
-            [(_box select 0 select 0), (_box select 0 select 1), (_box select 0 select 2)], // Bottom Front Left
-            [(_box select 0 select 0), (_box select 1 select 1), (_box select 0 select 2)] // Top Front Left
-        ],
-        
-        // P1 to P4
-        [
-            [(_box select 0 select 0), (_box select 0 select 1), (_box select 0 select 2)], // Bottom Front Left
-            [(_box select 0 select 0), (_box select 0 select 1), (_box select 1 select 2)] // Bottom Back Left
-        ],
-        
-        // P2 to P3
-        [
-            [(_box select 0 select 0), (_box select 1 select 1), (_box select 0 select 2)], // Top Front Left
-            [(_box select 0 select 0), (_box select 1 select 1), (_box select 1 select 2)] // Top Back Left
-        ],
-        
-        // P3 to P4
-        [
-            [(_box select 0 select 0), (_box select 1 select 1), (_box select 1 select 2)], // Top Back Left
-            [(_box select 0 select 0), (_box select 0 select 1), (_box select 1 select 2)] // Bottom Back Left
-        ]
+        _box0,
+        [_box1 select 0, _box0 select 1, _box0 select 2]
     ],
-    
-    // Right
+
+    // Left Front Bottom -> Left Back Bottom
     [
-        // P1 to P2
-        [
-            [(_box select 1 select 0), (_box select 0 select 1), (_box select 0 select 2)], // Bottom Front Right
-            [(_box select 1 select 0), (_box select 1 select 1), (_box select 0 select 2)] // Top Front Right
-        ],
-        
-        // P1 to P4
-        [
-            [(_box select 1 select 0), (_box select 0 select 1), (_box select 0 select 2)], // Bottom Front Right
-            [(_box select 1 select 0), (_box select 0 select 1), (_box select 1 select 2)] // Bottom Back Right
-        ],
-        
-        // P2 to P3
-        [
-            [(_box select 1 select 0), (_box select 1 select 1), (_box select 0 select 2)], // Top Front Right
-            [(_box select 1 select 0), (_box select 1 select 1), (_box select 1 select 2)] // Top Back Right
-        ],
-        
-        // P3 to P4
-        [
-            [(_box select 1 select 0), (_box select 1 select 1), (_box select 1 select 2)], // Top Back Right
-            [(_box select 1 select 0), (_box select 0 select 1), (_box select 1 select 2)] // Bottom Back Right
-        ]
+        _box0,
+        [_box0 select 0, _box1 select 1, _box0 select 2]
     ],
-    
-    // Top
+
+    // Left Front Bottom -> Left Front Top
     [
-        // P1 to P2
-        [
-            [(_box select 0 select 0), (_box select 1 select 1), (_box select 0 select 2)], // Top Front Left
-            [(_box select 0 select 0), (_box select 1 select 1), (_box select 1 select 2)] // Top Back Left
-        ],
-        
-        // P1 to P4
-        [
-            [(_box select 0 select 0), (_box select 1 select 1), (_box select 0 select 2)], // Top Front Left
-            [(_box select 1 select 0), (_box select 1 select 1), (_box select 0 select 2)] // Top Front Right
-        ],
-        
-        // P2 to P3
-        [
-            [(_box select 0 select 0), (_box select 1 select 1), (_box select 1 select 2)], // Top Back Left
-            [(_box select 1 select 0), (_box select 1 select 1), (_box select 1 select 2)] // Top Back Right
-        ],
-        
-        // P3 to P4
-        [
-            [(_box select 1 select 0), (_box select 1 select 1), (_box select 1 select 2)], // Top Back Right
-            [(_box select 1 select 0), (_box select 1 select 1), (_box select 0 select 2)] // Top Front Right
-        ]
+        _box0,
+        [_box0 select 0, _box0 select 1, _box1 select 2]
     ],
-    
-    // Bottom
+
+    // Right Back Top -> Left Back Top
     [
-        // P1 to P2
-        [
-            [(_box select 0 select 0), (_box select 0 select 1), (_box select 0 select 2)], // Bottom Front Left
-            [(_box select 0 select 0), (_box select 0 select 1), (_box select 1 select 2)] // Bottom Back Left
-        ],
-        
-        // P1 to P4
-        [
-            [(_box select 0 select 0), (_box select 0 select 1), (_box select 0 select 2)], // Bottom Front Left
-            [(_box select 1 select 0), (_box select 0 select 1), (_box select 0 select 2)] // Bottom Front Right
-        ],
-        
-        // P2 to P3
-        [
-            [(_box select 0 select 0), (_box select 0 select 1), (_box select 1 select 2)], // Bottom Back Left
-            [(_box select 1 select 0), (_box select 0 select 1), (_box select 1 select 2)] // Bottom Back Right
-        ],
-        
-        // P3 to P4
-        [
-            [(_box select 1 select 0), (_box select 0 select 1), (_box select 1 select 2)], // Bottom Back Right
-            [(_box select 1 select 0), (_box select 0 select 1), (_box select 0 select 2)] // Bottom Front Right
-        ]
+        _box1,
+        [_box0 select 0, _box1 select 1, _box1 select 2]
     ],
-    
-    // Front
+
+    // Right Back Top -> Right Front Top
     [
-        // P1 to P2
-        [
-            [(_box select 0 select 0), (_box select 0 select 1), (_box select 0 select 2)], // Bottom Front Left
-            [(_box select 0 select 0), (_box select 1 select 1), (_box select 0 select 2)] // Top Front Left
-        ],
-        
-        // P1 to P4
-        [
-            [(_box select 0 select 0), (_box select 0 select 1), (_box select 0 select 2)], // Bottom Front Left
-            [(_box select 1 select 0), (_box select 0 select 1), (_box select 0 select 2)] // Bottom Front Right
-        ],
-        
-        // P2 to P3
-        [
-            [(_box select 0 select 0), (_box select 1 select 1), (_box select 0 select 2)], // Top Front Left
-            [(_box select 1 select 0), (_box select 1 select 1), (_box select 0 select 2)] // Top Front Right
-        ],
-        
-        // P3 to P4
-        [
-            [(_box select 1 select 0), (_box select 1 select 1), (_box select 0 select 2)], // Top Front Right
-            [(_box select 1 select 0), (_box select 0 select 1), (_box select 0 select 2)] // Bottom Front Right
-        ]
+        _box1,
+        [_box1 select 0, _box0 select 1, _box1 select 2]
     ],
-    
-    // Back
+
+    // Right Back Top -> Right Back Bottom
     [
-        // P1 to P2
-        [
-            [(_box select 0 select 0), (_box select 0 select 1), (_box select 1 select 2)], // Bottom Back Left
-            [(_box select 0 select 0), (_box select 1 select 1), (_box select 1 select 2)] // Top Back Left
-        ],
-        
-        // P1 to P4
-        [
-            [(_box select 0 select 0), (_box select 0 select 1), (_box select 1 select 2)], // Bottom Back Left
-            [(_box select 1 select 0), (_box select 0 select 1), (_box select 1 select 2)] // Bottom Back Right
-        ],
-        
-        // P2 to P3
-        [
-            [(_box select 0 select 0), (_box select 1 select 1), (_box select 1 select 2)], // Top Back Left
-            [(_box select 1 select 0), (_box select 1 select 1), (_box select 1 select 2)] // Top Back Right
-        ],
-        
-        // P3 to P4
-        [
-            [(_box select 1 select 0), (_box select 1 select 1), (_box select 1 select 2)], // Top Back Right
-            [(_box select 1 select 0), (_box select 0 select 1), (_box select 1 select 2)] // Bottom Back Right
-        ]
+        _box1,
+        [_box1 select 0, _box1 select 1, _box0 select 2]
+    ],
+
+    // Right Back Bottom -> Right Front Bottom
+    [
+        [_box1 select 0, _box1 select 1, _box0 select 2],
+        [_box1 select 0, _box0 select 1, _box0 select 2]
+    ],
+
+    // Right Front Top -> Left Front Top
+    [
+        [_box1 select 0, _box0 select 1, _box1 select 2],
+        [_box0 select 0, _box0 select 1, _box1 select 2]
+    ],
+
+    // Right Front Bottom -> Right Front Top
+    [
+        [_box1 select 0, _box0 select 1, _box0 select 2],
+        [_box1 select 0, _box0 select 1, _box1 select 2]
+    ],
+
+    // Left Back Top -> Left Front Top
+    [
+        [_box0 select 0, _box1 select 1, _box1 select 2],
+        [_box0 select 0, _box0 select 1, _box1 select 2]
+    ],
+
+    // Left Back Top -> Left Back Bottom
+    [
+        [_box0 select 0, _box1 select 1, _box1 select 2],
+        [_box0 select 0, _box1 select 1, _box0 select 2]
+    ],
+
+    // Left Back Bottom -> Right Back Bottom
+    [
+        [_box0 select 0, _box1 select 1, _box0 select 2],
+        [_box1 select 0, _box1 select 1, _box0 select 2]
     ]
 ];
+
+for "_i" from 0 to 11 do {
+    drawLine3D [
+        _target modelToWorldVisual (_lines select _i select 0),
+        _target modelToWorldVisual (_lines select _i select 1),
+        _color
+    ];
+};
