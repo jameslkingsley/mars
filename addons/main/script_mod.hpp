@@ -42,3 +42,8 @@
 #define COLOR_CIV_RGB_ARR [0.4,0,0.5]
 #define COLOR_CIV_RGBA {0.4,0,0.5,1}
 #define COLOR_CIV_RGB {0.4,0,0.5}
+
+#define SIDE_WEST 1
+#define SIDE_EAST 0
+#define SIDE_GUER 2
+#define SIDE_CIV 3

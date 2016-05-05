@@ -592,7 +592,7 @@ class CfgSettings {
         };
     };
 };
-
+/*
 #define EVENT_ARGS(x) rv_event:##x
 #define EH_CLASS_DEF(x,y) class Extended_##y##_EventHandlers { \
     class All { \
@@ -668,3 +668,4 @@ class CfgFunctions {
         };
     };
 };
+*/

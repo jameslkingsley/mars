@@ -17,6 +17,7 @@
 #include "script_component.hpp"
 
 // Category Tabs
+/*
 _tabs = "true" configClasses (configFile >> QGVARMAIN(assetBrowser) >> "tabs");
 
 _tabWH = (0.15 * safeZoneW) / (count _tabs);
@@ -46,13 +47,6 @@ _tabWH = (0.15 * safeZoneW) / (count _tabs);
 
     _tab ctrlSetFade DEFAULT_TAB_OPACITY;
     
-    // Create tree view
-    _treeIDC = _idc + IDC_ASSETBROWSER;
-    _tree = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_treeBase", _treeIDC];
-    _tree ctrlSetPosition AB_TREE_POS;
-    _tree ctrlCommit 0;
-    tvClear _tree;
-
     _tab ctrlAddEventHandler ["MouseButtonDown", {_this call FUNC(onABTabClick)}];
 
     if (_forEachIndex == 0) then {
@@ -61,7 +55,6 @@ _tabWH = (0.15 * safeZoneW) / (count _tabs);
 
     _tab ctrlCommit 0;
 } forEach _tabs;
-
 // Asset Tree
 _tree = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_treeBase", IDC_ASSETBROWSER];
 _tree ctrlSetPosition [
@@ -73,3 +66,46 @@ _tree ctrlSetPosition [
 
 _tree ctrlCommit 0;
 tvClear _tree;
+*/
+
+// Units
+_treeIDC = IDC_ASSETBROWSER_TREE + 0;
+_tree = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_treeABBase", _treeIDC];
+_tree ctrlSetPosition AB_TREE_POS;
+_tree ctrlCommit 0;
+tvClear _tree;
+
+//{
+    _factions = (format["getNumber (_x >> 'side') == %1", SIDE_WEST]) configClasses (configFile >> "CfgFactionClasses");
+    
+    {
+        _factionClass = configName _x;
+        _factionName = getText (_x >> "displayName");
+        _factionParent = _tree tvAdd [[], _factionName];
+        
+        _condition = format ["getNumber (_x >> 'type') == 0 && getText (_x >> 'faction') == '%1'", _factionClass];
+        _units = _condition configClasses (configFile >> "CfgVehicles");
+        
+        _vehicleClasses = [];
+
+        {
+            _vehicleClass = getText (_x >> "vehicleClass");
+            _vehicleClassDisplayName = getText (configFile >> "CfgVehicleClasses" >> _vehicleClass >> "displayName");
+            _vehicleClassPath = -1;
+            
+            {
+                if (_vehicleClass == (_x select 0)) exitWith {
+                    _vehicleClassPath = _x select 1;
+                };
+            } forEach _vehicleClasses;
+            
+            if (_vehicleClassPath < 0) then {
+                _vcPath = _tree tvAdd [[_factionParent], _vehicleClassDisplayName];
+                _vehicleClasses pushBack [_vehicleClass, _vcPath];
+            };
+            
+            _itemPath = _tree tvAdd [[_factionParent,_vehicleClassPath], (getText (_x >> "displayName"))];
+            _tree tvSetTooltip [[_factionParent,_vehicleClassPath,_itemPath], configName _x];
+        } forEach _units;
+    } forEach _factions;
+//} forEach [SIDE_WEST,SIDE_EAST,SIDE_GUER,SIDE_CIV];

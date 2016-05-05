@@ -11,7 +11,7 @@ class CfgPatches {
         VERSION_CONFIG;
     };
 };
-
+/*
 class Intercept {
     class GVARMAIN(intercept) {
         class ADDON {
@@ -19,7 +19,7 @@ class Intercept {
         };
     };
 };
-
+*/
 #include "CfgEventHandlers.hpp"
 #include "ui\interface.hpp"
 #include "CfgContext.hpp"

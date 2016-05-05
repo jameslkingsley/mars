@@ -104,12 +104,12 @@ class MARS_gui_treeBase {
     tooltip = ""; // Tooltip text
     tooltipColorShade[] = {0,0,0,1}; // Tooltip background color
     tooltipColorText[] = {1,1,1,1}; // Tooltip text color
-    tooltipColorBox[] = {1,1,1,1}; // Tooltip frame color
+    tooltipColorBox[] = {0,0,0,0}; // Tooltip frame color
     multiselectEnabled = 1; // Allow selecting multiple items while holding Ctrl or Shift
     expandOnDoubleclick = 1; // Expand/collapse item upon double-click
     hiddenTexture = "A3\ui_f\data\gui\rsccommon\rsctree\hiddenTexture_ca.paa"; // Expand icon
     expandedTexture = "A3\ui_f\data\gui\rsccommon\rsctree\expandedTexture_ca.paa"; // Collapse icon
-    maxHistoryDelay = 0; // Time since last keyboard type search to reset it
+    maxHistoryDelay = 10e10; // Time since last keyboard type search to reset it
 
     // Scrollbar configuration
     class ScrollBar
@@ -147,6 +147,10 @@ class MARS_gui_treeBase {
     onTreeExpanded = "";
     onTreeCollapsed = "";
     onTreeMouseExit = "";
+};
+
+class MARS_gui_treeABBase: MARS_gui_treeBase {
+    multiselectEnabled = 0;
 };
 
 class MARS_gui_backgroundBase {
