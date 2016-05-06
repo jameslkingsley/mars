@@ -60,7 +60,7 @@ if (!isNull _config) then {
             
             _subtab ctrlSetPosition [
                 (0.85 * safeZoneW + safeZoneX) + (_subtabWH * _forEachIndex),
-                (0.04 * safeZoneH + safeZoneY) + _tabWH,
+                (0.07 * safeZoneH + safeZoneY) + _tabWH,
                 _subtabWH,
                 _subtabWH
             ];

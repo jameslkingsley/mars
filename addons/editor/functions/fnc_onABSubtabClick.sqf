@@ -31,7 +31,7 @@ _onClick = getText (_config >> "onClick");
     _control ctrlCommit 0;
 } forEach GVAR(subtabs);
 
+call compile _onClick;
+
 _control ctrlSetFade 0;
 _control ctrlCommit 0;
-
-call compile _onClick;

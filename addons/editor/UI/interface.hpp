@@ -42,23 +42,31 @@ class GVAR(interface) {
             y = 0 * safeZoneH + safeZoneY;
             w = safeZoneW;
             h = (0.03 * safeZoneH);
-            colorBackground[] = {0.133,0.133,0.133,1};
+            colorBackground[] = {0.1,0.1,0.1,1};
+        };
+        class MenuBarButtons: MARS_gui_backgroundBaseSolid {
+            idc = 103;
+            x = 0 * safeZoneW + safeZoneX;
+            y = 0.03 * safeZoneH + safeZoneY;
+            w = safeZoneW;
+            h = (0.03 * safeZoneH);
+            colorBackground[] = {0.14,0.14,0.14,1};
         };
         class LeftPanel: MARS_gui_backgroundBaseSolid {
             idc = 101;
             x = 0 * safeZoneW + safeZoneX;
-            y = 0.03 * safeZoneH + safeZoneY;
+            y = 0.059 * safeZoneH + safeZoneY;
             w = 0.15 * safeZoneW;
             h = safeZoneH - 0.03;
-            colorBackground[] = {0.2,0.2,0.2,0.85};
+            colorBackground[] = {0.2,0.2,0.2,0.88};
         };
         class RightPanel: MARS_gui_backgroundBaseSolid {
             idc = 102;
             x = 0.85 * safeZoneW + safeZoneX;
-            y = 0.03 * safeZoneH + safeZoneY;
+            y = 0.059 * safeZoneH + safeZoneY;
             w = 0.15 * safeZoneW;
             h = safeZoneH - 0.03;
-            colorBackground[] = {0.2,0.2,0.2,0.85};
+            colorBackground[] = {0.2,0.2,0.2,0.88};
         };
     };
 };

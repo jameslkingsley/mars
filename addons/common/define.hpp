@@ -152,7 +152,7 @@ class MARS_gui_treeBase {
 class MARS_gui_treeABBase: MARS_gui_treeBase {
     multiselectEnabled = 0;
     class ScrollBar {
-        width = 0.1;
+        width = 0.125;
         height = 1;
         scrollSpeed = 0.25;
         arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";

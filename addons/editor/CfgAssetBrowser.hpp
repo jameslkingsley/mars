@@ -29,7 +29,7 @@ class GVARMAIN(assetBrowser) {
             idc = IDC_ASSETBROWSER_TAB_UNITS;
             displayName = "Units";
             tooltipText = "Units";
-            icon = QUOTE(PATHTOF(data\AssetBrowser\Mode_Units.paa));
+            icon = QUOTE(PATHTOF(data\AssetBrowser\modeunits_ca.paa));
             onSearch = QUOTE(_this call FUNC(onABSearch));
             class subtabs {
                 class blufor: SideFilter_BLUFOR {
@@ -53,7 +53,7 @@ class GVARMAIN(assetBrowser) {
             idc = IDC_ASSETBROWSER_TAB_GROUPS;
             displayName = "Groups";
             tooltipText = "Groups";
-            icon = QUOTE(PATHTOF(data\AssetBrowser\Mode_Groups.paa));
+            icon = QUOTE(PATHTOF(data\AssetBrowser\modegroups_ca.paa));
             class subtabs {
                 class blufor: SideFilter_BLUFOR {
                     onClick = QUOTE([IDC_ASSETBROWSER_TREE_GROUPS_WEST] call FUNC(handleAssetBrowser));
@@ -63,6 +63,9 @@ class GVARMAIN(assetBrowser) {
                 };
                 class indfor: SideFilter_INDFOR {
                     onClick = QUOTE([IDC_ASSETBROWSER_TREE_GROUPS_GUER] call FUNC(handleAssetBrowser));
+                };
+                class civilian: SideFilter_CIVILIAN {
+                    onClick = QUOTE([IDC_ASSETBROWSER_TREE_GROUPS_CIV] call FUNC(handleAssetBrowser));
                 };
                 class empty: SideFilter_EMPTY {
                     onClick = QUOTE([IDC_ASSETBROWSER_TREE_GROUPS_EMPTY] call FUNC(handleAssetBrowser));
@@ -79,13 +82,13 @@ class GVARMAIN(assetBrowser) {
             idc = IDC_ASSETBROWSER_TAB_MARKERS;
             displayName = "Markers";
             tooltipText = "Markers";
-            icon = QUOTE(PATHTOF(data\AssetBrowser\Mode_Markers.paa));
+            icon = QUOTE(PATHTOF(data\AssetBrowser\modemarkers_ca.paa));
         };
         class favorites {
             idc = IDC_ASSETBROWSER_TAB_FAVS;
-            displayName = "Bookmarks";
-            tooltipText = "Bookmarks";
-            icon = QUOTE(PATHTOF(data\AssetBrowser\Mode_Bookmarks.paa));
+            displayName = "Favorites";
+            tooltipText = "Favorites";
+            icon = QUOTE(PATHTOF(data\AssetBrowser\modefavorites_ca.paa));
         };
     };
 };

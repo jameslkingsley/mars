@@ -46,6 +46,7 @@
 #define IDC_ASSETBROWSER_TREE_GROUPS_WEST 22102
 #define IDC_ASSETBROWSER_TREE_GROUPS_EAST 22112
 #define IDC_ASSETBROWSER_TREE_GROUPS_GUER 22122
+#define IDC_ASSETBROWSER_TREE_GROUPS_CIV 22132
 #define IDC_ASSETBROWSER_TREE_GROUPS_EMPTY 22142
 
 #define IDC_ASSETBROWSER_TAB 2010
@@ -59,13 +60,13 @@
 
 #define AB_TREE_POS [\
         (0.85 * safeZoneW + safeZoneX),\
-        (0.125 * safeZoneH + safeZoneY),\
+        (0.159 * safeZoneH + safeZoneY),\
         (0.15 * safeZoneW),\
-        (safeZoneH - 0.225)\
+        (safeZoneH - 0.288)\
     ]
 
 #define DEFAULT_TAB_OPACITY 0.33
 
-#define AB_CATEGORY_OBJECTS ["Ammo","Anomalies","Armory","Backpacks","Camera","Cargo","Communication","Container","Dead_bodies","Emitters","Explosives","Flag","Fortifications","Furniture","Garbage","Helpers","Intel","Items","ItemsHeadgear","ItemsUniforms","ItemsVests","Lamps","Locations","Magazines","Market","Military","Mines","Misc","Modules","Objects","Objects_Airport","Objects_Sports","Objects_VR","Respawn","Ruins","Shelters","Ship","Signs","Small_items","Static","Structures","Structures_Airport","Structures_Commercial","Structures_Cultural","Structures_Fences","Structures_Industrial","Structures_Infrastructure","Structures_Military","Structures_Slums","Structures_Sports","Structures_Town","Structures_Transport","Structures_Village","Structures_VR","Structures_Walls","Submerged","Support","SystemLocations","SystemMisc","SystemSides","Targets","Tents","Test","Training","Uniforms","Virtual","WeaponAccessories","WeaponsHandguns","WeaponsPrimary","WeaponsSecondary","Wreck","Wreck_sub"]
+#define AB_CATEGORY_OBJECTS ["Ammo","Anomalies","Armory","Backpacks","Camera","Cargo","Communication","Container","Dead_bodies","Emitters","Explosives","Flag","Fortifications","Furniture","Garbage","Helpers","Intel","Items","ItemsHeadgear","ItemsUniforms","ItemsVests","Lamps","Magazines","Market","Military","Mines","Misc","Objects_Airport","Objects_Sports","Objects_VR","Ruins","Shelters","Ship","Signs","Small_items","Static","Structures","Structures_Airport","Structures_Commercial","Structures_Cultural","Structures_Fences","Structures_Industrial","Structures_Infrastructure","Structures_Military","Structures_Slums","Structures_Sports","Structures_Town","Structures_Transport","Structures_Village","Structures_VR","Structures_Walls","Submerged","Support","Targets","Tents","Test","Training","Uniforms","WeaponAccessories","WeaponsHandguns","WeaponsPrimary","WeaponsSecondary","Wreck","Wreck_sub"]
 
 #define AB_CATEGORY_UNITS ["Afroamerican","Air","Armored","Asian","Autonomous","Car","European","Men","MenArmy","MenCIV","MenDiver","MenRACS","MenRecon","MenSage","MenSLA","MenSniper","MenSpecFor","MenStory","MenSupport","MenUrban","MenVR","MenWood","Submarine","Women"]
