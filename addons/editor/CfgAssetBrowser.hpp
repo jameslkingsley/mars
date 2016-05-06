@@ -26,13 +26,13 @@ class GVARMAIN(assetBrowser) {
     };
     class tabs {
         class units {
+            idc = IDC_ASSETBROWSER_TAB_UNITS;
             displayName = "Units";
-            tooltipText = "Units (F1)";
-            icon = QUOTE(PATHTOF(data\AssetBrowser\modeunits_ca.paa));
+            tooltipText = "Units";
+            icon = QUOTE(PATHTOF(data\AssetBrowser\Mode_Units.paa));
             onSearch = QUOTE(_this call FUNC(onABSearch));
             class subtabs {
                 class blufor: SideFilter_BLUFOR {
-                    selected = true;
                     onClick = QUOTE([IDC_ASSETBROWSER_TREE_UNITS_WEST] call FUNC(handleAssetBrowser));
                 };
                 class opfor: SideFilter_OPFOR {
@@ -50,24 +50,42 @@ class GVARMAIN(assetBrowser) {
             };
         };
         class groups {
+            idc = IDC_ASSETBROWSER_TAB_GROUPS;
             displayName = "Groups";
-            tooltipText = "Groups (F2)";
-            icon = QUOTE(PATHTOF(data\AssetBrowser\modegroups_ca.paa));
+            tooltipText = "Groups";
+            icon = QUOTE(PATHTOF(data\AssetBrowser\Mode_Groups.paa));
+            class subtabs {
+                class blufor: SideFilter_BLUFOR {
+                    onClick = QUOTE([IDC_ASSETBROWSER_TREE_GROUPS_WEST] call FUNC(handleAssetBrowser));
+                };
+                class opfor: SideFilter_OPFOR {
+                    onClick = QUOTE([IDC_ASSETBROWSER_TREE_GROUPS_EAST] call FUNC(handleAssetBrowser));
+                };
+                class indfor: SideFilter_INDFOR {
+                    onClick = QUOTE([IDC_ASSETBROWSER_TREE_GROUPS_GUER] call FUNC(handleAssetBrowser));
+                };
+                class empty: SideFilter_EMPTY {
+                    onClick = QUOTE([IDC_ASSETBROWSER_TREE_GROUPS_EMPTY] call FUNC(handleAssetBrowser));
+                };
+            };
         };
         class modules {
+            idc = IDC_ASSETBROWSER_TAB_MODULES;
             displayName = "Modules";
-            tooltipText = "Modules (F3)";
+            tooltipText = "Modules";
             icon = QUOTE(PATHTOF(data\AssetBrowser\modemodules_ca.paa));
         };
         class markers {
+            idc = IDC_ASSETBROWSER_TAB_MARKERS;
             displayName = "Markers";
-            tooltipText = "Markers (F4)";
-            icon = QUOTE(PATHTOF(data\AssetBrowser\modemarkers_ca.paa));
+            tooltipText = "Markers";
+            icon = QUOTE(PATHTOF(data\AssetBrowser\Mode_Markers.paa));
         };
         class favorites {
-            displayName = "Favorites";
-            tooltipText = "Favorites (F5)";
-            icon = QUOTE(PATHTOF(data\AssetBrowser\modefavorites_ca.paa));
+            idc = IDC_ASSETBROWSER_TAB_FAVS;
+            displayName = "Bookmarks";
+            tooltipText = "Bookmarks";
+            icon = QUOTE(PATHTOF(data\AssetBrowser\Mode_Bookmarks.paa));
         };
     };
 };

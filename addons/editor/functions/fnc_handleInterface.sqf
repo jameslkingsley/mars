@@ -202,6 +202,16 @@ switch (toLower _mode) do {
             };
             case 208: { // Down arrow
             };
+            case 59: { // F1
+            };
+            case 60: { // F2
+            };
+            case 61: { // F3
+            };
+            case 62: { // F4
+            };
+            case 63: { // F5
+            };
         };
 
         true
