@@ -32,3 +32,4 @@ PREP(createAssetBrowser);
 PREP(populateAssetBrowser);
 PREP(onABTabClick);
 PREP(onABSubtabClick);
+PREP(handleAssetBrowser);

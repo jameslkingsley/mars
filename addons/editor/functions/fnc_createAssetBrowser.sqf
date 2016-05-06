@@ -56,14 +56,16 @@ _tabWH = (0.15 * safeZoneW) / (count _tabs);
 } forEach _tabs;
 
 // Units
-_treeIDC = IDC_ASSETBROWSER_TREE + 0;
-_tree = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_treeABBase", _treeIDC];
-_tree ctrlSetPosition AB_TREE_POS;
-_tree ctrlCommit 0;
-tvClear _tree;
-
-//{
-    _factions = (format["getNumber (_x >> 'side') == %1", SIDE_WEST]) configClasses (configFile >> "CfgFactionClasses");
+{
+    _treeIDC = _x select 0;
+    _side = _x select 1;
+    _categories = _x select 2;
+    _tree = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_treeABBase", _treeIDC];
+    _tree ctrlSetPosition AB_TREE_POS;
+    _tree ctrlCommit 0;
+    tvClear _tree;
+    
+    _factions = (format["getNumber (_x >> 'side') in %1", _side]) configClasses (configFile >> "CfgFactionClasses");
     _factions = _factions apply {[_x, getText (_x >> "displayName")]};
     _factions sort true;
     
@@ -76,9 +78,10 @@ tvClear _tree;
             getNumber (_x >> 'type') in [0,1] &&
             getText (_x >> 'faction') == '%1' &&
             getNumber (_x >> 'scope') == 2 &&
-            getNumber (_x >> 'side') == %2",
+            (getNumber (_x >> 'side') in %2 && getText (_x >> 'vehicleClass') in %3)",
             _factionClass,
-            SIDE_WEST
+            _side,
+            _categories
         ];
         
         _units = _condition configClasses (configFile >> "CfgVehicles");
@@ -105,4 +108,13 @@ tvClear _tree;
             } forEach _units;
         } forEach _vehicleClasses;
     } forEach _factions;
-//} forEach [SIDE_WEST,SIDE_EAST,SIDE_GUER,SIDE_CIV];
+    
+    _tree ctrlShow false;
+    _tree ctrlEnable false;
+} forEach [
+    [IDC_ASSETBROWSER_TREE_UNITS_WEST, [SIDE_WEST], AB_CATEGORY_UNITS],
+    [IDC_ASSETBROWSER_TREE_UNITS_EAST, [SIDE_EAST], AB_CATEGORY_UNITS],
+    [IDC_ASSETBROWSER_TREE_UNITS_GUER, [SIDE_GUER], AB_CATEGORY_UNITS],
+    [IDC_ASSETBROWSER_TREE_UNITS_CIV, [SIDE_CIV], AB_CATEGORY_UNITS],
+    [IDC_ASSETBROWSER_TREE_UNITS_EMPTY, [SIDE_EMPTY], AB_CATEGORY_OBJECTS]
+];

@@ -47,3 +47,4 @@
 #define SIDE_EAST 0
 #define SIDE_GUER 2
 #define SIDE_CIV 3
+#define SIDE_EMPTY -1

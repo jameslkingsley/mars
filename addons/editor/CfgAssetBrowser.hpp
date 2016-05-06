@@ -29,24 +29,23 @@ class GVARMAIN(assetBrowser) {
             displayName = "Units";
             tooltipText = "Units (F1)";
             icon = QUOTE(PATHTOF(data\AssetBrowser\modeunits_ca.paa));
-            onClick = QUOTE([] call FUNC(handleAssetBrowser));
             onSearch = QUOTE(_this call FUNC(onABSearch));
             class subtabs {
                 class blufor: SideFilter_BLUFOR {
                     selected = true;
-                    onClick = QUOTE([ARR_2('units',west)] call FUNC(populateAssetBrowser));
+                    onClick = QUOTE([IDC_ASSETBROWSER_TREE_UNITS_WEST] call FUNC(handleAssetBrowser));
                 };
                 class opfor: SideFilter_OPFOR {
-                    onClick = QUOTE([ARR_2('units',east)] call FUNC(populateAssetBrowser));
+                    onClick = QUOTE([IDC_ASSETBROWSER_TREE_UNITS_EAST] call FUNC(handleAssetBrowser));
                 };
                 class indfor: SideFilter_INDFOR {
-                    onClick = QUOTE([ARR_2('units',resistance)] call FUNC(populateAssetBrowser));
+                    onClick = QUOTE([IDC_ASSETBROWSER_TREE_UNITS_GUER] call FUNC(handleAssetBrowser));
                 };
                 class civilian: SideFilter_CIVILIAN {
-                    onClick = QUOTE([ARR_2('units',civilian)] call FUNC(populateAssetBrowser));
+                    onClick = QUOTE([IDC_ASSETBROWSER_TREE_UNITS_CIV] call FUNC(handleAssetBrowser));
                 };
                 class empty: SideFilter_EMPTY {
-                    onClick = QUOTE([ARR_2('units',sideUnknown)] call FUNC(populateAssetBrowser));
+                    onClick = QUOTE([IDC_ASSETBROWSER_TREE_UNITS_EMPTY] call FUNC(handleAssetBrowser));
                 };
             };
         };
