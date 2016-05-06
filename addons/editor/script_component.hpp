@@ -41,9 +41,9 @@
 
 #define AB_TREE_POS [\
         (0.85 * safeZoneW + safeZoneX),\
-        (0.1 * safeZoneH + safeZoneY),\
+        (0.125 * safeZoneH + safeZoneY),\
         (0.15 * safeZoneW),\
-        (safeZoneH - 0.1)\
+        (safeZoneH - 0.225)\
     ]
 
 #define DEFAULT_TAB_OPACITY 0.33

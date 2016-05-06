@@ -151,6 +151,16 @@ class MARS_gui_treeBase {
 
 class MARS_gui_treeABBase: MARS_gui_treeBase {
     multiselectEnabled = 0;
+    class ScrollBar {
+        width = 0.1;
+        height = 1;
+        scrollSpeed = 0.25;
+        arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
+        arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
+        border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
+        thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
+        color[] = {1,1,1,1};
+    };
 };
 
 class MARS_gui_backgroundBase {

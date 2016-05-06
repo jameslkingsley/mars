@@ -77,6 +77,8 @@ GVAR(pfh) = [{
         [_x, _color] call FUNC(drawBoundingBox);
         false
     } count GVAR(selection);
+    
+    ctrlSetFocus controlNull;
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 player playActionNow "gear";

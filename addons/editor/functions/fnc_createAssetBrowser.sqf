@@ -17,9 +17,8 @@
 #include "script_component.hpp"
 
 // Category Tabs
-/*
-_tabs = "true" configClasses (configFile >> QGVARMAIN(assetBrowser) >> "tabs");
 
+_tabs = "true" configClasses (configFile >> QGVARMAIN(assetBrowser) >> "tabs");
 _tabWH = (0.15 * safeZoneW) / (count _tabs);
 
 {
@@ -55,18 +54,6 @@ _tabWH = (0.15 * safeZoneW) / (count _tabs);
 
     _tab ctrlCommit 0;
 } forEach _tabs;
-// Asset Tree
-_tree = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_treeBase", IDC_ASSETBROWSER];
-_tree ctrlSetPosition [
-    (0.85 * safeZoneW + safeZoneX),
-    (0.1 * safeZoneH + safeZoneY),
-    (0.15 * safeZoneW),
-    (safeZoneH - 0.1)
-];
-
-_tree ctrlCommit 0;
-tvClear _tree;
-*/
 
 // Units
 _treeIDC = IDC_ASSETBROWSER_TREE + 0;
@@ -77,35 +64,45 @@ tvClear _tree;
 
 //{
     _factions = (format["getNumber (_x >> 'side') == %1", SIDE_WEST]) configClasses (configFile >> "CfgFactionClasses");
+    _factions = _factions apply {[_x, getText (_x >> "displayName")]};
+    _factions sort true;
     
     {
-        _factionClass = configName _x;
-        _factionName = getText (_x >> "displayName");
+        _factionClass = configName (_x select 0);
+        _factionName = _x select 1;
         _factionParent = _tree tvAdd [[], _factionName];
         
-        _condition = format ["getNumber (_x >> 'type') == 0 && getText (_x >> 'faction') == '%1'", _factionClass];
-        _units = _condition configClasses (configFile >> "CfgVehicles");
+        _condition = format ["
+            getNumber (_x >> 'type') in [0,1] &&
+            getText (_x >> 'faction') == '%1' &&
+            getNumber (_x >> 'scope') == 2 &&
+            getNumber (_x >> 'side') == %2",
+            _factionClass,
+            SIDE_WEST
+        ];
         
-        _vehicleClasses = [];
-
+        _units = _condition configClasses (configFile >> "CfgVehicles");
+        _units = _units apply {[_x, getText (_x >> "displayName"), getText (_x >> "vehicleClass")]};
+        _units sort true;
+        
+        _unitVehicleClasses = [];
+        {_unitVehicleClasses pushBackUnique (getText ((_x select 0) >> "vehicleClass"))} forEach _units;
+        
+        _vehicleClasses = (format["(configName _x) in %1", _unitVehicleClasses]) configClasses (configFile >> "CfgVehicleClasses");
+        _vehicleClasses = _vehicleClasses apply {[_x, (configName _x), getText (_x >> "displayName")]};
+        _vehicleClasses sort true;
+        
         {
-            _vehicleClass = getText (_x >> "vehicleClass");
-            _vehicleClassDisplayName = getText (configFile >> "CfgVehicleClasses" >> _vehicleClass >> "displayName");
-            _vehicleClassPath = -1;
+            _className = _x select 1;
+            _displayName = _x select 2;
+            _vcPath = _tree tvAdd [[_factionParent], _displayName];
             
             {
-                if (_vehicleClass == (_x select 0)) exitWith {
-                    _vehicleClassPath = _x select 1;
+                if ((_x select 2) == _className) then {
+                    _unitPath = _tree tvAdd [[_factionParent,_vcPath], (_x select 1)];
+                    _tree tvSetTooltip [[_factionParent,_vcPath,_unitPath], configName (_x select 0)];
                 };
-            } forEach _vehicleClasses;
-            
-            if (_vehicleClassPath < 0) then {
-                _vcPath = _tree tvAdd [[_factionParent], _vehicleClassDisplayName];
-                _vehicleClasses pushBack [_vehicleClass, _vcPath];
-            };
-            
-            _itemPath = _tree tvAdd [[_factionParent,_vehicleClassPath], (getText (_x >> "displayName"))];
-            _tree tvSetTooltip [[_factionParent,_vehicleClassPath,_itemPath], configName _x];
-        } forEach _units;
+            } forEach _units;
+        } forEach _vehicleClasses;
     } forEach _factions;
 //} forEach [SIDE_WEST,SIDE_EAST,SIDE_GUER,SIDE_CIV];
