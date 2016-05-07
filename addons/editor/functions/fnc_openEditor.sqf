@@ -57,7 +57,7 @@ while {dialog} do {
 // Create the display
 disableSerialization;
 _display = (findDisplay 46) createDisplay QGVAR(interface);
-[_display] call FUNC(redrawMenus);
+[_display] call FUNC(createToolbar);
 
 // Reset interruptions
 GVAR(interrupts) = [];

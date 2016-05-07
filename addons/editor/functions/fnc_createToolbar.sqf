@@ -9,7 +9,7 @@
  * None
  *
  * Example:
- * [] call mars_editor_fnc_redrawMenus;
+ * [] call mars_editor_fnc_createToolbar;
  *
  * Public: No
  */

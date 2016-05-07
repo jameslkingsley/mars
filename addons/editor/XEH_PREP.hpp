@@ -5,7 +5,7 @@ PREP(interrupt);
 PREP(setCameraAttributes);
 PREP(openEditor);
 PREP(transitionCamera);
-PREP(redrawMenus);
+PREP(createToolbar);
 PREP(shutdown);
 PREP(handleContextMenu);
 PREP(drawBoundingBox);
