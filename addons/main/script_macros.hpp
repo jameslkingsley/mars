@@ -199,6 +199,8 @@
 
 #define MARS_SIDECOLOR(side) ([(side)] call EFUNC(common,getSideColor))
 
+#define MARS_ATTR(CNAME,GUINAME) class CNAME {dialog = GUINAME;}
+
 #define HEXTORGBA(COLOR_RGBA)\
 	__EVAL(COLOR_RGBA call _fnc_colorHEXtoRGBA_2),\
 	__EVAL(COLOR_RGBA call _fnc_colorHEXtoRGBA_4),\

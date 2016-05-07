@@ -20,9 +20,9 @@ _ctrl = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_treeBase", ID
 
 _ctrl ctrlSetPosition [
     (0 * safeZoneW + safeZoneX),
-    (0.025 * safeZoneH + safeZoneY),
+    (0.06 * safeZoneH + safeZoneY),
     (0.15 * safeZoneW),
-    (safeZoneH - 0.025)
+    (safeZoneH - 0.06)
 ];
 
 _ctrl ctrlCommit 0;

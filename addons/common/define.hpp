@@ -371,6 +371,10 @@ class MARS_gui_menuBase {
     soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape", 0.09, 1};
 };
 
+class MARS_gui_menuTopBase: MARS_gui_menuBase {
+    style = 0x02 + 160;
+};
+
 class MARS_gui_contextBase {
     access = 0;
     idc = -1;

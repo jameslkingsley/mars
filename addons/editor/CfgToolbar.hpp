@@ -1,12 +1,25 @@
 class GVARMAIN(toolbar) {
     class ADDON {
-        class GVAR(settings) {
+        class mars {
+            displayName = "Mars";
+            width = 0.01 * safeZoneW + safeZoneX;
+        };
+        class mission {
+            displayName = "Mission";
+            width = 0.01 * safeZoneW + safeZoneX;
+        };
+        class environment {
+            displayName = "Environment";
+            width = 0.01 * safeZoneW + safeZoneX;
+        };
+        class settings {
             displayName = "Settings";
-            class GVAR(settings_general) {
+            width = 0.01 * safeZoneW + safeZoneX;
+            class settings_general {
                 displayName = "General";
                 action = "";
             };
-            class GVAR(settings_controls) {
+            class settings_controls {
                 displayName = "Controls";
                 action = "";
             };
