@@ -372,7 +372,8 @@ class MARS_gui_menuBase {
 };
 
 class MARS_gui_menuTopBase: MARS_gui_menuBase {
-    style = 0x02 + 160;
+    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+    font = FONT_MARS;
 };
 
 class MARS_gui_contextBase {

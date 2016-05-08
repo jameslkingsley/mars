@@ -1,25 +1,36 @@
 class GVARMAIN(toolbar) {
     class ADDON {
-        class mars {
-            displayName = "Mars";
-            width = 0.01 * safeZoneW + safeZoneX;
-        };
         class mission {
             displayName = "Mission";
-            width = 0.01 * safeZoneW + safeZoneX;
+            class clear_map {
+                displayName = "Clear Map";
+            };
+            class end_scenario {
+                displayName = "End Scenario";
+            };
         };
         class environment {
             displayName = "Environment";
-            width = 0.01 * safeZoneW + safeZoneX;
+            class datetime {
+                displayName = "Date/Time";
+            };
+            class weather {
+                displayName = "Weather";
+            };
+            class fog {
+                displayName = "Fog";
+            };
+            class time_multiplier {
+                displayName = "Time Multiplier";
+            };
         };
         class settings {
             displayName = "Settings";
-            width = 0.01 * safeZoneW + safeZoneX;
-            class settings_general {
+            class general {
                 displayName = "General";
                 action = "";
             };
-            class settings_controls {
+            class controls {
                 displayName = "Controls";
                 action = "";
             };
