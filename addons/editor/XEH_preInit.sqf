@@ -46,6 +46,11 @@ GVAR(canContext) = true;
 GVAR(allContextControls) = [];
 GVAR(indexedContexts) = [];
 
+// Toolbar
+GVAR(allToolbarMenus) = [];
+GVAR(hasClickedOnToolbar) = false;
+GVAR(toolbarMenuOpen) = false;
+
 // Caches
 GVAR(cachedGroups) = [];
 GVAR(cachedUnits) = [];

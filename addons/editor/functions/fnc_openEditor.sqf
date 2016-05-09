@@ -59,6 +59,20 @@ disableSerialization;
 _display = (findDisplay 46) createDisplay QGVAR(interface);
 [_display] call FUNC(createToolbar);
 
+_display displayAddEventHandler ["MouseButtonDown", {
+    TRACE_2("hasClickedOnToolbar","MouseButtonDown",GVAR(hasClickedOnToolbar));
+}];
+    
+_display displayAddEventHandler ["MouseButtonDown", {
+    [{
+        TRACE_2("hasClickedOnToolbar","MouseButtonUp",GVAR(hasClickedOnToolbar));
+        if (!GVAR(hasClickedOnToolbar)) then {
+            [] call FUNC(closeToolbarMenus);
+            GVAR(hasClickedOnToolbar) = false;
+        };
+    }, []] call EFUNC(common,execNextFrame);
+}];
+
 // Reset interruptions
 GVAR(interrupts) = [];
 

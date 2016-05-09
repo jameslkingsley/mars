@@ -163,6 +163,44 @@ class MARS_gui_treeABBase: MARS_gui_treeBase {
     };
 };
 
+class MARS_gui_textBase {
+    deletable = 0;
+    fade = 0;
+    access = 0;
+    type = 0;
+    idc = -1;
+    colorBackground[] = {0, 0, 0, 0};
+    colorText[] = {1, 1, 1, 1};
+    text = "";
+    fixedWidth = 0;
+    x = 0;
+    y = 0;
+    h = 0.037;
+    w = 0.3;
+    style = 0;
+    shadow = 1;
+    colorShadow[] = {0, 0, 0, 0.5};
+    font = FONT_MARS;
+    SizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+    linespacing = 1;
+    tooltipColorText[] = {1, 1, 1, 1};
+    tooltipColorBox[] = {1, 1, 1, 1};
+    tooltipColorShade[] = {0, 0, 0, 0.65};
+};
+
+class MARS_gui_sliderBase {
+    deletable = 0;
+    fade = 0;
+    access = 0;
+    type = 3;
+    style = 1024;
+    w = 0.3;
+    color[] = {1, 1, 1, 0.8};
+    colorActive[] = {1, 1, 1, 1};
+    shadow = 0;
+    h = 0.025;
+};
+
 class MARS_gui_backgroundBase {
     type = 0;
     idc = -1;
@@ -412,6 +450,19 @@ class MARS_gui_contextBase {
     soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush", 0.0, 0};
     soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter", 0.07, 1};
     soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape", 0.09, 1};
+};
+
+class MARS_gui_toolbarContextBase: MARS_gui_contextBase {
+    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+    colorBorder[] = {0,0,0,0};
+    colorBackgroundActive[] = COLOR_ACCENT_RGBA_CFG;
+    colorBackgroundDisabled[] = {0.1,0.1,0.1,0.25};
+    colorDisabled[] = {1,1,1,0.5};
+    colorFocused[] = {0,0,0,0};
+    colorShadow[] = {0,0,0,0};
+    colorText[] = {1,1,1,1};
+    color[] = {1,1,1,1};
+    colorBackground[] = {0.1,0.1,0.1,1};
 };
 
 class MARS_gui_RscProgress {

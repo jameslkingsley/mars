@@ -4,35 +4,22 @@ class GVARMAIN(toolbar) {
             displayName = "Mission";
             class clear_map {
                 displayName = "Clear Map";
+                action = "hint 'Clear Map'";
             };
             class end_scenario {
                 displayName = "End Scenario";
-            };
-        };
-        class environment {
-            displayName = "Environment";
-            class datetime {
-                displayName = "Date/Time";
-            };
-            class weather {
-                displayName = "Weather";
-            };
-            class fog {
-                displayName = "Fog";
-            };
-            class time_multiplier {
-                displayName = "Time Multiplier";
+                action = "hint 'End Scenario'";
             };
         };
         class settings {
             displayName = "Settings";
             class general {
                 displayName = "General";
-                action = "";
+                action = "hint 'General'";
             };
             class controls {
                 displayName = "Controls";
-                action = "";
+                action = "hint 'Controls'";
             };
         };
     };

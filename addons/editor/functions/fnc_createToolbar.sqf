@@ -45,7 +45,7 @@ if (count _components > 0) then {
             _width = (_nameCount * (pixelW * 8)) + _padding;
             
             _ctrl = _display ctrlCreate ["MARS_gui_menuTopBase", _idc];
-            _ctrl ctrlSetPosition [_axisX, (0 * safeZoneH + safeZoneY), _width, MENU_HEIGHT];
+            _ctrl ctrlSetPosition [_axisX, (0 * safeZoneH + safeZoneY), _width, TOOLBAR_CONTEXT_HEIGHT];
             _ctrl ctrlSetText _displayName;
             _ctrl ctrlShow true;
             _ctrl ctrlCommit 0;
@@ -53,32 +53,23 @@ if (count _components > 0) then {
             _ctrl setVariable [QGVAR(display), _display];
             _ctrl setVariable [QGVAR(children), _children];
             
+            _ctrl ctrlAddEventHandler ["MouseButtonDown", {
+                GVAR(hasClickedOnToolbar) = true;
+            }];
+            
+            _ctrl ctrlAddEventHandler ["MouseEnter", {
+                if (GVAR(toolbarMenuOpen)) then {
+                    [] call FUNC(closeToolbarMenus);
+                    _this call FUNC(onToolbarClick);
+                };
+            }];
+            
             if (count _children > 0) then {
                 _ctrl ctrlAddEventHandler ["MouseButtonUp", {
-                    params ["_control","_button","_cordX","_cordY","_shift","_ctrl","_alt"];
-                    if (_button != 0) exitWith {};
-                    
-                    _children = _control getVariable [QGVAR(children), []];
-                    if (count _children <= 0) exitWith {};
-                    
-                    _display = _control getVariable [QGVAR(display), displayNull];
-                    if (isNull _display) exitWith {};
-
-                    {
-                        _idc = 46000 + _forEachIndex;
-                        _displayName = getText (_x >> "displayName");
-                        _action = getText (_x >> "action");
-                        _axisY = (_cordY + MENU_HEIGHT) * (_forEachIndex min 1);
-                        
-                        _ctrl = _display ctrlCreate ["MARS_gui_contextBase", _idc];
-                        _ctrl ctrlSetPosition [_cordX, _axisY, TOOLBAR_CONTEXT_WIDTH, TOOLBAR_CONTEXT_HEIGHT];
-                        _ctrl ctrlSetText _displayName;
-                        _ctrl ctrlShow true;
-                        _ctrl ctrlCommit 0;
-                    } forEach _children;
+                    _this call FUNC(onToolbarClick);
                 }];
             } else {
-                _ctrl ctrlAddEventHandler ["MouseButtonUp", _action];
+                _ctrl ctrlAddEventHandler ["MouseButtonUp", QUOTE([true] call FUNC(closeToolbarMenus);) + _action];
             };
 
             _axisX = _axisX + _width;

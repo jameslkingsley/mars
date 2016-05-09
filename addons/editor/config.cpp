@@ -21,7 +21,7 @@ class Intercept {
 };
 */
 #include "CfgEventHandlers.hpp"
-#include "ui\interface.hpp"
+#include "UI\interface.hpp"
 #include "CfgContext.hpp"
 #include "CfgToolbar.hpp"
 #include "CfgAssetBrowser.hpp"

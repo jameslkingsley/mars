@@ -33,3 +33,5 @@ PREP(populateAssetBrowser);
 PREP(onABTabClick);
 PREP(onABSubtabClick);
 PREP(handleAssetBrowser);
+PREP(closeToolbarMenus);
+PREP(onToolbarClick);
