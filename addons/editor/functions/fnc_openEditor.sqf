@@ -58,14 +58,9 @@ while {dialog} do {
 disableSerialization;
 _display = (findDisplay 46) createDisplay QGVAR(interface);
 [_display] call FUNC(createToolbar);
-
-_display displayAddEventHandler ["MouseButtonDown", {
-    TRACE_2("hasClickedOnToolbar","MouseButtonDown",GVAR(hasClickedOnToolbar));
-}];
     
 _display displayAddEventHandler ["MouseButtonDown", {
     [{
-        TRACE_2("hasClickedOnToolbar","MouseButtonUp",GVAR(hasClickedOnToolbar));
         if (!GVAR(hasClickedOnToolbar)) then {
             [] call FUNC(closeToolbarMenus);
             GVAR(hasClickedOnToolbar) = false;
@@ -95,6 +90,6 @@ GVAR(pfh) = [{
     ctrlSetFocus controlNull;
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
-player playActionNow "gear";
+// player playActionNow "gear";
 
 GVAR(isSet) = true;

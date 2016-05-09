@@ -16,4 +16,47 @@
 
 #include "script_component.hpp"
 
-TRACE_1("onLoadDateTime", _this);
+disableSerialization;
+
+params [["_display", displayNull]];
+
+if (isNull _display) exitWith {};
+
+_year = _display displayCtrl 2100;
+_month = _display displayCtrl 2101;
+_day = _display displayCtrl 2102;
+
+_now = date;
+
+for "_i" from 1982 to 2050 do {
+    _index = _year lbAdd (str _i);
+    _year lbSetData [_index, (str _i)];
+    if (_i == (_now select 0)) then {_year lbSetCurSel _index};
+};
+
+for "_i" from 1 to 12 do {
+    _monthStr = switch (_i) do {
+        case 1: {"January"};
+        case 2: {"Febuary"};
+        case 3: {"March"};
+        case 4: {"April"};
+        case 5: {"May"};
+        case 6: {"June"};
+        case 7: {"July"};
+        case 8: {"August"};
+        case 9: {"September"};
+        case 10: {"October"};
+        case 11: {"November"};
+        case 12: {"December"};
+    };
+    
+    _index = _month lbAdd _monthStr;
+    _month lbSetData [_index, (str _i)];
+    if (_i == (_now select 1)) then {_month lbSetCurSel _index};
+};
+
+for "_i" from 1 to 31 do {
+    _index = _day lbAdd (str _i);
+    _day lbSetData [_index, (str _i)];
+    if (_i == (_now select 2)) then {_day lbSetCurSel _index};
+};

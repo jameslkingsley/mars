@@ -181,7 +181,7 @@ class MARS_gui_textBase {
     shadow = 1;
     colorShadow[] = {0, 0, 0, 0.5};
     font = FONT_MARS;
-    SizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+    sizeEx = 0.032;
     linespacing = 1;
     tooltipColorText[] = {1, 1, 1, 1};
     tooltipColorBox[] = {1, 1, 1, 1};
@@ -213,7 +213,7 @@ class MARS_gui_backgroundBase {
 };
 
 class MARS_gui_backgroundBaseSolid : MARS_gui_backgroundBase {
-    colorBackground[] = {0.133,0.133,0.133,1};
+    colorBackground[] = {0.106,0.106,0.106,1};
 };
 
 class MARS_gui_accentBase : MARS_gui_backgroundBase {
@@ -271,7 +271,7 @@ class MARS_gui_buttonBase {
     w = 0.25;
     h = 0.04;
     size = 0.03921;
-    sizeEx = 0.03921;
+    sizeEx = 0.032;
     colorBackground[] = {0, 0, 0, BG_OPACITY};
     colorBackgroundFocused[] = {1, 1, 1, 1};
     colorBackground2[] = {0.75, 0.75, 0.75, 1};
@@ -332,6 +332,49 @@ class MARS_gui_buttonBase {
     };
 };
 
+class MARS_gui_buttonBaseSolid: MARS_gui_buttonBase {
+    colorBackground[] = {0.106,0.106,0.106,1};
+};
+
+class MARS_gui_sliderXBase {
+    access = 0;
+    idc = CT_XSLIDER;
+    type = CT_XSLIDER;
+    style = SL_HORZ;
+    default = 0;
+    blinkingPeriod = 0;
+    x = 12 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X;
+    y = 19 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y;
+    w = 10 * GUI_GRID_CENTER_W;
+    h = 1 * GUI_GRID_CENTER_H;
+    color[] = {1, 1, 1, 1};
+    colorDisabled[] = {1, 1, 1, 0.5};
+    colorActive[] = {1, 1, 1, 1};
+    tooltip = "";
+    tooltipColorShade[] = {0, 0, 0, 1};
+    tooltipColorText[] = {1, 1, 1, 1};
+    tooltipColorBox[] = {0, 0, 0, 1};
+    arrowEmpty = "\A3\ui_f\data\gui\cfg\slider\arrowEmpty_ca.paa";
+    arrowFull = "\A3\ui_f\data\gui\cfg\slider\arrowFull_ca.paa";
+    border = "\A3\ui_f\data\gui\cfg\slider\border_ca.paa";
+    thumb = "#(argb,8,8,3)color(1,1,1,1)";
+};
+
+class MARS_gui_spacerBaseSolid: MARS_gui_buttonBase {
+    type = 0;
+    idc = -1;
+    style = 128;
+    text = "";
+    colorText[] = {0.133,0.133,0.133,1};
+    colorBackground[] = {0.133,0.133,0.133,1};
+    font = FONT_MARS;
+    sizeEx = 0;
+    shadow = 0;
+    x = 0.1;
+    y = 0.1;
+    w = 0.1;
+    h = 0.1;
+};
 
 class MARS_gui_tabBase {
     access = 0;
@@ -387,7 +430,7 @@ class MARS_gui_menuBase {
 	offsetX = 0;
 	offsetY = 0;
 	shadow = 0;
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.005)";
+    sizeEx = 0.032;
     borderSize = 0;
     colorBorder[] = {0,0,0,0};
     colorBackgroundActive[] = COLOR_ACCENT_RGBA_CFG;
@@ -410,7 +453,7 @@ class MARS_gui_menuBase {
 };
 
 class MARS_gui_menuTopBase: MARS_gui_menuBase {
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+    sizeEx = 0.032;
     font = FONT_MARS;
 };
 
@@ -453,16 +496,16 @@ class MARS_gui_contextBase {
 };
 
 class MARS_gui_toolbarContextBase: MARS_gui_contextBase {
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+    sizeEx = 0.032;
     colorBorder[] = {0,0,0,0};
     colorBackgroundActive[] = COLOR_ACCENT_RGBA_CFG;
-    colorBackgroundDisabled[] = {0.1,0.1,0.1,0.25};
+    colorBackgroundDisabled[] = {0.088,0.088,0.088,0.25};
     colorDisabled[] = {1,1,1,0.5};
     colorFocused[] = {0,0,0,0};
     colorShadow[] = {0,0,0,0};
     colorText[] = {1,1,1,1};
     color[] = {1,1,1,1};
-    colorBackground[] = {0.1,0.1,0.1,1};
+    colorBackground[] = {0.088,0.088,0.088,1};
 };
 
 class MARS_gui_RscProgress {
@@ -476,7 +519,6 @@ class MARS_gui_RscProgress {
     w = "38 * (((safezoneW / safezoneH) min 1.2) / 40)";
     h = "0.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 };
-
 
 class MARS_gui_staticBase {
     idc = -1;
