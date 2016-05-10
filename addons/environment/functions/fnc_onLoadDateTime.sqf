@@ -25,6 +25,7 @@ if (isNull _display) exitWith {};
 _year = _display displayCtrl 2100;
 _month = _display displayCtrl 2101;
 _day = _display displayCtrl 2102;
+_time = _display displayCtrl 1900;
 
 _now = date;
 
@@ -60,3 +61,16 @@ for "_i" from 1 to 31 do {
     _day lbSetData [_index, (str _i)];
     if (_i == (_now select 2)) then {_day lbSetCurSel _index};
 };
+
+_time sliderSetRange [0, 86400];
+_time sliderSetSpeed [3600, 3600];
+
+_time ctrlAddEventHandler ["SliderPosChanged", {
+    params ["_control","_change"];
+    _timePos = sliderPosition _control;
+    _timeHour = round ((_timePos / 60) / 60);
+    _timeMinsScale = ((_timePos / 60) / 60) - _timeHour;
+    _timeMins = linearConversion [0, 1, _timeMinsScale, 0, 59, true];
+    _timeStr = format ["%1:%2", _timeHour, _timeMins];
+    _control ctrlSetTooltip _timeStr;
+}];

@@ -6,7 +6,7 @@ class GVAR(datetime) {
     movingEnable = 1;
     onLoad = QUOTE(_this call FUNC(onLoadDateTime));
     class controls {
-        class Background: MARS_gui_backgroundBaseSolid
+        class Background: MARS_gui_backgroundBase
         {
             idc = 1000;
             x = 0.304013 * safezoneW + safezoneX;
@@ -55,7 +55,7 @@ class GVAR(datetime) {
             w = 0.206302 * safezoneW;
             h = 0.022 * safezoneH;
         };
-        class TimeLabel: MARS_gui_textBase
+        class TimeLabel: MARS_gui_staticBase
         {
             idc = 1000;
             style = "0x02 + 0x0c";
@@ -65,7 +65,7 @@ class GVAR(datetime) {
             w = 0.206302 * safezoneW;
             h = 0.011 * safezoneH;
         };
-        class BtnApply: MARS_gui_buttonBaseSolid
+        class BtnApply: MARS_gui_buttonBase
         {
             idc = 1600;
             text = "APPLY"; //--- ToDo: Localize;
@@ -74,7 +74,7 @@ class GVAR(datetime) {
             w = 0.0515754 * safezoneW;
             h = 0.022 * safezoneH;
         };
-        class BtnClose: MARS_gui_buttonBaseSolid
+        class BtnClose: MARS_gui_buttonBase
         {
             idc = 1601;
             text = "CLOSE"; //--- ToDo: Localize;
@@ -83,7 +83,7 @@ class GVAR(datetime) {
             w = 0.0515754 * safezoneW;
             h = 0.022 * safezoneH;
         };
-        class BtnSpacer: MARS_gui_spacerBaseSolid
+        class BtnSpacer: MARS_gui_backgroundBase
         {
             idc = 1602;
             x = 0.35662 * safezoneW + safezoneX;

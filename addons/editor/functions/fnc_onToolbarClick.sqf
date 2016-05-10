@@ -26,8 +26,6 @@ if (count _children <= 0) exitWith {};
 _display = _control getVariable [QGVAR(display), displayNull];
 if (isNull _display) exitWith {};
 
-_control ctrlSetBackgroundColor [0,0,0,1];
-
 [] call FUNC(closeToolbarMenus);
 
 [{
@@ -44,12 +42,10 @@ _prevPosYH = [(_parentPos select 1), TOOLBAR_CONTEXT_HEIGHT];
     _action = getText (_x >> "action");
 
     _childCtrl = _display ctrlCreate ["MARS_gui_toolbarContextBase", _idc];
-    _childCtrl ctrlSetPosition [(_parentPos select 0), ((_prevPosYH select 0) + (_prevPosYH select 1)), TOOLBAR_CONTEXT_WIDTH, TOOLBAR_CONTEXT_HEIGHT];
-    _childCtrl ctrlSetText (format["  %1", _displayName]);
+    _childCtrl ctrlSetPosition [(_parentPos select 0), ((_prevPosYH select 0) + (_prevPosYH select 1) - pixelH), TOOLBAR_CONTEXT_WIDTH, TOOLBAR_CONTEXT_HEIGHT];
+    _childCtrl ctrlSetText (format[" %1", _displayName]);
     _childCtrl ctrlShow true;
     _childCtrl ctrlCommit 0;
-    
-    systemChat (str (ctrlPosition _childCtrl));
     
     _childCtrl ctrlAddEventHandler ["MouseButtonDown", {
         GVAR(hasClickedOnToolbar) = true;

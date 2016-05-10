@@ -50,6 +50,7 @@ GVAR(indexedContexts) = [];
 GVAR(allToolbarMenus) = [];
 GVAR(hasClickedOnToolbar) = false;
 GVAR(toolbarMenuOpen) = false;
+GVAR(dummyMenus) = [];
 
 // Caches
 GVAR(cachedGroups) = [];

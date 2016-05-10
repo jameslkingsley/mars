@@ -213,7 +213,7 @@ class MARS_gui_backgroundBase {
 };
 
 class MARS_gui_backgroundBaseSolid : MARS_gui_backgroundBase {
-    colorBackground[] = {0.106,0.106,0.106,1};
+    colorBackground[] = {0.088,0.088,0.088,1};
 };
 
 class MARS_gui_accentBase : MARS_gui_backgroundBase {
@@ -333,7 +333,8 @@ class MARS_gui_buttonBase {
 };
 
 class MARS_gui_buttonBaseSolid: MARS_gui_buttonBase {
-    colorBackground[] = {0.106,0.106,0.106,1};
+    colorBackground[] = {0.088,0.088,0.088,1};
+    sizeEx = 0.03;
 };
 
 class MARS_gui_sliderXBase {
@@ -365,8 +366,24 @@ class MARS_gui_spacerBaseSolid: MARS_gui_buttonBase {
     idc = -1;
     style = 128;
     text = "";
-    colorText[] = {0.133,0.133,0.133,1};
-    colorBackground[] = {0.133,0.133,0.133,1};
+    colorText[] = {0.088,0.088,0.088,1};
+    colorBackground[] = {0.088,0.088,0.088,1};
+    font = FONT_MARS;
+    sizeEx = 0;
+    shadow = 0;
+    x = 0.1;
+    y = 0.1;
+    w = 0.1;
+    h = 0.1;
+};
+
+class MARS_gui_spacerBase: MARS_gui_buttonBase {
+    type = 0;
+    idc = -1;
+    style = 128;
+    text = "";
+    colorText[] = {0.088,0.088,0.088,BG_OPACITY};
+    colorBackground[] = {0.088,0.088,0.088,BG_OPACITY};
     font = FONT_MARS;
     sizeEx = 0;
     shadow = 0;
