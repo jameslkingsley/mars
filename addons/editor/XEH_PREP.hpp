@@ -35,3 +35,4 @@ PREP(onABSubtabClick);
 PREP(handleAssetBrowser);
 PREP(closeToolbarMenus);
 PREP(onToolbarClick);
+PREP(closeEditor);

@@ -1,4 +1,3 @@
-
 #ifndef MARS_DEFINE_H
 #define MARS_DEFINE_H
 
@@ -78,6 +77,36 @@
 #define LB_MULTI 0x20
 #define FONT_MARS "RobotoCondensed"
 #define BG_OPACITY 0.8
+
+#include "macros.hpp"
+
+#include "UI\Controls\ctrlDefault.hpp"
+#include "UI\Controls\ctrlStatic.hpp"
+#include "UI\Controls\ctrlButton.hpp"
+#include "UI\Controls\ctrlEdit.hpp"
+#include "UI\Controls\ctrlSlider.hpp"
+#include "UI\Controls\ctrlCombo.hpp"
+#include "UI\Controls\ctrlListbox.hpp"
+#include "UI\Controls\ctrlToolbox.hpp"
+#include "UI\Controls\ctrlCheckboxes.hpp"
+#include "UI\Controls\ctrlProgress.hpp"
+#include "UI\Controls\ctrlHTML.hpp"
+#include "UI\Controls\ctrlActiveText.hpp"
+#include "UI\Controls\ctrlTree.hpp"
+#include "UI\Controls\ctrlStructuredText.hpp"
+#include "UI\Controls\ctrlControlsGroup.hpp"
+#include "UI\Controls\ctrlShortcutButton.hpp"
+#include "UI\Controls\ctrlXListbox.hpp"
+#include "UI\Controls\ctrlXSlider.hpp"
+#include "UI\Controls\ctrlMenu.hpp"
+#include "UI\Controls\ctrlMenuStrip.hpp"
+#include "UI\Controls\ctrlObject.hpp"
+#include "UI\Controls\ctrlObjectContainer.hpp"
+#include "UI\Controls\ctrlObjectZoom.hpp"
+#include "UI\Controls\ctrlMap.hpp"
+#include "UI\Controls\ctrlMapMain.hpp"
+#include "UI\Controls\ctrlListNBox.hpp"
+#include "UI\Controls\ctrlCheckbox.hpp"
 
 class MARS_gui_treeBase {
     access = 0;
