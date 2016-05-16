@@ -252,7 +252,7 @@ class GVAR(interface) {
                             onToolBoxSelChanged = QUOTE([ARR_2('rightModes', _this)] call FUNC(handlePanelSections));
                         };
                         class Sides: Modes {
-                            idc = IDC_ASSETBROWSER_SUBMODES;
+                            idc = IDC_ASSETBROWSER_SUBMODES_SIDES;
                             y = 11 * GRID_H;
                             w = PANEL_W * GRID_W;
                             h = 8 * GRID_H;
@@ -279,6 +279,27 @@ class GVAR(interface) {
                                 SIDE_EMPTY
                             };
                             onToolBoxSelChanged = QUOTE([ARR_2('rightSides', _this)] call FUNC(handlePanelSections));
+                        };
+                        class Brushes: Modes {
+                            idc = IDC_ASSETBROWSER_SUBMODES_BRUSHES;
+                            y = 11 * GRID_H;
+                            w = PANEL_W * GRID_W;
+                            h = 8 * GRID_H;
+                            columns = 2;
+                            show = 0;
+                            strings[] = {
+                                QUOTE(PATHTOF(data\PanelRight\submode_marker_icon_ca.paa)),
+                                QUOTE(PATHTOF(data\PanelRight\submode_marker_area_ca.paa))
+                            };
+                            tooltips[] = {
+                                "Icons",
+                                "Areas"
+                            };
+                            values[] = {
+                                0,
+                                1
+                            };
+                            onToolBoxSelChanged = QUOTE([ARR_2('rightBrushes', _this)] call FUNC(handlePanelSections));
                         };
                         class SearchCreate: MARS_gui_ctrlEdit {
                             idc = IDC_ASSETBROWSER_SEARCH_CREATE;
