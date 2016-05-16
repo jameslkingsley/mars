@@ -11,6 +11,7 @@ class CfgPatches {
         VERSION_CONFIG;
     };
 };
+
 /*
 class Intercept {
     class GVARMAIN(intercept) {
@@ -20,8 +21,9 @@ class Intercept {
     };
 };
 */
-#include "CfgEventHandlers.hpp"
+
 #include "UI\interface.hpp"
+#include "CfgEventHandlers.hpp"
 #include "CfgContext.hpp"
 #include "CfgToolbar.hpp"
 #include "CfgAssetBrowser.hpp"

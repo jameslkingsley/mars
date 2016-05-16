@@ -36,3 +36,4 @@ PREP(handleAssetBrowser);
 PREP(closeToolbarMenus);
 PREP(onToolbarClick);
 PREP(closeEditor);
+PREP(handleStatusBar);

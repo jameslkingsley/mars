@@ -25,7 +25,7 @@ switch (toLower _mode) do {
         SETUVAR(GVAR(interface),_display);
         // Start the entity list handler
         [] call FUNC(createEntityList);
-        [] call FUNC(createAssetBrowser);
+        //[] call FUNC(createAssetBrowser);
     };
     case "onunload": {
         // Kill GUI PFHs

@@ -491,7 +491,7 @@ class MARS_gui_menuBase {
     tooltipColorShade[] = {0,0,0,1};
     tooltipColorText[] = {1,1,1,1};
     tooltipColorBox[] = {0,0,0,1};
-    font = FONT_MARS;
+    font = FONT_NORMAL;
     soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick", 0.09, 1};
     soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush", 0.0, 0};
     soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter", 0.07, 1};
@@ -500,7 +500,7 @@ class MARS_gui_menuBase {
 
 class MARS_gui_menuTopBase: MARS_gui_menuBase {
     sizeEx = 0.032;
-    font = FONT_MARS;
+    font = FONT_NORMAL;
 };
 
 class MARS_gui_contextBase {
@@ -545,13 +545,13 @@ class MARS_gui_toolbarContextBase: MARS_gui_contextBase {
     sizeEx = 0.032;
     colorBorder[] = {0,0,0,0};
     colorBackgroundActive[] = COLOR_ACCENT_RGBA_CFG;
-    colorBackgroundDisabled[] = {0.088,0.088,0.088,0.25};
+    colorBackgroundDisabled[] = {COLOR_TAB_RGB,0.25};
     colorDisabled[] = {1,1,1,0.5};
     colorFocused[] = {0,0,0,0};
     colorShadow[] = {0,0,0,0};
     colorText[] = {1,1,1,1};
     color[] = {1,1,1,1};
-    colorBackground[] = {0.088,0.088,0.088,1};
+    colorBackground[] = {COLOR_TAB_RGBA};
 };
 
 class MARS_gui_RscProgress {

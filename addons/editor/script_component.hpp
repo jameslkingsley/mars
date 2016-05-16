@@ -18,15 +18,29 @@
 
 #include "UI\resinc.hpp"
 
-#define MENU_Y (0 * safeZoneH + safeZoneY)
-#define MENU_HEIGHT (0.03 * safeZoneH)
+#define PANEL_W 60
+#define MENUBAR_H 5
+#define TOOLBAR_H (5 + 2)
+#define TAB_H (5 + 1)
+#define STATUSBAR_W safezoneW
+#define STATUSBAR_H 4
+#define CONTROLSHINT_W 50
+#define PLAYBUTTON_H 10
+#define NAV_H 15
+#define TRANSPARENT_A 0.87
+
+#define pixelScale 1.25
+#define pixelGrid 4
+
+#define MENU_Y safezoneY
+#define MENU_HEIGHT (MENUBAR_H * (pixelH * pixelScale * pixelGrid))
 #define CAM_SHIFT_SPEED_COEF 5
 
 #define TYPE_SEARCH ["Man","Car","Air","Tank","Truck","Ship"]
 #define FULL_TYPE_SEARCH [(screenToWorld GVAR(mousePos)), TYPE_SEARCH, 5]
 
 #define TOOLBAR_CONTEXT_WIDTH (0.12 * safeZoneW)
-#define TOOLBAR_CONTEXT_HEIGHT (0.028 * safeZoneH)
+#define TOOLBAR_CONTEXT_HEIGHT (MENUBAR_H * (pixelH * pixelScale * pixelGrid))
 
 #define CONTEXT_OPTION_WIDTH (0.1 * safeZoneW)
 #define CONTEXT_OPTION_HEIGHT (0.025 * safeZoneH)
