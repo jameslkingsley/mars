@@ -131,11 +131,15 @@ class GVAR(interface) {
 					columns = 2;
 					strings[] = {
 						"Assets",
-						"History"
+						"Notes"
 					};
+					sizeEx = SIZEEX_PURISTA(SIZEEX_M);
+					values[] = {0,1};
+					colorText[] = {COLOR_TEXT_RGBA};
+					colorTextSelect[] = {1,1,1,1};
 					colorBackground[] = {0,0,0,0};
 					colorSelectedBg[] = {COLOR_BACKGROUND_RGBA};
-					onToolBoxSelChanged = QUOTE([ARR_2('right', _this select 1)] call FUNC(handlePanelSections));
+					onToolBoxSelChanged = QUOTE([ARR_2('rightTabs', _this)] call FUNC(handlePanelSections));
 				};
 				class PanelRightBackground: MARS_gui_ctrlStatic {
 					idc = IDC_ASSETBROWSER_BG;
@@ -145,6 +149,44 @@ class GVAR(interface) {
 					h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H) * GRID_H;
 					colorBackground[] = {COLOR_BACKGROUND_RGB,TRANSPARENT_A};
 				};
+				class PanelRightNotes: MARS_gui_ctrlControlsGroupNoScrollbars {
+					idc = IDC_ASSETBROWSER_NOTES;
+					x = 0;
+					y = TAB_H * GRID_H;
+					w = PANEL_W * GRID_W;
+					h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H) * GRID_H;
+					show = 0;
+					class Controls {
+						class PanelRightNotesBackground: MARS_gui_ctrlStatic {
+							w = PANEL_W * GRID_W;
+							h = 26 * GRID_H;
+							colorBackground[] = {COLOR_BACKGROUND_RGBA};
+						};
+						class Modes: MARS_gui_ctrlToolboxPictureKeepAspect {
+							idc = IDC_ASSETBROWSER_NOTES_MODES;
+							x = 0;
+							y = 3 * GRID_H;
+							w = PANEL_W * GRID_W;
+							h = 7 * GRID_H;
+							rows = 1;
+							columns = 2;
+							strings[] = {
+                                QUOTE(PATHTOF(data\PanelRight\notes_tasks_ca.paa)),
+                                QUOTE(PATHTOF(data\PanelRight\notes_diary_ca.paa))
+							};
+							tooltips[] = {
+								"Tasks",
+								"Diary"
+							};
+							values[] = {0,1,2,3,4,5,6};
+							colorBackground[] = {0,0,0,0};
+							colorText[] = {COLOR_TEXT_RGB,0.25};
+							colorTextSelect[] = {1,1,1,1};
+							colorSelectedBg[] = {0,0,0,0};
+							onToolBoxSelChanged = QUOTE([ARR_2('rightNotesModes', _this)] call FUNC(handlePanelSections));
+						};
+					};
+				};
 				class PanelRightCreate: MARS_gui_ctrlControlsGroupNoScrollbars {
 					idc = IDC_ASSETBROWSER_CREATE;
 					x = 0;
@@ -152,35 +194,34 @@ class GVAR(interface) {
 					w = PANEL_W * GRID_W;
 					h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H) * GRID_H;
 					class Controls {
-						#define MOD_COLUMNS	6
+						#define MOD_COLUMNS	5
 						class PanelRightCreateBackground: MARS_gui_ctrlStatic {
 							w = PANEL_W * GRID_W;
 							h = 26 * GRID_H;
 							colorBackground[] = {COLOR_BACKGROUND_RGBA};
 						};
-						class ModeLabels: MARS_gui_ctrlToolbox {
-							idc = IDC_ASSETBROWSER_MODES_LABELS;
-							x = 0;
-							y = 0;
-							w = PANEL_W * GRID_W;
-							h = 3 * GRID_H;
-							rows = 1;
-							columns = MOD_COLUMNS;
-							strings[] = {
-								"F1",
-								"F2",
-								"F3",
-								"F4",
-								"F5",
-								"F6"
-							};
-							sizeEx = SIZEEX_PURISTA(SIZEEX_S);
-							colorBackground[] = {0,0,0,0};
-							colorText[] = {COLOR_TEXT_RGB,0.25};
-							colorTextSelect[] = {1,1,1,1};
-							colorSelectedBg[] = {0,0,0,0};
-							onLoad = "(_this select 0) ctrlEnable false;";
-						};
+						// class ModeLabels: MARS_gui_ctrlToolbox {
+						// 	idc = IDC_ASSETBROWSER_MODES_LABELS;
+						// 	x = 0;
+						// 	y = 0;
+						// 	w = PANEL_W * GRID_W;
+						// 	h = 3 * GRID_H;
+						// 	rows = 1;
+						// 	columns = MOD_COLUMNS;
+						// 	strings[] = {
+						// 		"F1",
+						// 		"F2",
+						// 		"F3",
+						// 		"F4",
+						// 		"F5"
+						// 	};
+						// 	sizeEx = SIZEEX_PURISTA(SIZEEX_S);
+						// 	colorBackground[] = {0,0,0,0};
+						// 	colorText[] = {COLOR_TEXT_RGB,0.25};
+						// 	colorTextSelect[] = {1,1,1,1};
+						// 	colorSelectedBg[] = {0,0,0,0};
+						// 	onLoad = "(_this select 0) ctrlEnable false;";
+						// };
 						class Modes: MARS_gui_ctrlToolboxPictureKeepAspect {
 							idc = IDC_ASSETBROWSER_MODES;
 							x = 0;
@@ -190,35 +231,54 @@ class GVAR(interface) {
 							rows = 1;
 							columns = MOD_COLUMNS;
 							strings[] = {
-                                QUOTE(PATHTOF(data\PanelRight\modeObjects_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\modeGroups_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\modeTriggers_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\modeWaypoints_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\modeModules_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\modeMarkers_ca.paa))
+                                QUOTE(PATHTOF(data\PanelRight\modeobjects_ca.paa)),
+                                QUOTE(PATHTOF(data\PanelRight\modegroups_ca.paa)),
+                                QUOTE(PATHTOF(data\PanelRight\modemodules_ca.paa)),
+                                QUOTE(PATHTOF(data\PanelRight\modemarkers_ca.paa)),
+								QUOTE(PATHTOF(data\PanelRight\modefavorites_ca.paa))
 							};
 							tooltips[] = {
 								"Objects",
-								"Groups",
-								"Triggers",
-								"Waypoints",
+								"Compositions",
 								"Modules",
-								"Markers"
+								"Markers",
+								"Favorites"
 							};
 							values[] = {0,1,2,3,4,5,6};
 							colorBackground[] = {0,0,0,0};
 							colorText[] = {COLOR_TEXT_RGB,0.25};
 							colorTextSelect[] = {1,1,1,1};
 							colorSelectedBg[] = {0,0,0,0};
+							onToolBoxSelChanged = QUOTE([ARR_2('rightModes', _this)] call FUNC(handlePanelSections));
 						};
 						class Sides: Modes {
 							idc = IDC_ASSETBROWSER_SUBMODES;
-							y = 10 * GRID_H;
+							y = 11 * GRID_H;
 							w = PANEL_W * GRID_W;
-							h = 10 * GRID_H;
+							h = 8 * GRID_H;
 							columns = 5;
-							strings[] = {};
-							values[] = {};
+							strings[] = {
+								QUOTE(PATHTOF(data\PanelRight\side_west_ca.paa)),
+                                QUOTE(PATHTOF(data\PanelRight\side_east_ca.paa)),
+                                QUOTE(PATHTOF(data\PanelRight\side_guer_ca.paa)),
+                                QUOTE(PATHTOF(data\PanelRight\side_civ_ca.paa)),
+								QUOTE(PATHTOF(data\PanelRight\side_empty_ca.paa))
+							};
+							tooltips[] = {
+								"BLUFOR",
+								"OPFOR",
+								"INDFOR",
+								"CIVILIAN",
+								"EMPTY"
+							};
+							values[] = {
+								SIDE_WEST,
+								SIDE_EAST,
+								SIDE_GUER,
+								SIDE_CIV,
+								SIDE_EMPTY
+							};
+							onToolBoxSelChanged = QUOTE([ARR_2('rightSides', _this)] call FUNC(handlePanelSections));
 						};
 						class SearchCreate: MARS_gui_ctrlEdit {
 							idc = IDC_ASSETBROWSER_SEARCH_CREATE;
@@ -293,36 +353,6 @@ class GVAR(interface) {
 									idc = IDC_ASSETBROWSER_TREE_GROUPS_EMPTY;
 									defaultItem[] = {};
 								};
-								/*class CreateTrigger: CreateObjectWEST {
-									idc = IDC_DISPLAY3DEN_CREATE_TRIGGER;
-									defaultItem[] = {};
-									show = 0;
-								};
-								class CreateWaypoint: CreateObjectWEST {
-									idc = IDC_DISPLAY3DEN_CREATE_WAYPOINT;
-									defaultItem[] = {};
-									show = 0;
-								};
-								class CreateObjectLogic: CreateObjectWEST {
-									idc = IDC_DISPLAY3DEN_CREATE_OBJECT_LOGIC;
-									defaultItem[] = {"Objects"};
-									show = 0;
-								};
-								class CreateObjectModule: CreateObjectWEST {
-									idc = IDC_DISPLAY3DEN_CREATE_OBJECT_MODULE;
-									defaultItem[] = {"Default"};
-									show = 0;
-								};
-								class CreateMarkerIcon: CreateObjectWEST {
-									idc = IDC_DISPLAY3DEN_CREATE_MARKER_ICON;
-									defaultItem[] = {"Military"};
-									show = 0;
-								};
-								class CreateMarkerArea: CreateObjectWEST {
-									idc = IDC_DISPLAY3DEN_CREATE_MARKER_SHAPE;
-									defaultItem[] = {};
-									show = 0;
-								};*/
 							};
 						};
 					};
@@ -372,6 +402,7 @@ class GVAR(interface) {
                     colorDisabled[] = {COLOR_TEXT_RGB,0.5};
                     onLoad = "(_this select 0) ctrlEnable false;";
                     text = "0.000m";
+                    canModify = 0;
                 };
                 class TextY: TextX {
                     x = (TEXT_W + VALUE_W + SPACE_W) * GRID_W;
@@ -399,28 +430,41 @@ class GVAR(interface) {
                 class ValueDis: ValueX {
                     idc = IDC_STATUSBAR_DIS;
                     x = (3 * (TEXT_W + VALUE_W + SPACE_W) + TEXT_W) * GRID_W;
-                    w = 30 * GRID_W;
+                };
+                class TextGrid: TextX {
+                    x = 4 * (TEXT_W + VALUE_W + SPACE_W) * GRID_W;
+                    text = QUOTE(PATHTOF(data\Toolbar\map_off_ca.paa));
+                    colorBackground[] = {0,0,0,0};
+                };
+                class ValueGrid: ValueX {
+                    idc = IDC_STATUSBAR_GRID;
+                    x = (4 * (TEXT_W + VALUE_W + SPACE_W) + TEXT_W) * GRID_W;
+                };
+                class FPS: ValueX {
+                    idc = IDC_STATUSBAR_FPS;
+                    x = STATUSBAR_W - (34) * GRID_W;
+                    w = 13 * GRID_W;
+					text = "0 FPS";
                 };
                 class Version: ValueX {
                     idc = IDC_STATUSBAR_VERSION;
-                    x = STATUSBAR_W - (2 * STATUSBAR_H + 21) * GRID_W;
-                    w = 20 * GRID_W;
-                    canModify = 0;
+                    x = STATUSBAR_W - (20.5 + SPACE_H) * GRID_W;
+					w = 20 * GRID_W;
                 };
-                class Mod: MARS_gui_ctrlStaticPicture {
-                    idc = IDC_STATUSBAR_MOD;
-                    x = STATUSBAR_W - 2 * STATUSBAR_H * GRID_W;
-                    w = STATUSBAR_H * GRID_W;
-                    h = STATUSBAR_H * GRID_H;
-                    text = QUOTE(PATHTOF(data\StatusBar\mod_ca.paa));
-                };
-                class Server: MARS_gui_ctrlStaticPicture {
-                    idc = IDC_STATUSBAR_SERVER;
-                    x = STATUSBAR_W - STATUSBAR_H * GRID_W;
-                    w = STATUSBAR_H * GRID_W;
-                    h = STATUSBAR_H * GRID_H;
-                    text = QUOTE(PATHTOF(data\StatusBar\server_ca.paa));
-                };
+                // class Mod: MARS_gui_ctrlStaticPicture {
+                //     idc = IDC_STATUSBAR_MOD;
+                //     x = STATUSBAR_W - 2 * STATUSBAR_H * GRID_W;
+                //     w = STATUSBAR_H * GRID_W;
+                //     h = STATUSBAR_H * GRID_H;
+                //     text = QUOTE(PATHTOF(data\StatusBar\mod_ca.paa));
+                // };
+                // class Server: MARS_gui_ctrlStaticPicture {
+                //     idc = IDC_STATUSBAR_SERVER;
+                //     x = STATUSBAR_W - STATUSBAR_H * GRID_W;
+                //     w = STATUSBAR_H * GRID_W;
+                //     h = STATUSBAR_H * GRID_H;
+                //     text = QUOTE(PATHTOF(data\StatusBar\server_ca.paa));
+                // };
             };
 		};
     };

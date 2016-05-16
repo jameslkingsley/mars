@@ -1,53 +1,19 @@
-class MARS_gui_ctrlHTML: MARS_gui_ctrlDefaultText
-{
-    type = CT_HTML; // Type
-
-    colorBackground[] = {0,0,0,0}; // Fill color
-
-    colorText[] = {COLOR_TEXT_RGBA}; // Text color
-    colorBold[] = {COLOR_TEXT_RGB,0.5}; // <b> text color
-    colorLink[] = {COLOR_TEXT_RGBA}; // <a> text color
-    colorLinkActive[] = {COLOR_ACTIVE_RGBA}; // Active <a> text color
-    colorPicture[] = {1,1,1,1}; // Picture color
-    colorPictureBorder[] = {0,0,0,0}; // Picture border color
-    colorPictureLink[] = {1,1,1,1}; // <a> picture color
-    colorPictureSelected[] = {1,1,1,1}; // Active <a> picture color
-
-    prevPage = "\a3\3DEN\Data\Controls\ctrlHTML\prevPage_ca.paa"; // Pagination arrow for previous page
-    nextPage = "\a3\3DEN\Data\Controls\ctrlHTML\nextPage_ca.paa"; // Pagination arrow for next page
+class MARS_gui_ctrlHTML: MARS_gui_ctrlDefaultText {
+    type = CT_HTML;
+    colorBackground[] = {0,0,0,0};
+    colorText[] = {COLOR_TEXT_RGBA};
+    colorBold[] = {COLOR_TEXT_RGB,0.5};
+    colorLink[] = {COLOR_TEXT_RGBA};
+    colorLinkActive[] = {COLOR_ACTIVE_RGBA};
+    colorPicture[] = {1,1,1,1};
+    colorPictureBorder[] = {0,0,0,0};
+    colorPictureLink[] = {1,1,1,1};
+    colorPictureSelected[] = {1,1,1,1};
+    prevPage = "\a3\3DEN\Data\Controls\ctrlHTML\prevPage_ca.paa";
+    nextPage = "\a3\3DEN\Data\Controls\ctrlHTML\nextPage_ca.paa";
     filename = "";
     cycleLinks = 0;
     cycleAllLinks = 0;
-
-    class P // Paragraph style
-    {
-        font = FONT_NORMAL; // Font from CfgFontFamilies
-        fontBold = FONT_BOLD; // Bold font from CfgFontFamilies
-        sizeEx = SIZEEX_PURISTA(SIZEEX_M); // Text size
-    };
-    class H1:P // Header 1 style (uses same attributes as P)
-    {
-        sizeEx = SIZEEX_PURISTA(SIZEEX_XL);
-    };
-    class H2:P // Header 2 style (uses same attributes as P)
-    {
-        sizeEx = SIZEEX_PURISTA(SIZEEX_L);
-    };
-    class H3:P // Header 3 style (uses same attributes as P)
-    {
-    };
-    class H4:P // Header 4 style (uses same attributes as P)
-    {
-    };
-    class H5:P // Header 5 style (uses same attributes as P)
-    {
-    };
-    class H6:P // Header 6 style (uses same attributes as P)
-    {
-        font = FONT_THIN; // Font from CfgFontFamilies
-        fontBold = FONT_THIN; // Font from CfgFontFamilies
-    };
-
     onCanDestroy = "";
     onDestroy = "";
     onMouseEnter = "";
@@ -63,6 +29,30 @@ class MARS_gui_ctrlHTML: MARS_gui_ctrlDefaultText
     onMouseZChanged = "";
     onMouseMoving = "";
     onMouseHolding = "";
-
     onHTMLLink = "";
+
+    class P {
+        font = FONT_NORMAL;
+        fontBold = FONT_BOLD;
+        sizeEx = SIZEEX_PURISTA(SIZEEX_M);
+    };
+
+    class H1: P {
+        sizeEx = SIZEEX_PURISTA(SIZEEX_XL);
+    };
+
+    class H2: P {
+        sizeEx = SIZEEX_PURISTA(SIZEEX_L);
+    };
+
+    class H3: P {};
+
+    class H4: P {};
+
+    class H5: P {};
+
+    class H6: P {
+        font = FONT_THIN;
+        fontBold = FONT_THIN;
+    };
 };

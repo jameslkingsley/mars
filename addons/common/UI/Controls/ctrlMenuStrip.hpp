@@ -1,5 +1,4 @@
-class MARS_gui_ctrlMenuStrip: MARS_gui_ctrlMenu
-{
+class MARS_gui_ctrlMenuStrip: MARS_gui_ctrlMenu {
     type = CT_STATIC;
     colorStripBackground[] = {0,0,0,1};
     colorStripText[] = {COLOR_TEXT_RGBA};

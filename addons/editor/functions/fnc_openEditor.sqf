@@ -94,7 +94,15 @@ GVAR(pfh) = [{
     } count GVAR(selection);
     
     ctrlSetFocus controlNull;
+    
+    // Status bar - grid position
+    (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_GRID) ctrlSetText format["%1", mapGridPosition GVAR(freeCamera)];
 }, 0, []] call CBA_fnc_addPerFrameHandler;
+
+GVAR(delayedPFH) = [{
+    // FPS Counter
+    (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_FPS) ctrlSetText format["%1 FPS", round diag_fps];
+}, 1, []] call CBA_fnc_addPerFrameHandler;
 
 // player playActionNow "gear";
 

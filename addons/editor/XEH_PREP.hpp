@@ -37,3 +37,4 @@ PREP(closeToolbarMenus);
 PREP(onToolbarClick);
 PREP(closeEditor);
 PREP(handleStatusBar);
+PREP(handlePanelSections);

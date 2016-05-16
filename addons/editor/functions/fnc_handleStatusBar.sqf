@@ -25,7 +25,7 @@ _statusBar = _display displayCtrl IDC_STATUSBAR;
 
 #define CGCTRL(IDC) (_statusBar controlsGroupCtrl IDC)
 
-CGCTRL(IDC_STATUSBAR_VERSION) ctrlSetText format["%1.%2.%3.%4", MAJOR, MINOR, PATCHLVL, BUILD];
+CGCTRL(IDC_STATUSBAR_VERSION) ctrlSetText format["MARS %1.%2.%3", MAJOR, MINOR, PATCHLVL];
 CGCTRL(IDC_STATUSBAR_SERVER) ctrlSetTooltip serverName;
 
 _coordinateUpdate = {
