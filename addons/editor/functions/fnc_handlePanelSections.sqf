@@ -50,7 +50,6 @@ switch (_type) do {
 
         GVAR(abCurrentTab) = _index;
 
-        // Call the modes section to handle the modes display
         ["rightModes", [controlNull, GVAR(abCurrentMode)]] call FUNC(handlePanelSections);
     };
     case "rightModes": {
@@ -105,7 +104,6 @@ switch (_type) do {
         
         GVAR(abCurrentMode) = _index;
         
-        // Call the sides section to handle the sides display
         ["rightSides", [controlNull, GVAR(abCurrentSubmode)]] call FUNC(handlePanelSections);
     };
     case "rightSides": {
