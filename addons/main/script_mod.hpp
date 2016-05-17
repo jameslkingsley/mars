@@ -45,6 +45,11 @@
 #define COLOR_CIV_RGBA {0.4,0,0.5,1}
 #define COLOR_CIV_RGB {0.4,0,0.5}
 
+#define COLOR_EMPTY_RGBA_ARR [0.698,0.6,0,1]
+#define COLOR_EMPTY_RGB_ARR [0.698,0.6,0]
+#define COLOR_EMPTY_RGBA {0.698,0.6,0,1}
+#define COLOR_EMPTY_RGB {0.698,0.6,0}
+
 #define SIDE_WEST 1
 #define SIDE_EAST 0
 #define SIDE_GUER 2

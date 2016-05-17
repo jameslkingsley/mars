@@ -10,20 +10,20 @@
  * RGBA <ARRAY>
  *
  * Example:
- * _color = [side player] call mars_common_fnc_getSideColor;
+ * _color = [side player] call mars_common_fnc_getSideColorByInt;
  *
  * Public: No
  */
 
 #include "script_component.hpp"
 
-params [["_side", sideUnknown]];
+params [["_side", -1]];
 
 private _color = switch (_side) do {
-    case west: {COLOR_WEST_RGBA_ARR};
-    case east: {COLOR_EAST_RGBA_ARR};
-    case resistance: {COLOR_GUER_RGBA_ARR};
-    case civilian: {COLOR_CIV_RGBA_ARR};
+    case SIDE_WEST: {COLOR_WEST_RGBA_ARR};
+    case SIDE_EAST: {COLOR_EAST_RGBA_ARR};
+    case SIDE_GUER: {COLOR_GUER_RGBA_ARR};
+    case SIDE_CIV: {COLOR_CIV_RGBA_ARR};
     default {COLOR_EMPTY_RGBA_ARR};
 };
 

@@ -49,7 +49,12 @@
             
             {
                 if ((_x select 2) == _className) then {
+                    private _icon = getText ((_x select 0) >> "icon");
+                    private _iconTex = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
+                    private _side = getNumber ((_x select 0) >> "side");
                     _unitPath = _tree tvAdd [[_vcPath], (_x select 1)];
+                    _tree tvSetPicture [[_vcPath,_unitPath], _iconTex];
+                    _tree tvSetPictureColor [[_vcPath,_unitPath], COLOR_EMPTY_RGBA_ARR];
                     _tree tvSetTooltip [[_vcPath,_unitPath], configName (_x select 0)];
                 };
                 false
@@ -94,7 +99,12 @@
                 
                 {
                     if ((_x select 2) == _className) then {
+                        private _icon = getText ((_x select 0) >> "icon");
+                        private _iconTex = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
+                        private _side = getNumber ((_x select 0) >> "side");
                         _unitPath = _tree tvAdd [[_factionParent,_vcPath], (_x select 1)];
+                        _tree tvSetPicture [[_factionParent,_vcPath,_unitPath], _iconTex];
+                        _tree tvSetPictureColor [[_factionParent,_vcPath,_unitPath], [_side] call EFUNC(common,getSideColorByInt)];
                         _tree tvSetTooltip [[_factionParent,_vcPath,_unitPath], configName (_x select 0)];
                     };
                     false
@@ -150,7 +160,11 @@
                 
                 {
                     if ((_x select 2) == _className) then {
+                        private _icon = getText ((_x select 0) >> "icon");
+                        private _side = getNumber ((_x select 0) >> "side");
                         _unitPath = _tree tvAdd [[_vcPath], (_x select 1)];
+                        _tree tvSetPicture [[_vcPath,_unitPath], _icon];
+                        _tree tvSetPictureColor [[_vcPath,_unitPath], COLOR_EMPTY_RGBA_ARR];
                         _tree tvSetTooltip [[_vcPath,_unitPath], configName (_x select 0)];
                     };
                     false
@@ -186,7 +200,11 @@
                     _catParent = _tree tvAdd [[_grpParent], _name];
                     
                     {
+                        private _icon = getText ((_x select 0) >> "icon");
+                        private _side = getNumber ((_x select 0) >> "side");
                         _entParent = _tree tvAdd [[_grpParent,_catParent], (_x select 1)];
+                        _tree tvSetPicture [[_grpParent,_catParent,_entParent], _icon];
+                        _tree tvSetPictureColor [[_grpParent,_catParent,_entParent], [_side] call EFUNC(common,getSideColorByInt)];
                         false
                     } count _entities;
                     false
