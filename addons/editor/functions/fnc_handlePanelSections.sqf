@@ -31,8 +31,6 @@ if (count _args == 0 || _type == "" || _index < 0) exitWith {};
 
 _display = GETUVAR(GVAR(interface),displayNull);
 
-TRACE_1("fnc_handlePanelSections", _this);
-
 switch (_type) do {
     case "rightTabs": {
         switch (_index) do {
@@ -49,45 +47,120 @@ switch (_type) do {
                 ];
             };
         };
-        
+
         GVAR(abCurrentTab) = _index;
 
         // Call the modes section to handle the modes display
         ["rightModes", [controlNull, GVAR(abCurrentMode)]] call FUNC(handlePanelSections);
     };
     case "rightModes": {
+        #define TREE_FALSE \
+            [IDC_ASSETBROWSER_TREE_UNITS_WEST, false],\
+            [IDC_ASSETBROWSER_TREE_UNITS_EAST, false],\
+            [IDC_ASSETBROWSER_TREE_UNITS_GUER, false],\
+            [IDC_ASSETBROWSER_TREE_UNITS_CIV, false],\
+            [IDC_ASSETBROWSER_TREE_UNITS_EMPTY, false],\
+            [IDC_ASSETBROWSER_TREE_GROUPS_WEST, false],\
+            [IDC_ASSETBROWSER_TREE_GROUPS_EAST, false],\
+            [IDC_ASSETBROWSER_TREE_GROUPS_GUER, false],\
+            [IDC_ASSETBROWSER_TREE_GROUPS_CIV, false],\
+            [IDC_ASSETBROWSER_TREE_GROUPS_EMPTY, false]
         switch (_index) do {
             case 0: { // Objects
                 {(_display displayCtrl (_x select 0)) ctrlShow (_x select 1)} forEach [
                     [IDC_ASSETBROWSER_SUBMODES_SIDES, true],
-                    [IDC_ASSETBROWSER_SUBMODES_BRUSHES, false]
+                    [IDC_ASSETBROWSER_SUBMODES_BRUSHES, false],
+                    TREE_FALSE
                 ];
             };
             case 1: { // Compositions
                 {(_display displayCtrl (_x select 0)) ctrlShow (_x select 1)} forEach [
                     [IDC_ASSETBROWSER_SUBMODES_SIDES, true],
-                    [IDC_ASSETBROWSER_SUBMODES_BRUSHES, false]
+                    [IDC_ASSETBROWSER_SUBMODES_BRUSHES, false],
+                    TREE_FALSE
                 ];
             };
             case 2: { // Modules
                 {(_display displayCtrl (_x select 0)) ctrlShow (_x select 1)} forEach [
                     [IDC_ASSETBROWSER_SUBMODES_SIDES, false],
-                    [IDC_ASSETBROWSER_SUBMODES_BRUSHES, false]
+                    [IDC_ASSETBROWSER_SUBMODES_BRUSHES, false],
+                    TREE_FALSE
                 ];
             };
             case 3: { // Markers
                 {(_display displayCtrl (_x select 0)) ctrlShow (_x select 1)} forEach [
                     [IDC_ASSETBROWSER_SUBMODES_SIDES, false],
-                    [IDC_ASSETBROWSER_SUBMODES_BRUSHES, true]
+                    [IDC_ASSETBROWSER_SUBMODES_BRUSHES, true],
+                    TREE_FALSE
                 ];
             };
             case 4: { // Favorites
                 {(_display displayCtrl (_x select 0)) ctrlShow (_x select 1)} forEach [
                     [IDC_ASSETBROWSER_SUBMODES_SIDES, false],
-                    [IDC_ASSETBROWSER_SUBMODES_BRUSHES, false]
+                    [IDC_ASSETBROWSER_SUBMODES_BRUSHES, false],
+                    TREE_FALSE
                 ];
             };
         };
+        
         GVAR(abCurrentMode) = _index;
+        
+        // Call the sides section to handle the sides display
+        ["rightSides", [controlNull, GVAR(abCurrentSubmode)]] call FUNC(handlePanelSections);
+    };
+    case "rightSides": {
+        _sideInt = switch (_index) do {
+            case 0: {SIDE_WEST};
+            case 1: {SIDE_EAST};
+            case 2: {SIDE_GUER};
+            case 3: {SIDE_CIV};
+            case 4: {SIDE_EMPTY};
+        };
+        
+        _treeParent = _display displayCtrl IDC_ASSETBROWSER_TREE;
+        
+        _treeIDC = -1;
+        if (GVAR(abCurrentMode) == 0) then {
+            // Objects
+            _treeIDC = switch (_sideInt) do {
+                case SIDE_WEST: {IDC_ASSETBROWSER_TREE_UNITS_WEST};
+                case SIDE_EAST: {IDC_ASSETBROWSER_TREE_UNITS_EAST};
+                case SIDE_GUER: {IDC_ASSETBROWSER_TREE_UNITS_GUER};
+                case SIDE_CIV: {IDC_ASSETBROWSER_TREE_UNITS_CIV};
+                case SIDE_EMPTY: {IDC_ASSETBROWSER_TREE_UNITS_EMPTY};
+            };
+        } else {
+            if (GVAR(abCurrentMode) == 1) then {
+                // Compositions
+                _treeIDC = switch (_sideInt) do {
+                    case SIDE_WEST: {IDC_ASSETBROWSER_TREE_GROUPS_WEST};
+                    case SIDE_EAST: {IDC_ASSETBROWSER_TREE_GROUPS_EAST};
+                    case SIDE_GUER: {IDC_ASSETBROWSER_TREE_GROUPS_GUER};
+                    case SIDE_CIV: {IDC_ASSETBROWSER_TREE_GROUPS_CIV};
+                    case SIDE_EMPTY: {IDC_ASSETBROWSER_TREE_GROUPS_EMPTY};
+                };
+            };
+        };
+        
+        if (_treeIDC == -1) exitWith {};
+        
+        {
+            _treeCtrl = _treeParent controlsGroupCtrl _x;
+            _treeCtrl ctrlShow (_treeIDC == _x);
+            _treeCtrl ctrlEnable (_treeIDC == _x);
+        } forEach [
+            IDC_ASSETBROWSER_TREE_UNITS_WEST,
+            IDC_ASSETBROWSER_TREE_UNITS_EAST,
+            IDC_ASSETBROWSER_TREE_UNITS_GUER,
+            IDC_ASSETBROWSER_TREE_UNITS_CIV,
+            IDC_ASSETBROWSER_TREE_UNITS_EMPTY,
+            IDC_ASSETBROWSER_TREE_GROUPS_WEST,
+            IDC_ASSETBROWSER_TREE_GROUPS_EAST,
+            IDC_ASSETBROWSER_TREE_GROUPS_GUER,
+            IDC_ASSETBROWSER_TREE_GROUPS_CIV,
+            IDC_ASSETBROWSER_TREE_GROUPS_EMPTY
+        ];
+        
+        GVAR(abCurrentSubmode) = _index;
     };
 };

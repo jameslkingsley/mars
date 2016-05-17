@@ -1,19 +1,5 @@
 #include "\z\mars\addons\common\define.hpp"
 
-class RscFrame {
-    x = 0;
-    y = 0;
-    w = 0;
-    h = 0;
-};
-
-class RscButtonMenu;
-class RscControlsGroupNoScrollbars;
-class RscMapControl;
-class RscPicture;
-class RscText;
-class RscTree;
-
 class GVAR(interface) {
     idd = IDC_DISPLAY;
     enableSimulation = 1;
@@ -37,6 +23,34 @@ class GVAR(interface) {
             onMouseMoving = QUOTE([ARR_2('onMouseMoving',_this)] call FUNC(handleInterface));
             onMouseHolding = QUOTE([ARR_2('onMouseHolding',_this)] call FUNC(handleInterface));
         };
+        class ScrollBlockTop: MARS_gui_ctrlStatic {
+			idc = IDC_SCROLLBLOCK_TOP;
+			x = safezoneX;
+			y = safezoneY;
+			w = safezoneW;
+			h = (MENUBAR_H + TOOLBAR_H) * GRID_H;
+		};
+		class ScrollBlockBottom: ScrollBlockTop {
+			idc = IDC_SCROLLBLOCK_BOTTOM;
+			x = safezoneX;
+			y = safezoneY + safezoneH - STATUSBAR_H * GRID_H;
+			w = STATUSBAR_W;
+			h = (STATUSBAR_H + 1) * GRID_H;
+		};
+		class ScrollBlockLeft: ScrollBlockTop {
+			idc = IDC_SCROLLBLOCK_LEFT;
+			x = safezoneX;
+			y = safezoneY + (MENUBAR_H + TOOLBAR_H) * GRID_H;
+			w = PANEL_W * GRID_W;
+			h = safezoneH - (MENUBAR_H + TOOLBAR_H + STATUSBAR_H) * GRID_H;	
+		};
+		class ScrollBlockRight: ScrollBlockTop {
+			idc = IDC_SCROLLBLOCK_RIGHT;
+			x = safezoneX + safezoneW - PANEL_W * GRID_W;
+			y = safezoneY + (SIZE_M + TOOLBAR_H) * GRID_H;
+			w = PANEL_W * GRID_W;
+			h = safezoneH - (MENUBAR_H + TOOLBAR_H) * GRID_H;	
+		};
     };
     class Controls {
         class ButtonExit: MARS_gui_ctrlButtonPicture {
@@ -46,21 +60,10 @@ class GVAR(interface) {
             w = SIZE_M * GRID_W;
             h = SIZE_M * GRID_H;
             colorBackground[] = {COLOR_TAB_RGBA};
-            text = QUOTE(PATHTOF(data\search_end_ca.paa));
+            text = QUOTE(PATHTOF(data\cross_ca.paa));
             action = QUOTE([] call FUNC(closeEditor));
             offsetPressedX = 0;
             offsetPressedY = 0;
-        };
-        class MissionName: MARS_gui_ctrlStatic {
-            idc = IDC_MISSIONNAME;
-            style = ST_RIGHT;
-            x = safezoneX;
-            y = safezoneY;
-            w = safezoneW - (SIZE_M * GRID_W);
-            h = SIZE_M * GRID_H;
-            colorBackground[] = {COLOR_TAB_RGBA};
-            onLoad = "(_this select 0) ctrlEnable false;";
-            text = "Null";
         };
         class MenuStrip: MARS_gui_ctrlMenuStrip {
             idc = IDC_MENUSTRIP;
@@ -86,14 +89,6 @@ class GVAR(interface) {
             h = safezoneH - (MENUBAR_H + TOOLBAR_H + STATUSBAR_H) * GRID_H;
             colorBackground[] = {COLOR_BACKGROUND_RGB,TRANSPARENT_A};
         };
-        /*class RightPanel: MARS_gui_ctrlStatic {
-            idc = IDC_RIGHTPANEL;
-            x = safezoneX + safezoneW - PANEL_W * GRID_W;
-            y = safezoneY + (SIZE_M + TOOLBAR_H) * GRID_H;
-            w = PANEL_W * GRID_W;
-            h = safezoneH - (MENUBAR_H + TOOLBAR_H + STATUSBAR_H) * GRID_H;
-            colorBackground[] = {COLOR_BACKGROUND_RGB,TRANSPARENT_A};
-        };*/
         class PanelRight: MARS_gui_ctrlControlsGroupNoScrollbars {
             idc = IDC_RIGHTPANEL;
             x = safezoneX + safezoneW - PANEL_W * GRID_W;
@@ -200,28 +195,6 @@ class GVAR(interface) {
                             h = 26 * GRID_H;
                             colorBackground[] = {COLOR_BACKGROUND_RGBA};
                         };
-                        // class ModeLabels: MARS_gui_ctrlToolbox {
-                        // 	idc = IDC_ASSETBROWSER_MODES_LABELS;
-                        // 	x = 0;
-                        // 	y = 0;
-                        // 	w = PANEL_W * GRID_W;
-                        // 	h = 3 * GRID_H;
-                        // 	rows = 1;
-                        // 	columns = MOD_COLUMNS;
-                        // 	strings[] = {
-                        // 		"F1",
-                        // 		"F2",
-                        // 		"F3",
-                        // 		"F4",
-                        // 		"F5"
-                        // 	};
-                        // 	sizeEx = SIZEEX_PURISTA(SIZEEX_S);
-                        // 	colorBackground[] = {0,0,0,0};
-                        // 	colorText[] = {COLOR_TEXT_RGB,0.25};
-                        // 	colorTextSelect[] = {1,1,1,1};
-                        // 	colorSelectedBg[] = {0,0,0,0};
-                        // 	onLoad = "(_this select 0) ctrlEnable false;";
-                        // };
                         class Modes: MARS_gui_ctrlToolboxPictureKeepAspect {
                             idc = IDC_ASSETBROWSER_MODES;
                             x = 0;
@@ -321,12 +294,12 @@ class GVAR(interface) {
                             x = 0;
                             y = 26 * GRID_H;
                             w = PANEL_W * GRID_W;
-                            h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + PLAYBUTTON_H + 21 + SIZE_M) * GRID_H;
+                            h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + 25 + SIZE_M) * GRID_H;
                             class Controls {
                                 class CreateObjectWEST: MARS_gui_ctrlTree {
                                     idc = IDC_ASSETBROWSER_TREE_UNITS_WEST;
                                     w = PANEL_W * GRID_W;
-                                    h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + PLAYBUTTON_H + 21 + SIZE_M) * GRID_H;
+                                    h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + 25 + SIZE_M) * GRID_H;
                                     defaultItem[] = {};
                                     sizeEx = SIZEEX_PURISTA(SIZEEX_S);
                                     font = FONT_NORMAL;
@@ -472,20 +445,6 @@ class GVAR(interface) {
                     x = STATUSBAR_W - (20.5 + SPACE_H) * GRID_W;
                     w = 20 * GRID_W;
                 };
-                // class Mod: MARS_gui_ctrlStaticPicture {
-                //     idc = IDC_STATUSBAR_MOD;
-                //     x = STATUSBAR_W - 2 * STATUSBAR_H * GRID_W;
-                //     w = STATUSBAR_H * GRID_W;
-                //     h = STATUSBAR_H * GRID_H;
-                //     text = QUOTE(PATHTOF(data\StatusBar\mod_ca.paa));
-                // };
-                // class Server: MARS_gui_ctrlStaticPicture {
-                //     idc = IDC_STATUSBAR_SERVER;
-                //     x = STATUSBAR_W - STATUSBAR_H * GRID_W;
-                //     w = STATUSBAR_H * GRID_W;
-                //     h = STATUSBAR_H * GRID_H;
-                //     text = QUOTE(PATHTOF(data\StatusBar\server_ca.paa));
-                // };
             };
         };
     };

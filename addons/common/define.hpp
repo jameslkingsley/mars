@@ -78,6 +78,26 @@
 #define FONT_MARS "RobotoCondensed"
 #define BG_OPACITY 0.8
 
+class RscFrame {
+    x = 0;
+    y = 0;
+    w = 0;
+    h = 0;
+};
+
+class RscText;
+class RscTitle;
+class RscListbox;
+class RscControlsGroupNoScrollbars;
+class RscPicture;
+class RscButtonMenu;
+class RscButtonMenuOK;
+class RscButtonMenuCancel;
+class RscStandardDisplay;
+class RscVignette;
+class RscMap;
+class RscCombo;
+
 #include "macros.hpp"
 
 #include "UI\Controls\ctrlDefault.hpp"
@@ -581,7 +601,6 @@ class MARS_gui_staticBase {
     text = "";
 };
 
-class RscListBox;
 class MARS_gui_listBoxBase : RscListBox {
     type = CT_LISTBOX;
     style = ST_MULTI;
@@ -698,8 +717,6 @@ class MARS_gui_listNBox {
     };
 };
 
-
-class RscCombo;
 class MARS_gui_comboBoxBase : RscCombo {
     deletable = 0;
     fade = 0;

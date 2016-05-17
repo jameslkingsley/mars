@@ -18,7 +18,6 @@ class MARS_gui_ctrlControlsGroup: MARS_gui_ctrlDefault {
     class VScrollBar: ScrollBar {
         width = 2 * GRID_W;
         height = 0;
-
         autoScrollEnabled = 0;
         autoScrollDelay = 1;
         autoScrollRewind = 1;

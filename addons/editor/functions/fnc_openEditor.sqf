@@ -72,7 +72,7 @@ _display displayAddEventHandler ["MouseButtonDown", {
 [] call FUNC(handleStatusBar);
 
 // Mission Name
-(_display displayCtrl IDC_MISSIONNAME) ctrlSetText briefingName;
+// (_display displayCtrl IDC_MISSIONNAME) ctrlSetText briefingName;
 
 // Reset interruptions
 GVAR(interrupts) = [];
