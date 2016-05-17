@@ -16,52 +16,11 @@
 
 #include "script_component.hpp"
 
-// Category Tabs
-
-// _tabs = "true" configClasses (configFile >> QGVARMAIN(assetBrowser) >> "tabs");
-// _tabWH = (0.15 * safeZoneW) / (count _tabs);
-
-/*{
-    private _idc = IDC_ASSETBROWSER_TAB + _forEachIndex;
-    private _displayName = getText (_x >> "displayName");
-    private _tooltipText = getText (_x >> "tooltipText");
-    private _icon = getText (_x >> "icon");
-    private _onSearch = [(getText (_x >> "onSearch")),""] select (isNull (_x >> "onSearch"));
-
-    private _tab = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_tabBase", _idc];
-    GVAR(tabs) pushBackUnique _idc;
-
-    _tab ctrlSetText _icon;
-    _tab ctrlSetTooltip _tooltipText;
-
-    _tab ctrlSetPosition [
-        (0.85 * safeZoneW + safeZoneX) + (_tabWH * _forEachIndex),
-        (0.066 * safeZoneH + safeZoneY),
-        _tabWH * 0.9,
-        _tabWH * 0.9
-    ];
-
-    _tab setVariable [QGVAR(tabConfig), _x];
-    _tab setVariable [QGVAR(tabWH), _tabWH];
-
-    _tab ctrlSetFade DEFAULT_TAB_OPACITY;
-    
-    _tab ctrlAddEventHandler ["MouseButtonDown", {_this call FUNC(onABTabClick)}];
-
-    if (_forEachIndex == 0) then {
-        [_tab, 0] call FUNC(onABTabClick);
-    };
-
-    _tab ctrlCommit 0;
-} forEach _tabs;*/
-
 { // Units
     _treeIDC = _x select 0;
     _side = _x select 1;
     _categories = _x select 2;
     _tree = GETUVAR(GVAR(interface),displayNull) displayCtrl _treeIDC;
-    // _tree ctrlSetPosition AB_TREE_POS;
-    // _tree ctrlCommit 0;
     tvClear _tree;
     
     if (_treeIDC == IDC_ASSETBROWSER_TREE_UNITS_EMPTY) then {
@@ -163,8 +122,6 @@
     
     if (_treeIDC != IDC_ASSETBROWSER_TREE_GROUPS_CIV) then {
         _tree = GETUVAR(GVAR(interface),displayNull) displayCtrl _treeIDC;
-        // _tree ctrlSetPosition AB_TREE_POS;
-        // _tree ctrlCommit 0;
         tvClear _tree;
         
         if (_treeIDC == IDC_ASSETBROWSER_TREE_GROUPS_EMPTY) then {
