@@ -1,16 +1,16 @@
 /*
  * Author: Kingsley
- * Gets the color of the given side
+ * Gets the color of the given side integer
  * This function is used over the BIS function to allow changes to the side color
  *
  * Arguments:
- * 0: Side <SIDE>
+ * 0: Side <INT>
  *
  * Return Value:
  * RGBA <ARRAY>
  *
  * Example:
- * _color = [side player] call mars_common_fnc_getSideColorByInt;
+ * _color = [1] call mars_common_fnc_getSideColorByInt;
  *
  * Public: No
  */
