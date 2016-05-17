@@ -15,7 +15,7 @@
  */
 
 #include "script_component.hpp"
-
+/*
 _ctrl = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_treeBase", IDC_ENTITYLIST];
 
 _ctrl ctrlSetPosition [
@@ -36,3 +36,4 @@ GVAR(entityList_civ) = _ctrl tvAdd [[], "CIVILIAN"];
 GVAR(entityList_empty) = _ctrl tvAdd [[], "EMPTY"];
 
 GVAR(entityListPFH) = [{[] call FUNC(handleEntityList);}, 0.1, []] call CBA_fnc_addPerFrameHandler;
+*/

@@ -39,5 +39,15 @@ class MARS_gui_ctrlSliderV: MARS_gui_ctrlDefault {
 };
 
 class MARS_gui_ctrlSliderH: MARS_gui_ctrlSliderV {
+    type = CT_XSLIDER;
     style = SL_HORZ;
+    blinkingPeriod = 0;
+    tooltip = "";
+    tooltipColorShade[] = {0,0,0,1};
+    tooltipColorText[] = {1,1,1,1};
+    tooltipColorBox[] = {0,0,0,1};
+    arrowEmpty = "\A3\ui_f\data\gui\cfg\slider\arrowEmpty_ca.paa";
+    arrowFull = "\A3\ui_f\data\gui\cfg\slider\arrowFull_ca.paa";
+    border = "\A3\ui_f\data\gui\cfg\slider\border_ca.paa";
+    thumb = "#(argb,8,8,3)color(1,1,1,1)";
 };
