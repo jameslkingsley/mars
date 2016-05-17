@@ -60,6 +60,8 @@
 #define ST_TILE_PICTURE 144
 #define ST_WITH_RECT 160
 #define ST_LINE 176
+#define ST_UPPERCASE 0xC0
+#define ST_LOWERCASE 0xD0
 
 #define ST_SHADOW 0x100
 #define ST_NO_RECT 0x200

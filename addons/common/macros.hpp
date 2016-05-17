@@ -1,5 +1,4 @@
 #include "dikCodes.hpp"
-#include "macroExecs.hpp"
 
 #define pixelScale 1.25
 #define pixelGrid 4
@@ -151,3 +150,5 @@
     __EVAL(COLOR_G * 0.00392157),\
     __EVAL(COLOR_B * 0.00392157),\
     __EVAL(COLOR_A * 0.00392157)
+
+#include "macroExecs.hpp"

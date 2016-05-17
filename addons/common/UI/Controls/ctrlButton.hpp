@@ -7,6 +7,7 @@ class MARS_gui_ctrlButton: MARS_gui_ctrlDefaultButton {
     colorFocused[] = {COLOR_ACTIVE_RGBA};
     font = FONT_THIN;
     text = "";
+    size = SIZEEX_PURISTA(SIZEEX_M);
     sizeEx = SIZEEX_PURISTA(SIZEEX_M);
     colorText[] = {COLOR_TEXT_RGBA};
     colorDisabled[] = {COLOR_TEXT_RGB,0.25};

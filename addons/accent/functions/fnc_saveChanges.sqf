@@ -19,5 +19,8 @@
 saveProfileNamespace;
 closeDialog 0;
 
-[] call EFUNC(editor,shutdown);
-[] call EFUNC(editor,openEditor);
+[] spawn {
+    [] call EFUNC(editor,shutdown);
+    sleep 0.1;
+    [] call EFUNC(editor,openEditor);
+};

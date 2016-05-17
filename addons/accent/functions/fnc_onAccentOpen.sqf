@@ -20,11 +20,11 @@ disableSerialization;
 
 params ["_display"];
 
-_ctrlR = _display displayCtrl ACCENT_SLIDER_R;
-_ctrlG = _display displayCtrl ACCENT_SLIDER_G;
-_ctrlB = _display displayCtrl ACCENT_SLIDER_B;
-_ctrlSave = _display displayCtrl ACCENT_BUTTON_SAVE;
-_ctrlSample = _display displayCtrl ACCENT_SAMPLE;
+_ctrlR = _display displayCtrl IDC_ACCENT_SLIDER_R;
+_ctrlG = _display displayCtrl IDC_ACCENT_SLIDER_G;
+_ctrlB = _display displayCtrl IDC_ACCENT_SLIDER_B;
+_ctrlSave = _display displayCtrl IDC_ACCENT_BUTTON_SAVE;
+_ctrlSample = _display displayCtrl IDC_ACCENT_SAMPLE;
 
 {
     _x sliderSetRange [0, 1];

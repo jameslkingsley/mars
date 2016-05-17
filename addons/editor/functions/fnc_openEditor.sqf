@@ -88,7 +88,7 @@ GVAR(pfh) = [{
 
     // Selection handler
     {
-        private _color = [[0,0,0,1], MARS_SIDECOLOR(side _x)] select (alive _x);
+        private _color = [[0,0,0,1], MARS_SIDECOLOR(side group _x)] select (alive _x);
         [_x, _color] call FUNC(drawBoundingBox);
         false
     } count GVAR(selection);

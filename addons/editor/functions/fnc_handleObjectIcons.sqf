@@ -61,7 +61,7 @@
             _unitDistance = _unitPos distance GVAR(camPos);
             if (_unitDistance > ICON_FADE_DISTANCE) exitWith {};
             _alpha = [(linearConversion [0, BOX_FADE_DISTANCE, _unitDistance, 1, 0, true]), 1] select (_unit in GVAR(selection));
-            _color = MARS_SIDECOLOR(side _unit);
+            _color = MARS_SIDECOLOR(side group _unit);
             _color set [3, _alpha];
             
             _iconTexture = _unit getVariable [QGVAR(iconTexture), ""];

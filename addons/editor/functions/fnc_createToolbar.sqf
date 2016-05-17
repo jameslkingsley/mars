@@ -41,8 +41,8 @@ if (count _components > 0) then {
             _action = getText (_x >> "action");
             _children = "true" configClasses (_x);
             _nameCount = count _displayName;
-            _padding = (pixelW * 6) * (sqrt _maxNameCount);
-            _width = (_nameCount * (pixelW * 6)) + _padding;
+            _padding = (pixelW * 6.5) * (sqrt _maxNameCount);
+            _width = (_nameCount * (pixelW * 6.5)) + _padding;
             
             _ctrl = _display ctrlCreate ["MARS_gui_menuTopBase", _idc];
             _ctrl ctrlSetPosition [_axisX, (0 * safeZoneH + safeZoneY), _width, TOOLBAR_CONTEXT_HEIGHT];

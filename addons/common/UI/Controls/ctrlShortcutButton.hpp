@@ -1,18 +1,18 @@
 class MARS_gui_ctrlShortcutButton: MARS_gui_ctrlDefaultButton {
     type = CT_SHORTCUTBUTTON;
     style = ST_UPPERCASE + ST_VCENTER;
-    colorBackground[] = {0,0,0,1};
-    colorBackground2[] = {COLOR_ACTIVE_RGBA};
-    colorBackgroundFocused[] = {COLOR_ACTIVE_RGBA};
-    colorBackgroundActive[] = {COLOR_ACTIVE_RGBA};
-    font = FONT_THIN;
+    font = FONT2_THIN;
     text = "";
-    size = SIZEEX_PURISTA(SIZEEX_M);
-    sizeEx = SIZEEX_PURISTA(SIZEEX_M);
+    size = SIZEEX_PURISTA(SIZE_M);
+    sizeEx = SIZEEX_PURISTA(SIZE_M);
     color[] = {COLOR_TEXT_RGBA};
     color2[] = {COLOR_TEXT_RGBA};
     colorFocused[] = {COLOR_TEXT_RGBA};
     colorDisabled[] = {COLOR_TEXT_RGB,0.25};
+    colorBackground[] = {0,0,0,1};
+    colorBackground2[] = {COLOR_ACTIVE_RGBA};
+    colorBackgroundFocused[] = {COLOR_ACTIVE_RGBA};
+    colorBackgroundActive[] = {COLOR_ACTIVE_RGBA};
     animTextureNormal = "#(argb,8,8,3)color(1,1,1,1)";
     animTextureOver = "#(argb,8,8,3)color(1,1,1,1)";
     animTexturePressed = "#(argb,8,8,3)color(1,1,1,1)";
@@ -46,7 +46,7 @@ class MARS_gui_ctrlShortcutButton: MARS_gui_ctrlDefaultButton {
     class Attributes {
         align = "center";
         color = "#ffffff";
-        font = FONT_THIN;
+        font = FONT2_THIN;
         shadow = 0;
     };
     

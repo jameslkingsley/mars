@@ -20,5 +20,5 @@ _object = [] call FUNC(objectUnderCursor);
 
 if (isNull _object) exitWith {};
 
-private _color = [[0,0,0,1], MARS_SIDECOLOR(side _object)] select (alive _object);
+private _color = [[0,0,0,1], MARS_SIDECOLOR(side group _object)] select (alive _object);
 [_object, _color] call FUNC(drawBoundingBox);

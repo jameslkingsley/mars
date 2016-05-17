@@ -18,11 +18,11 @@
 
 disableSerialization;
 
-_display = findDisplay ACCENT_DISPLAY;
-_ctrlR = _display displayCtrl ACCENT_SLIDER_R;
-_ctrlG = _display displayCtrl ACCENT_SLIDER_G;
-_ctrlB = _display displayCtrl ACCENT_SLIDER_B;
-_ctrlSample = _display displayCtrl ACCENT_SAMPLE;
+_display = findDisplay IDC_ACCENT_DISPLAY;
+_ctrlR = _display displayCtrl IDC_ACCENT_SLIDER_R;
+_ctrlG = _display displayCtrl IDC_ACCENT_SLIDER_G;
+_ctrlB = _display displayCtrl IDC_ACCENT_SLIDER_B;
+_ctrlSample = _display displayCtrl IDC_ACCENT_SAMPLE;
 
 _ctrlR sliderSetPosition COLOR_ACCENT_DEFAULT_R;
 _ctrlG sliderSetPosition COLOR_ACCENT_DEFAULT_G;
