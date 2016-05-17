@@ -24,33 +24,33 @@ class GVAR(interface) {
             onMouseHolding = QUOTE([ARR_2('onMouseHolding',_this)] call FUNC(handleInterface));
         };
         class ScrollBlockTop: MARS_gui_ctrlStatic {
-			idc = IDC_SCROLLBLOCK_TOP;
-			x = safezoneX;
-			y = safezoneY;
-			w = safezoneW;
-			h = (MENUBAR_H + TOOLBAR_H) * GRID_H;
-		};
-		class ScrollBlockBottom: ScrollBlockTop {
-			idc = IDC_SCROLLBLOCK_BOTTOM;
-			x = safezoneX;
-			y = safezoneY + safezoneH - STATUSBAR_H * GRID_H;
-			w = STATUSBAR_W;
-			h = (STATUSBAR_H + 1) * GRID_H;
-		};
-		class ScrollBlockLeft: ScrollBlockTop {
-			idc = IDC_SCROLLBLOCK_LEFT;
-			x = safezoneX;
-			y = safezoneY + (MENUBAR_H + TOOLBAR_H) * GRID_H;
-			w = PANEL_W * GRID_W;
-			h = safezoneH - (MENUBAR_H + TOOLBAR_H + STATUSBAR_H) * GRID_H;	
-		};
-		class ScrollBlockRight: ScrollBlockTop {
-			idc = IDC_SCROLLBLOCK_RIGHT;
-			x = safezoneX + safezoneW - PANEL_W * GRID_W;
-			y = safezoneY + (SIZE_M + TOOLBAR_H) * GRID_H;
-			w = PANEL_W * GRID_W;
-			h = safezoneH - (MENUBAR_H + TOOLBAR_H) * GRID_H;	
-		};
+            idc = IDC_SCROLLBLOCK_TOP;
+            x = safezoneX;
+            y = safezoneY;
+            w = safezoneW;
+            h = (MENUBAR_H + TOOLBAR_H) * GRID_H;
+        };
+        class ScrollBlockBottom: ScrollBlockTop {
+            idc = IDC_SCROLLBLOCK_BOTTOM;
+            x = safezoneX;
+            y = safezoneY + safezoneH - STATUSBAR_H * GRID_H;
+            w = STATUSBAR_W;
+            h = (STATUSBAR_H + 1) * GRID_H;
+        };
+        class ScrollBlockLeft: ScrollBlockTop {
+            idc = IDC_SCROLLBLOCK_LEFT;
+            x = safezoneX;
+            y = safezoneY + (MENUBAR_H + TOOLBAR_H) * GRID_H;
+            w = PANEL_W * GRID_W;
+            h = safezoneH - (MENUBAR_H + TOOLBAR_H + STATUSBAR_H) * GRID_H;	
+        };
+        class ScrollBlockRight: ScrollBlockTop {
+            idc = IDC_SCROLLBLOCK_RIGHT;
+            x = safezoneX + safezoneW - PANEL_W * GRID_W;
+            y = safezoneY + (SIZE_M + TOOLBAR_H) * GRID_H;
+            w = PANEL_W * GRID_W;
+            h = safezoneH - (MENUBAR_H + TOOLBAR_H) * GRID_H;	
+        };
     };
     class Controls {
         class ButtonExit: MARS_gui_ctrlButtonPicture {
