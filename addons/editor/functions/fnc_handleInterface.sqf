@@ -48,9 +48,14 @@ switch (toLower _mode) do {
             // [] call FUNC(handleSelectionDir); -- see #6
         };
 
+        if ((_button == 0) && GVAR(canContext)) then {
+            [] call FUNC(placeNewObject);
+        };
+
         // Detect right click
         if ((_button == 1) && (GVAR(camMode) == 1)) then {
             // In first person toggle sights mode
+            // Is this needed?
             [] call FUNC(transitionCamera);
         };
     };

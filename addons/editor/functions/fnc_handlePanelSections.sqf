@@ -146,6 +146,7 @@ switch (_type) do {
             _treeCtrl = _treeParent controlsGroupCtrl _x;
             _treeCtrl ctrlShow (_treeIDC == _x);
             _treeCtrl ctrlEnable (_treeIDC == _x);
+            if (_treeIDC == _x) then {GVAR(abActiveTree) = _x};
         } forEach [
             IDC_ASSETBROWSER_TREE_UNITS_WEST,
             IDC_ASSETBROWSER_TREE_UNITS_EAST,

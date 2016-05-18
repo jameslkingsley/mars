@@ -71,8 +71,8 @@ _display displayAddEventHandler ["MouseButtonDown", {
 // Status Bar
 [] call FUNC(handleStatusBar);
 
-// Mission Name
-// (_display displayCtrl IDC_MISSIONNAME) ctrlSetText briefingName;
+// Invoke the default right-panel state
+["rightModes", [controlNull, GVAR(abCurrentMode)]] call FUNC(handlePanelSections);
 
 // Reset interruptions
 GVAR(interrupts) = [];
@@ -97,6 +97,9 @@ GVAR(pfh) = [{
     
     // Status bar - grid position
     (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_GRID) ctrlSetText format["%1", mapGridPosition GVAR(freeCamera)];
+    
+    // Asset browser placing objects
+    [] call FUNC(prepNewObject);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(delayedPFH) = [{

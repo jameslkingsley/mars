@@ -34,3 +34,4 @@ PREP(onToolbarClick);
 PREP(closeEditor);
 PREP(handleStatusBar);
 PREP(handlePanelSections);
+PREP(prepNewObject);

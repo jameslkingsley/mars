@@ -43,6 +43,7 @@ GVAR(subtabs) = [];
 GVAR(abCurrentTab) = 0;
 GVAR(abCurrentMode) = 0;
 GVAR(abCurrentSubmode) = 0;
+GVAR(abActiveTree) = -1;
 
 // Context Menu
 GVAR(canContext) = true;
