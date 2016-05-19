@@ -1,4 +1,4 @@
-name = "MarsTEST";
+name = "Mars";
 picture = "mars_logo.paa";
 actionName = "GitHub";
 action = "https://github.com/jameslkingsley/Mars";

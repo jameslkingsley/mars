@@ -15,7 +15,7 @@
     </a>
 </p>
 
-MarsTEST is designed with large communities in mind. When you're the game master for a mission, you take on a big responsibility to deliver a fun experience to the players. Current implementations for real-time control don't offer enough detail and cause a lot of headaches when trying to do very specific things. The goal of Mars is to create a platform that's extensible and robust allowing communities to create their own additions and customise Mars to suit their needs.
+Mars is designed with large communities in mind. When you're the game master for a mission, you take on a big responsibility to deliver a fun experience to the players. Current implementations for real-time control don't offer enough detail and cause a lot of headaches when trying to do very specific things. The goal of Mars is to create a platform that's extensible and robust allowing communities to create their own additions and customise Mars to suit their needs.
 
 ## Coding Guidelines
 This project follows the [ACE3 coding guidelines](http://ace3mod.com/wiki/development/coding-guidelines.html). Here's some basic rules:
