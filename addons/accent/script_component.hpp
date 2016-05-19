@@ -16,4 +16,10 @@
 
 #include "\z\mars\addons\main\script_macros.hpp"
 
-#include "UI\resinc.hpp"
+#define IDC_ACCENT_DISPLAY 600005
+#define IDC_ACCENT_SLIDER_R 1900
+#define IDC_ACCENT_SLIDER_G 1901
+#define IDC_ACCENT_SLIDER_B 1902
+#define IDC_ACCENT_BUTTON_SAVE 1903
+#define IDC_ACCENT_BUTTON_DEFAULT 1905
+#define IDC_ACCENT_SAMPLE 1904
