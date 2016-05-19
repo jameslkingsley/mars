@@ -81,7 +81,7 @@ switch (toLower _mode) do {
 
             // Right Click & Can Context
             case (_button == 1 && GVAR(canContext)): {
-                if (count GVAR(selection) > 0) then {
+                if (count GVAR(selection) > 0 && count GVAR(abSelectedObject) == 0) then {
                     // Already has objects in selection
                     [] call FUNC(closeContextMenu);
                     [] call FUNC(handleSelToPos);
@@ -90,6 +90,12 @@ switch (toLower _mode) do {
                     [] call FUNC(selectObject);
                     [] call FUNC(handleContextMenu);
                 };
+                
+                [{
+                    [{
+                        GVAR(abSelectedObject) = [];
+                    }, []] call EFUNC(common,execNextFrame);
+                }, []] call EFUNC(common,execNextFrame);
             };
         };
 
