@@ -36,3 +36,4 @@ PREP(handleStatusBar);
 PREP(handlePanelSections);
 PREP(prepNewObject);
 PREP(onABTreeSelChanged);
+PREP(addObjectToSelection);
