@@ -14,3 +14,4 @@ PREP(roundToN);
 PREP(getSideColorByInt);
 PREP(getSpawnMachine);
 PREP(createObjectOnID);
+PREP(getSideByInt);
