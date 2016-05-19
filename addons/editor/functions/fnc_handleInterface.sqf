@@ -224,7 +224,7 @@ switch (toLower _mode) do {
     case "onkeyup": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
         
-        TRACE_1("onkeyup",_dik);
+        // TRACE_1("onkeyup",_dik);
 
         if (!isNil QGVAR(selectionDirPFH)) then {
             [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;
