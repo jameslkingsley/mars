@@ -12,3 +12,4 @@ PREP(_execLocalCode);
 PREP(removeAllWaypoints);
 PREP(roundToN);
 PREP(getSideColorByInt);
+PREP(getSpawnLocation);
