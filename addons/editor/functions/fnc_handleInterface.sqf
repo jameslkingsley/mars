@@ -49,7 +49,7 @@ switch (toLower _mode) do {
         };
 
         if ((_button == 0) && GVAR(canContext)) then {
-            [] call FUNC(placeNewObject);
+            [GVAR(ctrlKey)] call FUNC(placeNewObject);
         };
 
         // Detect right click
@@ -145,6 +145,7 @@ switch (toLower _mode) do {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
 
         if (!GVAR(shiftKey)) then {GVAR(shiftKey) = true};
+        if (!GVAR(ctrlKey)) then {GVAR(ctrlKey) = true};
 
         // Handle held keys (prevent repeat calling)
         if (GVAR(heldKeys) param [_dik,false]) exitWith {};
@@ -237,6 +238,7 @@ switch (toLower _mode) do {
         };
 
         if (GVAR(shiftKey)) then {GVAR(shiftKey) = false};
+        if (GVAR(ctrlKey)) then {GVAR(ctrlKey) = false};
 
         // No longer being held
         GVAR(heldKeys) set [_dik,nil];
