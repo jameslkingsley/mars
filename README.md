@@ -24,6 +24,7 @@ This project follows the [ACE3 coding guidelines](http://ace3mod.com/wiki/develo
 * Use camel case
 * Use the standard [function header](http://ace3mod.com/wiki/development/coding-guidelines.html#headers)
 * Braces should be on the same line
+* Make sure you've read this article on commit messages: http://chris.beams.io/posts/git-commit/
 
 ## Contributing
 You can help out with the ongoing development by looking for potential bugs in the code base, or by contributing new features. To contribute something to Mars, simply fork this repository and submit your pull requests for review by other collaborators. Feel free to join the [Discord server](https://discord.gg/0vfzEmmrAOu1T2uk) for help on setting up Mars and discussing its development.
