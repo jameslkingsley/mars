@@ -35,5 +35,6 @@ PREP(closeEditor);
 PREP(handleStatusBar);
 PREP(handlePanelSections);
 PREP(prepNewObject);
+PREP(placeNewObject);
 PREP(onABTreeSelChanged);
 PREP(addObjectToSelection);
