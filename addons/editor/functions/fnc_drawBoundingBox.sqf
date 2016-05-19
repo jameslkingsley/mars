@@ -22,7 +22,7 @@ params [["_target", objNull], ["_color", [1,1,1,1]]];
 
 if (isNull _target) exitWith {};
 
-_color set [3,0.33];
+_color set [3, ([0.33, 1] select (_target in GVAR(selection)))];
 (boundingBoxReal _target) params ["_box0", "_box1"];
 
 {
