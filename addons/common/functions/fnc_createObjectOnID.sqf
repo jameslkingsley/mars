@@ -22,19 +22,36 @@
 params [
     ["_targetID", -1, [0]],
     ["_classname", "", [""]],
+    ["_type", "unit", [""]],
+    ["_side", sideUnknown, [sideUnknown]],
     ["_initCode", {}, [{},""]],
-    ["_isOnTarget", false, [false]]
+    ["_isOnTarget", false, [false]],
+    ["_caller", objNull, [objNull]]
 ];
 
-if (_netID == -1 || _classname == "") exitWith {false};
+if (_targetID == -1 || _classname == "" || _type == "") exitWith {false};
 
 if (typeName _initCode == "STRING") then {
     _initCode = compile _initCode;
 };
 
 if (_isOnTarget) exitWith {
-    _object = createVehicle [_classname, [0,0,5], [], 0, "NONE"];
-    _object call _initCode;
+    switch (_type) do {
+        case "unit": {
+            _group = createGroup _side;
+            _object = _group createUnit [_classname, [0,0,5], [], 0, "NONE"];
+            [_object] join _group;
+            _object call _initCode;
+        };
+        case "vehicle": {
+            _object = createVehicle [_classname, [0,0,5], [], 0, "NONE"];
+            _object call _initCode;
+        };
+    };
+    
+    if (!isNull _caller && !isNil "_object" && {!isNull _object}) then {
+        [_object] remoteExec [QEFUNC(editor,addObjectToSelection), _caller];
+    };
 };
 
-[_targetID, _classname, _initCode, true] remoteExec [QFUNC(createObjectOnID), _targetID];
+[_targetID, _classname, _type, _side, _initCode, true, player] remoteExec [QFUNC(createObjectOnID), _targetID];
