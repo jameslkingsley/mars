@@ -12,4 +12,5 @@ PREP(_execLocalCode);
 PREP(removeAllWaypoints);
 PREP(roundToN);
 PREP(getSideColorByInt);
-PREP(getSpawnLocation);
+PREP(getSpawnMachine);
+PREP(createObjectOnID);
