@@ -44,6 +44,7 @@ GVAR(abCurrentTab) = 0;
 GVAR(abCurrentMode) = 0;
 GVAR(abCurrentSubmode) = 0;
 GVAR(abActiveTree) = -1;
+GVAR(abSelectedObject) = [];
 
 // Context Menu
 GVAR(canContext) = true;

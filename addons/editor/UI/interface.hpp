@@ -422,7 +422,7 @@ class GVAR(interface) {
                                     multiselectEnabled = 0;
                                     colorBackground[] = {0,0,0,0};
                                     colorBorder[] = {0,0,0,0};
-                                    onTreeSelChanged = "";
+                                    onTreeSelChanged = QUOTE(_this call FUNC(onABTreeSelChanged));
                                     onMouseButtonDown = "";
                                     onMouseButtonUp = "";
                                     disableKeyboardSearch = 1;
