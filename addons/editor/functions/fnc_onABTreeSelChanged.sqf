@@ -26,16 +26,33 @@ if (count _selected == 0) exitWith {
     GVAR(abSelectedObject) = [];
 };
 
-_selected params ["_type","_classname"];
+_selected params [
+    ["_type", ""],
+    ["_classname", ""],
+    ["_groupPath", []]
+];
+
+#define MAN_VEHICLE \
+    _cfg = (configFile >> "CfgVehicles" >> _classname);\
+    _icon = getText (_cfg >> "icon");\
+    _side = getNumber (_cfg >> "side");\
+    _color = [_side] call EFUNC(common,getSideColorByInt);\
+    _iconTex = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};\
+    GVAR(abSelectedObject) = [_type, _classname, _iconTex, _color];
 
 switch (_type) do {
-    case "unit": {
-        _cfg = (configFile >> "CfgVehicles" >> _classname);
-        _icon = getText (_cfg >> "icon");
-        _side = getNumber (_cfg >> "side");
-        _color = [_side] call EFUNC(common,getSideColorByInt);
-        _iconTex = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
-        GVAR(abSelectedObject) = [_type, _classname, _iconTex, _color];
+    case "man": {
+        MAN_VEHICLE
     };
-    case "group": {};
+    case "vehicle": {
+        MAN_VEHICLE
+    };
+    case "group": {
+        _groupPath params ["_root", "_side", "_faction", "_type", "_group"];
+        _groupConfig = (configFile >> _root >> _side >> _faction >> _type >> _group);
+        _icon = getText (_groupConfig >> "icon");
+        _side = getNumber (_groupConfig >> "side");
+        _color = [_side] call EFUNC(common,getSideColorByInt);
+        GVAR(abSelectedObject) = [_type, _classname, _icon, _color, _groupPath];
+    };
 };
