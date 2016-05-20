@@ -25,6 +25,7 @@ params [
     ["_type", "unit", [""]],
     ["_side", sideUnknown, [sideUnknown]],
     ["_initCode", {}, [{},""]],
+    ["_extraArgs", [], [[]]],
     ["_isOnTarget", false, [false]],
     ["_caller", objNull, [objNull]]
 ];
@@ -37,7 +38,7 @@ if (typeName _initCode == "STRING") then {
 
 if (_isOnTarget) exitWith {
     switch (_type) do {
-        case "unit": {
+        case "man": {
             _group = createGroup _side;
             _object = _group createUnit [_classname, [0,0,5], [], 0, "NONE"];
             [_object] join _group;
@@ -47,6 +48,17 @@ if (_isOnTarget) exitWith {
             _object = createVehicle [_classname, [0,0,5], [], 0, "NONE"];
             _object call _initCode;
         };
+        case "group": {
+            _group = createGroup _side;
+            _groupPath params ["_root", "_side", "_faction", "_type", "_group"];
+            _groupConfig = (configFile >> _root >> _side >> _faction >> _type >> _group);
+            _icon = getText (_groupConfig >> "icon");
+            _side = getNumber (_groupConfig >> "side");
+            _color = [_side] call EFUNC(common,getSideColorByInt);
+            _object = _group createUnit [_classname, [0,0,5], [], 0, "NONE"];
+            [_object] join _group;
+            _object call _initCode;
+        };
     };
     
     if (!isNull _caller && !isNil "_object" && {!isNull _object}) then {
@@ -54,4 +66,4 @@ if (_isOnTarget) exitWith {
     };
 };
 
-[_targetID, _classname, _type, _side, _initCode, true, player] remoteExec [QFUNC(createObjectOnID), _targetID];
+[_targetID, _classname, _type, _side, _initCode, [], true, player] remoteExec [QFUNC(createObjectOnID), _targetID];
