@@ -20,7 +20,7 @@
 #include "script_component.hpp"
 
 params [
-    ["_targetID", -1, [0]],
+    ["_targetID", -1],
     ["_classname", "", [""]],
     ["_type", "unit", [""]],
     ["_side", sideUnknown, [sideUnknown]],
