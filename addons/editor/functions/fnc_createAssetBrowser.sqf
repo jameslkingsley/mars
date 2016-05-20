@@ -52,7 +52,13 @@
                     private _icon = getText ((_x select 0) >> "icon");
                     private _iconTex = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
                     private _side = getNumber ((_x select 0) >> "side");
-                    private _dataStr = format ["['unit','%1']", configName (_x select 0)];
+                    private _objType = if (getNumber ((_x select 0) >> "isMan") == 1) then {"man"} else {"vehicle"};
+                    private _dataStr = format [
+                        "['%1','%2']",
+                        _objType,
+                        configName (_x select 0)
+                    ];
+                    
                     _unitPath = _tree tvAdd [[_vcPath], (_x select 1)];
                     _tree tvSetData [[_vcPath,_unitPath], _dataStr];
                     _tree tvSetPicture [[_vcPath,_unitPath], _iconTex];
@@ -104,7 +110,13 @@
                         private _icon = getText ((_x select 0) >> "icon");
                         private _iconTex = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
                         private _side = getNumber ((_x select 0) >> "side");
-                        private _dataStr = format ["['unit','%1']", configName (_x select 0)];
+                        private _objType = if (getNumber ((_x select 0) >> "isMan") == 1) then {"man"} else {"vehicle"};
+                        private _dataStr = format [
+                            "['%1','%2']",
+                            _objType,
+                            configName (_x select 0)
+                        ];
+                        
                         _unitPath = _tree tvAdd [[_factionParent,_vcPath], (_x select 1)];
                         _tree tvSetData [[_factionParent,_vcPath,_unitPath], _dataStr];
                         _tree tvSetPicture [[_factionParent,_vcPath,_unitPath], _iconTex];
@@ -167,6 +179,7 @@
                         private _icon = getText ((_x select 0) >> "icon");
                         private _side = getNumber ((_x select 0) >> "side");
                         private _dataStr = format ["['group','%1']", configName (_x select 0)];
+                        
                         _unitPath = _tree tvAdd [[_vcPath], (_x select 1)];
                         _tree tvSetData [[_vcPath,_unitPath], _dataStr];
                         _tree tvSetPicture [[_vcPath,_unitPath], _icon];
@@ -193,6 +206,7 @@
                 private _cfg = _x select 0;
                 private _name = _x select 1;
                 
+                _grpClassname = configName (_cfg);
                 _grpParent = _tree tvAdd [[], _name];
                 _cats = "true" configClasses (_cfg);
                 _cats = _cats apply {[_x, getText (_x >> "name")]};
@@ -201,14 +215,21 @@
                 {
                     private _name = _x select 1;
                     private _entities = "true" configClasses (_x select 0);
+                    _catClassname = configName (_x select 0);
                     _entities = _entities apply {[_x, getText (_x >> "name")]};
                     _entities sort true;
                     _catParent = _tree tvAdd [[_grpParent], _name];
                     
                     {
+                        private _entClassname = configName ((_x select 0));
                         private _icon = getText ((_x select 0) >> "icon");
                         private _side = getNumber ((_x select 0) >> "side");
-                        private _dataStr = format ["['group','%1']", configName (_x select 0)];
+                        private _dataStr = format [
+                            "['group','%1',%2]",
+                            configName (_x select 0),
+                            ["CfgGroups", _grpSide, _grpClassname, _catClassname, _entClassname]
+                        ];
+                        
                         _entParent = _tree tvAdd [[_grpParent,_catParent], (_x select 1)];
                         _tree tvSetData [[_grpParent,_catParent,_entParent], _dataStr];
                         _tree tvSetPicture [[_grpParent,_catParent,_entParent], _icon];
