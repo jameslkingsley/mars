@@ -16,12 +16,10 @@
 
 #include "script_component.hpp"
 
-private ["_configStr","_config"];
+params [["_config", "", [""]]];
 
-_configStr = "configFile";
-{_configStr = _configStr + " >> " + _x} forEach _this;
-_config = call compile _configStr;
+private _cfg = call compile _config;
 
-if (getNumber (_config >> "isMan") == 1) exitWith {"man"};
+if (getNumber (_cfg >> "isMan") == 1) exitWith {"man"};
 
 "vehicle"
