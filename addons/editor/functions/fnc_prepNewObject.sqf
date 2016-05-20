@@ -21,7 +21,6 @@ if (count GVAR(abSelectedObject) == 0) exitWith {};
 GVAR(abSelectedObject) params ["_type","_classname","_iconTex","_color"];
 
 private _worldPos = screenToWorld GVAR(mousePos);
-//_worldPos set [2, 1];
 
 drawIcon3D [
     _iconTex,
