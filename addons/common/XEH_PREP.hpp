@@ -17,3 +17,4 @@ PREP(createObjectOnID);
 PREP(getSideByInt);
 PREP(getObjectType);
 PREP(getRankNumber);
+PREP(addHeight);
