@@ -22,7 +22,8 @@ params [
     ["_height", 0, [0]]
 ];
 
-if (count _position == 0) exitWith {[]};
+if (count _position != 3) exitWith {[]};
 
-_position params ["_axisX","_axisY","_axisZ"];
-[_axisX, _axisY, (_axisZ + _height)]
+_position set [2, (_position select 2) + _height];
+
+_position
