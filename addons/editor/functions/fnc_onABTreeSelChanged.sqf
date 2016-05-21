@@ -27,7 +27,7 @@ if (count _selected == 0) exitWith {
 };
 
 _selected params [
-    ["_type", ""],
+    ["_objType", ""],
     ["_classname", ""],
     ["_groupPath", []]
 ];
@@ -38,9 +38,9 @@ _selected params [
     _side = getNumber (_cfg >> "side");\
     _color = [_side] call EFUNC(common,getSideColorByInt);\
     _iconTex = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};\
-    GVAR(abSelectedObject) = [_type, _classname, _iconTex, _color];
+    GVAR(abSelectedObject) = [_objType, _classname, _iconTex, _color];
 
-switch (_type) do {
+switch (_objType) do {
     case "man": {
         MAN_VEHICLE
     };
@@ -53,6 +53,6 @@ switch (_type) do {
         _icon = getText (_groupConfig >> "icon");
         _side = getNumber (_groupConfig >> "side");
         _color = [_side] call EFUNC(common,getSideColorByInt);
-        GVAR(abSelectedObject) = [_type, _classname, _icon, _color, _groupPath];
+        GVAR(abSelectedObject) = [_objType, _classname, _icon, _color, _groupPath];
     };
 };
