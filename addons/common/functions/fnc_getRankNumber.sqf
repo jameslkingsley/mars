@@ -16,7 +16,7 @@
  *     COLONEL: 7
  *
  * Example:
- * [] call mars_common_fnc_getRankNumber;
+ * ["SERGEANT"] call mars_common_fnc_getRankNumber;
  *
  * Public: Yes
  */
@@ -25,7 +25,7 @@
 
 params [["_rank", "", [""]]];
 
-if (_rank == "") exitWith {};
+if (_rank == "") exitWith {-1};
 
 switch (_rank) do {
     case "PRIVATE": {1};
