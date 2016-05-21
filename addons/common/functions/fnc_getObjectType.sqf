@@ -3,13 +3,13 @@
  * Gets the objects' type based on the given config
  *
  * Arguments:
- * 0: Object config path <ARRAY>
+ * 0: Object config string <STRING>
  *
  * Return Value:
  * Object type (man, vehicle, group) <STRING>
  *
  * Example:
- * ["CfgVehicles", "B_soldier_F"] call mars_common_fnc_getObjectType;
+ * TODO
  *
  * Public: Yes
  */
