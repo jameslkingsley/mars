@@ -22,7 +22,7 @@ if (count GVAR(abSelectedObject) == 0) exitWith {};
 
 GVAR(abSelectedObject) params ["_objType","_classname","_iconTex","_color", ["_groupPath", []]];
 
-_worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
+_worldPos = [] call FUNC(getSurfaceUnderCursor);
 
 switch (_objType) do {
     case "man": {
