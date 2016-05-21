@@ -38,3 +38,4 @@ PREP(prepNewObject);
 PREP(placeNewObject);
 PREP(onABTreeSelChanged);
 PREP(addObjectToSelection);
+PREP(addObjectToStaticCache);
