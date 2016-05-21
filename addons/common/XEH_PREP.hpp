@@ -16,3 +16,4 @@ PREP(getSpawnMachine);
 PREP(createObjectOnID);
 PREP(getSideByInt);
 PREP(getObjectType);
+PREP(getRankNumber);
