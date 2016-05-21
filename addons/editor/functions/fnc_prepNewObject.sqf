@@ -1,6 +1,7 @@
 /*
  * Author: Kingsley
  * Prepares a new object from the asset browser
+ * This is called on every frame
  *
  * Arguments:
  * None
