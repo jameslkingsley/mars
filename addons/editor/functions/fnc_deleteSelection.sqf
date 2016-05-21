@@ -28,7 +28,7 @@
         _crew = crew _x;
         
         if (count _crew > 0) then {
-            if !({isPlayer _x} count _crew > 0) then {
+            if ({isPlayer _x} count _crew == 0) then {
                 {deleteVehicle _x} forEach _crew;
                 deleteVehicle _x;
             };
