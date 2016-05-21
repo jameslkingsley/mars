@@ -16,12 +16,16 @@
 
 #include "script_component.hpp"
 
+if (count GVAR(selection) == 0) then {
+    GVAR(selection) = [([] call FUNC(objectUnderCursor))];
+};
+
 GVAR(selectionDirPFH) = [{
     _worldPos = AGLtoASL screenToWorld GVAR(mousePos);
     
     {
         if (!isPlayer _x) then {
-            _dir = [(getPosASLVisual _x), _worldPos] call BIS_fnc_dirTo;
+            _dir = (getPosASLVisual _x) getDir _worldPos;
             _x setFormDir _dir;
             _x setDir _dir;
         };
