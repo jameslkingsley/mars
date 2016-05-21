@@ -36,6 +36,7 @@ GVAR(entityList_east) = 0;
 GVAR(entityList_guer) = 0;
 GVAR(entityList_civ) = 0;
 GVAR(entityList_empty) = 0;
+GVAR(placedStaticObjects) = [];
 
 // Asset Browser
 GVAR(tabs) = [];
