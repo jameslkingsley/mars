@@ -38,14 +38,14 @@ if (_isOnTarget) exitWith {
     switch (_type) do {
         case "man": {
             _group = createGroup _side;
-            _object = _group createUnit [_classname, ASLtoAGL _worldPos, [], 0, "NONE"];
+            _object = _group createUnit [_classname, ASLtoAGL _worldPos, [], 0, "CAN_COLLIDE"];
             [_object] join _group;
             _object call _initCode;
             [_object] remoteExec [QEFUNC(editor,addObjectToSelection), _caller];
         };
         case "vehicle": {
             _group = createGroup _side;
-            _object = createVehicle [_classname, ASLtoAGL _worldPos, [], 0, "NONE"];
+            _object = createVehicle [_classname, ASLtoAGL _worldPos, [], 0, "CAN_COLLIDE"];
             createVehicleCrew _object;
             {[_x] join _group} forEach (crew _object);
             _object call _initCode;
@@ -74,7 +74,7 @@ if (_isOnTarget) exitWith {
                 _unitPos set [2, 0];
                 
                 if (_unitIsMan) then {
-                    _unitObj = _newGroup createUnit [_unitClassname, _unitPos, [], 0, "NONE"];
+                    _unitObj = _newGroup createUnit [_unitClassname, _unitPos, [], 0, "CAN_COLLIDE"];
                     _unitObj setUnitRank _unitRank;
                     [_unitObj] join _newGroup;
                     
@@ -85,7 +85,7 @@ if (_isOnTarget) exitWith {
                     
                     _retUnits pushBack _unitObj;
                 } else {
-                    _object = createVehicle [_unitClassname, _unitPos, [], 0, "NONE"];
+                    _object = createVehicle [_unitClassname, _unitPos, [], 0, "CAN_COLLIDE"];
                     createVehicleCrew _object;
                     {[_x] join _newGroup} forEach (crew _object);
                     _retUnits pushBack _object;
