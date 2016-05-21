@@ -36,7 +36,7 @@
 #define MENU_HEIGHT (MENUBAR_H * (pixelH * pixelScale * pixelGrid))
 #define CAM_SHIFT_SPEED_COEF 5
 
-#define TYPE_SEARCH ["Man","Car","Air","Tank","Truck","Ship"]
+#define TYPE_SEARCH ["Man","Car","Air","Tank","Truck","Ship","Static"]
 #define FULL_TYPE_SEARCH [(screenToWorld GVAR(mousePos)), TYPE_SEARCH, 5]
 
 #define TOOLBAR_CONTEXT_WIDTH (0.12 * safeZoneW)
