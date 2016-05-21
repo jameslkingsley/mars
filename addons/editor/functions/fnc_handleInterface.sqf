@@ -129,7 +129,7 @@ switch (toLower _mode) do {
             [] call FUNC(handleSelectionDir);
         };
 
-        if (GVAR(mouse) select 0) then {
+        if ((GVAR(mouse) select 0) && GVAR(canContext) && !GVAR(shiftKey) && !GVAR(ctrlKey)) then {
             //[true] call FUNC(handleLeftDrag);
         };
 
