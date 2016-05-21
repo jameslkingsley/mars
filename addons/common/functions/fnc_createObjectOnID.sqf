@@ -49,6 +49,7 @@ if (_isOnTarget) exitWith {
             createVehicleCrew _object;
             {[_x] join _group} forEach (crew _object);
             _object call _initCode;
+            [_object] remoteExec [QEFUNC(editor,addObjectToStaticCache), _caller];
             [_object] remoteExec [QEFUNC(editor,addObjectToSelection), _caller];
         };
         case "group": {
