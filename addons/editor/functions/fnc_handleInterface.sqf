@@ -44,10 +44,6 @@ switch (toLower _mode) do {
         _args params ["_ctrl","_button"];
         GVAR(mouse) set [_button,true];
 
-        if ((_button == 0) && GVAR(shiftKey)) then {
-            // [] call FUNC(handleSelectionDir); -- see #6
-        };
-
         if ((_button == 0) && GVAR(canContext)) then {
             [GVAR(ctrlKey)] call FUNC(placeNewObject);
         };
@@ -127,6 +123,10 @@ switch (toLower _mode) do {
 
         if (GVAR(mouse) select 1) then {
             GVAR(canContext) = false;
+        };
+        
+        if ((GVAR(mouse) select 0) && GVAR(shiftKey)) then {
+            [] call FUNC(handleSelectionDir);
         };
 
         if (GVAR(mouse) select 0) then {
