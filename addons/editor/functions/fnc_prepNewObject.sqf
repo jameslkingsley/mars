@@ -17,7 +17,7 @@
 
 #include "script_component.hpp"
 
-#define SURFACE_OBJECT "Sign_Sphere100cm_F"
+#define SURFACE_OBJECT "Land_CerealsBox_F"
 
 if (count GVAR(abSelectedObject) == 0) exitWith {};
 
@@ -64,7 +64,7 @@ if (count _groupPath > 0) then {
     ];
 };
 
-_surfacePos = ASLtoAGL ([] call FUNC(getSurfaceUnderCursor));
+_surfacePos = ASLtoAGL ([GVAR(prepSurfaceSphere)] call FUNC(getSurfaceUnderCursor));
 
 if (round(_surfacePos select 2) > round(_worldPos select 2)) then {
     // Cursor position is over a surface that is higher than the terrain
