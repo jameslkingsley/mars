@@ -59,7 +59,7 @@ if (_isActive) then {
 } else {
     if (!isNil QGVAR(movingObjectsPFH)) then {
         [GVAR(movingObjectsPFH)] call CBA_fnc_removePerFrameHandler;
-        GVAR(movingObjectsPFH) = 0;
+        GVAR(movingObjectsPFH) = -1;
     };
 
     {
