@@ -38,7 +38,7 @@
             drawIcon3D [
                 _texture,
                 _color,
-                [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 5],
+                [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + ICON_LEADER_HEIGHT],
                 1,
                 1,
                 0,
@@ -49,7 +49,7 @@
             
             drawLine3D [
                 _leaderPos,
-                [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 5],
+                [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + ICON_LEADER_HEIGHT],
                 [0,0,0,_alpha]
             ];
         };

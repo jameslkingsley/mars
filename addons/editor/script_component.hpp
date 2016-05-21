@@ -48,6 +48,7 @@
 // #define ICON_FADE_DISTANCE (profileNamespace getVariable [QEGVAR(clientmenu,viewDistance), 2000])
 #define ICON_FADE_DISTANCE 1500
 #define BOX_FADE_DISTANCE 500
+#define ICON_LEADER_HEIGHT 7.5
 
 #define AB_TREE_POS [\
         (0.85 * safeZoneW + safeZoneX),\
