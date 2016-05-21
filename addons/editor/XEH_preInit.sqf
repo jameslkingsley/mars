@@ -37,6 +37,7 @@ GVAR(entityList_guer) = 0;
 GVAR(entityList_civ) = 0;
 GVAR(entityList_empty) = 0;
 GVAR(placedStaticObjects) = [];
+GVAR(prepSurfaceSphere) = objNull;
 
 // Asset Browser
 GVAR(tabs) = [];

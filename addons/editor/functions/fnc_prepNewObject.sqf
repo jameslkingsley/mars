@@ -17,6 +17,8 @@
 
 #include "script_component.hpp"
 
+#define SURFACE_OBJECT "Sign_Sphere100cm_F"
+
 if (count GVAR(abSelectedObject) == 0) exitWith {};
 
 GVAR(abSelectedObject) params ["_type","_classname","_iconTex","_color",["_groupPath",[]]];
@@ -60,4 +62,18 @@ if (count _groupPath > 0) then {
         1,
         0
     ];
+};
+
+_surfacePos = ASLtoAGL ([] call FUNC(getSurfaceUnderCursor));
+
+if (round(_surfacePos select 2) > round(_worldPos select 2)) then {
+    // Cursor position is over a surface that is higher than the terrain
+    if (isNull GVAR(prepSurfaceSphere)) then {
+        GVAR(prepSurfaceSphere) = SURFACE_OBJECT createVehicleLocal _surfacePos;
+    };
+    
+    GVAR(prepSurfaceSphere) setPosASL (AGLtoASL _surfacePos);
+} else {
+    deleteVehicle GVAR(prepSurfaceSphere);
+    GVAR(prepSurfaceSphere) = objNull;
 };
