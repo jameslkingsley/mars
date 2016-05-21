@@ -3,7 +3,7 @@
  * Gets the surface detected underneath the cursor position in world space
  *
  * Arguments:
- * None
+ * 0: Ignore object (optional) <OBJECT>
  *
  * Return Value:
  * Surface position ASL <POSITION>
@@ -16,6 +16,8 @@
 
 #include "script_component.hpp"
 
+params [["_ignoreObj", objNull, [objNull]]];
+
 private ["_worldPos", "_camPos", "_objects"];
 
 _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
@@ -25,7 +27,7 @@ _objects = lineIntersectsSurfaces [
     _camPos,
     _worldPos,
     GVAR(freeCamera),
-    objNull,
+    _ignoreObj,
     true,
     1
 ];
