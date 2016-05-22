@@ -21,7 +21,7 @@ params [["_objects", [], [[]]]];
 if (count _objects == 0) exitWith {};
 
 _worldPos = screenToWorld GVAR(mousePos);
-_closest = [objNull, 0];
+_closest = [objNull, 9999];
 
 {
     private _distance = _x distance _worldPos;
