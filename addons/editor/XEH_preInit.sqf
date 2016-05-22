@@ -72,6 +72,10 @@ GVAR(ctrlKey) = false;
 GVAR(altKey) = false;
 GVAR(shiftKey) = false;
 
+// Object Dragging
+GVAR(objectDragAnchor) = objNull;
+GVAR(objectsDragging) = [];
+
 GVAR(isRemoteControl) = false;
 
 ADDON = true;
