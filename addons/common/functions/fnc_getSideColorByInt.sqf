@@ -21,11 +21,11 @@ params [
     ["_side", -1, [0]]
 ];
 
-if (_side < 0 || _side > 3) exitWith {COLOR_EMPTY_RGBA_ARR};
+if (_side < 0 || _side > 3) exitWith {COLOR_EMPTY_RGBA};
 
 [
-    COLOR_EAST_RGBA_ARR,
-    COLOR_WEST_RGBA_ARR,
-    COLOR_GUER_RGBA_ARR,
-    COLOR_CIV_RGBA_ARR
+    COLOR_EAST_RGBA,
+    COLOR_WEST_RGBA,
+    COLOR_GUER_RGBA,
+    COLOR_CIV_RGBA
 ] select _side;
