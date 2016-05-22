@@ -16,15 +16,12 @@
 
 #include "script_component.hpp"
 
-params ["_units"];
+params [["_units", [], [[]]]];
 
 private _groups = [];
 
 {
-    if !((group _x) in _groups) then {
-        _groups pushBack (group _x);
-    };
-    
+    _groups pushBackUnique (group _x);    
     false
 } count _units;
 
