@@ -20,14 +20,6 @@ params [
     ["_side", -1, [0]]
 ];
 
-if (_side == -1) exitWith {sideUnknown};
+if (_side < 0 || _side > 3) exitWith {sideUnknown};
 
-private _retSide = switch (_side) do {
-    case SIDE_WEST: {west};
-    case SIDE_EAST: {east};
-    case SIDE_GUER: {resistance};
-    case SIDE_CIV: {civilian};
-    default {sideUnknown};
-};
-
-_retSide
+[east, west, resistance, civilian] select _side;

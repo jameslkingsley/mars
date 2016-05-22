@@ -30,7 +30,7 @@ params [
 
 if (_targetID == -1 || _classname == "" || _type == "") exitWith {false};
 
-if (typeName _initCode == "STRING") then {
+if (_initCode isEqualType "") then {
     _initCode = compile _initCode;
 };
 
@@ -59,7 +59,7 @@ if (_isOnTarget) exitWith {
             _groupConfig = (configFile >> _root >> _side >> _faction >> _type >> _group);
             _groupUnits = "true" configClasses (_groupConfig);
             _retUnits = [];
-            _highestRankInt = 0;
+            _highestRankInt = -1;
             _highestRankObj = objNull;
             
             {

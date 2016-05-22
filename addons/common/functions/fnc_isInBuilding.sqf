@@ -20,28 +20,16 @@
 
 params [["_position", []]];
 
-if (count _position == 0) exitWith {};
+if (_position isEqualTo []) exitWith {};
 
-private _intersections = 0;
-
-if (lineIntersects [_position, _position vectorAdd [0, 0, +CHECK_DISTANCE]]) then {
-    _intersections = _intersections + 1;
-};
-
-if (lineIntersects [_position, _position vectorAdd [+CHECK_DISTANCE, 0, 0]]) then {
-    _intersections = _intersections + 1;
-};
-
-if (lineIntersects [_position, _position vectorAdd [-CHECK_DISTANCE, 0, 0]]) then {
-    _intersections = _intersections + 1;
-};
-
-if (lineIntersects [_position, _position vectorAdd [0, +CHECK_DISTANCE, 0]]) then {
-    _intersections = _intersections + 1;
-};
-
-if (lineIntersects [_position, _position vectorAdd [0, -CHECK_DISTANCE, 0]]) then {
-    _intersections = _intersections + 1;
-};
+private _intersections = {
+    lineIntersects [_position, _position vectorAdd _x]
+} count [
+    [0, 0, +CHECK_DISTANCE],
+    [+CHECK_DISTANCE, 0, 0],
+    [-CHECK_DISTANCE, 0, 0],
+    [0, +CHECK_DISTANCE, 0],
+    [0, -CHECK_DISTANCE, 0]
+];
 
 _intersections > 3

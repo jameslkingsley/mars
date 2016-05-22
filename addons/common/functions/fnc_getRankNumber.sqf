@@ -7,13 +7,14 @@
  *
  * Return Value:
  * Number <INT>
- *     PRIVATE: 1
- *     CORPORAL: 2
- *     SERGEANT: 3
- *     LIEUTENANT: 4
- *     CAPTAIN: 5
- *     MAJOR: 6
- *     COLONEL: 7
+ *     Invalid rank: -1
+ *     PRIVATE: 0
+ *     CORPORAL: 1
+ *     SERGEANT: 2
+ *     LIEUTENANT: 3
+ *     CAPTAIN: 4
+ *     MAJOR: 5
+ *     COLONEL: 6
  *
  * Example:
  * ["SERGEANT"] call mars_common_fnc_getRankNumber;
@@ -25,14 +26,12 @@
 
 params [["_rank", "", [""]]];
 
-if (_rank == "") exitWith {-1};
-
-switch (_rank) do {
-    case "PRIVATE": {1};
-    case "CORPORAL": {2};
-    case "SERGEANT": {3};
-    case "LIEUTENANT": {4};
-    case "CAPTAIN": {5};
-    case "MAJOR": {6};
-    case "COLONEL": {7};
-};
+[
+    "PRIVATE",
+    "CORPORAL",
+    "SERGEANT",
+    "LIEUTENANT",
+    "CAPTAIN",
+    "MAJOR",
+    "COLONEL"
+] find _rank;
