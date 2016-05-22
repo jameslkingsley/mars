@@ -35,6 +35,8 @@ switch (toLower _mode) do {
         GVAR(camBoom) = 0;
         GVAR(camDolly) = [0,0];
         GVAR(ctrlKey) = false;
+        GVAR(shiftKey) = false;
+        GVAR(altKey) = false;
         GVAR(heldKeys) = [];
         GVAR(heldKeys) resize 255;
         GVAR(mouse) = [false,false];
@@ -125,9 +127,9 @@ switch (toLower _mode) do {
             GVAR(canContext) = false;
         };
         
-        if ((GVAR(mouse) select 0) && GVAR(shiftKey)) then {
-            [] call FUNC(handleSelectionDir);
-        };
+        // if ((GVAR(mouse) select 0) && GVAR(shiftKey)) then {
+        //     [] call FUNC(handleSelectionDir);
+        // };
 
         if ((GVAR(mouse) select 0) && GVAR(canContext) && !GVAR(shiftKey) && !GVAR(ctrlKey)) then {
             //[true] call FUNC(handleLeftDrag);
@@ -144,8 +146,8 @@ switch (toLower _mode) do {
     case "onkeydown": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
 
-        if (!GVAR(shiftKey)) then {GVAR(shiftKey) = true};
-        if (!GVAR(ctrlKey)) then {GVAR(ctrlKey) = true};
+        if (!GVAR(shiftKey)) then {GVAR(shiftKey) = _shift};
+        if (!GVAR(ctrlKey)) then {GVAR(ctrlKey) = _ctrl};
 
         // Handle held keys (prevent repeat calling)
         if (GVAR(heldKeys) param [_dik,false]) exitWith {};
@@ -237,8 +239,8 @@ switch (toLower _mode) do {
             [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;
         };
 
-        if (GVAR(shiftKey)) then {GVAR(shiftKey) = false};
-        if (GVAR(ctrlKey)) then {GVAR(ctrlKey) = false};
+        if (GVAR(shiftKey)) then {GVAR(shiftKey) = _shift};
+        if (GVAR(ctrlKey)) then {GVAR(ctrlKey) = _ctrl};
 
         // No longer being held
         GVAR(heldKeys) set [_dik,nil];
@@ -255,6 +257,9 @@ switch (toLower _mode) do {
             };
             case 29: { // Ctrl
                 GVAR(ctrlKey) = false;
+            };
+            case 42: { // Shift
+                GVAR(shiftKey) = false;
             };
             case 30: { // A
                 GVAR(camDolly) set [0, 0];
