@@ -78,7 +78,7 @@ GVAR(interrupts) = [];
 
 GVAR(pfh) = [{
     // Tagging handler
-    if (GVAR(canContext)) then {
+    if (GVAR(canContext) || count GVAR(selection) > 0) then {
         [] call FUNC(handleObjectBoxes);
     };
 
@@ -102,6 +102,9 @@ GVAR(pfh) = [{
     
     // Handle selection direction
     [] call FUNC(handleSelectionDir);
+    
+    // Handle location icons
+    [] call FUNC(handleLocationIcons);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(delayedPFH) = [{
