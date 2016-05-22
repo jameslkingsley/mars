@@ -17,7 +17,7 @@
 
 #include "script_component.hpp"
 
-#define SURFACE_OBJECT "Land_CerealsBox_F"
+#define SURFACE_OBJECT "Sign_Sphere100cm_F"
 
 if (count GVAR(abSelectedObject) == 0) exitWith {};
 
