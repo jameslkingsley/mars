@@ -40,4 +40,6 @@ PREP(onABTreeSelChanged);
 PREP(addObjectToSelection);
 PREP(addObjectToStaticCache);
 PREP(getSurfaceUnderCursor);
+PREP(getSurfaceUnderObject);
+PREP(getSurfaceUnderPos);
 PREP(getNearestUnderCursor);
