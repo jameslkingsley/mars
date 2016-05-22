@@ -29,11 +29,9 @@ if (_cancel) exitWith {
     } count GVAR(selection);
     
     [{
-        //[{
-            GVAR(selection) = GVAR(selection) - GVAR(objectsDragging);
-            GVAR(objectDragAnchor) = objNull;
-            GVAR(objectsDragging) = [];
-        //}, []] call EFUNC(common,execNextFrame);
+        GVAR(selection) = GVAR(selection) - GVAR(objectsDragging);
+        GVAR(objectDragAnchor) = objNull;
+        GVAR(objectsDragging) = [];
     }, []] call EFUNC(common,execNextFrame);
 };
 
@@ -53,6 +51,8 @@ if (isNull _anchorObject) then {
     if (count GVAR(selection) == 0) then {
         GVAR(selection) = [([] call FUNC(objectUnderCursor))];
     };
+    
+    if ({isPlayer _x} count GVAR(selection) == 0) exitWith {};
     
     GVAR(objectsDragging) = GVAR(selection);
     

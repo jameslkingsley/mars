@@ -7,3 +7,4 @@ tools/intercept/
 *.pdb
 *.lib
 *.exp
+tools/make.cache
