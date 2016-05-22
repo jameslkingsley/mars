@@ -62,6 +62,8 @@ switch (toLower _mode) do {
 
         GVAR(mouse) set [_button,false];
         [] call FUNC(closeContextMenu);
+        
+        [objNull, true] call FUNC(handleLeftDrag);
 
         switch (true) do {
             // Left Click
@@ -126,13 +128,9 @@ switch (toLower _mode) do {
         if (GVAR(mouse) select 1) then {
             GVAR(canContext) = false;
         };
-        
-        // if ((GVAR(mouse) select 0) && GVAR(shiftKey)) then {
-        //     [] call FUNC(handleSelectionDir);
-        // };
 
         if ((GVAR(mouse) select 0) && GVAR(canContext) && !GVAR(shiftKey) && !GVAR(ctrlKey)) then {
-            //[true] call FUNC(handleLeftDrag);
+            [GVAR(objectDragAnchor)] call FUNC(handleLeftDrag);
         };
 
         [_x,_y] call FUNC(handleMouse);

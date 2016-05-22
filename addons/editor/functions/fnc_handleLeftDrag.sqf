@@ -3,70 +3,82 @@
  * Handles left mouse button dragging
  *
  * Arguments:
- * None
+ * 0: Anchor object <OBJECT>
  *
  * Return Value:
  * None
  *
  * Example:
- * N/A
+ * [] call mars_editor_fnc_handleLeftDrag;
  *
  * Public: No
  */
 
 #include "script_component.hpp"
 
-params [["_isActive", true]];
+params [
+    ["_anchorObject", objNull, [objNull]],
+    ["_cancel", false, [false]]
+];
 
-_setPFH = {
-    GVAR(movingObjectsPFH) = [{
-        {
-            _unit = _x;
-            _unit allowDamage false;
-            _unit enableSimulation false;
-            _mousePos = screenToWorld GVAR(mousePos);
-            _posDiff = (getPos _unit) vectorDiff (getPos leader _unit);
-            
-            if (leader group _unit == _unit) then {
-                _newPos = _mousePos;
-            } else {
-                _newPos = (getPos leader _unit) vectorAdd _posDiff;
-            };
-            
-            _unit setPos _newPos;
-            
-            false
-        } count GVAR(movingObjects);
-    }, 6, []] call CBA_fnc_addPerFrameHandler;
+if (_cancel) exitWith {
+    {
+        _x allowDamage true;
+        _x enableSimulation true;
+        false
+    } count GVAR(selection);
+    
+    [{
+        //[{
+            GVAR(selection) = GVAR(selection) - GVAR(objectsDragging);
+            GVAR(objectDragAnchor) = objNull;
+            GVAR(objectsDragging) = [];
+        //}, []] call EFUNC(common,execNextFrame);
+    }, []] call EFUNC(common,execNextFrame);
 };
 
-if (_isActive) then {
-    if (count GVAR(selection) > 0) then {
-        GVAR(movingObjects) = GVAR(selection);
-        call _setPFH;
-    } else {
-        private _worldPos = screenToWorld GVAR(mousePos);
-        private _objects = nearestObjects FULL_TYPE_SEARCH;
-
-        if (count _objects > 0) then {
-            private _target = (_objects select 0);
-            private _color = if (alive _target) then {MARS_SIDECOLOR(side _target)} else {[0,0,0,1]};
-            [_target, _color] call FUNC(drawBoundingBox);
-            GVAR(movingObjects) pushBack _target;
-            call _setPFH;
-        };
+if (isNull _anchorObject) then {
+    if (count GVAR(selection) == 0) then {
+        GVAR(selection) = [([] call FUNC(objectUnderCursor))];
     };
-} else {
-    if (!isNil QGVAR(movingObjectsPFH)) then {
-        [GVAR(movingObjectsPFH)] call CBA_fnc_removePerFrameHandler;
-        GVAR(movingObjectsPFH) = -1;
-    };
-
-    {
-        (vehicle _x) allowDamage true;
-        (vehicle _x) enableSimulation true;
-        false
-    } count GVAR(movingObjects);
     
-    GVAR(movingObjects) = [];
+    private _nearest = [GVAR(selection)] call FUNC(getNearestUnderCursor);
+    
+    if (isNull _nearest) exitWith {
+        GVAR(selection) = [];
+    };
+    
+    GVAR(objectDragAnchor) = _nearest;
+} else {
+    if (count GVAR(selection) == 0) then {
+        GVAR(selection) = [([] call FUNC(objectUnderCursor))];
+    };
+    
+    GVAR(objectsDragging) = GVAR(selection);
+    
+    _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
+    _anchorPos = getPosASL GVAR(objectDragAnchor);
+    
+    {
+        private ["_object", "_position", "_offset", "_newPos"];
+        
+        _object = _x;
+        
+        if (_x != GVAR(objectDragAnchor)) then {
+            _position = getPosASL _object;
+            _offset = _position vectorDiff _anchorPos;
+            _newPos = _worldPos vectorAdd _offset;
+        } else {
+            _newPos = _worldPos;
+        };
+        
+        _finalPosATL = ASLtoATL _newPos;
+        _finalPosATL set [2, 0];
+        
+        _object allowDamage false;
+        _object enableSimulation false;
+        _object setPosATL _finalPosATL;
+        
+        false
+    } count GVAR(selection);
 };
