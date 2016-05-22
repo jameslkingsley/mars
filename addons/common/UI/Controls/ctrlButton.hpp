@@ -7,8 +7,8 @@ class MARS_gui_ctrlButton: MARS_gui_ctrlDefaultButton {
     colorFocused[] = {COLOR_ACTIVE_RGBA};
     font = FONT_THIN;
     text = "";
-    size = SIZEEX_PURISTA(SIZEEX_M);
-    sizeEx = SIZEEX_PURISTA(SIZEEX_M);
+    size = SIZEEX_PURISTA_M;
+    sizeEx = SIZEEX_PURISTA_M;
     colorText[] = {COLOR_TEXT_RGBA};
     colorDisabled[] = {COLOR_TEXT_RGB,0.25};
     borderSize = 0;
@@ -59,16 +59,16 @@ class MARS_gui_ctrlButtonPictureKeepAspect: MARS_gui_ctrlButton {
 class MARS_gui_ctrlButtonOK: MARS_gui_ctrlButton {
     default = 1;
     idc = IDC_OK;
-    text = $STR_DISP_OK;
+    text = "";
 };
 
 class MARS_gui_ctrlButtonCancel: MARS_gui_ctrlButton {
     idc = IDC_CANCEL;
-    text = $STR_DISP_CANCEL;
+    text = "";
 };
 
 class MARS_gui_ctrlButtonClose: MARS_gui_ctrlButtonCancel {
-    text = $STR_DISP_CLOSE;
+    text = "";
 };
 
 class MARS_gui_ctrlButtonToolbar: MARS_gui_ctrlButtonPictureKeepAspect {
@@ -80,7 +80,7 @@ class MARS_gui_ctrlButtonSearch: MARS_gui_ctrlButton {
     style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
     text = "\a3\3DEN\Data\Displays\Display3DEN\search_start_ca.paa";
     textSearch = "\a3\3DEN\Data\Displays\Display3DEN\search_end_ca.paa";
-    tooltip = $STR_3den_display3den_menubar_search_text;
+    tooltip = "";
 };
 
 class MARS_gui_ctrlButtonFilter: MARS_gui_ctrlButton {

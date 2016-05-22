@@ -62,7 +62,7 @@
                     _unitPath = _tree tvAdd [[_vcPath], (_x select 1)];
                     _tree tvSetData [[_vcPath,_unitPath], _dataStr];
                     _tree tvSetPicture [[_vcPath,_unitPath], _iconTex];
-                    _tree tvSetPictureColor [[_vcPath,_unitPath], COLOR_EMPTY_RGBA_ARR];
+                    _tree tvSetPictureColor [[_vcPath,_unitPath], [COLOR_EMPTY_RGBA]];
                     _tree tvSetTooltip [[_vcPath,_unitPath], configName (_x select 0)];
                 };
                 false
@@ -183,7 +183,7 @@
                         _unitPath = _tree tvAdd [[_vcPath], (_x select 1)];
                         _tree tvSetData [[_vcPath,_unitPath], _dataStr];
                         _tree tvSetPicture [[_vcPath,_unitPath], _icon];
-                        _tree tvSetPictureColor [[_vcPath,_unitPath], COLOR_EMPTY_RGBA_ARR];
+                        _tree tvSetPictureColor [[_vcPath,_unitPath], [COLOR_EMPTY_RGBA]];
                         _tree tvSetTooltip [[_vcPath,_unitPath], configName (_x select 0)];
                     };
                     false

@@ -14,9 +14,9 @@ class MARS_gui_ctrlMenu: MARS_gui_ctrlDefaultText {
     rowHeight = 0;
     itemSpacingW = 0.01;
     itemSpacingH = 0.01;
-    pictureCheckboxEnabled = "\a3\3DEN\Data\Controls\ctrlMenu\pictureCheckboxEnabled_ca.paa";
+    pictureCheckboxEnabled = "\a3\3DEN\Data\Controls\CtrlMenu\pictureCheckboxEnabled_ca.paa";
     pictureCheckboxDisabled= "#(argb,8,8,3)color(0,0,0,0)";
-    pictureRadioEnabled = "\a3\3DEN\Data\Controls\ctrlMenu\pictureRadioEnabled_ca.paa";
+    pictureRadioEnabled = "\a3\3DEN\Data\Controls\CtrlMenu\pictureRadioEnabled_ca.paa";
     pictureRadioDisabled= "#(argb,8,8,3)color(0,0,0,0)";
     text = "";
 };

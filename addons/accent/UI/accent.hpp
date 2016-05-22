@@ -28,12 +28,7 @@ class GVAR(accent) {
             y = 1 * LINE_Y;
             w = (LINE_W - LINE_X) - (GAP * 2);
             h = LINE_H;
-            colorBackground[] = {
-                QUOTE((profileNamespace getVariable [ARR_2('MARS_ACCENT_R',COLOR_ACCENT_DEFAULT_R)])),
-                QUOTE((profileNamespace getVariable [ARR_2('MARS_ACCENT_G',COLOR_ACCENT_DEFAULT_G)])),
-                QUOTE((profileNamespace getVariable [ARR_2('MARS_ACCENT_B',COLOR_ACCENT_DEFAULT_B)])),
-                1
-            };
+            colorBackground[] = {COLOR_ACTIVE_RGBA};
         };
         class Red: MARS_gui_ctrlSliderH {
             idc = IDC_ACCENT_SLIDER_R;

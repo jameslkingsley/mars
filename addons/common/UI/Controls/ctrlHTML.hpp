@@ -9,8 +9,8 @@ class MARS_gui_ctrlHTML: MARS_gui_ctrlDefaultText {
     colorPictureBorder[] = {0,0,0,0};
     colorPictureLink[] = {1,1,1,1};
     colorPictureSelected[] = {1,1,1,1};
-    prevPage = "\a3\3DEN\Data\Controls\ctrlHTML\prevPage_ca.paa";
-    nextPage = "\a3\3DEN\Data\Controls\ctrlHTML\nextPage_ca.paa";
+    prevPage = "\a3\3DEN\Data\Controls\CtrlHTML\prevPage_ca.paa";
+    nextPage = "\a3\3DEN\Data\Controls\CtrlHTML\nextPage_ca.paa";
     filename = "";
     cycleLinks = 0;
     cycleAllLinks = 0;
@@ -34,15 +34,15 @@ class MARS_gui_ctrlHTML: MARS_gui_ctrlDefaultText {
     class P {
         font = FONT_NORMAL;
         fontBold = FONT_BOLD;
-        sizeEx = SIZEEX_PURISTA(SIZEEX_M);
+        sizeEx = SIZEEX_PURISTA_M;
     };
 
     class H1: P {
-        sizeEx = SIZEEX_PURISTA(SIZEEX_XL);
+        sizeEx = SIZEEX_PURISTA_XL;
     };
 
     class H2: P {
-        sizeEx = SIZEEX_PURISTA(SIZEEX_L);
+        sizeEx = SIZEEX_PURISTA_L;
     };
 
     class H3: P {};

@@ -30,7 +30,7 @@ class MARS_gui_ctrlDefault {
 };
 
 class MARS_gui_ctrlDefaultText: MARS_gui_ctrlDefault {
-    sizeEx = SIZEEX_PURISTA(SIZEEX_M);
+    sizeEx = SIZEEX_PURISTA_M;
     font = FONT_NORMAL;
     shadow = 1;
 };

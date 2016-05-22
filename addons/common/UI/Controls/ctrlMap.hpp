@@ -85,7 +85,7 @@ class MARS_gui_ctrlMap: MARS_gui_ctrlDefault {
         color[] = {0,0,0,1};
         colorBackground[] = {1,1,1,0.5};
         font = FONT_NORMAL;
-        sizeEX = SIZEEX_PURISTA(SIZEEX_S);
+        sizeEX = SIZEEX_PURISTA_S;
     };
 
     class Task {

@@ -17,7 +17,7 @@ class MARS_gui_ctrlListNBox: MARS_gui_ctrlDefaultText {
     idcRight = -1;
     period = 1;
     disableOverflow = 0;
-    rowHeight = SIZEEX_PURISTA(SIZEEX_M);
+    rowHeight = SIZEEX_PURISTA_M;
     maxHistoryDelay = 1;
     soundSelect[] = {"\A3\ui_f\data\sound\RscListbox\soundSelect",0.09,1};
     onCanDestroy = "";

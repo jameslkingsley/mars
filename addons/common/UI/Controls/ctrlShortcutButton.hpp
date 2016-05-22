@@ -3,8 +3,8 @@ class MARS_gui_ctrlShortcutButton: MARS_gui_ctrlDefaultButton {
     style = ST_UPPERCASE + ST_VCENTER;
     font = FONT2_THIN;
     text = "";
-    size = SIZEEX_PURISTA(SIZE_M);
-    sizeEx = SIZEEX_PURISTA(SIZE_M);
+    size = SIZE_PURISTA_M;
+    sizeEx = SIZE_PURISTA_M;
     color[] = {COLOR_TEXT_RGBA};
     color2[] = {COLOR_TEXT_RGBA};
     colorFocused[] = {COLOR_TEXT_RGBA};
@@ -75,10 +75,10 @@ class MARS_gui_ctrlShortcutButton: MARS_gui_ctrlDefaultButton {
 class MARS_gui_ctrlShortcutButtonOK: MARS_gui_ctrlShortcutButton {
     default = 1;
     idc = IDC_OK;
-    text = $STR_DISP_OK;
+    text = "";
 };
 
 class MARS_gui_ctrlShortcutButtonCancel: MARS_gui_ctrlShortcutButton {
     idc = IDC_CANCEL;
-    text = $STR_DISP_CANCEL;
+    text = "";
 };

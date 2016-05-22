@@ -19,7 +19,7 @@ class MARS_gui_ctrlListbox: MARS_gui_ctrlDefaultText {
     colorPictureRightSelected[] = {1,1,1,1};
     colorPictureRightDisabled[] = {1,1,1,0.25};
     period = 1;
-    rowHeight = SIZEEX_PURISTA(SIZEEX_M);
+    rowHeight = SIZEEX_PURISTA_M;
     itemSpacing = 0;
     maxHistoryDelay = 1;
     canDrag = 0;

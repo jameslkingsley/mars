@@ -31,9 +31,9 @@ _ctrlSample = _display displayCtrl IDC_ACCENT_SAMPLE;
     _x sliderSetSpeed [0.1, 0.1];
 } forEach [_ctrlR,_ctrlG,_ctrlB];
 
-_pnR = profileNamespace getVariable ['MARS_ACCENT_R',COLOR_ACCENT_DEFAULT_R];
-_pnG = profileNamespace getVariable ['MARS_ACCENT_G',COLOR_ACCENT_DEFAULT_G];
-_pnB = profileNamespace getVariable ['MARS_ACCENT_B',COLOR_ACCENT_DEFAULT_B];
+_pnR = profileNamespace getVariable ['MARS_ACCENT_R',COLOR_DEFAULT_RGB_R];
+_pnG = profileNamespace getVariable ['MARS_ACCENT_G',COLOR_DEFAULT_RGB_G];
+_pnB = profileNamespace getVariable ['MARS_ACCENT_B',COLOR_DEFAULT_RGB_B];
 
 _ctrlR sliderSetPosition _pnR;
 _ctrlG sliderSetPosition _pnG;

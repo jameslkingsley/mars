@@ -24,13 +24,13 @@ _ctrlG = _display displayCtrl IDC_ACCENT_SLIDER_G;
 _ctrlB = _display displayCtrl IDC_ACCENT_SLIDER_B;
 _ctrlSample = _display displayCtrl IDC_ACCENT_SAMPLE;
 
-_ctrlR sliderSetPosition COLOR_ACCENT_DEFAULT_R;
-_ctrlG sliderSetPosition COLOR_ACCENT_DEFAULT_G;
-_ctrlB sliderSetPosition COLOR_ACCENT_DEFAULT_B;
+_ctrlR sliderSetPosition COLOR_DEFAULT_RGB_R;
+_ctrlG sliderSetPosition COLOR_DEFAULT_RGB_G;
+_ctrlB sliderSetPosition COLOR_DEFAULT_RGB_B;
 
-profileNamespace setVariable ['MARS_ACCENT_R', COLOR_ACCENT_DEFAULT_R];
-profileNamespace setVariable ['MARS_ACCENT_G', COLOR_ACCENT_DEFAULT_G];
-profileNamespace setVariable ['MARS_ACCENT_B', COLOR_ACCENT_DEFAULT_B];
+profileNamespace setVariable ['MARS_ACCENT_R', COLOR_DEFAULT_RGB_R];
+profileNamespace setVariable ['MARS_ACCENT_G', COLOR_DEFAULT_RGB_G];
+profileNamespace setVariable ['MARS_ACCENT_B', COLOR_DEFAULT_RGB_B];
 
-_ctrlSample ctrlSetBackgroundColor [COLOR_ACCENT_DEFAULT_RGBA];
-_ctrlSample ctrlSetForegroundColor [COLOR_ACCENT_DEFAULT_RGBA];
+_ctrlSample ctrlSetBackgroundColor [COLOR_DEFAULT_RGBA];
+_ctrlSample ctrlSetForegroundColor [COLOR_DEFAULT_RGBA];

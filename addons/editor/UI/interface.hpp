@@ -104,7 +104,7 @@ class GVAR(interface) {
 					w = TAB_H * GRID_W;
 					h = TAB_H * GRID_H;
 					text = "«";
-					sizeEx = SIZEEX_PURISTA(SIZE_XL);
+					sizeEx = SIZE_PURISTA_XL;
 					colorBackground[] = {COLOR_TAB_RGBA};
 					onbuttonclick = "";
 				};
@@ -120,7 +120,7 @@ class GVAR(interface) {
 						"Entities",
 						"Locations"
 					};
-                    sizeEx = SIZEEX_PURISTA(SIZEEX_M);
+                    sizeEx = SIZEEX_PURISTA_M;
                     colorText[] = {COLOR_TEXT_RGBA};
                     colorTextSelect[] = {1,1,1,1};
                     colorBackground[] = {0,0,0,0};
@@ -168,7 +168,7 @@ class GVAR(interface) {
 							y = (SIZE_M + 2) * GRID_H;
 							w = PANEL_W * GRID_W;
 							h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + STATUSBAR_H + SIZE_M + 2 + 1 + SIZE_M) * GRID_H;
-							sizeEx = SIZEEX_PURISTA(SIZEEX_S);
+							sizeEx = SIZEEX_PURISTA_S;
 							font = FONT_NORMAL;
 							colorBorder[] = {0,0,0,0};
 							multiselectEnabled = 1;
@@ -195,7 +195,7 @@ class GVAR(interface) {
 							x = 0;
 							w = PANEL_W * GRID_W;
 							h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + STATUSBAR_H + 1) * GRID_H;
-							sizeEx = SIZEEX_PURISTA(SIZEEX_S);
+							sizeEx = SIZEEX_PURISTA_S;
 							font = FONT_NORMAL;
 							colorBorder[] = {0,0,0,0};
 							onTreeDblClick = "";
@@ -228,7 +228,7 @@ class GVAR(interface) {
                     w = TAB_H * GRID_W;
                     h = TAB_H * GRID_H;
                     text = "»";
-                    sizeEx = SIZEEX_PURISTA(SIZE_XL);
+                    sizeEx = SIZE_PURISTA_XL;
                     colorBackground[] = {0,0,0,0};
                     onButtonClick = QUOTE(['right'] call FUNC(togglePanel));
                 };
@@ -244,7 +244,7 @@ class GVAR(interface) {
                         "Assets",
                         "Notes"
                     };
-                    sizeEx = SIZEEX_PURISTA(SIZEEX_M);
+                    sizeEx = SIZEEX_PURISTA_M;
                     values[] = {0,1};
                     colorText[] = {COLOR_TEXT_RGBA};
                     colorTextSelect[] = {1,1,1,1};
@@ -417,7 +417,7 @@ class GVAR(interface) {
                                     w = PANEL_W * GRID_W;
                                     h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + 25 + SIZE_M) * GRID_H;
                                     defaultItem[] = {};
-                                    sizeEx = SIZEEX_PURISTA(SIZEEX_S);
+                                    sizeEx = SIZEEX_PURISTA_S;
                                     font = FONT_NORMAL;
                                     multiselectEnabled = 0;
                                     colorBackground[] = {0,0,0,0};
@@ -494,7 +494,7 @@ class GVAR(interface) {
                     y = SPACE_H;
                     w = TEXT_W * GRID_W;
                     h = TEXT_W * GRID_H;
-                    sizeEx = SIZEEX_PURISTA(SIZEEX_XS);
+                    sizeEx = SIZEEX_PURISTA_XS;
                     text = QUOTE(PATHTOF(data\StatusBar\x_ca.paa));
                     colorBackground[] = {0,0,0,0};
                     shadow = 0;
@@ -507,7 +507,7 @@ class GVAR(interface) {
                     w = VALUE_W * GRID_W;
                     h = STATUSBAR_H * GRID_H - 2 * SPACE_H;
                     font = FONT_MONO;
-                    sizeEx = SIZEEX_ETELKA(3.4);
+                    sizeEx = (3.1 * (1 / (getResolution select 3)) * 1.25 * 4);
                     shadow = 0;
                     colorDisabled[] = {COLOR_TEXT_RGB,0.5};
                     onLoad = "(_this select 0) ctrlEnable false;";

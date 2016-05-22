@@ -141,7 +141,7 @@
         _vehicleDistance = _vehiclePos distance GVAR(camPos);
         if (_vehicleDistance > ICON_FADE_DISTANCE) exitWith {};
         _alpha = [(linearConversion [0, BOX_FADE_DISTANCE, _vehicleDistance, 1, 0, true]), 1] select (_vehicle in GVAR(selection));
-        _color = if (alive _vehicle) then {COLOR_EMPTY_RGBA_ARR} else {[0,0,0,1]};
+        _color = if (alive _vehicle) then {[COLOR_EMPTY_RGBA]} else {[0,0,0,1]};
         _color set [3, _alpha];
         
         _iconTexture = _vehicle getVariable [QGVAR(iconVehicleTexture), ""];

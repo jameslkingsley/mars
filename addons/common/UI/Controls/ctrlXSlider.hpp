@@ -25,13 +25,13 @@ class MARS_gui_ctrlXSliderV: MARS_gui_ctrlDefault {
     onMouseMoving = "";
     onMouseHolding = "";
     onSliderPosChanged = "";
-    
+
     class Title {
         idc = -1;
         colorBase[] = {1,1,1,1};
         colorActive[] = {COLOR_ACTIVE_RGBA};
     };
-    
+
     class Value {
         idc = -1;
         format = "%.f";

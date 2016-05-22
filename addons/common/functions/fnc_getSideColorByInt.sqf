@@ -20,11 +20,11 @@
 params [["_side", -1]];
 
 private _color = switch (_side) do {
-    case SIDE_WEST: {COLOR_WEST_RGBA_ARR};
-    case SIDE_EAST: {COLOR_EAST_RGBA_ARR};
-    case SIDE_GUER: {COLOR_GUER_RGBA_ARR};
-    case SIDE_CIV: {COLOR_CIV_RGBA_ARR};
-    default {COLOR_EMPTY_RGBA_ARR};
+    case SIDE_WEST: {[COLOR_WEST_RGBA]};
+    case SIDE_EAST: {[COLOR_EAST_RGBA]};
+    case SIDE_GUER: {[COLOR_GUER_RGBA]};
+    case SIDE_CIV: {[COLOR_CIV_RGBA]};
+    default {[COLOR_EMPTY_RGBA]};
 };
 
 _color
