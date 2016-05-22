@@ -31,7 +31,6 @@ GVAR(camBoom) = 0;
 GVAR(camDolly) = [0,0];
 
 // Initalize display variables
-GVAR(ctrlKey) = false;
 GVAR(heldKeys) = [];
 GVAR(heldKeys) resize 255;
 GVAR(mouse) = [false,false];
@@ -100,6 +99,9 @@ GVAR(pfh) = [{
     
     // Asset browser placing objects
     [] call FUNC(prepNewObject);
+    
+    // Handle selection direction
+    [] call FUNC(handleSelectionDir);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(delayedPFH) = [{
