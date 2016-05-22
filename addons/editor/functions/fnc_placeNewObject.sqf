@@ -61,3 +61,8 @@ switch (_objType) do {
 if (!_ctrlKeyHeld) then {
     GVAR(abSelectedObject) = [];
 };
+
+deleteVehicle GVAR(prepSurfaceSphere);
+GVAR(prepSurfaceSphere) = objNull;
+
+GVAR(selection) = [];
