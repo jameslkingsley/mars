@@ -22,11 +22,14 @@ params [
 ];
 
 if (_cancel) exitWith {
+    GVAR(allowDragging) = false;
+    
     if ({isPlayer _x} count GVAR(selection) > 0) exitWith {};
     
+    private _backupPosition = ASLtoATL ([] call FUNC(getSurfaceUnderCursor));
+    
     {
-        _x allowDamage true;
-        _x enableSimulation true;
+        _x setPosATL (_x getVariable [QGVAR(leftDragFinalPos), _backupPosition]);
         false
     } count GVAR(selection);
     
@@ -36,6 +39,8 @@ if (_cancel) exitWith {
         GVAR(objectsDragging) = [];
     }, []] call EFUNC(common,execNextFrame);
 };
+
+if (!GVAR(allowDragging)) exitWith {};
 
 if (isNull _anchorObject) then {
     if (count GVAR(selection) == 0) then {
@@ -62,14 +67,16 @@ if (isNull _anchorObject) then {
     _anchorPos = getPosASL GVAR(objectDragAnchor);
     
     {
-        private ["_object", "_position", "_offset", "_newPos"];
+        private ["_object", "_position", "_offset", "_newPos", "_boundingPos"];
         
         _object = _x;
+        _position = getPosASL _object;
+        _boundingPos = _worldPos vectorDiff _position;
         
         if (_x != GVAR(objectDragAnchor)) then {
-            _position = getPosASL _object;
             _offset = _position vectorDiff _anchorPos;
             _newPos = _worldPos vectorAdd _offset;
+            _boundingPos = _newPos;
         } else {
             _newPos = _worldPos;
         };
@@ -77,9 +84,8 @@ if (isNull _anchorObject) then {
         _finalPosATL = ASLtoATL _newPos;
         _finalPosATL set [2, 0];
         
-        _object allowDamage false;
-        _object enableSimulation false;
-        _object setPosATL _finalPosATL;
+        [_object, [side (group _object)] call EFUNC(common,getSideColor), ASLtoAGL _boundingPos] call FUNC(drawBoundingBox);        
+        _object setVariable [QGVAR(leftDragFinalPos), _finalPosATL];
         
         false
     } count GVAR(selection);

@@ -75,6 +75,7 @@ GVAR(shiftKey) = false;
 // Object Dragging
 GVAR(objectDragAnchor) = objNull;
 GVAR(objectsDragging) = [];
+GVAR(allowDragging) = false;
 
 GVAR(isRemoteControl) = false;
 

@@ -132,6 +132,7 @@ switch (toLower _mode) do {
         };
 
         if ((GVAR(mouse) select 0) && GVAR(canContext) && !GVAR(shiftKey) && !GVAR(ctrlKey)) then {
+            GVAR(allowDragging) = true;
             [GVAR(objectDragAnchor)] call FUNC(handleLeftDrag);
         };
 
