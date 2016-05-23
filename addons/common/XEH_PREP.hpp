@@ -18,3 +18,6 @@ PREP(getSideByInt);
 PREP(getObjectType);
 PREP(getRankNumber);
 PREP(addHeight);
+PREP(addEventHandler);
+PREP(removeEventHandler);
+PREP(localEvent);
