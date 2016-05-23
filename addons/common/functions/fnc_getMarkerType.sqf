@@ -13,13 +13,15 @@
 
 #include "script_component.hpp"
 
-#define MARKER(TYP) [QUOTE(n_##TYP),QUOTE(b_##TYP),QUOTE(o_##TYP)] select ((["GUER","WEST","EAST"] find str _side) max 0)
+#define MARKER(TYPE) [ARR_3(QUOTE(DOUBLES(n,TYPE)),QUOTE(DOUBLES(b,TYPE)),QUOTE(DOUBLES(o,TYPE)))] select (([ARR_3("GUER","WEST","EAST")] find (str _side)) max 0)
 
-params ["_group"];
+params [["_group", grpNull, [grpNull]]];
+
+if (isNull _group) exitWith {""};
 
 private _leader = leader _group;
 private _vehicle = vehicle _leader;
-private _side = side _leader;
+private _side = side _group;
 
 if (_vehicle == _leader) exitWith {
     if (
@@ -79,5 +81,4 @@ if (_vehicle isKindOf "Ship") exitWith {
     MARKER(naval)
 };
 
-// generic marker
 MARKER(unknown)
