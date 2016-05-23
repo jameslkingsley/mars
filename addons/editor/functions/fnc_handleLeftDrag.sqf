@@ -22,6 +22,8 @@ params [
 ];
 
 if (_cancel) exitWith {
+    if ({isPlayer _x} count GVAR(selection) > 0) exitWith {};
+    
     {
         _x allowDamage true;
         _x enableSimulation true;
