@@ -139,8 +139,13 @@ switch (toLower _mode) do {
     };
     case "onmouseholding": {
         _args params ["_ctrl","_x","_y"];
+        
         if !(GVAR(mouse) select 1) then {
             GVAR(canContext) = true;
+        };
+        
+        if ((GVAR(mouse) select 0) && GVAR(canContext) && !GVAR(shiftKey) && !GVAR(ctrlKey)) then {
+            [GVAR(objectDragAnchor)] call FUNC(handleLeftDrag);
         };
     };
     case "onkeydown": {
