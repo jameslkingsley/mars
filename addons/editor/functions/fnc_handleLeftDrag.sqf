@@ -4,6 +4,8 @@
  *
  * Arguments:
  * 0: Anchor object <OBJECT>
+ * 1: Invoke update <BOOL>
+ * 2: Cancel <BOOL>
  *
  * Return Value:
  * None
@@ -18,29 +20,49 @@
 
 params [
     ["_anchorObject", objNull, [objNull]],
+    ["_update", false, [false]],
     ["_cancel", false, [false]]
 ];
 
-if (_cancel) exitWith {
-    GVAR(allowDragging) = false;
+// systemChat format["%1    %2    %3", _anchorObject, _update, _cancel];
 
+if (_update) then {
+    GVAR(isDragging) = false;
+    
     if ({isPlayer _x} count GVAR(selection) > 0) exitWith {};
 
-    private _backupPosition = ASLtoATL ([] call FUNC(getSurfaceUnderCursor));
-
     {
-        _x setPosATL (_x getVariable [QGVAR(leftDragFinalPos), _backupPosition]);
+        private _newPos = _x getVariable [QGVAR(leftDragFinalPos), []];
+        
+        if (count _newPos > 0) then {
+            _x setPosATL _newPos;
+        };
+        
         false
     } count GVAR(selection);
+};
 
+if (_cancel) then {
+    GVAR(allowDragging) = false;
+    GVAR(isDragging) = false;
+    
+    {
+        _x setVariable [QGVAR(leftDragFinalPos), nil];
+        false
+    } count GVAR(selection);
+    
     [{
         GVAR(selection) = GVAR(selection) - GVAR(objectsDragging);
         GVAR(objectDragAnchor) = objNull;
         GVAR(objectsDragging) = [];
+        GVAR(allowDragging) = false;
+        GVAR(isDragging) = false;
     }, []] call EFUNC(common,execNextFrame);
 };
 
-if (!GVAR(allowDragging)) exitWith {};
+if (!GVAR(allowDragging) || _cancel) exitWith {};
+
+GVAR(isDragging) = true;
 
 if (isNull _anchorObject) then {
     if (count GVAR(selection) == 0) then {
@@ -67,24 +89,34 @@ if (isNull _anchorObject) then {
     _anchorPos = getPosASL GVAR(objectDragAnchor);
 
     {
-        private ["_object", "_position", "_offset", "_newPos", "_boundingPos"];
+        private ["_object", "_positionASL", "_positionATL", "_offset", "_newPos", "_boundingPos"];
 
         _object = _x;
-        _position = getPosASL _object;
-        _boundingPos = _worldPos vectorDiff _position;
+        _positionASL = getPosASL _object;
+        _positionATL = getPosATL _object;
+        _positionAGL = ASLtoAGL _positionASL;
+        _fixedZ = _positionASL select 2;
+        _boundingPos = _worldPos vectorDiff _positionASL;
 
         if (_x != GVAR(objectDragAnchor)) then {
-            _offset = _position vectorDiff _anchorPos;
+            _offset = _positionASL vectorDiff _anchorPos;
             _newPos = _worldPos vectorAdd _offset;
             _boundingPos = _boundingPos vectorAdd _offset;
         } else {
             _newPos = _worldPos;
         };
-
+        
         _finalPosATL = ASLtoATL _newPos;
-        _finalPosATL set [2, 0];
+        _finalPosATL set [2, (_positionATL select 2)];
+        _boundingPos set [2, (_positionASL select 2)];
+        
+        _boundingPos = ASLtoAGL _boundingPos;
+        //_boundingPos set [2, (_positionAGL select 2)];
+        _boundingPos set [2, 0];
+        
+        systemChat format["%1    %2", _boundingPos, _positionAGL];
 
-        [_object, [side (group _object)] call EFUNC(common,getSideColor), ASLtoAGL _boundingPos] call FUNC(drawBoundingBox);
+        [_object, [side (group _object)] call EFUNC(common,getSideColor), (_boundingPos)] call FUNC(drawBoundingBox);
         _object setVariable [QGVAR(leftDragFinalPos), _finalPosATL];
 
         false

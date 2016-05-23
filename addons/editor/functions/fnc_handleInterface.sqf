@@ -48,6 +48,8 @@ switch (toLower _mode) do {
 
         if ((_button == 0) && GVAR(canContext)) then {
             [GVAR(ctrlKey)] call FUNC(placeNewObject);
+            
+            GVAR(prepDragObjectUnderCursor) = [] call FUNC(objectUnderCursor);
         };
 
         // Detect right click
@@ -63,7 +65,14 @@ switch (toLower _mode) do {
         GVAR(mouse) set [_button,false];
         [] call FUNC(closeContextMenu);
         
-        [objNull, true] call FUNC(handleLeftDrag);
+        if (GVAR(isDragging)) then {
+            if (GVAR(prepDragObjectUnderCursor) != GVAR(objectDragAnchor)) then {
+                GVAR(allowDragging) = false;
+                [objNull, false, true] call FUNC(handleLeftDrag);
+            } else {
+                [GVAR(objectDragAnchor), true, true] call FUNC(handleLeftDrag);
+            };
+        };
 
         switch (true) do {
             // Left Click
