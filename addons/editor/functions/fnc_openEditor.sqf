@@ -89,8 +89,11 @@ GVAR(pfh) = [{
 
     // Selection handler
     {
-        private _color = [[0,0,0,1], MARS_SIDECOLOR(side group _x)] select (alive _x);
-        [_x, _color] call FUNC(drawBoundingBox);
+        if (_x != GVAR(prepSurfaceSphere)) then {
+            private _color = [[0,0,0,1], MARS_SIDECOLOR(side group _x)] select (alive _x);
+            [_x, _color] call FUNC(drawBoundingBox);
+        };
+        
         false
     } count GVAR(selection);
     
