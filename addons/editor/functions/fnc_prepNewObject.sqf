@@ -69,13 +69,7 @@ _surfacePos = ASLtoAGL ([GVAR(prepSurfaceSphere)] call FUNC(getSurfaceUnderCurso
 
 if (round(_surfacePos select 2) > round(_worldPos select 2)) then {
     // Cursor position is over a surface that is higher than the terrain
-    if (isNull GVAR(prepSurfaceSphere)) then {
-        GVAR(prepSurfaceSphere) = SURFACE_OBJECT createVehicleLocal _surfacePos;
-        GVAR(prepSurfaceSphere) setObjectTexture [0, ([_objectSide] call EFUNC(common,getSideColorTexture))];
-    };
-    
-    GVAR(prepSurfaceSphere) setPosASL (AGLtoASL _surfacePos);
+    [_surfacePos, _objectSide] call FUNC(drawSurfaceSphere);
 } else {
-    deleteVehicle GVAR(prepSurfaceSphere);
-    GVAR(prepSurfaceSphere) = objNull;
+    [] call FUNC(destroySurfaceSphere);
 };
