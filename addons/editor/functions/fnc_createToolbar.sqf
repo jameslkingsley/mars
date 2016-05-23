@@ -23,7 +23,7 @@ disableSerialization;
 _components = "true" configClasses (configFile >> QGVARMAIN(toolbar));
 
 if (count _components > 0) then {
-    _axisX = (0 * safeZoneW) + safeZoneX;
+    _axisX = safeZoneX;
     _maxNameCount = 0;
 
     {
