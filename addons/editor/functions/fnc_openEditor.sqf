@@ -114,6 +114,11 @@ GVAR(delayedPFH) = [{
     (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_FPS) ctrlSetText format["%1 FPS", round diag_fps];
 }, 1, []] call CBA_fnc_addPerFrameHandler;
 
+// Close the editor upon death
+player addEventHandler ["Killed", {
+    [] call FUNC(shutdown);
+}];
+
 // player playActionNow "gear";
 
 GVAR(isSet) = true;
