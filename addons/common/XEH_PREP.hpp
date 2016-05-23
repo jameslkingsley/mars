@@ -21,3 +21,4 @@ PREP(addHeight);
 PREP(addEventHandler);
 PREP(removeEventHandler);
 PREP(localEvent);
+PREP(getSideColorTexture);
