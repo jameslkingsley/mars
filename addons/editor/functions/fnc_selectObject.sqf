@@ -18,6 +18,8 @@
 
 private _target = [] call FUNC(objectUnderCursor);
 
+if (_target == GVAR(prepSurfaceSphere)) exitWith {};
+
 if (isNull _target) then {
     GVAR(selection) = [];
 } else {

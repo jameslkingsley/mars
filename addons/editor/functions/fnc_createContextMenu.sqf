@@ -18,6 +18,8 @@
 
 params [["_contexts", []], ["_xIndex", 0], ["_yIndex", 0], ["_startYPos", -1]];
 
+if (!isNull GVAR(prepSurfaceSphere)) exitWith {};
+
 if (count _contexts > 0) then {
     _index = 0;
     

@@ -19,6 +19,8 @@
 
 params ["_object", "_isVehicle"];
 
+if (_object == GVAR(prepSurfaceSphere)) exitWith {};
+
 if (_object in GVAR(selection)) exitWith {};
 
 if (GVAR(ctrlKey) && count GVAR(selection) == 0) exitWith {

@@ -94,6 +94,8 @@ switch (toLower _mode) do {
                 [{
                     [{
                         GVAR(abSelectedObject) = [];
+                        deleteVehicle GVAR(prepSurfaceSphere);
+                        GVAR(prepSurfaceSphere) = objNull;
                     }, []] call EFUNC(common,execNextFrame);
                 }, []] call EFUNC(common,execNextFrame);
             };
