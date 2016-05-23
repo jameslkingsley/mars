@@ -45,3 +45,5 @@ PREP(getSurfaceUnderPos);
 PREP(getNearestUnderCursor);
 PREP(handleLocationIcons);
 PREP(absoluteObjectUnderCursor);
+PREP(drawSurfaceSphere);
+PREP(destroySurfaceSphere);
