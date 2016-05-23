@@ -7,6 +7,7 @@
  * 0: Object <OBJECT>
  * 1: Color (optional) <RGBA ARRAY>
  * 2: Offset in world position (AGL) (optional) <ARRAY>
+ * 3: Rotation (x,y,z) (optional) <ARRAY>
  *
  * Return Value:
  * None
@@ -22,7 +23,8 @@
 params [
     ["_target", objNull, [objNull]],
     ["_color", [1,1,1,1], [[]]],
-    ["_offset", [0,0,0], [[]]]
+    ["_offset", [0,0,0], [[]]],
+    ["_rotation", [0,0,0], [[]]]
 ];
 
 if (isNull _target) exitWith {};
