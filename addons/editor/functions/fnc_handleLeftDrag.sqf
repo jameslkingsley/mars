@@ -52,7 +52,7 @@ if (isNull _anchorObject) then {
         GVAR(selection) = [([] call FUNC(objectUnderCursor))];
     };
     
-    if ({isPlayer _x} count GVAR(selection) == 0) exitWith {};
+    if ({isPlayer _x} count GVAR(selection) > 0) exitWith {};
     
     GVAR(objectsDragging) = GVAR(selection);
     
