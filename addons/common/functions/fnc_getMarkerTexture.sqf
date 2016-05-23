@@ -17,7 +17,7 @@
 
 #include "script_component.hpp"
 
-params ["_type"];
+params [["_type", "", [""]]];
 
 if (_type == "" || {!(isClass (configfile >> "CfgMarkers" >> _type))}) exitWith {nil};
 
