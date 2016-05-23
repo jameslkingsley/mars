@@ -17,14 +17,15 @@
 
 #include "script_component.hpp"
 
-params [["_side", -1]];
+params [
+    ["_side", -1, [0]]
+];
 
-private _color = switch (_side) do {
-    case SIDE_WEST: {[COLOR_WEST_RGBA]};
-    case SIDE_EAST: {[COLOR_EAST_RGBA]};
-    case SIDE_GUER: {[COLOR_GUER_RGBA]};
-    case SIDE_CIV: {[COLOR_CIV_RGBA]};
-    default {[COLOR_EMPTY_RGBA]};
-};
+if (_side < 0 || _side > 3) exitWith {[COLOR_EMPTY_RGBA]};
 
-_color
+[
+    [COLOR_EAST_RGBA],
+    [COLOR_WEST_RGBA],
+    [COLOR_GUER_RGBA],
+    [COLOR_CIV_RGBA]
+] select _side;

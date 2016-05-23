@@ -18,12 +18,12 @@
 #include "script_component.hpp"
 
 params [
-    ["_position", [], [[]]],
+    ["_position", [], [[]], [3]],
     ["_height", 0, [0]]
 ];
 
-if (count _position != 3) exitWith {[]};
-
-_position set [2, (_position select 2) + _height];
+if !(_position isEqualTo []) then {
+    _position = _position vectorAdd [0, 0, _height];
+};
 
 _position
