@@ -38,7 +38,7 @@ _selected params [
     _side = getNumber (_cfg >> "side");\
     _color = [_side] call EFUNC(common,getSideColorByInt);\
     _iconTex = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};\
-    GVAR(abSelectedObject) = [_objType, _classname, _iconTex, _color];
+    GVAR(abSelectedObject) = [_objType, _classname, _iconTex, _color, _side];
 
 switch (_objType) do {
     case "man": {
@@ -53,6 +53,6 @@ switch (_objType) do {
         _icon = getText (_groupConfig >> "icon");
         _side = getNumber (_groupConfig >> "side");
         _color = [_side] call EFUNC(common,getSideColorByInt);
-        GVAR(abSelectedObject) = [_objType, _classname, _icon, _color, _groupPath];
+        GVAR(abSelectedObject) = [_objType, _classname, _icon, _color, _side, _groupPath];
     };
 };

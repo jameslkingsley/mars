@@ -20,7 +20,7 @@ params [["_ctrlKeyHeld", false, [false]]];
 
 if (count GVAR(abSelectedObject) == 0) exitWith {};
 
-GVAR(abSelectedObject) params ["_objType","_classname","_iconTex","_color", ["_groupPath", []]];
+GVAR(abSelectedObject) params ["_objType","_classname","_iconTex","_color", "_side", ["_groupPath", []]];
 
 _worldPos = [] call FUNC(getSurfaceUnderCursor);
 
