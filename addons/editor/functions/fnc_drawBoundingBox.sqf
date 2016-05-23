@@ -6,6 +6,7 @@
  * Arguments:
  * 0: Object <OBJECT>
  * 1: Color (optional) <RGBA ARRAY>
+ * 2: Offset in world position (AGL) (optional) <ARRAY>
  *
  * Return Value:
  * None
@@ -18,7 +19,11 @@
 
 #include "script_component.hpp"
 
-params [["_target", objNull], ["_color", [1,1,1,1]]];
+params [
+    ["_target", objNull, [objNull]],
+    ["_color", [1,1,1,1], [[]]],
+    ["_offset", [0,0,0], [[]]]
+];
 
 if (isNull _target) exitWith {};
 
@@ -27,8 +32,8 @@ _color set [3, ([0.33, 1] select (_target in GVAR(selection)))];
 
 {
     drawLine3D [
-        _target modelToWorldVisual (_x select 0),
-        _target modelToWorldVisual (_x select 1),
+        (_target modelToWorldVisual (_x select 0)) vectorAdd _offset,
+        (_target modelToWorldVisual (_x select 1)) vectorAdd _offset,
         _color
     ];
 
