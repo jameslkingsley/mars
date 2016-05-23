@@ -26,6 +26,8 @@
 if !(hasInterface) exitWith {};
 if (GVAR(isSet)) exitWith {};
 
+["EditorOpen"] call EFUNC(common,localEvent);
+
 // Initalize camera variables
 GVAR(camBoom) = 0;
 GVAR(camDolly) = [0,0];
@@ -115,3 +117,5 @@ GVAR(delayedPFH) = [{
 // player playActionNow "gear";
 
 GVAR(isSet) = true;
+
+["EditorOpened", [_display]] call EFUNC(common,localEvent);
