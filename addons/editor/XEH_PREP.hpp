@@ -44,3 +44,4 @@ PREP(getSurfaceUnderObject);
 PREP(getSurfaceUnderPos);
 PREP(getNearestUnderCursor);
 PREP(handleLocationIcons);
+PREP(absoluteObjectUnderCursor);
