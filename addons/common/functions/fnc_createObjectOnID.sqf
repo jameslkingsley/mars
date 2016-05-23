@@ -39,7 +39,7 @@ if (_isOnTarget) exitWith {
         case "man": {
             _group = createGroup _side;
             _object = _group createUnit [_classname, ASLtoAGL _worldPos, [], 0, "CAN_COLLIDE"];
-            [_object] join _group;
+            [_object] joinSilent _group;
             _object call _initCode;
             [_object] remoteExec [QEFUNC(editor,addObjectToSelection), _caller];
         };
@@ -47,7 +47,7 @@ if (_isOnTarget) exitWith {
             _group = createGroup _side;
             _object = createVehicle [_classname, ASLtoAGL _worldPos, [], 0, "CAN_COLLIDE"];
             createVehicleCrew _object;
-            {[_x] join _group} forEach (crew _object);
+            {[_x] joinSilent _group} forEach (crew _object);
             _object call _initCode;
             [_object] remoteExec [QEFUNC(editor,addObjectToStaticCache), _caller];
             [_object] remoteExec [QEFUNC(editor,addObjectToSelection), _caller];
@@ -76,7 +76,7 @@ if (_isOnTarget) exitWith {
                 if (_unitIsMan) then {
                     _unitObj = _newGroup createUnit [_unitClassname, _unitPos, [], 0, "CAN_COLLIDE"];
                     _unitObj setUnitRank _unitRank;
-                    [_unitObj] join _newGroup;
+                    [_unitObj] joinSilent _newGroup;
                     
                     if (_unitRankNumber > _highestRankInt) then {
                         _highestRankInt = _unitRankNumber;
@@ -87,13 +87,13 @@ if (_isOnTarget) exitWith {
                 } else {
                     _object = createVehicle [_unitClassname, _unitPos, [], 0, "CAN_COLLIDE"];
                     createVehicleCrew _object;
-                    {[_x] join _newGroup} forEach (crew _object);
+                    {[_x] joinSilent _newGroup} forEach (crew _object);
                     _retUnits pushBack _object;
                     [_object] remoteExec [QEFUNC(editor,addObjectToSelection), _caller];
                 };
             } forEach _groupUnits;
             
-            _retUnits join _newGroup;
+            _retUnits joinSilent _newGroup;
             _newGroup selectLeader _highestRankObj;
             
             _retUnits call _initCode;
