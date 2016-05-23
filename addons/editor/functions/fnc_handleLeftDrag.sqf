@@ -76,7 +76,7 @@ if (isNull _anchorObject) then {
         if (_x != GVAR(objectDragAnchor)) then {
             _offset = _position vectorDiff _anchorPos;
             _newPos = _worldPos vectorAdd _offset;
-            _boundingPos = _newPos;
+            _boundingPos = _boundingPos vectorAdd _offset;
         } else {
             _newPos = _worldPos;
         };
