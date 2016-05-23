@@ -11,12 +11,12 @@
  *
  * Public: Yes
  */
- 
+
 #include "script_component.hpp"
 
 params [["_func", {}], ["_params", []]];
 
-if (diag_frameno != GVAR(nextFrameNo)) then {
+if (diag_frameNo != GVAR(nextFrameNo)) then {
     GVAR(nextFrameBufferA) pushBack [_params, _func];
 } else {
     GVAR(nextFrameBufferB) pushBack [_params, _func];

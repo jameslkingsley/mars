@@ -20,6 +20,4 @@ params [["_config", "", [""]]];
 
 private _cfg = call compile _config;
 
-if (getNumber (_cfg >> "isMan") == 1) exitWith {"man"};
-
-"vehicle"
+["vehicle", "man"] select (getNumber (_cfg >> "isMan"));

@@ -18,7 +18,7 @@
 
 params [["_target", grpNull, [objNull, grpNull]]];
 
-private _group = if (typeName _target == "GROUP") then {_target} else {group _target};
+private _group = [group _target, _target] select (_target isEqualType grpNull);
 
 {deleteWaypoint _x;false} count waypoints _group;
 
