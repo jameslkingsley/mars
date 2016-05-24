@@ -80,6 +80,14 @@ GVAR(allowDragging) = false;
 GVAR(isDragging) = false;
 GVAR(prepDragObjectUnderCursor) = objNull;
 
+// Object Direction
+GVAR(objectDirAnchor) = objNull;
+GVAR(objectsDirection) = [];
+GVAR(allowDirection) = false;
+GVAR(isDirection) = false;
+GVAR(prepDirObjectUnderCursor) = objNull;
+
+// Remote Control
 GVAR(isRemoteControl) = false;
 
 ADDON = true;

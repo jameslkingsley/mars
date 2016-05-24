@@ -65,4 +65,5 @@ if (!_ctrlKeyHeld) then {
 deleteVehicle GVAR(prepSurfaceSphere);
 GVAR(prepSurfaceSphere) = objNull;
 GVAR(allowDragging) = false;
+GVAR(allowDirection) = false;
 GVAR(selection) = [];

@@ -52,6 +52,7 @@ switch (toLower _mode) do {
             [GVAR(ctrlKey)] call FUNC(placeNewObject);
             
             GVAR(prepDragObjectUnderCursor) = [] call FUNC(objectUnderCursor);
+            GVAR(prepDirObjectUnderCursor) = [] call FUNC(objectUnderCursor);
         };
 
         // Detect right click
@@ -73,6 +74,15 @@ switch (toLower _mode) do {
                 [objNull, false, true] call FUNC(handleLeftDrag);
             } else {
                 [GVAR(objectDragAnchor), true, true] call FUNC(handleLeftDrag);
+            };
+        };
+        
+        if (GVAR(isDirection)) then {
+            if (GVAR(prepDirObjectUnderCursor) != GVAR(objectDirAnchor)) then {
+                GVAR(allowDirection) = false;
+                [objNull, false, true] call FUNC(handleSelectionDir);
+            } else {
+                [GVAR(objectDirAnchor), true, true] call FUNC(handleSelectionDir);
             };
         };
 
@@ -149,6 +159,11 @@ switch (toLower _mode) do {
             [GVAR(objectDragAnchor)] call FUNC(handleLeftDrag);
         };
 
+        if ((GVAR(mouse) select 0) && GVAR(canContext) && GVAR(shiftKey) && !GVAR(ctrlKey)) then {
+            GVAR(allowDirection) = true;
+            [GVAR(objectDragAnchor)] call FUNC(handleSelectionDir);
+        };
+
         [_x,_y] call FUNC(handleMouse);
     };
     case "onmouseholding": {
@@ -162,6 +177,10 @@ switch (toLower _mode) do {
         
         if ((GVAR(mouse) select 0) && GVAR(canContext) && !GVAR(shiftKey) && !GVAR(ctrlKey)) then {
             [GVAR(objectDragAnchor)] call FUNC(handleLeftDrag);
+        };
+        
+        if ((GVAR(mouse) select 0) && GVAR(canContext) && GVAR(shiftKey) && !GVAR(ctrlKey)) then {
+            [GVAR(objectDirAnchor)] call FUNC(handleSelectionDir);
         };
     };
     case "onkeydown": {
