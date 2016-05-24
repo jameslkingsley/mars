@@ -26,6 +26,5 @@ class Intercept {
 #include "CfgEventHandlers.hpp"
 #include "CfgContext.hpp"
 #include "CfgMenu.hpp"
-#include "CfgAssetBrowser.hpp"
 #include "CfgAttributes.hpp"
 #include "CfgCursors.hpp"
