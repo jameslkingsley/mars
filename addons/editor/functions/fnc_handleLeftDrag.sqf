@@ -28,7 +28,7 @@ if (_update) then {
     GVAR(isDragging) = false;
     [] call FUNC(setCursor);
     
-    if ({isPlayer _x} count GVAR(selection) > 0) exitWith {};
+    if ({isPlayer _x} count GVAR(selection) > 0 && !GVAR(editPlayers)) exitWith {};
 
     {
         private _newPos = _x getVariable [QGVAR(leftDragFinalPos), []];
@@ -81,7 +81,7 @@ if (isNull _anchorObject) then {
         GVAR(selection) = [([] call FUNC(objectUnderCursor))];
     };
 
-    if ({isPlayer _x} count GVAR(selection) > 0) exitWith {};
+    if ({isPlayer _x} count GVAR(selection) > 0 && !GVAR(editPlayers)) exitWith {};
     
     ["select"] call FUNC(setCursor);
 

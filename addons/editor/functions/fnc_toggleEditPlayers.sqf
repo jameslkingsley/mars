@@ -18,3 +18,4 @@
 
 params [["_enabled", false, [false]]];
 
+GVAR(editPlayers) = _enabled;

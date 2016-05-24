@@ -20,7 +20,7 @@
 {
     if (vehicle _x == _x) then {
         // Is not in vehicle
-        if (!isPlayer _x) then {
+        if (!isPlayer _x || GVAR(editPlayers)) then {
             _x setDamage 1;
         };
     } else {
