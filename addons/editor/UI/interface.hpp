@@ -73,13 +73,30 @@ class GVAR(interface) {
             h = MENUBAR_H * GRID_H;
             colorBackground[] = {COLOR_TAB_RGBA};
         };
-        class Toolbar: MARS_gui_ctrlStatic {
+        class Toolbar: MARS_gui_ctrlControlsGroupNoScrollbars {
             idc = IDC_TOOLBAR;
             x = safezoneX;
             y = safezoneY + MENUBAR_H * GRID_H;
             w = safezoneW;
             h = TOOLBAR_H * GRID_H;
-            colorBackground[] = {COLOR_BACKGROUND_RGBA};
+            class Controls {
+                class ToolbarBackground: MARS_gui_ctrlStatic {
+                    idc = IDC_TOOLBAR_BACKGROUND;
+                    x = 0;
+                    y = 0;
+                    w = safezoneW;
+                    h = 7 * GRID_H;
+                    colorBackground[] = {COLOR_BACKGROUND_RGBA};
+                };
+                class Items: MARS_gui_ctrlControlsGroupNoScrollbars {
+                    idc = IDC_TOOLBAR_ITEMS;
+                    x = 1 * GRID_W;
+                    y = 1 * GRID_H;
+                    w = safezoneW;
+                    h = GRID_TOOLBAR_H;
+                    class Controls {};
+                };
+            };
         };
         class PanelLeft: MARS_gui_ctrlControlsGroupNoScrollbars {
 			idc = IDC_LEFTPANEL;

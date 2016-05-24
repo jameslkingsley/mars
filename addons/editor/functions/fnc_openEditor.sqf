@@ -59,6 +59,7 @@ while {dialog} do {
 disableSerialization;
 _display = (findDisplay 46) createDisplay QGVAR(interface);
 [_display] call FUNC(createMenuStrip);
+[_display] call FUNC(createToolbar);
     
 _display displayAddEventHandler ["MouseButtonDown", {
     [{
@@ -96,8 +97,6 @@ GVAR(pfh) = [{
         
         false
     } count GVAR(selection);
-    
-    ctrlSetFocus controlNull;
     
     // Status bar - grid position
     (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_GRID) ctrlSetText format["%1", mapGridPosition GVAR(freeCamera)];
