@@ -161,7 +161,7 @@ switch (toLower _mode) do {
 
         if ((GVAR(mouse) select 0) && GVAR(canContext) && GVAR(shiftKey) && !GVAR(ctrlKey)) then {
             GVAR(allowDirection) = true;
-            [GVAR(objectDragAnchor)] call FUNC(handleSelectionDir);
+            [GVAR(objectDirAnchor)] call FUNC(handleSelectionDir);
         };
 
         [_x,_y] call FUNC(handleMouse);
