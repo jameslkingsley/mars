@@ -105,9 +105,6 @@ GVAR(pfh) = [{
     // Asset browser placing objects
     [] call FUNC(prepNewObject);
     
-    // Handle selection direction
-    [] call FUNC(handleSelectionDir);
-    
     // Handle location icons
     [] call FUNC(handleLocationIcons);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
