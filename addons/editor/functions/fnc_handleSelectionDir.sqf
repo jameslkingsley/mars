@@ -88,7 +88,7 @@ if (isNull _anchorObject) then {
 
     GVAR(objectsDirection) = GVAR(selection);
 
-    _worldPos = [GVAR(objectDirAnchor)] call FUNC(getSurfaceUnderCursor);
+    _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
     _anchorPos = getPosASL GVAR(objectDirAnchor);
 
     {
