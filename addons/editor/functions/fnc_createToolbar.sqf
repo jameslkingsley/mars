@@ -20,12 +20,20 @@ params [["_display", displayNull, [displayNull]]];
 
 if (isNull _display) exitWith {};
 
+#define GRID_W (pixelW * pixelScale * pixelGrid)
+#define GRID_H (pixelH * pixelScale * pixelGrid)
+
 _components = "true" configClasses (configFile >> QGVARMAIN(toolbar));
 
 if (count _components > 0) then {
+    _componentIndex = 0;
+    
     {
+        _children = "true" configClasses (_x);
+        _componentIndex = _forEachIndex;
+        
         {
-            _idc = 4700 + _forEachIndex;
+            _idc = parseNumber (format ["4700%1%2", _componentIndex, _forEachIndex]);
             _tooltipText = getText (_x >> "tooltipText");
             _iconOn = getText (_x >> "iconOn");
             _iconOff = getText (_x >> "iconOff");
@@ -34,12 +42,15 @@ if (count _components > 0) then {
             _defaultBool = [false,true] select _default;
             
             _ctrl = _display ctrlCreate ["MARS_gui_ctrlButtonToolbar", _idc, (_display displayCtrl IDC_TOOLBAR_ITEMS)];
-            _ctrl ctrlSetPosition [
-                (_forEachIndex * GRID_TOOLBAR_W),
+            
+            _pos = [
+                ((_forEachIndex * GRID_TOOLBAR_W) + (_componentIndex * GRID_TOOLBAR_W)),
                 0,
                 GRID_TOOLBAR_W,
                 GRID_TOOLBAR_H
             ];
+            
+            _ctrl ctrlSetPosition _pos;
             
             _ctrl ctrlSetText ([_iconOff, _iconOn] select _default);
             _ctrl ctrlSetTooltip _tooltipText;
@@ -57,6 +68,6 @@ if (count _components > 0) then {
                 params ["_control"];
                 [_control] call FUNC(onToolbarItemClick);
             }];
-        } forEach ("true" configClasses (_x));
+        } forEach _children;
     } forEach _components;
 };
