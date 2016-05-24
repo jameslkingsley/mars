@@ -55,9 +55,9 @@ GVAR(allContextControls) = [];
 GVAR(indexedContexts) = [];
 
 // Toolbar
-GVAR(allToolbarMenus) = [];
-GVAR(hasClickedOnToolbar) = false;
-GVAR(toolbarMenuOpen) = false;
+GVAR(allMenuStripMenus) = [];
+GVAR(hasClickedOnMenuStrip) = false;
+GVAR(menuStripMenuOpen) = false;
 GVAR(dummyMenus) = [];
 
 // Caches

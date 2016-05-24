@@ -26,15 +26,15 @@ if (count _children <= 0) exitWith {};
 _display = _control getVariable [QGVAR(display), displayNull];
 if (isNull _display) exitWith {};
 
-[] call FUNC(closeToolbarMenus);
+[] call FUNC(closeMenuStripMenus);
 
 [{
-    GVAR(hasClickedOnToolbar) = false;
+    GVAR(hasClickedOnMenuStrip) = false;
 }, []] call EFUNC(common,execNextFrame);
 
 _parentPos = ctrlPosition _control;
-_axisY = (_parentPos select 1) + TOOLBAR_CONTEXT_HEIGHT;
-_prevPosYH = [(_parentPos select 1), TOOLBAR_CONTEXT_HEIGHT];
+_axisY = (_parentPos select 1) + MENUSTRIP_CONTEXT_HEIGHT;
+_prevPosYH = [(_parentPos select 1), MENUSTRIP_CONTEXT_HEIGHT];
 
 {
     _idc = 46000 + _forEachIndex;
@@ -42,22 +42,22 @@ _prevPosYH = [(_parentPos select 1), TOOLBAR_CONTEXT_HEIGHT];
     _action = getText (_x >> "action");
 
     _childCtrl = _display ctrlCreate ["MARS_gui_toolbarContextBase", _idc];
-    _childCtrl ctrlSetPosition [(_parentPos select 0), ((_prevPosYH select 0) + (_prevPosYH select 1) - pixelH), TOOLBAR_CONTEXT_WIDTH, TOOLBAR_CONTEXT_HEIGHT];
+    _childCtrl ctrlSetPosition [(_parentPos select 0), ((_prevPosYH select 0) + (_prevPosYH select 1) - pixelH), MENUSTRIP_CONTEXT_WIDTH, MENUSTRIP_CONTEXT_HEIGHT];
     _childCtrl ctrlSetText (format[" %1", _displayName]);
     _childCtrl ctrlShow true;
     _childCtrl ctrlCommit 0;
     
     _childCtrl ctrlAddEventHandler ["MouseButtonDown", {
-        GVAR(hasClickedOnToolbar) = true;
+        GVAR(hasClickedOnMenuStrip) = true;
     }];
     
-    _childCtrl ctrlAddEventHandler ["MouseButtonUp", QUOTE([true] call FUNC(closeToolbarMenus);) + _action];
+    _childCtrl ctrlAddEventHandler ["MouseButtonUp", QUOTE([true] call FUNC(closeMenuStripMenus);) + _action];
     
     _ctrlPos = ctrlPosition _childCtrl;
     _prevPosYH = [(_ctrlPos select 1), (_ctrlPos select 3)];
     
-    _axisY = _axisY + TOOLBAR_CONTEXT_HEIGHT;
-    GVAR(allToolbarMenus) pushBack _idc;
+    _axisY = _axisY + MENUSTRIP_CONTEXT_HEIGHT;
+    GVAR(allMenuStripMenus) pushBack _idc;
 } forEach _children;
 
-GVAR(toolbarMenuOpen) = true;
+GVAR(menuStripMenuOpen) = true;

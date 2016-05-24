@@ -9,7 +9,7 @@
  * None
  *
  * Example:
- * [] call mars_editor_fnc_createToolbar;
+ * [] call mars_editor_fnc_createMenuStrip;
  *
  * Public: No
  */
@@ -45,7 +45,7 @@ if (count _components > 0) then {
             _width = (_nameCount * (pixelW * 6.5)) + _padding;
             
             _ctrl = _display ctrlCreate ["MARS_gui_menuTopBase", _idc];
-            _ctrl ctrlSetPosition [_axisX, (0 * safeZoneH + safeZoneY), _width, TOOLBAR_CONTEXT_HEIGHT];
+            _ctrl ctrlSetPosition [_axisX, (0 * safeZoneH + safeZoneY), _width, MENUSTRIP_CONTEXT_HEIGHT];
             _ctrl ctrlSetText _displayName;
             _ctrl ctrlShow true;
             _ctrl ctrlCommit 0;
@@ -54,22 +54,22 @@ if (count _components > 0) then {
             _ctrl setVariable [QGVAR(children), _children];
             
             _ctrl ctrlAddEventHandler ["MouseButtonDown", {
-                GVAR(hasClickedOnToolbar) = true;
+                GVAR(hasClickedOnMenuStrip) = true;
             }];
             
             _ctrl ctrlAddEventHandler ["MouseEnter", {
-                if (GVAR(toolbarMenuOpen)) then {
-                    [] call FUNC(closeToolbarMenus);
-                    _this call FUNC(onToolbarClick);
+                if (GVAR(menuStripMenuOpen)) then {
+                    [] call FUNC(closeMenuStripMenus);
+                    _this call FUNC(onMenuStripClick);
                 };
             }];
             
             if (count _children > 0) then {
                 _ctrl ctrlAddEventHandler ["MouseButtonUp", {
-                    _this call FUNC(onToolbarClick);
+                    _this call FUNC(onMenuStripClick);
                 }];
             } else {
-                _ctrl ctrlAddEventHandler ["MouseButtonUp", QUOTE([true] call FUNC(closeToolbarMenus);) + _action];
+                _ctrl ctrlAddEventHandler ["MouseButtonUp", QUOTE([true] call FUNC(closeMenuStripMenus);) + _action];
             };
 
             _axisX = _axisX + _width;

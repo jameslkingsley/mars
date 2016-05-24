@@ -18,15 +18,15 @@
 
 params [["_bool",false]];
 
-{ctrlDelete (GETUVAR(GVAR(interface),displayNull) displayCtrl _x)} forEach GVAR(allToolbarMenus);
-GVAR(allToolbarMenus) = [];
+{ctrlDelete (GETUVAR(GVAR(interface),displayNull) displayCtrl _x)} forEach GVAR(allMenuStripMenus);
+GVAR(allMenuStripMenus) = [];
 
 if (_bool) then {
     [{
         [{
-            GVAR(hasClickedOnToolbar) = false;
+            GVAR(hasClickedOnMenuStrip) = false;
         }, []] call EFUNC(common,execNextFrame);
     }, []] call EFUNC(common,execNextFrame);
 };
 
-GVAR(toolbarMenuOpen) = false;
+GVAR(menuStripMenuOpen) = false;

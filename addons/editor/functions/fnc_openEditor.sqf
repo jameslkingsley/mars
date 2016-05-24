@@ -58,13 +58,13 @@ while {dialog} do {
 // Create the display
 disableSerialization;
 _display = (findDisplay 46) createDisplay QGVAR(interface);
-[_display] call FUNC(createToolbar);
+[_display] call FUNC(createMenuStrip);
     
 _display displayAddEventHandler ["MouseButtonDown", {
     [{
-        if (!GVAR(hasClickedOnToolbar)) then {
-            [] call FUNC(closeToolbarMenus);
-            GVAR(hasClickedOnToolbar) = false;
+        if (!GVAR(hasClickedOnMenuStrip)) then {
+            [] call FUNC(closeMenuStripMenus);
+            GVAR(hasClickedOnMenuStrip) = false;
         };
     }, []] call EFUNC(common,execNextFrame);
 }];

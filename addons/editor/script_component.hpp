@@ -39,8 +39,8 @@
 #define TYPE_SEARCH ["Man","Car","Air","Tank","Truck","Ship"]
 #define FULL_TYPE_SEARCH [(screenToWorld GVAR(mousePos)), TYPE_SEARCH, 4]
 
-#define TOOLBAR_CONTEXT_WIDTH (0.12 * safeZoneW)
-#define TOOLBAR_CONTEXT_HEIGHT (MENUBAR_H * (pixelH * pixelScale * pixelGrid))
+#define MENUSTRIP_CONTEXT_WIDTH (0.12 * safeZoneW)
+#define MENUSTRIP_CONTEXT_HEIGHT (MENUBAR_H * (pixelH * pixelScale * pixelGrid))
 
 #define CONTEXT_OPTION_WIDTH (0.1 * safeZoneW)
 #define CONTEXT_OPTION_HEIGHT (0.025 * safeZoneH)
