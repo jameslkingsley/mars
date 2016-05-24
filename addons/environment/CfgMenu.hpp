@@ -1,4 +1,4 @@
-class GVARMAIN(toolbar) {
+class GVARMAIN(menu) {
     class ADDON {
         class environment {
             displayName = "Environment";

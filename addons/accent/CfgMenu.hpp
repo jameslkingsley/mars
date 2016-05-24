@@ -1,4 +1,4 @@
-class GVARMAIN(toolbar) {
+class GVARMAIN(menu) {
     class GVARMAIN(editor) {
         class settings {
             class accent {

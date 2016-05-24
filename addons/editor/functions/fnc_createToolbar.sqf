@@ -20,7 +20,7 @@ params ["_display"];
 
 disableSerialization;
 
-_components = "true" configClasses (configFile >> QGVARMAIN(toolbar));
+_components = "true" configClasses (configFile >> QGVARMAIN(menu));
 
 if (count _components > 0) then {
     _axisX = safeZoneX;

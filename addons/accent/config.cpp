@@ -14,4 +14,4 @@ class CfgPatches {
 
 #include "CfgEventHandlers.hpp"
 #include "UI\accent.hpp"
-#include "CfgToolbar.hpp"
+#include "CfgMenu.hpp"
