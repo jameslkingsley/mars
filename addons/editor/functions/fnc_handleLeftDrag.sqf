@@ -24,8 +24,6 @@ params [
     ["_cancel", false, [false]]
 ];
 
-// systemChat format["%1    %2    %3", _anchorObject, _update, _cancel];
-
 if (_update) then {
     GVAR(isDragging) = false;
     [] call FUNC(setCursor);
@@ -99,7 +97,6 @@ if (isNull _anchorObject) then {
         _positionASL = getPosASL _object;
         _positionATL = getPosATL _object;
         _positionAGL = ASLtoAGL _positionASL;
-        _fixedZ = _positionASL select 2;
         _boundingPos = _worldPos vectorDiff _positionASL;
 
         if (_x != GVAR(objectDragAnchor)) then {
