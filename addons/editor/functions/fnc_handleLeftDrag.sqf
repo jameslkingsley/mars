@@ -28,7 +28,6 @@ params [
 
 if (_update) then {
     GVAR(isDragging) = false;
-    [] call FUNC(destroySurfaceSphere);
     [] call FUNC(setCursor);
     
     if ({isPlayer _x} count GVAR(selection) > 0) exitWith {};
@@ -47,7 +46,6 @@ if (_update) then {
 if (_cancel) then {
     GVAR(allowDragging) = false;
     GVAR(isDragging) = false;
-    [] call FUNC(destroySurfaceSphere);
     [] call FUNC(setCursor);
     
     {
@@ -113,16 +111,12 @@ if (isNull _anchorObject) then {
         };
         
         _finalPosATL = ASLtoATL _newPos;
-        // _finalPosATL set [2, (_positionATL select 2)];
-        // _boundingPos set [2, (_positionASL select 2)];
-        
         _boundingPos = ASLtoAGL _boundingPos;
-        // _boundingPos set [2, 0];
         
-        if ((_boundingPos select 2) > 0) then {
-            [_boundingPos, [(side (group _object))] call EFUNC(common,getSideColor)] call FUNC(drawSurfaceSphere);
+        if (((ASLtoAGL _worldPos) select 2) <= 0.1) then {
+            _boundingPos set [2, ((ASLtoAGL _worldPos) select 2)];
         };
-
+        
         [_object, [side (group _object)] call EFUNC(common,getSideColor), _boundingPos] call FUNC(drawBoundingBox);
         _object setVariable [QGVAR(leftDragFinalPos), _finalPosATL];
 
