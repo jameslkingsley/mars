@@ -1,5 +1,5 @@
 /*
- * Author: Kingsley
+ * Author: Kingsley, 654wak654
  * Draws a bounding box around the given object in 3D space
  * Must be called every frame
  *
@@ -7,15 +7,15 @@
  * 0: Object <OBJECT>
  * 1: Color (optional) <RGBA ARRAY>
  * 2: Offset in world position (AGL) (optional) <ARRAY>
- * 3: Rotation (x,y,z) (optional) <ARRAY>
+ * 3: Rotation of bounding box (optional) <NUMBER>
  *
  * Return Value:
  * None
  *
  * Example:
- * [player, [1,0,0,1]] call mars_editor_fnc_drawBoundingBox;
+ * [player, [1,0,0,1], [0,0,0], 45] call mars_editor_fnc_drawBoundingBox;
  *
- * Public: No
+ * Public: Yes
  */
 
 #include "script_component.hpp"
@@ -24,18 +24,32 @@ params [
     ["_target", objNull, [objNull]],
     ["_color", [1,1,1,1], [[]]],
     ["_offset", [0,0,0], [[]]],
-    ["_rotation", [0,0,0], [[]]]
+    ["_rotation", 0, [0]]
 ];
 
 if (isNull _target) exitWith {};
 
-_color set [3, ([0.33, 1] select (_target in GVAR(selection)))];
+_color set [3, [0.33, 1] select (_target in GVAR(selection))];
 (boundingBoxReal _target) params ["_box0", "_box1"];
 
 {
+    _x params ["_start", "_end"];
+    if (_rotation > 0) then {
+        _rotation = (_rotation % 360) - 360;
+        _start = [
+            ((_start select 0) * cos _rotation) - ((_start select 1) * sin _rotation),
+            ((_start select 0) * sin _rotation) + ((_start select 1) * cos _rotation),
+            _start select 2
+        ];
+        _end = [
+            ((_end select 0) * cos _rotation) - ((_end select 1) * sin _rotation),
+            ((_end select 0) * sin _rotation) + ((_end select 1) * cos _rotation),
+            _end select 2
+        ];
+    };
     drawLine3D [
-        (_target modelToWorldVisual (_x select 0)) vectorAdd _offset,
-        (_target modelToWorldVisual (_x select 1)) vectorAdd _offset,
+        (_target modelToWorldVisual _start) vectorAdd _offset,
+        (_target modelToWorldVisual _end) vectorAdd _offset,
         _color
     ];
 
