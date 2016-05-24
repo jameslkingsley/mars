@@ -34,19 +34,23 @@ _color set [3, [0.33, 1] select (_target in GVAR(selection))];
 
 {
     _x params ["_start", "_end"];
-    if (_rotation > 0) then {
-        _rotation = (_rotation % 360) - 360;
+
+    if (_rotation != 0) then {
+        _rotation = _rotation % 360;
+        
         _start = [
-            ((_start select 0) * cos _rotation) - ((_start select 1) * sin _rotation),
-            ((_start select 0) * sin _rotation) + ((_start select 1) * cos _rotation),
+            ((_start select 0) * cos -_rotation) - ((_start select 1) * sin -_rotation),
+            ((_start select 0) * sin -_rotation) + ((_start select 1) * cos -_rotation),
             _start select 2
         ];
+        
         _end = [
-            ((_end select 0) * cos _rotation) - ((_end select 1) * sin _rotation),
-            ((_end select 0) * sin _rotation) + ((_end select 1) * cos _rotation),
+            ((_end select 0) * cos -_rotation) - ((_end select 1) * sin -_rotation),
+            ((_end select 0) * sin -_rotation) + ((_end select 1) * cos -_rotation),
             _end select 2
         ];
     };
+
     drawLine3D [
         (_target modelToWorldVisual _start) vectorAdd _offset,
         (_target modelToWorldVisual _end) vectorAdd _offset,
