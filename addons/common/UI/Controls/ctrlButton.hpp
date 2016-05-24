@@ -74,6 +74,8 @@ class MARS_gui_ctrlButtonClose: MARS_gui_ctrlButtonCancel {
 class MARS_gui_ctrlButtonToolbar: MARS_gui_ctrlButtonPictureKeepAspect {
     colorBackground[] = {0,0,0,0};
     colorBackgroundDisabled[] = {0,0,0,0};
+    offsetPressedX = 0;
+    offsetPressedY = 0;
 };
 
 class MARS_gui_ctrlButtonSearch: MARS_gui_ctrlButton {
