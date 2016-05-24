@@ -89,3 +89,7 @@ class MARS_gui_ctrlStaticBackgroundDisableTiles: MARS_gui_ctrlStaticPictureTile 
     tileH = 4 / (32 * pixelH);
     colorText[] = {1,1,1,0.05};
 };
+
+class MARS_gui_ctrlStaticSeparator: MARS_gui_ctrlStatic {
+	colorBackground[] = {0,0,0,0.5};
+};
