@@ -113,11 +113,11 @@ if (isNull _anchorObject) then {
         };
         
         _finalPosATL = ASLtoATL _newPos;
-        _finalPosATL set [2, (_positionATL select 2)];
-        _boundingPos set [2, (_positionASL select 2)];
+        // _finalPosATL set [2, (_positionATL select 2)];
+        // _boundingPos set [2, (_positionASL select 2)];
         
         _boundingPos = ASLtoAGL _boundingPos;
-        _boundingPos set [2, 0];
+        // _boundingPos set [2, 0];
         
         if ((_boundingPos select 2) > 0) then {
             [_boundingPos, [(side (group _object))] call EFUNC(common,getSideColor)] call FUNC(drawSurfaceSphere);
