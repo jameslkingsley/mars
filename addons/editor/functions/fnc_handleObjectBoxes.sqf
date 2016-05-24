@@ -18,7 +18,13 @@
 
 _object = [] call FUNC(objectUnderCursor);
 
-if (isNull _object) exitWith {};
+if (isNull _object) exitWith {
+    if (!GVAR(isDragging)) then {
+        [] call FUNC(setCursor);
+    };
+};
 
 private _color = [[0,0,0,1], MARS_SIDECOLOR(side group _object)] select (alive _object);
 [_object, _color] call FUNC(drawBoundingBox);
+
+["select"] call FUNC(setCursor);

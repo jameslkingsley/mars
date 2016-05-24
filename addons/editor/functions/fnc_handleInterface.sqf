@@ -22,8 +22,10 @@ params ["_mode",["_args",[]]];
 switch (toLower _mode) do {
     case "onload": {
         _args params ["_display"];
+        
         SETUVAR(GVAR(interface),_display);
-        // Start the entity list handler
+        SETUVAR(GVAR(cursorHelper),(_display displayCtrl IDC_CURSORHELPER));
+        
         [] call FUNC(createEntityList);
         [] call FUNC(createAssetBrowser);
     };
@@ -135,6 +137,8 @@ switch (toLower _mode) do {
     };
     case "onmousemoving": {
         _args params ["_ctrl","_x","_y"];
+        
+        [_x,_y] call FUNC(handleCursor);
 
         if (GVAR(mouse) select 1) then {
             GVAR(canContext) = false;
@@ -149,6 +153,8 @@ switch (toLower _mode) do {
     };
     case "onmouseholding": {
         _args params ["_ctrl","_x","_y"];
+        
+        [_x,_y] call FUNC(handleCursor);
         
         if !(GVAR(mouse) select 1) then {
             GVAR(canContext) = true;

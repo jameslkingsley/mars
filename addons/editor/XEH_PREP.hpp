@@ -47,3 +47,5 @@ PREP(handleLocationIcons);
 PREP(absoluteObjectUnderCursor);
 PREP(drawSurfaceSphere);
 PREP(destroySurfaceSphere);
+PREP(setCursor);
+PREP(handleCursor);

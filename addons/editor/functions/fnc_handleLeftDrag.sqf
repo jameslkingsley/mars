@@ -29,6 +29,7 @@ params [
 if (_update) then {
     GVAR(isDragging) = false;
     [] call FUNC(destroySurfaceSphere);
+    [] call FUNC(setCursor);
     
     if ({isPlayer _x} count GVAR(selection) > 0) exitWith {};
 
@@ -47,6 +48,7 @@ if (_cancel) then {
     GVAR(allowDragging) = false;
     GVAR(isDragging) = false;
     [] call FUNC(destroySurfaceSphere);
+    [] call FUNC(setCursor);
     
     {
         _x setVariable [QGVAR(leftDragFinalPos), nil];
@@ -84,6 +86,8 @@ if (isNull _anchorObject) then {
     };
 
     if ({isPlayer _x} count GVAR(selection) > 0) exitWith {};
+    
+    ["select"] call FUNC(setCursor);
 
     GVAR(objectsDragging) = GVAR(selection);
 

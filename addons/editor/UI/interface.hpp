@@ -563,5 +563,16 @@ class GVAR(interface) {
                 };
             };
         };
+        class CursorHelper: MARS_gui_ctrlStaticPictureKeepAspect {
+            idc = IDC_CURSORHELPER;
+            x = 0.5;
+            y = 0.5;
+            w = pixelW * 14;
+            h = pixelW * 14;
+            sizeEx = SIZEEX_PURISTA_M;
+            text = "";
+            colorBackground[] = {0,0,0,0};
+            shadow = 0;
+        };
     };
 };

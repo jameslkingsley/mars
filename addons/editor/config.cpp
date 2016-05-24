@@ -28,3 +28,4 @@ class Intercept {
 #include "CfgToolbar.hpp"
 #include "CfgAssetBrowser.hpp"
 #include "CfgAttributes.hpp"
+#include "CfgCursors.hpp"

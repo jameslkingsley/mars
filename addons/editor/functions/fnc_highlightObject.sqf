@@ -24,7 +24,7 @@ if (_object == GVAR(prepSurfaceSphere)) exitWith {};
 if (_object in GVAR(selection)) exitWith {};
 
 if (GVAR(ctrlKey) && count GVAR(selection) == 0) exitWith {
-    GVAR(selection) = (units (group _object));
+    GVAR(selection) = (units (group _object)) apply {vehicle _x};
 };
 
 if (!GVAR(ctrlKey)) then {GVAR(selection) = []};

@@ -122,6 +122,9 @@ player addEventHandler ["Killed", {
     [] call FUNC(shutdown);
 }];
 
+// Set the cursor to default
+[] call FUNC(setCursor);
+
 // player playActionNow "gear";
 
 GVAR(isSet) = true;

@@ -253,4 +253,10 @@
 #define COLOR_AMBIENT_RGB 0,1,0.5
 #define COLOR_AMBIENT_RGBA COLOR_AMBIENT_RGB,1
 
+#define DEFINE_CURSOR(NAME,PATH)\
+    class NAME {\
+        name = QUOTE(NAME);\
+        path = PATH;\
+    };
+
 #include "script_debug.hpp"
