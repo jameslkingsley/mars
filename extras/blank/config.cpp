@@ -13,3 +13,6 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
+#include "CfgMenu.hpp"
+#include "CfgToolbar.hpp"
+#include "CfgContext.hpp"
