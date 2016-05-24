@@ -90,7 +90,4 @@ GVAR(prepDirObjectUnderCursor) = objNull;
 // Remote Control
 GVAR(isRemoteControl) = false;
 
-// Edit Players
-GVAR(editPlayers) = false;
-
 ADDON = true;
