@@ -48,7 +48,7 @@
             {
                 if ((_x select 2) == _className) then {
                     private _icon = getText ((_x select 0) >> "icon");
-                    private _iconTex = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
+                    private _iconTex = [getText (configFile >> "CfgVehicleIcons" >> _icon), _icon] select ((toLower _icon) find "\a3\" > -1 );
                     private _side = getNumber ((_x select 0) >> "side");
                     private _objType = if (getNumber ((_x select 0) >> "isMan") == 1) then {"man"} else {"vehicle"};
                     private _dataStr = format [
@@ -106,9 +106,9 @@
                 {
                     if ((_x select 2) == _className) then {
                         private _icon = getText ((_x select 0) >> "icon");
-                        private _iconTex = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
+                        private _iconTex = [getText (configFile >> "CfgVehicleIcons" >> _icon), _icon] select ((toLower _icon) find "\a3\" > -1 );
                         private _side = getNumber ((_x select 0) >> "side");
-                        private _objType = if (getNumber ((_x select 0) >> "isMan") == 1) then {"man"} else {"vehicle"};
+                        private _objType = ["vehicle", "man"] select (getNumber ((_x select 0) >> "isMan") == 1);
                         private _dataStr = format [
                             "['%1','%2']",
                             _objType,

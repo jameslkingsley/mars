@@ -80,7 +80,7 @@ GVAR(interrupts) = [];
 
 GVAR(pfh) = [{
     // Tagging handler
-    if (GVAR(canContext) || count GVAR(selection) > 0) then {
+    if (GVAR(canContext) || {count GVAR(selection) > 0}) then {
         [] call FUNC(handleObjectBoxes);
     };
 

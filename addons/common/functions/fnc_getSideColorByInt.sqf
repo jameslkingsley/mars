@@ -21,7 +21,7 @@ params [
     ["_side", -1, [0]]
 ];
 
-if (_side < 0 || _side > 3) exitWith {[COLOR_EMPTY_RGBA]};
+if (_side < 0 || {_side > 3}) exitWith {[COLOR_EMPTY_RGBA]};
 
 [
     [COLOR_EAST_RGBA],

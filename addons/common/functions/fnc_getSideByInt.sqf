@@ -20,6 +20,6 @@ params [
     ["_side", -1, [0]]
 ];
 
-if (_side < 0 || _side > 3) exitWith {sideUnknown};
+if (_side < 0 || {_side > 3}) exitWith {sideUnknown};
 
 [east, west, resistance, civilian] select _side;

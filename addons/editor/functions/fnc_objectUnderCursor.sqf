@@ -33,8 +33,7 @@ private _objects = lineIntersectsSurfaces [
 if !(_objects isEqualTo []) then {
     {
 
-
-        if ({_obj isKindOf _x} count TYPE_SEARCH > 0 || _obj in GVAR(placedStaticObjects)) then {
+        if ({_obj isKindOf _x} count TYPE_SEARCH > 0 || {_obj in GVAR(placedStaticObjects)}) then {
             if (true) exitWith {
                 _target = _obj;
             };

@@ -77,7 +77,7 @@ if (isNull _anchorObject) then {
 
     GVAR(objectDragAnchor) = _nearest;
 } else {
-    if ({isPlayer _x} count GVAR(selection) > 0 && !GVAR(editPlayers)) exitWith {};
+    if ({isPlayer _x} count GVAR(selection) > 0 && {!GVAR(editPlayers)}) exitWith {};
 
     ["select"] call FUNC(setCursor);
 
