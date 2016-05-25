@@ -24,7 +24,6 @@ class Intercept {
 
 #include "\z\mars\addons\common\define.hpp"
 #include "UI\interface.hpp"
-#include "UI\attributes.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgContext.hpp"
 #include "CfgMenu.hpp"

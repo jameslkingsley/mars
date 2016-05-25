@@ -16,4 +16,4 @@
 
 #include "script_component.hpp"
 
-["Environment", QGVAR(interface), {}, {}] call EFUNC(editor,openAttributes);
+[QUOTE(ADDON), "environment"] call EFUNC(attributes,openAttributes);
