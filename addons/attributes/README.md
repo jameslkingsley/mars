@@ -1,7 +1,7 @@
-mars_editor
+mars_attributes
 ===========
-This is the main editor display which contains the raw user input and API for menus.
-Do not delete this component.
+This component contains the attributes framework.
+Do not remove the component.
 
 ## Maintainers
 The people responsible for merging changes to this component or answering potential questions.

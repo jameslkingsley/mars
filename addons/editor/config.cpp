@@ -5,7 +5,7 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"mars_common"};
+        requiredAddons[] = {"mars_attributes"};
         author[] = {"ACE3 Project","Kingsley"};
         authorUrl = "https://github.com/jameslkingsley/mars";
         VERSION_CONFIG;
@@ -24,7 +24,6 @@ class Intercept {
 
 #include "\z\mars\addons\common\define.hpp"
 #include "UI\interface.hpp"
-#include "UI\attributes.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgContext.hpp"
 #include "CfgMenu.hpp"

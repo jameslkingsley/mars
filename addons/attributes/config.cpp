@@ -5,13 +5,13 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"mars_editor"};
+        requiredAddons[] = {"mars_common"};
         author[] = {"Kingsley"};
-        authorUrl = "https://github.com/jameslkingsley/mars";
+        authorUrl = "https://github.com/jameslkingsley";
         VERSION_CONFIG;
     };
 };
 
+#include "\z\mars\addons\common\define.hpp"
 #include "CfgEventHandlers.hpp"
-#include "CfgAttributes.hpp"
-#include "CfgMenu.hpp"
+#include "UI\interface.hpp"

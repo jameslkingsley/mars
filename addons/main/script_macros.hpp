@@ -199,8 +199,6 @@
 
 #define MARS_SIDECOLOR(side) ([(side)] call EFUNC(common,getSideColor))
 
-#define MARS_ATTR(CNAME,GUINAME) class CNAME {dialog = GUINAME;}
-
 #define COLOR_DEFAULT_RGB_R 0.741
 #define COLOR_DEFAULT_RGB_G 0.173
 #define COLOR_DEFAULT_RGB_B 0.173
