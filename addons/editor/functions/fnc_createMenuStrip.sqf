@@ -72,7 +72,7 @@ _maxNameCount = 0;
             _ctrl ctrlAddEventHandler ["MouseButtonUp", QUOTE([true] call FUNC(closeMenuStripMenus);) + _action];
         };
 
-        _axisX = _axisX + _width;
+        ADD(_axisX,_width);
         GVAR(topNavControls) pushBack _idc;
     } forEach ("true" configClasses (_x));
 } forEach _components;

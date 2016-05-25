@@ -34,10 +34,11 @@ if (isNull _display) exitWith {};
 
 _parentPos = ctrlPosition _control;
 _axisY = (_parentPos select 1) + MENUSTRIP_CONTEXT_HEIGHT;
-_prevPosYH = [(_parentPos select 1), MENUSTRIP_CONTEXT_HEIGHT];
+_prevPosYH = [_parentPos select 1, MENUSTRIP_CONTEXT_HEIGHT];
+
+_idc = 46000;
 
 {
-    _idc = 46000 + _forEachIndex;
     _displayName = getText (_x >> "displayName");
     _action = getText (_x >> "action");
 
@@ -54,10 +55,12 @@ _prevPosYH = [(_parentPos select 1), MENUSTRIP_CONTEXT_HEIGHT];
     _childCtrl ctrlAddEventHandler ["MouseButtonUp", QUOTE([true] call FUNC(closeMenuStripMenus);) + _action];
 
     _ctrlPos = ctrlPosition _childCtrl;
-    _prevPosYH = [(_ctrlPos select 1), (_ctrlPos select 3)];
+    _prevPosYH = [_ctrlPos select 1, _ctrlPos select 3];
 
-    _axisY = _axisY + MENUSTRIP_CONTEXT_HEIGHT;
+    ADD(_axisY,MENUSTRIP_CONTEXT_HEIGHT);
     GVAR(allMenuStripMenus) pushBack _idc;
+
+    INC(_idc);
 
     false
 } count _children;
