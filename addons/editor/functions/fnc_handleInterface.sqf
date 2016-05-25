@@ -102,7 +102,7 @@ switch (toLower _mode) do {
 
             // Right Click & Can Context
             case (_button == 1 && {GVAR(canContext)}): {
-                if (count GVAR(selection) > 0 {&& GVAR(abSelectedObject) isEqualTo []}) then {
+                if (count GVAR(selection) > 0 && {GVAR(abSelectedObject) isEqualTo []}) then {
                     // Already has objects in selection
                     [] call FUNC(closeContextMenu);
                     [] call FUNC(handleSelToPos);
