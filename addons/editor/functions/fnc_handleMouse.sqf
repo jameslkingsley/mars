@@ -31,7 +31,7 @@ if (_rightButton) then {
     // Pan/Tilt amount should be influnced by zoom level (it should really be exponential)
     _zoomMod = (GVAR(camZoom) * 0.8) max 1;
 
-    REM(GVAR(camPan),((_deltaX * 360) / _zoomMod))
+    SUB(GVAR(camPan),(_deltaX * 360) / _zoomMod);
     GVAR(camTilt) = ((GVAR(camTilt) + ((_deltaY * 180) / _zoomMod)) min 89) max -89;
 };
 
