@@ -5,7 +5,7 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"mars_common"};
+        requiredAddons[] = {"mars_attributes"};
         author[] = {"ACE3 Project","Kingsley"};
         authorUrl = "https://github.com/jameslkingsley/mars";
         VERSION_CONFIG;
