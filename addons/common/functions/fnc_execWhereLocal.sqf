@@ -31,6 +31,4 @@ if (local _target) exitWith {
 };
 
 private _targets = [_target, groupOwner _target] select (_target isEqualType grpNull);
-private _result = [_code, _args] remoteExec [QFUNC(_execLocalCode), _targets, false];
-
-_result
+[_code, _args] remoteExec [QFUNC(_execLocalCode), _targets, false];

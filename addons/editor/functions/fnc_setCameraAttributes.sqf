@@ -32,14 +32,14 @@
 #include "script_component.hpp"
 
 params [
-    ["_mode",GVAR(camMode),[0]],
-    ["_unit",GVAR(camUnit),[objNull]],
-    ["_vision",GVAR(camVision),[0]],
-    ["_position",ASLtoATL GVAR(camPos),[[]],3],
-    ["_heading",GVAR(camPan),[0]],
-    ["_tilt",GVAR(camTilt),[0]],
-    ["_zoom",GVAR(camZoom),[0]],
-    ["_speed",GVAR(camSpeed),[0]]
+    ["_mode", GVAR(camMode), [0]],
+    ["_unit", GVAR(camUnit), [objNull]],
+    ["_vision", GVAR(camVision), [0]],
+    ["_position", ASLtoATL GVAR(camPos), [[]], 3],
+    ["_heading", GVAR(camPan), [0]],
+    ["_tilt", GVAR(camTilt), [0]],
+    ["_zoom", GVAR(camZoom), [0]],
+    ["_speed", GVAR(camSpeed), [0]]
 ];
 
 // Normalize input
@@ -61,7 +61,7 @@ GVAR(camZoom) = (_zoom min 2) max 0.01;
 // Apply if camera exists
 if (GVAR(isSet)) then {
     GVAR(freeCamera) setPosATL _position;
-    [_mode,_vision] call FUNC(transitionCamera);
+    [_mode, _vision] call FUNC(transitionCamera);
 } else {
     GVAR(camMode) = _mode;
     GVAR(camPos) = (ATLtoASL _position);

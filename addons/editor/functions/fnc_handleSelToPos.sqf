@@ -18,38 +18,21 @@
 
 #include "script_component.hpp"
 
-private ["_worldPos","_objects"];
+private _worldPos = screenToWorld GVAR(mousePos);
+private _objects = nearestObjects FULL_TYPE_SEARCH;
 
-_worldPos = screenToWorld GVAR(mousePos);
-_objects = nearestObjects FULL_TYPE_SEARCH;
-
-if (count _objects > 0) exitWith {
+if !(_objects isEqualTo []) exitWith {
     [] call FUNC(selectObject);
     [] call FUNC(handleContextMenu);
 };
 
-if (count GVAR(selection) == 0 || count _worldPos == 0) exitWith {};
+if (GVAR(selection) isEqualTo [] || {_worldPos isEqualTo []}) exitWith {};
 
 {
     private _unit = _x;
-    
-    switch (true) do {
-        // Infantry
-        case (_unit isKindOf "Man"): {
-            _unit doMove _worldPos;
-        };
-        
-        // Land vehicle
-        case (_unit isKindOf "LandVehicle"): {
-            _unit doMove _worldPos;
-        };
-        
-        // Air vehicle
-        case (_unit isKindOf "Air"): {
-            _unit doMove _worldPos;
-        };
-        
-        default {};
+
+    if ({_unit isKindOf _x} count ["Man", "LandVehicle", "Air"] > 0) then {
+        _unit doMove _worldPos;
     };
 
     false

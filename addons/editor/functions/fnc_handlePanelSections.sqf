@@ -27,7 +27,7 @@ _args params [
     ["_index", 0]
 ];
 
-if (count _args == 0 || _type == "" || _index < 0) exitWith {};
+if (_args isEqualTo [] || {_type == ""} || {_index < 0}) exitWith {};
 
 _display = GETUVAR(GVAR(interface),displayNull);
 
@@ -101,9 +101,9 @@ switch (_type) do {
                 ];
             };
         };
-        
+
         GVAR(abCurrentMode) = _index;
-        
+
         ["rightSides", [controlNull, GVAR(abCurrentSubmode)]] call FUNC(handlePanelSections);
     };
     case "rightSides": {
@@ -114,9 +114,9 @@ switch (_type) do {
             case 3: {SIDE_CIV};
             case 4: {SIDE_EMPTY};
         };
-        
+
         _treeParent = _display displayCtrl IDC_ASSETBROWSER_TREE;
-        
+
         _treeIDC = -1;
         if (GVAR(abCurrentMode) == 0) then {
             // Objects
@@ -139,9 +139,9 @@ switch (_type) do {
                 };
             };
         };
-        
+
         if (_treeIDC == -1) exitWith {};
-        
+
         {
             _treeCtrl = _treeParent controlsGroupCtrl _x;
             _treeCtrl ctrlShow (_treeIDC == _x);
@@ -159,7 +159,7 @@ switch (_type) do {
             IDC_ASSETBROWSER_TREE_GROUPS_CIV,
             IDC_ASSETBROWSER_TREE_GROUPS_EMPTY
         ];
-        
+
         GVAR(abCurrentSubmode) = _index;
     };
 };

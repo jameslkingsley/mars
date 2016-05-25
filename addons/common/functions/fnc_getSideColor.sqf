@@ -19,12 +19,10 @@
 
 params [["_side", sideUnknown]];
 
-private _color = switch (_side) do {
-    case west: {[COLOR_WEST_RGBA]};
-    case east: {[COLOR_EAST_RGBA]};
-    case resistance: {[COLOR_GUER_RGBA]};
-    case civilian: {[COLOR_CIV_RGBA]};
-    default {[COLOR_EMPTY_RGBA]};
-};
-
-_color
+[
+    [COLOR_EMPTY_RGBA],
+    [COLOR_WEST_RGBA],
+    [COLOR_EAST_RGBA],
+    [COLOR_GUER_RGBA],
+    [COLOR_CIV_RGBA]
+] select ([sideUnknown, west, east, resistance, civilian] find _side);

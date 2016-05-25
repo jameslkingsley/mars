@@ -18,11 +18,11 @@
 
 disableSerialization;
 
-params ["_control","_path"];
+params ["_control", "_path"];
 
 private _selected = call compile (_control tvData _path);
 
-if (count _selected == 0) exitWith {
+if (_selected isEqualTo []) exitWith {
     GVAR(abSelectedObject) = [];
 };
 
@@ -32,27 +32,18 @@ _selected params [
     ["_groupPath", []]
 ];
 
-#define MAN_VEHICLE \
-    _cfg = (configFile >> "CfgVehicles" >> _classname);\
-    _icon = getText (_cfg >> "icon");\
-    _side = getNumber (_cfg >> "side");\
-    _color = [_side] call EFUNC(common,getSideColorByInt);\
-    _iconTex = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};\
+if (_objType in ["man", "vehicle"]) then {
+    _cfg = (configFile >> "CfgVehicles" >> _classname);
+    _icon = getText (_cfg >> "icon");
+    _side = getNumber (_cfg >> "side");
+    _color = [_side] call EFUNC(common,getSideColorByInt);
+    _iconTex = [getText (configFile >> "CfgVehicleIcons" >> _icon), _icon] select ((toLower _icon) find "\a3\" > -1);
     GVAR(abSelectedObject) = [_objType, _classname, _iconTex, _color, _side];
-
-switch (_objType) do {
-    case "man": {
-        MAN_VEHICLE
-    };
-    case "vehicle": {
-        MAN_VEHICLE
-    };
-    case "group": {
-        _groupPath params ["_root", "_side", "_faction", "_type", "_group"];
-        _groupConfig = (configFile >> _root >> _side >> _faction >> _type >> _group);
-        _icon = getText (_groupConfig >> "icon");
-        _side = getNumber (_groupConfig >> "side");
-        _color = [_side] call EFUNC(common,getSideColorByInt);
-        GVAR(abSelectedObject) = [_objType, _classname, _icon, _color, _side, _groupPath];
-    };
+} else {
+    _groupPath params ["_root", "_side", "_faction", "_type", "_group"];
+    _groupConfig = (configFile >> _root >> _side >> _faction >> _type >> _group);
+    _icon = getText (_groupConfig >> "icon");
+    _side = getNumber (_groupConfig >> "side");
+    _color = [_side] call EFUNC(common,getSideColorByInt);
+    GVAR(abSelectedObject) = [_objType, _classname, _icon, _color, _side, _groupPath];
 };

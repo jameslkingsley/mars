@@ -22,10 +22,9 @@
 params ["_control","_idc","_xIndex","_yIndex","_startYPos"];
 _control params ["_ctrl"];
 
-[(_xIndex + 1)] call FUNC(closeContextByIndex);
+[_xIndex + 1] call FUNC(closeContextByIndex);
 
 _children = _ctrl getVariable [QGVAR(ctrlChildren), []];
+if (_children isEqualTo []) exitWith {};
 
-if (count _children > 0) then {
-    [_children, (_xIndex + 1), _yIndex, _startYPos] call FUNC(createContextMenu);
-};
+[_children, _xIndex + 1, _yIndex, _startYPos] call FUNC(createContextMenu);

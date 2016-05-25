@@ -20,14 +20,14 @@
 {
     if (vehicle _x == _x) then {
         // Is not in vehicle
-        if (!isPlayer _x || GVAR(editPlayers)) then {
+        if (!isPlayer _x || {GVAR(editPlayers)}) then {
             _x setDamage 1;
         };
     } else {
         // Is in vehicle
         (vehicle _x) setDamage 1;
     };
-    
+
     false
 } count GVAR(selection);
 

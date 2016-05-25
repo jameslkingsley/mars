@@ -21,7 +21,7 @@ params [["_units", [], [[]]]];
 private _groups = [];
 
 {
-    _groups pushBackUnique (group _x);    
+    _groups pushBackUnique (group _x);
     false
 } count _units;
 

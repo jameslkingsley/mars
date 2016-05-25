@@ -18,19 +18,19 @@
 
 params [["_objects", [], [[]]]];
 
-if (count _objects == 0) exitWith {};
+if (_objects isEqualTo []) exitWith {};
 
 _worldPos = screenToWorld GVAR(mousePos);
 _closest = [objNull, 9999];
 
 {
     private _distance = _x distance _worldPos;
-    
+
     if (_distance < (_closest select 1)) then {
         _closest = [_x, _distance];
     };
-    
+
     false
 } count _objects;
 
-(_closest select 0)
+_closest select 0

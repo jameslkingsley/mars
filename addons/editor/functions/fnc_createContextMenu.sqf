@@ -20,35 +20,31 @@ params [["_contexts", []], ["_xIndex", 0], ["_yIndex", 0], ["_startYPos", -1]];
 
 if (!isNull GVAR(prepSurfaceSphere)) exitWith {};
 
-if (count _contexts > 0) then {
+if !(_contexts isEqualTo []) then {
     _index = 0;
-    
+
     {
         private ["_config","_condition"];
         _config = _x;
         _condition = ["", (getText (_config >> "condition"))] select (!isNull (_config >> "condition"));
         if (_condition == "") then {_condition = "true"};
-        
+
         // Run the condition for all in selection
         if (({_x call compile _condition} count GVAR(selection)) > 0) then {
             _idc = (9630 + _index) * ((10 * _xIndex) max 1);
             _children = "true" configClasses (_config);
             _hasChildren = (count _children > 0);
             _displayName = getText (_config >> "displayName");
-            _action = ["", (getText (_config >> "action"))] select (isText (_config >> "action"));
+            _action = ["", getText (_config >> "action")] select (isText (_config >> "action"));
             _requiresPosition = [false, [false,true] select (getNumber (_config >> "requiresPosition"))] select (!isNull (_config >> "requiresPosition"));
-            
+
             disableSerialization;
-            
+
             _control = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_contextBase", _idc];
             _control ctrlSetText (format ["%1%2", _displayName, (["","..."] select _hasChildren)]);
 
-            _startYPos = if (_startYPos > -1) then {
-                _startYPos
-            } else {
-                GVAR(currentMousePos) select 1
-            };
-            
+            _startYPos = [GVAR(currentMousePos) select 1, _startYPos] select (_startYPos > -1);
+
             _cordX = (GVAR(currentMousePos) select 0) + (_xIndex * CONTEXT_OPTION_WIDTH) + (_xIndex * 0.005);
             _cordY = _startYPos + ((_yIndex * CONTEXT_OPTION_HEIGHT) + (_index * CONTEXT_OPTION_HEIGHT));
 
@@ -58,12 +54,12 @@ if (count _contexts > 0) then {
                 CONTEXT_OPTION_WIDTH,
                 CONTEXT_OPTION_HEIGHT
             ];
-            
+
             _control setVariable [QGVAR(ctrlChildren), _children];
             _control setVariable [QGVAR(ctrlAction), [_action, _requiresPosition]];
-            
+
             _control ctrlAddEventHandler ["MouseEnter",
-                compile format[
+                compile format [
                     "[_this, %1, %2, %3, %4] call " + QUOTE(FUNC(onContextHover)),
                     _idc,
                     _xIndex,
@@ -71,7 +67,7 @@ if (count _contexts > 0) then {
                     (_cordY - (CONTEXT_OPTION_HEIGHT * _index))
                 ]
             ];
-            
+
             _control ctrlAddEventHandler ["MouseButtonUp", {
                 params ["_control"];
                 _actionArgs = _control getVariable [QGVAR(ctrlAction), []];
@@ -81,10 +77,10 @@ if (count _contexts > 0) then {
             }];
 
             _control ctrlCommit 0;
-            
+
             GVAR(allContextControls) pushBack _idc;
-            _index = _index + 1;
-            
+            INC(_index);
+
             if ((count GVAR(indexedContexts) - 1) >= _xIndex) then {
                 _curCtrls = GVAR(indexedContexts) select _xIndex;
                 _curCtrls pushBackUnique _idc;
@@ -93,17 +89,17 @@ if (count _contexts > 0) then {
                 GVAR(indexedContexts) pushBack [_idc];
             };
         };
-        
+
         false
     } count _contexts;
 } else {
     _contexts = [];
-    
+
     {
         {
             _contexts pushBack _x;
         } forEach ("true" configClasses (_x));
     } forEach ("true" configClasses (configFile >> QGVARMAIN(context)));
-    
+
     [_contexts, _xIndex, _yIndex] call FUNC(createContextMenu);
 };

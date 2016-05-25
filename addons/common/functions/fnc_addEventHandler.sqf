@@ -19,7 +19,7 @@
 
 params [
     ["_eventName", "", [""]],
-    ["_eventCode", {}, [{},""]]
+    ["_eventCode", {}, [{}, ""]]
 ];
 
 if (_eventName == "") exitWith {};
@@ -28,4 +28,4 @@ if (_eventCode isEqualType "") then {
     _eventCode = compile _eventCode;
 };
 
-[(toLower (["mars_" + _eventName, _eventName] select (_eventName select [0,5] == "mars_"))), _eventCode] call CBA_fnc_addEventHandler;
+[toLower (["mars_" + _eventName, _eventName] select (_eventName select [0,5] == "mars_")), _eventCode] call CBA_fnc_addEventHandler;

@@ -24,11 +24,11 @@ params [
     ["_ignoreObj2", objNull, [objNull]]
 ];
 
-private ["_startPos", "_endPos", "_objects"];
+if (_startPos isEqualTo []) exitWith {};
 
-_endPos = [(_startPos select 0), (_startPos select 1), 0];
+private _endPos = [_startPos select 0, _startPos select 1, 0];
 
-_objects = lineIntersectsSurfaces [
+private _objects = lineIntersectsSurfaces [
     _startPos,
     _endPos,
     _ignoreObj1,
@@ -37,8 +37,8 @@ _objects = lineIntersectsSurfaces [
     1
 ];
 
-if (count _objects > 0) exitWith {
-    ((_objects select 0) select 0)
+if !(_objects isEqualTo []) exitWith {
+    (_objects select 0) select 0
 };
 
 _startPos

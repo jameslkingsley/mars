@@ -26,14 +26,14 @@ _this spawn {
         ["_confirmCode", {}, [{}]],
         ["_cancelCode", {}, [{}]]
     ];
-    
+
     createDialog QGVAR(attributesWindow);
-    
+
     ["AttributesWindow_onLoad", {
         TRACE_1("AttributesWindow_onLoad", _this);
         params ["_display"];
     }] call EFUNC(common,addEventHandler);
-    
+
     ["AttributesWindow_onUnload", {
         TRACE_1("AttributesWindow_onUnload", _this);
     }] call EFUNC(common,addEventHandler);

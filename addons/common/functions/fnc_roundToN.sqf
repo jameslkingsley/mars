@@ -22,4 +22,4 @@ params [
     ["_places", 2, [0]]
 ];
 
-(round (_number * (10 ^ _places)) / (10 ^ _places))
+round (_number * (10 ^ _places)) / (10 ^ _places)

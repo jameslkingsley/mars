@@ -17,7 +17,7 @@
     // Swap double-buffer
     GVAR(nextFrameBufferA) = GVAR(nextFrameBufferB);
     GVAR(nextFrameBufferB) = [];
-    GVAR(nextFrameNo) = diag_frameno + 1;
+    GVAR(nextFrameNo) = diag_frameNo + 1;
 
     // Handle the waitUntilAndExec array
     {

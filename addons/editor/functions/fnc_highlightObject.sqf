@@ -19,11 +19,9 @@
 
 params ["_object", "_isVehicle"];
 
-if (_object == GVAR(prepSurfaceSphere)) exitWith {};
+if (_object == GVAR(prepSurfaceSphere) || {_object in GVAR(selection)}) exitWith {};
 
-if (_object in GVAR(selection)) exitWith {};
-
-if (GVAR(ctrlKey) && count GVAR(selection) == 0) exitWith {
+if (GVAR(ctrlKey) && {GVAR(selection) isEqualTo []}) exitWith {
     GVAR(selection) = (units (group _object)) apply {vehicle _x};
 };
 

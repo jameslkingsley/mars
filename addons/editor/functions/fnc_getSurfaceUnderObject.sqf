@@ -22,12 +22,10 @@ params [
     ["_ignoreObj", objNull, [objNull]]
 ];
 
-private ["_startPos", "_endPos", "_objects"];
+private _startPos = getPosASLVisual _targetObj;
+private _endPos = [_startPos select 0, _startPos select 1, 0];
 
-_startPos = getPosASLVisual _targetObj;
-_endPos = [(_startPos select 0), (_startPos select 1), 0];
-
-_objects = lineIntersectsSurfaces [
+private _objects = lineIntersectsSurfaces [
     _startPos,
     _endPos,
     _targetObj,
@@ -36,8 +34,8 @@ _objects = lineIntersectsSurfaces [
     1
 ];
 
-if (count _objects > 0) exitWith {
-    ((_objects select 0) select 0)
+if !(_objects isEqualTo []) exitWith {
+    (_objects select 0) select 0
 };
 
 _startPos

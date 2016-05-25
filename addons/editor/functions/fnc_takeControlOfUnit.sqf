@@ -3,29 +3,31 @@
  * Takes control of unit using remote control
  *
  * Arguments:
- * 
+ *
  *
  * Return Value:
- * 
+ *
  *
  * Example:
- * 
  *
- * Public: 
+ *
+ * Public:
  */
 
 #include "script_component.hpp"
 
 if (count _this > 1) exitWith {};
 
-_this spawn {
-    [] call FUNC(shutdown);
-    
-    sleep 1;
-    
-    player remoteControl (_this select 0);
-    (_this select 0) switchCamera "internal";
+[] call FUNC(shutdown);
 
-    GVAR(remoteControlUnit) = (_this select 0);
+_this spawn {
+    params ["_unit"];
+
+    sleep 1;
+
+    player remoteControl _unit;
+    _unit switchCamera "internal";
+
+    GVAR(remoteControlUnit) = _unit;
     GVAR(isRemoteControl) = true;
 };

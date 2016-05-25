@@ -22,58 +22,57 @@ disableSerialization;
 
 _components = "true" configClasses (configFile >> QGVARMAIN(menu));
 
-if (count _components > 0) then {
-    _axisX = safeZoneX;
-    _maxNameCount = 0;
+if (_components isEqualTo []) exitWith {};
+_axisX = safeZoneX;
+_maxNameCount = 0;
 
+{
     {
-        {
-            _name = getText (_x >> "displayName");
-            _count = count _name;
-            if (_count > _maxNameCount) then {_maxNameCount = _count};
-        } forEach ("true" configClasses (_x));
-    } forEach _components;
+        _name = getText (_x >> "displayName");
+        _count = count _name;
+        if (_count > _maxNameCount) then {_maxNameCount = _count};
+    } forEach ("true" configClasses (_x));
+} forEach _components;
 
+{
     {
-        {
-            _idc = 4600 + _forEachIndex;
-            _displayName = getText (_x >> "displayName");
-            _action = getText (_x >> "action");
-            _children = "true" configClasses (_x);
-            _nameCount = count _displayName;
-            _padding = (pixelW * 6.5) * (sqrt _maxNameCount);
-            _width = (_nameCount * (pixelW * 6.5)) + _padding;
-            
-            _ctrl = _display ctrlCreate ["MARS_gui_menuTopBase", _idc];
-            _ctrl ctrlSetPosition [_axisX, (0 * safeZoneH + safeZoneY), _width, MENUSTRIP_CONTEXT_HEIGHT];
-            _ctrl ctrlSetText _displayName;
-            _ctrl ctrlShow true;
-            _ctrl ctrlCommit 0;
-            
-            _ctrl setVariable [QGVAR(display), _display];
-            _ctrl setVariable [QGVAR(children), _children];
-            
-            _ctrl ctrlAddEventHandler ["MouseButtonDown", {
-                GVAR(hasClickedOnMenuStrip) = true;
-            }];
-            
-            _ctrl ctrlAddEventHandler ["MouseEnter", {
-                if (GVAR(menuStripMenuOpen)) then {
-                    [] call FUNC(closeMenuStripMenus);
-                    _this call FUNC(onMenuStripClick);
-                };
-            }];
-            
-            if (count _children > 0) then {
-                _ctrl ctrlAddEventHandler ["MouseButtonUp", {
-                    _this call FUNC(onMenuStripClick);
-                }];
-            } else {
-                _ctrl ctrlAddEventHandler ["MouseButtonUp", QUOTE([true] call FUNC(closeMenuStripMenus);) + _action];
+        _idc = 4600 + _forEachIndex;
+        _displayName = getText (_x >> "displayName");
+        _action = getText (_x >> "action");
+        _children = "true" configClasses (_x);
+        _nameCount = count _displayName;
+        _padding = (pixelW * 6.5) * (sqrt _maxNameCount);
+        _width = (_nameCount * (pixelW * 6.5)) + _padding;
+
+        _ctrl = _display ctrlCreate ["MARS_gui_menuTopBase", _idc];
+        _ctrl ctrlSetPosition [_axisX, safeZoneY, _width, MENUSTRIP_CONTEXT_HEIGHT];
+        _ctrl ctrlSetText _displayName;
+        _ctrl ctrlShow true;
+        _ctrl ctrlCommit 0;
+
+        _ctrl setVariable [QGVAR(display), _display];
+        _ctrl setVariable [QGVAR(children), _children];
+
+        _ctrl ctrlAddEventHandler ["MouseButtonDown", {
+            GVAR(hasClickedOnMenuStrip) = true;
+        }];
+
+        _ctrl ctrlAddEventHandler ["MouseEnter", {
+            if (GVAR(menuStripMenuOpen)) then {
+                [] call FUNC(closeMenuStripMenus);
+                _this call FUNC(onMenuStripClick);
             };
+        }];
 
-            _axisX = _axisX + _width;
-            GVAR(topNavControls) pushBack _idc;
-        } forEach ("true" configClasses (_x));
-    } forEach _components;
-};
+        if !(_children isEqualTo []) then {
+            _ctrl ctrlAddEventHandler ["MouseButtonUp", {
+                _this call FUNC(onMenuStripClick);
+            }];
+        } else {
+            _ctrl ctrlAddEventHandler ["MouseButtonUp", QUOTE([true] call FUNC(closeMenuStripMenus);) + _action];
+        };
+
+        ADD(_axisX,_width);
+        GVAR(topNavControls) pushBack _idc;
+    } forEach ("true" configClasses (_x));
+} forEach _components;

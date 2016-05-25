@@ -1,5 +1,5 @@
 /*
- * Author: commy2, Kingsley
+ * Author: commy2, Kingsley, 654wak654
  * Check if the position is in a building. Will return true if the position is in a bush.
  *
  * Arguments:

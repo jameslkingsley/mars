@@ -24,17 +24,15 @@
 
 #include "script_component.hpp"
 
-params [["_newMode",GVAR(camMode)], ["_newVision",GVAR(camVision)]];
+params [["_newMode", GVAR(camMode)], ["_newVision", GVAR(camVision)]];
 
-private ["_camera"];
-
-_camera = GVAR(freeCamera);
+private _camera = GVAR(freeCamera);
 
 // Preserve camUnit value for consistency when manually changing view
 _camera cameraEffect ["internal", "back"];
 
 // Apply the camera zoom
-_camera camSetFov -(linearConversion [0.01,2,GVAR(camZoom),-2,-0.01,true]);
+_camera camSetFov -(linearConversion [0.01, 2, GVAR(camZoom), -2, -0.01, true]);
 _camera camCommit 0;
 
 // Agent is switched to in free cam to hide death table and prevent AI chat while allowing icons to draw (also prevents systemChat and unit HUD)
@@ -44,15 +42,13 @@ if (isNull GVAR(camAgent)) then {
 
 GVAR(camAgent) switchCamera "internal";
 
-if (_newMode in [0,2]) then {
+if (_newMode in [0, 2]) then {
     // Set up camera UI
     showCinemaBorder false;
     cameraEffectEnableHUD true;
 
     // Handle camera movement
-    if (isNil QGVAR(camHandler)) then {
-        GVAR(camHandler) = [FUNC(handleCamera), 0] call CBA_fnc_addPerFrameHandler;
-    };
+    ISNILS(GVAR(camHandler),[ARR_2(FUNC(handleCamera),0)] call CBA_fnc_addPerFrameHandler);
 
     // If new vision isn't available then keep current (unless current also isn't)
     if !(_newVision in GVAR(availableVisions)) then {
@@ -66,7 +62,7 @@ if (_newMode in [0,2]) then {
     } else {
         true setCamUseTi _newVision;
     };
-    
+
     GVAR(camVision) = _newVision;
 };
 
