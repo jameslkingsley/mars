@@ -16,7 +16,4 @@
 
 #include "script_component.hpp"
 
-[] spawn {
-    closeDialog 0;
-    createDialog QGVAR(datetime);
-};
+["Environment", QGVAR(interface), {}, {}] call EFUNC(editor,openAttributes);

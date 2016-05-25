@@ -1,5 +1,3 @@
-#include "\z\mars\addons\common\define.hpp"
-
 class GVAR(interface) {
     idd = IDC_DISPLAY;
     enableSimulation = 1;

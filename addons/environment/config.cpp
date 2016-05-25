@@ -13,5 +13,5 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
-#include "UI\datetime.hpp"
+#include "UI\interface.hpp"
 #include "CfgMenu.hpp"
