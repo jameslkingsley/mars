@@ -9,7 +9,7 @@
  * Created object <OBJECT>
  *
  * Example:
- * [([] call mars_common_fnc_getSpawnMachine), "B_soldier_F", {_this allowDamage false}] call mars_common_fnc_createObjectOnID;
+ * [[] call mars_common_fnc_getSpawnMachine, "B_soldier_F", {_this allowDamage false}] call mars_common_fnc_createObjectOnID;
  *
  * Public: Yes
  */
@@ -17,43 +17,41 @@
 #include "script_component.hpp"
 
 params [
-    ["_targetID", -1],
+    ["_targetID", -1, [0]],
     ["_classname", "", [""]],
     ["_type", "unit", [""]],
     ["_side", sideUnknown, [sideUnknown]],
     ["_worldPos", [], [[]]],
-    ["_initCode", {}, [{},""]],
+    ["_initCode", {}, [{}, ""]],
     ["_extraArgs", [], [[]]],
     ["_isOnTarget", false, [false]],
     ["_caller", objNull, [objNull]]
 ];
 
-if (_targetID == -1 || _classname == "" || _type == "") exitWith {false};
+if (_targetID < 0 || {_classname == ""} || {_type == ""}) exitWith {false};
 
 if (_initCode isEqualType "") then {
     _initCode = compile _initCode;
 };
 
 if (_isOnTarget) exitWith {
+    _group = createGroup _side;
     switch (_type) do {
         case "man": {
-            _group = createGroup _side;
             _object = _group createUnit [_classname, ASLtoAGL _worldPos, [], 0, "CAN_COLLIDE"];
             [_object] joinSilent _group;
             _object call _initCode;
             [_object] remoteExec [QEFUNC(editor,addObjectToSelection), _caller];
         };
         case "vehicle": {
-            _group = createGroup _side;
             _object = createVehicle [_classname, ASLtoAGL _worldPos, [], 0, "CAN_COLLIDE"];
             createVehicleCrew _object;
-            {[_x] joinSilent _group} forEach (crew _object);
+            (crew _object) joinSilent _group;
             _object call _initCode;
             [_object] remoteExec [QEFUNC(editor,addObjectToStaticCache), _caller];
             [_object] remoteExec [QEFUNC(editor,addObjectToSelection), _caller];
         };
         case "group": {
-            _newGroup = createGroup _side;
             _extraArgs params ["_groupPath"];
             _groupPath params ["_root", "_side", "_faction", "_type", "_group"];
             _groupConfig = (configFile >> _root >> _side >> _faction >> _type >> _group);
@@ -61,41 +59,41 @@ if (_isOnTarget) exitWith {
             _retUnits = [];
             _highestRankInt = -1;
             _highestRankObj = objNull;
-            
+
             {
                 private _unitConfig = _x;
                 private _unitClassname = getText (_unitConfig >> "vehicle");
-                private _unitIsMan = [false,true] select (([format["configFile >> 'CfgVehicles' >> '%1'", _unitClassname]] call FUNC(getObjectType)) == "man");
+                private _unitIsMan = [false, true] select (([format["configFile >> 'CfgVehicles' >> '%1'", _unitClassname]] call FUNC(getObjectType)) == "man");
                 private _unitRank = getText (_unitConfig >> "rank");
                 private _unitOffset = getArray (_unitConfig >> "position");
                 private _unitPos = ASLtoAGL (_worldPos vectorAdd _unitOffset);
                 private _unitRankNumber = [_unitRank] call FUNC(getRankNumber);
-                
+
                 _unitPos set [2, 0];
-                
+
                 if (_unitIsMan) then {
-                    _unitObj = _newGroup createUnit [_unitClassname, _unitPos, [], 0, "CAN_COLLIDE"];
+                    _unitObj = _group createUnit [_unitClassname, _unitPos, [], 0, "CAN_COLLIDE"];
                     _unitObj setUnitRank _unitRank;
-                    [_unitObj] joinSilent _newGroup;
-                    
+                    [_unitObj] joinSilent _group;
+
                     if (_unitRankNumber > _highestRankInt) then {
                         _highestRankInt = _unitRankNumber;
                         _highestRankObj = _unitObj;
                     };
-                    
+
                     _retUnits pushBack _unitObj;
                 } else {
                     _object = createVehicle [_unitClassname, _unitPos, [], 0, "CAN_COLLIDE"];
                     createVehicleCrew _object;
-                    {[_x] joinSilent _newGroup} forEach (crew _object);
+                    (crew _object) joinSilent _group;
                     _retUnits pushBack _object;
                     [_object] remoteExec [QEFUNC(editor,addObjectToSelection), _caller];
                 };
             } forEach _groupUnits;
-            
-            _retUnits joinSilent _newGroup;
-            _newGroup selectLeader _highestRankObj;
-            
+
+            _retUnits joinSilent _group;
+            _group selectLeader _highestRankObj;
+
             _retUnits call _initCode;
         };
     };

@@ -23,11 +23,11 @@ private _delta = MARS_diagTime - _lastTickTime;
 
 if (MARS_gameTime <= _lastGameTime) then {
     MARS_paused = true;
-    MARS_pausedTime = MARS_pausedTime + _delta;
+    ADD(MARS_pausedTime,_delta);
     MARS_virtualPausedTime = MARS_pausedTime + (_delta * accTime);
 } else {
     MARS_paused = false;
-    MARS_realTime = MARS_realTime + _delta;
-    MARS_virtualTime = MARS_virtualTime + (_delta * accTime);
+    ADD(MARS_realTime,_delta);
+    ADD(MARS_virtualTime,_delta * accTime);
     MARS_time = MARS_virtualTime;
 };

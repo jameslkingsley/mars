@@ -24,4 +24,4 @@ params [
 
 if (_eventName == "") exitWith {};
 
-[(toLower (["mars_" + _eventName, _eventName] select (_eventName select [0,5] == "mars_"))), _eventArgs] call CBA_fnc_localEvent;
+[toLower (["mars_" + _eventName, _eventName] select (_eventName select [0,5] == "mars_")), _eventArgs] call CBA_fnc_localEvent;

@@ -13,7 +13,7 @@
 
 #include "script_component.hpp"
 
-#define MARKER(TYPE) [ARR_3(QUOTE(DOUBLES(n,TYPE)),QUOTE(DOUBLES(b,TYPE)),QUOTE(DOUBLES(o,TYPE)))] select (([ARR_3("GUER","WEST","EAST")] find (str _side)) max 0)
+#define MARKER(TYPE) [ARR_3(QUOTE(DOUBLES(n,TYPE)),QUOTE(DOUBLES(b,TYPE)),QUOTE(DOUBLES(o,TYPE)))] select (([ARR_3("GUER","WEST","EAST")] find _side) max 0)
 
 params [["_group", grpNull, [grpNull]]];
 
@@ -21,7 +21,7 @@ if (isNull _group) exitWith {""};
 
 private _leader = leader _group;
 private _vehicle = vehicle _leader;
-private _side = side _group;
+private _side = str (side _group);
 
 if (_vehicle == _leader) exitWith {
     if (
@@ -35,26 +35,20 @@ if (_vehicle == _leader) exitWith {
     };
 };
 
-if (getNumber (configFile >> "CfgVehicles" >> typeOf _vehicle >> "attendant") == 1) exitWith {
-    MARKER(med)
-};
-
-if (
-    getNumber (configFile >> "CfgVehicles" >> typeOf _vehicle >> "transportRepair") > 0 ||
-    getNumber (configFile >> "CfgVehicles" >> typeOf _vehicle >> "transportFuel") > 0 ||
-    getNumber (configFile >> "CfgVehicles" >> typeOf _vehicle >> "transportAmmo") > 0 ||
-    getNumber (configFile >> "CfgVehicles" >> typeOf _vehicle >> "ACE_canRepair") > 0 ||
-    getNumber (configFile >> "CfgVehicles" >> typeOf _vehicle >> "ACE_fuelCapacityCargo") > 0
-) exitWith {
-    MARKER(maint)
-};
-
-if (_vehicle isKindOf "Plane") exitWith {
-    MARKER(plane)
+if (_vehicle isKindOf "Car") exitWith {
+    MARKER(motor_inf)
 };
 
 if (_vehicle isKindOf "Air") exitWith {
     MARKER(air)
+};
+
+if (getNumber (configFile >> "CfgVehicles" >> typeOf _vehicle >> "attendant") == 1) exitWith {
+    MARKER(med)
+};
+
+if (_vehicle isKindOf "Plane") exitWith {
+    MARKER(plane)
 };
 
 if (_vehicle isKindOf "StaticMortar") exitWith {
@@ -63,10 +57,6 @@ if (_vehicle isKindOf "StaticMortar") exitWith {
 
 if (getNumber (configFile >> "CfgVehicles" >> typeOf _vehicle >> "artilleryScanner") == 1) exitWith {
     MARKER(art)
-};
-
-if (_vehicle isKindOf "Car") exitWith {
-    MARKER(motor_inf)
 };
 
 if (_vehicle isKindOf "Tank") exitWith {
@@ -79,6 +69,18 @@ if (_vehicle isKindOf "Tank") exitWith {
 
 if (_vehicle isKindOf "Ship") exitWith {
     MARKER(naval)
+};
+
+if (
+    {getNumber (configFile >> "CfgVehicles" >> typeOf _vehicle >> _x) > 0} count [
+        "transportRepair",
+        "transportFuel",
+        "transportAmmo",
+        "ACE_canRepair",
+        "ACE_fuelCapacityCargo"
+    ] > 0
+) exitWith {
+    MARKER(maint)
 };
 
 MARKER(unknown)

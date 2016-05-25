@@ -1,5 +1,5 @@
 /*
- * Author: Kingsley
+ * Author: Kingsley, 654wak654
  * Gets the sides color and returns the texture string
  *
  * Arguments:
@@ -18,22 +18,10 @@
 
 params [["_side", sideUnknown, [sideUnknown]]];
 
-private _color = switch (_side) do {
-    case west: {
-        (format["#(rgb,8,8,3)color(%1,%2,%3,%4)", COLOR_WEST_R, COLOR_WEST_G, COLOR_WEST_B, COLOR_WEST_A])
-    };
-    case east: {
-        (format["#(rgb,8,8,3)color(%1,%2,%3,%4)", COLOR_EAST_R, COLOR_EAST_G, COLOR_EAST_B, COLOR_EAST_A])
-    };
-    case resistance: {
-        (format["#(rgb,8,8,3)color(%1,%2,%3,%4)", COLOR_GUER_R, COLOR_GUER_G, COLOR_GUER_B, COLOR_GUER_A])
-    };
-    case civilian: {
-        (format["#(rgb,8,8,3)color(%1,%2,%3,%4)", COLOR_CIV_R, COLOR_CIV_G, COLOR_CIV_B, COLOR_CIV_A])
-    };
-    default {
-        (format["#(rgb,8,8,3)color(%1,%2,%3,%4)", COLOR_EMPTY_R, COLOR_EMPTY_G, COLOR_EMPTY_B, COLOR_EMPTY_A])
-    };
-};
-
-_color
+format ([
+    ["#(rgb,8,8,3)color(%1)", COLOR_EMPTY_RGBA],
+    ["#(rgb,8,8,3)color(%1)", COLOR_WEST_RGBA],
+    ["#(rgb,8,8,3)color(%1)", COLOR_EAST_RGBA],
+    ["#(rgb,8,8,3)color(%1)", COLOR_GUER_RGBA],
+    ["#(rgb,8,8,3)color(%1)", COLOR_CIV_RGBA]
+] select ([sideUnknown, west, east, resistance, civilian] find _side));

@@ -8,7 +8,7 @@
  * 2: Parameters to run the code with <ARRAY,ANY,NIL>
  *
  * Return value:
- * None
+ * Position of the code in the queue
  *
  * Example:
  * [{(_this select 0) == vehicle (_this select 0)}, {(_this select 0) setDamage 1;}, [player]] call mars_common_fnc_waitUntilAndExecute
@@ -19,4 +19,3 @@
 #include "script_component.hpp"
 
 GVAR(waitUntilAndExecArray) pushBack _this;
-nil

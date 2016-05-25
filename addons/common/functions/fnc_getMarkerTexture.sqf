@@ -19,6 +19,6 @@
 
 params [["_type", "", [""]]];
 
-if (_type == "" || {!(isClass (configfile >> "CfgMarkers" >> _type))}) exitWith {nil};
+if (_type == "" || {!(isClass (configfile >> "CfgMarkers" >> _type))}) exitWith {""};
 
-(getText (configfile >> "CfgMarkers" >> _type >> "texture"))
+getText (configfile >> "CfgMarkers" >> _type >> "texture")

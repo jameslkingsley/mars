@@ -22,8 +22,6 @@ params [
     ["_height", 0, [0]]
 ];
 
-if !(_position isEqualTo []) then {
-    _position = _position vectorAdd [0, 0, _height];
-};
+if (_position isEqualTo []) exitWith {[]};
 
-_position
+_position vectorAdd [0, 0, _height];

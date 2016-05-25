@@ -6,7 +6,7 @@ ADDON = false;
 
 // GVARS for execNextFrame and waitAndExec and waitUntilAndExecute
 GVAR(waitAndExecArray) = [];
-GVAR(nextFrameNo) = diag_frameno;
+GVAR(nextFrameNo) = diag_frameNo;
 GVAR(nextFrameBufferA) = [];
 GVAR(nextFrameBufferB) = [];
 GVAR(waitUntilAndExecArray) = [];
