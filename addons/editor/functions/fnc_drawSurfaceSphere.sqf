@@ -33,13 +33,13 @@ if (isNull GVAR(prepSurfaceSphere)) then {
         GVAR(prepSurfaceSphere) setObjectTexture [0, [_color] call EFUNC(common,getSideColorTexture)];
     } else {
         _color params ["_colorR", "_colorG", "_colorB", "_colorA"];
-        GVAR(prepSurfaceSphere) setObjectTexture [0, (format [
+        GVAR(prepSurfaceSphere) setObjectTexture [0, format [
             "#(rgb,8,8,3)color(%1,%2,%3,%4)",
             _colorR,
             _colorG,
             _colorB,
             _colorA
-        ])];
+        ]];
     };
 };
 

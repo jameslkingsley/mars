@@ -6,7 +6,7 @@
  * 0: Object to ignore at destination (optional) <OBJECT>
  *
  * Return Value:
- * Objects <ARRAY>
+ * Object <OBJECT>
  *
  * Example:
  * _object = [] call mars_editor_fnc_objectUnderCursor;
@@ -30,19 +30,14 @@ private _objects = lineIntersectsSurfaces [
     1
 ];
 
+private _target = objNull;
 if !(_objects isEqualTo []) then {
     {
-
         if ({_obj isKindOf _x} count TYPE_SEARCH > 0 || {_obj in GVAR(placedStaticObjects)}) then {
-            if (true) exitWith {
-                _target = _obj;
-            };
+            _target = _obj;
         } else {
             _nearest = nearestObjects [ASLtoAGL (_x select 0), TYPE_SEARCH, 2];
-
-            if !(_nearest isEqualTo []) exitWith {
-                _target = _nearest select 0;
-            };
+            _target = _nearest param [0, objNull];
         };
 
         false
