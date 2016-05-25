@@ -20,8 +20,8 @@
 {
     _pos = locationPosition _x;
     _pos set [2, 0];
-    _alpha = linearConversion [0, ICON_FADE_DISTANCE, (_pos distance GVAR(camPos)), 1, 0, true];
-    
+    _alpha = linearConversion [0, ICON_FADE_DISTANCE, _pos distance GVAR(camPos), 1, 0, true];
+
     drawIcon3D [
         QUOTE(PATHTOF(data\PanelLeft\location_ca.paa)),
         [1,1,1,_alpha],
@@ -32,7 +32,7 @@
         "",
         2
     ];
-    
+
     drawIcon3D [
         "#(argb,8,8,3)color(0,0,0,1)",
         [1,1,1,_alpha],
@@ -43,6 +43,6 @@
         text _x,
         2
     ];
-    
+
     false
-} count nearestLocations [GVAR(camPos), ["nameVillage","nameCity","nameCityCapital"], ICON_FADE_DISTANCE];
+} count nearestLocations [GVAR(camPos), ["nameVillage", "nameCity", "nameCityCapital"], ICON_FADE_DISTANCE];

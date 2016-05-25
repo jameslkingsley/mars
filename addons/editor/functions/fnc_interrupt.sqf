@@ -22,11 +22,14 @@ params [["_reason", "", [""]], ["_interrupt", true, [true]]];
 // Nothing to do when spectator is closed
 if !(GVAR(isSet)) exitWith {};
 
-if (_reason == "") exitWith { ERROR("Invalid Reason"); };
+if (_reason == "") exitWith {
+    ERROR("Invalid Reason");
+};
+
 if (_interrupt) then {
     GVAR(interrupts) pushBack _reason;
 } else {
-    GVAR(interrupts) = GVAR(interrupts) - [_reason];
+    REM(GVAR(interrupts),_reason);
 };
 
 if (GVAR(interrupts) isEqualTo []) then {

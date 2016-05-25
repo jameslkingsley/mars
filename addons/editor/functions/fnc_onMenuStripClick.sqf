@@ -16,12 +16,12 @@
 
 #include "script_component.hpp"
 
-params ["_control","_button","_cordX","_cordY","_shift","_ctrl","_alt"];
+params ["_control", "_button", "_cordX", "_cordY", "_shift", "_ctrl", "_alt"];
 
 if (_button != 0) exitWith {};
 
 _children = _control getVariable [QGVAR(children), []];
-if (count _children <= 0) exitWith {};
+if (_children isEqualTo []) exitWith {};
 
 _display = _control getVariable [QGVAR(display), displayNull];
 if (isNull _display) exitWith {};
@@ -46,18 +46,20 @@ _prevPosYH = [(_parentPos select 1), MENUSTRIP_CONTEXT_HEIGHT];
     _childCtrl ctrlSetText (format[" %1", _displayName]);
     _childCtrl ctrlShow true;
     _childCtrl ctrlCommit 0;
-    
+
     _childCtrl ctrlAddEventHandler ["MouseButtonDown", {
         GVAR(hasClickedOnMenuStrip) = true;
     }];
-    
+
     _childCtrl ctrlAddEventHandler ["MouseButtonUp", QUOTE([true] call FUNC(closeMenuStripMenus);) + _action];
-    
+
     _ctrlPos = ctrlPosition _childCtrl;
     _prevPosYH = [(_ctrlPos select 1), (_ctrlPos select 3)];
-    
+
     _axisY = _axisY + MENUSTRIP_CONTEXT_HEIGHT;
     GVAR(allMenuStripMenus) pushBack _idc;
-} forEach _children;
+
+    false
+} count _children;
 
 GVAR(menuStripMenuOpen) = true;

@@ -23,8 +23,7 @@
     GVAR(remoteControlUnit) = objNull;
 };*/
 
-if !(hasInterface) exitWith {};
-if (GVAR(isSet)) exitWith {};
+if (!hasInterface || {GVAR(isSet)}) exitWith {};
 
 ["EditorOpen"] call EFUNC(common,localEvent);
 
@@ -60,7 +59,7 @@ disableSerialization;
 _display = (findDisplay 46) createDisplay QGVAR(interface);
 [_display] call FUNC(createMenuStrip);
 [_display] call FUNC(createToolbar);
-    
+
 _display displayAddEventHandler ["MouseButtonDown", {
     [{
         if (!GVAR(hasClickedOnMenuStrip)) then {
@@ -94,23 +93,23 @@ GVAR(pfh) = [{
             private _color = [[0,0,0,1], MARS_SIDECOLOR(side group _x)] select (alive _x);
             [_x, _color] call FUNC(drawBoundingBox);
         };
-        
+
         false
     } count GVAR(selection);
-    
+
     // Status bar - grid position
-    (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_GRID) ctrlSetText format["%1", mapGridPosition GVAR(freeCamera)];
-    
+    (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_GRID) ctrlSetText format ["%1", mapGridPosition GVAR(freeCamera)];
+
     // Asset browser placing objects
     [] call FUNC(prepNewObject);
-    
+
     // Handle location icons
     [] call FUNC(handleLocationIcons);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(delayedPFH) = [{
     // FPS Counter
-    (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_FPS) ctrlSetText format["%1 FPS", round diag_fps];
+    (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_FPS) ctrlSetText format ["%1 FPS", round diag_fps];
 }, 1, []] call CBA_fnc_addPerFrameHandler;
 
 // Close the editor upon death

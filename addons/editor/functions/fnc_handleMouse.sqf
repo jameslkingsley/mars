@@ -18,13 +18,10 @@
 #include "script_component.hpp"
 
 params ["_x","_y"];
-private ["_leftButton","_rightButton","_oldX","_oldY","_deltaX","_deltaY","_zoomMod"];
 
-_leftButton = GVAR(mouse) select 0;
-_rightButton = GVAR(mouse) select 1;
+GVAR(mouse) params ["_leftButton", "_rightButton"];
 
-_oldX = GVAR(mousePos) select 0;
-_oldY = GVAR(mousePos) select 1;
+GVAR(mousePos) params ["_oldX", "_oldY"];
 
 // Get change in pos
 _deltaX = _oldX - _x;
@@ -34,8 +31,8 @@ if (_rightButton) then {
     // Pan/Tilt amount should be influnced by zoom level (it should really be exponential)
     _zoomMod = (GVAR(camZoom) * 0.8) max 1;
 
-    GVAR(camPan) = GVAR(camPan) - ((_deltaX * 360) / _zoomMod);
+    REM(GVAR(camPan),((_deltaX * 360) / _zoomMod))
     GVAR(camTilt) = ((GVAR(camTilt) + ((_deltaY * 180) / _zoomMod)) min 89) max -89;
 };
 
-GVAR(mousePos) = [_x,_y];
+GVAR(mousePos) = [_x, _y];

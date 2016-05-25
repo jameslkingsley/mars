@@ -24,17 +24,9 @@ if (toLower GVAR(currentCursor) == toLower _type) exitWith {};
 
 disableSerialization;
 
-private ["_display","_ctrlCursor"];
-
-_display = GETUVAR(GVAR(interface),displayNull);
-_ctrlCursor = _display displayCtrl IDC_CURSORHELPER;
-
-if (_type == "") exitWith {
-    _ctrlCursor ctrlSetText "";
-    GVAR(currentCursor) = "";
-};
-
-_filePath = getText (configFile >> QGVARMAIN(cursors) >> _type >> "path");
-_ctrlCursor ctrlSetText _filePath;
+private _display = GETUVAR(GVAR(interface),displayNull);
+private _ctrlCursor = _display displayCtrl IDC_CURSORHELPER;
 
 GVAR(currentCursor) = toLower _type;
+
+_ctrlCursor ctrlSetText ([getText (configFile >> QGVARMAIN(cursors) >> _type >> "path"), ""] select (_type == ""));

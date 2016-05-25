@@ -24,16 +24,16 @@ params [
     ["_color", sideUnknown, [[], sideUnknown]]
 ];
 
-if (count _position == 0) exitWith {};
+if (_position isEqualTo []) exitWith {};
 
 if (isNull GVAR(prepSurfaceSphere)) then {
     GVAR(prepSurfaceSphere) = SURFACE_OBJECT createVehicleLocal _position;
-    
+
     if (_color isEqualType sideUnknown) then {
-        GVAR(prepSurfaceSphere) setObjectTexture [0, ([_color] call EFUNC(common,getSideColorTexture))];
+        GVAR(prepSurfaceSphere) setObjectTexture [0, [_color] call EFUNC(common,getSideColorTexture)];
     } else {
-        _color params ["_colorR","_colorG","_colorB","_colorA"];
-        GVAR(prepSurfaceSphere) setObjectTexture [0, (format[
+        _color params ["_colorR", "_colorG", "_colorB", "_colorA"];
+        GVAR(prepSurfaceSphere) setObjectTexture [0, (format [
             "#(rgb,8,8,3)color(%1,%2,%3,%4)",
             _colorR,
             _colorG,

@@ -16,7 +16,7 @@
 
 #include "script_component.hpp"
 
-params [["_bool",false]];
+params [["_bool", false]];
 
 {ctrlDelete (GETUVAR(GVAR(interface),displayNull) displayCtrl _x)} forEach GVAR(allMenuStripMenus);
 GVAR(allMenuStripMenus) = [];

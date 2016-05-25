@@ -17,15 +17,15 @@
 
 #include "script_component.hpp"
 
-params ["_mode",["_args",[]]];
+params ["_mode", ["_args",[]]];
 
 switch (toLower _mode) do {
     case "onload": {
         _args params ["_display"];
-        
+
         SETUVAR(GVAR(interface),_display);
         SETUVAR(GVAR(cursorHelper),(_display displayCtrl IDC_CURSORHELPER));
-        
+
         [] call FUNC(createEntityList);
         [] call FUNC(createAssetBrowser);
     };
@@ -46,28 +46,28 @@ switch (toLower _mode) do {
     };
     case "onmousebuttondown": {
         _args params ["_ctrl","_button"];
-        GVAR(mouse) set [_button,true];
+        GVAR(mouse) set [_button, true];
 
-        if ((_button == 0) && GVAR(canContext)) then {
+        if (_button == 0 && {GVAR(canContext)}) then {
             [GVAR(ctrlKey)] call FUNC(placeNewObject);
-            
+
             GVAR(prepDragObjectUnderCursor) = [] call FUNC(objectUnderCursor);
             GVAR(prepDirObjectUnderCursor) = [] call FUNC(objectUnderCursor);
         };
 
         // Detect right click
-        if ((_button == 1) && (GVAR(camMode) == 1)) then {
+        if (_button == 1 && {(GVAR(camMode) == 1)}) then {
             // In first person toggle sights mode
             // Is this needed?
             [] call FUNC(transitionCamera);
         };
     };
     case "onmousebuttonup": {
-        _args params ["_ctrl","_button"];
+        _args params ["_ctrl", "_button"];
 
-        GVAR(mouse) set [_button,false];
+        GVAR(mouse) set [_button, false];
         [] call FUNC(closeContextMenu);
-        
+
         if (GVAR(isDragging)) then {
             if (GVAR(prepDragObjectUnderCursor) != GVAR(objectDragAnchor)) then {
                 GVAR(allowDragging) = false;
@@ -76,7 +76,7 @@ switch (toLower _mode) do {
                 [GVAR(objectDragAnchor), true, true] call FUNC(handleLeftDrag);
             };
         };
-        
+
         if (GVAR(isDirection)) then {
             if (GVAR(prepDirObjectUnderCursor) != GVAR(objectDirAnchor)) then {
                 GVAR(allowDirection) = false;
@@ -88,21 +88,21 @@ switch (toLower _mode) do {
 
         switch (true) do {
             // Left Click
-            case (_button == 0 && !GVAR(canContext)): {
+            case (_button == 0 && {!GVAR(canContext)}): {
                 GVAR(camDolly) = [0,0];
             };
 
             // Left Click & Can Context
-            case (_button == 0 && GVAR(canContext)): {
+            case (_button == 0 && {GVAR(canContext)}): {
                 [] call FUNC(selectObject);
             };
 
             // Right Click
-            case (_button == 1 && !GVAR(canContext)): {};
+            case (_button == 1 && {!GVAR(canContext)}): {};
 
             // Right Click & Can Context
-            case (_button == 1 && GVAR(canContext)): {
-                if (count GVAR(selection) > 0 && count GVAR(abSelectedObject) == 0) then {
+            case (_button == 1 && {GVAR(canContext)}): {
+                if (count GVAR(selection) > 0 && GVAR(abSelectedObject) isEqualTo []) then {
                     // Already has objects in selection
                     [] call FUNC(closeContextMenu);
                     [] call FUNC(handleSelToPos);
@@ -111,7 +111,7 @@ switch (toLower _mode) do {
                     [] call FUNC(selectObject);
                     [] call FUNC(handleContextMenu);
                 };
-                
+
                 [{
                     [{
                         GVAR(abSelectedObject) = [];
@@ -143,48 +143,48 @@ switch (toLower _mode) do {
         }, []] call EFUNC(common,execNextFrame);
     };
     case "onmousezchanged": {
-        _args params ["_ctrl","_zChange"];
+        _args params ["_ctrl", "_zChange"];
     };
     case "onmousemoving": {
-        _args params ["_ctrl","_x","_y"];
-        
-        [_x,_y] call FUNC(handleCursor);
+        _args params ["_ctrl", "_x", "_y"];
+
+        [_x, _y] call FUNC(handleCursor);
 
         if (GVAR(mouse) select 1) then {
             GVAR(canContext) = false;
         };
 
-        if ((GVAR(mouse) select 0) && GVAR(canContext) && !GVAR(shiftKey) && !GVAR(ctrlKey)) then {
+        if (GVAR(mouse) select 0 && {GVAR(canContext)} && {!GVAR(shiftKey)} && {!GVAR(ctrlKey)}) then {
             GVAR(allowDragging) = true;
             [GVAR(objectDragAnchor)] call FUNC(handleLeftDrag);
         };
 
-        if ((GVAR(mouse) select 0) && GVAR(canContext) && GVAR(shiftKey) && !GVAR(ctrlKey)) then {
+        if (GVAR(mouse) select 0 && {GVAR(canContext)} && {GVAR(shiftKey)} && {!GVAR(ctrlKey)}) then {
             GVAR(allowDirection) = true;
             [GVAR(objectDirAnchor)] call FUNC(handleSelectionDir);
         };
 
-        [_x,_y] call FUNC(handleMouse);
+        [_x, _y] call FUNC(handleMouse);
     };
     case "onmouseholding": {
-        _args params ["_ctrl","_x","_y"];
-        
-        [_x,_y] call FUNC(handleCursor);
-        
+        _args params ["_ctrl", "_x", "_y"];
+
+        [_x, _y] call FUNC(handleCursor);
+
         if !(GVAR(mouse) select 1) then {
             GVAR(canContext) = true;
         };
-        
-        if ((GVAR(mouse) select 0) && GVAR(canContext) && !GVAR(shiftKey) && !GVAR(ctrlKey)) then {
+
+        if (GVAR(mouse) select 0 && {GVAR(canContext)} && {!GVAR(shiftKey)} && {!GVAR(ctrlKey)}) then {
             [GVAR(objectDragAnchor)] call FUNC(handleLeftDrag);
         };
-        
-        if ((GVAR(mouse) select 0) && GVAR(canContext) && GVAR(shiftKey) && !GVAR(ctrlKey)) then {
+
+        if (GVAR(mouse) select 0 && {GVAR(canContext)} && {GVAR(shiftKey)} && {!GVAR(ctrlKey)}) then {
             [GVAR(objectDirAnchor)] call FUNC(handleSelectionDir);
         };
     };
     case "onkeydown": {
-        _args params ["_display","_dik","_shift","_ctrl","_alt"];
+        _args params ["_display", "_dik", "_shift", "_ctrl", "_alt"];
 
         if (!GVAR(shiftKey)) then {GVAR(shiftKey) = _shift};
         if (!GVAR(ctrlKey)) then {GVAR(ctrlKey) = _ctrl};
@@ -272,7 +272,7 @@ switch (toLower _mode) do {
     };
     case "onkeyup": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
-        
+
         // TRACE_1("onkeyup",_dik);
 
         if (!isNil QGVAR(selectionDirPFH)) then {
@@ -318,7 +318,7 @@ switch (toLower _mode) do {
         true
     };
     case "onmapclick": {
-        _args params ["_map","_button","_x","_y","_shift","_ctrl","_alt"];
+        _args params ["_map", "_button", "_x", "_y", "_shift", "_ctrl", "_alt"];
     };
     case "escape": {
     };

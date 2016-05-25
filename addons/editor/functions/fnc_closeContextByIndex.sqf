@@ -18,7 +18,7 @@
 
 params [["_index", -1]];
 
-if (_index == -1) exitWith {};
+if (_index < 0) exitWith {};
 
 if ((count GVAR(indexedContexts) - 1) >= _index) then {
     for "_i" from _index to (count GVAR(indexedContexts) - 1) do {

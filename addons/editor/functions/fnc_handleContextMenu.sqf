@@ -19,22 +19,17 @@
 // Prevents opening menus on mission start (for some reason BIS)
 if (time < 2) exitWith {};
 
-private ["_worldPos","_objects","_targets"];
+private _worldPos = screenToWorld GVAR(mousePos);
+private _objects = nearestObjects FULL_TYPE_SEARCH;
+private _targets = []; // General context menu
 
-_worldPos = screenToWorld GVAR(mousePos);
-_objects = nearestObjects FULL_TYPE_SEARCH;
-_targets = [];
-
-if (count _objects > 0 && count GVAR(selection) == 0) then {
+if (!(_objects isEqualTo []) && {GVAR(selection) isEqualTo []}) then {
     // Object context menu
-    _targets = [(_objects select 0)];
+    _targets = [_objects select 0];
 } else {
-    if (count GVAR(selection) > 0) then {
+    if !(GVAR(selection) isEqualTo []) then {
         // Selection context menu
         _targets = GVAR(selection);
-    } else {
-        // General context menu
-        _targets = [];
     };
 };
 

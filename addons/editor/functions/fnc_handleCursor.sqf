@@ -16,7 +16,7 @@
 
 #include "script_component.hpp"
 
-params ["_mouseX","_mouseY"];
+params ["_mouseX", "_mouseY"];
 
 #define CURSOR_SIZE 16
 #define CURSOR_XY_MOD (pixelW * (CURSOR_SIZE / 2))

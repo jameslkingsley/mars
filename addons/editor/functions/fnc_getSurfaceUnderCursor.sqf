@@ -18,12 +18,10 @@
 
 params [["_ignoreObj", objNull, [objNull]]];
 
-private ["_worldPos", "_camPos", "_objects"];
+private _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
+private _camPos = getPosASLVisual GVAR(freeCamera);
 
-_worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
-_camPos = getPosASLVisual GVAR(freeCamera);
-
-_objects = lineIntersectsSurfaces [
+private _objects = lineIntersectsSurfaces [
     _camPos,
     _worldPos,
     GVAR(freeCamera),
@@ -32,8 +30,8 @@ _objects = lineIntersectsSurfaces [
     1
 ];
 
-if (count _objects > 0) exitWith {
-    ((_objects select 0) select 0)
+if !(_objects isEqualTo []) exitWith {
+    (_objects select 0) select 0
 };
 
 _worldPos

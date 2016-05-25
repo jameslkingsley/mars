@@ -20,23 +20,23 @@
 {
     if (vehicle _x == _x) then {
         // Not vehicle
-        if (!isPlayer _x || GVAR(editPlayers)) then {
+        if (!isPlayer _x || {GVAR(editPlayers)}) then {
             deleteVehicle _x;
         };
     } else {
         // Vehicle
         _crew = crew _x;
-        
-        if (count _crew > 0) then {
-            if ({isPlayer _x} count _crew == 0 || GVAR(editPlayers)) then {
-                {deleteVehicle _x} forEach _crew;
+
+        if !(_crew isEqualTo []) then {
+            if ({isPlayer _x} count _crew == 0 || {GVAR(editPlayers)}) then {
+                {deleteVehicle _x;false} count _crew;
                 deleteVehicle _x;
             };
         } else {
             deleteVehicle _x;
         };
     };
-    
+
     false
 } count GVAR(selection);
 
