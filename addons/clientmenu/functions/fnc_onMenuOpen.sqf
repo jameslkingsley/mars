@@ -46,14 +46,14 @@ disableSerialization;
 
 if (!isNil QEGVAR(zeus,zeusModule)) then {
     _curator = getAssignedCuratorUnit EGVAR(zeus,zeusModule);
-    
+
     if (isNull _curator) then {
         ZEUS_LABEL ctrlSetText "Curator: Available";
         ZEUS_BTN ctrlEnable true;
         ZEUS_BTN ctrlSetText "Open Zeus";
     } else {
         ZEUS_LABEL ctrlSetText (format["Curator: %1", name _curator]);
-        
+
         if (_curator == player) then {
             ZEUS_BTN ctrlEnable true;
             ZEUS_BTN ctrlSetText "Close Zeus";

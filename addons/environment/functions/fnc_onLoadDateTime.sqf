@@ -50,7 +50,7 @@ for "_i" from 1 to 12 do {
         case 11: {"November"};
         case 12: {"December"};
     };
-    
+
     _index = _month lbAdd _monthStr;
     _month lbSetData [_index, (str _i)];
     if (_i == (_now select 1)) then {_month lbSetCurSel _index};

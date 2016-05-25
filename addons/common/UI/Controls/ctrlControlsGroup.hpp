@@ -14,7 +14,7 @@ class MARS_gui_ctrlControlsGroup: MARS_gui_ctrlDefault {
     onMouseZChanged = "";
     onMouseMoving = "";
     onMouseHolding = "";
-    
+
     class VScrollBar: ScrollBar {
         width = 2 * GRID_W;
         height = 0;
@@ -23,7 +23,7 @@ class MARS_gui_ctrlControlsGroup: MARS_gui_ctrlDefault {
         autoScrollRewind = 1;
         autoScrollSpeed = 1;
     };
-    
+
     class HScrollBar: ScrollBar {
         width = 0;
         height = 2 * GRID_H;
@@ -34,7 +34,7 @@ class MARS_gui_ctrlControlsGroupNoScrollbars: MARS_gui_ctrlControlsGroup {
     class VScrollbar: VScrollbar {
         width = 0;
     };
-    
+
     class HScrollbar: HScrollbar {
         height = 0;
     };

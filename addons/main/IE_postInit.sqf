@@ -6,7 +6,7 @@ if (intercept_invoker_ok) then {
     MARS_LOGINFO("Intercept Post-Init Finished.");
     [] spawn {
         waitUntil {!isNull (findDisplay 46)};
-        (findDisplay 46) displayAddEventHandler ["unload", { 
+        (findDisplay 46) displayAddEventHandler ["unload", {
             _res = "intercept" callExtension "rv_event:mission_stopped";
         }];
     };

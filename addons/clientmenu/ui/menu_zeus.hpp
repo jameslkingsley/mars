@@ -4,7 +4,7 @@ class GVAR(clientMenu) {
     idd = 600001;
     movingEnable = true;
     onLoad = QUOTE([_this select 0] call FUNC(onMenuOpen));
-    
+
     class controls {
         class HeaderBackground: MARS_gui_accentBase
         {

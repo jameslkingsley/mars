@@ -4,14 +4,14 @@ class GVAR(accent) {
     idd = IDC_ACCENT_DISPLAY;
     movingEnable = true;
     onLoad = QUOTE([_this select 0] call FUNC(onAccentOpen));
-    
+
     class Controls {
         #define GAP (GRID_H * 0.25)
         #define LINE_X (SIZE_M * GRID_W)
         #define LINE_Y (SIZE_M * (GRID_H + GAP))
         #define LINE_W (SIZE_M * (10 * GRID_W))
         #define LINE_H (SIZE_M * GRID_H)
-        
+
         class ButtonExit: MARS_gui_ctrlButtonPicture {
             idc = IDC_ACCENT_EXIT;
             x = LINE_W;

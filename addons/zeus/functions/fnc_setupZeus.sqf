@@ -34,7 +34,7 @@ if (_giveZeus) then {
         GVAR(zeusModule) setVariable ["Forced", 0];
         _unit assignCurator GVAR(zeusModule);
         publicVariable QGVAR(zeusModule);
-        
+
         // This is spawned so that it doesn't cause player computers to freeze/lag
         /*[] spawn {
             {GVAR(zeusModule) addCuratorEditableObjects [[_x],true];false} count vehicles;

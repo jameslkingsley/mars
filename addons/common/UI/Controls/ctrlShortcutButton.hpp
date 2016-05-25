@@ -49,21 +49,21 @@ class MARS_gui_ctrlShortcutButton: MARS_gui_ctrlDefaultButton {
         font = FONT2_THIN;
         shadow = 0;
     };
-    
+
     class HitZone {
         left = 0;
         top = 0;
         right = 0;
         bottom = 0;
     };
-    
+
     class TextPos {
         left = 0;
         top = 0;
         right = 0;
         bottom = 0;
     };
-    
+
     class ShortcutPos {
         left = 0;
         top = 0;
