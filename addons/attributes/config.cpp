@@ -15,3 +15,4 @@ class CfgPatches {
 #include "\z\mars\addons\common\define.hpp"
 #include "CfgEventHandlers.hpp"
 #include "UI\interface.hpp"
+#include "UI\category.hpp"

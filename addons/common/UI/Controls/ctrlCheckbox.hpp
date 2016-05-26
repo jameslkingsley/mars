@@ -1,7 +1,12 @@
 class MARS_gui_ctrlCheckbox: MARS_gui_ctrlDefault {
     type = CT_CHECKBOX;
+    font = FONT_THIN;
     checked = 0;
+    size = SIZEEX_PURISTA_M;
+    sizeEx = SIZEEX_PURISTA_M;
+    text = "";
     color[] = {1,1,1,0.7};
+    colorText[] = {COLOR_TEXT_RGBA};
     colorFocused[] = {1,1,1,1};
     colorHover[] = {1,1,1,1};
     colorPressed[] = {1,1,1,1};

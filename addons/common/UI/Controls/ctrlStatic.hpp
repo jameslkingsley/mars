@@ -29,6 +29,10 @@ class MARS_gui_ctrlStatic: MARS_gui_ctrlDefaultText {
     onVideoStopped = "";
 };
 
+class MARS_gui_ctrlStaticAlignRight: MARS_gui_ctrlStatic {
+    style = ST_RIGHT + ST_VCENTER;
+};
+
 class MARS_gui_ctrlStaticPicture: MARS_gui_ctrlStatic {
     style = ST_PICTURE;
 };

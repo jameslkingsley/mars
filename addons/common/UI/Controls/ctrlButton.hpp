@@ -91,3 +91,23 @@ class MARS_gui_ctrlButtonFilter: MARS_gui_ctrlButton {
     colorBackgroundActive[] = {1,1,1,0.3};
     colorFocused[] = {0,0,0,0};
 };
+
+class MARS_gui_ctrlButtonStatic: MARS_gui_ctrlButton {
+    style = ST_MULTI + ST_NO_RECT;
+    colorText[] = {1,1,1,0.5};
+    colorBackground[] = {COLOR_BACKGROUND_RGBA};
+    colorFocused[] = {COLOR_BACKGROUND_RGBA};
+    colorBackgroundActive[] = {COLOR_BACKGROUND_RGBA};
+    colorShadow[] = {1,1,1,0.5};
+    offsetPressedX = 0;
+    offsetPressedY = 0;
+    size = SIZEEX_PURISTA_L;
+    sizeEx = SIZEEX_PURISTA_L;
+};
+
+class MARS_gui_ctrlButtonStaticAlignRight: MARS_gui_ctrlButtonStatic {
+    style = ST_MULTI + ST_NO_RECT + ST_RIGHT + ST_VCENTER;
+    size = SIZEEX_PURISTA_M;
+    sizeEx = SIZEEX_PURISTA_M;
+    colorText[] = {1,1,1,1};
+};

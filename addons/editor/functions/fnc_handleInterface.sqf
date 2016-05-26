@@ -26,8 +26,8 @@ switch (toLower _mode) do {
         SETUVAR(GVAR(interface),_display);
         SETUVAR(GVAR(cursorHelper),(_display displayCtrl IDC_CURSORHELPER));
         
-        [] call FUNC(createEntityList);
-        [] call FUNC(createAssetBrowser);
+        // [] call FUNC(createEntityList);
+        // [] call FUNC(createAssetBrowser);
     };
     case "onunload": {
         // Kill GUI PFHs

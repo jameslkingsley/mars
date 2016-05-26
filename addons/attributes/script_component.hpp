@@ -17,3 +17,13 @@
 #include "\z\mars\addons\main\script_macros.hpp"
 
 #include "UI\resinc.hpp"
+
+#ifndef WINDOW_EDITATTRIBUTES_W
+    #define WINDOW_EDITATTRIBUTES_W	140
+#endif
+
+#ifndef WINDOW_EDITATTRIBUTES_H
+    #define WINDOW_EDITATTRIBUTES_H	180
+#endif
+
+#define GOLDEN_RATIO 1.618
