@@ -58,6 +58,16 @@ if (count _labels > count _values) then {
 // Add an extra dummy item to stop it from cutting off the last element in values
 _ctrlCombo lbAdd "";
 
+_ctrlCombo setVariable [QGVAR(comboStartIndex), (lbCurSel _ctrlCombo)];
+_ctrlCombo setVariable [QGVAR(execExpression), false];
+_ctrlCombo setVariable [QGVAR(execExpressionStr), getText (_config >> "expression")];
+
+_ctrlCombo ctrlAddEventHandler ["LBSelChanged", {
+    params ["_ctrl","_index"];
+    _startIndex = _ctrl getVariable [QGVAR(comboStartIndex), -1];
+    _ctrl setVariable [QGVAR(execExpression), (_index != _startIndex)];
+}];
+
 {
     _x params ["_configEvent","_runtimeEvent"];
     if (!isNull (_config >> _configEvent)) then {

@@ -39,6 +39,17 @@ _text = [str (call compile getText (_config >> "textCode")), getText (_config >>
 
 _ctrlEdit ctrlSetText _text;
 
+_ctrlEdit setVariable [QGVAR(editStartText), (ctrlText _ctrlEdit)];
+_ctrlEdit setVariable [QGVAR(execExpression), false];
+_ctrlEdit setVariable [QGVAR(execExpressionStr), getText (_config >> "expression")];
+
+_ctrlEdit ctrlAddEventHandler ["KillFocus", {
+    params ["_ctrl"];
+    _startText = _ctrl getVariable [QGVAR(editStartText), ""];
+    _nowText = ctrlText _ctrl;
+    _ctrl setVariable [QGVAR(execExpression), (_startText != _nowText)];
+}];
+
 {
     _x params ["_configEvent","_runtimeEvent"];
     if (!isNull (_config >> _configEvent)) then {

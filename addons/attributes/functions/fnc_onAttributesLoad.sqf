@@ -49,6 +49,22 @@ if (!isClass _parent) exitWith {
     MARS_LOGERROR_2("Attribute is not a class: %1 >> %2", _component, _attribute);
 };
 
+GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
+    {
+        _display = GETUVAR(GVAR(interface),displayNull);
+        _ctrl = _display displayCtrl _x;
+        _execExpression = _ctrl getVariable [QGVAR(execExpression), false];
+        _execExpressionStr = _ctrl getVariable [QGVAR(execExpressionStr), ""];
+        
+        if (_execExpression) then {
+            [_ctrl] call compile _execExpressionStr;
+        };
+        
+        false
+    } count GVAR(AttributesWindow_ItemControls);
+    GVAR(AttributesWindow_ItemControls) = [];
+}] call EFUNC(common,addEventHandler);
+
 CONTROL(IDC_EDITATTRIBUTES_TITLE) ctrlSetText getText (_parent >> "displayName");
 
 _categories = "true" configClasses (_parent >> "AttributeCategories");
@@ -127,6 +143,7 @@ _itemControlIDC = IDC_EDITATTRIBUTES_CATEGORIES_ITEMS * 100;
                 ];
                 
                 _itemCtrl = call compile _itemControlCreateCode;
+                GVAR(AttributesWindow_ItemControls) pushBack (ctrlIDC _itemCtrl);
                 
                 _itemCtrlHeight = (ctrlPosition _itemCtrl) select 3;
                 if (_itemCtrlHeight > _itemControlLargestHeight) then {
@@ -151,7 +168,7 @@ _itemControlIDC = IDC_EDITATTRIBUTES_CATEGORIES_ITEMS * 100;
 
         _categoryItemLabel ctrlSetPosition _categoryItemLabelPosition;
 
-        {_x ctrlCommit 0} forEach [_categoryItemLabel];
+        _categoryItemLabel ctrlCommit 0;
 
         ADD(_categoryItemHeight, _itemControlTotalHeight);
 
@@ -170,3 +187,9 @@ _itemControlIDC = IDC_EDITATTRIBUTES_CATEGORIES_ITEMS * 100;
 
     false
 } count _categories;
+
+GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", getText (_parent >> "actionConfirm")] call EFUNC(common,addEventHandler);
+GVAR(AttributesWindow_onCancel) = ["AttributesWindow_onCancel", getText (_parent >> "actionCancel")] call EFUNC(common,addEventHandler);
+
+(_display displayCtrl IDC_EDITATTRIBUTES_BTN_OK) ctrlAddEventHandler ["MouseButtonClick", {["AttributesWindow_onConfirm", _this] call EFUNC(common,localEvent)}];
+(_display displayCtrl IDC_EDITATTRIBUTES_BTN_CANCEL) ctrlAddEventHandler ["MouseButtonClick", {["AttributesWindow_onCancel", _this] call EFUNC(common,localEvent)}];

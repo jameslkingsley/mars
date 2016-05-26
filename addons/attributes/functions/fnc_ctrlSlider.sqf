@@ -47,6 +47,17 @@ _ctrlSlider sliderSetRange _range;
 _ctrlSlider sliderSetSpeed [_step, _step];
 _ctrlSlider sliderSetPosition _startPos;
 
+_ctrlSlider setVariable [QGVAR(sliderStartPos), (sliderPosition _ctrlSlider)];
+_ctrlSlider setVariable [QGVAR(execExpression), false];
+_ctrlSlider setVariable [QGVAR(execExpressionStr), getText (_config >> "expression")];
+
+_ctrlSlider ctrlAddEventHandler ["SliderPosChanged", {
+    params ["_ctrl"];
+    _startPos = _ctrl getVariable [QGVAR(sliderStartPos), -999999];
+    _nowPos = sliderPosition _ctrl;
+    _ctrl setVariable [QGVAR(execExpression), (_startPos != _nowPos)];
+}];
+
 {
     _x params ["_configEvent","_runtimeEvent"];
     if (!isNull (_config >> _configEvent)) then {

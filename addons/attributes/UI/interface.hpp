@@ -8,9 +8,6 @@ class GVAR(AttributesWindow) {
     onUnload = QUOTE([ARR_2('AttributesWindow_onUnload', _this)] call EFUNC(common,localEvent));
 
     class ControlsBackground {
-        // class BackgroundDisable: MARS_gui_ctrlStaticBackgroundDisable {};
-        // class BackgroundDisableTiles: MARS_gui_ctrlStaticBackgroundDisableTiles {};
-
         class Background: MARS_gui_ctrlStaticBackground {
             x = CENTER_X - (WINDOW_EDITATTRIBUTES_W * 0.5) * GRID_W;
             y = 0.5 - WINDOW_EDITATTRIBUTES_HAbs * 0.5 + 10 * GRID_H;
@@ -40,6 +37,7 @@ class GVAR(AttributesWindow) {
             class Controls {};
         };
         class ButtonOK: MARS_gui_ctrlButtonOk {
+            idc = IDC_EDITATTRIBUTES_BTN_OK;
             x = CENTER_X + (WINDOW_EDITATTRIBUTES_W * 0.5 - 50 - 2) * GRID_W;
             y = 0.5 + WINDOW_EDITATTRIBUTES_HAbs * 0.5 - (2 * SIZE_M + 1) * GRID_H;
             w = 25 * GRID_W;
@@ -49,6 +47,7 @@ class GVAR(AttributesWindow) {
             onButtonDown = "ctrlSetFocus (_this select 0);";
         };
         class ButtonCancel: MARS_gui_ctrlButtonCancel {
+            idc = IDC_EDITATTRIBUTES_BTN_CANCEL;
             x = CENTER_X + (WINDOW_EDITATTRIBUTES_W * 0.5 - 25 - 1) * GRID_W;
             y = 0.5 + WINDOW_EDITATTRIBUTES_HAbs * 0.5 - (2 * SIZE_M + 1) * GRID_H;
             w = 25 * GRID_W;
