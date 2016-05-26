@@ -54,7 +54,7 @@ CONTROL(IDC_EDITATTRIBUTES_TITLE) ctrlSetText getText (_parent >> "displayName")
 _categories = "true" configClasses (_parent >> "AttributeCategories");
 
 _categoryIndex = 0;
-_categoryHeight = -CATEGORY_TITLE_H;
+_categoryHeight = -CATEGORY_TITLE_H + (SIZE_XS * GRID_W);
 _categoryIDC = IDC_EDITATTRIBUTES_CATEGORIES * 10;
 _ctrlCategoryTitleIDC = _categoryIDC * 10;
 _categoryItemIDC = IDC_EDITATTRIBUTES_CATEGORIES_ITEMS * 10;
@@ -90,7 +90,7 @@ _itemControlIDC = IDC_EDITATTRIBUTES_CATEGORIES_ITEMS * 100;
         
         _itemControlIndex = 0;
         _itemControlTotalHeight = 0;
-        _itemControlWidth = (((WINDOW_EDITATTRIBUTES_W * ITEM_FIELD_RATIO) * GRID_W) - (6 * GRID_W)) / (count _categoryItemControls);
+        _itemControlWidth = (((WINDOW_EDITATTRIBUTES_W * ITEM_FIELD_RATIO) * GRID_W) - (SIZE_M * GRID_W)) / (count _categoryItemControls);
         
         #define ITEM_COMMON_Y ITEM_TITLE_Y(_categoryItemHeight + _categoryHeight + (_categoryItemIndex * GRID_H)) + ((_categoryIndex min 1) * CATEGORY_TITLE_H)
         
@@ -143,9 +143,9 @@ _itemControlIDC = IDC_EDITATTRIBUTES_CATEGORIES_ITEMS * 100;
         ADD(_itemControlTotalHeight, _itemControlLargestHeight);
 
         _categoryItemLabelPosition = [
-            ITEM_TITLE_X,
+            ITEM_TITLE_X + (SIZE_XS * GRID_W),
             ITEM_COMMON_Y,
-            ITEM_TITLE_W - (1 * GRID_W),
+            ITEM_TITLE_W - (1 * GRID_W) - (SIZE_XS * GRID_W),
             ITEM_TITLE_H(0)
         ];
 
