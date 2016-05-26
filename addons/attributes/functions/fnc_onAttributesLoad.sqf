@@ -56,6 +56,9 @@ _categories = "true" configClasses (_parent >> "AttributeCategories");
 _categoryIndex = 0;
 _categoryHeight = -CATEGORY_TITLE_H;
 _categoryIDC = IDC_EDITATTRIBUTES_CATEGORIES * 10;
+_ctrlCategoryTitleIDC = _categoryIDC * 10;
+_categoryItemIDC = IDC_EDITATTRIBUTES_CATEGORIES_ITEMS * 10;
+_itemControlIDC = IDC_EDITATTRIBUTES_CATEGORIES_ITEMS * 100;
 
 {
     _categoryCfg = _x;
@@ -64,13 +67,6 @@ _categoryIDC = IDC_EDITATTRIBUTES_CATEGORIES * 10;
 
     _categoryItems = "true" configClasses (_categoryCfg);
 
-    _ctrlCategory = _display ctrlCreate [QGVAR(AttributeCategory), _categoryIDC, CONTROL(IDC_EDITATTRIBUTES_CATEGORIES)];
-    _ctrlCategoryTitle = _ctrlCategory controlsGroupCtrl IDC_EDITATTRIBUTES_CATEGORIES_TITLE;
-    _ctrlCategoryItems = _ctrlCategory controlsGroupCtrl IDC_EDITATTRIBUTES_CATEGORIES_ITEMS;
-
-    _ctrlCategoryTitle ctrlSetText _categoryDisplayName;
-    _ctrlCategoryTitle ctrlSetTooltip _categoryTooltipText;
-
     _ctrlCategoryTitlePosition = [
         CATEGORY_TITLE_X,
         CATEGORY_TITLE_Y(_categoryHeight) + ((_categoryIndex min 1) * CATEGORY_TITLE_H),
@@ -78,11 +74,8 @@ _categoryIDC = IDC_EDITATTRIBUTES_CATEGORIES * 10;
         CATEGORY_TITLE_H
     ];
 
-    _ctrlCategoryTitle ctrlSetPosition _ctrlCategoryTitlePosition;
-
     _categoryItemIndex = 0;
     _categoryItemHeight = 0;
-    _categoryItemIDC = IDC_EDITATTRIBUTES_CATEGORIES_ITEMS * 10;
 
     {
         _categoryItemCfg = _x;
@@ -90,16 +83,18 @@ _categoryIDC = IDC_EDITATTRIBUTES_CATEGORIES * 10;
         _categoryItemTooltipText = getText (_categoryItemCfg >> "tooltipText");
         _categoryItemControls = "true" configClasses (_categoryItemCfg >> "AttributeControls");
 
-        _categoryItemLabel = _display ctrlCreate ["MARS_gui_ctrlButtonStaticAlignRight", _categoryItemIDC, CONTROL(IDC_EDITATTRIBUTES_CATEGORIES_ITEMS)];
+        _categoryItemLabel = _display ctrlCreate ["MARS_gui_ctrlButtonStaticAlignRight", _categoryItemIDC, CONTROL(IDC_EDITATTRIBUTES_CATEGORIES)];
 
         _categoryItemLabel ctrlSetText _categoryItemDisplayName;
         _categoryItemLabel ctrlSetTooltip _categoryItemTooltipText;
         
         _itemControlIndex = 0;
-        _itemControlIDC = IDC_EDITATTRIBUTES_CATEGORIES_ITEMS * 100;
+        _itemControlTotalHeight = 0;
         _itemControlWidth = (((WINDOW_EDITATTRIBUTES_W * ITEM_FIELD_RATIO) * GRID_W) - (6 * GRID_W)) / (count _categoryItemControls);
         
         #define ITEM_COMMON_Y ITEM_TITLE_Y(_categoryItemHeight + _categoryHeight + (_categoryItemIndex * GRID_H)) + ((_categoryIndex min 1) * CATEGORY_TITLE_H)
+        
+        _itemControlLargestHeight = 0;
         
         {
             _itemControlCfg = _x;
@@ -120,19 +115,23 @@ _categoryIDC = IDC_EDITATTRIBUTES_CATEGORIES * 10;
 
             if (!isNil _itemControlCreateFunction) then {
                 _itemControlCreateCode = format [
-                    "[""%1"", %7, [%2,%3,%4,%5]] call %6",
+                    "[""%1"", %7, %8, [%2,%3,%4,%5]] call %6",
                     _itemControlCfgPath,
                     (ITEM_TITLE_W + GRID_W) + (_itemControlWidth * _itemControlIndex),
                     ITEM_COMMON_Y,
                     _itemControlWidth,
                     SIZE_M * GRID_H,
                     _itemControlCreateFunction,
-                    _itemControlIDC
+                    _itemControlIDC,
+                    IDC_EDITATTRIBUTES_CATEGORIES
                 ];
                 
-                TRACE_1("",_itemControlCreateCode);
+                _itemCtrl = call compile _itemControlCreateCode;
                 
-                call compile _itemControlCreateCode;
+                _itemCtrlHeight = (ctrlPosition _itemCtrl) select 3;
+                if (_itemCtrlHeight > _itemControlLargestHeight) then {
+                    _itemControlLargestHeight = _itemCtrlHeight;
+                };
             };
             
             INC(_itemControlIndex);
@@ -140,11 +139,13 @@ _categoryIDC = IDC_EDITATTRIBUTES_CATEGORIES * 10;
 
             false
         } count _categoryItemControls;
+        
+        ADD(_itemControlTotalHeight, _itemControlLargestHeight);
 
         _categoryItemLabelPosition = [
             ITEM_TITLE_X,
             ITEM_COMMON_Y,
-            ITEM_TITLE_W,
+            ITEM_TITLE_W - (1 * GRID_W),
             ITEM_TITLE_H(0)
         ];
 
@@ -152,7 +153,7 @@ _categoryIDC = IDC_EDITATTRIBUTES_CATEGORIES * 10;
 
         {_x ctrlCommit 0} forEach [_categoryItemLabel];
 
-        ADD(_categoryItemHeight, (_categoryItemLabelPosition select 3));
+        ADD(_categoryItemHeight, _itemControlTotalHeight);
 
         INC(_categoryItemIndex);
         INC(_categoryItemIDC);
@@ -160,12 +161,10 @@ _categoryIDC = IDC_EDITATTRIBUTES_CATEGORIES * 10;
         false
     } count _categoryItems;
 
-    {_x ctrlCommit 0} forEach [_ctrlCategory, _ctrlCategoryTitle, _ctrlCategoryItems];
-
-    ADD(_categoryHeight, (_ctrlCategoryTitlePosition select 3));
     ADD(_categoryHeight, ((_categoryIndex min 1) * CATEGORY_TITLE_H));
     ADD(_categoryHeight, _categoryItemHeight);
 
+    INC(_ctrlCategoryTitleIDC);
     INC(_categoryIndex);
     INC(_categoryIDC);
 
