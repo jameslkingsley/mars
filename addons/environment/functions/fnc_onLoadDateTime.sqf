@@ -31,7 +31,7 @@ _now = date;
 
 for "_i" from 1982 to 2050 do {
     _index = _year lbAdd (str _i);
-    _year lbSetData [_index, (str _i)];
+    _year lbSetData [_index, str _i];
     if (_i == (_now select 0)) then {_year lbSetCurSel _index};
 };
 
@@ -52,13 +52,13 @@ for "_i" from 1 to 12 do {
     };
 
     _index = _month lbAdd _monthStr;
-    _month lbSetData [_index, (str _i)];
+    _month lbSetData [_index, str _i];
     if (_i == (_now select 1)) then {_month lbSetCurSel _index};
 };
 
 for "_i" from 1 to 31 do {
     _index = _day lbAdd (str _i);
-    _day lbSetData [_index, (str _i)];
+    _day lbSetData [_index, str _i];
     if (_i == (_now select 2)) then {_day lbSetCurSel _index};
 };
 

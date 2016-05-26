@@ -36,8 +36,8 @@
         _unitVehicleClasses = [];
         {_unitVehicleClasses pushBackUnique (getText ((_x select 0) >> "vehicleClass"));false} count _units;
 
-        _vehicleClasses = (format["(configName _x) in %1", _unitVehicleClasses]) configClasses (configFile >> "CfgVehicleClasses");
-        _vehicleClasses = _vehicleClasses apply {[_x, (configName _x), getText (_x >> "displayName")]};
+        _vehicleClasses = (format ["(configName _x) in %1", _unitVehicleClasses]) configClasses (configFile >> "CfgVehicleClasses");
+        _vehicleClasses = _vehicleClasses apply {[_x, configName _x, getText (_x >> "displayName")]};
         _vehicleClasses sort true;
 
         {
@@ -50,14 +50,14 @@
                     private _icon = getText ((_x select 0) >> "icon");
                     private _iconTex = [getText (configFile >> "CfgVehicleIcons" >> _icon), _icon] select ((toLower _icon) find "\a3\" > -1 );
                     private _side = getNumber ((_x select 0) >> "side");
-                    private _objType = if (getNumber ((_x select 0) >> "isMan") == 1) then {"man"} else {"vehicle"};
+                    private _objType = ["vehicle", "man"] select (getNumber ((_x select 0) >> "isMan") == 1);
                     private _dataStr = format [
                         "['%1','%2']",
                         _objType,
                         configName (_x select 0)
                     ];
 
-                    _unitPath = _tree tvAdd [[_vcPath], (_x select 1)];
+                    _unitPath = _tree tvAdd [[_vcPath], _x select 1];
                     _tree tvSetData [[_vcPath,_unitPath], _dataStr];
                     _tree tvSetPicture [[_vcPath,_unitPath], _iconTex];
                     _tree tvSetPictureColor [[_vcPath,_unitPath], [COLOR_EMPTY_RGBA]];
@@ -68,7 +68,7 @@
             false
         } count _vehicleClasses;
     } else {
-        _factions = (format["getNumber (_x >> 'side') in %1", _side]) configClasses (configFile >> "CfgFactionClasses");
+        _factions = (format ["getNumber (_x >> 'side') in %1", _side]) configClasses (configFile >> "CfgFactionClasses");
         _factions = _factions apply {[_x, getText (_x >> "displayName")]};
         _factions sort true;
 
@@ -94,8 +94,8 @@
             _unitVehicleClasses = [];
             {_unitVehicleClasses pushBackUnique (getText ((_x select 0) >> "vehicleClass"));false} count _units;
 
-            _vehicleClasses = (format["(configName _x) in %1", _unitVehicleClasses]) configClasses (configFile >> "CfgVehicleClasses");
-            _vehicleClasses = _vehicleClasses apply {[_x, (configName _x), getText (_x >> "displayName")]};
+            _vehicleClasses = (format ["(configName _x) in %1", _unitVehicleClasses]) configClasses (configFile >> "CfgVehicleClasses");
+            _vehicleClasses = _vehicleClasses apply {[_x, configName _x, getText (_x >> "displayName")]};
             _vehicleClasses sort true;
 
             {
@@ -115,7 +115,7 @@
                             configName (_x select 0)
                         ];
 
-                        _unitPath = _tree tvAdd [[_factionParent,_vcPath], (_x select 1)];
+                        _unitPath = _tree tvAdd [[_factionParent,_vcPath], _x select 1];
                         _tree tvSetData [[_factionParent,_vcPath,_unitPath], _dataStr];
                         _tree tvSetPicture [[_factionParent,_vcPath,_unitPath], _iconTex];
                         _tree tvSetPictureColor [[_factionParent,_vcPath,_unitPath], [_side] call EFUNC(common,getSideColorByInt)];
@@ -162,8 +162,8 @@
             _unitVehicleClasses = [];
             {_unitVehicleClasses pushBackUnique (getText ((_x select 0) >> "vehicleClass"));false} count _units;
 
-            _vehicleClasses = (format["(configName _x) in %1", _unitVehicleClasses]) configClasses (configFile >> "CfgVehicleClasses");
-            _vehicleClasses = _vehicleClasses apply {[_x, (configName _x), getText (_x >> "displayName")]};
+            _vehicleClasses = (format ["(configName _x) in %1", _unitVehicleClasses]) configClasses (configFile >> "CfgVehicleClasses");
+            _vehicleClasses = _vehicleClasses apply {[_x, configName _x, getText (_x >> "displayName")]};
             _vehicleClasses sort true;
 
             {
@@ -177,7 +177,7 @@
                         private _side = getNumber ((_x select 0) >> "side");
                         private _dataStr = format ["['group','%1']", configName (_x select 0)];
 
-                        _unitPath = _tree tvAdd [[_vcPath], (_x select 1)];
+                        _unitPath = _tree tvAdd [[_vcPath], _x select 1];
                         _tree tvSetData [[_vcPath,_unitPath], _dataStr];
                         _tree tvSetPicture [[_vcPath,_unitPath], _icon];
                         _tree tvSetPictureColor [[_vcPath,_unitPath], [COLOR_EMPTY_RGBA]];
@@ -221,7 +221,7 @@
                             ["CfgGroups", _grpSide, _grpClassname, _catClassname, _entClassname]
                         ];
 
-                        _entParent = _tree tvAdd [[_grpParent,_catParent], (_x select 1)];
+                        _entParent = _tree tvAdd [[_grpParent,_catParent], _x select 1];
                         _tree tvSetData [[_grpParent,_catParent,_entParent], _dataStr];
                         _tree tvSetPicture [[_grpParent,_catParent,_entParent], _icon];
                         _tree tvSetPictureColor [[_grpParent,_catParent,_entParent], [_side] call EFUNC(common,getSideColorByInt)];

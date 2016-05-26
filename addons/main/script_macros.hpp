@@ -6,8 +6,8 @@
 // Default versioning level
 #define DEFAULT_VERSIONING_LEVEL 2
 
-#define DGVAR(varName)    if(isNil "MARS_DEBUG_NAMESPACE") then { MARS_DEBUG_NAMESPACE = []; }; if(!(QUOTE(GVAR(varName)) in MARS_DEBUG_NAMESPACE)) then { PUSH(MARS_DEBUG_NAMESPACE, QUOTE(GVAR(varName))); }; GVAR(varName)
-#define DVAR(varName)     if(isNil "MARS_DEBUG_NAMESPACE") then { MARS_DEBUG_NAMESPACE = []; }; if(!(QUOTE(varName) in MARS_DEBUG_NAMESPACE)) then { PUSH(MARS_DEBUG_NAMESPACE, QUOTE(varName)); }; varName
+#define DGVAR(varName)    ISNILS(MARS_DEBUG_NAMESPACE,[]); if(!(QUOTE(GVAR(varName)) in MARS_DEBUG_NAMESPACE)) then { PUSH(MARS_DEBUG_NAMESPACE, QUOTE(GVAR(varName))); }; GVAR(varName)
+#define DVAR(varName)    ISNILS(MARS_DEBUG_NAMESPACE,[]); if(!(QUOTE(varName) in MARS_DEBUG_NAMESPACE)) then { PUSH(MARS_DEBUG_NAMESPACE, QUOTE(varName)); }; varName
 #define DFUNC(var1) TRIPLES(ADDON,fnc,var1)
 #define DEFUNC(var1,var2) TRIPLES(DOUBLES(PREFIX,var1),fnc,var2)
 
@@ -197,7 +197,7 @@
    #define TRACE_10(MESSAGE,A,B,C,D,E,F,G,H,I,J) /* disabled */
 #endif
 
-#define MARS_SIDECOLOR(side) ([(side)] call EFUNC(common,getSideColor))
+#define MARS_SIDECOLOR(side) ([side] call EFUNC(common,getSideColor))
 
 #define COLOR_DEFAULT_RGB_R 0.741
 #define COLOR_DEFAULT_RGB_G 0.173

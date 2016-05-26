@@ -43,7 +43,7 @@ _componentIndex = 0;
         _ctrl = _display ctrlCreate ["MARS_gui_ctrlButtonToolbar", _idc, _display displayCtrl IDC_TOOLBAR_ITEMS];
 
         _pos = [
-            ((_forEachIndex * GRID_TOOLBAR_W) + (_componentIndex * GRID_TOOLBAR_W)),
+            (_forEachIndex * GRID_TOOLBAR_W) + (_componentIndex * GRID_TOOLBAR_W),
             0,
             GRID_TOOLBAR_W,
             GRID_TOOLBAR_H

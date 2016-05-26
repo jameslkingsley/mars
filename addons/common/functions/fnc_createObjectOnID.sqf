@@ -63,7 +63,7 @@ if (_isOnTarget) exitWith {
             {
                 private _unitConfig = _x;
                 private _unitClassname = getText (_unitConfig >> "vehicle");
-                private _unitIsMan = [false, true] select (([format["configFile >> 'CfgVehicles' >> '%1'", _unitClassname]] call FUNC(getObjectType)) == "man");
+                private _unitIsMan = [false, true] select (([format ["configFile >> 'CfgVehicles' >> '%1'", _unitClassname]] call FUNC(getObjectType)) == "man");
                 private _unitRank = getText (_unitConfig >> "rank");
                 private _unitOffset = getArray (_unitConfig >> "position");
                 private _unitPos = ASLtoAGL (_worldPos vectorAdd _unitOffset);

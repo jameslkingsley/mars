@@ -26,7 +26,7 @@ if !(_contexts isEqualTo []) then {
     {
         private ["_config","_condition"];
         _config = _x;
-        _condition = ["", (getText (_config >> "condition"))] select (!isNull (_config >> "condition"));
+        _condition = ["", getText (_config >> "condition")] select (!isNull (_config >> "condition"));
         if (_condition == "") then {_condition = "true"};
 
         // Run the condition for all in selection
@@ -41,7 +41,7 @@ if !(_contexts isEqualTo []) then {
             disableSerialization;
 
             _control = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_contextBase", _idc];
-            _control ctrlSetText (format ["%1%2", _displayName, (["","..."] select _hasChildren)]);
+            _control ctrlSetText (format ["%1%2", _displayName, ["","..."] select _hasChildren]);
 
             _startYPos = [GVAR(currentMousePos) select 1, _startYPos] select (_startYPos > -1);
 

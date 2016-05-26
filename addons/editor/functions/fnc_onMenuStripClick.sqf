@@ -43,8 +43,8 @@ _idc = 46000;
     _action = getText (_x >> "action");
 
     _childCtrl = _display ctrlCreate ["MARS_gui_toolbarContextBase", _idc];
-    _childCtrl ctrlSetPosition [(_parentPos select 0), ((_prevPosYH select 0) + (_prevPosYH select 1) - pixelH), MENUSTRIP_CONTEXT_WIDTH, MENUSTRIP_CONTEXT_HEIGHT];
-    _childCtrl ctrlSetText (format[" %1", _displayName]);
+    _childCtrl ctrlSetPosition [_parentPos select 0, (_prevPosYH select 0) + (_prevPosYH select 1) - pixelH, MENUSTRIP_CONTEXT_WIDTH, MENUSTRIP_CONTEXT_HEIGHT];
+    _childCtrl ctrlSetText (format [" %1", _displayName]);
     _childCtrl ctrlShow true;
     _childCtrl ctrlCommit 0;
 

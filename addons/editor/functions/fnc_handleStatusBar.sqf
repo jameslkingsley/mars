@@ -23,7 +23,7 @@ private _statusBar = _display displayCtrl IDC_STATUSBAR;
 
 #define CGCTRL(IDC) (_statusBar controlsGroupCtrl IDC)
 
-CGCTRL(IDC_STATUSBAR_VERSION) ctrlSetText format["MARS %1.%2.%3", MAJOR, MINOR, PATCHLVL];
+CGCTRL(IDC_STATUSBAR_VERSION) ctrlSetText format ["MARS %1.%2.%3", MAJOR, MINOR, PATCHLVL];
 CGCTRL(IDC_STATUSBAR_SERVER) ctrlSetTooltip serverName;
 
 _coordinateUpdate = {
@@ -39,10 +39,10 @@ _coordinateUpdate = {
     _camPos = getPosASLVisual GVAR(freeCamera);
     _worldPos params ["_posX", "_posY", "_posZ"];
 
-    _ctrlX ctrlSetText format["%1m", [_posX, 2] call EFUNC(common,roundToN)];
-    _ctrlY ctrlSetText format["%1m", [_posY, 2] call EFUNC(common,roundToN)];
-    _ctrlZ ctrlSetText format["%1m", [_posZ, 2] call EFUNC(common,roundToN)];
-    _ctrlDis ctrlSetText format["%1m", [_worldPos distance _camPos, 2] call EFUNC(common,roundToN)];
+    _ctrlX ctrlSetText format ["%1m", [_posX, 2] call EFUNC(common,roundToN)];
+    _ctrlY ctrlSetText format ["%1m", [_posY, 2] call EFUNC(common,roundToN)];
+    _ctrlZ ctrlSetText format ["%1m", [_posZ, 2] call EFUNC(common,roundToN)];
+    _ctrlDis ctrlSetText format ["%1m", [_worldPos distance _camPos, 2] call EFUNC(common,roundToN)];
 };
 
 _ctrlMouseArea = _display displayCtrl IDC_MOUSEHANDLER;

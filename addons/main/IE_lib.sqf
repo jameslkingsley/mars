@@ -17,7 +17,7 @@ intercept_fnc_test = {
 };
 
 intercept_fnc_exportOpList = {
-    _version = format["%1 %2.%3 - %4", (productVersion select 0), (productVersion select 2), (productVersion select 3), (productVersion select 4)];
+    _version = format ["%1 %2.%3 - %4", productVersion select 0, productVersion select 2, productVersion select 3, productVersion select 4];
     "intercept" callExtension ("export_ptr_list:" + _version);
 };
 
@@ -31,12 +31,7 @@ intercept_fnc_setVariableNamespace = {
 intercept_fnc_callWrapper = {
     scopeName "main";
     params ["_args", "_code"];
-    _res = nil;
-    if (!isNil "_args") then {
-        _res = _args call _code;
-    } else {
-        _res = call _code;
-    };
+    _res = [call _code, _args call _code] select (!isNil "_args");
     missionNamespace setVariable ["INTERCEPT_CALL_RETURN", _res];
     INTERCEPT_DUMMY;
 };

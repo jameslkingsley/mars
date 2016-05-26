@@ -4,7 +4,7 @@ intercept_params_var = [];
 MARS_LOGINFO("Starting Intercept Boot Load");
 _res = "intercept" callExtension "init:";
 MARS_LOGINFO_1("Initiated: ", _res);
-_res = "intercept" callExtension format["init_patch:%1", (productVersion select 3)];
+_res = "intercept" callExtension format ["init_patch:%1", productVersion select 3];
 
 "intercept" callExtension "invoker_begin_register:";
 "intercept" callExtension "invoker_register:delete_ptr";

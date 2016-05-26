@@ -47,7 +47,7 @@ class GVAR(clientMenu) {
             y = 0.368 * safezoneH + safezoneY;
             w = 0.0928357 * safezoneW;
             h = 0.022 * safezoneH;
-            onLBSelChanged = QUOTE([(parseNumber ((_this select 0) lbData (_this select 1)))] call FUNC(setTerrainDetail));
+            onLBSelChanged = QUOTE([parseNumber ((_this select 0) lbData (_this select 1))] call FUNC(setTerrainDetail));
         };
         class Option2_Label: MARS_gui_staticBase
         {
@@ -65,7 +65,7 @@ class GVAR(clientMenu) {
             y = 0.401 * safezoneH + safezoneY;
             w = 0.0928357 * safezoneW;
             h = 0.022 * safezoneH;
-            onLBSelChanged = QUOTE([(parseNumber ((_this select 0) lbData (_this select 1)))] call FUNC(setViewDistance));
+            onLBSelChanged = QUOTE([parseNumber ((_this select 0) lbData (_this select 1))] call FUNC(setViewDistance));
         };
         class BtnClose: MARS_gui_buttonBase
         {

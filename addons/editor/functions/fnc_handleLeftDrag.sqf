@@ -104,7 +104,7 @@ if (isNull _anchorObject) then {
         _boundingPos = ASLtoAGL _boundingPos;
 
         if (((ASLtoAGL _worldPos) select 2) <= 0.1) then {
-            _boundingPos set [2, ((ASLtoAGL _worldPos) select 2)];
+            _boundingPos set [2, (ASLtoAGL _worldPos) select 2];
         };
 
         [_object, [side (group _object)] call EFUNC(common,getSideColor), _boundingPos] call FUNC(drawBoundingBox);

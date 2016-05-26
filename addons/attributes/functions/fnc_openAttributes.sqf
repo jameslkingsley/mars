@@ -30,7 +30,7 @@ _this spawn {
     };
 
     GVAR(AttributesWindow_onLoad) = ["AttributesWindow_onLoad",
-        compile format ["[(_this select 0), '%1', '%2'] call " + QUOTE(FUNC(onAttributesLoad)), _component, _attribute]
+        compile format ["[_this select 0, '%1', '%2'] call " + QUOTE(FUNC(onAttributesLoad)), _component, _attribute]
     ] call EFUNC(common,addEventHandler);
     
     GVAR(AttributesWindow_onUnload) = ["AttributesWindow_onUnload", {

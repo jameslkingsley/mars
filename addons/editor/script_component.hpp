@@ -40,7 +40,7 @@
 #define CAM_SHIFT_SPEED_COEF 5
 
 #define TYPE_SEARCH ["Man","Car","Air","Tank","Truck","Ship"]
-#define FULL_TYPE_SEARCH [(screenToWorld GVAR(mousePos)), TYPE_SEARCH, 4]
+#define FULL_TYPE_SEARCH [screenToWorld GVAR(mousePos), TYPE_SEARCH, 4]
 
 #define MENUSTRIP_CONTEXT_WIDTH (0.12 * safeZoneW)
 #define MENUSTRIP_CONTEXT_HEIGHT (MENUBAR_H * (pixelH * pixelScale * pixelGrid))

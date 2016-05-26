@@ -49,7 +49,7 @@ GVAR(contextPosLinePFH) = [{
 
     {
         _objectPos = ASLtoAGL (getPosASLVisual (leader _x));
-        _objectPos set [2, ((_objectPos select 2) + 5)];
+        _objectPos set [2, (_objectPos select 2) + 5];
 
         // Do drawLine3D 50 times to make it thicker (cheers BIS)
         for "_i" from 0 to 50 do {

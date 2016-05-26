@@ -29,7 +29,7 @@ if (_objType in ["man", "vehicle"]) then {
     _sideInt = getNumber (configFile >> "CfgVehicles" >> _classname >> "side");
     _side = [_sideInt] call EFUNC(common,getSideByInt);
 
-    [([] call EFUNC(common,getSpawnMachine)), _classname, _objType, _side, _worldPos, {
+    [[] call EFUNC(common,getSpawnMachine), _classname, _objType, _side, _worldPos, {
         private ["_object", "_worldPos"];
         _object = _this;
     }] call EFUNC(common,createObjectOnID);
@@ -39,7 +39,7 @@ if (_objType in ["man", "vehicle"]) then {
     _sideInt = getNumber (_groupConfig >> "side");
     _side = [_sideInt] call EFUNC(common,getSideByInt);
 
-    [([] call EFUNC(common,getSpawnMachine)), _classname, _objType, _side, _worldPos, {
+    [[] call EFUNC(common,getSpawnMachine), _classname, _objType, _side, _worldPos, {
         private ["_units", "_worldPos"];
         _units = _this;
     }, [_groupPath]] call EFUNC(common,createObjectOnID);
