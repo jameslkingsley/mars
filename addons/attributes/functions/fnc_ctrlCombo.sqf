@@ -8,7 +8,7 @@
  * 2: Position <ARRAY>
  *
  * Return Value:
- * None
+ * Created control <CONTROL>
  *
  * Example:
  * ["configFile >> 'SomeConfig'", 100, [0,0,0,0]] call mars_attributes_fnc_ctrlCombo;
@@ -28,7 +28,6 @@ params [
 _config = call compile _config;
 _display = GETUVAR(GVAR(interface),displayNull);
 
-// _categoryGroup = _display displayCtrl IDC_EDITATTRIBUTES_CATEGORIES;
 _controlGroup = _display displayCtrl _group;
 
 _ctrlCombo = _display ctrlCreate ["MARS_gui_ctrlCombo", _idc, _controlGroup];

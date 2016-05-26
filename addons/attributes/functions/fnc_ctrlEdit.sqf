@@ -8,7 +8,7 @@
  * 2: Position <ARRAY>
  *
  * Return Value:
- * None
+ * Created control <CONTROL>
  *
  * Example:
  * ["configFile >> 'SomeConfig'", 100, [0,0,0,0]] call mars_attributes_fnc_ctrlEdit;
