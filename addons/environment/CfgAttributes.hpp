@@ -1,14 +1,14 @@
 class GVARMAIN(attributes) {
     class ADDON {
         class environment {
-            displayName = "Environment";
+            displayName = CSTRING(Title);
             actionConfirm = "";
             actionCancel = "";
             class AttributeCategories {
                 class DateTime {
                     class AttributeItem0 {
-                        displayName = "Date";
-                        tooltipText = "Change the date of the current running mission";
+                        displayName = CSTRING(Date_Name);
+                        tooltipText = CSTRING(Date_Tooltip);
                         class AttributeControls {
                             class Year {
                                 condition = "true";
@@ -32,8 +32,8 @@ class GVARMAIN(attributes) {
                         };
                     };
                     class AttributeItem1 {
-                        displayName = "Time";
-                        tooltipText = "Change the time of the current running mission";
+                        displayName = CSTRING(Time_Name);
+                        tooltipText = CSTRING(Time_Tooltip);
                         class AttributeControls {
                             class Time {
                                 condition = "true";
