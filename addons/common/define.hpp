@@ -88,6 +88,7 @@ class RscFrame {
 };
 
 class RscText;
+class RscEdit;
 class RscTitle;
 class RscListbox;
 class RscControlsGroupNoScrollbars;

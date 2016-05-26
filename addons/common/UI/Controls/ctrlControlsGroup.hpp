@@ -16,7 +16,7 @@ class MARS_gui_ctrlControlsGroup: MARS_gui_ctrlDefault {
     onMouseHolding = "";
     
     class VScrollBar: ScrollBar {
-        width = 2 * GRID_W;
+        width = 3 * GRID_W;
         height = 0;
         autoScrollEnabled = 0;
         autoScrollDelay = 1;
@@ -26,7 +26,7 @@ class MARS_gui_ctrlControlsGroup: MARS_gui_ctrlDefault {
     
     class HScrollBar: ScrollBar {
         width = 0;
-        height = 2 * GRID_H;
+        height = 3 * GRID_H;
     };
 };
 

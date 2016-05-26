@@ -35,7 +35,7 @@ class GVAR(AttributesWindow) {
             idc = IDC_EDITATTRIBUTES_CATEGORIES;
             x = CENTER_X - (WINDOW_EDITATTRIBUTES_W * 0.5 - 1*0) * GRID_W;
             y = 0.5 - WINDOW_EDITATTRIBUTES_HAbs * 0.5 + 11 * GRID_H + pixelH;
-            w = (WINDOW_EDITATTRIBUTES_W - 2*0) * GRID_W;
+            w = (WINDOW_EDITATTRIBUTES_W - 2 * GRID_W) * GRID_W;
             h = WINDOW_EDITATTRIBUTES_HAbs - (2 * SIZE_M + 10 + 3) * GRID_H;
             class Controls {};
         };

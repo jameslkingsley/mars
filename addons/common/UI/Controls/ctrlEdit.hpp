@@ -1,12 +1,12 @@
-class MARS_gui_ctrlEdit: MARS_gui_ctrlDefaultText {
-    type = CT_EDIT;
-    colorBackground[] = {COLOR_OVERLAY_RGBA};
-    text = "";
+class MARS_gui_ctrlEdit: RscEdit {
+    font = FONT_MONO;
+    size = SIZEEX_ETELKA_S;
+    sizeEx = SIZEEX_ETELKA_S;
+    shadow = 0;
     colorText[] = {COLOR_TEXT_RGBA};
+    colorBackground[] = {COLOR_OVERLAY_RGBA};
     colorDisabled[] = {COLOR_TEXT_RGB,0.25};
     colorSelection[] = {COLOR_ACTIVE_RGBA};
-    canModify = 1;
-    autocomplete = "";
     onCanDestroy = "";
     onDestroy = "";
     onSetFocus = "";
@@ -20,6 +20,9 @@ class MARS_gui_ctrlEdit: MARS_gui_ctrlDefaultText {
     onMouseZChanged = "";
     onMouseMoving = "";
     onMouseHolding = "";
+    tooltipColorText[] = {COLOR_TEXT_RGBA};
+    tooltipColorBox[] = {0,0,0,0};
+    tooltipColorShade[] = {0,0,0,1};
 };
 
 class MARS_gui_ctrlEditMulti: MARS_gui_ctrlEdit {
