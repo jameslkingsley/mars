@@ -55,8 +55,8 @@ if !(_contexts isEqualTo []) then {
                 CONTEXT_OPTION_HEIGHT
             ];
 
-            _control setVariable [QGVAR(ctrlChildren), _children];
-            _control setVariable [QGVAR(ctrlAction), [_action, _requiresPosition]];
+            SETVAR(_control,GVAR(ctrlChildren),_children);
+            SETVAR(_control,GVAR(ctrlAction),[ARR_2(_action,_requiresPosition)]);
 
             _control ctrlAddEventHandler ["MouseEnter",
                 compile format [
@@ -70,7 +70,7 @@ if !(_contexts isEqualTo []) then {
 
             _control ctrlAddEventHandler ["MouseButtonUp", {
                 params ["_control"];
-                _actionArgs = _control getVariable [QGVAR(ctrlAction), []];
+                _actionArgs = GETVAR(_control,GVAR(ctrlAction),[]);
                 if (count _actionArgs > 0) then {
                     _actionArgs call FUNC(onContextClick);
                 };

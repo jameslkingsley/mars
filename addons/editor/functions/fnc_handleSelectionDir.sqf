@@ -31,7 +31,7 @@ if (_update) then {
     if ({isPlayer _x} count GVAR(selection) > 0 && {!GVAR(editPlayers)}) exitWith {};
 
     {
-        private _newDir = _x getVariable [QGVAR(leftDirFinalPos), nil];
+        private _newDir = GETVAR(_x,GVAR(leftDirFinalPos),nil);
 
         if (!isNil "_newDir") then {
             _x setFormDir _newDir;
@@ -48,7 +48,7 @@ if (_cancel) then {
     [] call FUNC(setCursor);
 
     {
-        _x setVariable [QGVAR(leftDirFinalPos), nil];
+        SETVAR(_x,GVAR(leftDirFinalPos),nil);
         false
     } count GVAR(selection);
 
@@ -91,7 +91,7 @@ if (isNull _anchorObject) then {
         private _object = _x;
         private _positionASL = getPosASL _object;
         private _dir = _positionASL getDir _worldPos;
-        _object setVariable [QGVAR(leftDirFinalPos), _dir];
+        SETVAR(_object,GVAR(leftDirFinalPos),_dir);
 
         [_object, [side (group _object)] call EFUNC(common,getSideColor), [0,0,0], _dir] call FUNC(drawBoundingBox);
 

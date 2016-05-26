@@ -24,7 +24,7 @@ _control params ["_ctrl"];
 
 [_xIndex + 1] call FUNC(closeContextByIndex);
 
-_children = _ctrl getVariable [QGVAR(ctrlChildren), []];
+_children = GETVAR(_ctrl,GVAR(ctrlChildren),[]);
 if (_children isEqualTo []) exitWith {};
 
 [_children, _xIndex + 1, _yIndex, _startYPos] call FUNC(createContextMenu);

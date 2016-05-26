@@ -291,9 +291,9 @@ class MARS_gui_editBase {
         1
     };
     colorSelection[] = {
-        "(profileNamespace getVariable ['GUI_BCG_RGB_R',0.3843])",
-        "(profileNamespace getVariable ['GUI_BCG_RGB_G',0.7019])",
-        "(profileNamespace getVariable ['GUI_BCG_RGB_B',0.8862])",
+        "profileNamespace getVariable ['GUI_BCG_RGB_R',0.3843]",
+        "profileNamespace getVariable ['GUI_BCG_RGB_G',0.7019]",
+        "profileNamespace getVariable ['GUI_BCG_RGB_B',0.8862]",
         1
     };
     autocomplete = "";
@@ -615,7 +615,7 @@ class MARS_gui_listBoxBase : RscListBox {
     colorSelect2[] = {0.95, 0.95, 0.95, 1};
     colorSelectBackground[] = {0, 0, 0, 1};
     colorSelectBackground2[] = {0.543, 0.5742, 0.4102, 1.0};
-    colorDisabled[] = {"(profileNamespace getVariable ['GUI_BCG_RGB_R',0.69])", "(profileNamespace getVariable ['GUI_BCG_RGB_G',0.75])", "(profileNamespace getVariable ['GUI_BCG_RGB_B',0.5])", 0.25};
+    colorDisabled[] = {"profileNamespace getVariable ['GUI_BCG_RGB_R',0.69]", "profileNamespace getVariable ['GUI_BCG_RGB_G',0.75]", "profileNamespace getVariable ['GUI_BCG_RGB_B',0.5]", 0.25};
     period = 1.2;
     rowHeight = 0.03;
     colorBackground[] = {0, 0, 0, 1};
@@ -858,7 +858,7 @@ class MARS_gui_mapBase {
         iconCanceled = "\A3\ui_f\data\map\mapcontrol\taskIconCanceled_CA.paa";
         iconDone = "\A3\ui_f\data\map\mapcontrol\taskIconDone_CA.paa";
         iconFailed = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_CA.paa";
-        color[] = {"(profileNamespace getVariable ['IGUI_TEXT_RGB_R',0])", "(profileNamespace getVariable ['IGUI_TEXT_RGB_G',1])", "(profileNamespace getVariable ['IGUI_TEXT_RGB_B',1])", "(profileNamespace getVariable ['IGUI_TEXT_RGB_A',0.8])"};
+        color[] = {"profileNamespace getVariable ['IGUI_TEXT_RGB_R',0]", "profileNamespace getVariable ['IGUI_TEXT_RGB_G',1]", "profileNamespace getVariable ['IGUI_TEXT_RGB_B',1]", "profileNamespace getVariable ['IGUI_TEXT_RGB_A',0.8]"};
         colorCreated[] = {1, 1, 1, 1};
         colorCanceled[] = {0.7, 0.7, 0.7, 1};
         colorDone[] = {0.7, 1, 0.3, 1};

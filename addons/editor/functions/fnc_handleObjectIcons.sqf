@@ -34,10 +34,10 @@
                 _color = MARS_SIDECOLOR(side _grp);
                 _color set [3, _alpha max 0.2];
 
-                _texture = _grp getVariable [QGVAR(iconTexture), ""];
+                _texture = GETVAR(_grp,GVAR(iconTexture),"");
                 if (_texture == "") then {
                     _texture = [[_grp] call EFUNC(common,getMarkerType)] call EFUNC(common,getMarkerTexture);
-                    _grp setVariable [QGVAR(iconTexture), _texture];
+                    SETVAR(_grp,GVAR(iconTexture),_texture);
                 };
 
                 drawIcon3D [
@@ -72,11 +72,11 @@
                     _color = [[0,0,0,1], MARS_SIDECOLOR(side group _unit)] select (alive _unit);
                     _color set [3, _alpha];
 
-                    _iconTexture = _unit getVariable [QGVAR(iconTexture), ""];
+                    _iconTexture = GETVAR(_unit,GVAR(iconTexture),"");
                     if (_iconTexture == "") then {
                         _icon = getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "icon");
                         _iconTexture = getText (configfile >> "CfgVehicleIcons" >> (getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "icon")));
-                        _unit setVariable [QGVAR(iconTexture), _iconTexture];
+                        SETVAR(_unit,GVAR(iconTexture),_iconTexture);
                     };
 
                     if (isPlayer _unit) then {
@@ -138,7 +138,7 @@
         _color = [[0,0,0,1], [COLOR_EMPTY_RGBA]] select (alive _vehicle);
         _color set [3, _alpha];
 
-        _iconTexture = _vehicle getVariable [QGVAR(iconVehicleTexture), ""];
+        _iconTexture = GETVAR(_vehicle,GVAR(iconVehicleTexture),"");
         if (_iconTexture == "") then {
             _icon = getText (configfile >> "CfgVehicles" >> (typeOf _vehicle) >> "icon");
             _iconTexture = [getText (configFile >> "CfgVehicleIcons" >> _icon), _icon] select ((toLower _icon) find "\a3\" > -1);
@@ -148,7 +148,7 @@
             _iconTexture = "\A3\ui_f\data\map\vehicleicons\iconObject_ca.paa";
         };
 
-        _vehicle setVariable [QGVAR(iconVehicleTexture), _iconTexture];
+        SETVAR(_vehicle,GVAR(iconVehicleTexture),_iconTexture);
 
         drawIcon3D [
             _iconTexture,

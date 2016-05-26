@@ -23,7 +23,7 @@ params [
 
 if (isNull _control) exitWith {};
 
-private _data = _control getVariable [QGVAR(toolbarItemData), []];
+private _data = GETVAR(_control,GVAR(toolbarItemData),[]);
 if (_data isEqualTo []) exitWith {};
 
 _data params ["_idc", "_tooltipText", "_iconOn", "_iconOff", "_action", "_default", "_status"];
@@ -34,7 +34,7 @@ if (_forceEnabled) then {
 
 _control ctrlSetText ([_iconOff, _iconOn] select !_status);
 _data set [6, !_status];
-_control setVariable [QGVAR(toolbarItemData), _data];
+SETVAR(_control,GVAR(toolbarItemData),_data);
 
 [!_status] call compile _action;
 

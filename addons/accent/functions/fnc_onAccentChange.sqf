@@ -27,9 +27,9 @@ _ctrlG = _display displayCtrl IDC_ACCENT_SLIDER_G;
 _ctrlB = _display displayCtrl IDC_ACCENT_SLIDER_B;
 _ctrlSample = _display displayCtrl IDC_ACCENT_SAMPLE;
 
-profileNamespace setVariable ['MARS_ACCENT_R', sliderPosition _ctrlR];
-profileNamespace setVariable ['MARS_ACCENT_G', sliderPosition _ctrlG];
-profileNamespace setVariable ['MARS_ACCENT_B', sliderPosition _ctrlB];
+SETPRVAR(MARS_ACCENT_R,sliderPosition _ctrlR);
+SETPRVAR(MARS_ACCENT_G,sliderPosition _ctrlG);
+SETPRVAR(MARS_ACCENT_B,sliderPosition _ctrlB);
 
 _ctrlSample ctrlSetBackgroundColor [sliderPosition _ctrlR, sliderPosition _ctrlG, sliderPosition _ctrlB, 1];
 _ctrlSample ctrlSetForegroundColor [sliderPosition _ctrlR, sliderPosition _ctrlG, sliderPosition _ctrlB, 1];

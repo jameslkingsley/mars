@@ -32,7 +32,7 @@ intercept_fnc_callWrapper = {
     scopeName "main";
     params ["_args", "_code"];
     _res = [call _code, _args call _code] select (!isNil "_args");
-    missionNamespace setVariable ["INTERCEPT_CALL_RETURN", _res];
+    SETMVAR(INTERCEPT_CALL_RETURN,_res);
     INTERCEPT_DUMMY;
 };
 

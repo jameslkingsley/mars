@@ -22,5 +22,5 @@ setTerrainGrid _detail;
 
 GVAR(terrainDetail) = _detail;
 
-profileNamespace setVariable [QGVAR(terrainDetail), _detail];
+SETPRVAR(GVAR(terrainDetail),_detail);
 saveProfileNamespace;

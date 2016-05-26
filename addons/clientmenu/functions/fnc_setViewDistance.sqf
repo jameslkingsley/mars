@@ -22,5 +22,5 @@ setViewDistance _range;
 
 GVAR(viewDistance) = _range;
 
-profileNamespace setVariable [QGVAR(viewDistance), _range];
+SETPRVAR(GVAR(viewDistance),_range);
 saveProfileNamespace;

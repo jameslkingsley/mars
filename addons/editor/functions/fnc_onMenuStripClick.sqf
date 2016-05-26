@@ -20,10 +20,10 @@ params ["_control", "_button", "_cordX", "_cordY", "_shift", "_ctrl", "_alt"];
 
 if (_button != 0) exitWith {};
 
-_children = _control getVariable [QGVAR(children), []];
+_children = GETVAR(_control,GVAR(children),[]);
 if (_children isEqualTo []) exitWith {};
 
-_display = _control getVariable [QGVAR(display), displayNull];
+_display = GETVAR(_control,GVAR(display),displayNull);
 if (isNull _display) exitWith {};
 
 [] call FUNC(closeMenuStripMenus);

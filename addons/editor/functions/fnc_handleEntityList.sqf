@@ -36,11 +36,11 @@ _ctrl = GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_ENTITYLIST;
         _grpPath = _ctrl tvAdd [[_parentSide], groupID _group];
         GVAR(entityListGroups) pushBack _group;
     } else {
-        _grpPath = _group getVariable [QGVAR(entityListGroupPath), -1];
+        _grpPath = GETVAR(_group,GVAR(entityListGroupPath),-1);
 
         if (_grpPath < 0) then {
             _grpPath = _ctrl tvAdd [[_parentSide], groupID _group];
-            _group setVariable [QGVAR(entityListGroupPath), _grpPath];
+            SETVAR(_group,GVAR(entityListGroupPath),_grpPath);
         };
     };
 
@@ -52,11 +52,11 @@ _ctrl = GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_ENTITYLIST;
 
             GVAR(entityListUnits) pushBack _unit;
         } else {
-            _unitPath = _unitPath getVariable [QGVAR(entityListUnitPath), -1];
+            _unitPath = GVAR(_unitPath,GVAR(entityListUnitPath),-1);
 
             if (_unitPath < 0) then {
                 _unitPath = _ctrl tvAdd [[_parentSide,_grpPath], name _unit];
-                _unit setVariable [QGVAR(entityListUnitPath), _unitPath];
+                SETVAR(_unit,GVAR(entityListUnitPath),_unitPath);
             };
         };
 

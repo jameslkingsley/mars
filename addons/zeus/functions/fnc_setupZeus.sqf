@@ -27,10 +27,11 @@ if (_giveZeus) then {
     if (isNull GVAR(zeusModule)) then {
         private _moduleGroup = createGroup sideLogic;
         GVAR(zeusModule) = _moduleGroup createUnit ["ModuleCurator_F",[0,0,0],[],0,"NONE"];
-        GVAR(zeusModule) setVariable ["Owner", "-1"];
-        GVAR(zeusModule) setVariable ["Name", ""];
-        GVAR(zeusModule) setVariable ["Addons", 3];
-        GVAR(zeusModule) setVariable ["Forced", 0];
+        SETVAR(GVAR(zeusModule),Owner,"-1");
+        SETVAR(GVAR(zeusModule),Name,"");
+        SETVAR(GVAR(zeusModule),Addons,3);
+        SETVAR(GVAR(zeusModule),Forced,0);
+
         _unit assignCurator GVAR(zeusModule);
         publicVariable QGVAR(zeusModule);
 

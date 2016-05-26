@@ -50,8 +50,8 @@ _maxNameCount = 0;
         _ctrl ctrlShow true;
         _ctrl ctrlCommit 0;
 
-        _ctrl setVariable [QGVAR(display), _display];
-        _ctrl setVariable [QGVAR(children), _children];
+        SETVAR(_ctrl,GVAR(display),_display);
+        SETVAR(_ctrl,GVAR(children),_children);
 
         _ctrl ctrlAddEventHandler ["MouseButtonDown", {
             GVAR(hasClickedOnMenuStrip) = true;

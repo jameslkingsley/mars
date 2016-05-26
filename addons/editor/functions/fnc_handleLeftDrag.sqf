@@ -31,7 +31,7 @@ if (_update) then {
     if ({isPlayer _x} count GVAR(selection) > 0 && {!GVAR(editPlayers)}) exitWith {};
 
     {
-        private _newPos = _x getVariable [QGVAR(leftDragFinalPos), []];
+        private _newPos = GETVAR(_x,GVAR(leftDragFinalPos),[]);
 
         if !(_newPos isEqualTo []) then {
             _x setPosATL _newPos;
@@ -47,7 +47,7 @@ if (_cancel) then {
     [] call FUNC(setCursor);
 
     {
-        _x setVariable [QGVAR(leftDragFinalPos), nil];
+        SETVAR(_x,GVAR(leftDragFinalPos),nil);
         false
     } count GVAR(selection);
 
@@ -108,7 +108,7 @@ if (isNull _anchorObject) then {
         };
 
         [_object, [side (group _object)] call EFUNC(common,getSideColor), _boundingPos] call FUNC(drawBoundingBox);
-        _object setVariable [QGVAR(leftDragFinalPos), _finalPosATL];
+        SETVAR(_object,GVAR(leftDragFinalPos),_finalPosATL);
 
         false
     } count GVAR(selection);

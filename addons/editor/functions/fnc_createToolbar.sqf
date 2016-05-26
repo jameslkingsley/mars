@@ -57,7 +57,7 @@ _componentIndex = 0;
         _ctrl ctrlCommit 0;
         ctrlSetFocus (_display displayCtrl IDC_MOUSEHANDLER);
 
-        _ctrl setVariable [QGVAR(toolbarItemData), [_idc, _tooltipText, _iconOn, _iconOff, _action, _default, _default > 0]];
+        SETVAR(_ctrl,GVAR(toolbarItemData),ARR_7(_idc,_tooltipText,_iconOn,_iconOff,_action,_default,_default > 0));
 
         if (_default > 0) then {
             [_ctrl, true] call FUNC(onToolbarItemClick);
