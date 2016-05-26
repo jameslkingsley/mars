@@ -31,7 +31,7 @@ class GVAR(AttributesWindow) {
             h = SIZE_M * GRID_H;
             text = "";
         };
-        class AttributeCategories: MARS_gui_ctrlControlsGroup {
+        class AttributeCategories: MARS_gui_ctrlControlsGroupNoScrollbars {
             idc = IDC_EDITATTRIBUTES_CATEGORIES;
             x = CENTER_X - (WINDOW_EDITATTRIBUTES_W * 0.5 - 1*0) * GRID_W;
             y = 0.5 - WINDOW_EDITATTRIBUTES_HAbs * 0.5 + 11 * GRID_H + pixelH;
@@ -45,6 +45,7 @@ class GVAR(AttributesWindow) {
             w = 25 * GRID_W;
             h = SIZE_M * GRID_H;
             text = CSTRING(GUI_BTN_OK);
+            font = FONT2_THIN;
             onButtonDown = "ctrlSetFocus (_this select 0);";
         };
         class ButtonCancel: MARS_gui_ctrlButtonCancel {
@@ -52,6 +53,7 @@ class GVAR(AttributesWindow) {
             y = 0.5 + WINDOW_EDITATTRIBUTES_HAbs * 0.5 - (2 * SIZE_M + 1) * GRID_H;
             w = 25 * GRID_W;
             h = SIZE_M * GRID_H;
+            font = FONT2_THIN;
             text = CSTRING(GUI_BTN_CANCEL);
         };
     };
