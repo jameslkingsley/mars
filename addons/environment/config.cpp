@@ -7,11 +7,11 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"mars_editor"};
         author[] = {"Kingsley"};
-        authorUrl = "https://github.com/jameslkingsley/mars";
+        authorUrl = "https://github.com/jameslkingsley";
         VERSION_CONFIG;
     };
 };
 
 #include "CfgEventHandlers.hpp"
 #include "CfgAttributes.hpp"
-#include "CfgMenu.hpp"
+#include "CfgToolbar.hpp"
