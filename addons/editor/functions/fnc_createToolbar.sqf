@@ -40,6 +40,8 @@ if (count _components > 0) then {
             _action = getText (_x >> "action");
             _default = getNumber (_x >> "default");
             _defaultBool = [false,true] select _default;
+            _toggle = [getNumber (_x >> "toggle"), 1] select (isNull (_x >> "toggle"));
+            _toggleBool = [false,true] select _toggle;
             
             _ctrl = _display ctrlCreate ["MARS_gui_ctrlButtonToolbar", _idc, (_display displayCtrl IDC_TOOLBAR_ITEMS)];
             
@@ -56,9 +58,8 @@ if (count _components > 0) then {
             _ctrl ctrlSetTooltip _tooltipText;
             _ctrl ctrlShow true;
             _ctrl ctrlCommit 0;
-            ctrlSetFocus (_display displayCtrl IDC_MOUSEHANDLER);
             
-            _ctrl setVariable [QGVAR(toolbarItemData), [_idc, _tooltipText, _iconOn, _iconOff, _action, _default, _defaultBool]];
+            _ctrl setVariable [QGVAR(toolbarItemData), [_idc, _tooltipText, _iconOn, _iconOff, _action, _default, _defaultBool, _toggleBool]];
             
             if (_defaultBool) then {
                 [_ctrl, true] call FUNC(onToolbarItemClick);
