@@ -19,6 +19,7 @@ class GVARMAIN(attributes) {
                                 labels = "_years = []; for '_i' from 1982 to 2050 do {_years pushBack str _i}; _years";
                                 selected = "date select 0";
                                 expression = "";
+                                onLBSelChanged = "systemChat str _this";
                             };
                             class Month: Year {
                                 values[] = {1,2,3,4,5,6,7,8,9,10,11,12};
@@ -38,11 +39,12 @@ class GVARMAIN(attributes) {
                         class AttributeControls {
                             class Time {
                                 condition = "true";
-                                type = "COMBO";
-                                values[] = {};
-                                labels[] = {};
-                                selected = "";
+                                type = "SLIDER";
+                                range[] = {0, 24};
+                                step = 1;
+                                position = "date select 3";
                                 expression = "";
+                                onSliderPosChanged = "systemChat str _this";
                             };
                         };
                     };
@@ -57,10 +59,11 @@ class GVARMAIN(attributes) {
                             class Start {
                                 condition = "true";
                                 type = "SLIDER";
-                                values[] = {};
-                                labels[] = {};
-                                selected = "";
+                                range[] = {0, 1};
+                                step = 0.1;
+                                position = 0.5;
                                 expression = "";
+                                onSliderPosChanged = "systemChat str _this";
                             };
                         };
                     };
@@ -71,10 +74,11 @@ class GVARMAIN(attributes) {
                             class End {
                                 condition = "true";
                                 type = "SLIDER";
-                                values[] = {};
-                                labels[] = {};
-                                selected = "";
+                                range[] = {0, 1};
+                                step = 0.1;
+                                position = 0.5;
                                 expression = "";
+                                onSliderPosChanged = "systemChat str _this";
                             };
                         };
                     };
@@ -89,10 +93,11 @@ class GVARMAIN(attributes) {
                             class Start {
                                 condition = "true";
                                 type = "SLIDER";
-                                values[] = {};
-                                labels[] = {};
-                                selected = "";
+                                range[] = {0, 1};
+                                step = 0.1;
+                                position = 0.5;
                                 expression = "";
+                                onSliderPosChanged = "systemChat str _this";
                             };
                         };
                     };
@@ -103,10 +108,11 @@ class GVARMAIN(attributes) {
                             class End {
                                 condition = "true";
                                 type = "SLIDER";
-                                values[] = {};
-                                labels[] = {};
-                                selected = "";
+                                range[] = {0, 1};
+                                step = 0.1;
+                                position = 0.5;
                                 expression = "";
+                                onSliderPosChanged = "systemChat str _this";
                             };
                         };
                     };
