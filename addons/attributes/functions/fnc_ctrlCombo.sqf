@@ -21,14 +21,15 @@
 params [
     ["_config", "", [""]],
     ["_idc", -1, [0]],
+    ["_group", -1, [0]],
     ["_position", [0,0,0,0], [[]]]
 ];
 
 _config = call compile _config;
 _display = GETUVAR(GVAR(interface),displayNull);
 
-_categoryGroup = _display displayCtrl IDC_EDITATTRIBUTES_CATEGORIES;
-_controlGroup = _display displayCtrl IDC_EDITATTRIBUTES_CATEGORIES_ITEMS;
+// _categoryGroup = _display displayCtrl IDC_EDITATTRIBUTES_CATEGORIES;
+_controlGroup = _display displayCtrl _group;
 
 _ctrlCombo = _display ctrlCreate ["MARS_gui_ctrlCombo", _idc, _controlGroup];
 _ctrlCombo ctrlSetPosition _position;
@@ -68,3 +69,5 @@ _ctrlCombo lbAdd "";
 ];
 
 _ctrlCombo ctrlCommit 0;
+
+_ctrlCombo
