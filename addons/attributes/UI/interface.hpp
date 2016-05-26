@@ -44,7 +44,7 @@ class GVAR(AttributesWindow) {
             y = 0.5 + WINDOW_EDITATTRIBUTES_HAbs * 0.5 - (2 * SIZE_M + 1) * GRID_H;
             w = 25 * GRID_W;
             h = SIZE_M * GRID_H;
-            text = "OK";
+            text = CSTRING(GUI_BTN_OK);
             onButtonDown = "ctrlSetFocus (_this select 0);";
         };
         class ButtonCancel: MARS_gui_ctrlButtonCancel {
@@ -52,7 +52,7 @@ class GVAR(AttributesWindow) {
             y = 0.5 + WINDOW_EDITATTRIBUTES_HAbs * 0.5 - (2 * SIZE_M + 1) * GRID_H;
             w = 25 * GRID_W;
             h = SIZE_M * GRID_H;
-            text = "CANCEL";
+            text = CSTRING(GUI_BTN_CANCEL);
         };
     };
 };
