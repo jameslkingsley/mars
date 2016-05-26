@@ -6,11 +6,9 @@ class GVARMAIN(attributes) {
             actionCancel = "";
             class AttributeCategories {
                 class DateTime {
-                    displayName = "Date/Time";
-                    tooltipText = "This is where you change the date and time";
                     class AttributeItem0 {
                         displayName = "Date";
-                        tooltipText = "This is where you change the date";
+                        tooltipText = "Change the date of the current running mission";
                         class AttributeControls {
                             class Year {
                                 condition = "true";
@@ -35,12 +33,12 @@ class GVARMAIN(attributes) {
                     };
                     class AttributeItem1 {
                         displayName = "Time";
-                        tooltipText = "";
+                        tooltipText = "Change the time of the current running mission";
                         class AttributeControls {
                             class Time {
                                 condition = "true";
                                 type = "SLIDER";
-                                range[] = {0, 24};
+                                range[] = {0, 23};
                                 step = 1;
                                 position = "date select 3";
                                 expression = "";
@@ -49,68 +47,77 @@ class GVARMAIN(attributes) {
                         };
                     };
                 };
-                class Overcast {
-                    displayName = "Overcast";
-                    tooltipText = "This is where you change the overcast";
+                class Weather {
                     class AttributeItem0 {
-                        displayName = "Start";
-                        tooltipText = "";
+                        displayName = "Overcast";
+                        tooltipText = "Change the overcast of the current running mission";
                         class AttributeControls {
                             class Start {
                                 condition = "true";
                                 type = "SLIDER";
                                 range[] = {0, 1};
                                 step = 0.1;
-                                position = 0.5;
+                                position = "overcast";
                                 expression = "";
                                 onSliderPosChanged = "systemChat str _this";
                             };
                         };
                     };
                     class AttributeItem1 {
-                        displayName = "End";
-                        tooltipText = "";
-                        class AttributeControls {
-                            class End {
-                                condition = "true";
-                                type = "SLIDER";
-                                range[] = {0, 1};
-                                step = 0.1;
-                                position = 0.5;
-                                expression = "";
-                                onSliderPosChanged = "systemChat str _this";
-                            };
-                        };
-                    };
-                };
-                class Fog {
-                    displayName = "Fog";
-                    tooltipText = "This is where you change the fog";
-                    class AttributeItem0 {
-                        displayName = "Start";
-                        tooltipText = "";
+                        displayName = "Fog";
+                        tooltipText = "Change the fog of the current running mission";
                         class AttributeControls {
                             class Start {
                                 condition = "true";
                                 type = "SLIDER";
                                 range[] = {0, 1};
                                 step = 0.1;
-                                position = 0.5;
+                                position = "fog";
                                 expression = "";
                                 onSliderPosChanged = "systemChat str _this";
                             };
                         };
                     };
-                    class AttributeItem1 {
-                        displayName = "End";
-                        tooltipText = "";
+                    class AttributeItem2 {
+                        displayName = "Rain";
+                        tooltipText = "Change the rain of the current running mission";
                         class AttributeControls {
-                            class End {
+                            class Start {
                                 condition = "true";
                                 type = "SLIDER";
                                 range[] = {0, 1};
                                 step = 0.1;
-                                position = 0.5;
+                                position = "rain";
+                                expression = "";
+                                onSliderPosChanged = "systemChat str _this";
+                            };
+                        };
+                    };
+                    class AttributeItem3 {
+                        displayName = "Lightning";
+                        tooltipText = "Change the lightning of the current running mission";
+                        class AttributeControls {
+                            class Start {
+                                condition = "true";
+                                type = "SLIDER";
+                                range[] = {0, 1};
+                                step = 0.1;
+                                position = "lightnings";
+                                expression = "";
+                                onSliderPosChanged = "systemChat str _this";
+                            };
+                        };
+                    };
+                    class AttributeItem4 {
+                        displayName = "Waves";
+                        tooltipText = "Change the waves of the current running mission";
+                        class AttributeControls {
+                            class Start {
+                                condition = "true";
+                                type = "SLIDER";
+                                range[] = {0, 1};
+                                step = 0.1;
+                                position = "waves";
                                 expression = "";
                                 onSliderPosChanged = "systemChat str _this";
                             };
