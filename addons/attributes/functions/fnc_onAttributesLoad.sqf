@@ -17,6 +17,11 @@
  */
 
 #include "script_component.hpp"
+
+if (true) exitWith {
+    _this call FUNC(onAttributesLoadNew);
+};
+
 #include "\z\mars\addons\common\macros.hpp"
 
 params [
