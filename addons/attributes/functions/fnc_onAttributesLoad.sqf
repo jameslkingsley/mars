@@ -57,7 +57,7 @@ GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
         _execExpressionStr = _ctrl getVariable [QGVAR(execExpressionStr), ""];
         
         if (_execExpression) then {
-            [_ctrl] call compile _execExpressionStr;
+            _ctrl call compile _execExpressionStr;
         };
         
         false
