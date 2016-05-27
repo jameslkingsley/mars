@@ -257,4 +257,8 @@
         path = PATH;\
     };
 
+#define REMOTE_GLOBAL 0
+#define REMOTE_SERVER 2
+#define REMOTE_EXSERVER -2
+
 #include "script_debug.hpp"
