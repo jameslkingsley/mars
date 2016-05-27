@@ -78,9 +78,6 @@ _itemControlIDC = IDC_EDITATTRIBUTES_CATEGORIES_ITEMS * 100;
 
 {
     _categoryCfg = _x;
-    _categoryDisplayName = getText (_categoryCfg >> "displayName");
-    _categoryTooltipText = getText (_categoryCfg >> "tooltipText");
-
     _categoryItems = "true" configClasses (_categoryCfg);
 
     _ctrlCategoryTitlePosition = [
