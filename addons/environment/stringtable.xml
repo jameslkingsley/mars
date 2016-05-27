@@ -37,23 +37,41 @@
             <Italian>Change the date of the current running mission</Italian>
             <Czech>Change the date of the current running mission</Czech>
         </Key>
-        <Key ID="STR_MARS_Environment_Time_Name">
-            <English>Time</English>
-            <German>Time</German>
-            <Polish>Time</Polish>
-            <French>Time</French>
-            <Spanish>Time</Spanish>
-            <Italian>Time</Italian>
-            <Czech>Time</Czech>
+        <Key ID="STR_MARS_Environment_Time_Hour_Name">
+            <English>Hour</English>
+            <German>Hour</German>
+            <Polish>Hour</Polish>
+            <French>Hour</French>
+            <Spanish>Hour</Spanish>
+            <Italian>Hour</Italian>
+            <Czech>Hour</Czech>
         </Key>
-        <Key ID="STR_MARS_Environment_Time_Tooltip">
-            <English>Change the time of the current running mission</English>
-            <German>Change the time of the current running mission</German>
-            <Polish>Change the time of the current running mission</Polish>
-            <French>Change the time of the current running mission</French>
-            <Spanish>Change the time of the current running mission</Spanish>
-            <Italian>Change the time of the current running mission</Italian>
-            <Czech>Change the time of the current running mission</Czech>
+        <Key ID="STR_MARS_Environment_Time_Hour_Tooltip">
+            <English>Change the hour of the current running mission</English>
+            <German>Change the hour of the current running mission</German>
+            <Polish>Change the hour of the current running mission</Polish>
+            <French>Change the hour of the current running mission</French>
+            <Spanish>Change the hour of the current running mission</Spanish>
+            <Italian>Change the hour of the current running mission</Italian>
+            <Czech>Change the hour of the current running mission</Czech>
+        </Key>
+        <Key ID="STR_MARS_Environment_Time_Min_Name">
+            <English>Minute</English>
+            <German>Minute</German>
+            <Polish>Minute</Polish>
+            <French>Minute</French>
+            <Spanish>Minute</Spanish>
+            <Italian>Minute</Italian>
+            <Czech>Minute</Czech>
+        </Key>
+        <Key ID="STR_MARS_Environment_Time_Min_Tooltip">
+            <English>Change the minute of the current running mission</English>
+            <German>Change the minute of the current running mission</German>
+            <Polish>Change the minute of the current running mission</Polish>
+            <French>Change the minute of the current running mission</French>
+            <Spanish>Change the minute of the current running mission</Spanish>
+            <Italian>Change the minute of the current running mission</Italian>
+            <Czech>Change the minute of the current running mission</Czech>
         </Key>
     </Package>
 </Project>
