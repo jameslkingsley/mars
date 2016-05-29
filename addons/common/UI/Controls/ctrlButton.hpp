@@ -115,3 +115,11 @@ class MARS_gui_ctrlButtonStaticAlignRight: MARS_gui_ctrlButtonStatic {
     colorBackgroundActive[] = {0,0,0,0.75};
     colorFocused[] = {0,0,0,0.75};
 };
+
+class MARS_gui_ctrlButtonStaticFooter: MARS_gui_ctrlButtonStaticAlignRight {
+    colorText[] = {COLOR_BACKGROUND_RGBA};
+    colorBackground[] = {COLOR_BACKGROUND_RGBA};
+    colorBackgroundDisabled[] = {COLOR_BACKGROUND_RGBA};
+    colorBackgroundActive[] = {COLOR_BACKGROUND_RGBA};
+    colorFocused[] = {COLOR_BACKGROUND_RGBA};
+};
