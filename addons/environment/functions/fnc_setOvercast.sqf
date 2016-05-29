@@ -16,8 +16,6 @@
 
 #include "script_component.hpp"
 
-TRACE_1("setOvercast", _this);
-
 params [["_overcast", overcast, [0]]];
 
 skipTime -24;
