@@ -61,6 +61,10 @@ class MARS_gui_ctrlStaticBackground: MARS_gui_ctrlStatic {
     colorBackground[] = {COLOR_BACKGROUND_RGBA};
 };
 
+class MARS_gui_ctrlStaticBackgroundAlignCenter: MARS_gui_ctrlStaticBackground {
+    style = ST_CENTER + ST_VCENTER;
+};
+
 class MARS_gui_ctrlStaticOverlay: MARS_gui_ctrlStatic {
     colorBackground[] = {COLOR_OVERLAY_RGBA};
 };
