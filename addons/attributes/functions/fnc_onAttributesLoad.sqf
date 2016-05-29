@@ -54,7 +54,12 @@ GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
         _execReturnData = _ctrl getVariable [QGVAR(execReturnData), _ctrl];
         
         if (_execExpression) then {
-            _execReturnData call compile _execExpressionStr;
+            if (!isNil _execExpressionStr) then {
+                // Expression is a function name
+                call compile format ["%1 call %2", _execReturnData, _execExpressionStr];
+            } else {
+                _execReturnData call compile _execExpressionStr;
+            };
         };
         
         false
