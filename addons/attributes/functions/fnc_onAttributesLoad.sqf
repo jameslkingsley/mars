@@ -48,17 +48,50 @@ if (!isClass _header) exitWith {
 GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
     {
         _display = GETUVAR(GVAR(interface),displayNull);
-        _ctrl = _display displayCtrl _x;
-        _execExpression = _ctrl getVariable [QGVAR(execExpression), false];
-        _execExpressionStr = _ctrl getVariable [QGVAR(execExpressionStr), ""];
-        _execReturnData = _ctrl getVariable [QGVAR(execReturnData), _ctrl];
         
-        if (_execExpression) then {
-            if (!isNil _execExpressionStr) then {
-                // Expression is a function name
-                call compile format ["%1 call %2", _execReturnData, _execExpressionStr];
-            } else {
-                _execReturnData call compile _execExpressionStr;
+        if (_x isEqualType []) then {
+            _joinedExecData = _x apply {
+                _ctrl = _display displayCtrl _x;
+                (_ctrl getVariable [QGVAR(execReturnData), _ctrl])
+            };
+            
+            _commonExecs = [];
+            
+            {
+                _ctrl = _display displayCtrl _x;
+                _execExpressionStr = _ctrl getVariable [QGVAR(execExpressionStr), ""];
+                _commonExecs pushBackUnique _execExpressionStr;
+            } forEach _x;
+            
+            {
+                _ctrl = _display displayCtrl _x;
+                _execExpression = _ctrl getVariable [QGVAR(execExpression), false];
+                _execExpressionStr = _ctrl getVariable [QGVAR(execExpressionStr), ""];
+                
+                if (_execExpression) then {
+                    if (!isNil _execExpressionStr) then {
+                        // Expression is a function name
+                        _commonExecs pushBackUnique format ["%1 call %2", _joinedExecData, _execExpressionStr];
+                    } else {
+                        _commonExecs pushBackUnique format ["%1 call compile '%2'", _joinedExecData, _execExpressionStr];
+                    };
+                };
+            } forEach _x;
+            
+            {call compile _x} forEach _commonExecs;
+        } else {
+            _ctrl = _display displayCtrl _x;
+            _execExpression = _ctrl getVariable [QGVAR(execExpression), false];
+            _execExpressionStr = _ctrl getVariable [QGVAR(execExpressionStr), ""];
+            _execReturnData = _ctrl getVariable [QGVAR(execReturnData), _ctrl];
+            
+            if (_execExpression) then {
+                if (!isNil _execExpressionStr) then {
+                    // Expression is a function name
+                    call compile format ["%1 call %2", _execReturnData, _execExpressionStr];
+                } else {
+                    _execReturnData call compile _execExpressionStr;
+                };
             };
         };
         
@@ -136,15 +169,36 @@ _totalField = 0;
                 ];
                 
                 _ctrlRet = call compile _ctrlCreateCode;
-                GVAR(AttributesWindow_ItemControls) pushBackUnique (ctrlIDC _ctrlRet);
                 
-                _ctrlHeight = (ctrlPosition _ctrlRet) select 3;
-                if (_ctrlHeight > _ctrlLargestHeight) then {
-                    _ctrlLargestHeight = _ctrlHeight;
-                    if (_ctrlHeight > LABEL_HEIGHT) then {
-                        ADD(_totalLabel, (_ctrlHeight - CATEGORY_SPACING));
+                if (_ctrlRet isEqualType []) then {
+                    _idcArr = [];
+                    
+                    {
+                        _ctrlIDC = ctrlIDC _x; // In case the control code changes the IDC for whatever reason
+                        _idcArr pushBackUnique (ctrlIDC _x);
+                        
+                        _ctrlHeight = (ctrlPosition _x) select 3;
+                        if (_ctrlHeight > _ctrlLargestHeight) then {
+                            _ctrlLargestHeight = _ctrlHeight;
+                            if (_ctrlHeight > LABEL_HEIGHT) then {
+                                ADD(_totalLabel, (_ctrlHeight - CATEGORY_SPACING));
+                            };
+                        };
+                    } forEach _ctrlRet;
+                    
+                    GVAR(AttributesWindow_ItemControls) pushBack _idcArr;
+                } else {
+                    _ctrlIDC = ctrlIDC _ctrlRet; // In case the control code changes the IDC for whatever reason
+                    GVAR(AttributesWindow_ItemControls) pushBackUnique (ctrlIDC _ctrlRet);
+                    
+                    _ctrlHeight = (ctrlPosition _ctrlRet) select 3;
+                    if (_ctrlHeight > _ctrlLargestHeight) then {
+                        _ctrlLargestHeight = _ctrlHeight;
+                        if (_ctrlHeight > LABEL_HEIGHT) then {
+                            ADD(_totalLabel, (_ctrlHeight - CATEGORY_SPACING));
+                        };
                     };
-                };
+                };                
             };
             
             INC(_ctrlIDC);

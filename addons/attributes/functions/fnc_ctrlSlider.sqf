@@ -50,14 +50,14 @@ _ctrlSlider sliderSetPosition _startPos;
 _ctrlSlider setVariable [QGVAR(sliderStartPos), sliderPosition _ctrlSlider];
 _ctrlSlider setVariable [QGVAR(execExpression), false];
 _ctrlSlider setVariable [QGVAR(execExpressionStr), getText (_config >> "expression")];
-_ctrlSlider setVariable [QGVAR(execReturnData), [sliderPosition _ctrlSlider]];
+_ctrlSlider setVariable [QGVAR(execReturnData), sliderPosition _ctrlSlider];
 
 _ctrlSlider ctrlAddEventHandler ["SliderPosChanged", {
     params ["_ctrl"];
     _startPos = _ctrl getVariable [QGVAR(sliderStartPos), -999999];
     _nowPos = sliderPosition _ctrl;
     _ctrl setVariable [QGVAR(execExpression), (_startPos != _nowPos)];
-    _ctrl setVariable [QGVAR(execReturnData), [sliderPosition _ctrl]];
+    _ctrl setVariable [QGVAR(execReturnData), sliderPosition _ctrl];
 }];
 
 {
