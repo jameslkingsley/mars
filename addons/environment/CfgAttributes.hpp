@@ -97,58 +97,6 @@ class GVARMAIN(attributes) {
                                 };
                             };
                         };
-                        class Test0 {
-                            displayName = "Test 0";
-                            tooltipText = "";
-                            class AttributeControls {
-                                class Test {
-                                    condition = "true";
-                                    type = "EDIT";
-                                    textPlain = "Placeholder";
-                                    rows = 1;
-                                    expression = "";
-                                };
-                            };
-                        };
-                        class Test1 {
-                            displayName = "Test 1";
-                            tooltipText = "";
-                            class AttributeControls {
-                                class Test {
-                                    condition = "true";
-                                    type = "EDIT";
-                                    textPlain = "Placeholder";
-                                    rows = 5;
-                                    expression = "";
-                                };
-                            };
-                        };
-                        class Test2 {
-                            displayName = "Test 2";
-                            tooltipText = "";
-                            class AttributeControls {
-                                class Test {
-                                    condition = "true";
-                                    type = "EDIT";
-                                    textPlain = "Placeholder";
-                                    rows = 10;
-                                    expression = "";
-                                };
-                            };
-                        };
-                        class Test3 {
-                            displayName = "Test 3";
-                            tooltipText = "";
-                            class AttributeControls {
-                                class Test {
-                                    condition = "true";
-                                    type = "EDIT";
-                                    textPlain = "Placeholder";
-                                    rows = 1;
-                                    expression = "";
-                                };
-                            };
-                        };
                         class Lightning {
                             displayName = "Lightning";
                             tooltipText = "Change the lightning of the current running mission";
