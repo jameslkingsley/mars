@@ -5,13 +5,14 @@
  * Arguments:
  * 0: Control config <STRING>
  * 1: IDC <NUMBER>
- * 2: Position <ARRAY>
+ * 2: Group IDC <NUMBER>
+ * 3: Position <ARRAY>
  *
  * Return Value:
  * Created control <CONTROL>
  *
  * Example:
- * ["configFile >> 'SomeConfig'", 100, [0,0,0,0]] call mars_attributes_fnc_ctrlSlider;
+ * ["configFile >> 'SomeConfig'", 100, 90, [0,0,0,0]] call mars_attributes_fnc_ctrlSlider;
  *
  * Public: No
  */
