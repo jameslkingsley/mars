@@ -29,10 +29,18 @@ params [
 _config = call compile _config;
 _display = GETUVAR(GVAR(interface),displayNull);
 
-// _categoryGroup = _display displayCtrl IDC_EDITATTRIBUTES_CATEGORIES;
 _controlGroup = _display displayCtrl _group;
 
-_ctrlEdit = _display ctrlCreate ["MARS_gui_ctrlEdit", _idc, _controlGroup];
+_altPos = [getNumber (_config >> "rows"), 0] select (isNull (_config >> "rows"));
+_ctrlClassname = ["MARS_gui_ctrlEdit", "MARS_gui_ctrlEditMulti"] select (_altPos > 1);
+_ctrlEdit = _display ctrlCreate [_ctrlClassname, _idc, _controlGroup];
+
+if (_altPos < 0) then {
+    MARS_LOGERROR_1("Rows cannot be less than zero in %1. Resetting to 0.", _config);
+    _altPos = 0;
+};
+
+_position set [3, (_altPos * (SIZE_M * GRID_H))];
 _ctrlEdit ctrlSetPosition _position;
 
 _text = [str (call compile getText (_config >> "textCode")), getText (_config >> "textPlain")] select (isNull (_config >> "textCode"));
@@ -42,12 +50,14 @@ _ctrlEdit ctrlSetText _text;
 _ctrlEdit setVariable [QGVAR(editStartText), (ctrlText _ctrlEdit)];
 _ctrlEdit setVariable [QGVAR(execExpression), false];
 _ctrlEdit setVariable [QGVAR(execExpressionStr), getText (_config >> "expression")];
+_ctrlEdit setVariable [QGVAR(execReturnData), [ctrlText _ctrlEdit]];
 
 _ctrlEdit ctrlAddEventHandler ["KillFocus", {
     params ["_ctrl"];
     _startText = _ctrl getVariable [QGVAR(editStartText), ""];
     _nowText = ctrlText _ctrl;
     _ctrl setVariable [QGVAR(execExpression), (_startText != _nowText)];
+    _ctrl setVariable [QGVAR(execReturnData), [_nowText]];
 }];
 
 {

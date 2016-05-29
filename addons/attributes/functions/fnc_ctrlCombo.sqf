@@ -61,11 +61,13 @@ _ctrlCombo lbAdd "";
 _ctrlCombo setVariable [QGVAR(comboStartIndex), (lbCurSel _ctrlCombo)];
 _ctrlCombo setVariable [QGVAR(execExpression), false];
 _ctrlCombo setVariable [QGVAR(execExpressionStr), getText (_config >> "expression")];
+_ctrlCombo setVariable [QGVAR(execReturnData), [(_ctrlCombo lbText (lbCurSel _ctrlCombo)), (_ctrlCombo lbData (lbCurSel _ctrlCombo))]];
 
 _ctrlCombo ctrlAddEventHandler ["LBSelChanged", {
     params ["_ctrl","_index"];
     _startIndex = _ctrl getVariable [QGVAR(comboStartIndex), -1];
     _ctrl setVariable [QGVAR(execExpression), (_index != _startIndex)];
+    _ctrl setVariable [QGVAR(execReturnData), [(_ctrl lbText (lbCurSel _ctrl)), (_ctrl lbData (lbCurSel _ctrl))]];
 }];
 
 {
