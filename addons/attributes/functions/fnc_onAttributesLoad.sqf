@@ -77,7 +77,7 @@ _totalField = 0;
     // Categories
     _catConfig = _x;
     _catPosX = CATEGORY_X;
-    _catPosY = CATEGORY_Y + (0);
+    _catPosY = CATEGORY_Y;
     _catPosW = 0;
     
     _items = "true" configClasses (_catConfig >> "AttributeItems");
