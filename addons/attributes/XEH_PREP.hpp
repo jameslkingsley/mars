@@ -3,3 +3,4 @@ PREP(onAttributesLoad);
 PREP(ctrlCombo);
 PREP(ctrlSlider);
 PREP(ctrlEdit);
+PREP(ctrlDate);
