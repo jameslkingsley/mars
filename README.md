@@ -1,6 +1,14 @@
 <p align="center">
 	<img src="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/logo_min.png" height="384">
 	<br />
+    <sup>
+        <strong>
+            Requires the latest version of <a href="https://github.com/CBATeam/CBA_A3/releases">CBA A3</a>
+            <br />
+            Using Arma 3 1.60 (Stable)
+        </strong>
+        <br /><br />
+    </sup>
     <a href="https://github.com/jameslkingsley/Mars/issues">
         <img src="https://img.shields.io/github/issues-raw/jameslkingsley/Mars.svg?label=issues" alt="Mars Issues">
     </a>
@@ -28,7 +36,3 @@ This project follows the [ACE3 coding guidelines](http://ace3mod.com/wiki/develo
 
 ## Contributing
 You can help out with the ongoing development by looking for potential bugs in the code base, or by contributing new features. To contribute something to Mars, simply fork this repository and submit your pull requests for review by other collaborators. Feel free to join the [Discord server](https://discord.gg/0vfzEmmrAOu1T2uk) for help on setting up Mars and discussing its development.
-
-## Dependencies
-* Arma 3 1.56 (onwards)
-* CBA A3 (latest) - https://github.com/CBATeam/CBA_A3
