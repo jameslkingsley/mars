@@ -13,13 +13,9 @@ class GVARMAIN(menu) {
         };
         class settings {
             displayName = "Settings";
-            class general {
-                displayName = "General";
-                action = "hint 'General'";
-            };
-            class controls {
-                displayName = "Controls";
-                action = "hint 'Controls'";
+            class camera {
+                displayName = "Camera";
+                action = QUOTE([ARR_2(QUOTE(QUOTE(ADDON)), 'settings_camera')] call EFUNC(attributes,openAttributes));
             };
         };
     };
