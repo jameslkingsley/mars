@@ -32,11 +32,11 @@ class GVARMAIN(attributes) {
                                     step = 1;
                                     position = "date select 3";
                                     expression = QUOTE([ARR_4(-1, -1, -1, _this)] call FUNC(setDateTime));
-                                    onSliderPosChanged = "\
+                                    onSliderPosChanged = QUOTE(\
                                         _ctrl = _this select 0;\
                                         _value = round (sliderPosition _ctrl);\
                                         _ctrl ctrlSetTooltip (['0' + str _value, str _value] select (_value >= 10))\
-                                    ";
+                                    );
                                 };
                             };
                         };
@@ -51,11 +51,11 @@ class GVARMAIN(attributes) {
                                     step = 1;
                                     position = "date select 4";
                                     expression = QUOTE([ARR_5(-1, -1, -1, -1, _this)] call FUNC(setDateTime));
-                                    onSliderPosChanged = "\
+                                    onSliderPosChanged = QUOTE(\
                                         _ctrl = _this select 0;\
                                         _value = round (sliderPosition _ctrl);\
                                         _ctrl ctrlSetTooltip (['0' + str _value, str _value] select (_value >= 10))\
-                                    ";
+                                    );
                                 };
                             };
                         };
