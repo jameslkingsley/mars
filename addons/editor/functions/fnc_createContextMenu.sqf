@@ -20,11 +20,11 @@ params [["_contexts", []], ["_xIndex", 0], ["_yIndex", 0], ["_startYPos", -1]];
 
 if (!isNull GVAR(prepSurfaceSphere)) exitWith {};
 
-_contexts = _contexts apply {[([getNumber (_x >> "order"), -1] select (isNull (_x >> "order"))), _x]};
-_contexts sort true;
-_contexts apply {(_x select 1)};
-
 if (count _contexts > 0) then {
+    _contexts = _contexts apply {[([getNumber (_x >> "order"), -1] select (isNull (_x >> "order"))), _x]};
+    _contexts sort true;
+    _contexts = _contexts apply {(_x select 1)};
+
     _index = 0;
     
     {
