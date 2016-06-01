@@ -19,7 +19,7 @@ class GVAR(accent) {
             w = LINE_X;
             h = LINE_H;
             colorBackground[] = {COLOR_TAB_RGBA};
-            text = QUOTE(PATHTOF(data\cross_ca.paa));
+            text = QPATHTOF(data\cross_ca.paa);
             action = "closeDialog 0";
         };
         class Sample: MARS_gui_ctrlStatic {

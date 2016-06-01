@@ -58,7 +58,7 @@ class GVAR(interface) {
             w = SIZE_M * GRID_W;
             h = SIZE_M * GRID_H;
             colorBackground[] = {COLOR_TAB_RGBA};
-            text = QUOTE(PATHTOF(data\cross_ca.paa));
+            text = QPATHTOF(data\cross_ca.paa);
             action = QUOTE([] call FUNC(closeEditor));
             offsetPressedX = 0;
             offsetPressedY = 0;
@@ -297,8 +297,8 @@ class GVAR(interface) {
                             rows = 1;
                             columns = 2;
                             strings[] = {
-                                QUOTE(PATHTOF(data\PanelRight\notes_tasks_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\notes_diary_ca.paa))
+                                QPATHTOF(data\PanelRight\notes_tasks_ca.paa),
+                                QPATHTOF(data\PanelRight\notes_diary_ca.paa)
                             };
                             tooltips[] = {
                                 "Tasks",
@@ -335,11 +335,11 @@ class GVAR(interface) {
                             rows = 1;
                             columns = MOD_COLUMNS;
                             strings[] = {
-                                QUOTE(PATHTOF(data\PanelRight\modeobjects_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\modegroups_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\modemodules_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\modemarkers_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\modefavorites_ca.paa))
+                                QPATHTOF(data\PanelRight\modeobjects_ca.paa),
+                                QPATHTOF(data\PanelRight\modegroups_ca.paa),
+                                QPATHTOF(data\PanelRight\modemodules_ca.paa),
+                                QPATHTOF(data\PanelRight\modemarkers_ca.paa),
+                                QPATHTOF(data\PanelRight\modefavorites_ca.paa)
                             };
                             tooltips[] = {
                                 "Objects",
@@ -362,11 +362,11 @@ class GVAR(interface) {
                             h = 8 * GRID_H;
                             columns = 5;
                             strings[] = {
-                                QUOTE(PATHTOF(data\PanelRight\side_west_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\side_east_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\side_guer_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\side_civ_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\side_empty_ca.paa))
+                                QPATHTOF(data\PanelRight\side_west_ca.paa),
+                                QPATHTOF(data\PanelRight\side_east_ca.paa),
+                                QPATHTOF(data\PanelRight\side_guer_ca.paa),
+                                QPATHTOF(data\PanelRight\side_civ_ca.paa),
+                                QPATHTOF(data\PanelRight\side_empty_ca.paa)
                             };
                             tooltips[] = {
                                 "BLUFOR",
@@ -392,8 +392,8 @@ class GVAR(interface) {
                             columns = 2;
                             show = 0;
                             strings[] = {
-                                QUOTE(PATHTOF(data\PanelRight\submode_marker_icon_ca.paa)),
-                                QUOTE(PATHTOF(data\PanelRight\submode_marker_area_ca.paa))
+                                QPATHTOF(data\PanelRight\submode_marker_icon_ca.paa),
+                                QPATHTOF(data\PanelRight\submode_marker_area_ca.paa)
                             };
                             tooltips[] = {
                                 "Icons",
@@ -510,7 +510,7 @@ class GVAR(interface) {
                     w = TEXT_W * GRID_W;
                     h = TEXT_W * GRID_H;
                     sizeEx = SIZEEX_PURISTA_XS;
-                    text = QUOTE(PATHTOF(data\StatusBar\x_ca.paa));
+                    text = QPATHTOF(data\StatusBar\x_ca.paa);
                     colorBackground[] = {0,0,0,0};
                     shadow = 0;
                 };
@@ -531,7 +531,7 @@ class GVAR(interface) {
                 };
                 class TextY: TextX {
                     x = (TEXT_W + VALUE_W + SPACE_W) * GRID_W;
-                    text = QUOTE(PATHTOF(data\StatusBar\y_ca.paa));
+                    text = QPATHTOF(data\StatusBar\y_ca.paa);
                     colorBackground[] = {0,0,0,0};
                 };
                 class ValueY: ValueX {
@@ -540,7 +540,7 @@ class GVAR(interface) {
                 };
                 class TextZ: TextX {
                     x = 2 * (TEXT_W + VALUE_W + SPACE_W) * GRID_W;
-                    text = QUOTE(PATHTOF(data\StatusBar\z_ca.paa));
+                    text = QPATHTOF(data\StatusBar\z_ca.paa);
                     colorBackground[] = {0,0,0,0};
                 };
                 class ValueZ: ValueX {
@@ -549,7 +549,7 @@ class GVAR(interface) {
                 };
                 class TextDis: TextX {
                     x = 3 * (TEXT_W + VALUE_W + SPACE_W) * GRID_W;
-                    text = QUOTE(PATHTOF(data\StatusBar\dis_ca.paa));
+                    text = QPATHTOF(data\StatusBar\dis_ca.paa);
                     colorBackground[] = {0,0,0,0};
                 };
                 class ValueDis: ValueX {
@@ -558,7 +558,7 @@ class GVAR(interface) {
                 };
                 class TextGrid: TextX {
                     x = 4 * (TEXT_W + VALUE_W + SPACE_W) * GRID_W;
-                    text = QUOTE(PATHTOF(data\Toolbar\map_off_ca.paa));
+                    text = QPATHTOF(data\Toolbar\map_off_ca.paa);
                     colorBackground[] = {0,0,0,0};
                 };
                 class ValueGrid: ValueX {

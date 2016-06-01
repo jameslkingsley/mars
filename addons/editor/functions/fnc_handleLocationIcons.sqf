@@ -23,7 +23,7 @@
     _alpha = linearConversion [0, ICON_FADE_DISTANCE, (_pos distance GVAR(camPos)), 1, 0, true];
     
     drawIcon3D [
-        QUOTE(PATHTOF(data\PanelLeft\location_ca.paa)),
+        QPATHTOF(data\PanelLeft\location_ca.paa),
         [1,1,1,_alpha],
         _pos,
         2,

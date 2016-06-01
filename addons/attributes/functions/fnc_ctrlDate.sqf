@@ -137,8 +137,8 @@ _yearHandle = {
         
         _moonPhase = moonPhase [_year, _month, _d, 0, 0];
         _pictureRight = "";
-        if ((_d - _dPicture) > 5 && _moonPhase > 0.964) then {_pictureRight = QUOTE(PATHTOF(data\Controls\Date\moon_full_ca.paa)); _dPicture = _d;};
-        if ((_d - _dPicture) > 5 && _moonPhase < 0.036) then {_pictureRight = QUOTE(PATHTOF(data\Controls\Date\moon_new_ca.paa)); _dPicture = _d;};
+        if ((_d - _dPicture) > 5 && _moonPhase > 0.964) then {_pictureRight = QPATHTOF(data\Controls\Date\moon_full_ca.paa); _dPicture = _d;};
+        if ((_d - _dPicture) > 5 && _moonPhase < 0.036) then {_pictureRight = QPATHTOF(data\Controls\Date\moon_new_ca.paa); _dPicture = _d;};
         _ctrlDay lbSetPictureRight [_lbAdd, _pictureRight];
     };
     

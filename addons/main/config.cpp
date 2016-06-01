@@ -644,25 +644,25 @@ class CfgFunctions {
         class boot {
             class boot_loader {
                 preStart = 1;
-                file = QUOTE(PATHTOF(IE_boot.sqf));
+                file = QPATHTOF(IE_boot.sqf);
                 headerType = -1;
             };
         };
         class initialization {
             class lib_loader {
                 preInit = 1;
-                file = QUOTE(PATHTOF(IE_lib.sqf));
+                file = QPATHTOF(IE_lib.sqf);
                 headerType = -1;
             };
             class post_init_handler {
                 postInit = 1;
-                file = QUOTE(PATHTOF(IE_postInit.sqf));
+                file = QPATHTOF(IE_postInit.sqf);
                 headerType = -1;
             };
         };
         class api {
             class signal {
-                file = QUOTE(PATHTOF(IE_signal.sqf));
+                file = QPATHTOF(IE_signal.sqf);
                 headerType = -1;
             };
         };

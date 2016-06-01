@@ -4,8 +4,8 @@ class GVARMAIN(toolbar) {
             default = false;
             toggle = false;
             tooltipText = CSTRING(Toolbar_Tooltip);
-            iconOn = QUOTE(PATHTOF(data\environment_ca.paa));
-            iconOff = QUOTE(PATHTOF(data\environment_ca.paa));
+            iconOn = QPATHTOF(data\environment_ca.paa);
+            iconOff = QPATHTOF(data\environment_ca.paa);
             action = QUOTE([ARR_2(QUOTE(QUOTE(ADDON)), 'environment')] call EFUNC(attributes,openAttributes));
         };
     };
