@@ -3,6 +3,10 @@ class MARS_gui_ctrlTree: MARS_gui_ctrlDefaultText {
     colorBorder[] = {0,0,0,1};
     colorLines[] = {0,0,0,0};
     colorBackground[] = {0,0,0,0};
+    colorPictureRightDisabled[] = {0,0,0,0};
+    colorPictureRightSelected[] = {0,0,0,0};
+    colorPictureSelected[] = {0,0,0,0};
+    colorPictureDisabled[] = {0,0,0,0};
     colorSelect[] = {COLOR_ACTIVE_RGBA};
     colorMarked[] = {COLOR_ACTIVE_RGB,0.5};
     colorMarkedSelected[] = {COLOR_ACTIVE_RGBA};
