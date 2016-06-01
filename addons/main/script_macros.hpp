@@ -6,15 +6,10 @@
 // Default versioning level
 #define DEFAULT_VERSIONING_LEVEL 2
 
-#define DGVAR(varName)    if(isNil "MARS_DEBUG_NAMESPACE") then { MARS_DEBUG_NAMESPACE = []; }; if(!(QUOTE(GVAR(varName)) in MARS_DEBUG_NAMESPACE)) then { PUSH(MARS_DEBUG_NAMESPACE, QUOTE(GVAR(varName))); }; GVAR(varName)
-#define DVAR(varName)     if(isNil "MARS_DEBUG_NAMESPACE") then { MARS_DEBUG_NAMESPACE = []; }; if(!(QUOTE(varName) in MARS_DEBUG_NAMESPACE)) then { PUSH(MARS_DEBUG_NAMESPACE, QUOTE(varName)); }; varName
+#define DGVAR(varName) if (isNil "MARS_DEBUG_NAMESPACE") then { MARS_DEBUG_NAMESPACE = []; }; if(!(QGVAR(varName) in MARS_DEBUG_NAMESPACE)) then { PUSH(MARS_DEBUG_NAMESPACE, QGVAR(varName)); }; GVAR(varName)
+#define DVAR(varName) if (isNil "MARS_DEBUG_NAMESPACE") then { MARS_DEBUG_NAMESPACE = []; }; if(!(QUOTE(varName) in MARS_DEBUG_NAMESPACE)) then { PUSH(MARS_DEBUG_NAMESPACE, QUOTE(varName)); }; varName
 #define DFUNC(var1) TRIPLES(ADDON,fnc,var1)
 #define DEFUNC(var1,var2) TRIPLES(DOUBLES(PREFIX,var1),fnc,var2)
-
-#define QFUNC(var1) QUOTE(DFUNC(var1))
-#define QEFUNC(var1,var2) QUOTE(DEFUNC(var1,var2))
-
-#define PATHTOEF(var1,var2) PATHTOF_SYS(PREFIX,var1,var2)
 
 #define GETVAR_SYS(var1,var2) getVariable [ARR_2(QUOTE(var1),var2)]
 #define SETVAR_SYS(var1,var2) setVariable [ARR_2(QUOTE(var1),var2)]
@@ -38,28 +33,6 @@
 
 #define ARR_SELECT(ARRAY,INDEX,DEFAULT) if (count ARRAY > INDEX) then {ARRAY select INDEX} else {DEFAULT}
 
-
-#define MACRO_ADDWEAPON(WEAPON,COUNT) class _xx_##WEAPON { \
-    weapon = #WEAPON; \
-    count = COUNT; \
-}
-
-#define MACRO_ADDITEM(ITEM,COUNT) class _xx_##ITEM { \
-    name = #ITEM; \
-    count = COUNT; \
-}
-
-#define MACRO_ADDMAGAZINE(MAGAZINE,COUNT) class _xx_##MAGAZINE { \
-    magazine = #MAGAZINE; \
-    count = COUNT; \
-}
-
-#define MACRO_ADDBACKPACK(BACKPACK,COUNT) class _xx_##BACKPACK { \
-    backpack = #BACKPACK; \
-    count = COUNT; \
-}
-
-// item types
 #define TYPE_DEFAULT 0
 #define TYPE_MUZZLE 101
 #define TYPE_OPTICS 201
@@ -84,14 +57,13 @@
 #define TYPE_BACKPACK 901
 
 #ifdef DISABLE_COMPILE_CACHE
-    #define PREP(fncName) DFUNC(fncName) = compile preprocessFileLineNumbers QUOTE(PATHTOF(functions\DOUBLES(fnc,fncName).sqf))
+    #define PREP(fncName) DFUNC(fncName) = compile preprocessFileLineNumbers QPATHTOF(functions\DOUBLES(fnc,fncName).sqf)
 #else
-    #define PREP(fncName) [QUOTE(PATHTOF(functions\DOUBLES(fnc,fncName).sqf)), QFUNC(fncName)] call CBA_fnc_compileFunction
+    #define PREP(fncName) [QPATHTOF(functions\DOUBLES(fnc,fncName).sqf), QFUNC(fncName)] call CBA_fnc_compileFunction
 #endif
 
-#define PREP_MODULE(folder) [] call compile preprocessFileLineNumbers QUOTE(PATHTOF(folder\__PREP__.sqf))
+#define PREP_MODULE(folder) [] call compile preprocessFileLineNumbers QPATHTOF(folder\__PREP__.sqf)
 
-// Time functions for accuracy per frame
 #define MARS_tickTime (MARS_time + (diag_tickTime - MARS_diagTime))
 
 #define MARS_isHC (!hasInterface && !isDedicated)
