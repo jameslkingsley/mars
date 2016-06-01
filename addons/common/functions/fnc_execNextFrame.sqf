@@ -14,10 +14,4 @@
 
 #include "script_component.hpp"
 
-params [["_func", {}], ["_params", []]];
-
-if (diag_frameNo != GVAR(nextFrameNo)) then {
-    GVAR(nextFrameBufferA) pushBack [_params, _func];
-} else {
-    GVAR(nextFrameBufferB) pushBack [_params, _func];
-};
+_this call CBA_fnc_execNextFrame;

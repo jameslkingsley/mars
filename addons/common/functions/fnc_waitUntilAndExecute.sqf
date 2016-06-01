@@ -18,5 +18,6 @@
 
 #include "script_component.hpp"
 
-GVAR(waitUntilAndExecArray) pushBack _this;
+_this call CBA_fnc_waitUntilAndExecute;
+
 nil

@@ -4,13 +4,6 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-// GVARS for execNextFrame and waitAndExec and waitUntilAndExecute
-GVAR(waitAndExecArray) = [];
-GVAR(nextFrameNo) = diag_frameno;
-GVAR(nextFrameBufferA) = [];
-GVAR(nextFrameBufferB) = [];
-GVAR(waitUntilAndExecArray) = [];
-
 // Time handling
 MARS_time = diag_tickTime;
 MARS_realTime = diag_tickTime;

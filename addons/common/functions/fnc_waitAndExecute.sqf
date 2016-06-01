@@ -18,7 +18,4 @@
 
 #include "script_component.hpp"
 
-params ["_func", "_params", "_delay"];
-
-GVAR(waitAndExecArray) pushBack [MARS_time + _delay, _func, _params];
-GVAR(waitAndExecArray) sort true;
+_this call CBA_fnc_waitAndExecute;
