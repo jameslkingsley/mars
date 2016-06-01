@@ -14,3 +14,4 @@ class CfgPatches {
 
 #include "CfgEventHandlers.hpp"
 #include "define.hpp"
+#include "CfgUnitInsignia.hpp"
