@@ -100,19 +100,7 @@ GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
     GVAR(AttributesWindow_ItemControls) = [];
 }] call EFUNC(common,addEventHandler);
 
-_target = [objNull, (EGVAR(editor,selection) select 0)] select (count EGVAR(editor,selection) > 0);
-_headerText = getText (_header >> "displayName");
-
-if (count EGVAR(editor,selection) > 1) then {
-    _formattedHeaderText = format ["%1 objects selected", count EGVAR(editor,selection)];
-} else {
-    _formattedHeaderText = [
-        (format [_headerText, getText (configFile >> "CfgVehicles" >> typeOf _target >> "displayName")]),
-        (format [_headerText, name _target])
-    ] select (isPlayer _target);
-};
-
-CONTROL(IDC_EDITATTRIBUTES_TITLE) ctrlSetText ([_headerText, _formattedHeaderText] select (_headerText find "%1" > -1));
+CONTROL(IDC_EDITATTRIBUTES_TITLE) ctrlSetText getText (_header >> "displayName");
 _headerCtrlGroup = CONTROL(IDC_EDITATTRIBUTES_CATEGORIES);
 
 _categories = "true" configClasses (_header >> "AttributeCategories");
@@ -200,7 +188,8 @@ _totalField = 0;
                     
                     GVAR(AttributesWindow_ItemControls) pushBack _idcArr;
                     
-                    if (call compile getText (_ctrlConfig >> "condition")) then {
+                    if !(call compile getText (_ctrlConfig >> "condition")) then {
+                        _itemLabel ctrlEnable false;
                         {_x ctrlEnable false} forEach _ctrlRet;
                     };
                 } else {
@@ -215,7 +204,8 @@ _totalField = 0;
                         };
                     };
                     
-                    if (call compile getText (_ctrlConfig >> "condition")) then {
+                    if !(call compile getText (_ctrlConfig >> "condition")) then {
+                        _itemLabel ctrlEnable false;
                         _ctrlRet ctrlEnable false;
                     };
                 };                

@@ -1,7 +1,7 @@
 class GVARMAIN(attributes) {
     class __objects {
         class CAManBase {
-            displayName = "Edit %1";
+            displayName = "Edit Unit";
             actionConfirm = "";
             actionCancel = "";
             class AttributeCategories {
