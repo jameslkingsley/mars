@@ -124,7 +124,7 @@ player addEventHandler ["Killed", {
 // Edit Players
 GVAR(editPlayers) = false;
 
-player playActionNow "gear";
+// player playActionNow "gear";
 
 GVAR(isSet) = true;
 
