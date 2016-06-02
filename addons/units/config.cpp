@@ -16,3 +16,4 @@ class CfgPatches {
 #include "CfgMenu.hpp"
 #include "CfgToolbar.hpp"
 #include "CfgContext.hpp"
+#include "CfgAttributes.hpp"

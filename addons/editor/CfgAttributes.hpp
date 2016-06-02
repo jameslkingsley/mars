@@ -50,29 +50,4 @@ class GVARMAIN(attributes) {
             };
         };
     };
-    class __objects {
-        class CAManBase {
-            displayName = "Edit %1";
-            actionConfirm = "";
-            actionCancel = "";
-            class AttributeCategories {
-                class Debug {
-                    class AttributeItems {
-                        class Init {
-                            displayName = "Init";
-                            tooltipText = "Execute code on unit (_this)";
-                            class AttributeControls {
-                                class Edit {
-                                    condition = "true";
-                                    type = "EDIT";
-                                    rows = 5;
-                                    expression = "";
-                                };
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
 };

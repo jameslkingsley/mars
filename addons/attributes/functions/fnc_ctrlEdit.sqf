@@ -44,7 +44,7 @@ if (_altPos < 0) then {
 _position set [3, (_altPos * (SIZE_M * GRID_H))];
 _ctrlEdit ctrlSetPosition _position;
 
-_text = [str (call compile getText (_config >> "textCode")), getText (_config >> "textPlain")] select (isNull (_config >> "textCode"));
+_text = [(EGVAR(editor,selection) call compile getText (_config >> "textCode")), getText (_config >> "textPlain")] select (isNull (_config >> "textCode"));
 
 _ctrlEdit ctrlSetText _text;
 

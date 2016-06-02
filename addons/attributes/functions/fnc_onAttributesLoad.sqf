@@ -100,7 +100,19 @@ GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
     GVAR(AttributesWindow_ItemControls) = [];
 }] call EFUNC(common,addEventHandler);
 
-CONTROL(IDC_EDITATTRIBUTES_TITLE) ctrlSetText getText (_header >> "displayName");
+_target = [objNull, (EGVAR(editor,selection) select 0)] select (count EGVAR(editor,selection) > 0);
+_headerText = getText (_header >> "displayName");
+
+if (count EGVAR(editor,selection) > 1) then {
+    _formattedHeaderText = format ["%1 objects selected", count EGVAR(editor,selection)];
+} else {
+    _formattedHeaderText = [
+        (format [_headerText, getText (configFile >> "CfgVehicles" >> typeOf _target >> "displayName")]),
+        (format [_headerText, name _target])
+    ] select (isPlayer _target);
+};
+
+CONTROL(IDC_EDITATTRIBUTES_TITLE) ctrlSetText ([_headerText, _formattedHeaderText] select (_headerText find "%1" > -1));
 _headerCtrlGroup = CONTROL(IDC_EDITATTRIBUTES_CATEGORIES);
 
 _categories = "true" configClasses (_header >> "AttributeCategories");
@@ -187,6 +199,10 @@ _totalField = 0;
                     } forEach _ctrlRet;
                     
                     GVAR(AttributesWindow_ItemControls) pushBack _idcArr;
+                    
+                    if (call compile getText (_ctrlConfig >> "condition")) then {
+                        {_x ctrlEnable false} forEach _ctrlRet;
+                    };
                 } else {
                     _ctrlIDC = ctrlIDC _ctrlRet; // In case the control code changes the IDC for whatever reason
                     GVAR(AttributesWindow_ItemControls) pushBackUnique (ctrlIDC _ctrlRet);
@@ -197,6 +213,10 @@ _totalField = 0;
                         if (_ctrlHeight > LABEL_HEIGHT) then {
                             ADD(_totalLabel, (_ctrlHeight - CATEGORY_SPACING));
                         };
+                    };
+                    
+                    if (call compile getText (_ctrlConfig >> "condition")) then {
+                        _ctrlRet ctrlEnable false;
                     };
                 };                
             };

@@ -3,6 +3,7 @@ class MARS_gui_ctrlEdit: RscEdit {
     size = SIZEEX_ETELKA_S;
     sizeEx = SIZEEX_ETELKA_S;
     shadow = 0;
+    autocomplete = "general";
     colorText[] = {COLOR_TEXT_RGBA};
     colorBackground[] = {COLOR_OVERLAY_RGBA};
     colorDisabled[] = {COLOR_TEXT_RGB,0.25};
@@ -27,4 +28,5 @@ class MARS_gui_ctrlEdit: RscEdit {
 
 class MARS_gui_ctrlEditMulti: MARS_gui_ctrlEdit {
     style = ST_MULTI;
+    autocomplete = "scripting";
 };
