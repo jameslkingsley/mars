@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project name="MARS">
+    <Package name="common">
+        <Key ID="STR_MARS_common_MarsTeam">
+            <English>Mars Team</English>
+            <German>Mars Team</German>
+            <Polish>Mars Team</Polish>
+            <French>Mars Team</French>
+            <Spanish>Mars Team</Spanish>
+            <Italian>Mars Team</Italian>
+            <Czech>Mars Team</Czech>
+        </Key>
+    </Package>
+</Project>

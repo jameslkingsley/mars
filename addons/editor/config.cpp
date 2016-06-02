@@ -6,8 +6,9 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"mars_attributes"};
-        author[] = {"ACE3 Project","Kingsley"};
-        authorUrl = "https://github.com/jameslkingsley/mars";
+        author = ECSTRING(common,MarsTeam);
+        authors[] = {"ACE3 Project", "Kingsley"};
+        PBO_URL;
         VERSION_CONFIG;
     };
 };
