@@ -111,9 +111,10 @@ class MARS_gui_ctrlButtonStaticAlignRight: MARS_gui_ctrlButtonStatic {
     sizeEx = SIZEEX_PURISTA_M;
     colorText[] = {1,1,1,1};
     colorBackground[] = {0,0,0,0.75};
-    colorBackgroundDisabled[] = {0,0,0,0.75};
+    colorBackgroundDisabled[] = {0,0,0,0.25};
     colorBackgroundActive[] = {0,0,0,0.75};
     colorFocused[] = {0,0,0,0.75};
+    colorDisabled[] = {COLOR_TEXT_RGB,0.25};
 };
 
 class MARS_gui_ctrlButtonStaticFooter: MARS_gui_ctrlButtonStaticAlignRight {
