@@ -24,7 +24,7 @@
     _grp = _x;
     
     if !(side _grp in EXCLUDED_SIDES) then {
-        if (count (units _grp) > 0 /*&& {_x in EMPTY_ARRAY} count (units _grp) == 0*/) then {
+        if (count (units _grp) > 0) then {
             _leader = leader _grp;
             _leaderPos = ASLtoAGL (getPosASLVisual _leader);
             _leaderDistance = _leaderPos distance GVAR(camPos);
@@ -60,6 +60,7 @@
             };
             
             _groupRenderedVehicles = [];
+            _grpUnits = units _grp;
             
             {
                 _unit = vehicle _x;
@@ -116,17 +117,19 @@
                         0
                     ];
                     
-                    drawLine3D [
-                        [(_unitPos select 0), (_unitPos select 1), (_unitPos select 2) + 1],
-                        [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 1],
-                        _color
-                    ];
+                    if ({_x in GVAR(selection)} count _grpUnits > 0) then {
+                        drawLine3D [
+                            [(_unitPos select 0), (_unitPos select 1), (_unitPos select 2) + 1],
+                            [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 1],
+                            _color
+                        ];
+                    };
                     
                     _groupRenderedVehicles pushBackUnique _unit;
                 };
                 
                 false
-            } count (units _x);
+            } count _grpUnits;
         };
     };
     
@@ -170,4 +173,4 @@
     };
     
     false
-} count EMPTY_ARRAY;
+} count EMPTY_ARRAY + (vehicles select {count crew _x == 0});
