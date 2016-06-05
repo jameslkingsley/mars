@@ -50,7 +50,7 @@
             {
                 if ((_x select 2) == _className) then {
                     private _icon = getText ((_x select 0) >> "icon");
-                    private _iconTex = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
+                    private _iconTex = if ((toLower _icon) find "\a3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
                     private _side = getNumber ((_x select 0) >> "side");
                     private _objType = if (getNumber ((_x select 0) >> "isMan") == 1) then {"man"} else {"vehicle"};
                     private _dataStr = format [
@@ -108,7 +108,7 @@
                 {
                     if ((_x select 2) == _className) then {
                         private _icon = getText ((_x select 0) >> "icon");
-                        private _iconTex = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
+                        private _iconTex = if ((toLower _icon) find "\a3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
                         private _side = getNumber ((_x select 0) >> "side");
                         private _objType = if (getNumber ((_x select 0) >> "isMan") == 1) then {"man"} else {"vehicle"};
                         private _dataStr = format [
