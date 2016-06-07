@@ -20,6 +20,10 @@ params [
     ["_type", "", [""]]
 ];
 
+if (EGVAR(attributes,isOpen)) then {
+    _type = "";
+};
+
 if (toLower GVAR(currentCursor) == toLower _type) exitWith {};
 
 disableSerialization;

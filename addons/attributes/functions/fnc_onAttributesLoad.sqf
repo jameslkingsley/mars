@@ -26,6 +26,7 @@ params [
 ];
 
 SETUVAR(GVAR(interface),_display);
+GVAR(isOpen) = true;
 
 #define CONTROL(IDC) (_display displayCtrl IDC)
 #define LABEL_RATIO 0.25
@@ -98,6 +99,7 @@ GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
         false
     } count GVAR(AttributesWindow_ItemControls);
     GVAR(AttributesWindow_ItemControls) = [];
+    GVAR(isOpen) = false;
 }] call EFUNC(common,addEventHandler);
 
 CONTROL(IDC_EDITATTRIBUTES_TITLE) ctrlSetText getText (_header >> "displayName");

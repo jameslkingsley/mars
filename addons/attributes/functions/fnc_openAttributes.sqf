@@ -37,6 +37,7 @@ _this spawn {
     ] call EFUNC(common,addEventHandler);
     
     GVAR(AttributesWindow_onUnload) = ["AttributesWindow_onUnload", {
+        GVAR(isOpen) = false;
         GVAR(AttributesWindow_ItemControls) = [];
         ["AttributesWindow_onLoad", GVAR(AttributesWindow_onLoad)] call EFUNC(common,removeEventHandler);
         ["AttributesWindow_onUnload", GVAR(AttributesWindow_onUnload)] call EFUNC(common,removeEventHandler);

@@ -6,6 +6,8 @@ ADDON = false;
 
 SETUVAR(GVAR(interface),displayNull);
 
+GVAR(isOpen) = false;
+
 GVAR(AttributesWindow_onLoad) = -1;
 GVAR(AttributesWindow_onUnload) = -1;
 GVAR(AttributesWindow_onConfirm) = -1;
