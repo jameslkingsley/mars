@@ -17,7 +17,10 @@ class GVARMAIN(attributes) {
                                     range[] = {0.1, 25};
                                     step = 1;
                                     position = QUOTE(GVAR(camSpeed));
-                                    expression = QUOTE(GVAR(camSpeed) = _this);
+                                    expression = QUOTE(\
+                                        GVAR(camSpeed) = _this;\
+                                        [ARR_2(QUOTE(QGVAR(camSpeed)), _this)] call EFUNC(common,saveSetting)\
+                                    );
                                     onSliderPosChanged = QUOTE(\
                                         _ctrl = _this select 0;\
                                         _ctrl ctrlSetTooltip str([ARR_2(sliderPosition _ctrl, 2)] call EFUNC(common,roundToN));\
@@ -36,7 +39,11 @@ class GVARMAIN(attributes) {
                                     range[] = {0.01, 2};
                                     step = 0.01;
                                     position = QUOTE(GVAR(camZoom));
-                                    expression = QUOTE(GVAR(camZoom) = _this; GVAR(freeCamera) camSetFov _this);
+                                    expression = QUOTE(\
+                                        GVAR(camZoom) = _this;\
+                                        GVAR(freeCamera) camSetFov _this;\
+                                        [ARR_2(QUOTE(QGVAR(camZoom)), -_this)] call EFUNC(common,saveSetting)\
+                                    );
                                     onSliderPosChanged = QUOTE(\
                                         _ctrl = _this select 0;\
                                         _ctrl ctrlSetTooltip str([ARR_2(sliderPosition _ctrl, 2)] call EFUNC(common,roundToN));\
