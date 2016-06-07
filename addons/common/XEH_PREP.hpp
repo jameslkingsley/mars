@@ -22,3 +22,5 @@ PREP(addEventHandler);
 PREP(removeEventHandler);
 PREP(localEvent);
 PREP(getSideColorTexture);
+PREP(loadSetting);
+PREP(saveSetting);
