@@ -35,7 +35,7 @@ class GVARMAIN(attributes) {
                                     onSliderPosChanged = QUOTE(\
                                         _ctrl = _this select 0;\
                                         _value = round (sliderPosition _ctrl);\
-                                        _ctrl ctrlSetTooltip (['0' + str _value, str _value] select (_value >= 10))\
+                                        _ctrl ctrlSetTooltip ([ARR_2('0' + str _value, str _value)] select (_value >= 10));\
                                     );
                                 };
                             };
@@ -54,7 +54,7 @@ class GVARMAIN(attributes) {
                                     onSliderPosChanged = QUOTE(\
                                         _ctrl = _this select 0;\
                                         _value = round (sliderPosition _ctrl);\
-                                        _ctrl ctrlSetTooltip (['0' + str _value, str _value] select (_value >= 10))\
+                                        _ctrl ctrlSetTooltip ([ARR_2('0' + str _value, str _value)] select (_value >= 10));\
                                     );
                                 };
                             };
