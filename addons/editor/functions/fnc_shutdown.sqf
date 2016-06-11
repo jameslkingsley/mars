@@ -22,13 +22,23 @@ while {dialog} do {
 
 GETUVAR(GVAR(interface),displayNull) closeDisplay 0;
 
-GVAR(freeCamera) cameraEffect ["terminate","back"];
-camDestroy GVAR(freeCamera);
+if (!isNil QGVAR(freeCamera)) then {
+    GVAR(freeCamera) cameraEffect ["terminate","back"];
+    camDestroy GVAR(freeCamera);
+};
 
 BIS_fnc_feedback_allowPP = true;
 
-[GVAR(pfh)] call CBA_fnc_removePerFrameHandler;
-[GVAR(delayedPFH)] call CBA_fnc_removePerFrameHandler;
-[GVAR(camHandler)] call CBA_fnc_removePerFrameHandler;
+if (!isNil QGVAR(pfh)) then {
+    [GVAR(pfh)] call CBA_fnc_removePerFrameHandler;
+};
+
+if (!isNil QGVAR(delayedPFH)) then {
+    [GVAR(pfh)] call CBA_fnc_removePerFrameHandler;
+};
+
+if (!isNil QGVAR(camHandler)) then {
+    [GVAR(pfh)] call CBA_fnc_removePerFrameHandler;
+};
 
 GVAR(isSet) = false;
