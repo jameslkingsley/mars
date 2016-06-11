@@ -29,10 +29,16 @@ if (!isNil QEFUNC(editor,shutdown)) then {
     [] call EFUNC(editor,shutdown);
 };
 
-[player, _giveZeus] remoteExecCall [QFUNC(setupZeus), 2];
-hint (["Logged out of Zeus", "Press your Zeus key"] select _giveZeus);
+[player, _giveZeus] remoteExec [QFUNC(setupZeus), REMOTE_SERVER];
 
-[] spawn {
-    uiSleep 10;
-    hintSilent "";
+if (_giveZeus) then {
+    hintSilent "Press your Zeus key";
+    MARS_LOGINFO_1("%1 logged into Zeus", name player);
+    [player, ["Mars", ["Log", format ["%1 logged into Zeus", name player]]]] remoteExecCall ["createDiaryRecord", REMOTE_GLOBAL];
+} else {
+    hintSilent "Logged out of Zeus";
+    MARS_LOGINFO_1("%1 logged out of Zeus", name player);
+    [player, ["Mars", ["Log", format ["%1 logged out of Zeus", name player]]]] remoteExecCall ["createDiaryRecord", REMOTE_GLOBAL];
 };
+
+[{hintSilent ""}, [], 5] call CBA_fnc_waitAndExecute;
