@@ -29,16 +29,16 @@ SETUVAR(GVAR(interface),_display);
 GVAR(isOpen) = true;
 
 #define CONTROL(IDC) (_display displayCtrl IDC)
-#define LABEL_RATIO 0.25
-#define FIELD_RATIO 0.75
+#define LABEL_RATIO GVAR(AttributesWindow_GlobalLabelRatio)
+#define FIELD_RATIO GVAR(AttributesWindow_GlobalFieldRatio)
 #define CATEGORY_Y_IOFFSET -(GRID_H * 2)
 #define ITEM_SPACING GRID_H
 #define CATEGORY_SPACING (SIZE_M * GRID_H)
 #define CATEGORY_X CATEGORY_SPACING
 #define CATEGORY_Y CATEGORY_SPACING
-#define LABEL_WIDTH ((WINDOW_EDITATTRIBUTES_W * LABEL_RATIO) * GRID_W)
+#define LABEL_WIDTH ((GVAR(AttributesWindow_GlobalWidth) * LABEL_RATIO) * GRID_W)
 #define LABEL_HEIGHT (SIZE_M * GRID_H)
-#define FIELD_WIDTH (((WINDOW_EDITATTRIBUTES_W * FIELD_RATIO) * GRID_W) - (CATEGORY_SPACING * 2) - GRID_W)
+#define FIELD_WIDTH (((GVAR(AttributesWindow_GlobalWidth) * FIELD_RATIO) * GRID_W) - (CATEGORY_SPACING * 2) - GRID_W)
 
 _header = (configFile >> QGVARMAIN(attributes) >> _component >> _attribute);
 
@@ -240,7 +240,7 @@ _totalField = 0;
 } count _categories;
 
 _footer = _display ctrlCreate ["MARS_gui_ctrlButtonStaticFooter", (_categoryIDC + 1), _headerCtrlGroup];
-_footer ctrlSetPosition [0, _totalLabel, (WINDOW_EDITATTRIBUTES_W * GRID_W), LABEL_HEIGHT];
+_footer ctrlSetPosition [0, _totalLabel, (GVAR(AttributesWindow_GlobalWidth) * GRID_W), LABEL_HEIGHT];
 _footer ctrlCommit 0;
 
 GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", getText (_header >> "actionConfirm")] call EFUNC(common,addEventHandler);

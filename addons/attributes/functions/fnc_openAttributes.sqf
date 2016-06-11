@@ -5,6 +5,8 @@
  * Arguments:
  * 0: Component <STRING>
  * 1: Attribute class <STRING>
+ * 2: Size of window [width, height] (optional) <ARRAY>
+ * 3: Ratio of labels and fields [label, field] (optional) <ARRAY>
  *
  * Return Value:
  * None
@@ -20,8 +22,19 @@
 _this spawn {
     params [
         ["_component", "", [""]],
-        ["_attribute", "", [""]]
+        ["_attribute", "", [""]],
+        ["_size", [140, 180], [[]]],
+        ["_ratio", [0.25, 0.75], [[]]]
     ];
+
+    _size params ["_width", "_height"];
+    _ratio params ["_labelR", "_fieldR"];
+
+    GVAR(AttributesWindow_GlobalWidth) = _width;
+    GVAR(AttributesWindow_GlobalHeight) = _height;
+
+    GVAR(AttributesWindow_GlobalLabelRatio) = _labelR;
+    GVAR(AttributesWindow_GlobalFieldRatio) = _fieldR;
     
     if (dialog) then {
         closeDialog 0;
