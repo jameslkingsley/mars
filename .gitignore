@@ -8,3 +8,6 @@ tools/intercept/
 *.lib
 *.exp
 tools/make.cache
+_posts/
+_site/
+.sass-cache/
