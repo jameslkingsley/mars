@@ -16,5 +16,4 @@
 
 #include "script_component.hpp"
 
-while {dialog} do {closeDialog 0;};
-createDialog QGVAR(clientMenu);
+[QUOTE(ADDON), "interface", [100, 60], [0.33, 0.66]] call EFUNC(attributes,openAttributes);

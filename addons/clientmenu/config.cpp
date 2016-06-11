@@ -9,9 +9,9 @@ class CfgPatches {
         authors[] = {"Kingsley"};
         PBO_URL;
         VERSION_CONFIG;
-        requiredAddons[] = {"mars_common"};
+        requiredAddons[] = {"mars_attributes"};
     };
 };
 
 #include "CfgEventHandlers.hpp"
-#include "ui\menu_zeus.hpp"
+#include "CfgAttributes.hpp"

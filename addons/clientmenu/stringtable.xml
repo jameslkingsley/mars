@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project name="MARS">
+    <Package name="ClientMenu">
+        <Key ID="STR_MARS_ClientMenu_Title">
+            <English>Mars</English>
+            <German>Mars</German>
+            <Polish>Mars</Polish>
+            <French>Mars</French>
+            <Spanish>Mars</Spanish>
+            <Italian>Mars</Italian>
+            <Czech>Mars</Czech>
+        </Key>
+        <Key ID="STR_MARS_ClientMenu_Detail_Name">
+            <English>Terrain Detail</English>
+            <German>Terrain Detail</German>
+            <Polish>Terrain Detail</Polish>
+            <French>Terrain Detail</French>
+            <Spanish>Terrain Detail</Spanish>
+            <Italian>Terrain Detail</Italian>
+            <Czech>Terrain Detail</Czech>
+        </Key>
+        <Key ID="STR_MARS_ClientMenu_Detail_Tooltip">
+            <English>Terrain detail affects the quality of the ground and how far grass is rendered. Lower quality means less vertices are used for terrain rendering, making distant hills less smooth.</English>
+            <German>Terrain detail affects the quality of the ground and how far grass is rendered. Lower quality means less vertices are used for terrain rendering, making distant hills less smooth.</German>
+            <Polish>Terrain detail affects the quality of the ground and how far grass is rendered. Lower quality means less vertices are used for terrain rendering, making distant hills less smooth.</Polish>
+            <French>Terrain detail affects the quality of the ground and how far grass is rendered. Lower quality means less vertices are used for terrain rendering, making distant hills less smooth.</French>
+            <Spanish>Terrain detail affects the quality of the ground and how far grass is rendered. Lower quality means less vertices are used for terrain rendering, making distant hills less smooth.</Spanish>
+            <Italian>Terrain detail affects the quality of the ground and how far grass is rendered. Lower quality means less vertices are used for terrain rendering, making distant hills less smooth.</Italian>
+            <Czech>Terrain detail affects the quality of the ground and how far grass is rendered. Lower quality means less vertices are used for terrain rendering, making distant hills less smooth.</Czech>
+        </Key>
+        <Key ID="STR_MARS_ClientMenu_Distance_Name">
+            <English>View Distance</English>
+            <German>View Distance</German>
+            <Polish>View Distance</Polish>
+            <French>View Distance</French>
+            <Spanish>View Distance</Spanish>
+            <Italian>View Distance</Italian>
+            <Czech>View Distance</Czech>
+        </Key>
+        <Key ID="STR_MARS_ClientMenu_Distance_Tooltip">
+            <English>View distance affects how far you can see. Note that this does not affect object view distance (you can change that in your Arma 3 settings).</English>
+            <German>View distance affects how far you can see. Note that this does not affect object view distance (you can change that in your Arma 3 settings).</German>
+            <Polish>View distance affects how far you can see. Note that this does not affect object view distance (you can change that in your Arma 3 settings).</Polish>
+            <French>View distance affects how far you can see. Note that this does not affect object view distance (you can change that in your Arma 3 settings).</French>
+            <Spanish>View distance affects how far you can see. Note that this does not affect object view distance (you can change that in your Arma 3 settings).</Spanish>
+            <Italian>View distance affects how far you can see. Note that this does not affect object view distance (you can change that in your Arma 3 settings).</Italian>
+            <Czech>View distance affects how far you can see. Note that this does not affect object view distance (you can change that in your Arma 3 settings).</Czech>
+        </Key>
+        <Key ID="STR_MARS_ClientMenu_Editor_Name">
+            <English>Zeus</English>
+            <German>Zeus</German>
+            <Polish>Zeus</Polish>
+            <French>Zeus</French>
+            <Spanish>Zeus</Spanish>
+            <Italian>Zeus</Italian>
+            <Czech>Zeus</Czech>
+        </Key>
+        <Key ID="STR_MARS_ClientMenu_Editor_Tooltip">
+            <English>Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.</English>
+            <German>Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.</German>
+            <Polish>Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.</Polish>
+            <French>Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.</French>
+            <Spanish>Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.</Spanish>
+            <Italian>Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.</Italian>
+            <Czech>Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.</Czech>
+        </Key>
+    </Package>
+</Project>
