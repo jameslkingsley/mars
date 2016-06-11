@@ -27,19 +27,18 @@ GVAR(zeusModule) = getAssignedCuratorLogic _unit;
 if (_giveZeus) then {
     if (isNull GVAR(zeusModule)) then {
         private _moduleGroup = createGroup GVAR(zeusCenter);
-        GVAR(zeusModule) = _moduleGroup createUnit ["ModuleCurator_F",[0,0,0],[],0,"NONE"];
+        
+        GVAR(zeusModule) = _moduleGroup createUnit ["ModuleCurator_F", [0,0,0], [], 0, "NONE"];
         GVAR(zeusModule) setVariable ["Owner", "-1"];
         GVAR(zeusModule) setVariable ["Name", ""];
         GVAR(zeusModule) setVariable ["Addons", 3];
         GVAR(zeusModule) setVariable ["Forced", 0];
+
         _unit assignCurator GVAR(zeusModule);
         publicVariable QGVAR(zeusModule);
         
-        // This is spawned so that it doesn't cause player computers to freeze/lag
-        /*[] spawn {
-            {GVAR(zeusModule) addCuratorEditableObjects [[_x],true];false} count vehicles;
-            {GVAR(zeusModule) addCuratorEditableObjects [[_x],true];false} count (entities "CAManBase");
-        };*/
+        {GVAR(zeusModule) addCuratorEditableObjects [[_x],true]; false} count vehicles;
+        {GVAR(zeusModule) addCuratorEditableObjects [[_x],true]; false} count (entities "CAManBase");
     };
 } else {
     if (!isNull GVAR(zeusModule)) then {
