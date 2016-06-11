@@ -57,7 +57,9 @@ if (count _labels > count _values) then {
 } forEach _values;
 
 // Add an extra dummy item to stop it from cutting off the last element in values
-_ctrlCombo lbAdd "";
+if (count _values > 10) then {
+    _ctrlCombo lbAdd "";
+};
 
 _ctrlCombo setVariable [QGVAR(comboStartIndex), (lbCurSel _ctrlCombo)];
 _ctrlCombo setVariable [QGVAR(execExpression), false];
