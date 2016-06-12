@@ -1,5 +1,6 @@
 PREP(openAttributes);
 PREP(onAttributesLoad);
+PREP(getControl);
 PREP(ctrlCombo);
 PREP(ctrlSlider);
 PREP(ctrlEdit);

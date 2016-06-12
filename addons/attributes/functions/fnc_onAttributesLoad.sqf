@@ -105,6 +105,7 @@ GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
         false
     } count GVAR(AttributesWindow_ItemControls);
     GVAR(AttributesWindow_ItemControls) = [];
+    GVAR(identifyControls) = [];
     GVAR(isOpen) = false;
 }] call EFUNC(common,addEventHandler);
 
@@ -177,6 +178,10 @@ _totalField = 0;
                 ];
                 
                 _ctrlRet = call compile _ctrlCreateCode;
+
+                if (!isNull (_ctrlConfig >> "identifier")) then {
+                    GVAR(identifyControls) pushBack [getText (_ctrlConfig >> "identifier"), _ctrlRet];
+                };
                 
                 if (_ctrlRet isEqualType []) then {
                     _idcArr = [];

@@ -39,6 +39,7 @@ _this spawn {
     if (dialog) then {
         closeDialog 0;
         GVAR(AttributesWindow_ItemControls) = [];
+        GVAR(identifyControls) = [];
         ["AttributesWindow_onLoad", GVAR(AttributesWindow_onLoad)] call EFUNC(common,removeEventHandler);
         ["AttributesWindow_onUnload", GVAR(AttributesWindow_onUnload)] call EFUNC(common,removeEventHandler);
         ["AttributesWindow_onConfirm", GVAR(AttributesWindow_onConfirm)] call EFUNC(common,removeEventHandler);
@@ -52,6 +53,7 @@ _this spawn {
     GVAR(AttributesWindow_onUnload) = ["AttributesWindow_onUnload", {
         GVAR(isOpen) = false;
         GVAR(AttributesWindow_ItemControls) = [];
+        GVAR(identifyControls) = [];
         ["AttributesWindow_onLoad", GVAR(AttributesWindow_onLoad)] call EFUNC(common,removeEventHandler);
         ["AttributesWindow_onUnload", GVAR(AttributesWindow_onUnload)] call EFUNC(common,removeEventHandler);
         ["AttributesWindow_onConfirm", GVAR(AttributesWindow_onConfirm)] call EFUNC(common,removeEventHandler);
