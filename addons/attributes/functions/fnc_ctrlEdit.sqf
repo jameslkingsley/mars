@@ -32,13 +32,13 @@ _display = GETUVAR(GVAR(interface),displayNull);
 
 _controlGroup = _display displayCtrl _group;
 
-_altPos = [getNumber (_config >> "rows"), 0] select (isNull (_config >> "rows"));
+_altPos = [getNumber (_config >> "rows"), 1] select (isNull (_config >> "rows"));
 _ctrlClassname = ["MARS_gui_ctrlEdit", "MARS_gui_ctrlEditMulti"] select (_altPos > 1);
 _ctrlEdit = _display ctrlCreate [_ctrlClassname, _idc, _controlGroup];
 
-if (_altPos < 0) then {
-    MARS_LOGERROR_1("Rows cannot be less than zero in %1. Resetting to 0.", _config);
-    _altPos = 0;
+if (_altPos < 1) then {
+    MARS_LOGERROR_1("Rows cannot be less than 1 in %1. Resetting to 1.", _config);
+    _altPos = 1;
 };
 
 _position set [3, (_altPos * (SIZE_M * GRID_H))];
