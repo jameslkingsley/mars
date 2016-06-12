@@ -50,7 +50,7 @@ if (count _labels > count _values) then {
 
 {
     _i = _ctrlCombo lbAdd (_labels select _forEachIndex);
-    _ctrlCombo lbSetData [_i, str _x];
+    _ctrlCombo lbSetData [_i, ([str _x, _x] select (_x isEqualType ""))];
     if (_x == _selected) then {
         _ctrlCombo lbSetCurSel _i;
     };
