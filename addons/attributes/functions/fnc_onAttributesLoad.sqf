@@ -41,9 +41,15 @@ GVAR(isOpen) = true;
 #define FIELD_WIDTH (((GVAR(AttributesWindow_GlobalWidth) * FIELD_RATIO) * GRID_W) - (CATEGORY_SPACING * 2) - GRID_W)
 
 _header = (configFile >> QGVARMAIN(attributes) >> _component >> _attribute);
+_requiredConfig = "configFile";
 
-if (!isClass _header) exitWith {
-    MARS_LOGERROR_2("Attribute is not a class: %1 >> %2", _component, _attribute);
+if (!isClass _header) then {
+    _header = (missionConfigFile >> QGVARMAIN(attributes) >> _component >> _attribute);
+    _requiredConfig = "missionConfigFile";
+
+    if (!isClass _header) exitWith {
+        MARS_LOGERROR_2("Attribute is not a class: %1 >> %2", _component, _attribute);
+    };
 };
 
 GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
@@ -142,7 +148,7 @@ _totalField = 0;
             _ctrlConfig = _x;
             
             _ctrlConfigPath = [
-                "configFile",
+                _requiredConfig,
                 format ["'%1'", QGVARMAIN(attributes)],
                 format ["'%1'", _component],
                 format ["'%1'", _attribute],
