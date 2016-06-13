@@ -233,4 +233,7 @@
 #define REMOTE_SERVER 2
 #define REMOTE_EXSERVER -2
 
+#define CFUNC(A) EFUNC(common,A)
+#define AFUNC(A) EFUNC(attributes,A)
+
 #include "script_debug.hpp"
