@@ -152,6 +152,7 @@ _ctrlYear ctrlAddEventHandler ["LBSelChanged", format ["[%1,%2,%3] call %4", ctr
 _ctrlMonth ctrlAddEventHandler ["LBSelChanged", format ["[%1,%2,%3] call %4", ctrlIDC _ctrlYear, ctrlIDC _ctrlMonth, ctrlIDC _ctrlDay, _yearHandle]];
 
 {
+    _x setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
     _x setVariable [QGVAR(comboStartIndex), (lbCurSel _x)];
     _x setVariable [QGVAR(execExpression), false];
     _x setVariable [QGVAR(execExpressionStr), getText (_config >> "expression")];

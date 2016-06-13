@@ -47,6 +47,7 @@ _ctrlSlider sliderSetRange _range;
 _ctrlSlider sliderSetSpeed [_step, _step];
 _ctrlSlider sliderSetPosition _startPos;
 
+_ctrlSlider setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
 _ctrlSlider setVariable [QGVAR(sliderStartPos), sliderPosition _ctrlSlider];
 _ctrlSlider setVariable [QGVAR(execExpression), false];
 _ctrlSlider setVariable [QGVAR(execExpressionStr), getText (_config >> "expression")];

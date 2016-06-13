@@ -43,6 +43,7 @@ if (isNil QEGVAR(editor,selection)) then {
 
 _text = [(EGVAR(editor,selection) call compile getText (_config >> "textCode")), getText (_config >> "textPlain")] select (isNull (_config >> "textCode"));
 
+_ctrlLabel setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
 _ctrlLabel setVariable [QGVAR(execReturnData), _text];
 
 _ctrlLabel ctrlSetText _text;

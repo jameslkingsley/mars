@@ -48,6 +48,7 @@ _text = [(EGVAR(editor,selection) call compile getText (_config >> "textCode")),
 
 _ctrlEdit ctrlSetText _text;
 
+_ctrlEdit setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
 _ctrlEdit setVariable [QGVAR(editStartText), (ctrlText _ctrlEdit)];
 _ctrlEdit setVariable [QGVAR(execExpression), false];
 _ctrlEdit setVariable [QGVAR(execExpressionStr), getText (_config >> "expression")];

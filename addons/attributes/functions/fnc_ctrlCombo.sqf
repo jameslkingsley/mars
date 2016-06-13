@@ -61,6 +61,7 @@ if (count _values > 10) then {
     _ctrlCombo lbAdd "";
 };
 
+_ctrlCombo setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
 _ctrlCombo setVariable [QGVAR(comboStartIndex), (lbCurSel _ctrlCombo)];
 _ctrlCombo setVariable [QGVAR(execExpression), false];
 _ctrlCombo setVariable [QGVAR(execExpressionStr), getText (_config >> "expression")];
