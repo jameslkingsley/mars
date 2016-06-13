@@ -105,7 +105,6 @@ GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
         false
     } count GVAR(AttributesWindow_ItemControls);
     GVAR(AttributesWindow_ItemControls) = [];
-    GVAR(identifyControls) = [];
     GVAR(isOpen) = false;
 }] call EFUNC(common,addEventHandler);
 
@@ -181,6 +180,8 @@ _totalField = 0;
 
                 if (!isNull (_ctrlConfig >> "identifier")) then {
                     GVAR(identifyControls) pushBack [getText (_ctrlConfig >> "identifier"), _ctrlRet];
+                } else {
+                    GVAR(identifyControls) pushBack [format ["__Ctrl%1", _ctrlIDC], _ctrlRet];
                 };
                 
                 if (_ctrlRet isEqualType []) then {
@@ -254,8 +255,40 @@ _footer = _display ctrlCreate ["MARS_gui_ctrlButtonStaticFooter", (_categoryIDC 
 _footer ctrlSetPosition [0, _totalLabel, (GVAR(AttributesWindow_GlobalWidth) * GRID_W), LABEL_HEIGHT];
 _footer ctrlCommit 0;
 
-GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", getText (_header >> "actionConfirm")] call EFUNC(common,addEventHandler);
+GVAR(tempActionConfirm) = getText (_header >> "actionConfirm");
+GVAR(tempActionCancel) = getText (_header >> "actionCancel");
+
 GVAR(AttributesWindow_onCancel) = ["AttributesWindow_onCancel", getText (_header >> "actionCancel")] call EFUNC(common,addEventHandler);
+
+GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
+    _returnData = [];
+
+    {
+        _x params ["_id", "_ctrl"];
+
+        if (_ctrl isEqualType []) then {
+            private _ctrlReturnData = [];
+
+            {
+                _ctrlReturnData pushBack [
+                    (_x getVariable [QGVAR(controlKey), format ["Undefined_%1", _forEachIndex]]),
+                    (_x getVariable [QGVAR(execReturnData), controlNull])
+                ];
+            } forEach _ctrl;
+
+            _returnData pushBack _ctrlReturnData;
+        } else {
+            _returnData pushBack [
+                (_ctrl getVariable [QGVAR(controlKey), format ["Undefined_%1", _forEachIndex]]),
+                (_ctrl getVariable [QGVAR(execReturnData), controlNull])
+            ];
+        };
+    } forEach GVAR(identifyControls);
+
+    _returnData call compile GVAR(tempActionConfirm);
+
+    GVAR(identifyControls) = [];
+}] call EFUNC(common,addEventHandler);
 
 (_display displayCtrl IDC_EDITATTRIBUTES_BTN_OK) ctrlAddEventHandler ["MouseButtonClick", {["AttributesWindow_onConfirm", _this] call EFUNC(common,localEvent)}];
 (_display displayCtrl IDC_EDITATTRIBUTES_BTN_CANCEL) ctrlAddEventHandler ["MouseButtonClick", {["AttributesWindow_onCancel", _this] call EFUNC(common,localEvent)}];
