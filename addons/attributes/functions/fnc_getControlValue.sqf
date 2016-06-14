@@ -24,12 +24,32 @@ params [
 
 if (_controls isEqualTo [] || _key isEqualTo "") exitWith {};
 
-{
-    _x params ["_id", "_data"];
+private _result = "Error: Could not find control";
 
-    if (toLower _id == toLower _key) exitWith {
-        _data
+{
+    if ((_x select 0) isEqualType []) then {
+        private _combinedData = [];
+
+        {
+            _x params ["_id", "_data"];
+
+            if (toLower _id == toLower _key) then {
+                _combinedData pushBack _data;
+            };
+
+            false
+        } count _x;
+
+        _result = _combinedData;
+    } else {
+        _x params ["_id", "_data"];
+
+        if (toLower _id == toLower _key) exitWith {
+            _result = _data;
+        };
     };
 
     false
 } count _controls;
+
+_result
