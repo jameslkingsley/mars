@@ -1,3 +1,3 @@
 #include "script_component.hpp"
 
-[QUOTE(ADDON), "sandbox", [250, 220]] call FUNC(openAttributes);
+[{[QUOTE(ADDON), "sandbox", [nil, 80]] call FUNC(openAttributes)}, [], 1] call CFUNC(waitAndExecute);
