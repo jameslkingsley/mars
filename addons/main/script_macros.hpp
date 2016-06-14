@@ -223,6 +223,15 @@
 #define COLOR_AMBIENT_RGB 0,1,0.5
 #define COLOR_AMBIENT_RGBA COLOR_AMBIENT_RGB,1
 
+#define COLOR_POSX_RGB	0.77, 0.18, 0.1
+#define COLOR_POSX_RGBA	COLOR_POSX_RGB, 1
+
+#define COLOR_POSY_RGB	0.58, 0.82, 0.22
+#define COLOR_POSY_RGBA	COLOR_POSY_RGB, 1
+
+#define COLOR_POSZ_RGB	0.26, 0.52, 0.92
+#define COLOR_POSZ_RGBA	COLOR_POSZ_RGB, 1
+
 #define DEFINE_CURSOR(NAME,PATH)\
     class NAME {\
         name = QUOTE(NAME);\
@@ -235,5 +244,8 @@
 
 #define CFUNC(A) EFUNC(common,A)
 #define AFUNC(A) EFUNC(attributes,A)
+
+#define INT2BOOL(A) ([false,true] select A)
+#define BOOL2INT(A) ([0,1] select A)
 
 #include "script_debug.hpp"
