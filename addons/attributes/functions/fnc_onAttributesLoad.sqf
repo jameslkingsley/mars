@@ -204,7 +204,7 @@ _totalField = 0;
                     
                     if !(call compile getText (_ctrlConfig >> "condition")) then {
                         _itemLabel ctrlEnable false;
-                        {_x ctrlEnable false} forEach _ctrlRet;
+                        {_x ctrlEnable false} forEach (_ctrlRet + (_ctrlRet getVariable [QGVAR(siblings), []]));
                     };
                 } else {
                     _ctrlIDC = ctrlIDC _ctrlRet; // In case the control code changes the IDC for whatever reason
@@ -221,6 +221,7 @@ _totalField = 0;
                     if !(call compile getText (_ctrlConfig >> "condition")) then {
                         _itemLabel ctrlEnable false;
                         _ctrlRet ctrlEnable false;
+                        {_x ctrlEnable false} forEach (_ctrlRet getVariable [QGVAR(siblings), []]);
                     };
                 };                
             };
