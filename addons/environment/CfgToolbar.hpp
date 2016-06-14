@@ -6,7 +6,7 @@ class GVARMAIN(toolbar) {
             tooltipText = CSTRING(Toolbar_Tooltip);
             iconOn = QPATHTOF(data\environment_ca.paa);
             iconOff = QPATHTOF(data\environment_ca.paa);
-            action = QUOTE([ARR_2(QUOTE(QUOTE(ADDON)), 'environment')] call EFUNC(attributes,openAttributes));
+            action = QUOTE([ARR_3(QUOTE(QUOTE(ADDON)), 'environment', [ARR_2(nil, 120)])] call AFUNC(openAttributes));
         };
     };
 };
