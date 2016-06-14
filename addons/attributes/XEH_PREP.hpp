@@ -9,3 +9,4 @@ PREP(ctrlEdit);
 PREP(ctrlDate);
 PREP(ctrlLabel);
 PREP(ctrlButton);
+PREP(ctrlMap);
