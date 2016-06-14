@@ -1,11 +1,11 @@
 class MARS_gui_ctrlMap: MARS_gui_ctrlDefault {
     type = CT_MAP_MAIN;
     style = ST_PICTURE;
-    x = safezoneXAbs;
-    y = safezoneY;
-    w = safezoneWAbs;
-    h = safezoneH;
-    sizeEx = 0.05;
+    x = 0;
+    y = 0;
+    w = 0;
+    h = 0;
+    sizeEx = SIZEEX_PURISTA_M;
     font = FONT_NORMAL;
     colorText[] = {0,0,0,1};
     moveOnEdges = 1;
@@ -50,18 +50,18 @@ class MARS_gui_ctrlMap: MARS_gui_ctrlDefault {
     colorGrid[] = {0.100,0.100,0.100,0.600};
     colorGridMap[] = {0.100,0.100,0.100,0.600};
     fontLabel = FONT_NORMAL;
-    sizeExLabel = 0.05;
+    sizeExLabel = SIZEEX_PURISTA_M;
     fontGrid = FONT_SYSTEM;
-    sizeExGrid = 0.02;
+    sizeExGrid = SIZEEX_PURISTA_S;
     fontUnits = FONT_SYSTEM;
-    sizeExUnits = 0.05;
+    sizeExUnits = SIZEEX_PURISTA_M;
     fontNames = FONT_NARROW;
-    sizeExNames = 0.05;
+    sizeExNames = SIZEEX_PURISTA_M;
     fontInfo = FONT_NORMAL;
-    sizeExInfo = 0.05;
+    sizeExInfo = SIZEEX_PURISTA_M;
     fontLevel = FONT_SYSTEM;
-    sizeExLevel = 0.02;
-    showCountourInterval = 1;
+    sizeExLevel = SIZEEX_PURISTA_M;
+    showCountourInterval = 0;
     onCanDestroy = "";
     onDestroy = "";
     onSetFocus = "";
@@ -85,7 +85,7 @@ class MARS_gui_ctrlMap: MARS_gui_ctrlDefault {
         color[] = {0,0,0,1};
         colorBackground[] = {1,1,1,0.5};
         font = FONT_NORMAL;
-        sizeEX = SIZEEX_PURISTA_S;
+        sizeEx = SIZEEX_PURISTA_S;
     };
 
     class Task {
@@ -274,6 +274,14 @@ class MARS_gui_ctrlMap: MARS_gui_ctrlDefault {
         icon = "\A3\ui_f\data\map\mapcontrol\viewtower_ca.paa";
         importance = 2;
         size = 16;
+    };
+
+    class LineMarker {
+        lineDistanceMin = 3e-005;
+        lineLengthMin = 5;
+        lineWidthThick = 0.014;
+        lineWidthThin = 0.008;
+        textureComboBoxColor = "#(argb,8,8,3)color(1,1,1,1)";
     };
 };
 
