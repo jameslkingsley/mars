@@ -38,6 +38,9 @@ _position set [3, (_position select 2)];
 
 _ctrlMap ctrlSetPosition _position;
 
+_ctrlMap ctrlMapAnimAdd [1, 0.25, getPos player];
+ctrlMapAnimCommit _ctrlMap;
+
 if (isNil QEGVAR(editor,selection)) then {
     EGVAR(editor,selection) = [];
 };
