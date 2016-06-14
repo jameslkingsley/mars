@@ -10,3 +10,5 @@ PREP(ctrlDate);
 PREP(ctrlLabel);
 PREP(ctrlButton);
 PREP(ctrlMap);
+PREP(ctrlCheckbox);
+PREP(ctrlVector);
