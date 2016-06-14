@@ -26,8 +26,6 @@ params [
     ["_position", [0,0,0,0], [[]]]
 ];
 
-TRACE_1("ctrlLabel", _this);
-
 _config = call compile _config;
 _display = GETUVAR(GVAR(interface),displayNull);
 
