@@ -25,6 +25,10 @@ class MARS_gui_ctrlMap: MARS_gui_ctrlDefault {
     alphaFadeStartScale = 2;
     alphaFadeEndScale = 2;
     text = "#(argb,8,8,3)color(1,1,1,1)";
+    idcMarkerColor = -1;
+	idcMarkerIcon = -1;
+	textureComboBoxColor = "#(argb,8,8,3)color(1,1,1,1)";
+	showMarkers = true;
     colorBackground[] = {0.969,0.957,0.949,1.000};
     colorOutside[] = {0.000,0.000,0.000,1.000};
     colorSea[] = {0.467,0.631,0.851,0.500};
