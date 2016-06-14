@@ -12,6 +12,7 @@
 #define CT_LISTBOX 5
 #define CT_TOOLBOX 6
 #define CT_CHECKBOXES 7
+#define CT_CHECKBOX 77
 #define CT_PROGRESS 8
 #define CT_HTML 9
 #define CT_STATIC_SKEW 10
