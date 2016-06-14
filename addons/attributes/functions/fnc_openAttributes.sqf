@@ -27,8 +27,15 @@ _this spawn {
         ["_ratio", [0.25, 0.75], [[]]]
     ];
 
-    _size params ["_width", "_height"];
-    _ratio params ["_labelR", "_fieldR"];
+    _size params [
+        ["_width", WINDOW_EDITATTRIBUTES_W, [0]],
+        ["_height", WINDOW_EDITATTRIBUTES_H, [0]]
+    ];
+
+    _ratio params [
+        ["_labelR", 0.25, [0]],
+        ["_fieldR", 0.75, [0]]
+    ];
 
     GVAR(AttributesWindow_GlobalWidth) = _width;
     GVAR(AttributesWindow_GlobalHeight) = _height;
