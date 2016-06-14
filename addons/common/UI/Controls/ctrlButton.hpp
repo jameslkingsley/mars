@@ -105,6 +105,21 @@ class MARS_gui_ctrlButtonStatic: MARS_gui_ctrlButton {
     sizeEx = SIZEEX_PURISTA_L;
 };
 
+class MARS_gui_ctrlButtonCheckboxLabel: MARS_gui_ctrlButton {
+    style = ST_MULTI + ST_NO_RECT;
+    colorText[] = {COLOR_TEXT_RGB,0.7};
+    colorDisabled[] = {COLOR_TEXT_RGB,0.25};
+    colorFocused[] = {COLOR_TEXT_RGBA};
+    colorBackground[] = {COLOR_BACKGROUND_RGBA};
+    colorBackgroundActive[] = {COLOR_BACKGROUND_RGBA};
+    colorBackgroundDisabled[] = {COLOR_BACKGROUND_RGBA};
+    colorShadow[] = {1,1,1,0.5};
+    offsetPressedX = 0;
+    offsetPressedY = 0;
+    size = SIZEEX_PURISTA_L;
+    sizeEx = SIZEEX_PURISTA_L;
+};
+
 class MARS_gui_ctrlButtonStaticAlignRight: MARS_gui_ctrlButtonStatic {
     style = ST_MULTI + ST_NO_RECT + ST_RIGHT + ST_VCENTER;
     size = SIZEEX_PURISTA_M;
@@ -123,4 +138,27 @@ class MARS_gui_ctrlButtonStaticFooter: MARS_gui_ctrlButtonStaticAlignRight {
     colorBackgroundDisabled[] = {COLOR_BACKGROUND_RGBA};
     colorBackgroundActive[] = {COLOR_BACKGROUND_RGBA};
     colorFocused[] = {COLOR_BACKGROUND_RGBA};
+};
+
+class MARS_gui_ctrlButtonVectorX: MARS_gui_ctrlButtonCheckboxLabel {
+    style = ST_MULTI + ST_NO_RECT + ST_CENTER + ST_VCENTER;
+    colorText[] = {COLOR_TEXT_RGBA};
+    colorBackground[] = {COLOR_POSX_RGBA};
+    colorBackgroundActive[] = {COLOR_POSX_RGBA};
+    colorBackgroundDisabled[] = {COLOR_POSX_RGBA};
+    text = "X";
+};
+
+class MARS_gui_ctrlButtonVectorY: MARS_gui_ctrlButtonVectorX {
+    colorBackground[] = {COLOR_POSY_RGBA};
+    colorBackgroundActive[] = {COLOR_POSY_RGBA};
+    colorBackgroundDisabled[] = {COLOR_POSY_RGBA};
+    text = "Y";
+};
+
+class MARS_gui_ctrlButtonVectorZ: MARS_gui_ctrlButtonVectorX {
+    colorBackground[] = {COLOR_POSZ_RGBA};
+    colorBackgroundActive[] = {COLOR_POSZ_RGBA};
+    colorBackgroundDisabled[] = {COLOR_POSZ_RGBA};
+    text = "Z";
 };
