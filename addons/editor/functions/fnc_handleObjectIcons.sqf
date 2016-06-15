@@ -139,7 +139,7 @@ GVAR(groupIcons) = [];
             drawLine3D [
                 [(_unitPos select 0), (_unitPos select 1), (_unitPos select 2) + 1],
                 [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + 1],
-                _color
+                [(_color select 0), (_color select 1), (_color select 2), 0.25]
             ];
         };
 
@@ -147,7 +147,7 @@ GVAR(groupIcons) = [];
 
         false
     } count (_grpUnits select {
-        (!(_x in _groupRenderedVehicles) && (((ASLtoAGL (getPosASLVisual _x)) distance GVAR(camPos)) > GVAR(iconDrawDistance)))
+        (!(_x in _groupRenderedVehicles) && {(((ASLtoAGL (getPosASLVisual _x)) distance GVAR(camPos)) < GVAR(iconDrawDistance))})
     });
 
     false
@@ -155,7 +155,7 @@ GVAR(groupIcons) = [];
     (!(side _x in EXCLUDED_SIDES) &&
     {(count (units _x) > 0)} && {
         (alive (leader _x) &&
-        ((ASLtoAGL (getPosASLVisual (leader _x))) distance GVAR(camPos)) < GVAR(iconDrawDistance))
+        ((ASLtoAGL (getPosASLVisual (leader _x))) distance GVAR(camPos)) < (GVAR(iconDrawDistance) / 2))
     })
 });
 
@@ -193,5 +193,5 @@ GVAR(groupIcons) = [];
 
     false
 } count ((EMPTY_ARRAY + (vehicles select {count crew _x == 0})) select {
-    ((count (crew _x) == 0) && (((ASLtoAGL (getPosASLVisual _x)) distance GVAR(camPos)) > GVAR(iconDrawDistance)))
+    ((count (crew _x) == 0) && (((ASLtoAGL (getPosASLVisual _x)) distance GVAR(camPos)) < GVAR(iconDrawDistance)))
 });
