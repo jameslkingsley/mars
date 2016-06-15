@@ -24,7 +24,13 @@ if (_objects isEqualTo []) then {
     if (_target == GVAR(prepSurfaceSphere)) exitWith {};
 
     if (isNull _target) then {
-        GVAR(selection) = [];
+        private _selectedUnit = [] call FUNC(selectUnitIcon);
+
+        if (isNull _selectedUnit) then {
+            GVAR(selection) = [];
+        } else {
+            [_selectedUnit, !(vehicle _selectedUnit == _selectedUnit)] call FUNC(highlightObject);
+        };
     } else {
         [_target, !(vehicle _target == _target)] call FUNC(highlightObject);
     };

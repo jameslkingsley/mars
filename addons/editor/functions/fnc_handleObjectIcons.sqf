@@ -21,6 +21,7 @@
 #define EXCLUDED_SIDES [sideAmbientLife]
 
 GVAR(groupIcons) = [];
+GVAR(unitIcons) = [];
 
 {
     _grp = _x;
@@ -144,6 +145,11 @@ GVAR(groupIcons) = [];
         };
 
         _groupRenderedVehicles pushBackUnique _unit;
+
+        GVAR(unitIcons) pushBack [
+            _unitPos,
+            _unit
+        ];
 
         false
     } count (_grpUnits select {

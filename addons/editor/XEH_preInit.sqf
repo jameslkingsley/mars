@@ -42,6 +42,7 @@ GVAR(currentCursor) = "";
 
 // Icons
 GVAR(groupIcons) = [];
+GVAR(unitIcons) = [];
 GVAR(activeGroupIcon) = grpNull;
 GVAR(iconHoverSize) = [QGVAR(iconHoverSize), ICON_HOVER_SIZE] call CFUNC(loadSetting);
 GVAR(iconDrawDistance) = [QGVAR(iconDrawDistance), ICON_FADE_DISTANCE] call CFUNC(loadSetting);

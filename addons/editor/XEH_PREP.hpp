@@ -53,4 +53,5 @@ PREP(setCursor);
 PREP(handleCursor);
 PREP(toggleEditPlayers);
 PREP(selectGroupIcon);
+PREP(selectUnitIcon);
 PREP(openEditorSettings);
