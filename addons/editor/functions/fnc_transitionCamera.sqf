@@ -34,7 +34,7 @@ _camera = GVAR(freeCamera);
 _camera cameraEffect ["internal", "back"];
 
 // Apply the camera zoom
-_camera camSetFov -(linearConversion [0.01,2,GVAR(camZoom),-2,-0.01,true]);
+_camera camSetFov GVAR(camZoom);
 _camera camCommit 0;
 
 // Agent is switched to in free cam to hide death table and prevent AI chat while allowing icons to draw (also prevents systemChat and unit HUD)
