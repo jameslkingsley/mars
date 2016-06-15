@@ -38,6 +38,8 @@
 #define MENU_Y safezoneY
 #define MENU_HEIGHT (MENUBAR_H * (pixelH * pixelScale * pixelGrid))
 #define CAM_SHIFT_SPEED_COEF 5
+#define CAM_DEFAULT_SPEED 1.5
+#define CAM_DEFAULT_ZOOM 1
 
 #define TYPE_SEARCH ["Man","Car","Air","Tank","Truck","Ship"]
 #define FULL_TYPE_SEARCH [(screenToWorld GVAR(mousePos)), TYPE_SEARCH, 4]
@@ -52,6 +54,7 @@
 #define ICON_FADE_DISTANCE 1500
 #define BOX_FADE_DISTANCE 500
 #define ICON_LEADER_HEIGHT 7.5
+#define ICON_HOVER_SIZE 1.2
 
 #define AB_TREE_POS [\
         (0.85 * safeZoneW + safeZoneX),\

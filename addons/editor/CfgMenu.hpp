@@ -14,8 +14,8 @@ class GVARMAIN(menu) {
         class settings {
             displayName = "Settings";
             class camera {
-                displayName = "Camera";
-                action = QUOTE([ARR_2(QUOTE(QUOTE(ADDON)), 'settings_camera')] call EFUNC(attributes,openAttributes));
+                displayName = "Editor";
+                action = QUOTE([] call FUNC(openEditorSettings));
             };
         };
     };

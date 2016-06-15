@@ -31,12 +31,18 @@ if (GVAR(isSet)) exitWith {};
 // Initalize camera variables
 GVAR(camBoom) = 0;
 GVAR(camDolly) = [0,0];
+GVAR(camSpeed) = [QGVAR(camSpeed), CAM_DEFAULT_SPEED] call CFUNC(loadSetting);
+GVAR(camZoom) = [QGVAR(camZoom), CAM_DEFAULT_ZOOM] call CFUNC(loadSetting);
 
 // Initalize display variables
 GVAR(heldKeys) = [];
 GVAR(heldKeys) resize 255;
 GVAR(mouse) = [false,false];
 GVAR(mousePos) = [0.5,0.5];
+
+// Initalize icon variables
+GVAR(iconHoverSize) = [QGVAR(iconHoverSize), ICON_HOVER_SIZE] call CFUNC(loadSetting);
+GVAR(iconDrawDistance) = [QGVAR(iconDrawDistance), ICON_FADE_DISTANCE] call CFUNC(loadSetting);
 
 // Initalize the camera objects
 GVAR(freeCamera) = "Camera" camCreate (ASLtoATL GVAR(camPos));
