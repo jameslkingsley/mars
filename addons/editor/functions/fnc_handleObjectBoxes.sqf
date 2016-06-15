@@ -20,7 +20,15 @@ _object = [] call FUNC(objectUnderCursor);
 
 if (isNull _object) exitWith {
     if (!GVAR(isDragging)) then {
-        [] call FUNC(setCursor);
+        private _selectedGroup = [] call FUNC(selectGroupIcon);
+
+        if (isNull _selectedGroup) then {
+            GVAR(activeGroupIcon) = objNull;
+            [] call FUNC(setCursor);
+        } else {
+            GVAR(activeGroupIcon) = _selectedGroup;
+            ["select"] call FUNC(setCursor);
+        };
     };
 };
 

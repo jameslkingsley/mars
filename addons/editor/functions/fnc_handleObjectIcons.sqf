@@ -19,6 +19,9 @@
 
 #define EMPTY_ARRAY GVAR(placedStaticObjects)
 #define EXCLUDED_SIDES [sideAmbientLife]
+#define ICON_LARGE_SCALE 1.2
+
+GVAR(groupIcons) = [];
 
 {
     _grp = _x;
@@ -32,20 +35,39 @@
             if (alive _leader && _leaderDistance < ICON_FADE_DISTANCE) then {
                 _alpha = [(linearConversion [0, ICON_FADE_DISTANCE, _leaderDistance, 1, 0, true]), 1] select (_leader in GVAR(selection));
                 _color = MARS_SIDECOLOR(side _grp);
-                _color set [3, (_alpha max 0.2)];
+                _color set [3, (_alpha max 0.1) max 0.5];
+
+                _iconWidth = 1;
+                _iconHeight = 1;
+
+                if (!isNull GVAR(activeGroupIcon) && {GVAR(activeGroupIcon) == _grp}) then {
+                    _alpha = 1;
+                    _color set [3, 1];
+                    _iconWidth = ICON_LARGE_SCALE;
+                    _iconHeight = ICON_LARGE_SCALE;
+                };
+
+                if (_leader in GVAR(selection)) then {
+                    _alpha = 1;
+                    _color set [3, 1];
+                    _iconWidth = ICON_LARGE_SCALE;
+                    _iconHeight = ICON_LARGE_SCALE;
+                };
                 
                 _texture = _grp getVariable [QGVAR(iconTexture), ""];
                 if (_texture == "") then {
                     _texture = [([_grp] call EFUNC(common,getMarkerType))] call EFUNC(common,getMarkerTexture);
                     _grp setVariable [QGVAR(iconTexture), _texture];
                 };
+
+                _grpIconPos = [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + ICON_LEADER_HEIGHT];
                 
                 drawIcon3D [
                     _texture,
                     _color,
-                    [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + ICON_LEADER_HEIGHT],
-                    1,
-                    1,
+                    _grpIconPos,
+                    _iconWidth,
+                    _iconHeight,
                     0,
                     "",
                     0,
@@ -54,8 +76,13 @@
                 
                 drawLine3D [
                     _leaderPos,
-                    [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + ICON_LEADER_HEIGHT],
+                    _grpIconPos,
                     [0,0,0,_alpha]
+                ];
+
+                GVAR(groupIcons) pushBack [
+                    _grpIconPos,
+                    _grp
                 ];
             };
             

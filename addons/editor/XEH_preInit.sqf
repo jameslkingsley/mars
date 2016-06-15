@@ -40,6 +40,10 @@ GVAR(placedStaticObjects) = [];
 GVAR(prepSurfaceSphere) = objNull;
 GVAR(currentCursor) = "";
 
+// Icons
+GVAR(groupIcons) = [];
+GVAR(activeGroupIcon) = grpNull;
+
 // Asset Browser
 GVAR(tabs) = [];
 GVAR(subtabs) = [];

@@ -52,3 +52,4 @@ PREP(destroySurfaceSphere);
 PREP(setCursor);
 PREP(handleCursor);
 PREP(toggleEditPlayers);
+PREP(selectGroupIcon);

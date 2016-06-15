@@ -3,7 +3,7 @@
  * Handles selecting an object via left click
  *
  * Arguments:
- * None
+ * 0: Objects to select (optional) <ARRAY>
  *
  * Return Value:
  * None
@@ -16,12 +16,22 @@
 
 #include "script_component.hpp"
 
-private _target = [] call FUNC(objectUnderCursor);
+params [["_objects", [], [[]]]];
 
-if (_target == GVAR(prepSurfaceSphere)) exitWith {};
+if (_objects isEqualTo []) then {
+    private _target = [] call FUNC(objectUnderCursor);
 
-if (isNull _target) then {
-    GVAR(selection) = [];
+    if (_target == GVAR(prepSurfaceSphere)) exitWith {};
+
+    if (isNull _target) then {
+        GVAR(selection) = [];
+    } else {
+        [_target, !(vehicle _target == _target)] call FUNC(highlightObject);
+    };
 } else {
-    [_target, !(vehicle _target == _target)] call FUNC(highlightObject);
+    if (!GVAR(ctrlKey)) then {
+        GVAR(selection) = [];
+    };
+
+    {[_x, !(vehicle _x == _x), false] call FUNC(highlightObject);false} count _objects;
 };

@@ -94,7 +94,13 @@ switch (toLower _mode) do {
 
             // Left Click & Can Context
             case (_button == 0 && GVAR(canContext)): {
-                [] call FUNC(selectObject);
+                private _selectedGroup = [] call FUNC(selectGroupIcon);
+
+                if (isNull _selectedGroup) then {
+                    [] call FUNC(selectObject);
+                } else {
+                    [units _selectedGroup] call FUNC(selectObject);
+                };
             };
 
             // Right Click
