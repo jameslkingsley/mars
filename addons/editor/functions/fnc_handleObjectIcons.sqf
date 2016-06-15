@@ -27,7 +27,7 @@ GVAR(groupIcons) = [];
     _leader = leader _grp;
     _leaderPos = ASLtoAGL (getPosASLVisual _leader);
     _leaderDistance = _leaderPos distance GVAR(camPos);
-    
+
     _alpha = [(linearConversion [0, GVAR(iconDrawDistance), _leaderDistance, 1, 0, true]), 1] select (_leader in GVAR(selection));
     _color = MARS_SIDECOLOR(side _grp);
     _color set [3, (_alpha max 0.1) max 0.5];
@@ -48,7 +48,7 @@ GVAR(groupIcons) = [];
         _iconWidth = GVAR(iconHoverSize);
         _iconHeight = GVAR(iconHoverSize);
     };
-    
+
     _texture = _grp getVariable [QGVAR(iconTexture), ""];
     if (_texture == "") then {
         _texture = [([_grp] call EFUNC(common,getMarkerType))] call EFUNC(common,getMarkerTexture);
@@ -56,7 +56,7 @@ GVAR(groupIcons) = [];
     };
 
     _grpIconPos = [(_leaderPos select 0), (_leaderPos select 1), (_leaderPos select 2) + ICON_LEADER_HEIGHT];
-    
+
     drawIcon3D [
         _texture,
         _color,
@@ -68,7 +68,7 @@ GVAR(groupIcons) = [];
         0,
         0
     ];
-    
+
     drawLine3D [
         _leaderPos,
         _grpIconPos,
@@ -79,10 +79,10 @@ GVAR(groupIcons) = [];
         _grpIconPos,
         _grp
     ];
-    
+
     _groupRenderedVehicles = [];
     _grpUnits = units _grp;
-    
+
     {
         _unit = vehicle _x;
         _unitPos = ASLtoAGL (getPosASLVisual _unit);
@@ -90,14 +90,14 @@ GVAR(groupIcons) = [];
         _alpha = [(linearConversion [0, BOX_FADE_DISTANCE, _unitDistance, 1, 0, true]), 1] select (_unit in GVAR(selection));
         _color = if (alive _unit) then {MARS_SIDECOLOR(side group _unit)} else {[0,0,0,1]};
         _color set [3, _alpha];
-        
+
         _iconTexture = _unit getVariable [QGVAR(iconTexture), ""];
         if (_iconTexture == "") then {
             _icon = getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "icon");
             _iconTexture = getText (configfile >> "CfgVehicleIcons" >> (getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "icon")));
             _unit setVariable [QGVAR(iconTexture), _iconTexture];
         };
-        
+
         if (isPlayer _unit) then {
             _selColor = [0,0,0,_alpha];
             if (alive _unit) then {
@@ -109,7 +109,7 @@ GVAR(groupIcons) = [];
             } else {
                 _selColor = [0,0,0,_alpha];
             };
-            
+
             drawIcon3D [
                 "\A3\ui_f\data\igui\cfg\islandmap\iconplayer_ca.paa",
                 _selColor,
@@ -122,7 +122,7 @@ GVAR(groupIcons) = [];
                 0.031
             ];
         };
-        
+
         drawIcon3D [
             _iconTexture,
             _color,
@@ -134,7 +134,7 @@ GVAR(groupIcons) = [];
             1,
             0
         ];
-        
+
         if ({_x in GVAR(selection)} count _grpUnits > 0) then {
             drawLine3D [
                 [(_unitPos select 0), (_unitPos select 1), (_unitPos select 2) + 1],
@@ -142,14 +142,14 @@ GVAR(groupIcons) = [];
                 _color
             ];
         };
-        
+
         _groupRenderedVehicles pushBackUnique _unit;
-        
+
         false
     } count (_grpUnits select {
         (!(_x in _groupRenderedVehicles) && (((ASLtoAGL (getPosASLVisual _x)) distance GVAR(camPos)) > GVAR(iconDrawDistance)))
     });
-    
+
     false
 } count (allGroups select {
     (!(side _x in EXCLUDED_SIDES) &&
@@ -166,19 +166,19 @@ GVAR(groupIcons) = [];
     _alpha = [(linearConversion [0, BOX_FADE_DISTANCE, _vehicleDistance, 1, 0, true]), 1] select (_vehicle in GVAR(selection));
     _color = if (alive _vehicle) then {[COLOR_EMPTY_RGBA]} else {[0,0,0,1]};
     _color set [3, _alpha];
-    
+
     _iconTexture = _vehicle getVariable [QGVAR(iconVehicleTexture), ""];
     if (_iconTexture == "") then {
         _icon = getText (configfile >> "CfgVehicles" >> (typeOf _vehicle) >> "icon");
         _iconTexture = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
         _vehicle setVariable [QGVAR(iconVehicleTexture), _iconTexture];
     };
-    
+
     if (_iconTexture == "") then {
         _iconTexture = "\A3\ui_f\data\map\vehicleicons\iconObject_ca.paa";
         _vehicle setVariable [QGVAR(iconVehicleTexture), _iconTexture];
     };
-    
+
     drawIcon3D [
         _iconTexture,
         _color,
@@ -190,7 +190,7 @@ GVAR(groupIcons) = [];
         1,
         0
     ];
-    
+
     false
 } count ((EMPTY_ARRAY + (vehicles select {count crew _x == 0})) select {
     ((count (crew _x) == 0) && (((ASLtoAGL (getPosASLVisual _x)) distance GVAR(camPos)) > GVAR(iconDrawDistance)))
