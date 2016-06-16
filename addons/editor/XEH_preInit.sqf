@@ -4,6 +4,13 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
+if (IS_SERVER_OR_HC) exitWith {
+    // Is server or headless client
+    GVAR(createObjectRemote) = [];
+    
+    ADDON = true;
+};
+
 // Reset the stored display
 SETUVAR(GVAR(interface),displayNull);
 
@@ -48,7 +55,8 @@ GVAR(iconHoverSize) = [QGVAR(iconHoverSize), ICON_HOVER_SIZE] call CFUNC(loadSet
 GVAR(iconDrawDistance) = [QGVAR(iconDrawDistance), ICON_FADE_DISTANCE] call CFUNC(loadSetting);
 
 // Asset Browser
-GVAR(serializedABData) = [] call FUNC(serializeAssetBrowser);
+uiNamespace setVariable [QGVAR(serializedABData), ([] call FUNC(serializeAssetBrowser))];
+GVAR(serializedABData) = uiNamespace getVariable [QGVAR(serializedABData), []];
 GVAR(tabs) = [];
 GVAR(subtabs) = [];
 GVAR(abCurrentTab) = 0;
@@ -56,6 +64,7 @@ GVAR(abCurrentMode) = 0;
 GVAR(abCurrentSubmode) = 0;
 GVAR(abActiveTree) = -1;
 GVAR(abSelectedObject) = [];
+GVAR(createObjectRemote) = [];
 
 // Context Menu
 GVAR(canContext) = true;
