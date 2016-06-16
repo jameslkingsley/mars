@@ -152,8 +152,6 @@ GVAR(serializedABData) params ["_units", "_objects", "_groups"];
     private _tree = _display displayCtrl _treeIDC;
     tvClear _tree;
 
-    TRACE_1("", _side);
-
     {
         // Factions
         _x params ["_catClassname", "_catGroups"];
@@ -202,5 +200,3 @@ GVAR(serializedABData) params ["_units", "_objects", "_groups"];
 
     false
 } count _groups;
-
-copyToClipboard str _groups;
