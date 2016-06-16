@@ -29,6 +29,7 @@ PREP(onContextClick);
 PREP(handleSelToPos);
 PREP(objectUnderCursor);
 PREP(createAssetBrowser);
+PREP(serializeAssetBrowser);
 PREP(closeMenuStripMenus);
 PREP(createToolbar);
 PREP(onToolbarItemClick);
