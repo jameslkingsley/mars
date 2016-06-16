@@ -5,7 +5,7 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"mars_attributes"};
+        requiredAddons[] = {"mars_attributes", "mars_network"};
         author = ECSTRING(common,MarsTeam);
         authors[] = {"ACE3 Project", "Kingsley"};
         PBO_URL;
