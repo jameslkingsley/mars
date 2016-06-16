@@ -19,28 +19,26 @@
 
 #define SURFACE_OBJECT "Sign_Sphere100cm_F"
 
-if (count GVAR(abSelectedObject) == 0) exitWith {};
+if (GVAR(abSelectedObject) isEqualTo []) exitWith {};
 
-GVAR(abSelectedObject) params ["_type","_classname","_iconTex","_color","_side",["_groupPath",[]]];
+GVAR(abSelectedObject) params ["_type", "_classname", "_iconPath", "_color", "_side", ["_groupConfigStr", ""]];
 
 private _worldPos = screenToWorld GVAR(mousePos);
-private _objectSide = [_side] call EFUNC(common,getSideByInt);
+private _objectSide = [_side] call CFUNC(getSideByInt);
 
-if (count _groupPath > 0) then {
-    _groupPath params ["_root", "_side", "_faction", "_type", "_group"];
-    _groupUnits = "true" configClasses (configFile >> _root >> _side >> _faction >> _type >> _group);
+if (_groupConfigStr != "") then {
+    private _groupConfig = call compile _groupConfigStr;
+    private _groupUnits = "true" configClasses (_groupConfig);
     
     {
-        private ["_offset", "_vehicle", "_icon", "_iconTex", "_position"];
-        
-        _offset = getArray (_x >> "position");
-        _vehicle = getText (_x >> "vehicle");
-        _icon = getText (configFile >> "CfgVehicles" >> _vehicle >> "icon");
-        _iconTex = if (_icon find "\a3\" > -1 || _icon find "\A3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
-        _position = _worldPos vectorAdd _offset;
+        private _offset = getArray (_x >> "position");
+        private _vehicle = getText (_x >> "vehicle");
+        private _icon = getText (configFile >> "CfgVehicles" >> _vehicle >> "icon");
+        private _iconPath = [getText (configFile >> "CfgVehicleIcons" >> _icon), _icon] select ((toLower _icon) find "\" > -1);
+        private _position = _worldPos vectorAdd _offset;
         
         drawIcon3D [
-            _iconTex,
+            _iconPath,
             _color,
             _position,
             1,
@@ -50,10 +48,12 @@ if (count _groupPath > 0) then {
             1,
             0
         ];
-    } forEach _groupUnits;
+        
+        false
+    } count _groupUnits;
 } else {
     drawIcon3D [
-        _iconTex,
+        _iconPath,
         _color,
         _worldPos,
         1,
@@ -67,7 +67,7 @@ if (count _groupPath > 0) then {
 
 _surfacePos = ASLtoAGL ([GVAR(prepSurfaceSphere)] call FUNC(getSurfaceUnderCursor));
 
-if (round(_surfacePos select 2) > round(_worldPos select 2)) then {
+if (round (_surfacePos select 2) > round (_worldPos select 2)) then {
     // Cursor position is over a surface that is higher than the terrain
     [_surfacePos, _objectSide] call FUNC(drawSurfaceSphere);
 } else {
