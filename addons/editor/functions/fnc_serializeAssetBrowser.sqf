@@ -7,7 +7,7 @@
  *
  * Return Value:
  * Nested array (used by createAssetBrowser) <ARRAY>
- * 0: Units
+ * 0: Units [units, objects]
  * 1: Groups
  * 2: Empty
  *
@@ -141,4 +141,59 @@ _objectResult pushBack [
     _cats
 ];
 
-[_unitResult, _objectResult]
+private _groupResult = [];
+
+{
+    _x params ["_treeIDC", "_side"];
+
+    private _sideStr = ["East", "West", "Indep", "Empty"] select _side;
+    private _groups = "true" configClasses (configFile >> "CfgGroups" >> _sideStr);
+    private _iGroups = [];
+
+    {
+        // Groups
+        private _config = _x;
+        private _configName = configName _config;
+        private _cats = "true" configClasses (_config);
+        private _iCats = [];
+
+        {
+            // Categories
+            private _config = _x;
+            private _configName = configName _config;
+            private _items = "true" configClasses (_config);
+            private _iItems = [];
+
+            {
+                private _config = _x;
+                private _configName = configName _config;
+                
+                _iItems pushBack _configName;
+
+                false
+            } count _items;
+
+            _iCats pushBack [_configName, _iItems];
+
+            false
+        } count _cats;
+
+        _iGroups pushBack [_configName, _iCats];
+
+        false
+    } count _groups;
+
+    _groupResult pushBack [
+        _treeIDC,
+        _iGroups
+    ];
+
+    false
+} count [
+    [IDC_ASSETBROWSER_TREE_GROUPS_WEST, SIDE_WEST],
+    [IDC_ASSETBROWSER_TREE_GROUPS_EAST, SIDE_EAST],
+    [IDC_ASSETBROWSER_TREE_GROUPS_GUER, SIDE_GUER],
+    [IDC_ASSETBROWSER_TREE_GROUPS_EMPTY, SIDE_CIV]
+];
+
+[_unitResult, _objectResult, _groupResult]

@@ -25,9 +25,8 @@ params [["_display", displayNull]];
         _tree tvSort [PATH, false];\
     };
 
-GVAR(serializedABData) params ["_units", "_objects"];
+GVAR(serializedABData) params ["_units", "_objects", "_groups"];
 
-// Tabs
 {
     // Trees
     _x params ["_treeIDC", "_factions"];
@@ -81,7 +80,6 @@ GVAR(serializedABData) params ["_units", "_objects"];
     false
 } count _units;
 
-// Tabs
 {
     // Trees
     _x params ["_treeIDC", "_categories"];
@@ -138,3 +136,71 @@ GVAR(serializedABData) params ["_units", "_objects"];
 
     false
 } count _objects;
+
+{
+    // Trees
+    _x params ["_treeIDC", "_factions"];
+
+    private _sideIndex = [
+        IDC_ASSETBROWSER_TREE_GROUPS_EAST,
+        IDC_ASSETBROWSER_TREE_GROUPS_WEST,
+        IDC_ASSETBROWSER_TREE_GROUPS_GUER,
+        IDC_ASSETBROWSER_TREE_GROUPS_EMPTY
+    ] find _treeIDC;
+
+    private _side = ["East", "West", "Indep", "Empty"] select ([3, _sideIndex] select (_sideIndex > -1));
+    private _tree = _display displayCtrl _treeIDC;
+    tvClear _tree;
+
+    TRACE_1("", _side);
+
+    {
+        // Factions
+        _x params ["_catClassname", "_catGroups"];
+
+        private _config = (configFile >> "CfgGroups" >> _side >> _catClassname);
+        private _displayName = getText (_config >> "name");
+        private _factionPath = _tree tvAdd [[], _displayName];
+
+        {
+            // Categories
+            _x params ["_grpClassname", "_items"];
+
+            private _grpDisplayName = getText (configFile >> "CfgGroups" >> _side >> _catClassname >> _grpClassname >> "name");
+            private _grpCatPath = _tree tvAdd [[_factionPath], _grpDisplayName];
+
+            {
+                // Objects
+                private _objectClassname = _x;
+                private _config = (configFile >> "CfgGroups" >> _side >> _catClassname >> _grpClassname >> _objectClassname);
+                private _displayName = getText (_config >> "name");
+                private _icon = getText (_config >> "icon");
+                private _color = [[_sideIndex] call CFUNC(getSideColorByInt), [COLOR_EMPTY_RGBA]] select (_sideIndex == 3);
+
+                if (count _displayName > 0) then {
+                    _objectPath = _tree tvAdd [[_factionPath, _grpCatPath], _displayName];
+                    _tree tvSetData [[_factionPath, _grpCatPath, _objectPath], _objectClassname];
+                    _tree tvSetTooltip [[_factionPath, _grpCatPath, _objectPath], _objectClassname];
+                    _tree tvSetPicture [[_factionPath, _grpCatPath, _objectPath], _icon];
+                    _tree tvSetPictureColor [[_factionPath, _grpCatPath, _objectPath], _color];
+                };
+
+                false
+            } count _items;
+
+            CLEANUP([ARR_2(_factionPath, _grpCatPath)]);
+
+            false
+        } count _catGroups;
+
+        CLEANUP([_factionPath]);
+
+        false
+    } count _factions;
+
+    CLEANUP([]);
+
+    false
+} count _groups;
+
+copyToClipboard str _groups;
