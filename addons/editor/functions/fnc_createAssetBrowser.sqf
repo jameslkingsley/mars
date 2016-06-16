@@ -16,7 +16,7 @@
 
 #include "script_component.hpp"
 
-params [["_display", displayNull]];
+params [["_display", displayNull, [displayNull]]];
 
 #define CLEANUP(PATH)\
     if ((_tree tvCount PATH) == 0) then {\
@@ -57,9 +57,10 @@ GVAR(serializedABData) params ["_units", "_objects", "_groups"];
                 private _displayName = getText (_config >> "displayName");
                 private _icon = getText (_config >> "icon");
                 private _iconPath = [getText (configFile >> "CfgVehicleIcons" >> _icon), _icon] select ((toLower _icon) find "\" > -1);
+                private _data = format ["['unit', '(configFile >> ''CfgVehicles'' >> ''%1'')']", _objectClassname];
 
                 _objectPath = _tree tvAdd [[_factionPath, _catPath], _displayName];
-                _tree tvSetData [[_factionPath, _catPath, _objectPath], _objectClassname];
+                _tree tvSetData [[_factionPath, _catPath, _objectPath], _data];
                 _tree tvSetTooltip [[_factionPath, _catPath, _objectPath], _objectClassname];
                 _tree tvSetPicture [[_factionPath, _catPath, _objectPath], _iconPath];
                 _tree tvSetPictureColor [[_factionPath, _catPath, _objectPath], [_side] call CFUNC(getSideColorByInt)];
@@ -110,10 +111,11 @@ GVAR(serializedABData) params ["_units", "_objects", "_groups"];
                 private _displayName = getText (_config >> "displayName");
                 private _icon = getText (_config >> "icon");
                 private _iconPath = [getText (configFile >> "CfgVehicleIcons" >> _icon), _icon] select ((toLower _icon) find "\" > -1);
+                private _data = format ["['object', '(configFile >> ''CfgVehicles'' >> ''%1'')']", _objectClassname];
 
                 if (count _displayName > 0) then {
                     _objectPath = _tree tvAdd [[_catPath, _subCatPath], _displayName];
-                    _tree tvSetData [[_catPath, _subCatPath, _objectPath], _objectClassname];
+                    _tree tvSetData [[_catPath, _subCatPath, _objectPath], _data];
                     _tree tvSetTooltip [[_catPath, _subCatPath, _objectPath], _objectClassname];
                     _tree tvSetPicture [[_catPath, _subCatPath, _objectPath], _iconPath];
                     _tree tvSetPictureColor [[_catPath, _subCatPath, _objectPath], [_side] call CFUNC(getSideColorByInt)];
@@ -174,10 +176,11 @@ GVAR(serializedABData) params ["_units", "_objects", "_groups"];
                 private _displayName = getText (_config >> "name");
                 private _icon = getText (_config >> "icon");
                 private _color = [[_sideIndex] call CFUNC(getSideColorByInt), [COLOR_EMPTY_RGBA]] select (_sideIndex == 3);
+                private _data = format ["['group', '(configFile >> ''CfgGroups'' >> ''%1'' >> ''%2'' >> ''%3'' >> ''%4'')']", _side, _catClassname, _grpClassname, _objectClassname];
 
                 if (count _displayName > 0) then {
                     _objectPath = _tree tvAdd [[_factionPath, _grpCatPath], _displayName];
-                    _tree tvSetData [[_factionPath, _grpCatPath, _objectPath], _objectClassname];
+                    _tree tvSetData [[_factionPath, _grpCatPath, _objectPath], _data];
                     _tree tvSetTooltip [[_factionPath, _grpCatPath, _objectPath], _objectClassname];
                     _tree tvSetPicture [[_factionPath, _grpCatPath, _objectPath], _icon];
                     _tree tvSetPictureColor [[_factionPath, _grpCatPath, _objectPath], _color];
