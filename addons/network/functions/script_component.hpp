@@ -1,0 +1,1 @@
+#include "\z\mars\addons\network\script_component.hpp"
