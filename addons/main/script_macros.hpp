@@ -248,4 +248,6 @@
 #define INT2BOOL(A) ([false,true] select A)
 #define BOOL2INT(A) ([0,1] select A)
 
+#define IS_SERVER_OR_HC (isServer || !hasInterface)
+
 #include "script_debug.hpp"
