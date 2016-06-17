@@ -28,6 +28,7 @@ GVAR(unitIcons) = [];
     _leader = leader _grp;
     _leaderPos = ASLtoAGL (getPosASLVisual _leader);
     _leaderDistance = _leaderPos distance GVAR(camPos);
+    _grpUnits = units _grp;
 
     _alpha = [(linearConversion [0, GVAR(iconDrawDistance), _leaderDistance, 1, 0, true]), 1] select (_leader in GVAR(selection));
     _color = MARS_SIDECOLOR(side _grp);
@@ -43,7 +44,7 @@ GVAR(unitIcons) = [];
         _iconHeight = GVAR(iconHoverSize);
     };
 
-    if (_leader in GVAR(selection)) then {
+    if ({_x in GVAR(selection)} count _grpUnits == count _grpUnits) then {
         _alpha = 1;
         _color set [3, 1];
         _iconWidth = GVAR(iconHoverSize);
@@ -82,7 +83,7 @@ GVAR(unitIcons) = [];
     ];
 
     _groupRenderedVehicles = [];
-    _grpUnits = units _grp;
+    _hasHighlightedUnit = false;
 
     {
         _unit = vehicle _x;
@@ -91,12 +92,20 @@ GVAR(unitIcons) = [];
         _alpha = [(linearConversion [0, BOX_FADE_DISTANCE, _unitDistance, 1, 0, true]), 1] select (_unit in GVAR(selection));
         _color = if (alive _unit) then {MARS_SIDECOLOR(side group _unit)} else {[0,0,0,1]};
         _color set [3, _alpha];
+        _unitIsUnderCursor = [_unit] call FUNC(isUnitScreenPosUnderCursor);
 
         _iconTexture = _unit getVariable [QGVAR(iconTexture), ""];
         if (_iconTexture == "") then {
             _icon = getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "icon");
             _iconTexture = getText (configfile >> "CfgVehicleIcons" >> (getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "icon")));
             _unit setVariable [QGVAR(iconTexture), _iconTexture];
+        };
+        
+        if (_unitIsUnderCursor && _alpha >= 0.25 && !_hasHighlightedUnit) then {
+            ["select"] call FUNC(setCursor);
+            _alpha = 1;
+            _color set [3, 1];
+            _hasHighlightedUnit = true;
         };
 
         if (isPlayer _unit) then {
