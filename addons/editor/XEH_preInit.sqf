@@ -39,6 +39,7 @@ GVAR(entityList_empty) = 0;
 GVAR(placedStaticObjects) = [];
 GVAR(prepSurfaceSphere) = objNull;
 GVAR(currentCursor) = "";
+GVAR(isInputActive) = false;
 
 // Icons
 GVAR(groupIcons) = [];
@@ -48,6 +49,8 @@ GVAR(iconHoverSize) = [QGVAR(iconHoverSize), ICON_HOVER_SIZE] call CFUNC(loadSet
 GVAR(iconDrawDistance) = [QGVAR(iconDrawDistance), ICON_FADE_DISTANCE] call CFUNC(loadSetting);
 
 // Asset Browser
+uiNamespace setVariable [QGVAR(serializedABData), ([] call FUNC(serializeAssetBrowser))];
+GVAR(serializedABData) = uiNamespace getVariable [QGVAR(serializedABData), []];
 GVAR(tabs) = [];
 GVAR(subtabs) = [];
 GVAR(abCurrentTab) = 0;

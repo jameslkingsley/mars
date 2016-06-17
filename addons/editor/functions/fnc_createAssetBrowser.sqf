@@ -16,240 +16,190 @@
 
 #include "script_component.hpp"
 
-{ // Units
-    _treeIDC = _x select 0;
-    _side = _x select 1;
-    _categories = _x select 2;
-    _tree = GETUVAR(GVAR(interface),displayNull) displayCtrl _treeIDC;
-    tvClear _tree;
-    
-    if (_treeIDC == IDC_ASSETBROWSER_TREE_UNITS_EMPTY) then {
-        _condition = format ["
-            getText (_x >> 'vehicleClass') in %1 &&
-            getNumber (_x >> 'scope') == 2 &&
-            count (getText (_x >> 'displayName')) > 0",
-            _categories
-        ];
-        
-        _units = _condition configClasses (configFile >> "CfgVehicles");
-        _units = _units apply {[_x, getText (_x >> "displayName"), getText (_x >> "vehicleClass")]};
-        _units sort true;
-        
-        _unitVehicleClasses = [];
-        {_unitVehicleClasses pushBackUnique (getText ((_x select 0) >> "vehicleClass"));false} count _units;
-        
-        _vehicleClasses = (format["(configName _x) in %1", _unitVehicleClasses]) configClasses (configFile >> "CfgVehicleClasses");
-        _vehicleClasses = _vehicleClasses apply {[_x, (configName _x), getText (_x >> "displayName")]};
-        _vehicleClasses sort true;
-        
-        {
-            _className = _x select 1;
-            _displayName = _x select 2;
-            _vcPath = _tree tvAdd [[], _displayName];
-            
-            {
-                if ((_x select 2) == _className) then {
-                    private _icon = getText ((_x select 0) >> "icon");
-                    private _iconTex = if ((toLower _icon) find "\a3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
-                    private _side = getNumber ((_x select 0) >> "side");
-                    private _objType = if (getNumber ((_x select 0) >> "isMan") == 1) then {"man"} else {"vehicle"};
-                    private _dataStr = format [
-                        "['%1','%2']",
-                        _objType,
-                        configName (_x select 0)
-                    ];
-                    
-                    _unitPath = _tree tvAdd [[_vcPath], (_x select 1)];
-                    _tree tvSetData [[_vcPath,_unitPath], _dataStr];
-                    _tree tvSetPicture [[_vcPath,_unitPath], _iconTex];
-                    _tree tvSetPictureColor [[_vcPath,_unitPath], [COLOR_EMPTY_RGBA]];
-                    _tree tvSetTooltip [[_vcPath,_unitPath], configName (_x select 0)];
-                };
-                false
-            } count _units;
-            false
-        } count _vehicleClasses;
-    } else {
-        _factions = (format["getNumber (_x >> 'side') in %1", _side]) configClasses (configFile >> "CfgFactionClasses");
-        _factions = _factions apply {[_x, getText (_x >> "displayName")]};
-        _factions sort true;
-        
-        {
-            _factionClass = configName (_x select 0);
-            _factionName = _x select 1;
-            _factionParent = _tree tvAdd [[], _factionName];
-            
-            _condition = format ["
-                getNumber (_x >> 'type') in [0,1,2] &&
-                getText (_x >> 'faction') == '%1' &&
-                getNumber (_x >> 'scope') == 2 &&
-                getNumber (_x >> 'side') in %2 &&
-                count (getText (_x >> 'displayName')) > 0",
-                _factionClass,
-                _side
-            ];
-            
-            _units = _condition configClasses (configFile >> "CfgVehicles");
-            _units = _units apply {[_x, getText (_x >> "displayName"), getText (_x >> "vehicleClass")]};
-            _units sort true;
-            
-            _unitVehicleClasses = [];
-            {_unitVehicleClasses pushBackUnique (getText ((_x select 0) >> "vehicleClass"));false} count _units;
-            
-            _vehicleClasses = (format["(configName _x) in %1", _unitVehicleClasses]) configClasses (configFile >> "CfgVehicleClasses");
-            _vehicleClasses = _vehicleClasses apply {[_x, (configName _x), getText (_x >> "displayName")]};
-            _vehicleClasses sort true;
-            
-            {
-                _className = _x select 1;
-                _displayName = _x select 2;
-                _vcPath = _tree tvAdd [[_factionParent], _displayName];
-                
-                {
-                    if ((_x select 2) == _className) then {
-                        private _icon = getText ((_x select 0) >> "icon");
-                        private _iconTex = if ((toLower _icon) find "\a3\" > -1) then {_icon} else {getText (configFile >> "CfgVehicleIcons" >> _icon)};
-                        private _side = getNumber ((_x select 0) >> "side");
-                        private _objType = if (getNumber ((_x select 0) >> "isMan") == 1) then {"man"} else {"vehicle"};
-                        private _dataStr = format [
-                            "['%1','%2']",
-                            _objType,
-                            configName (_x select 0)
-                        ];
-                        
-                        _unitPath = _tree tvAdd [[_factionParent,_vcPath], (_x select 1)];
-                        _tree tvSetData [[_factionParent,_vcPath,_unitPath], _dataStr];
-                        _tree tvSetPicture [[_factionParent,_vcPath,_unitPath], _iconTex];
-                        _tree tvSetPictureColor [[_factionParent,_vcPath,_unitPath], [_side] call EFUNC(common,getSideColorByInt)];
-                        _tree tvSetTooltip [[_factionParent,_vcPath,_unitPath], configName (_x select 0)];
-                    };
-                    false
-                } count _units;
-                false
-            } count _vehicleClasses;
-            false
-        } count _factions;
-    };
-    
-    _tree ctrlShow false;
-    _tree ctrlEnable false;
-    false
-} count [
-    [IDC_ASSETBROWSER_TREE_UNITS_WEST, [SIDE_WEST], AB_CATEGORY_UNITS],
-    [IDC_ASSETBROWSER_TREE_UNITS_EAST, [SIDE_EAST], AB_CATEGORY_UNITS],
-    [IDC_ASSETBROWSER_TREE_UNITS_GUER, [SIDE_GUER], AB_CATEGORY_UNITS],
-    [IDC_ASSETBROWSER_TREE_UNITS_CIV, [SIDE_CIV], AB_CATEGORY_UNITS],
-    [IDC_ASSETBROWSER_TREE_UNITS_EMPTY, [SIDE_EMPTY], AB_CATEGORY_OBJECTS]
-];
+params [["_display", displayNull, [displayNull]]];
 
-{ // Groups
-    _treeIDC = _x select 0;
-    _side = _x select 1;
-    
-    if (_treeIDC != IDC_ASSETBROWSER_TREE_GROUPS_CIV) then {
-        _tree = GETUVAR(GVAR(interface),displayNull) displayCtrl _treeIDC;
-        tvClear _tree;
-        
-        if (_treeIDC == IDC_ASSETBROWSER_TREE_GROUPS_EMPTY) then {
-            _condition = format ["
-                getText (_x >> 'vehicleClass') in %1 &&
-                getNumber (_x >> 'scope') == 2 &&
-                count (getText (_x >> 'displayName')) > 0",
-                _categories
-            ];
-            
-            _units = _condition configClasses (configFile >> "CfgVehicles");
-            _units = _units apply {[_x, getText (_x >> "displayName"), getText (_x >> "vehicleClass")]};
-            _units sort true;
-            
-            _unitVehicleClasses = [];
-            {_unitVehicleClasses pushBackUnique (getText ((_x select 0) >> "vehicleClass"));false} count _units;
-            
-            _vehicleClasses = (format["(configName _x) in %1", _unitVehicleClasses]) configClasses (configFile >> "CfgVehicleClasses");
-            _vehicleClasses = _vehicleClasses apply {[_x, (configName _x), getText (_x >> "displayName")]};
-            _vehicleClasses sort true;
-            
-            {
-                _className = _x select 1;
-                _displayName = _x select 2;
-                _vcPath = _tree tvAdd [[], _displayName];
-                
-                {
-                    if ((_x select 2) == _className) then {
-                        private _icon = getText ((_x select 0) >> "icon");
-                        private _side = getNumber ((_x select 0) >> "side");
-                        private _dataStr = format ["['group','%1']", configName (_x select 0)];
-                        
-                        _unitPath = _tree tvAdd [[_vcPath], (_x select 1)];
-                        _tree tvSetData [[_vcPath,_unitPath], _dataStr];
-                        _tree tvSetPicture [[_vcPath,_unitPath], _icon];
-                        _tree tvSetPictureColor [[_vcPath,_unitPath], [COLOR_EMPTY_RGBA]];
-                        _tree tvSetTooltip [[_vcPath,_unitPath], configName (_x select 0)];
-                    };
-                    false
-                } count _units;
-                false
-            } count _vehicleClasses;
-        } else {
-            _grpSide = switch (_side) do {
-                case SIDE_WEST: {"West"};
-                case SIDE_EAST: {"East"};
-                case SIDE_GUER: {"Indep"};
-                case SIDE_EMPTY: {"Empty"};
-            };
-            
-            _groups = "count (getText (_x >> 'name')) > 0" configClasses (configFile >> "CfgGroups" >> _grpSide);
-            _groups = _groups apply {[_x, getText (_x >> "name")]};
-            _groups sort true;
-            
-            {
-                private _cfg = _x select 0;
-                private _name = _x select 1;
-                
-                _grpClassname = configName (_cfg);
-                _grpParent = _tree tvAdd [[], _name];
-                _cats = "true" configClasses (_cfg);
-                _cats = _cats apply {[_x, getText (_x >> "name")]};
-                _cats sort true;
-                
-                {
-                    private _name = _x select 1;
-                    private _entities = "true" configClasses (_x select 0);
-                    _catClassname = configName (_x select 0);
-                    _entities = _entities apply {[_x, getText (_x >> "name")]};
-                    _entities sort true;
-                    _catParent = _tree tvAdd [[_grpParent], _name];
-                    
-                    {
-                        private _entClassname = configName ((_x select 0));
-                        private _icon = getText ((_x select 0) >> "icon");
-                        private _side = getNumber ((_x select 0) >> "side");
-                        private _dataStr = format [
-                            "['group','%1',%2]",
-                            configName (_x select 0),
-                            ["CfgGroups", _grpSide, _grpClassname, _catClassname, _entClassname]
-                        ];
-                        
-                        _entParent = _tree tvAdd [[_grpParent,_catParent], (_x select 1)];
-                        _tree tvSetData [[_grpParent,_catParent,_entParent], _dataStr];
-                        _tree tvSetPicture [[_grpParent,_catParent,_entParent], _icon];
-                        _tree tvSetPictureColor [[_grpParent,_catParent,_entParent], [_side] call EFUNC(common,getSideColorByInt)];
-                        false
-                    } count _entities;
-                    false
-                } count _cats;
-                false
-            } count _groups;
-        };
-        
-        _tree ctrlShow false;
-        _tree ctrlEnable false;
-        false
+#define CLEANUP(PATH)\
+    if ((_tree tvCount PATH) == 0) then {\
+        _tree tvDelete PATH;\
+    } else {\
+        _tree tvSort [PATH, false];\
     };
-} count [
-    [IDC_ASSETBROWSER_TREE_GROUPS_WEST, SIDE_WEST],
-    [IDC_ASSETBROWSER_TREE_GROUPS_EAST, SIDE_EAST],
-    [IDC_ASSETBROWSER_TREE_GROUPS_GUER, SIDE_GUER],
-    [IDC_ASSETBROWSER_TREE_GROUPS_CIV, SIDE_CIV],
-    [IDC_ASSETBROWSER_TREE_GROUPS_EMPTY, SIDE_EMPTY]
-];
+
+GVAR(serializedABData) params ["_units", "_objects", "_groups"];
+
+{
+    // Trees
+    _x params ["_treeIDC", "_factions"];
+
+    private _tree = _display displayCtrl _treeIDC;
+    tvClear _tree;
+
+    {
+        // Factions
+        _x params ["_factionClassname", "_categories"];
+
+        private _config = (configFile >> "CfgFactionClasses" >> _factionClassname);
+        private _displayName = getText (_config >> "displayName");
+        private _side = getNumber (_config >> "side");
+        private _factionPath = _tree tvAdd [[], _displayName];
+
+        {
+            // Categories
+            _x params ["_categoryClassname", "_objects"];
+
+            private _catDisplayName = getText (configFile >> "CfgEditorSubcategories" >> _categoryClassname >> "displayName");
+            private _catPath = _tree tvAdd [[_factionPath], _catDisplayName];
+
+            {
+                // Objects
+                private _objectClassname = _x;
+                private _config = (configFile >> "CfgVehicles" >> _objectClassname);
+                private _displayName = getText (_config >> "displayName");
+                private _icon = getText (_config >> "icon");
+                private _iconPath = [getText (configFile >> "CfgVehicleIcons" >> _icon), _icon] select ((toLower _icon) find "\" > -1);
+                private _data = format ["['unit', '(configFile >> ''CfgVehicles'' >> ''%1'')']", _objectClassname];
+
+                _objectPath = _tree tvAdd [[_factionPath, _catPath], _displayName];
+                _tree tvSetData [[_factionPath, _catPath, _objectPath], _data];
+                _tree tvSetTooltip [[_factionPath, _catPath, _objectPath], _objectClassname];
+                _tree tvSetPicture [[_factionPath, _catPath, _objectPath], _iconPath];
+                _tree tvSetPictureColor [[_factionPath, _catPath, _objectPath], [_side] call CFUNC(getSideColorByInt)];
+
+                false
+            } count _objects;
+
+            CLEANUP([ARR_2(_factionPath, _catPath)]);
+
+            false
+        } count _categories;
+
+        CLEANUP([_factionPath]);
+
+        false
+    } count _factions;
+
+    false
+} count _units;
+
+{
+    // Trees
+    _x params ["_treeIDC", "_categories"];
+
+    private _tree = _display displayCtrl _treeIDC;
+    tvClear _tree;
+
+    {
+        // Categories
+        _x params ["_catClassname", "_subCategories"];
+
+        private _config = (configFile >> "CfgEditorCategories" >> _catClassname);
+        private _displayName = getText (_config >> "displayName");
+        private _side = SIDE_EMPTY;
+        private _catPath = _tree tvAdd [[], _displayName];
+
+        {
+            // Categories
+            _x params ["_subCatClassname", "_objects"];
+
+            private _subCatDisplayName = getText (configFile >> "CfgEditorSubcategories" >> _subCatClassname >> "displayName");
+            private _subCatPath = _tree tvAdd [[_catPath], _subCatDisplayName];
+
+            {
+                // Objects
+                private _objectClassname = _x;
+                private _config = (configFile >> "CfgVehicles" >> _objectClassname);
+                private _displayName = getText (_config >> "displayName");
+                private _icon = getText (_config >> "icon");
+                private _iconPath = [getText (configFile >> "CfgVehicleIcons" >> _icon), _icon] select ((toLower _icon) find "\" > -1);
+                private _data = format ["['object', '(configFile >> ''CfgVehicles'' >> ''%1'')']", _objectClassname];
+
+                if (count _displayName > 0) then {
+                    _objectPath = _tree tvAdd [[_catPath, _subCatPath], _displayName];
+                    _tree tvSetData [[_catPath, _subCatPath, _objectPath], _data];
+                    _tree tvSetTooltip [[_catPath, _subCatPath, _objectPath], _objectClassname];
+                    _tree tvSetPicture [[_catPath, _subCatPath, _objectPath], _iconPath];
+                    _tree tvSetPictureColor [[_catPath, _subCatPath, _objectPath], [_side] call CFUNC(getSideColorByInt)];
+                };
+
+                false
+            } count _objects;
+
+            CLEANUP([ARR_2(_catPath, _subCatPath)]);
+
+            false
+        } count _subCategories;
+
+        CLEANUP([_catPath]);
+
+        false
+    } count _categories;
+
+    CLEANUP([]);
+
+    false
+} count _objects;
+
+{
+    // Trees
+    _x params ["_treeIDC", "_factions"];
+
+    private _sideIndex = [
+        IDC_ASSETBROWSER_TREE_GROUPS_EAST,
+        IDC_ASSETBROWSER_TREE_GROUPS_WEST,
+        IDC_ASSETBROWSER_TREE_GROUPS_GUER,
+        IDC_ASSETBROWSER_TREE_GROUPS_EMPTY
+    ] find _treeIDC;
+
+    private _side = ["East", "West", "Indep", "Empty"] select ([3, _sideIndex] select (_sideIndex > -1));
+    private _tree = _display displayCtrl _treeIDC;
+    tvClear _tree;
+
+    {
+        // Factions
+        _x params ["_catClassname", "_catGroups"];
+
+        private _config = (configFile >> "CfgGroups" >> _side >> _catClassname);
+        private _displayName = getText (_config >> "name");
+        private _factionPath = _tree tvAdd [[], _displayName];
+
+        {
+            // Categories
+            _x params ["_grpClassname", "_items"];
+
+            private _grpDisplayName = getText (configFile >> "CfgGroups" >> _side >> _catClassname >> _grpClassname >> "name");
+            private _grpCatPath = _tree tvAdd [[_factionPath], _grpDisplayName];
+
+            {
+                // Objects
+                private _objectClassname = _x;
+                private _config = (configFile >> "CfgGroups" >> _side >> _catClassname >> _grpClassname >> _objectClassname);
+                private _displayName = getText (_config >> "name");
+                private _icon = getText (_config >> "icon");
+                private _color = [[_sideIndex] call CFUNC(getSideColorByInt), [COLOR_EMPTY_RGBA]] select (_sideIndex == 3);
+                private _data = format ["['group', '(configFile >> ''CfgGroups'' >> ''%1'' >> ''%2'' >> ''%3'' >> ''%4'')']", _side, _catClassname, _grpClassname, _objectClassname];
+
+                if (count _displayName > 0) then {
+                    _objectPath = _tree tvAdd [[_factionPath, _grpCatPath], _displayName];
+                    _tree tvSetData [[_factionPath, _grpCatPath, _objectPath], _data];
+                    _tree tvSetTooltip [[_factionPath, _grpCatPath, _objectPath], _objectClassname];
+                    _tree tvSetPicture [[_factionPath, _grpCatPath, _objectPath], _icon];
+                    _tree tvSetPictureColor [[_factionPath, _grpCatPath, _objectPath], _color];
+                };
+
+                false
+            } count _items;
+
+            CLEANUP([ARR_2(_factionPath, _grpCatPath)]);
+
+            false
+        } count _catGroups;
+
+        CLEANUP([_factionPath]);
+
+        false
+    } count _factions;
+
+    CLEANUP([]);
+
+    false
+} count _groups;

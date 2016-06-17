@@ -27,7 +27,15 @@ switch (toLower _mode) do {
         SETUVAR(GVAR(cursorHelper),(_display displayCtrl IDC_CURSORHELPER));
         
         // [] call FUNC(createEntityList);
-        [] call FUNC(createAssetBrowser);
+        [_display] call FUNC(createAssetBrowser);
+        
+        // Disable search controls
+        {(_display displayCtrl _x) ctrlEnable false} forEach [
+            IDC_ASSETBROWSER_SEARCH_CREATE,
+            IDC_ASSETBROWSER_SEARCH_CREATE_BTN,
+            IDC_LEFTPANEL_EDIT_SEARCH,
+            IDC_LEFTPANEL_EDIT_SEARCHBTN
+        ];
     };
     case "onunload": {
         // Kill GUI PFHs

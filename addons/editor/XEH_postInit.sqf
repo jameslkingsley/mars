@@ -8,6 +8,7 @@ if (!isNull player) then {
     GVAR(camPos) = ATLtoASL [(getPosATL player) select 0, (getPosATL player) select 1, 10];
 };
 
+// Is this needed?
 createCenter west;
 createCenter east;
 createCenter resistance;

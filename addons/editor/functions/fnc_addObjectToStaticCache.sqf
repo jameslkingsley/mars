@@ -6,7 +6,7 @@
  * 0: Object to add <OBJECT>
  *
  * Return Value:
- * Nil
+ * None
  *
  * Example:
  * [MyNewObject] call mars_editor_fnc_addObjectToStaticCache;
@@ -16,10 +16,12 @@
 
 #include "script_component.hpp"
 
-params [["_object", objNull, [objNull]]];
+params [
+    ["_object", objNull, [objNull, []]]
+];
 
-if (isNull _object) exitWith {};
-
-GVAR(placedStaticObjects) pushBackUnique _object;
-
-nil
+if (_object isEqualType []) then {
+    {GVAR(placedStaticObjects) pushBackUnique _x;false} count _object;
+} else {
+    GVAR(placedStaticObjects) pushBackUnique _object;
+};
