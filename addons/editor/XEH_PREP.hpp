@@ -57,3 +57,4 @@ PREP(selectGroupIcon);
 PREP(selectUnitIcon);
 PREP(openEditorSettings);
 PREP(spawnObject);
+PREP(isUnitScreenPosUnderCursor);
