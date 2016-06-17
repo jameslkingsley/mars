@@ -16,13 +16,6 @@
 
 #include "script_component.hpp"
 
-/*if (GVAR(isRemoteControl)) exitWith {
-    objNull remoteControl GVAR(remoteControlUnit);
-    player switchCamera "internal";
-    GVAR(isRemoteControl) = false;
-    GVAR(remoteControlUnit) = objNull;
-};*/
-
 if !(hasInterface) exitWith {};
 if (GVAR(isSet)) exitWith {};
 
@@ -45,7 +38,11 @@ GVAR(iconHoverSize) = [QGVAR(iconHoverSize), ICON_HOVER_SIZE] call CFUNC(loadSet
 GVAR(iconDrawDistance) = [QGVAR(iconDrawDistance), ICON_FADE_DISTANCE] call CFUNC(loadSetting);
 
 // Initalize the camera objects
-GVAR(freeCamera) = "Camera" camCreate (ASLtoATL GVAR(camPos));
+if (GVAR(camPos) isEqualTo []) then {
+    GVAR(camPos) = ((getPosASL player) vectorAdd [0, 0, 10]);
+};
+
+GVAR(freeCamera) = "Camera" camCreate GVAR(camPos);
 
 // Initalize view
 [] call FUNC(transitionCamera);
