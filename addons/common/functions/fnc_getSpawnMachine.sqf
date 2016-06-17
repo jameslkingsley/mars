@@ -6,25 +6,21 @@
  * None
  *
  * Return Value:
- * Network ID of machine to spawn things on <NUMBER>
+ * ID or object of machine to spawn things on <NUMBER/OBJECT>
  *
  * Example:
- * _netID = [] call mars_common_fnc_getSpawnMachine;
+ * _target = [] call mars_common_fnc_getSpawnMachine;
  *
  * Public: Yes
  */
 
 #include "script_component.hpp"
 
-2
-/*
 private _headlessClients = (entities "HeadlessClient_F") select {!isNull _x};
 
 if (_headlessClients isEqualTo []) exitWith {
-    // No headless client entities in mission, exit with server network ID
-    if (!isNil QEGVAR(editor,serverNetworkID)) then {
-        EGVAR(editor,serverNetworkID)
-    };
+    // No headless client entities in mission, exit with server
+    REMOTE_SERVER
 };
 
-*/
+(selectRandom _headlessClients)
