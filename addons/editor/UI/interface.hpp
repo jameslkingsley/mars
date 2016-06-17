@@ -411,6 +411,8 @@ class GVAR(interface) {
                             y = 20 * GRID_H;
                             w = (PANEL_W - SIZE_M - 2) * GRID_W;
                             h = SIZE_M * GRID_H;
+                            onSetFocus = QUOTE(GVAR(isInputActive) = true);
+                            onKillFocus = QUOTE(GVAR(isInputActive) = false);
                         };
                         class SearchCreateButton: MARS_gui_ctrlButtonSearch {
                             idc = IDC_ASSETBROWSER_SEARCH_CREATE_BTN;
@@ -419,6 +421,7 @@ class GVAR(interface) {
                             w = SIZE_M * GRID_W;
                             h = SIZE_M * GRID_H;
                             onLoad = "";
+                            onMouseButtonUp = QUOTE(_this call FUNC(handleABSearch));
                         };
                         class Create: MARS_gui_ctrlControlsGroupNoScrollbars {
                             idc = IDC_ASSETBROWSER_TREE;

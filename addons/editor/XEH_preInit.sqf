@@ -4,13 +4,6 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-if (IS_SERVER_OR_HC) exitWith {
-    // Is server or headless client
-    GVAR(createObjectRemote) = [];
-    
-    ADDON = true;
-};
-
 // Reset the stored display
 SETUVAR(GVAR(interface),displayNull);
 
@@ -46,6 +39,7 @@ GVAR(entityList_empty) = 0;
 GVAR(placedStaticObjects) = [];
 GVAR(prepSurfaceSphere) = objNull;
 GVAR(currentCursor) = "";
+GVAR(isInputActive) = false;
 
 // Icons
 GVAR(groupIcons) = [];
@@ -64,7 +58,6 @@ GVAR(abCurrentMode) = 0;
 GVAR(abCurrentSubmode) = 0;
 GVAR(abActiveTree) = -1;
 GVAR(abSelectedObject) = [];
-GVAR(createObjectRemote) = [];
 
 // Context Menu
 GVAR(canContext) = true;

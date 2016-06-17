@@ -16,8 +16,12 @@
 
 #include "script_component.hpp"
 
-params [["_object", objNull, [objNull]]];
+params [
+    ["_object", objNull, [objNull, []]]
+];
 
-if (isNull _object) exitWith {};
-
-GVAR(selection) pushBack _object;
+if (_object isEqualType []) then {
+    {GVAR(selection) pushBackUnique _x;false} count _object;
+} else {
+    GVAR(selection) pushBackUnique _object;
+};

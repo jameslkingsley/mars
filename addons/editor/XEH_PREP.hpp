@@ -56,3 +56,4 @@ PREP(toggleEditPlayers);
 PREP(selectGroupIcon);
 PREP(selectUnitIcon);
 PREP(openEditorSettings);
+PREP(spawnObject);

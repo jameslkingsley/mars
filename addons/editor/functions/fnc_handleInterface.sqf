@@ -28,6 +28,14 @@ switch (toLower _mode) do {
         
         // [] call FUNC(createEntityList);
         [_display] call FUNC(createAssetBrowser);
+        
+        // Disable search controls
+        {(_display displayCtrl _x) ctrlEnable false} forEach [
+            IDC_ASSETBROWSER_SEARCH_CREATE,
+            IDC_ASSETBROWSER_SEARCH_CREATE_BTN,
+            IDC_LEFTPANEL_EDIT_SEARCH,
+            IDC_LEFTPANEL_EDIT_SEARCHBTN
+        ];
     };
     case "onunload": {
         // Kill GUI PFHs
