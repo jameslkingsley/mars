@@ -117,7 +117,7 @@ GVAR(delayedPFH) = [{
 }, 1, []] call CBA_fnc_addPerFrameHandler;
 
 // Close the editor upon death
-player addEventHandler ["Killed", {
+GVAR(playerKilledHandle) = player addEventHandler ["Killed", {
     [] call FUNC(shutdown);
 }];
 
