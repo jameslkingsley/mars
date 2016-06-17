@@ -13,7 +13,6 @@ PREP(removeAllWaypoints);
 PREP(roundToN);
 PREP(getSideColorByInt);
 PREP(getSpawnMachine);
-PREP(createObjectOnID);
 PREP(getSideByInt);
 PREP(getObjectType);
 PREP(getRankNumber);
