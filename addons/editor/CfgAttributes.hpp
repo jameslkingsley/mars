@@ -5,6 +5,7 @@ class GVARMAIN(attributes) {
             actionConfirm = "";
             actionCancel = QUOTE(\
                 GVAR(freeCamera) camSetFov GVAR(camZoom);\
+                GVAR(camSlowDownInBuildings) = [ARR_2(QUOTE(QGVAR(camSlowDownInBuildings)), true)] call CFUNC(loadSetting);\
                 GVAR(iconHoverSize) = [ARR_2(QUOTE(QGVAR(iconHoverSize)), ICON_HOVER_SIZE)] call CFUNC(loadSetting);\
                 GVAR(iconDrawDistance) = [ARR_2(QUOTE(QGVAR(iconDrawDistance)), ICON_FADE_DISTANCE)] call CFUNC(loadSetting);\
             );
@@ -52,6 +53,22 @@ class GVARMAIN(attributes) {
                                         _ctrl = _this select 0;\
                                         _ctrl ctrlSetTooltip str([ARR_2(sliderPosition _ctrl, 2)] call CFUNC(roundToN));\
                                         GVAR(freeCamera) camSetFov (sliderPosition _ctrl);\
+                                    );
+                                };
+                            };
+                        };
+                        class BuildingSpeed {
+                            displayName = "Camera indoors";
+                            tooltipText = "";
+                            class AttributeControls {
+                                class Bool {
+                                    condition = "true";
+                                    type = "CHECKBOX";
+                                    checked = QGVAR(camSlowDownInBuildings);
+                                    textPlain = "Slow speed when inside buildings";
+                                    expression = QUOTE(\
+                                        GVAR(camSlowDownInBuildings) = _this;\
+                                        [ARR_2(QUOTE(QGVAR(camSlowDownInBuildings)), _this)] call CFUNC(saveSetting);\
                                     );
                                 };
                             };

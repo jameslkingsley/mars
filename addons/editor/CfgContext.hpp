@@ -4,7 +4,7 @@ class GVARMAIN(context) {
             displayName = "Attributes";
             requiresPosition = false;
             condition = QUOTE('CAManBase' countType GVAR(selection) == count GVAR(selection));
-            action = QUOTE([ARR_2('__objects', 'CAManBase')] call EFUNC(attributes,openAttributes));
+            action = QUOTE([ARR_2('__objects', 'CAManBase')] call AFUNC(openAttributes));
             order = 100;
         };
         class GVAR(debug) {

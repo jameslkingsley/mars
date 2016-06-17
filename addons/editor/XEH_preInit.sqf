@@ -4,6 +4,10 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
+if (isDedicated) exitWith {
+    ADDON = true;
+};
+
 // Reset the stored display
 SETUVAR(GVAR(interface),displayNull);
 
@@ -22,6 +26,7 @@ GVAR(camUnit) = objNull;
 GVAR(camVision) = -2;
 GVAR(interrupts) = [];
 GVAR(isSet) = false;
+GVAR(camSlowDownInBuildings) = [QGVAR(camSlowDownInBuildings), true] call CFUNC(loadSetting);
 
 // Interface
 GVAR(menus) = [];
