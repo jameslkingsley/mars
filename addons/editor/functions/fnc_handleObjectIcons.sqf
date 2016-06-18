@@ -17,6 +17,8 @@
 
 #include "script_component.hpp"
 
+BEGIN_COUNTER(iconHandler);
+
 #define EMPTY_ARRAY GVAR(placedStaticObjects)
 #define EXCLUDED_SIDES [sideAmbientLife]
 
@@ -168,9 +170,9 @@ GVAR(unitIcons) = [];
     false
 } count (allGroups select {
     (!(side _x in EXCLUDED_SIDES) &&
-    {(count (units _x) > 0)} && {
+    {!((units _x) isEqualTo [])} && {
         (alive (leader _x) &&
-        ((ASLtoAGL (getPosASLVisual (leader _x))) distance GVAR(camPos)) < (GVAR(iconDrawDistance) / 2))
+        ((ASLtoAGL (getPosASLVisual (leader _x))) distance GVAR(camPos)) < GVAR(iconDrawDistance))
     })
 });
 
@@ -207,6 +209,8 @@ GVAR(unitIcons) = [];
     ];
 
     false
-} count ((EMPTY_ARRAY + (vehicles select {count crew _x == 0})) select {
-    ((count (crew _x) == 0) && (((ASLtoAGL (getPosASLVisual _x)) distance GVAR(camPos)) < GVAR(iconDrawDistance)))
+} count ((EMPTY_ARRAY + (vehicles select {(crew _x) isEqualTo []})) select {
+    ((crew _x) isEqualTo []) && (((ASLtoAGL (getPosASLVisual _x)) distance GVAR(camPos)) < GVAR(iconDrawDistance))
 });
+
+END_COUNTER(iconHandler);
