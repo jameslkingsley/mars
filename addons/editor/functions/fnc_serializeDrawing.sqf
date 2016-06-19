@@ -17,8 +17,8 @@
 
 #include "script_component.hpp"
 
-GVAR(serializedIcons) = [];
-GVAR(serializedLines) = [];
+private _outputIcons = [];
+private _outputLines = [];
 
 {
     private _objectData = [];
@@ -38,24 +38,24 @@ GVAR(serializedLines) = [];
     if (leader _object == _object) then {
         private _groupIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
         
-        GVAR(serializedIcons) pushBack [
+        _outputIcons pushBack [
             _object,
             _groupIcon,
             _iconColor,
-            ICON_LEADER_HEIGHT,
+            10,
             0
         ];
         
-        GVAR(serializedLines) pushBack [
+        _outputLines pushBack [
             _object,
             _object,
             [0,0,0,1],
-            ICON_LEADER_HEIGHT,
+            10,
             0
         ];
     } else {
         if (!isNull leader _object) then {
-            GVAR(serializedLines) pushBack [
+            _outputLines pushBack [
                 _object,
                 leader _object,
                 _iconColor,
@@ -79,7 +79,7 @@ GVAR(serializedLines) = [];
         };
         
         // Player icon
-        GVAR(serializedIcons) pushBack [
+        _outputIcons pushBack [
             _object,
             "\A3\ui_f\data\igui\cfg\islandmap\iconplayer_ca.paa",
             _playerColor
@@ -87,17 +87,32 @@ GVAR(serializedLines) = [];
     };
     
     // Unit icon
-    if (vehicle _object == _object && {crew _object isEqualTo []}) then {
-        _iconColor = [COLOR_EMPTY_RGBA];
+    if (vehicle _object == _object) then {
+        if (crew _object isEqualTo []) then {
+            _iconColor = [COLOR_EMPTY_RGBA];
+        }/* else {
+            private _vehicleIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
+            
+            _outputIcons pushBack [
+                _object,
+                _vehicleIcon,
+                _iconColor,
+                10,
+                0
+            ];
+        }*/;
     };
     
-    GVAR(serializedIcons) pushBack [
+    _outputIcons pushBack [
         _object,
         _objectIconPath,
         _iconColor
     ];
     
     false
-} count ((entities "All") select {
+} count (((entities "All") select {
     !(side _x in [sideAmbientLife, sideLogic, sideUnknown])
-});
+}) - (entities "Animal"));
+
+GVAR(serializedIcons) = _outputIcons;
+GVAR(serializedLines) = _outputLines;
