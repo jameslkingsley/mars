@@ -122,8 +122,8 @@ GVAR(delayedPFH) = [{
 }, 1, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(drawingPFH) = [{
-    [] call FUNC(serializeDrawing);
-}, 2, []] call CBA_fnc_addPerFrameHandler;
+    [] spawn FUNC(serializeDrawing);
+}, 3, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(testPFH) = [{
     [] call CFUNC(dumpPerformanceCounters);
