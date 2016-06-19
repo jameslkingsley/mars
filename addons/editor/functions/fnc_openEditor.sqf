@@ -83,13 +83,16 @@ _display displayAddEventHandler ["MouseButtonDown", {
 GVAR(interrupts) = [];
 
 GVAR(pfh) = [{
+    BEGIN_COUNTER(marsPFH);
+    
     // Tagging handler
     if (GVAR(canContext) || count GVAR(selection) > 0) then {
         [] call FUNC(handleObjectBoxes);
     };
 
     // Icons handler
-    [] call FUNC(handleObjectIcons);
+    [] call FUNC(handleIcons);
+    [] call FUNC(handleLines);
 
     // Selection handler
     {
@@ -109,12 +112,18 @@ GVAR(pfh) = [{
     
     // Handle location icons
     [] call FUNC(handleLocationIcons);
+    
+    END_COUNTER(marsPFH);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(delayedPFH) = [{
     // FPS Counter
     (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_FPS) ctrlSetText format["%1 FPS", round diag_fps];
 }, 1, []] call CBA_fnc_addPerFrameHandler;
+
+GVAR(drawingPFH) = [{
+    [] call FUNC(serializeDrawing);
+}, 2, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(testPFH) = [{
     [] call CFUNC(dumpPerformanceCounters);

@@ -47,6 +47,8 @@ GVAR(currentCursor) = "";
 GVAR(isInputActive) = false;
 
 // Icons
+GVAR(serializedIcons) = [];
+GVAR(serializedLines) = [];
 GVAR(groupIcons) = [];
 GVAR(unitIcons) = [];
 GVAR(activeGroupIcon) = grpNull;
