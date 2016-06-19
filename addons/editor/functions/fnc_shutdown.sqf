@@ -41,6 +41,14 @@ if (!isNil QGVAR(camHandler)) then {
     [GVAR(camHandler)] call CBA_fnc_removePerFrameHandler;
 };
 
+if (!isNil QGVAR(testPFH)) then {
+    [GVAR(testPFH)] call CBA_fnc_removePerFrameHandler;
+};
+
+if (!isNil QGVAR(drawingPFH)) then {
+    [GVAR(drawingPFH)] call CBA_fnc_removePerFrameHandler;
+};
+
 player removeEventHandler ["Killed", GVAR(playerKilledHandle)];
 
 GVAR(isSet) = false;

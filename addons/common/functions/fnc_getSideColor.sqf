@@ -17,14 +17,17 @@
 
 #include "script_component.hpp"
 
-params [["_side", sideUnknown]];
+params [
+    ["_side", sideUnknown, [sideUnknown]],
+    ["_alpha", 1, [0]]
+];
 
-private _color = switch (_side) do {
-    case west: {[COLOR_WEST_RGBA]};
-    case east: {[COLOR_EAST_RGBA]};
-    case resistance: {[COLOR_GUER_RGBA]};
-    case civilian: {[COLOR_CIV_RGBA]};
-    default {[COLOR_EMPTY_RGBA]};
-};
+private _index = ([west, east, resistance, civilian] find _side) + 1;
 
-_color
+[
+    [COLOR_EMPTY_RGB, _alpha],
+    [COLOR_WEST_RGB, _alpha],
+    [COLOR_EAST_RGB, _alpha],
+    [COLOR_GUER_RGB, _alpha],
+    [COLOR_CIV_RGB, _alpha]
+] select _index;

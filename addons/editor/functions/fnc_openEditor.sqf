@@ -83,23 +83,24 @@ _display displayAddEventHandler ["MouseButtonDown", {
 GVAR(interrupts) = [];
 
 GVAR(pfh) = [{
+    BEGIN_COUNTER(marsPFH);
+    
     // Tagging handler
     if (GVAR(canContext) || count GVAR(selection) > 0) then {
         [] call FUNC(handleObjectBoxes);
     };
 
     // Icons handler
-    [] call FUNC(handleObjectIcons);
+    [] call FUNC(handleIcons);
+    [] call FUNC(handleLines);
 
     // Selection handler
     {
-        if (_x != GVAR(prepSurfaceSphere)) then {
-            private _color = [[0,0,0,1], MARS_SIDECOLOR(side group _x)] select (alive _x);
-            [_x, _color] call FUNC(drawBoundingBox);
-        };
+        private _color = [[0,0,0,1], MARS_SIDECOLOR(side group _x)] select (alive _x);
+        [_x, _color] call FUNC(drawBoundingBox);
         
         false
-    } count GVAR(selection);
+    } count (GVAR(selection) select {_x != GVAR(prepSurfaceSphere)});
     
     // Status bar - grid position
     (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_GRID) ctrlSetText format["%1", mapGridPosition GVAR(freeCamera)];
@@ -109,12 +110,18 @@ GVAR(pfh) = [{
     
     // Handle location icons
     [] call FUNC(handleLocationIcons);
+    
+    END_COUNTER(marsPFH);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(delayedPFH) = [{
     // FPS Counter
     (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_FPS) ctrlSetText format["%1 FPS", round diag_fps];
 }, 1, []] call CBA_fnc_addPerFrameHandler;
+
+GVAR(drawingPFH) = [{
+    [] spawn FUNC(serializeDrawing);
+}, 3, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(testPFH) = [{
     [] call CFUNC(dumpPerformanceCounters);
