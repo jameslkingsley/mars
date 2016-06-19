@@ -17,6 +17,9 @@
 
 #include "script_component.hpp"
 
+#define SMALL_ICON_DISTANCE 500
+
+private _camPosASL = AGLtoASL GVAR(camPos);
 private _outputIcons = [];
 private _outputLines = [];
 
@@ -24,6 +27,9 @@ private _outputLines = [];
     private _objectData = [];
     private _object = _x;
     private _objectClassname = typeOf _object;
+    private _objectPosASL = getPosASL _object;
+    private _objectDistance = _objectPosASL distance _camPosASL;
+    private _cursorScale = linearConversion [0, GVAR(iconDrawDistance), _objectDistance, 0.033, 0, true];
     private _isPerson = _objectClassname call CBA_fnc_isPerson;
     private _iconColor = [
         [COLOR_EMPTY_RGBA],
@@ -40,21 +46,20 @@ private _outputLines = [];
         private _playerColor = [0,0,0,0];
         
         if (isPlayer _object) then {
-            if (alive _object) then {
-                if (local _object) then {
-                    _playerColor = [1,0,0,1];
-                } else {
-                    _playerColor = [1,0,0.5,1];
-                };
-            } else {
-                _playerColor = [0,0,0,1];
-            };
+            _playerColor = [
+                [0,0,0,1],
+                [[1,0,0.5,1], [1,0,0,1]] select (local _object)
+            ] select (alive _object);
             
             // Player icon
             _outputIcons pushBack [
                 _object,
                 "\A3\ui_f\data\igui\cfg\islandmap\iconplayer_ca.paa",
-                _playerColor
+                _playerColor,
+                nil,
+                nil,
+                nil,
+                SMALL_ICON_DISTANCE
             ];
         };
         
@@ -66,15 +71,19 @@ private _outputLines = [];
                 _groupIcon,
                 _iconColor,
                 10,
-                0
+                0,
+                true,
+                nil,
+                _cursorScale
             ];
             
             _outputLines pushBack [
                 _object,
                 _object,
                 [0,0,0,1],
+                0,
                 10,
-                0
+                _isPerson
             ];
         } else {
             if (!isNull leader _object) then {
@@ -83,7 +92,8 @@ private _outputLines = [];
                     leader _object,
                     _iconColor,
                     1,
-                    1
+                    1,
+                    _isPerson
                 ];
             };
         };
@@ -91,7 +101,11 @@ private _outputLines = [];
         _outputIcons pushBack [
             _object,
             _objectIconPath,
-            _iconColor
+            _iconColor,
+            nil,
+            nil,
+            nil,
+            SMALL_ICON_DISTANCE
         ];
     } else {
         private _vehicleIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
@@ -100,44 +114,70 @@ private _outputLines = [];
             _outputIcons pushBack [
                 _object,
                 _objectIconPath,
-                [COLOR_EMPTY_RGBA]
+                [COLOR_EMPTY_RGBA],
+                nil,
+                nil,
+                nil,
+                SMALL_ICON_DISTANCE
             ];
         } else {
             private _vehicleLeader = ((crew _object) select {leader _x == _x}) param [0, objNull];
             private _vehicleGroupLeader = leader group _object;
             
             if (!isNull _vehicleGroupLeader) then {
-                if (_vehicleGroupLeader == _object) then {
+                if ({_vehicleGroupLeader == _x} count (crew _object) > 0) then {
                     _outputIcons pushBack [
                         _object,
                         _vehicleIcon,
                         _iconColor,
                         10,
-                        0
+                        0,
+                        true,
+                        nil,
+                        _cursorScale
                     ];
                     
                     _outputLines pushBack [
                         _object,
                         _object,
                         [0,0,0,1],
-                        10,
-                        0
+                        0,
+                        10
                     ];
                 };
                 
                 _outputLines pushBack [
                     _object,
-                    _vehicleLeader,
+                    _vehicleGroupLeader,
                     _iconColor,
                     1,
                     1
                 ];
             };
             
+            if ({isPlayer _x} count (crew _object) > 0) then {
+                _playerColor = [[1,0,0.5,1], [1,0,0,1]] select (local _object);
+                
+                // Player icon
+                _outputIcons pushBack [
+                    _object,
+                    "\A3\ui_f\data\igui\cfg\islandmap\iconplayer_ca.paa",
+                    _playerColor,
+                    nil,
+                    nil,
+                    nil,
+                    SMALL_ICON_DISTANCE
+                ];
+            };
+            
             _outputIcons pushBack [
                 _object,
                 _objectIconPath,
-                _iconColor
+                _iconColor,
+                nil,
+                nil,
+                nil,
+                SMALL_ICON_DISTANCE
             ];
         };
     };

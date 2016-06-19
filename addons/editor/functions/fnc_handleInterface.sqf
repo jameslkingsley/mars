@@ -107,7 +107,7 @@ switch (toLower _mode) do {
                 if (isNull _selectedGroup) then {
                     [] call FUNC(selectObject);
                 } else {
-                    [units _selectedGroup] call FUNC(selectObject);
+                    [(units _selectedGroup apply {vehicle _x})] call FUNC(selectObject);
                 };
             };
 

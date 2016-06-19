@@ -35,3 +35,6 @@ GVAR(prepSurfaceSphere) = objNull;
 GVAR(allowDragging) = false;
 GVAR(allowDirection) = false;
 GVAR(selection) = [];
+
+// Invoke serialize drawing
+[] spawn FUNC(serializeDrawing);

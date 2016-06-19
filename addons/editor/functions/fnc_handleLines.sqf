@@ -22,11 +22,15 @@ BEGIN_COUNTER(lineHandler);
 _camPosASL = AGLtoASL GVAR(camPos);
 
 {
-    _x params ["_object1", "_object2", "_color", ["_zOffset1", 0], ["_zOffset2", 0]];
+    _x params ["_object1", "_object2", "_color", ["_zOffset1", 0], ["_zOffset2", 0], ["_isPerson", false]];
+    
+    if (_isPerson) then {
+        _zOffset1 = (_object1 selectionPosition "pelvis") param [2, _zOffset1];
+    };
 
-    private _startPos = (getPosASLVisual _object1) vectorAdd [0, 0, _zOffset1];
-    private _endPos = (getPosASLVisual _object2) vectorAdd [0, 0, _zOffset2];
-    private _alpha = linearConversion [0, GVAR(iconDrawDistance), (_startPos distance _camPosASL), 1, 0, true];
+    _startPos = (getPosASLVisual _object1) vectorAdd [0, 0, _zOffset1];
+    _endPos = (getPosASLVisual _object2) vectorAdd [0, 0, _zOffset2];
+    _alpha = linearConversion [0, GVAR(iconDrawDistance), (_startPos distance _camPosASL), 1, 0, true];
     _color set [3, _alpha];
 
     drawLine3D [

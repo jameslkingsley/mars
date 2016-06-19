@@ -96,13 +96,11 @@ GVAR(pfh) = [{
 
     // Selection handler
     {
-        if (_x != GVAR(prepSurfaceSphere)) then {
-            private _color = [[0,0,0,1], MARS_SIDECOLOR(side group _x)] select (alive _x);
-            [_x, _color] call FUNC(drawBoundingBox);
-        };
+        private _color = [[0,0,0,1], MARS_SIDECOLOR(side group _x)] select (alive _x);
+        [_x, _color] call FUNC(drawBoundingBox);
         
         false
-    } count GVAR(selection);
+    } count (GVAR(selection) select {_x != GVAR(prepSurfaceSphere)});
     
     // Status bar - grid position
     (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_GRID) ctrlSetText format["%1", mapGridPosition GVAR(freeCamera)];
