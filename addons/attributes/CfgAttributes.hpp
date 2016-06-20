@@ -19,7 +19,8 @@ class GVARMAIN(attributes) {
                                         "Item 5"
                                     };
                                     values[] = {1,2,3,4,5};
-                                    selected = 3;
+                                    selected = "[2,3]";
+                                    multi = true;
                                     expression = "";
                                 };
                             };
@@ -35,10 +36,21 @@ class GVARMAIN(attributes) {
                                         "Item 2",
                                         "Item 3",
                                         "Item 4",
-                                        "Item 5"
+                                        "Item 5",
+                                        "Item 6",
+                                        "Item 7",
+                                        "Item 8",
+                                        "Item 9",
+                                        "Item 10",
+                                        "Item 11",
+                                        "Item 12",
+                                        "Item 13",
+                                        "Item 14",
+                                        "Item 15"
                                     };
-                                    values[] = {1,2,3,4,5};
-                                    selected[] = {1,2,3};
+                                    values[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+                                    selected[] = {1,2,3,4,5};
+                                    multi = true;
                                     expression = "";
                                 };
                             };

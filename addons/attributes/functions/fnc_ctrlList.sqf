@@ -39,15 +39,17 @@ _ctrlList = _display ctrlCreate [_ctrlClass, _idc, _controlGroup];
 
 _values = [call compile getText (_config >> "values"), getArray (_config >> "values")] select (isArray (_config >> "values"));
 _labels = [call compile getText (_config >> "labels"), getArray (_config >> "labels")] select (isArray (_config >> "labels"));
-_selected = [([
-    ([
-        getNumber (_config >> "selected"),
-        call compile getText (_config >> "selected")
-    ] select (isText (_config >> "selected"))),
-    getArray (_config >> "selected")
-] select (isArray (_config >> "selected"))), -1] select (isNull (_config >> "selected"));
-
-TRACE_1("", _selected);
+_selected = if (isNull (_config >> "selected")) then {-1} else {
+    if (isArray (_config >> "selected")) then {
+        getArray (_config >> "selected")
+    } else {
+        if (isText (_config >> "selected")) then {
+            call compile getText (_config >> "selected")
+        } else {
+            getNumber (_config >> "selected")
+        };
+    };
+};
 
 if (count _labels > count _values) then {
     MARS_LOGERROR_1("Labels array is bigger than the values array in %1. Ignoring extra labels.", _config);
@@ -59,7 +61,7 @@ if (count _labels > count _values) then {
     };
 };
 
-_ctrlListHeight = ((count _values) * SIZEEX_PURISTA_M) min (SIZEEX_PURISTA_M * 10);
+_ctrlListHeight = ((count _values) * (SIZE_M * GRID_H)) min ((SIZE_M * GRID_H) * 7);
 _position set [3, _ctrlListHeight];
 
 {

@@ -35,7 +35,7 @@ class MARS_gui_ctrlListbox {
     maxHistoryDelay = 1;
     blinkingPeriod = 0;
     period = 1.2;
-    rowHeight = 0;
+    rowHeight = SIZE_M * GRID_H;
     shadow = 0;
     sizeEx = SIZEEX_PURISTA_M;
     soundSelect[] = {"\A3\ui_f\data\sound\RscListbox\soundSelect",0.09,1};
