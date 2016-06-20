@@ -12,3 +12,5 @@ PREP(ctrlButton);
 PREP(ctrlMap);
 PREP(ctrlCheckbox);
 PREP(ctrlVector);
+PREP(ctrlList);
+PREP(ctrlList_Right);
