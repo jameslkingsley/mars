@@ -58,11 +58,11 @@ GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
         
         if (_x isEqualType []) then {
             _joinedExecData = _x apply {
-                _ctrl = _display displayCtrl _x;
-                (_ctrl getVariable [QGVAR(execReturnData), _ctrl])
+                ((_display displayCtrl _x) getVariable [QGVAR(execReturnData), (_display displayCtrl _x)])
             };
             
             _commonExecs = [];
+            _finalExecs = [];
             
             {
                 _ctrl = _display displayCtrl _x;
@@ -78,14 +78,14 @@ GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
                 if (_execExpression) then {
                     if (!isNil _execExpressionStr) then {
                         // Expression is a function name
-                        _commonExecs pushBackUnique format ["%1 call %2", _joinedExecData, _execExpressionStr];
+                        _finalExecs pushBackUnique format ["%1 call %2", _joinedExecData, _execExpressionStr];
                     } else {
-                        _commonExecs pushBackUnique format ["%1 call compile '%2'", _joinedExecData, _execExpressionStr];
+                        _finalExecs pushBackUnique format ["%1 call compile '%2'", _joinedExecData, _execExpressionStr];
                     };
                 };
             } forEach _x;
             
-            {call compile _x} forEach _commonExecs;
+            {call compile _x} forEach _finalExecs;
         } else {
             _ctrl = _display displayCtrl _x;
             _execExpression = _ctrl getVariable [QGVAR(execExpression), false];

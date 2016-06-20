@@ -40,7 +40,8 @@ _vectorControls = [_ctrlVectorX, _ctrlVectorY, _ctrlVectorZ];
 _siblings = [];
 _width = (_position select 2) / 3;
 _labelX = (_position select 0);
-_value = [call compile getText (_config >> "value"), getArray (_config >> "value")] select (isArray (_config >> "value"));
+_value = if (isArray (_config >> "value")) then {getArray (_config >> "value")} else {call compile getText (_config >> "value")};
+_value = _value apply {if (_x isEqualType "") then {parseNumber _x} else {_x}};
 
 {
     private _vectorCtrl = _x;
@@ -76,7 +77,7 @@ _value = [call compile getText (_config >> "value"), getArray (_config >> "value
         params ["_ctrl"];
         _startValue = _ctrl getVariable [QGVAR(vectorStartValue), 0];
         _nowValue = parseNumber (ctrlText _ctrl);
-        _ctrl setVariable [QGVAR(execExpression), (_startValue != _nowValue)];
+        _ctrl setVariable [QGVAR(execExpression), !(_startValue isEqualTo _nowValue)];
         _ctrl setVariable [QGVAR(execReturnData), _nowValue];
     }];
 
