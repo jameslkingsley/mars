@@ -5,39 +5,60 @@ class GVARMAIN(attributes) {
             class AttributeCategories {
                 class Positional {
                     class AttributeItems {
-                        class List {
-                            displayName = "List";
+                        class List1 {
+                            displayName = "List 1";
                             class AttributeControls {
                                 class Control1 {
                                     condition = "true";
                                     type = "LIST";
                                     labels[] = {
-                                        {"Item 1", {1,0,0,1}, QPATHTOF(data\Controls\Date\moon_full_ca.paa), "Tooltip 1"},
+                                        "Item 1",
                                         "Item 2",
-                                        {"Item 3", {0,0,1,1}, "", "Tooltip 2"}
+                                        "Item 3",
+                                        "Item 4",
+                                        "Item 5"
                                     };
-                                    values[] = {1,2,3};
-                                    selected = 0;
-                                    multi = true;
-                                    expression = "systemChat str _this";
+                                    values[] = {1,2,3,4,5};
+                                    selected = 3;
+                                    expression = "";
                                 };
                             };
                         };
-                        class List_Right {
-                            displayName = "List Right";
+                        class List2 {
+                            displayName = "List 2";
                             class AttributeControls {
                                 class Control1 {
                                     condition = "true";
-                                    type = "LIST_RIGHT";
+                                    type = "LIST";
                                     labels[] = {
-                                        {"Item 1", {1,0,0,1}, QPATHTOF(data\Controls\Date\moon_full_ca.paa), "Tooltip 1"},
-                                        {"Item 1", {1,0,0,1}, QPATHTOF(data\Controls\Date\moon_full_ca.paa), "Tooltip 1"},
-                                        {"Item 1", {1,0,0,1}, QPATHTOF(data\Controls\Date\moon_full_ca.paa), "Tooltip 1"},
-                                        {"Item 1", {1,0,0,1}, QPATHTOF(data\Controls\Date\moon_full_ca.paa), "Tooltip 1"},
-                                        {"Item 1", {1,0,0,1}, QPATHTOF(data\Controls\Date\moon_full_ca.paa), "Tooltip 1"}
+                                        "Item 1",
+                                        "Item 2",
+                                        "Item 3",
+                                        "Item 4",
+                                        "Item 5"
                                     };
                                     values[] = {1,2,3,4,5};
-                                    expression = "systemChat str _this";
+                                    selected[] = {1,2,3};
+                                    expression = "";
+                                };
+                            };
+                        };
+                        class List3 {
+                            displayName = "List 3";
+                            class AttributeControls {
+                                class Control1 {
+                                    condition = "true";
+                                    type = "LIST";
+                                    labels[] = {
+                                        "Item 1",
+                                        "Item 2",
+                                        "Item 3",
+                                        "Item 4",
+                                        "Item 5"
+                                    };
+                                    values[] = {1,2,3,4,5};
+                                    selected = "4";
+                                    expression = "";
                                 };
                             };
                         };
@@ -47,8 +68,8 @@ class GVARMAIN(attributes) {
                                 class Control {
                                     condition = "true";
                                     type = "VECTOR";
-                                    value[] = {500,500,500};
-                                    expression = "";
+                                    value = "getPosATL player";
+                                    expression = "systemChat str _this";
                                 };
                             };
                         };

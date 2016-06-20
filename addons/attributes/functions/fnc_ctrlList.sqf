@@ -39,6 +39,15 @@ _ctrlList = _display ctrlCreate [_ctrlClass, _idc, _controlGroup];
 
 _values = [call compile getText (_config >> "values"), getArray (_config >> "values")] select (isArray (_config >> "values"));
 _labels = [call compile getText (_config >> "labels"), getArray (_config >> "labels")] select (isArray (_config >> "labels"));
+_selected = [([
+    ([
+        getNumber (_config >> "selected"),
+        call compile getText (_config >> "selected")
+    ] select (isText (_config >> "selected"))),
+    getArray (_config >> "selected")
+] select (isArray (_config >> "selected"))), -1] select (isNull (_config >> "selected"));
+
+TRACE_1("", _selected);
 
 if (count _labels > count _values) then {
     MARS_LOGERROR_1("Labels array is bigger than the values array in %1. Ignoring extra labels.", _config);
@@ -58,6 +67,9 @@ _position set [3, _ctrlListHeight];
         _value = _values select _forEachIndex;
         _i = _ctrlList lbAdd _x;
         _ctrlList lbSetData [_i, ([str _value, _value] select (_value isEqualType ""))];
+        if (_selected isEqualType 0 && {_i == _selected}) then {
+            _ctrlList lbSetCurSel _i;
+        };
     } else {
         _x params [
             ["_text", "", [""]],
@@ -73,8 +85,16 @@ _position set [3, _ctrlListHeight];
         _ctrlList lbSetPicture [_i, _picture];
         _ctrlList lbSetPictureColor [_i, _color];
         _ctrlList lbSetTooltip [_i, _tooltip];
+        
+        if (_selected isEqualType 0 && {_i == _selected}) then {
+            _ctrlList lbSetCurSel _i;
+        };
     };
 } forEach _labels;
+
+if (_selected isEqualType []) then {
+    {_ctrlList lbSetSelected [_x, true]} forEach _selected;
+};
 
 _ctrlList ctrlSetPosition _position;
 
