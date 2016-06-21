@@ -117,15 +117,10 @@ _categoryIDC = IDC_EDITATTRIBUTES_CATEGORIES * 10;
 _ctrlIDC = IDC_EDITATTRIBUTES_CATEGORIES * 1000;
 
 _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
-_totalField = 0;
 
 {
     // Categories
     _catConfig = _x;
-    _catPosX = CATEGORY_X;
-    _catPosY = CATEGORY_Y;
-    _catPosW = 0;
-    
     _items = "true" configClasses (_catConfig >> "AttributeItems");
     _itemIDC = IDC_EDITATTRIBUTES_CATEGORIES * 100;
     _itemIndex = 0;
