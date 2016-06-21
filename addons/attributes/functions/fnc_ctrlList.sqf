@@ -131,7 +131,8 @@ _ctrlList ctrlAddEventHandler ["KillFocus", {
         _ctrlList ctrlAddEventHandler [_runtimeEvent, getText (_config >> _configEvent)];
     };
 } forEach [
-    ["onLBSelChanged", "LBSelChanged"]
+    ["onLBSelChanged", "LBSelChanged"],
+    ["onMouseButtonUp", "MouseButtonUp"]
 ];
 
 _ctrlList ctrlCommit 0;
