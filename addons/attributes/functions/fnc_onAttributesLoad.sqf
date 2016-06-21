@@ -165,7 +165,7 @@ _totalField = 0;
 
             if (!isNil _ctrlCreateFunction) then {
                 _ctrlCreateCode = format [
-                    "[""%1"", %7, %8, [%2,%3,%4,%5]] call %6",
+                    "[""%1"", %7, %8, [%2,%3,%4,%5], %9] call %6",
                     _ctrlConfigPath,
                     CATEGORY_SPACING + LABEL_WIDTH + GRID_W + (_ctrlIndex * _ctrlIWidth),
                     _totalLabel + _itemLabelY,
@@ -173,7 +173,8 @@ _totalField = 0;
                     LABEL_HEIGHT,
                     _ctrlCreateFunction,
                     _ctrlIDC,
-                    IDC_EDITATTRIBUTES_CATEGORIES
+                    IDC_EDITATTRIBUTES_CATEGORIES,
+                    _itemIDC
                 ];
                 
                 _ctrlRet = call compile _ctrlCreateCode;

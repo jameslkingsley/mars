@@ -31,14 +31,14 @@ _config = call compile _config;
 _display = GETUVAR(GVAR(interface),displayNull);
 
 _controlGroup = _display displayCtrl _group;
+_controlGroupPos = ctrlPosition _controlGroup;
 
-_ctrlMap = _display ctrlCreate ["MARS_gui_ctrlMap", _idc, _controlGroup];
-_ctrlMapTemp = _display ctrlCreate ["MARS_gui_ctrlStaticBackground", _idc, _controlGroup];
+_ctrlMap = _display ctrlCreate ["MARS_gui_ctrlMap", _idc];
 
+_position set [0, (_position select 0) + (_controlGroupPos select 0)];
+_position set [1, (_position select 1) + (_controlGroupPos select 1)];
 _position set [3, (_position select 2)];
 _ctrlMap ctrlSetPosition _position;
-_ctrlMapTemp ctrlSetPosition _position;
-_ctrlMapTemp ctrlSetBackgroundColor [1,0.5,0.25,1];
 
 _startPosition = [call compile getText (_config >> "position"), getArray (_config >> "position")] select (isArray (_config >> "position"));
 
@@ -49,10 +49,5 @@ _ctrlMap setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
 _ctrlMap setVariable [QGVAR(execReturnData), ""];
 
 _ctrlMap ctrlCommit 0;
-_ctrlMapTemp ctrlCommit 0;
-
-mapAnimCommit;
-
-systemChat format ["mapAnimDone: %1", mapAnimDone];
 
 _ctrlMap

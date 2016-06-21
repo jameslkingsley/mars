@@ -27,6 +27,7 @@ class GVAR(AttributesWindow) {
             w = QUOTE((missionNamespace getVariable [ARR_2(QUOTE(QGVAR(AttributesWindow_GlobalWidth)), 140)]) * GRID_W);
             h = SIZE_M * GRID_H;
             text = "";
+            colorShadow[] = {0,0,0,0};
         };
         class AttributeCategories: MARS_gui_ctrlControlsGroupNoScrollbars {
             idc = IDC_EDITATTRIBUTES_CATEGORIES;
