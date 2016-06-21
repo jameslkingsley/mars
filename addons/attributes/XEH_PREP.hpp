@@ -3,6 +3,7 @@ PREP(onAttributesLoad);
 PREP(getControl);
 PREP(getControlValue);
 PREP(createControlKey);
+PREP(enableControlSet);
 PREP(ctrlCombo);
 PREP(ctrlSlider);
 PREP(ctrlEdit);
