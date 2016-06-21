@@ -17,3 +17,4 @@ class CfgPatches {
 #include "CfgEventHandlers.hpp"
 #include "CfgAttributes.hpp"
 #include "UI\interface.hpp"
+#include "UI\ctrlMap.hpp"
