@@ -76,6 +76,30 @@ _ctrlCombo setVariable [QGVAR(execExpression), false];
 _ctrlCombo setVariable [QGVAR(execExpressionStr), getText (_config >> "expression")];
 _ctrlCombo setVariable [QGVAR(execReturnData), [(_ctrlCombo lbText (lbCurSel _ctrlCombo)), (_ctrlCombo lbData (lbCurSel _ctrlCombo))]];
 
+[_ctrlCombo, _config, "update", {
+    params ["_control", "_config", "_args"];
+    
+    _values = [call compile getText (_config >> "values"), getArray (_config >> "values")] select (isArray (_config >> "values"));
+    _labels = [call compile getText (_config >> "labels"), getArray (_config >> "labels")] select (isArray (_config >> "labels"));
+    
+    if (count _labels > count _values) then {
+        _labels resize (count _values);
+    } else {
+        if (count _values > count _labels) then {
+            _values resize (count _labels);
+        };
+    };
+    
+    lbClear _control;
+    
+    {
+        _i = _control lbAdd (_labels select _forEachIndex);
+        _control lbSetData [_i, ([str _x, _x] select (_x isEqualType ""))];
+    } forEach _values;
+    
+    _control lbSetCurSel 0;
+}] call FUNC(addControlFunction);
+
 _ctrlCombo ctrlAddEventHandler ["LBSelChanged", {
     params ["_ctrl","_index"];
     _startIndex = _ctrl getVariable [QGVAR(comboStartIndex), -1];

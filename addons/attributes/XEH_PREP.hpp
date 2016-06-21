@@ -4,6 +4,8 @@ PREP(getControl);
 PREP(getControlValue);
 PREP(createControlKey);
 PREP(enableControlSet);
+PREP(execControlFunction);
+PREP(addControlFunction);
 PREP(ctrlCombo);
 PREP(ctrlSlider);
 PREP(ctrlEdit);
