@@ -18,7 +18,6 @@
  */
 
 #include "script_component.hpp"
-#include "\z\mars\addons\common\macros.hpp"
 
 params [
     ["_config", "", [""]],
