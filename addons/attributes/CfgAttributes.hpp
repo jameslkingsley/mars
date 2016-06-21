@@ -5,75 +5,6 @@ class GVARMAIN(attributes) {
             class AttributeCategories {
                 class Positional {
                     class AttributeItems {
-                        class List1 {
-                            displayName = "List 1";
-                            class AttributeControls {
-                                class Control1 {
-                                    condition = "true";
-                                    type = "LIST";
-                                    labels[] = {
-                                        "Item 1",
-                                        "Item 2",
-                                        "Item 3",
-                                        "Item 4",
-                                        "Item 5"
-                                    };
-                                    values[] = {1,2,3,4,5};
-                                    selected = "[2,3]";
-                                    multi = true;
-                                    expression = "";
-                                };
-                            };
-                        };
-                        class List2 {
-                            displayName = "List 2";
-                            class AttributeControls {
-                                class Control1 {
-                                    condition = "true";
-                                    type = "LIST";
-                                    labels[] = {
-                                        "Item 1",
-                                        "Item 2",
-                                        "Item 3",
-                                        "Item 4",
-                                        "Item 5",
-                                        "Item 6",
-                                        "Item 7",
-                                        "Item 8",
-                                        "Item 9",
-                                        "Item 10",
-                                        "Item 11",
-                                        "Item 12",
-                                        "Item 13",
-                                        "Item 14",
-                                        "Item 15"
-                                    };
-                                    values[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
-                                    selected[] = {1,2,3,4,5};
-                                    multi = true;
-                                    expression = "";
-                                };
-                            };
-                        };
-                        class List3 {
-                            displayName = "List 3";
-                            class AttributeControls {
-                                class Control1 {
-                                    condition = "true";
-                                    type = "LIST";
-                                    labels[] = {
-                                        "Item 1",
-                                        "Item 2",
-                                        "Item 3",
-                                        "Item 4",
-                                        "Item 5"
-                                    };
-                                    values[] = {1,2,3,4,5};
-                                    selected = "4";
-                                    expression = "";
-                                };
-                            };
-                        };
                         class Vector {
                             displayName = "Vector";
                             class AttributeControls {
@@ -81,7 +12,7 @@ class GVARMAIN(attributes) {
                                     condition = "true";
                                     type = "VECTOR";
                                     value = "getPosATL player";
-                                    expression = "systemChat str _this";
+                                    expression = "";
                                 };
                             };
                         };
@@ -97,20 +28,18 @@ class GVARMAIN(attributes) {
                                 };
                             };
                         };
-                        /*class Teleport {
+                        class Teleport {
                             displayName = "Teleport";
                             tooltipText = "Teleport yourself to a desired location";
                             class AttributeControls {
                                 class Map {
                                     condition = "true";
                                     type = "MAP";
-                                    position[] = {0,0,0};
-                                    expression = QUOTE(\
-                                        systemChat str _this;\
-                                    );
+                                    position = "getPosATL player";
+                                    expression = "systemChat str _this";
                                 };
                             };
-                        };*/
+                        };
                     };
                 };
             };
