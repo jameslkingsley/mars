@@ -24,7 +24,8 @@ params [
     ["_config", "", [""]],
     ["_idc", -1, [0]],
     ["_group", -1, [0]],
-    ["_position", [0,0,0,0], [[]]]
+    ["_position", [0,0,0,0], [[]]],
+    ["_labelIDC", -1, [0]]
 ];
 
 _config = call compile _config;
@@ -67,6 +68,7 @@ _value = _value apply {if (_x isEqualType "") then {parseNumber _x} else {_x}};
     _thisValue = _value select _forEachIndex;
     _vectorCtrl ctrlSetText str _thisValue;
 
+    _vectorCtrl setVariable [QGVAR(label), (_display displayCtrl _labelIDC)];
     _vectorCtrl setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
     _vectorCtrl setVariable [QGVAR(vectorStartValue), _thisValue];
     _vectorCtrl setVariable [QGVAR(execExpression), false];

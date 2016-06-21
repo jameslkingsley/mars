@@ -24,7 +24,8 @@ params [
     ["_config", "", [""]],
     ["_idc", -1, [0]],
     ["_group", -1, [0]],
-    ["_position", [0,0,0,0], [[]]]
+    ["_position", [0,0,0,0], [[]]],
+    ["_labelIDC", -1, [0]]
 ];
 
 _config = call compile _config;
@@ -100,6 +101,7 @@ if (_selected isEqualType []) then {
 
 _ctrlList ctrlSetPosition _position;
 
+_ctrlList setVariable [QGVAR(label), (_display displayCtrl _labelIDC)];
 _ctrlList setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
 _ctrlList setVariable [QGVAR(lbStartSelected), ([lbCurSel _ctrlList, lbSelection _ctrlList] select _multi)];
 _ctrlList setVariable [QGVAR(execExpression), false];

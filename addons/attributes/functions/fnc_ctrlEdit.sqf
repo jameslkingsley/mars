@@ -24,7 +24,8 @@ params [
     ["_config", "", [""]],
     ["_idc", -1, [0]],
     ["_group", -1, [0]],
-    ["_position", [0,0,0,0], [[]]]
+    ["_position", [0,0,0,0], [[]]],
+    ["_labelIDC", -1, [0]]
 ];
 
 _config = call compile _config;
@@ -48,6 +49,7 @@ _text = [(EGVAR(editor,selection) call compile getText (_config >> "textCode")),
 
 _ctrlEdit ctrlSetText _text;
 
+_ctrlEdit setVariable [QGVAR(label), (_display displayCtrl _labelIDC)];
 _ctrlEdit setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
 _ctrlEdit setVariable [QGVAR(editStartText), (ctrlText _ctrlEdit)];
 _ctrlEdit setVariable [QGVAR(execExpression), false];

@@ -23,7 +23,8 @@ params [
     ["_config", "", [""]],
     ["_idc", -1, [0]],
     ["_group", -1, [0]],
-    ["_position", [0,0,0,0], [[]]]
+    ["_position", [0,0,0,0], [[]]],
+    ["_labelIDC", -1, [0]]
 ];
 
 _config = call compile _config;
@@ -47,6 +48,7 @@ _ctrlSlider sliderSetRange _range;
 _ctrlSlider sliderSetSpeed [_step, _step];
 _ctrlSlider sliderSetPosition _startPos;
 
+_ctrlSlider setVariable [QGVAR(label), (_display displayCtrl _labelIDC)];
 _ctrlSlider setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
 _ctrlSlider setVariable [QGVAR(sliderStartPos), sliderPosition _ctrlSlider];
 _ctrlSlider setVariable [QGVAR(execExpression), false];

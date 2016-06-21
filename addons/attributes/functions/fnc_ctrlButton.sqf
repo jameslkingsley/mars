@@ -24,7 +24,8 @@ params [
     ["_config", "", [""]],
     ["_idc", -1, [0]],
     ["_group", -1, [0]],
-    ["_position", [0,0,0,0], [[]]]
+    ["_position", [0,0,0,0], [[]]],
+    ["_labelIDC", -1, [0]]
 ];
 
 _config = call compile _config;
@@ -42,6 +43,7 @@ if (isNil QEGVAR(editor,selection)) then {
 _text = [(EGVAR(editor,selection) call compile getText (_config >> "textCode")), getText (_config >> "textPlain")] select (isNull (_config >> "textCode"));
 _action = getText (_config >> "action");
 
+_ctrlButton setVariable [QGVAR(label), (_display displayCtrl _labelIDC)];
 _ctrlButton setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
 _ctrlButton setVariable [QGVAR(execReturnData), _action];
 

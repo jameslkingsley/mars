@@ -24,7 +24,8 @@ params [
     ["_config", "", [""]],
     ["_idc", -1, [0]],
     ["_group", -1, [0]],
-    ["_position", [0,0,0,0], [[]]]
+    ["_position", [0,0,0,0], [[]]],
+    ["_labelIDC", -1, [0]]
 ];
 
 _config = call compile _config;
@@ -86,6 +87,7 @@ _ctrlCheckLabel ctrlAddEventHandler ["MouseButtonUp", {
     _checkbox setVariable [QGVAR(execReturnData), _newState];
 }];
 
+_ctrlCheck setVariable [QGVAR(label), (_display displayCtrl _labelIDC)];
 _ctrlCheck setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
 _ctrlCheck setVariable [QGVAR(siblings), [_ctrlCheckLabel]];
 _ctrlCheck setVariable [QGVAR(checkStartState), BOOL2INT(cbChecked _ctrlCheck)];

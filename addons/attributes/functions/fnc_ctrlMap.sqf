@@ -23,7 +23,8 @@ params [
     ["_config", "", [""]],
     ["_idc", -1, [0]],
     ["_group", -1, [0]],
-    ["_position", [0,0,0,0], [[]]]
+    ["_position", [0,0,0,0], [[]]],
+    ["_labelIDC", -1, [0]]
 ];
 
 _config = call compile _config;
@@ -53,6 +54,7 @@ if (count _startPosition != 3) then {
 _ctrlMap ctrlMapAnimAdd [0, 0.25, _startPosition];
 ctrlMapAnimCommit _ctrlMap;
 
+_ctrlMap setVariable [QGVAR(label), (_display displayCtrl _labelIDC)];
 _ctrlMap setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
 _ctrlMap setVariable [QGVAR(mapStartPos), _startPosition];
 _ctrlMap setVariable [QGVAR(execExpression), false];

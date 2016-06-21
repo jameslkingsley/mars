@@ -23,7 +23,8 @@ params [
     ["_config", "", [""]],
     ["_idc", -1, [0]],
     ["_group", -1, [0]],
-    ["_position", [0,0,0,0], [[]]]
+    ["_position", [0,0,0,0], [[]]],
+    ["_labelIDC", -1, [0]]
 ];
 
 _config = call compile _config;
@@ -37,6 +38,7 @@ _ctrlMonth = _display ctrlCreate ["MARS_gui_ctrlCombo", _idc + 1, _controlGroup]
 _ctrlDay = _display ctrlCreate ["MARS_gui_ctrlCombo", _idc + 2, _controlGroup];
 
 {
+    _x setVariable [QGVAR(label), (_display displayCtrl _labelIDC)];
     _x ctrlSetPosition [
         (_position select 0) + (_forEachIndex * _ctrlCommonWidth),
         (_position select 1),

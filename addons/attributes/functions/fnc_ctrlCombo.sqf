@@ -23,7 +23,8 @@ params [
     ["_config", "", [""]],
     ["_idc", -1, [0]],
     ["_group", -1, [0]],
-    ["_position", [0,0,0,0], [[]]]
+    ["_position", [0,0,0,0], [[]]],
+    ["_labelIDC", -1, [0]]
 ];
 
 _config = call compile _config;
@@ -36,7 +37,7 @@ _ctrlCombo ctrlSetPosition _position;
 
 _values = [call compile getText (_config >> "values"), getArray (_config >> "values")] select (isArray (_config >> "values"));
 _labels = [call compile getText (_config >> "labels"), getArray (_config >> "labels")] select (isArray (_config >> "labels"));
-_selected = call compile getText (_config >> "selected");
+_selected = [call compile getText (_config >> "selected"), getNumber (_config >> "selected")] select (isNumber (_config >> "selected"));
 
 if (count _labels > count _values) then {
     MARS_LOGERROR_1("Labels array is bigger than the values array in %1. Ignoring extra labels.", _config);
@@ -51,8 +52,15 @@ if (count _labels > count _values) then {
 {
     _i = _ctrlCombo lbAdd (_labels select _forEachIndex);
     _ctrlCombo lbSetData [_i, ([str _x, _x] select (_x isEqualType ""))];
-    if (_x == _selected) then {
-        _ctrlCombo lbSetCurSel _i;
+    
+    if (_selected isEqualType 0) then {
+        if (_i == _selected) then {
+            _ctrlCombo lbSetCurSel _i;
+        };
+    } else {
+        if (_x == _selected) then {
+            _ctrlCombo lbSetCurSel _i;
+        };
     };
 } forEach _values;
 
@@ -61,6 +69,7 @@ if (count _values > 10) then {
     _ctrlCombo lbAdd "";
 };
 
+_ctrlCombo setVariable [QGVAR(label), (_display displayCtrl _labelIDC)];
 _ctrlCombo setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
 _ctrlCombo setVariable [QGVAR(comboStartIndex), (lbCurSel _ctrlCombo)];
 _ctrlCombo setVariable [QGVAR(execExpression), false];
