@@ -32,7 +32,7 @@ _display = GETUVAR(GVAR(interface),displayNull);
 
 _controlGroup = _display displayCtrl _group;
 
-_ctrlMap = _display ctrlCreate ["RscMapControl", _idc, _controlGroup];
+_ctrlMap = _display ctrlCreate ["MARS_gui_ctrlMap", _idc, _controlGroup];
 _ctrlMapTemp = _display ctrlCreate ["MARS_gui_ctrlStaticBackground", _idc, _controlGroup];
 
 _position set [3, (_position select 2)];
