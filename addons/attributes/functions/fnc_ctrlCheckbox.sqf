@@ -95,6 +95,15 @@ _ctrlCheck setVariable [QGVAR(execExpression), false];
 _ctrlCheck setVariable [QGVAR(execExpressionStr), getText (_config >> "expression")];
 _ctrlCheck setVariable [QGVAR(execReturnData), cbChecked _ctrlCheck];
 
+{
+    _x params ["_configEvent","_runtimeEvent"];
+    if (!isNull (_config >> _configEvent)) then {
+        _ctrlCheck ctrlAddEventHandler [_runtimeEvent, getText (_config >> _configEvent)];
+    };
+} forEach [
+    ["onCheckedChanged", "CheckedChanged"]
+];
+
 _ctrlCheckLabel ctrlCommit 0;
 _ctrlCheck ctrlCommit 0;
 
