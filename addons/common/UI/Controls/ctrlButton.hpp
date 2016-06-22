@@ -162,3 +162,9 @@ class MARS_gui_ctrlButtonVectorZ: MARS_gui_ctrlButtonVectorX {
     colorBackgroundDisabled[] = {COLOR_POSZ_RGBA};
     text = "Z";
 };
+
+class MARS_gui_ctrlButtonAttributes: MARS_gui_ctrlButton {
+    style = ST_CENTER + ST_UPPERCASE;
+    size = SIZEEX_PURISTA_S;
+    sizeEx = SIZEEX_PURISTA_S;
+};
