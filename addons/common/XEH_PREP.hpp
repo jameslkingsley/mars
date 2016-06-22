@@ -24,3 +24,4 @@ PREP(getSideColorTexture);
 PREP(loadSetting);
 PREP(saveSetting);
 PREP(dumpPerformanceCounters);
+PREP(codeToString);
