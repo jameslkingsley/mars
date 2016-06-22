@@ -49,6 +49,8 @@ if (!isNil QGVAR(drawingPFH)) then {
     [GVAR(drawingPFH)] call CBA_fnc_removePerFrameHandler;
 };
 
-player removeEventHandler ["Killed", GVAR(playerKilledHandle)];
+if (!isNil QGVAR(playerKilledHandle)) then {
+    player removeEventHandler ["Killed", GVAR(playerKilledHandle)];
+};
 
 GVAR(isSet) = false;
