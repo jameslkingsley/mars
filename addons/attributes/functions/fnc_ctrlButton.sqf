@@ -33,7 +33,7 @@ _display = GETUVAR(GVAR(interface),displayNull);
 
 _controlGroup = _display displayCtrl _group;
 
-_ctrlButton = _display ctrlCreate ["MARS_gui_ctrlButton", _idc, _controlGroup];
+_ctrlButton = _display ctrlCreate ["MARS_gui_ctrlButtonAttributes", _idc, _controlGroup];
 _ctrlButton ctrlSetPosition _position;
 
 if (isNil QEGVAR(editor,selection)) then {
@@ -41,6 +41,7 @@ if (isNil QEGVAR(editor,selection)) then {
 };
 
 _text = [(EGVAR(editor,selection) call compile getText (_config >> "textCode")), getText (_config >> "textPlain")] select (isNull (_config >> "textCode"));
+_tooltip = [getText (_config >> "tooltipText"), ""] select (isNull (_config >> "tooltipText"));
 _action = getText (_config >> "action");
 
 _ctrlButton setVariable [QGVAR(label), (_display displayCtrl _labelIDC)];
@@ -48,6 +49,7 @@ _ctrlButton setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey
 _ctrlButton setVariable [QGVAR(execReturnData), _action];
 
 _ctrlButton ctrlSetText _text;
+_ctrlButton ctrlSetTooltip _tooltip;
 _ctrlButton buttonSetAction _action;
 
 _ctrlButton ctrlCommit 0;
