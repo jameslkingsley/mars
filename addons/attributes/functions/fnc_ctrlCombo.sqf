@@ -37,7 +37,9 @@ _ctrlCombo ctrlSetPosition _position;
 
 _values = [call compile getText (_config >> "values"), getArray (_config >> "values")] select (isArray (_config >> "values"));
 _labels = [call compile getText (_config >> "labels"), getArray (_config >> "labels")] select (isArray (_config >> "labels"));
-_selected = [call compile getText (_config >> "selected"), getNumber (_config >> "selected")] select (isNumber (_config >> "selected"));
+
+_selectedIsNumber = isNumber (_config >> "selected");
+_selected = [call compile getText (_config >> "selected"), getNumber (_config >> "selected")] select (_selectedIsNumber);
 
 if (count _labels > count _values) then {
     MARS_LOGERROR_1("Labels array is bigger than the values array in %1. Ignoring extra labels.", _config);
@@ -53,7 +55,7 @@ if (count _labels > count _values) then {
     _i = _ctrlCombo lbAdd (_labels select _forEachIndex);
     _ctrlCombo lbSetData [_i, ([str _x, _x] select (_x isEqualType ""))];
     
-    if (_selected isEqualType 0) then {
+    if (_selectedIsNumber) then {
         if (_i == _selected) then {
             _ctrlCombo lbSetCurSel _i;
         };
