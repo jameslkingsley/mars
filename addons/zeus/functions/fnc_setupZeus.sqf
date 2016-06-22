@@ -36,9 +36,6 @@ if (_giveZeus) then {
 
         _unit assignCurator GVAR(zeusModule);
         publicVariable QGVAR(zeusModule);
-        
-        {GVAR(zeusModule) addCuratorEditableObjects [[_x],true]; false} count vehicles;
-        {GVAR(zeusModule) addCuratorEditableObjects [[_x],true]; false} count (entities "CAManBase");
     };
 } else {
     if (!isNull GVAR(zeusModule)) then {
