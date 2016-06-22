@@ -56,6 +56,7 @@ class GVARMAIN(attributes) {
                                 class Label {
                                     condition = "true";
                                     type = "LABEL";
+                                    width = 0.66;
                                     textCode = QUOTE(\
                                         if (!isNil QUOTE(QEFUNC(zeus,getCuratorString))) then {\
                                             ([] call EFUNC(zeus,getCuratorString))\
@@ -76,6 +77,7 @@ class GVARMAIN(attributes) {
                                         };\
                                     );
                                     type = "BUTTON";
+                                    width = 0.33;
                                     textCode = QUOTE(\
                                         if (!isNil QUOTE(QEFUNC(zeus,getCuratorBtnString))) then {\
                                             ([] call EFUNC(zeus,getCuratorBtnString))\
