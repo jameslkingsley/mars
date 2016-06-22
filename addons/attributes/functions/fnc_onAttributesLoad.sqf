@@ -122,7 +122,7 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
     // Categories
     _catConfig = _x;
     _items = "true" configClasses (_catConfig >> "AttributeItems");
-    _itemIDC = IDC_EDITATTRIBUTES_CATEGORIES * 100;
+    _itemIDC = (_categoryIDC * 10) + _categoryIndex;
     _itemIndex = 0;
     
     {
@@ -137,10 +137,19 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
         _ctrlIndex = 0;
         _ctrlLargestHeight = 0;
         _ctrlIWidth = FIELD_WIDTH / count _itemControls;
+        _ctrlXOffset = 0;
+        _ctrlPrevIWidth = 0;
         
         {
             // Controls
             _ctrlConfig = _x;
+            _ctrlXOffset = (_ctrlIndex min 1) * GRID_W;
+            _ctrlPrevIWidth = _ctrlIWidth;
+            
+            if (!isNull (_ctrlConfig >> "width")) then {
+                private _ctrlConfigWidth = getNumber (_ctrlConfig >> "width");
+                _ctrlIWidth = ((_ctrlConfigWidth min 1) max 0.1) * FIELD_WIDTH;
+            };
             
             _ctrlConfigPath = [
                 _requiredConfig,
@@ -162,10 +171,10 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
                 _ctrlCreateCode = format [
                     "[""%1"", %7, %8, [%2,%3,%4,%5], %9] call %6",
                     _ctrlConfigPath,
-                    CATEGORY_SPACING + LABEL_WIDTH + GRID_W + (_ctrlIndex * _ctrlIWidth),
-                    _totalLabel + _itemLabelY,
-                    _ctrlIWidth,
-                    LABEL_HEIGHT,
+                    CATEGORY_SPACING + LABEL_WIDTH + GRID_W + (_ctrlIndex * _ctrlPrevIWidth) + _ctrlXOffset, // X
+                    _totalLabel + _itemLabelY, // Y
+                    _ctrlIWidth - _ctrlXOffset, // W
+                    LABEL_HEIGHT, // H
                     _ctrlCreateFunction,
                     _ctrlIDC,
                     IDC_EDITATTRIBUTES_CATEGORIES,
@@ -222,6 +231,8 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
                 };                
             };
             
+            _ctrlPrevIWidth = _ctrlIWidth;
+            
             INC(_ctrlIDC);
             INC(_ctrlIndex);
             
@@ -242,6 +253,7 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
     
     ADD(_totalLabel, CATEGORY_SPACING);
     
+    INC(_itemIDC);
     INC(_categoryIDC);
     INC(_categoryIndex);
     
