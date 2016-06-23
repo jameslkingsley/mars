@@ -72,7 +72,7 @@ class GVARMAIN(attributes) {
                                     action = QUOTE([player] call FUNC(resetPosition));
                                 };
                                 class FixSpectator {
-                                    condition = "ARC_isSpectating";
+                                    condition = "if (isNil 'ARC_isSpectating') exitWith {false}; ARC_isSpectating";
                                     type = "BUTTON";
                                     textPlain = "Fix Spectator";
                                     tooltipText = "Fixes spectator if it breaks on you.";
