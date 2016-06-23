@@ -9,7 +9,7 @@ class GVARMAIN(attributes) {
                             displayName = "Vector";
                             class AttributeControls {
                                 class Control {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "VECTOR";
                                     value = "getPosATL player";
                                     expression = "";
@@ -20,7 +20,7 @@ class GVARMAIN(attributes) {
                             displayName = "Checkbox";
                             class AttributeControls {
                                 class Control {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "CHECKBOX";
                                     checked = false;
                                     textPlain = "Checkbox label";
@@ -33,7 +33,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Teleport yourself to a desired location";
                             class AttributeControls {
                                 class Map {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "MAP";
                                     position = "getPosATL player";
                                     expression = "systemChat str _this";

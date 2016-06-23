@@ -12,7 +12,7 @@ class GVARMAIN(attributes) {
                             tooltipText = CSTRING(Date_Tooltip);
                             class AttributeControls {
                                 class Date {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "DATE";
                                     year = "date select 0";
                                     month = "date select 1";
@@ -26,7 +26,7 @@ class GVARMAIN(attributes) {
                             tooltipText = CSTRING(Time_Hour_Tooltip);
                             class AttributeControls {
                                 class Hour {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "SLIDER";
                                     range[] = {0, 23};
                                     step = 1;
@@ -45,7 +45,7 @@ class GVARMAIN(attributes) {
                             tooltipText = CSTRING(Time_Min_Tooltip);
                             class AttributeControls {
                                 class Minute {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "SLIDER";
                                     range[] = {0, 59};
                                     step = 1;
@@ -68,7 +68,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Change the overcast of the current running mission";
                             class AttributeControls {
                                 class Start {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "SLIDER";
                                     range[] = {0, 1};
                                     step = 0.1;
@@ -83,7 +83,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Change the rain of the current running mission";
                             class AttributeControls {
                                 class Start {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "SLIDER";
                                     range[] = {0, 1};
                                     step = 0.1;
@@ -98,7 +98,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Change the lightning of the current running mission";
                             class AttributeControls {
                                 class Start {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "SLIDER";
                                     range[] = {0, 1};
                                     step = 0.1;
@@ -113,7 +113,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Change the waves of the current running mission";
                             class AttributeControls {
                                 class Start {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "SLIDER";
                                     range[] = {0, 1};
                                     step = 0.1;
@@ -132,7 +132,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Value for fog at base level";
                             class AttributeControls {
                                 class Start {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "SLIDER";
                                     range[] = {0, 1};
                                     step = 0.01;
@@ -147,7 +147,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Decay of fog density with altitude";
                             class AttributeControls {
                                 class Start {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "SLIDER";
                                     range[] = {0, 1};
                                     step = 0.01;
@@ -162,7 +162,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Base altitude of fog (in meters)";
                             class AttributeControls {
                                 class Start {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "SLIDER";
                                     range[] = {0, 250};
                                     step = 10;

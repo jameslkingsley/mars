@@ -31,7 +31,7 @@ if (count _contexts > 0) then {
         private ["_config", "_condition"];
         _config = _x;
         _condition = ["", (getText (_config >> "condition"))] select (!isNull (_config >> "condition"));
-        if (_condition == "") then {_condition = "true"};
+        if (_condition == "") then {_condition = "(true)"};
         
         // Run the condition for all in selection
         if (({_x call compile _condition} count GVAR(selection)) > 0) then {

@@ -17,7 +17,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Speed of the camera movement";
                             class AttributeControls {
                                 class Speed {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "SLIDER";
                                     range[] = {0.1, 10};
                                     step = 1;
@@ -39,7 +39,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Field of view of the camera";
                             class AttributeControls {
                                 class Zoom {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "SLIDER";
                                     range[] = {0.01, 2};
                                     step = 0.01;
@@ -62,7 +62,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "";
                             class AttributeControls {
                                 class Bool {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "CHECKBOX";
                                     checked = QGVAR(camSlowDownInBuildings);
                                     textPlain = "Slow speed when inside buildings";
@@ -82,7 +82,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Draw distance of icons (larger distance will reduce FPS)";
                             class AttributeControls {
                                 class Slider {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "SLIDER";
                                     range[] = {500, 10000};
                                     step = 500;
@@ -105,7 +105,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Scale of group icons when hovering over them";
                             class AttributeControls {
                                 class Slider {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "SLIDER";
                                     range[] = {1, 2.5};
                                     step = 0.1;

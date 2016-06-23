@@ -10,11 +10,11 @@ class GVARMAIN(context) {
         class GVAR(debug) {
             displayName = "Debug";
             requiresPosition = false;
-            condition = "true";
+            condition = "(true)";
             class GVAR(logSelection) {
                 displayName = "Log Selection to RPT";
                 requiresPosition = false;
-                condition = "true";
+                condition = "(true)";
                 action = QUOTE(_this call FUNC(logSelection));
             };
         };

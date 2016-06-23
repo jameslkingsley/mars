@@ -1,9 +1,6 @@
 #ifndef MARS_DEFINE_H
 #define MARS_DEFINE_H
 
-#define true 1
-#define false 0
-
 #define CT_STATIC 0
 #define CT_BUTTON 1
 #define CT_EDIT 2
@@ -375,13 +372,13 @@ class MARS_gui_buttonBase {
         font = FONT_MARS;
         color = "#E5E5E5";
         align = "center";
-        shadow = "true";
+        shadow = "1";
     };
     class AttributesImage {
         font = FONT_MARS;
         color = "#E5E5E5";
         align = "left";
-        shadow = "true";
+        shadow = "1";
     };
 };
 

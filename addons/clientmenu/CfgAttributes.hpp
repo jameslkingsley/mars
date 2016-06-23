@@ -12,7 +12,7 @@ class GVARMAIN(attributes) {
                             tooltipText = CSTRING(Detail_Tooltip);
                             class AttributeControls {
                                 class Options {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "COMBO";
                                     labels[] = {"Low", "Medium", "High", "Very High"};
                                     values[] = {25, 12.5, 6.25, 3.125};
@@ -29,7 +29,7 @@ class GVARMAIN(attributes) {
                             tooltipText = CSTRING(Distance_Tooltip);
                             class AttributeControls {
                                 class Options {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "SLIDER";
                                     range[] = {500, 10000};
                                     step = 500;
@@ -54,7 +54,7 @@ class GVARMAIN(attributes) {
                             tooltipText = CSTRING(Editor_Tooltip);
                             class AttributeControls {
                                 class Label {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "LABEL";
                                     width = 0.66;
                                     textCode = QUOTE(\

@@ -25,7 +25,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Execute code on unit (_this). Code is executed where the given object is local.";
                             class AttributeControls {
                                 class Edit {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "EDIT";
                                     rows = 5;
                                     expression = "";

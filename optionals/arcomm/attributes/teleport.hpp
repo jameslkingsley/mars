@@ -10,7 +10,7 @@ class Teleport {
                     tooltipText = "Select which units you want to affect";
                     class AttributeControls {
                         class Control {
-                            condition = "true";
+                            condition = "(true)";
                             type = "LIST";
                             multi = true;
                             labels = QUOTE(\
@@ -32,7 +32,7 @@ class Teleport {
                     tooltipText = "Choose the teleportation method for the selected units";
                     class AttributeControls {
                         class Control {
-                            condition = "true";
+                            condition = "(true)";
                             type = "COMBO";
                             labels[] = {"Teleport", "Paradrop"};
                             values[] = {"teleport", "paradrop"};
@@ -93,7 +93,7 @@ class Teleport {
                     tooltipText = "Position you want the selected units to be sent to";
                     class AttributeControls {
                         class Control {
-                            condition = "true";
+                            condition = "(true)";
                             type = "MAP";
                             position = "getPosATL player";
                             expression = "";

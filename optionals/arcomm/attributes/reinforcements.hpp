@@ -10,17 +10,17 @@ class Reinforcements {
                     tooltipText = "Select which units you want to affect";
                     class AttributeControls {
                         class Control {
-                            condition = "true";
+                            condition = "(true)";
                             identifier = "PlayerList";
                             type = "LIST";
                             multi = true;
                             labels = QUOTE(\
-                                private _labels = allPlayers select {alive _x && vehicle _x == _x};\
+                                private _labels = ARC_reinforcements_joinArray;\
                                 _labels = _labels apply {name _x};\
                                 _labels\
                             );
                             values = QUOTE(\
-                                private _values = allPlayers select {alive _x};\
+                                private _values = ARC_reinforcements_joinArray;\
                                 _values = _values apply {getPlayerUID _x};\
                                 _values\
                             );
@@ -37,7 +37,7 @@ class Reinforcements {
                     tooltipText = "Choose the insertion method for the selected units";
                     class AttributeControls {
                         class Control {
-                            condition = "true";
+                            condition = "(true)";
                             type = "COMBO";
                             labels[] = {"Teleport", "Paradrop"};
                             values[] = {"teleport", "paradrop"};
@@ -98,7 +98,7 @@ class Reinforcements {
                     tooltipText = "Position you want the selected units to be sent to";
                     class AttributeControls {
                         class Control {
-                            condition = "true";
+                            condition = "(true)";
                             type = "MAP";
                             position = "getPosATL player";
                             expression = "";
@@ -114,7 +114,7 @@ class Reinforcements {
                     tooltipText = "Configure the group for the selected units";
                     class AttributeControls {
                         class Control {
-                            condition = "true";
+                            condition = "(true)";
                             type = "CHECKBOX";
                             checked = false;
                             expression = "";
@@ -137,7 +137,7 @@ class Reinforcements {
                                 private _selectionCtrl = ['PlayerList'] call AFUNC(getControl);\
                                 private _selection = lbSelection _selectionCtrl;\
                                 _selection = _selection apply {(_selectionCtrl lbData _x)};\
-                                private _selectionObjects = allPlayers select {(getPlayerUID _x) in _selection};\
+                                private _selectionObjects = ARC_reinforcements_joinArray select {(getPlayerUID _x) in _selection};\
                                 _selectionObjects = _selectionObjects apply {name _x};\
                                 _selectionObjects\
                             );

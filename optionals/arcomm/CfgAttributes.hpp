@@ -15,7 +15,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Teleport a selection of players to a desired location.";
                             class AttributeControls {
                                 class Button {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "BUTTON";
                                     textPlain = "Open Teleport Menu";
                                     action = QUOTE([ARR_3(QUOTE(QUOTE(ADDON)), 'Teleport', [ARR_2(100, 100)])] call AFUNC(openAttributes));
@@ -27,7 +27,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "Send spectating players in as reinforcements.";
                             class AttributeControls {
                                 class Button {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "BUTTON";
                                     textPlain = "Open Reinforcements Menu";
                                     action = QUOTE([ARR_3(QUOTE(QUOTE(ADDON)), 'Reinforcements', [ARR_2(100, 100)])] call AFUNC(openAttributes));
@@ -65,7 +65,7 @@ class GVARMAIN(attributes) {
                             tooltipText = "";
                             class AttributeControls {
                                 class ResetPosition {
-                                    condition = "true";
+                                    condition = "(true)";
                                     type = "BUTTON";
                                     textPlain = "Reset Position";
                                     tooltipText = "Reset your position to the nearest safest location. Used for when you get stuck.";
