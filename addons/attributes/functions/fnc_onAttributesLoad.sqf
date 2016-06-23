@@ -139,7 +139,6 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
         _ctrlIWidth = FIELD_WIDTH / count _itemControls;
         _ctrlXOffset = 0;
         _ctrlPrevIWidth = 0;
-        _disableLabel = true;
         
         {
             // Controls
@@ -210,8 +209,6 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
                     
                     if !(call compile getText (_ctrlConfig >> "condition")) then {
                         {_x ctrlEnable false} forEach (_ctrlRet + (_ctrlRet getVariable [QGVAR(siblings), []]));
-                    } else {
-                        _disableLabel = false;
                     };
                 } else {
                     _ctrlIDC = ctrlIDC _ctrlRet; // In case the control code changes the IDC for whatever reason
@@ -228,8 +225,6 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
                     if !(call compile getText (_ctrlConfig >> "condition")) then {
                         _ctrlRet ctrlEnable false;
                         {_x ctrlEnable false} forEach (_ctrlRet getVariable [QGVAR(siblings), []]);
-                    } else {
-                        _disableLabel = false;
                     };
                 };                
             };
@@ -242,7 +237,9 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
             false
         } count _itemControls;
         
-        _itemLabel ctrlEnable !_disableLabel;
+        if ({call compile getText (_x >> "condition")} count _itemControls == 0) then {
+            _itemLabel ctrlEnable false;
+        };
         
         _itemLabelPosY = [(_totalLabel + _itemLabelY), ((_totalLabel + _itemLabelY) - _ctrlLargestHeight) + CATEGORY_SPACING] select (_ctrlLargestHeight > LABEL_HEIGHT);
         _itemLabel ctrlSetPosition [CATEGORY_SPACING, _itemLabelPosY, LABEL_WIDTH, LABEL_HEIGHT];
