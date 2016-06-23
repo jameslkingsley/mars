@@ -1,0 +1,1 @@
+#include "\z\mars\addons\arcomm\script_component.hpp"
