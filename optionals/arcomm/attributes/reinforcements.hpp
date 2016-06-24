@@ -15,12 +15,12 @@ class Reinforcements {
                             type = "LIST";
                             multi = true;
                             labels = QUOTE(\
-                                private _labels = ARC_reinforcements_joinArray;\
+                                private _labels = ARC_reinforcements_joinArray select {!isNull _x};\
                                 _labels = _labels apply {name _x};\
                                 _labels\
                             );
                             values = QUOTE(\
-                                private _values = ARC_reinforcements_joinArray;\
+                                private _values = ARC_reinforcements_joinArray select {!isNull _x};\
                                 _values = _values apply {getPlayerUID _x};\
                                 _values\
                             );
@@ -58,7 +58,7 @@ class Reinforcements {
                     tooltipText = "Height in meters to paradrop the selected units";
                     class AttributeControls {
                         class Control {
-                            condition = "false";
+                            condition = "(false)";
                             identifier = "ParaHeight";
                             type = "SLIDER";
                             range[] = {150, 1000};
@@ -78,7 +78,7 @@ class Reinforcements {
                     tooltipText = "Radius in meters to disperse the selected units";
                     class AttributeControls {
                         class Control {
-                            condition = "false";
+                            condition = "(false)";
                             identifier = "ParaRadius";
                             type = "SLIDER";
                             range[] = {100, 1500};
@@ -130,7 +130,7 @@ class Reinforcements {
                     tooltipText = "Select the leader of the group";
                     class AttributeControls {
                         class Control {
-                            condition = "false";
+                            condition = "(false)";
                             identifier = "GroupLeader";
                             type = "COMBO";
                             labels = QUOTE(\
@@ -157,14 +157,14 @@ class Reinforcements {
                     tooltipText = "Enter the name and color for the group. This is the text that shows up on their colored map marker.";
                     class AttributeControls {
                         class Name {
-                            condition = "false";
+                            condition = "(false)";
                             identifier = "GroupDetails_Name";
                             type = "EDIT";
                             width = 0.66;
                             expression = "";
                         };
                         class Color {
-                            condition = "false";
+                            condition = "(false)";
                             identifier = "GroupDetails_Color";
                             type = "COMBO";
                             width = 0.33;
@@ -180,7 +180,7 @@ class Reinforcements {
                     tooltipText = "Enter a comma delimited list of loadout names to assign to the selected units. The first loadout in the list will be assigned to the group leader.";
                     class AttributeControls {
                         class List {
-                            condition = "false";
+                            condition = "(false)";
                             identifier = "Loadouts";
                             type = "EDIT";
                             textPlain = "ftl, ar, aar, rat, r";

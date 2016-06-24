@@ -37,10 +37,10 @@ GVAR(reinforcementUnits) = [];
 publicVariable QGVAR(reinforcementUnits);
 
 {
-    [false, false, false] remoteExecCall ["ARC_fnc_rejoinMission", _x];
+    [false, false, false] remoteExec ["ARC_fnc_rejoinMission", _x];
 } forEach _selectionObjects;
 
-[{count GVAR(reinforcementUnits) >= count (_this select 0)}, {
+[{
     params ["_selectionObjects", "_insertionMethod", "_paraHeight", "_paraRadius", "_destination", "_configureGroup", "_groupLeader", "_groupName", "_groupColor", "_loadoutsStr"];
     
     private _groupLeaderObject = (GVAR(reinforcementUnits) select {(getPlayerUID _x) == _groupLeader}) param [0, objNull];
@@ -69,13 +69,17 @@ publicVariable QGVAR(reinforcementUnits);
 
     switch (toLower _insertionMethod) do {
         case "teleport": {
-            {_x setPosATL ([_destination, 10] call CBA_fnc_randPos)} forEach GVAR(reinforcementUnits);
+            {
+                [_x, ([_destination, 10] call CBA_fnc_randPos)] remoteExecCall ["setPosATL", REMOTE_SERVER];
+                MARS_LOGINFO_2("Teleported %1 players to %2", count GVAR(reinforcementUnits), _destination);
+            } forEach GVAR(reinforcementUnits);
         };
         case "paradrop": {
             [GVAR(reinforcementUnits), _destination, _paraHeight, _paraRadius] remoteExecCall ["ARC_fnc_paraDrop", REMOTE_SERVER];
+            MARS_LOGINFO_2("Paradropped %1 players over %2", count GVAR(reinforcementUnits), _destination);
         };
     };
     
     ARC_reinforcements_joinArray = [];
     publicVariable "ARC_reinforcements_joinArray";
-}, [_selectionObjects, _insertionMethod, _paraHeight, _paraRadius, _destination, _configureGroup, _groupLeader, _groupName, _groupColor, _loadoutsStr]] call CBA_fnc_waitUntilAndExecute;
+}, [_selectionObjects, _insertionMethod, _paraHeight, _paraRadius, _destination, _configureGroup, _groupLeader, _groupName, _groupColor, _loadoutsStr], 5] call CBA_fnc_waitAndExecute;

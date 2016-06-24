@@ -53,7 +53,7 @@ class Teleport {
                     tooltipText = "Height in meters to paradrop the selected units";
                     class AttributeControls {
                         class Control {
-                            condition = "false";
+                            condition = "(false)";
                             identifier = "ParaHeight";
                             type = "SLIDER";
                             range[] = {150, 1000};
@@ -73,7 +73,7 @@ class Teleport {
                     tooltipText = "Radius in meters to disperse the selected units";
                     class AttributeControls {
                         class Control {
-                            condition = "false";
+                            condition = "(false)";
                             identifier = "ParaRadius";
                             type = "SLIDER";
                             range[] = {100, 1500};
