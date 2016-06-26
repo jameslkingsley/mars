@@ -51,7 +51,7 @@
 #define CONTEXT_OPTION_HEIGHT (0.025 * safeZoneH)
 
 // #define ICON_FADE_DISTANCE (profileNamespace getVariable [QEGVAR(clientmenu,viewDistance), 2000])
-#define ICON_FADE_DISTANCE 2500
+#define ICON_FADE_DISTANCE 1500
 #define BOX_FADE_DISTANCE 500
 #define ICON_LEADER_HEIGHT 7.5
 #define ICON_HOVER_SIZE 1.5
