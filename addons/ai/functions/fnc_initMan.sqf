@@ -19,7 +19,7 @@
 
 params [["_unit", objNull]];
 
-if (isNull _unit || {!local _unit} || {isPlayer _unit} || {!((side _unit) in [west,east,resistance,civilian])}) exitWith {};
+if (!local _unit || {isPlayer _unit} || {!([_unit] call CFUNC(isValidSide))}) exitWith {};
 
 // This prevents AI from automatically entering combat mode, preventing 24/7 prone mode
 _unit disableAI "AUTOCOMBAT";
