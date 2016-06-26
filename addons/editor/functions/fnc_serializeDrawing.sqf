@@ -39,6 +39,10 @@ private _outputLines = [];
         [COLOR_CIV_RGBA]
     ] select (([west, east, resistance, civilian] find (side _object)) + 1);
     
+    if (!alive _object) then {
+        _iconColor = [0,0,0,1];
+    };
+    
     private _objectIcon = getText (configfile >> "CfgVehicles" >> _objectClassname >> "icon");
     private _objectIconPath = [getText (configFile >> "CfgVehicleIcons" >> _objectIcon), _objectIcon] select ((toLower _objectIcon) find "\" > -1);
     
@@ -184,7 +188,9 @@ private _outputLines = [];
     
     false
 } count (((entities "All") select {
-    !(side _x in [sideAmbientLife, sideLogic, sideUnknown])
+    !(side _x in [sideAmbientLife, sideLogic, sideUnknown]) &&
+    ((_x distance GVAR(camPos)) <= GVAR(iconDrawDistance)) &&
+    !(typeOf _x in ["GroundWeaponHolder","WeaponHolderSimulated"])
 }) - (entities "Animal"));
 
 GVAR(serializedIcons) = _outputIcons;
