@@ -18,11 +18,7 @@
 
 params [["_units", [], [[]]]];
 
-private _groups = [];
+_units = _units apply {group _x};
+_units = _units arrayIntersect _units;
 
-{
-    _groups pushBackUnique (group _x);    
-    false
-} count _units;
-
-_groups
+_units
