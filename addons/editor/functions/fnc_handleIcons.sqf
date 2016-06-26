@@ -17,7 +17,7 @@
 
 #include "script_component.hpp"
 
-BEGIN_COUNTER(iconHandler);
+// BEGIN_COUNTER(iconHandler);
 
 _camPosASL = AGLtoASL GVAR(camPos);
 GVAR(groupIcons) = [];
@@ -72,4 +72,4 @@ GVAR(unitIcons) = [];
     false
 } count GVAR(serializedIcons);
 
-END_COUNTER(iconHandler);
+// END_COUNTER(iconHandler);

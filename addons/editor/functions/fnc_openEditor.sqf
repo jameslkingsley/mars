@@ -83,7 +83,7 @@ _display displayAddEventHandler ["MouseButtonDown", {
 GVAR(interrupts) = [];
 
 GVAR(pfh) = [{
-    BEGIN_COUNTER(marsPFH);
+    // BEGIN_COUNTER(marsPFH);
     
     // Tagging handler
     if (GVAR(canContext) || count GVAR(selection) > 0) then {
@@ -102,30 +102,29 @@ GVAR(pfh) = [{
         false
     } count (GVAR(selection) select {_x != GVAR(prepSurfaceSphere)});
     
-    // Status bar - grid position
-    (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_GRID) ctrlSetText format["%1", mapGridPosition GVAR(freeCamera)];
-    
     // Asset browser placing objects
     [] call FUNC(prepNewObject);
     
     // Handle location icons
     [] call FUNC(handleLocationIcons);
     
-    END_COUNTER(marsPFH);
+    // END_COUNTER(marsPFH);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(delayedPFH) = [{
+    private _display = GETUVAR(GVAR(interface),displayNull);
     // FPS Counter
-    (GETUVAR(GVAR(interface),displayNull) displayCtrl IDC_STATUSBAR_FPS) ctrlSetText format["%1 FPS", round diag_fps];
+    (_display displayCtrl IDC_STATUSBAR_FPS) ctrlSetText format ["%1 FPS", round diag_fps];
+    
+    // Status bar - grid position
+    (_display displayCtrl IDC_STATUSBAR_GRID) ctrlSetText format ["%1", mapGridPosition GVAR(freeCamera)];
 }, 1, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(drawingPFH) = [{
     [] spawn FUNC(serializeDrawing);
 }, 3, []] call CBA_fnc_addPerFrameHandler;
 
-GVAR(testPFH) = [{
-    [] call CFUNC(dumpPerformanceCounters);
-}, 5, []] call CBA_fnc_addPerFrameHandler;
+// GVAR(testPFH) = [{[] call CFUNC(dumpPerformanceCounters)}, 5, []] call CBA_fnc_addPerFrameHandler;
 
 // Close the editor upon death
 GVAR(playerKilledHandle) = player addEventHandler ["Killed", {
