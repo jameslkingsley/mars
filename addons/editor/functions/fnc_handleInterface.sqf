@@ -118,8 +118,14 @@ switch (toLower _mode) do {
             case (_button == 1 && GVAR(canContext)): {
                 if (count GVAR(selection) > 0 && count GVAR(abSelectedObject) == 0) then {
                     // Already has objects in selection
-                    [] call FUNC(closeContextMenu);
-                    [] call FUNC(handleSelToPos);
+                    private _target = [] call FUNC(objectUnderCursor);
+                    
+                    if (_target in GVAR(selection)) then {
+                        [] call FUNC(handleContextMenu);
+                    } else {
+                        [] call FUNC(closeContextMenu);
+                        [] call FUNC(handleSelToPos);
+                    };
                 } else {
                     // No objects in selection, proceed to handle context menu
                     [] call FUNC(selectObject);
