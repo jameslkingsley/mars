@@ -26,3 +26,4 @@ PREP(saveSetting);
 PREP(dumpPerformanceCounters);
 PREP(codeToString);
 PREP(listToArray);
+PREP(isValidSide);
