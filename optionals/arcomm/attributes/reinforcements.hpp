@@ -15,12 +15,14 @@ class Reinforcements {
                             type = "LIST";
                             multi = true;
                             labels = QUOTE(\
-                                private _labels = ARC_reinforcements_joinArray select {!isNull _x};\
-                                _labels = _labels apply {name _x};\
+                                private _labels = ARC_spectatorUnits select {!isNull _x};\
+                                _labels = _labels apply {\
+                                    [ARR_2(name _x, ([ARR_2([ARR_4(1,1,1,1)], [ARR_4(0,1,0,1)])] select (_x getVariable [ARR_2('ARC_wantsToRejoin', false)])))]\
+                                };\
                                 _labels\
                             );
                             values = QUOTE(\
-                                private _values = ARC_reinforcements_joinArray select {!isNull _x};\
+                                private _values = ARC_spectatorUnits select {!isNull _x};\
                                 _values = _values apply {getPlayerUID _x};\
                                 _values\
                             );
@@ -137,7 +139,7 @@ class Reinforcements {
                                 private _selectionCtrl = ['PlayerList'] call AFUNC(getControl);\
                                 private _selection = lbSelection _selectionCtrl;\
                                 _selection = _selection apply {(_selectionCtrl lbData _x)};\
-                                private _selectionObjects = ARC_reinforcements_joinArray select {(getPlayerUID _x) in _selection};\
+                                private _selectionObjects = ARC_spectatorUnits select {(getPlayerUID _x) in _selection};\
                                 _selectionObjects = _selectionObjects apply {name _x};\
                                 _selectionObjects\
                             );
