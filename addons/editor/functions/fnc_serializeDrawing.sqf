@@ -63,7 +63,9 @@ private _outputLines = [];
                 nil,
                 nil,
                 nil,
-                SMALL_ICON_DISTANCE
+                SMALL_ICON_DISTANCE,
+                nil,
+                name _object
             ];
         };
         
