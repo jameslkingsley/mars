@@ -11,20 +11,24 @@
  * Empty string if successful (see https://community.bistudio.com/wiki/remoteExec)
  *
  * Example:
- * [] call mars_common_fnc_execWhereLocal;
+ * [unit, {}, []] call mars_common_fnc_execWhereLocal;
  *
- * Public:
+ * Public: Yes
  */
 
 #include "script_component.hpp"
 
 params [
-    ["_target", objNull],
-    ["_code", {}],
-    ["_args", []]
+    ["_target", objNull, [objNull, grpNull]],
+    ["_code", {}, [{}, ""]],
+    ["_args", [], [[]]]
 ];
 
 if (isNull _target) exitWith {};
+
+if (_code isEqualType "") then {
+    _code = compile _code;
+};
 
 if (local _target) exitWith {
     [_code, _args] call FUNC(_execLocalCode);
