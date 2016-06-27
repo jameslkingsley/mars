@@ -31,7 +31,6 @@ if (_requiresPosition) then {
         
         if (GVAR(hasLeftClicked)) exitWith {
             _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
-            TRACE_1("onContextClick", _args);
             [_selection, _worldPos] call compile _action;
             
             [_handle] call CBA_fnc_removePerFrameHandler;
