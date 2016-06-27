@@ -116,7 +116,7 @@ switch (toLower _mode) do {
 
             // Right Click & Can Context
             case (_button == 1 && GVAR(canContext)): {
-                if (count GVAR(selection) > 0 && count GVAR(abSelectedObject) == 0) then {
+                if (count GVAR(selection) > 0 && count GVAR(abSelectedObject) == 0 && !GVAR(isWaitingForLeftClick)) then {
                     // Already has objects in selection
                     private _target = [] call FUNC(objectUnderCursor);
                     
@@ -137,6 +137,10 @@ switch (toLower _mode) do {
                         GVAR(abSelectedObject) = [];
                         deleteVehicle GVAR(prepSurfaceSphere);
                         GVAR(prepSurfaceSphere) = objNull;
+                        
+                        if (!isNil QGVAR(contextPosLinePFH)) then {
+                            [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
+                        };
                     }, []] call EFUNC(common,execNextFrame);
                 }, []] call EFUNC(common,execNextFrame);
             };
@@ -154,10 +158,6 @@ switch (toLower _mode) do {
             [{
                 if (!isNil QGVAR(selectionDirPFH)) then {
                     [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;
-                };
-
-                if (!isNil QGVAR(contextPosLinePFH)) then {
-                    [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
                 };
             }, []] call EFUNC(common,execNextFrame);
         }, []] call EFUNC(common,execNextFrame);
