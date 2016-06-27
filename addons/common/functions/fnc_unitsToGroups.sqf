@@ -18,7 +18,11 @@
 
 params [["_units", [], [[]]]];
 
-_units = _units apply {group _x};
+_units = _units apply {
+    if (_x isEqualType grpNull) exitWith {_x};
+    group _x
+};
+
 _units = _units arrayIntersect _units;
 
 _units
