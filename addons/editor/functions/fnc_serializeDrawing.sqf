@@ -69,38 +69,40 @@ private _outputLines = [];
             ];
         };
         
-        if (leader _object == _object) then {
-            private _groupIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
-            
-            _outputIcons pushBack [
-                _object,
-                _groupIcon,
-                _iconColor,
-                10,
-                0,
-                true,
-                nil,
-                _cursorScale
-            ];
-            
-            _outputLines pushBack [
-                _object,
-                _object,
-                [0,0,0,1],
-                0,
-                10,
-                _isPerson
-            ];
-        } else {
-            if (!isNull leader _object) then {
+        if (count units group _object > 1) then {
+            if (leader _object == _object) then {
+                private _groupIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
+                
+                _outputIcons pushBack [
+                    _object,
+                    _groupIcon,
+                    _iconColor,
+                    10,
+                    0,
+                    true,
+                    nil,
+                    _cursorScale
+                ];
+                
                 _outputLines pushBack [
                     _object,
-                    leader _object,
-                    _iconColor,
-                    1,
-                    1,
+                    _object,
+                    [0,0,0,1],
+                    0,
+                    10,
                     _isPerson
                 ];
+            } else {
+                if (!isNull leader _object) then {
+                    _outputLines pushBack [
+                        _object,
+                        leader _object,
+                        _iconColor,
+                        1,
+                        1,
+                        _isPerson
+                    ];
+                };
             };
         };
         
