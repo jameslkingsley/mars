@@ -1,7 +1,7 @@
 PREP(airAttack);
 PREP(airOrbit);
 PREP(infDefend);
-PREP(infPatrol);
+PREP(taskPatrol);
 PREP(initMan);
 PREP(selectionToPosition);
 PREP(forceMove);

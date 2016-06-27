@@ -7,21 +7,18 @@ class GVARMAIN(context) {
             class force_move {
                 displayName = "Force Move";
                 requiresPosition = true;
-                condition = QUOTE(alive _this);
                 action = QUOTE(_this call FUNC(forceMove));
             };
             
             class patrol {
                 displayName = "Patrol";
                 requiresPosition = true;
-                condition = QUOTE(alive _this);
-                action = QUOTE(_this call FUNC(infPatrol));
+                action = QUOTE(_this call FUNC(taskPatrol));
             };
             
             class defend {
                 displayName = "Defend";
                 requiresPosition = true;
-                condition = QUOTE(alive _this);
                 action = QUOTE(_this call FUNC(infDefend));
             };
         };
