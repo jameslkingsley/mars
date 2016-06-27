@@ -11,7 +11,7 @@
  * None
  *
  * Example:
- * N/A
+ * [{systemChat str _this}, [1,2,3,4]] call mars_common_fnc__execLocalCode;
  *
  * Public: No
  */
@@ -24,5 +24,3 @@ params [
 ];
 
 _args call _code;
-
-nil
