@@ -26,3 +26,4 @@ PREP(dumpPerformanceCounters);
 PREP(codeToString);
 PREP(listToArray);
 PREP(isValidSide);
+PREP(arrayShuffle);
