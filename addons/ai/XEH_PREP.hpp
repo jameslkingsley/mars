@@ -9,3 +9,4 @@ PREP(forceMove);
 PREP(garrison);
 PREP(_garrison);
 PREP(suppress);
+PREP(searchNearby);

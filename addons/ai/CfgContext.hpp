@@ -4,46 +4,52 @@ class GVARMAIN(context) {
             displayName = "Infantry";
             condition = QUOTE(_this isKindOf 'Man' && !isPlayer _this);
             
-            class Patrol {
-                displayName = "Patrol";
+            class ForceMove {
+                displayName = "Force Move";
                 requiresPosition = true;
-                action = QUOTE(_this call FUNC(taskPatrol));
+                action = QUOTE(_this call FUNC(forceMove));
                 order = 1;
-            };
-            
-            class Defend {
-                displayName = "Defend";
-                requiresPosition = true;
-                action = QUOTE(_this call FUNC(taskDefend));
-                order = 2;
             };
             
             class Attack {
                 displayName = "Attack";
                 requiresPosition = true;
                 action = QUOTE(_this call FUNC(taskAttack));
+                order = 2;
+            };
+            
+            class Defend {
+                displayName = "Defend";
+                requiresPosition = true;
+                action = QUOTE(_this call FUNC(taskDefend));
                 order = 3;
             };
             
-            class ForceMove {
-                displayName = "Force Move";
+            class Patrol {
+                displayName = "Patrol";
                 requiresPosition = true;
-                action = QUOTE(_this call FUNC(forceMove));
+                action = QUOTE(_this call FUNC(taskPatrol));
                 order = 4;
-            };
-            
-            class Garrison {
-                displayName = "Garrison";
-                requiresPosition = true;
-                action = QUOTE(_this call FUNC(garrison));
-                order = 5;
             };
             
             class Suppress {
                 displayName = "Suppress";
                 requiresPosition = true;
                 action = QUOTE(_this call FUNC(suppress));
+                order = 5;
+            };
+            
+            class SearchNearest {
+                displayName = "Search Nearby";
+                action = QUOTE(_this call FUNC(searchNearby));
                 order = 6;
+            };
+            
+            class Garrison {
+                displayName = "Garrison";
+                requiresPosition = true;
+                action = QUOTE(_this call FUNC(garrison));
+                order = 7;
             };
         };
         
