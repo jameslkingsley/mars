@@ -38,6 +38,13 @@ class GVARMAIN(context) {
                 action = QUOTE(_this call FUNC(garrison));
                 order = 5;
             };
+            
+            class Suppress {
+                displayName = "Suppress";
+                requiresPosition = true;
+                action = QUOTE(_this call FUNC(suppress));
+                order = 6;
+            };
         };
         
         class air {
