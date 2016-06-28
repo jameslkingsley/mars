@@ -11,7 +11,7 @@
  * Example:
  * _shuffled = [1,2,3,4,5] call mars_common_fnc_arrayShuffle;
  *
- * Public:
+ * Public: Yes
  */
 
 #include "script_component.hpp"
