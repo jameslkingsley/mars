@@ -39,7 +39,7 @@ GVAR(iconDrawDistance) = [QGVAR(iconDrawDistance), ICON_FADE_DISTANCE] call CFUN
 
 // Initalize the camera objects
 if (GVAR(camPos) isEqualTo []) then {
-    GVAR(camPos) = ((getPosASL player) vectorAdd [0, 0, 10]);
+    GVAR(camPos) = (getPosASL player) vectorAdd [0, 0, 10];
 };
 
 GVAR(freeCamera) = "Camera" camCreate GVAR(camPos);
@@ -128,7 +128,8 @@ GVAR(drawingPFH) = [{
 
 // Close the editor upon death
 GVAR(playerKilledHandle) = player addEventHandler ["Killed", {
-    [] call FUNC(shutdown);
+    params [["_unit", objNull]];
+    [_unit] call FUNC(shutdown);
 }];
 
 // Set the cursor to default
