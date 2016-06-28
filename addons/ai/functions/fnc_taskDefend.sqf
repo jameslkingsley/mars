@@ -1,16 +1,16 @@
 /*
  * Author: Kingsley
- * Tasks the given groups/units to patrol an area
+ * Tasks the given groups/units to defend an area
  *
  * Arguments:
- * 0: Units or groups <ARRAY>
+ * 0: Selection <ARRAY>
  * 1: Position <ARRAY>
  *
  * Return Value:
  * None
  *
  * Example:
- * [[grpOne, unitOne], [1,2,3]] call mars_ai_fnc_taskPatrol;
+ * [[grpOne, unitOne], [1,2,3]] call mars_ai_fnc_taskDefend;
  *
  * Public: Yes
  */
@@ -33,7 +33,7 @@ private _groups = [_units] call CFUNC(unitsToGroups);
         [_group] call CBA_fnc_clearWaypoints;
         
         // These parameters need to be set via a settings menu eventually
-        [_group, _pos, 200, 7, "MOVE", "AWARE", "RED", "FULL", "LINE", "this spawn CBA_fnc_searchNearby", [3,6,9]] call CBA_fnc_taskPatrol;
+        [_group, _pos, 200, 2, true] call CBA_fnc_taskDefend;
     }, [_x, _pos]] call CFUNC(execWhereLocal);
     
     false

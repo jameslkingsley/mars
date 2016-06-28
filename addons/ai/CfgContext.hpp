@@ -1,25 +1,42 @@
 class GVARMAIN(context) {
     class ADDON {
-        class infantry {
+        class Infantry {
             displayName = "Infantry";
             condition = QUOTE(_this isKindOf 'Man' && !isPlayer _this);
             
-            class force_move {
-                displayName = "Force Move";
-                requiresPosition = true;
-                action = QUOTE(_this call FUNC(forceMove));
-            };
-            
-            class patrol {
+            class Patrol {
                 displayName = "Patrol";
                 requiresPosition = true;
                 action = QUOTE(_this call FUNC(taskPatrol));
+                order = 1;
             };
             
-            class defend {
+            class Defend {
                 displayName = "Defend";
                 requiresPosition = true;
-                action = QUOTE(_this call FUNC(infDefend));
+                action = QUOTE(_this call FUNC(taskDefend));
+                order = 2;
+            };
+            
+            class Attack {
+                displayName = "Attack";
+                requiresPosition = true;
+                action = QUOTE(_this call FUNC(taskAttack));
+                order = 3;
+            };
+            
+            class ForceMove {
+                displayName = "Force Move";
+                requiresPosition = true;
+                action = QUOTE(_this call FUNC(forceMove));
+                order = 4;
+            };
+            
+            class Garrison {
+                displayName = "Garrison";
+                requiresPosition = true;
+                action = QUOTE(_this call FUNC(garrison));
+                order = 5;
             };
         };
         
