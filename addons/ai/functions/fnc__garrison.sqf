@@ -122,7 +122,8 @@ switch (_fillingType) do {
                 breakTo "restart";
             } else {
                 private _unit = _unitsArray select 0;
-                _unit forceSpeed 0;
+                // Seriously BIS, global args this shit
+                [_unit, {params ["_unit"]; _unit forceSpeed 0;}, [_unit]] call CFUNC(execWhereLocal);
                 _unit setPos _pos;
                 _unitsArray deleteAt (_unitsArray find _unit);
                 _building deleteAt 0;
@@ -154,7 +155,7 @@ switch (_fillingType) do {
 
             } else {
                 private _unit = _unitsArray select 0;
-                _unit forceSpeed 0;
+                [_unit, {params ["_unit"]; _unit forceSpeed 0;}, [_unit]] call CFUNC(execWhereLocal);
                 _unit setPos _pos;
                 _unitsArray deleteAt (_unitsArray find _unit);
                 _buildingsIndexes set [0,  _building - [_pos]];
@@ -184,7 +185,7 @@ switch (_fillingType) do {
 
             } else {
                 private _unit = _unitsArray select 0;
-                _unit forceSpeed 0;
+                [_unit, {params ["_unit"]; _unit forceSpeed 0;}, [_unit]] call CFUNC(execWhereLocal);
                 _unit setPos _pos;
                 _unitsArray deleteAt (_unitsArray find _unit);
                 _buildingsIndexes set [(_buildingsIndexes find _building),  _building - [_pos]];
