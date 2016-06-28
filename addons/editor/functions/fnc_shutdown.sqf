@@ -16,6 +16,8 @@
 
 #include "script_component.hpp"
 
+params [["_unit", player]];
+
 while {dialog} do {
     closeDialog 0;
 };
@@ -25,6 +27,7 @@ GETUVAR(GVAR(interface),displayNull) closeDisplay 0;
 if (!isNil QGVAR(freeCamera)) then {
     GVAR(freeCamera) cameraEffect ["terminate","back"];
     camDestroy GVAR(freeCamera);
+    GVAR(freeCamera) = objNull;
 };
 
 BIS_fnc_feedback_allowPP = true;
@@ -50,7 +53,8 @@ if (!isNil QGVAR(drawingPFH)) then {
 };
 
 if (!isNil QGVAR(playerKilledHandle)) then {
-    player removeEventHandler ["Killed", GVAR(playerKilledHandle)];
+    _unit removeEventHandler ["Killed", GVAR(playerKilledHandle)];
 };
 
+GVAR(camPos) = [];
 GVAR(isSet) = false;
