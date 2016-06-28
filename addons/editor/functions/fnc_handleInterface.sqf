@@ -123,8 +123,16 @@ switch (toLower _mode) do {
                     if (_target in GVAR(selection)) then {
                         [] call FUNC(handleContextMenu);
                     } else {
-                        [] call FUNC(closeContextMenu);
-                        [] call FUNC(handleSelToPos);
+                        private _cursorWorldPos = AGLtoASL (screenToWorld GVAR(mousePos));
+                        _cursorWorldPos resize 2;
+                        
+                        // The distance used here might need to be tweaked - further testing needed
+                        if ({(_cursorWorldPos distance2D _x) < 20} count GVAR(selection) > 0) then {
+                            [] call FUNC(handleContextMenu);
+                        } else {
+                            [] call FUNC(closeContextMenu);
+                            [] call FUNC(handleSelToPos);
+                        };
                     };
                 } else {
                     // No objects in selection, proceed to handle context menu
