@@ -34,8 +34,11 @@ if (_update) then {
         private _newDir = _x getVariable [QGVAR(leftDirFinalPos), nil];
         
         if (!isNil "_newDir") then {
-            _x setFormDir _newDir;
-            _x setDir _newDir;
+            [_x, {
+                params ["_unit", "_dir"];
+                _unit setFormDir _dir;
+                _unit setDir _dir;
+            }, [_x, _newDir]] call CFUNC(execWhereLocal);
         };
         
         false
