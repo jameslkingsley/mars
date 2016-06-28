@@ -34,7 +34,7 @@ if (local _target) exitWith {
     [_code, _args] call FUNC(_execLocalCode);
 };
 
-private _targets = [_target, groupOwner _target] select (_target isEqualType grpNull);
+private _targets = if (_target isEqualType grpNull) then {groupOwner _target} else {_target};
 private _result = [_code, _args] remoteExecCall [QFUNC(_execLocalCode), _targets, false];
 
 _result
