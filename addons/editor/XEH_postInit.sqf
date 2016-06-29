@@ -8,6 +8,15 @@
     [] spawn FUNC(openEditor);
 }, ""] call CBA_fnc_addKeybind;
 
+// Object creation handler
+[QGVAR(spawnObject), {
+    _this call FUNC(spawnObject);
+    
+    #ifdef DEBUG_MODE_FULL
+        MARS_LOGINFO("Spawned object(s)");
+    #endif
+}] call CBA_fnc_addEventHandler;
+
 // Is this needed?
 createCenter west;
 createCenter east;

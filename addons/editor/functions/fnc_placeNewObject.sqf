@@ -21,8 +21,26 @@ params [["_ctrlKeyHeld", false, [false]]];
 if (GVAR(abSelectedObject) isEqualTo []) exitWith {};
 
 private _worldPos = [] call FUNC(getSurfaceUnderCursor);
+private _spawnMachine = [] call CFUNC(getSpawnMachine);
+private _args = [_worldPos, player, GVAR(abSelectedObject)];
 
-[_worldPos, player, GVAR(abSelectedObject)] remoteExecCall [QFUNC(spawnObject), call CFUNC(getSpawnMachine)];
+#ifdef DEBUG_MODE_FULL
+    MARS_LOGINFO_1("Targetting machine: %1", _spawnMachine);
+#endif
+
+if (_spawnMachine isEqualTo REMOTE_SERVER) then {
+    [QGVAR(spawnObject), _args] call CBA_fnc_serverEvent;
+    
+    #ifdef DEBUG_MODE_FULL
+        MARS_LOGINFO("Spawning on server");
+    #endif
+} else {
+    [QGVAR(spawnObject), _args, _spawnMachine] call CBA_fnc_targetEvent;
+    
+    #ifdef DEBUG_MODE_FULL
+        MARS_LOGINFO("Spawning on target");
+    #endif
+};
 
 // Don't reset selected object if control key is held (for multiple creations)
 if (!_ctrlKeyHeld) then {
