@@ -28,3 +28,4 @@ PREP(listToArray);
 PREP(isValidSide);
 PREP(arrayShuffle);
 PREP(makeExecutable);
+PREP(hint);
