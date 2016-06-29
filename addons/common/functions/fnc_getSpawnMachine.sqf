@@ -16,7 +16,7 @@
 
 #include "script_component.hpp"
 
-private _headlessClients = (entities "HeadlessClient_F") select {!isNull _x};
+private _headlessClients = (entities "HeadlessClient_F") select {!isNull _x && {isPlayer _x}};
 
 if (_headlessClients isEqualTo []) exitWith {
     // No headless client entities in mission, exit with server
