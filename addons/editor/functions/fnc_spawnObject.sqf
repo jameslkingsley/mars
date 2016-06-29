@@ -38,20 +38,20 @@ switch (_type) do {
             private _group = createGroup _side;
             private _unit = _group createUnit [_classname, _position, [], 0, "CAN_COLLIDE"];
             [_unit] joinSilent _group;
-            [_unit] remoteExecCall [QFUNC(addObjectToSelection), _caller];
+            //[_unit] remoteExecCall [QFUNC(addObjectToSelection), _caller];
         } else {
             private _group = createGroup _side;
             private _vehicle = createVehicle [_classname, _position, [], 0, "CAN_COLLIDE"];
             createVehicleCrew _vehicle;
             {[_x] joinSilent _group;false} count (crew _vehicle);
             [_vehicle] remoteExecCall [QFUNC(addObjectToStaticCache), _caller];
-            [_vehicle] remoteExecCall [QFUNC(addObjectToSelection), _caller];
+            //[_vehicle] remoteExecCall [QFUNC(addObjectToSelection), _caller];
         };
     };
     case "object": {
         private _object = createVehicle [_classname, _position, [], 0, "CAN_COLLIDE"];
         [_object] remoteExecCall [QFUNC(addObjectToStaticCache), _caller];
-        [_object] remoteExecCall [QFUNC(addObjectToSelection), _caller];
+        //[_object] remoteExecCall [QFUNC(addObjectToSelection), _caller];
     };
     case "group": {
         private _group = createGroup _side;
@@ -105,6 +105,6 @@ switch (_type) do {
         _group selectLeader _highestRankObj;
         
         [_groupUnits] remoteExecCall [QFUNC(addObjectToStaticCache), _caller];
-        [_groupUnits] remoteExecCall [QFUNC(addObjectToSelection), _caller];
+        //[_groupUnits] remoteExecCall [QFUNC(addObjectToSelection), _caller];
     };
 };
