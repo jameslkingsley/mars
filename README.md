@@ -23,16 +23,21 @@
     </a>
 </p>
 
+## Motivation
 Mars is designed with large communities in mind. When you're the game master for a mission, you take on a big responsibility to deliver a fun experience to the players. Current implementations for real-time control don't offer enough detail and cause a lot of headaches when trying to do very specific things. The goal of Mars is to create a platform that's extensible and robust allowing communities to create their own additions and customise Mars to suit their needs.
+
+## Extensibility
+Mars follows the same development environment and coding guidelines as ACE3 which not only makes it robust and modular, but also familiar. Mars is a mod for the Arma community as a whole. If you create an addition for Mars that could benefit others, you are expected to share it. Creating additions that only apply to your group, for example calling functions from your own mission framework or modset etc. is a reasonable excuse to keep it private.
+
+## Contributing
+You can help out with the ongoing development by looking for potential bugs in the code base, or by contributing new features. To contribute something to Mars, simply fork the repository and submit your pull requests for review by other collaborators. Feel free to join our [Slack](https://mars-slackin.herokuapp.com) for help on setting up Mars and discussing its development.
 
 ## Coding Guidelines
 This project follows the [ACE3 coding guidelines](http://ace3mod.com/wiki/development/coding-guidelines.html). Here's some basic rules:
-* Addons **must be modular** with as few dependencies as possible
+* Mars' only dependency is CBA. Let's keep it that way.
+* Any addons that require a third-party mod must be put into the `optionals` folder
 * Use 4 spaces for indentation
 * Use camel case
-* Use the standard [function header](http://ace3mod.com/wiki/development/coding-guidelines.html#headers)
+* Use the standard [function header](http://ace3mod.com/wiki/development/coding-guidelines.html#headers) when writing functions
 * Braces should be on the same line
-* Make sure you've read this article on commit messages: http://chris.beams.io/posts/git-commit/
-
-## Contributing
-You can help out with the ongoing development by looking for potential bugs in the code base, or by contributing new features. To contribute something to Mars, simply fork this repository and submit your pull requests for review by other collaborators. Feel free to join the [Discord server](https://discord.gg/0vfzEmmrAOu1T2uk) for help on setting up Mars and discussing its development.
+* Make sure you've read [this article](http://chris.beams.io/posts/git-commit) on commit messages
