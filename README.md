@@ -1,5 +1,5 @@
 <p align="center">
-	<a href="http://marseditor.com/"><img src="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/logo_min.png" height="384"></a>
+	<a href="http://marseditor.com/"><img src="https://raw.githubusercontent.com/marseditor/mars/master/extras/logo/logo_min.png" height="384"></a>
 	<br />
     <sup>
         <strong>
@@ -9,17 +9,17 @@
         </strong>
         <br /><br />
     </sup>
-    <a href="https://github.com/jameslkingsley/Mars/issues">
-        <img src="https://img.shields.io/github/issues-raw/jameslkingsley/Mars.svg?label=issues" alt="Mars Issues">
+    <a href="https://github.com/marseditor/mars/issues">
+        <img src="https://img.shields.io/github/issues-raw/marseditor/mars.svg?label=issues" alt="Mars Issues">
     </a>
-    <a href="https://github.com/jameslkingsley/Mars/blob/master/LICENSE">
+    <a href="https://github.com/marseditor/mars/blob/master/LICENSE">
         <img src="https://img.shields.io/badge/License-GPLv3-red.svg?label=license" alt="Mars License">
     </a>
     <a href="https://mars-slackin.herokuapp.com/">
         <img src="https://mars-slackin.herokuapp.com/badge.svg?label=slack" alt="Mars Slack">
     </a>
-    <a href="https://travis-ci.org/jameslkingsley/Mars">
-        <img src="https://img.shields.io/travis/jameslkingsley/Mars.svg?label=build" alt="Mars Build Status">
+    <a href="https://travis-ci.org/marseditor/mars">
+        <img src="https://img.shields.io/travis/marseditor/mars.svg?label=build" alt="Mars Build Status">
     </a>
 </p>
 
