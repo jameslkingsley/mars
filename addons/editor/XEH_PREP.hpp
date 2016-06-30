@@ -61,3 +61,4 @@ PREP(openEditorSettings);
 PREP(spawnObject);
 PREP(isUnitScreenPosUnderCursor);
 PREP(serializeDrawing);
+PREP(notification);

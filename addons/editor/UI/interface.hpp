@@ -96,130 +96,142 @@ class GVAR(interface) {
                 };
             };
         };
+        class Notification: MARS_gui_ctrlStructuredText {
+            idc = IDC_NOTIFICATION;
+            x = safezoneX + PANEL_W * GRID_W;
+            y = safezoneY + (MENUBAR_H + TOOLBAR_H) * GRID_H;
+            w = safezoneW - 2 * PANEL_W * GRID_W;
+            h = 0;
+            colorBackground[] = {1,0,1,1};
+            shadow = 0;
+            class Attributes: Attributes {
+                align = "center";
+            };
+        };
         class PanelLeft: MARS_gui_ctrlControlsGroupNoScrollbars {
-			idc = IDC_LEFTPANEL;
-			x = safezoneX;
-			y = safezoneY + (MENUBAR_H + TOOLBAR_H) * GRID_H;
-			w = PANEL_W * GRID_W;
-			h = safezoneH - (MENUBAR_H + TOOLBAR_H + STATUSBAR_H) * GRID_H;
-			class Controls {
-				class TabLeftBackground: MARS_gui_ctrlStatic {
-					idc = IDC_LEFTPANEL_TAB_BG;
-					x = 0;
-					y = 0;
-					w = PANEL_W * GRID_W;
-					h = TAB_H * GRID_H;
-					colorBackground[] = {COLOR_TAB_RGBA};
-				};
-				class TabLeftToggle: MARS_gui_ctrlButton {
-					idc = IDC_LEFTPANEL_TAB_TOGGLE;
-					style = ST_CENTER;
-					x = 0;
-					y = 0;
-					w = TAB_H * GRID_W;
-					h = TAB_H * GRID_H;
-					text = "«";
-					sizeEx = SIZE_PURISTA_XL;
-					colorBackground[] = {COLOR_TAB_RGBA};
-					onbuttonclick = "";
-				};
-				class TabLeftSections: MARS_gui_ctrlToolbox {
-					idc = IDC_LEFTPANEL_TAB_SECTIONS;
-					x = TAB_H * GRID_W;
-					y = GRID_H;
-					w = (PANEL_W - TAB_H - 1) * GRID_W;
-					h = SIZE_M * GRID_H;
-					font = FONT_THIN;
-					columns = 2;
-					strings[] = {
-						"Entities",
-						"Locations"
-					};
+            idc = IDC_LEFTPANEL;
+            x = safezoneX;
+            y = safezoneY + (MENUBAR_H + TOOLBAR_H) * GRID_H;
+            w = PANEL_W * GRID_W;
+            h = safezoneH - (MENUBAR_H + TOOLBAR_H + STATUSBAR_H) * GRID_H;
+            class Controls {
+                class TabLeftBackground: MARS_gui_ctrlStatic {
+                    idc = IDC_LEFTPANEL_TAB_BG;
+                    x = 0;
+                    y = 0;
+                    w = PANEL_W * GRID_W;
+                    h = TAB_H * GRID_H;
+                    colorBackground[] = {COLOR_TAB_RGBA};
+                };
+                class TabLeftToggle: MARS_gui_ctrlButton {
+                    idc = IDC_LEFTPANEL_TAB_TOGGLE;
+                    style = ST_CENTER;
+                    x = 0;
+                    y = 0;
+                    w = TAB_H * GRID_W;
+                    h = TAB_H * GRID_H;
+                    text = "«";
+                    sizeEx = SIZE_PURISTA_XL;
+                    colorBackground[] = {COLOR_TAB_RGBA};
+                    onbuttonclick = "";
+                };
+                class TabLeftSections: MARS_gui_ctrlToolbox {
+                    idc = IDC_LEFTPANEL_TAB_SECTIONS;
+                    x = TAB_H * GRID_W;
+                    y = GRID_H;
+                    w = (PANEL_W - TAB_H - 1) * GRID_W;
+                    h = SIZE_M * GRID_H;
+                    font = FONT_THIN;
+                    columns = 2;
+                    strings[] = {
+                        "Entities",
+                        "Locations"
+                    };
                     sizeEx = SIZEEX_PURISTA_M;
                     colorText[] = {COLOR_TEXT_RGBA};
                     colorTextSelect[] = {1,1,1,1};
                     colorBackground[] = {0,0,0,0};
                     colorSelectedBg[] = {COLOR_BACKGROUND_RGBA};
-					onToolBoxSelChanged = "";
-				};
-				class PanelLeftBackground: MARS_gui_ctrlStatic {
-					idc = IDC_LEFTPANEL_BG;
-					x = 0;
-					y = TAB_H * GRID_H;
-					w = PANEL_W * GRID_W;
-					h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + STATUSBAR_H) * GRID_H;
-					colorBackground[] = {COLOR_BACKGROUND_RGB,TRANSPARENT_A};
-				};
-				class PanelLeftEdit: MARS_gui_ctrlControlsGroupNoScrollbars {
-					idc = IDC_LEFTPANEL_EDIT;
-					x = 0;
-					y = TAB_H * GRID_H;
-					w = PANEL_W * GRID_W;
-					h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + STATUSBAR_H) * GRID_H;
-					class Controls {
-						class PanelLeftEditBackground: MARS_gui_ctrlStatic {
-							w = PANEL_W * GRID_W;
-							h = (SIZE_M + 2) * GRID_H;
-							colorBackground[] = {COLOR_BACKGROUND_RGBA};
-						};
-						class SearchEdit: MARS_gui_ctrlEdit {
-							idc = IDC_LEFTPANEL_EDIT_SEARCH;
-							x = 1 * GRID_W;
-							y = GRID_H;
-							w = (PANEL_W - SIZE_M - 2) * GRID_W;
-							h = SIZE_M * GRID_H;
-						};
-						class SearchEditButton: MARS_gui_ctrlButtonSearch {
-							idc = IDC_LEFTPANEL_EDIT_SEARCHBTN;
-							x = (PANEL_W - SIZE_M - 1) * GRID_W;
-							y = GRID_H;
-							w = SIZE_M * GRID_W;
-							h = SIZE_M * GRID_H;
-							onLoad = "";
-						};
-						class Edit: MARS_gui_ctrlTree {
-							idc = IDC_LEFTPANEL_EDIT_EDIT;
-							x = 0;
-							y = (SIZE_M + 2) * GRID_H;
-							w = PANEL_W * GRID_W;
-							h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + STATUSBAR_H + SIZE_M + 2 + 1 + SIZE_M) * GRID_H;
-							sizeEx = SIZEEX_PURISTA_S;
-							font = FONT_NORMAL;
-							colorBorder[] = {0,0,0,0};
-							multiselectEnabled = 1;
-							disableKeyboardSearch = 1;
-							colorDisabled[] = {1,1,1,0.25};
-						};
-					};
-				};
-				class PanelLeftLocations: MARS_gui_ctrlControlsGroupNoScrollbars {
-					idc = IDC_LEFTPANEL_LOCS;
-					x = 0;
-					y = TAB_H * GRID_H;
-					w = PANEL_W * GRID_W;
-					h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + STATUSBAR_H) * GRID_H;
-					show = 0;
-					class Controls {
-						class PanelLeftLocationsBackground: MARS_gui_ctrlStatic {
-							w = PANEL_W * GRID_W;
-							h = 1 * GRID_H;
-							colorBackground[] = {COLOR_BACKGROUND_RGBA};
-						};
-						class Locations: MARS_gui_ctrlTree {
-							idc = IDC_LEFTPANEL_LOCS_LOCS;
-							x = 0;
-							w = PANEL_W * GRID_W;
-							h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + STATUSBAR_H + 1) * GRID_H;
-							sizeEx = SIZEEX_PURISTA_S;
-							font = FONT_NORMAL;
-							colorBorder[] = {0,0,0,0};
-							onTreeDblClick = "";
-							disableKeyboardSearch = 1;
-						};
-					};
-				};
-			};
-		};
+                    onToolBoxSelChanged = "";
+                };
+                class PanelLeftBackground: MARS_gui_ctrlStatic {
+                    idc = IDC_LEFTPANEL_BG;
+                    x = 0;
+                    y = TAB_H * GRID_H;
+                    w = PANEL_W * GRID_W;
+                    h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + STATUSBAR_H) * GRID_H;
+                    colorBackground[] = {COLOR_BACKGROUND_RGB,TRANSPARENT_A};
+                };
+                class PanelLeftEdit: MARS_gui_ctrlControlsGroupNoScrollbars {
+                    idc = IDC_LEFTPANEL_EDIT;
+                    x = 0;
+                    y = TAB_H * GRID_H;
+                    w = PANEL_W * GRID_W;
+                    h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + STATUSBAR_H) * GRID_H;
+                    class Controls {
+                        class PanelLeftEditBackground: MARS_gui_ctrlStatic {
+                            w = PANEL_W * GRID_W;
+                            h = (SIZE_M + 2) * GRID_H;
+                            colorBackground[] = {COLOR_BACKGROUND_RGBA};
+                        };
+                        class SearchEdit: MARS_gui_ctrlEdit {
+                            idc = IDC_LEFTPANEL_EDIT_SEARCH;
+                            x = 1 * GRID_W;
+                            y = GRID_H;
+                            w = (PANEL_W - SIZE_M - 2) * GRID_W;
+                            h = SIZE_M * GRID_H;
+                        };
+                        class SearchEditButton: MARS_gui_ctrlButtonSearch {
+                            idc = IDC_LEFTPANEL_EDIT_SEARCHBTN;
+                            x = (PANEL_W - SIZE_M - 1) * GRID_W;
+                            y = GRID_H;
+                            w = SIZE_M * GRID_W;
+                            h = SIZE_M * GRID_H;
+                            onLoad = "";
+                        };
+                        class Edit: MARS_gui_ctrlTree {
+                            idc = IDC_LEFTPANEL_EDIT_EDIT;
+                            x = 0;
+                            y = (SIZE_M + 2) * GRID_H;
+                            w = PANEL_W * GRID_W;
+                            h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + STATUSBAR_H + SIZE_M + 2 + 1 + SIZE_M) * GRID_H;
+                            sizeEx = SIZEEX_PURISTA_S;
+                            font = FONT_NORMAL;
+                            colorBorder[] = {0,0,0,0};
+                            multiselectEnabled = 1;
+                            disableKeyboardSearch = 1;
+                            colorDisabled[] = {1,1,1,0.25};
+                        };
+                    };
+                };
+                class PanelLeftLocations: MARS_gui_ctrlControlsGroupNoScrollbars {
+                    idc = IDC_LEFTPANEL_LOCS;
+                    x = 0;
+                    y = TAB_H * GRID_H;
+                    w = PANEL_W * GRID_W;
+                    h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + STATUSBAR_H) * GRID_H;
+                    show = 0;
+                    class Controls {
+                        class PanelLeftLocationsBackground: MARS_gui_ctrlStatic {
+                            w = PANEL_W * GRID_W;
+                            h = 1 * GRID_H;
+                            colorBackground[] = {COLOR_BACKGROUND_RGBA};
+                        };
+                        class Locations: MARS_gui_ctrlTree {
+                            idc = IDC_LEFTPANEL_LOCS_LOCS;
+                            x = 0;
+                            w = PANEL_W * GRID_W;
+                            h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + STATUSBAR_H + 1) * GRID_H;
+                            sizeEx = SIZEEX_PURISTA_S;
+                            font = FONT_NORMAL;
+                            colorBorder[] = {0,0,0,0};
+                            onTreeDblClick = "";
+                            disableKeyboardSearch = 1;
+                        };
+                    };
+                };
+            };
+        };
         class PanelRight: MARS_gui_ctrlControlsGroupNoScrollbars {
             idc = IDC_RIGHTPANEL;
             x = safezoneX + safezoneW - PANEL_W * GRID_W;
