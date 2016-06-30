@@ -9,6 +9,21 @@ class GVAR(interface) {
     onKeyDown = QUOTE([ARR_2('onKeyDown',_this)] call FUNC(handleInterface));
     onKeyUp = QUOTE([ARR_2('onKeyUp',_this)] call FUNC(handleInterface));
     class ControlsBackground {
+        class Map: MARS_gui_ctrlMap {
+			idc = IDC_MAP;
+			x = safezoneXAbs;
+			y = safezoneY;
+			w = safezoneWAbs;
+			h = safezoneH;
+			/*class CustomMark {
+				icon = "#(argb,8,8,3)color(0,0,0,0)";
+				color[] = {0,0,0,0};
+				size = 0;
+				importance = 0;
+				coefMin = 0;
+				coefMax = 0;
+			};*/
+		};
         class MouseHandler: RscControlsGroupNoScrollbars {
             idc = IDC_MOUSEHANDLER;
             x = safeZoneXAbs;

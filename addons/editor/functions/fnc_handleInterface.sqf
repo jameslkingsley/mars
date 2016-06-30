@@ -29,6 +29,11 @@ switch (toLower _mode) do {
         // [] call FUNC(createEntityList);
         [_display] call FUNC(createAssetBrowser);
         
+        // Disable and hide map
+        _map = _display displayCtrl IDC_MAP;
+        _map ctrlShow false;
+        _map ctrlEnable false;
+        
         // Disable search controls
         {(_display displayCtrl _x) ctrlEnable false} forEach [
             IDC_ASSETBROWSER_SEARCH_CREATE,
@@ -269,6 +274,11 @@ switch (toLower _mode) do {
             case 49: { // N
             };
             case 50: { // M
+                private _map = _display displayCtrl IDC_MAP;
+                private _newState = !(ctrlShown _map);
+                _map ctrlShow _newState;
+                _map ctrlEnable _newState;
+                GVAR(mapOpen) = _newState;
             };
             case 57: { // Spacebar
             };

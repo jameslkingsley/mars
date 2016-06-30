@@ -45,6 +45,7 @@ GVAR(placedStaticObjects) = [];
 GVAR(prepSurfaceSphere) = objNull;
 GVAR(currentCursor) = "";
 GVAR(isInputActive) = false;
+GVAR(mapOpen) = false;
 
 // Icons
 GVAR(serializedIcons) = [];

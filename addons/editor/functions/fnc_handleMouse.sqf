@@ -31,11 +31,15 @@ _deltaX = _oldX - _x;
 _deltaY = _oldY - _y;
 
 if (_rightButton) then {
-    // Pan/Tilt amount should be influnced by zoom level (it should really be exponential)
-    _zoomMod = (GVAR(camZoom) * 0.8) max 1;
+    if (GVAR(mapOpen)) then {
+        
+    } else {
+        // Pan/Tilt amount should be influnced by zoom level (it should really be exponential)
+        _zoomMod = (GVAR(camZoom) * 0.8) max 1;
 
-    GVAR(camPan) = GVAR(camPan) - ((_deltaX * 360) / _zoomMod);
-    GVAR(camTilt) = ((GVAR(camTilt) + ((_deltaY * 180) / _zoomMod)) min 89) max -89;
+        GVAR(camPan) = GVAR(camPan) - ((_deltaX * 360) / _zoomMod);
+        GVAR(camTilt) = ((GVAR(camTilt) + ((_deltaY * 180) / _zoomMod)) min 89) max -89;
+    };
 };
 
 GVAR(mousePos) = [_x,_y];
