@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/logo_min.png" height="384">
+	<a href="http://marseditor.com/"><img src="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/logo_min.png" height="384"></a>
 	<br />
     <sup>
         <strong>
