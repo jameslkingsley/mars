@@ -24,13 +24,13 @@
 </p>
 
 ## Motivation
-Mars is designed with large communities in mind. When you're the game master for a mission, you take on a big responsibility to deliver a fun experience to the players. Current implementations for real-time control don't offer enough detail and cause a lot of headaches when trying to do very specific things. The goal of Mars is to create a platform that's extensible and robust allowing communities to create their own additions and customise Mars to suit their needs.
+Mars is designed with large communities in mind. When you are the game master for a mission, you take on a big responsibility to deliver a fun experience to the players. Current implementations for real-time control don't offer enough detail and cause a lot of headaches when trying to do specific things. The goal of Mars is to create a platform that is extensible and robust, allowing communities to create their own additions and customise it to suit their needs.
 
 ## Extensibility
-Mars follows the same development environment and coding guidelines as ACE3 which not only makes it robust and modular, but also familiar. Mars is a mod for the Arma community as a whole. If you create an addition for Mars that could benefit others, you are expected to share it. Creating additions that only apply to your group, for example calling functions from your own mission framework or modset etc. is a reasonable excuse to keep it private.
+Mars follows the same development environment and coding guidelines as ACE3 - for a strong foundation, and familiar design. With it you can easily adapt the editor to your community's modset and playstyle. All it takes is a few config files and functions, and in a short amount of time you'll be able to improve the quality of a mission, and with it the players' experience.
 
 ## Contributing
-You can help out with the ongoing development by looking for potential bugs in the code base, or by contributing new features. To contribute something to Mars, simply fork the repository and submit your pull requests for review by other collaborators. Feel free to join our [Slack](https://mars-slackin.herokuapp.com) for help on setting up Mars and discussing its development.
+You can help out with the ongoing development by looking for potential bugs in the code base, or by contributing new features. To help out, simply fork the repository and submit your pull requests for review by other collaborators. Feel free to also join the [Discord](https://discord.gg/0vfzEmmrAOu1T2uk) and [Slack](https://mars-slackin.herokuapp.com/) servers to discuss, develop and troubleshoot.
 
 ## Coding Guidelines
 This project follows the [ACE3 coding guidelines](http://ace3mod.com/wiki/development/coding-guidelines.html). Here's some basic rules:
