@@ -10,3 +10,5 @@ PREP(garrison);
 PREP(_garrison);
 PREP(suppress);
 PREP(searchNearby);
+PREP(populateArea);
+PREP(openPopulateArea);
