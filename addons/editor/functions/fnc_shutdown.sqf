@@ -56,5 +56,5 @@ if (!isNil QGVAR(playerKilledHandle)) then {
     _unit removeEventHandler ["Killed", GVAR(playerKilledHandle)];
 };
 
-GVAR(camPos) = [];
+GVAR(selection) = [];
 GVAR(isSet) = false;
