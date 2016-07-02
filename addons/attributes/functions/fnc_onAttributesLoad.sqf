@@ -273,6 +273,8 @@ _footer ctrlSetPosition [0, _totalLabel, (GVAR(AttributesWindow_GlobalWidth) * G
 _footer ctrlCommit 0;
 
 GVAR(tempActionConfirm) = getText (_header >> "actionConfirm");
+if (!isNil GVAR(tempActionConfirm)) then {GVAR(tempActionConfirm) = format ["_this call %1", GVAR(tempActionConfirm)]};
+
 GVAR(tempActionCancel) = getText (_header >> "actionCancel");
 
 GVAR(AttributesWindow_onCancel) = ["AttributesWindow_onCancel", getText (_header >> "actionCancel")] call EFUNC(common,addEventHandler);
