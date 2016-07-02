@@ -189,6 +189,12 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
                     GVAR(identifyControls) pushBack [format ["__Ctrl%1", _ctrlIDC], _ctrlRet];
                 };
                 
+                private _condition = if (isNumber (_ctrlConfig >> "condition")) then {
+                    ["false","true"] select (getNumber (_ctrlConfig >> "condition"))
+                } else {
+                    getText (_ctrlConfig >> "condition")
+                };
+                
                 if (_ctrlRet isEqualType []) then {
                     _idcArr = [];
                     
@@ -207,7 +213,7 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
                     
                     GVAR(AttributesWindow_ItemControls) pushBack _idcArr;
                     
-                    if !(call compile getText (_ctrlConfig >> "condition")) then {
+                    if !(call compile _condition) then {
                         {_x ctrlEnable false} forEach (_ctrlRet + (_ctrlRet getVariable [QGVAR(siblings), []]));
                     };
                 } else {
@@ -222,7 +228,7 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
                         };
                     };
                     
-                    if !(call compile getText (_ctrlConfig >> "condition")) then {
+                    if !(call compile _condition) then {
                         _ctrlRet ctrlEnable false;
                         {_x ctrlEnable false} forEach (_ctrlRet getVariable [QGVAR(siblings), []]);
                     };
