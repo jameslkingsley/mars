@@ -21,26 +21,29 @@ def main():
     FULLDIR = "{}\\{}".format(MAINDIR,PROJECTDIR)
     print("""
   ######################################
-  # ACE3 Development Environment Setup #
+  # Mars Development Environment Setup #
   ######################################
 
-  This script will create your ACE3 dev environment for you.
-  
+  This script will create your Mars dev environment for you.
+
   Before you run this, you should already have:
     - The Arma 3 Tools installed properly via Steam
     - A properly set up P-drive
-  
+
   If you have not done those things yet, please abort this script in the next step and do so first.
-  
-  This script will create two hard links on your system, both pointing to your ACE3 project folder:
-    [Arma 3 installation directory]\\{} => ACE3 project folder
-    P:\\{}                              => ACE3 project folder
-  
+
+  This script will create two hard links on your system, both pointing to your Mars project folder:
+    [Arma 3 installation directory]\\{} => Mars project folder
+    P:\\{}                              => Mars project folder
+
   It will also copy the required CBA includes to {}, if you do not have the CBA source code already.""".format(FULLDIR,FULLDIR,CBA))
-    print("\n") 
+    print("\n")
 
     try:
-        armapath = "C:\Program Files (x86)\Steam\steamapps\common\Arma 3"
+        reg = winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE)
+        key = winreg.OpenKey(reg,
+                r"SOFTWARE\Wow6432Node\bohemia interactive\arma 3")
+        armapath = winreg.EnumValue(key,1)[1]
     except:
         print("Failed to determine Arma 3 Path.")
         return 1
@@ -76,12 +79,8 @@ def main():
         if not os.path.exists(os.path.join(armapath, MAINDIR)):
             os.mkdir(os.path.join(armapath, MAINDIR))
 
-        if platform.win32_ver()[0] == "7":
-            subprocess.call(["cmd", "/c", "mklink", "/D", "P:\\{}\\{}".format(MAINDIR,PROJECTDIR), projectpath])
-            subprocess.call(["cmd", "/c", "mklink", "/D", os.path.join(armapath, MAINDIR, PROJECTDIR), projectpath])
-        else:
-            subprocess.call(["cmd", "/c", "mklink", "/D", "/J", "P:\\{}\\{}".format(MAINDIR,PROJECTDIR), projectpath])
-            subprocess.call(["cmd", "/c", "mklink", "/D", "/J", os.path.join(armapath, MAINDIR, PROJECTDIR), projectpath])
+        subprocess.call(["cmd", "/c", "mklink", "/J", "P:\\{}\\{}".format(MAINDIR,PROJECTDIR), projectpath])
+        subprocess.call(["cmd", "/c", "mklink", "/J", os.path.join(armapath, MAINDIR, PROJECTDIR), projectpath])
     except:
         raise
         print("Something went wrong during the link creation. Please finish the setup manually.")
@@ -112,7 +111,7 @@ if __name__ == "__main__":
     exitcode = main()
 
     if exitcode > 0:
-        print("\nSomething went wrong during the setup. Make sure you run this script as administrator. If these issues persist, please follow the instructions on the ACE3 wiki to perform the setup manually.")
+        print("\nSomething went wrong during the setup. Make sure you run this script as administrator. If these issues persist, please follow the instructions on the Mars wiki to perform the setup manually.")
     else:
         print("\nSetup successfully completed.")
 
