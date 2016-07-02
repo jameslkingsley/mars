@@ -16,11 +16,13 @@
 
 #include "script_component.hpp"
 
-private _unitSelection = [_this, 'Basic_PlayerList_Control'] call AFUNC(getControlValue);
-private _insertionMethod = ([_this, 'Basic_InsertionMethod_Control'] call AFUNC(getControlValue)) param [1, "teleport"];
-private _paraHeight = [_this, 'Basic_ParaHeight_Control'] call AFUNC(getControlValue);
-private _paraRadius = [_this, 'Basic_ParaRadius_Control'] call AFUNC(getControlValue);
-private _destination = [_this, 'Basic_Destination_Control'] call AFUNC(getControlValue);
+params ["_data"];
+
+private _unitSelection = [_data, 'Basic_PlayerList_Control'] call AFUNC(getControlValue);
+private _insertionMethod = ([_data, 'Basic_InsertionMethod_Control'] call AFUNC(getControlValue)) param [1, "teleport"];
+private _paraHeight = [_data, 'Basic_ParaHeight_Control'] call AFUNC(getControlValue);
+private _paraRadius = [_data, 'Basic_ParaRadius_Control'] call AFUNC(getControlValue);
+private _destination = [_data, 'Basic_Destination_Control'] call AFUNC(getControlValue);
 
 if (_unitSelection isEqualTo []) exitWith {};
 
