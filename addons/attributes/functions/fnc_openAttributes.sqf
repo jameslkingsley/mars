@@ -7,6 +7,7 @@
  * 1: Attribute class <STRING>
  * 2: Size of window [width, height] (optional) <ARRAY>
  * 3: Ratio of labels and fields [label, field] (optional) <ARRAY>
+ * 4: Arguments to pass to actionConfirm (optional) <ANY>
  *
  * Return Value:
  * None
@@ -24,7 +25,8 @@ _this spawn {
         ["_component", "", [""]],
         ["_attribute", "", [""]],
         ["_size", [140, 180], [[]]],
-        ["_ratio", [0.25, 0.75], [[]]]
+        ["_ratio", [0.25, 0.75], [[]]],
+        ["_args", []]
     ];
 
     _size params [
@@ -43,10 +45,13 @@ _this spawn {
     GVAR(AttributesWindow_GlobalLabelRatio) = _labelR;
     GVAR(AttributesWindow_GlobalFieldRatio) = _fieldR;
     
+    GVAR(AttributesWindow_GlobalArgs) = _args;
+    
     if (dialog) then {
         closeDialog 0;
         GVAR(AttributesWindow_ItemControls) = [];
         GVAR(identifyControls) = [];
+        GVAR(AttributesWindow_GlobalArgs) = [];
         ["AttributesWindow_onLoad", GVAR(AttributesWindow_onLoad)] call EFUNC(common,removeEventHandler);
         ["AttributesWindow_onUnload", GVAR(AttributesWindow_onUnload)] call EFUNC(common,removeEventHandler);
         ["AttributesWindow_onConfirm", GVAR(AttributesWindow_onConfirm)] call EFUNC(common,removeEventHandler);
@@ -61,6 +66,7 @@ _this spawn {
         GVAR(isOpen) = false;
         GVAR(AttributesWindow_ItemControls) = [];
         GVAR(identifyControls) = [];
+        GVAR(AttributesWindow_GlobalArgs) = [];
         ["AttributesWindow_onLoad", GVAR(AttributesWindow_onLoad)] call EFUNC(common,removeEventHandler);
         ["AttributesWindow_onUnload", GVAR(AttributesWindow_onUnload)] call EFUNC(common,removeEventHandler);
         ["AttributesWindow_onConfirm", GVAR(AttributesWindow_onConfirm)] call EFUNC(common,removeEventHandler);

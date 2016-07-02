@@ -304,9 +304,10 @@ GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
         };
     } forEach GVAR(identifyControls);
 
-    _returnData call compile GVAR(tempActionConfirm);
+    [_returnData, GVAR(AttributesWindow_GlobalArgs)] call compile GVAR(tempActionConfirm);
 
     GVAR(identifyControls) = [];
+    GVAR(AttributesWindow_GlobalArgs) = [];
 }] call EFUNC(common,addEventHandler);
 
 (_display displayCtrl IDC_EDITATTRIBUTES_BTN_OK) ctrlAddEventHandler ["MouseButtonClick", {["AttributesWindow_onConfirm", _this] call EFUNC(common,localEvent)}];
