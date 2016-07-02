@@ -2,6 +2,7 @@
 #include "\x\cba\addons\xeh\script_xeh.hpp"
 
 #define QCOMPONENT QUOTE(COMPONENT)
+#define QADDON QUOTE(ADDON)
 
 // Default versioning level
 #define DEFAULT_VERSIONING_LEVEL 2
