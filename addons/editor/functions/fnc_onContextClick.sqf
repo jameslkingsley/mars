@@ -40,12 +40,12 @@ if (_requiresPosition) then {
         };
         
         _groups = [_selection] call EFUNC(common,unitsToGroups);
-        _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
-        _worldPos set [2, 1];
+        _worldPos = screenToWorld GVAR(mousePos);
         
         {
-            _objectPos = ASLtoAGL (getPosASLVisual (leader _x));
-            _objectPos set [2, ((_objectPos select 2) + 5)];
+            _leader = leader _x;
+            _objectPos = ASLtoAGL (getPosASLVisual _leader);
+            _objectPos = _objectPos vectorAdd [0, 0, ((_leader selectionPosition "pelvis") param [2, 1])];
             
             // Do drawLine3D 50 times to make it thicker (cheers BIS)
             for "_i" from 0 to 50 do {
