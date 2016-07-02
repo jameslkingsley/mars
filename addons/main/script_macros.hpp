@@ -236,12 +236,6 @@
 #define COLOR_POSZ_RGB	0.26, 0.52, 0.92
 #define COLOR_POSZ_RGBA	COLOR_POSZ_RGB, 1
 
-#define DEFINE_CURSOR(NAME,PATH)\
-    class NAME {\
-        name = QUOTE(NAME);\
-        path = PATH;\
-    };
-
 #define REMOTE_GLOBAL 0
 #define REMOTE_SERVER 2
 #define REMOTE_EXSERVER -2

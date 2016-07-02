@@ -1,3 +1,6 @@
 class GVARMAIN(cursors) {
-    DEFINE_CURSOR(select, QPATHTOF(data\Cursors\select.paa))
+    class select {
+        name = "select";
+        path = QPATHTOF(data\Cursors\select.paa);
+    };
 };
