@@ -508,6 +508,10 @@ class GVAR(interface) {
                                     idc = IDC_ASSETBROWSER_TREE_GROUPS_EMPTY;
                                     defaultItem[] = {};
                                 };
+                                class CreateModule: CreateObjectWEST {
+                                    idc = IDC_ASSETBROWSER_TREE_MODULES;
+                                    defaultItem[] = {};
+                                };
                             };
                         };
                     };

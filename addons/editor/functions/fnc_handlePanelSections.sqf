@@ -63,7 +63,8 @@ switch (_type) do {
             [IDC_ASSETBROWSER_TREE_GROUPS_EAST, false],\
             [IDC_ASSETBROWSER_TREE_GROUPS_GUER, false],\
             [IDC_ASSETBROWSER_TREE_GROUPS_CIV, false],\
-            [IDC_ASSETBROWSER_TREE_GROUPS_EMPTY, false]
+            [IDC_ASSETBROWSER_TREE_GROUPS_EMPTY, false],\
+            [IDC_ASSETBROWSER_TREE_MODULES, false]
         switch (_index) do {
             case 0: { // Objects
                 {(_display displayCtrl (_x select 0)) ctrlShow (_x select 1)} forEach [
@@ -118,6 +119,9 @@ switch (_type) do {
         _treeParent = _display displayCtrl IDC_ASSETBROWSER_TREE;
         
         _treeIDC = -1;
+        
+        MARS_LOGINFO_1("Mode: %1", GVAR(abCurrentMode));
+        
         if (GVAR(abCurrentMode) == 0) then {
             // Objects
             _treeIDC = switch (_sideInt) do {
@@ -136,6 +140,11 @@ switch (_type) do {
                     case SIDE_GUER: {IDC_ASSETBROWSER_TREE_GROUPS_GUER};
                     case SIDE_CIV: {IDC_ASSETBROWSER_TREE_GROUPS_CIV};
                     case SIDE_EMPTY: {IDC_ASSETBROWSER_TREE_GROUPS_EMPTY};
+                };
+            } else {
+                if (GVAR(abCurrentMode) == 2) then {
+                    // Modules
+                    _treeIDC = IDC_ASSETBROWSER_TREE_MODULES;
                 };
             };
         };
@@ -157,7 +166,8 @@ switch (_type) do {
             IDC_ASSETBROWSER_TREE_GROUPS_EAST,
             IDC_ASSETBROWSER_TREE_GROUPS_GUER,
             IDC_ASSETBROWSER_TREE_GROUPS_CIV,
-            IDC_ASSETBROWSER_TREE_GROUPS_EMPTY
+            IDC_ASSETBROWSER_TREE_GROUPS_EMPTY,
+            IDC_ASSETBROWSER_TREE_MODULES
         ];
         
         GVAR(abCurrentSubmode) = _index;

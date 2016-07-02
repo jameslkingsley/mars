@@ -20,26 +20,40 @@ params [["_ctrlKeyHeld", false, [false]]];
 
 if (GVAR(abSelectedObject) isEqualTo []) exitWith {};
 
+GVAR(abSelectedObject) params ["_type", "_classname", "_iconPath", "_color", "_side", ["_groupConfigStr", ""]];
+
 private _worldPos = [] call FUNC(getSurfaceUnderCursor);
-private _spawnMachine = [] call CFUNC(getSpawnMachine);
-private _args = [_worldPos, player, GVAR(abSelectedObject)];
 
-#ifdef DEBUG_MODE_FULL
-    MARS_LOGINFO_1("Targetting machine: %1", _spawnMachine);
-#endif
+if (_type != "module") then {
+    private _spawnMachine = [] call CFUNC(getSpawnMachine);
+    private _args = [_worldPos, player, GVAR(abSelectedObject)];
 
-if (_spawnMachine isEqualTo REMOTE_SERVER) then {
-    [QGVAR(spawnObject), _args] call CBA_fnc_serverEvent;
-    
     #ifdef DEBUG_MODE_FULL
-        MARS_LOGINFO("Spawning on server");
+        MARS_LOGINFO_1("Targetting machine: %1", _spawnMachine);
     #endif
+
+    if (_spawnMachine isEqualTo REMOTE_SERVER) then {
+        [QGVAR(spawnObject), _args] call CBA_fnc_serverEvent;
+        
+        #ifdef DEBUG_MODE_FULL
+            MARS_LOGINFO("Spawning on server");
+        #endif
+    } else {
+        [QGVAR(spawnObject), _args, _spawnMachine] call CBA_fnc_targetEvent;
+        
+        #ifdef DEBUG_MODE_FULL
+            MARS_LOGINFO("Spawning on target");
+        #endif
+    };
 } else {
-    [QGVAR(spawnObject), _args, _spawnMachine] call CBA_fnc_targetEvent;
+    private _config = call compile _groupConfigStr;
+    private _action = getText (_config >> "action");
     
-    #ifdef DEBUG_MODE_FULL
-        MARS_LOGINFO("Spawning on target");
-    #endif
+    if (isNil _action) then {
+        [_worldPos] call compile _action;
+    } else {
+        [_worldPos] call compile format ["_this call %1", _action];
+    };
 };
 
 // Don't reset selected object if control key is held (for multiple creations)

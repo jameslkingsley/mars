@@ -25,7 +25,7 @@ params [["_display", displayNull, [displayNull]]];
         _tree tvSort [PATH, false];\
     };
 
-GVAR(serializedABData) params ["_units", "_objects", "_groups"];
+GVAR(serializedABData) params ["_units", "_objects", "_groups", "_modules"];
 
 {
     // Trees
@@ -203,3 +203,44 @@ GVAR(serializedABData) params ["_units", "_objects", "_groups"];
 
     false
 } count _groups;
+
+{
+    // Trees
+    _x params ["_treeIDC", "_components"];
+
+    private _tree = _display displayCtrl _treeIDC;
+    tvClear _tree;
+
+    {
+        // Components
+        _x params ["_compClassname", "_compModules"];
+
+        private _config = (configFile >> QGVARMAIN(modules) >> _compClassname);
+        private _displayName = getText (_config >> "displayName");
+        private _componentPath = _tree tvAdd [[], _displayName];
+
+        {
+            // Modules
+            _x params ["_modClassname", "_modData"];
+            _modData params ["_displayName", "_tooltipText", "_icon", "_action"];
+
+            private _modulePath = _tree tvAdd [[_componentPath], _displayName];
+            _tree tvSetTooltip [[_componentPath, _modulePath], _tooltipText];
+            _tree tvSetPicture [[_componentPath, _modulePath], _icon];
+            _tree tvSetPictureColor [[_componentPath, _modulePath], [1,1,1,1]];
+            
+            private _data = format ["['module', '(configFile >> ''%1'' >> ''%2'' >> ''%3'')']", QGVARMAIN(modules), _compClassname, _modClassname];
+            _tree tvSetData [[_componentPath, _modulePath], _data];
+
+            false
+        } count _compModules;
+
+        CLEANUP([_componentPath]);
+
+        false
+    } count _components;
+
+    CLEANUP([]);
+
+    false
+} count _modules;

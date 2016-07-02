@@ -24,9 +24,8 @@ if (GVAR(abSelectedObject) isEqualTo []) exitWith {};
 GVAR(abSelectedObject) params ["_type", "_classname", "_iconPath", "_color", "_side", ["_groupConfigStr", ""]];
 
 private _worldPos = screenToWorld GVAR(mousePos);
-private _objectSide = [_side] call CFUNC(getSideByInt);
 
-if (_groupConfigStr != "") then {
+if (_groupConfigStr != "" && {_type != "module"}) then {
     private _groupConfig = call compile _groupConfigStr;
     private _groupUnits = "true" configClasses (_groupConfig);
     
@@ -65,11 +64,13 @@ if (_groupConfigStr != "") then {
     ];
 };
 
-_surfacePos = ASLtoAGL ([GVAR(prepSurfaceSphere)] call FUNC(getSurfaceUnderCursor));
+if (_type != "module") then {
+    _surfacePos = ASLtoAGL ([GVAR(prepSurfaceSphere)] call FUNC(getSurfaceUnderCursor));
 
-if (round (_surfacePos select 2) > round (_worldPos select 2)) then {
-    // Cursor position is over a surface that is higher than the terrain
-    [_surfacePos, _objectSide] call FUNC(drawSurfaceSphere);
-} else {
-    [] call FUNC(destroySurfaceSphere);
+    if (round (_surfacePos select 2) > round (_worldPos select 2)) then {
+        // Cursor position is over a surface that is higher than the terrain
+        [_surfacePos, _color] call FUNC(drawSurfaceSphere);
+    } else {
+        [] call FUNC(destroySurfaceSphere);
+    };
 };

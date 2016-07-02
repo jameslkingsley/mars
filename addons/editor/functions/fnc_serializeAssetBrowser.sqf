@@ -196,4 +196,50 @@ private _groupResult = [];
     [IDC_ASSETBROWSER_TREE_GROUPS_EMPTY, SIDE_CIV]
 ];
 
-[_unitResult, _objectResult, _groupResult]
+// Modules
+private _moduleResult = [];
+private _treeIDC = IDC_ASSETBROWSER_TREE_MODULES;
+private _moduleComponents = "true" configClasses (configFile >> QGVARMAIN(modules));
+private _iModuleComponents = [];
+
+{
+    // Components
+    private _config = _x;
+    private _configName = configName _config;
+    private _modules = "true" configClasses (_config);
+    private _iModules = [];
+
+    {
+        // Modules
+        private _config = _x;
+        private _configName = configName _config;
+        private _displayName = [getText (_config >> "displayName"), "Undefined"] select (isNull (_config >> "displayName"));
+        private _tooltipText = [getText (_config >> "tooltipText"), ""] select (isNull (_config >> "tooltipText"));
+        private _icon = [getText (_config >> "icon"), QPATHTOF(data\PanelRight\modemodules_ca.paa)] select (isNull (_config >> "icon"));
+        private _action = [getText (_config >> "action"), ""] select (isNull (_config >> "action"));
+        
+        if (_icon == "") then {
+            _icon = QPATHTOF(data\PanelRight\modemodules_ca.paa);
+        };
+
+        _iModules pushBack [_configName, [
+            _displayName,
+            _tooltipText,
+            _icon,
+            _action
+        ]];
+
+        false
+    } count _modules;
+
+    _iModuleComponents pushBack [_configName, _iModules];
+
+    false
+} count _moduleComponents;
+
+_moduleResult pushBack [
+    _treeIDC,
+    _iModuleComponents
+];
+
+[_unitResult, _objectResult, _groupResult, _moduleResult]

@@ -57,4 +57,10 @@ switch (_type) do {
         private _color = [_side] call CFUNC(getSideColorByInt);
         GVAR(abSelectedObject) = [_type, _classname, _icon, _color, _side, _configStr];
     };
+    case "module": {
+        private _config = call compile _configStr;
+        private _classname = configName _config;
+        private _icon = [getText (_config >> "icon"), QPATHTOF(data\PanelRight\modemodules_ca.paa)] select (isNull (_config >> "icon") || {getText (_config >> "icon") == ""});
+        GVAR(abSelectedObject) = [_type, _classname, _icon, [1,1,1,1], -1, _configStr];
+    };
 };
