@@ -62,3 +62,4 @@ PREP(spawnObject);
 PREP(isUnitScreenPosUnderCursor);
 PREP(serializeDrawing);
 PREP(notification);
+PREP(clearABSelection);
