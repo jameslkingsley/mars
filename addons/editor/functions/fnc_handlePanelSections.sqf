@@ -120,8 +120,6 @@ switch (_type) do {
         
         _treeIDC = -1;
         
-        MARS_LOGINFO_1("Mode: %1", GVAR(abCurrentMode));
-        
         if (GVAR(abCurrentMode) == 0) then {
             // Objects
             _treeIDC = switch (_sideInt) do {
