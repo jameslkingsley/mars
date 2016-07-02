@@ -150,6 +150,7 @@ switch (toLower _mode) do {
                         GVAR(abSelectedObject) = [];
                         deleteVehicle GVAR(prepSurfaceSphere);
                         GVAR(prepSurfaceSphere) = objNull;
+                        [] call FUNC(clearABSelection);
                         
                         if (!isNil QGVAR(contextPosLinePFH)) then {
                             [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;

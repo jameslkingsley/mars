@@ -59,6 +59,7 @@ if (_type != "module") then {
 // Don't reset selected object if control key is held (for multiple creations)
 if (!_ctrlKeyHeld) then {
     GVAR(abSelectedObject) = [];
+    [] call FUNC(clearABSelection);
 };
 
 // Cleanup helper object and variables
