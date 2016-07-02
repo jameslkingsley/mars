@@ -40,6 +40,10 @@ _prevPosYH = [(_parentPos select 1), MENUSTRIP_CONTEXT_HEIGHT];
     _idc = 46000 + _forEachIndex;
     _displayName = getText (_x >> "displayName");
     _action = getText (_x >> "action");
+    
+    if (!isNil _action) then {
+        _action = format ["_this call %1", _action];
+    };
 
     _childCtrl = _display ctrlCreate ["MARS_gui_toolbarContextBase", _idc];
     _childCtrl ctrlSetPosition [(_parentPos select 0), ((_prevPosYH select 0) + (_prevPosYH select 1) - pixelH), MENUSTRIP_CONTEXT_WIDTH, MENUSTRIP_CONTEXT_HEIGHT];

@@ -38,4 +38,8 @@ if (_isToggle) then {
     _control setVariable [QGVAR(toolbarItemData), _data];
 };
 
+if (!isNil _action) then {
+    _action = format ["_this call %1", _action];
+};
+
 (!_status) call compile _action;

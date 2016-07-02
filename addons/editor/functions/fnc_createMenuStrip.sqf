@@ -44,6 +44,10 @@ if (count _components > 0) then {
             _padding = (pixelW * 6.5) * (sqrt _maxNameCount);
             _width = (_nameCount * (pixelW * 6.5)) + _padding;
             
+            if (!isNil _action) then {
+                _action = format ["_this call %1", _action];
+            };
+            
             _ctrl = _display ctrlCreate ["MARS_gui_menuTopBase", _idc];
             _ctrl ctrlSetPosition [_axisX, (0 * safeZoneH + safeZoneY), _width, MENUSTRIP_CONTEXT_HEIGHT];
             _ctrl ctrlSetText _displayName;
