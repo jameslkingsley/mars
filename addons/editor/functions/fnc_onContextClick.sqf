@@ -19,6 +19,10 @@
 
 params [["_action", ""], ["_requiresPosition", false]];
 
+if (!isNil _action) then {
+    _action = format ["_this call %1", _action];
+};
+
 [] call FUNC(closeContextMenu);
 
 if (_requiresPosition) then {
