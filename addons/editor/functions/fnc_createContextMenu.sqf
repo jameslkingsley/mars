@@ -40,6 +40,7 @@ if (count _contexts > 0) then {
             _hasChildren = (count _children > 0);
             _displayName = getText (_config >> "displayName");
             _action = ["", (getText (_config >> "action"))] select (isText (_config >> "action"));
+            _preAction = ["", (getText (_config >> "preAction"))] select (isText (_config >> "preAction"));
             _requiresPosition = [false, [false,true] select (getNumber (_config >> "requiresPosition"))] select (!isNull (_config >> "requiresPosition"));
             
             disableSerialization;
@@ -64,7 +65,7 @@ if (count _contexts > 0) then {
             ];
             
             _control setVariable [QGVAR(ctrlChildren), _children];
-            _control setVariable [QGVAR(ctrlAction), [_action, _requiresPosition]];
+            _control setVariable [QGVAR(ctrlAction), [_action, _requiresPosition, _preAction]];
             
             _control ctrlAddEventHandler ["MouseEnter",
                 compile format[

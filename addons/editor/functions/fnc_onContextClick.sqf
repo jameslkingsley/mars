@@ -17,13 +17,18 @@
 
 #include "script_component.hpp"
 
-params [["_action", ""], ["_requiresPosition", false]];
+params [["_action", ""], ["_requiresPosition", false], ["_preAction", ""]];
 
 if (!isNil _action) then {
     _action = format ["_this call %1", _action];
 };
 
+if (!isNil _preAction) then {
+    _preAction = format ["_this call %1", _preAction];
+};
+
 [] call FUNC(closeContextMenu);
+[GVAR(selection)] call compile _preAction;
 
 if (_requiresPosition) then {
     GVAR(hasLeftClicked) = false;
@@ -34,7 +39,7 @@ if (_requiresPosition) then {
         _args params ["_selection","_action"];
         
         if (GVAR(hasLeftClicked)) exitWith {
-            _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
+            _worldPos = [] call FUNC(getSurfaceUnderCursor);
             [_selection, _worldPos] call compile _action;
             
             [_handle] call CBA_fnc_removePerFrameHandler;
@@ -43,8 +48,8 @@ if (_requiresPosition) then {
             GVAR(isWaitingForLeftClick) = false;
         };
         
-        _groups = [_selection] call EFUNC(common,unitsToGroups);
-        _worldPos = screenToWorld GVAR(mousePos);
+        _groups = [_selection] call CFUNC(unitsToGroups);
+        _worldPos = ASLtoAGL ([] call FUNC(getSurfaceUnderCursor));
         
         {
             _leader = leader _x;
