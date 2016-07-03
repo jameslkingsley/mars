@@ -198,10 +198,12 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
                     GVAR(identifyControls) pushBack [format ["__Ctrl%1", _ctrlIDC], _ctrlRet];
                 };
                 
-                private _condition = if (isNumber (_ctrlConfig >> "condition")) then {
-                    ["false","true"] select (getNumber (_ctrlConfig >> "condition"))
-                } else {
-                    getText (_ctrlConfig >> "condition")
+                private _condition = if (isNull (_ctrlConfig >> "condition")) then {"true"} else {
+                    if (isNumber (_ctrlConfig >> "condition")) then {
+                        ["false","true"] select (getNumber (_ctrlConfig >> "condition"))
+                    } else {
+                        getText (_ctrlConfig >> "condition")
+                    };
                 };
                 
                 if (_ctrlRet isEqualType []) then {
@@ -252,7 +254,17 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
             false
         } count _itemControls;
         
-        if ({call compile getText (_x >> "condition")} count _itemControls == 0) then {
+        if ({
+            private _condition = if (isNull (_x >> "condition")) then {"true"} else {
+                if (isNumber (_x >> "condition")) then {
+                    ["false","true"] select (getNumber (_x >> "condition"))
+                } else {
+                    getText (_x >> "condition")
+                };
+            };
+            
+            call compile _condition
+        } count _itemControls == 0) then {
             _itemLabel ctrlEnable false;
         };
         
