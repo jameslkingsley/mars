@@ -131,8 +131,17 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
         _itemControls = "true" configClasses (_itemConfig >> "AttributeControls");
         _itemLabelY = LABEL_HEIGHT + ITEM_SPACING;
         _itemLabel = _display ctrlCreate ["MARS_gui_ctrlButtonStaticAlignRight", _itemIDC, _headerCtrlGroup];
-        _itemLabel ctrlSetText getText (_itemConfig >> "displayName");
-        _itemLabel ctrlSetTooltip getText (_itemConfig >> "tooltipText");
+        
+        private _labelDisplayName = if (isNull (_itemConfig >> "displayName")) then {""} else {getText (_itemConfig >> "displayName")};
+        _itemLabel ctrlSetText _labelDisplayName;
+        
+        private _labelTooltipText = if (isNull (_itemConfig >> "tooltipText")) then {""} else {getText (_itemConfig >> "tooltipText")};
+        _itemLabel ctrlSetTooltip _labelTooltipText;
+        
+        if (_labelDisplayName == "") then {
+            _itemLabel ctrlShow false;
+            _itemLabel ctrlEnable false;
+        };
         
         _ctrlIndex = 0;
         _ctrlLargestHeight = 0;
