@@ -70,6 +70,7 @@ _ctrlCheck ctrlAddEventHandler ["CheckedChanged", {
     _ctrl setVariable [QGVAR(execReturnData), INT2BOOL(_state)];
 }];
 
+_ctrlCheckLabel setVariable [QGVAR(config), _config];
 _ctrlCheckLabel setVariable [QGVAR(display), _display];
 _ctrlCheckLabel setVariable [QGVAR(checkbox), _ctrlCheck];
 
@@ -78,6 +79,7 @@ _ctrlCheckLabel ctrlAddEventHandler ["MouseButtonUp", {
 
     private _display = _control getVariable [QGVAR(display), displayNull];
     private _checkbox = _control getVariable [QGVAR(checkbox), controlNull];
+    private _config = _control getVariable [QGVAR(config), configNull];
     private _newState = !(cbChecked _checkbox);
 
     _checkbox cbSetChecked _newState;
@@ -85,6 +87,9 @@ _ctrlCheckLabel ctrlAddEventHandler ["MouseButtonUp", {
     _startState = _checkbox getVariable [QGVAR(checkStartState), 0];
     _checkbox setVariable [QGVAR(execExpression), (_startState != BOOL2INT(_newState))];
     _checkbox setVariable [QGVAR(execReturnData), _newState];
+    
+    private _checkChangeEvent = if (isNull (_config >> "onCheckedChanged")) then {""} else {getText (_config >> "onCheckedChanged")};
+    [_control, _newState] call compile _checkChangeEvent;
 }];
 
 _ctrlCheck setVariable [QGVAR(label), (_display displayCtrl _labelIDC)];
