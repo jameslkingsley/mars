@@ -34,12 +34,6 @@ class GVARMAIN(context) {
                 action = QFUNC(suppress);
             };
             
-            class FireLauncher {
-                displayName = "Fire Launcher";
-                requiresPosition = true;
-                action = QFUNC(fireLauncher);
-            };
-            
             class SearchNearest {
                 displayName = "Search Nearby";
                 action = QFUNC(searchNearby);
