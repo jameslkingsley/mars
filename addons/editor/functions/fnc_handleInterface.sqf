@@ -28,6 +28,8 @@ switch (toLower _mode) do {
         
         // [] call FUNC(createEntityList);
         [_display] call FUNC(createAssetBrowser);
+        [_display] call FUNC(createMenuStrip);
+        [_display] call FUNC(createToolbar);
         
         // Disable and hide map
         _map = _display displayCtrl IDC_MAP;

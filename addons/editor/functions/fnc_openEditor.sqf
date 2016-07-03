@@ -16,10 +16,12 @@
 
 #include "script_component.hpp"
 
-if !(hasInterface) exitWith {};
+if (!hasInterface) exitWith {};
 if (GVAR(isSet)) exitWith {};
 
-["EditorOpen"] call EFUNC(common,localEvent);
+disableSerialization;
+
+["EditorOpen"] call CFUNC(localEvent);
 
 // Initalize camera variables
 GVAR(camBoom) = 0;
@@ -59,10 +61,7 @@ while {dialog} do {
 };
 
 // Create the display
-disableSerialization;
 _display = (findDisplay 46) createDisplay QGVAR(interface);
-[_display] call FUNC(createMenuStrip);
-[_display] call FUNC(createToolbar);
     
 _display displayAddEventHandler ["MouseButtonDown", {
     [{
@@ -86,13 +85,14 @@ GVAR(pfh) = [{
     // BEGIN_COUNTER(marsPFH);
     
     // Tagging handler
-    if (GVAR(canContext) || count GVAR(selection) > 0) then {
+    if (GVAR(canContext) || {!(GVAR(selection) isEqualTo [])}) then {
         [] call FUNC(handleObjectBoxes);
     };
 
     // Icons handler
     [] call FUNC(handleIcons);
     [] call FUNC(handleLines);
+    [] call FUNC(handleLocationIcons);
 
     // Selection handler
     {
@@ -105,18 +105,12 @@ GVAR(pfh) = [{
     // Asset browser placing objects
     [] call FUNC(prepNewObject);
     
-    // Handle location icons
-    [] call FUNC(handleLocationIcons);
-    
     // END_COUNTER(marsPFH);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(delayedPFH) = [{
     private _display = GETUVAR(GVAR(interface),displayNull);
-    // FPS Counter
     (_display displayCtrl IDC_STATUSBAR_FPS) ctrlSetText format ["%1 FPS", round diag_fps];
-    
-    // Status bar - grid position
     (_display displayCtrl IDC_STATUSBAR_GRID) ctrlSetText format ["%1", mapGridPosition GVAR(freeCamera)];
 }, 1, []] call CBA_fnc_addPerFrameHandler;
 
@@ -138,8 +132,6 @@ GVAR(playerKilledHandle) = player addEventHandler ["Killed", {
 // Edit Players
 GVAR(editPlayers) = false;
 
-// player playActionNow "gear";
-
 GVAR(isSet) = true;
 
-["EditorOpened", [_display]] call EFUNC(common,localEvent);
+["EditorOpened", [_display]] call CFUNC(localEvent);
