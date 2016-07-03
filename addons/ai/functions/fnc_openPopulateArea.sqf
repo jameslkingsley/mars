@@ -20,4 +20,4 @@ params [["_pos", [], [[]]]];
 
 if (_pos isEqualTo []) exitWith {};
 
-[QADDON, "PopulateArea", nil, nil, _pos] call AFUNC(openAttributes);
+[QADDON, "PopulateArea", [140, 140], [0.33, 0.66], _pos] call AFUNC(openAttributes);
