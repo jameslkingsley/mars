@@ -18,6 +18,7 @@
 #include "script_component.hpp"
 
 #define SURFACE_OBJECT "Sign_Sphere100cm_F"
+#define ICON_WH 1.25
 
 if (GVAR(abSelectedObject) isEqualTo []) exitWith {};
 
@@ -40,8 +41,8 @@ if (_groupConfigStr != "" && {_type != "module"}) then {
             _iconPath,
             _color,
             _position,
-            1,
-            1,
+            ICON_WH,
+            ICON_WH,
             0,
             "",
             1,
@@ -55,8 +56,8 @@ if (_groupConfigStr != "" && {_type != "module"}) then {
         _iconPath,
         _color,
         _worldPos,
-        1,
-        1,
+        ICON_WH,
+        ICON_WH,
         0,
         "",
         1,
