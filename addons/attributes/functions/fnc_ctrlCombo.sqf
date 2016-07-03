@@ -38,8 +38,12 @@ _ctrlCombo ctrlSetPosition _position;
 _values = [call compile getText (_config >> "values"), getArray (_config >> "values")] select (isArray (_config >> "values"));
 _labels = [call compile getText (_config >> "labels"), getArray (_config >> "labels")] select (isArray (_config >> "labels"));
 
-_selectedIsNumber = isNumber (_config >> "selected");
-_selected = [call compile getText (_config >> "selected"), getNumber (_config >> "selected")] select (_selectedIsNumber);
+_selectedIsNumber = if (isNull (_config >> "selected")) then {true} else {isNumber (_config >> "selected")};
+_selected = if (isNull (_config >> "selected")) then {0} else {
+    if (isNumber (_config >> "selected")) then {getNumber (_config >> "selected")} else {
+        if (isText (_config >> "selected")) then {call compile getText (_config >> "selected")} else {0};
+    };
+};
 
 if (count _labels > count _values) then {
     MARS_LOGERROR_1("Labels array is bigger than the values array in %1. Ignoring extra labels.", _config);
