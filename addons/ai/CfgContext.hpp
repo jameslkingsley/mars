@@ -7,49 +7,48 @@ class GVARMAIN(context) {
             class ForceMove {
                 displayName = "Force Move";
                 requiresPosition = true;
-                action = QUOTE(_this call FUNC(forceMove));
-                order = 1;
+                action = QFUNC(forceMove);
             };
             
             class Attack {
                 displayName = "Attack";
                 requiresPosition = true;
-                action = QUOTE(_this call FUNC(taskAttack));
-                order = 2;
+                action = QFUNC(taskAttack);
             };
             
             class Defend {
                 displayName = "Defend";
                 requiresPosition = true;
-                action = QUOTE(_this call FUNC(taskDefend));
-                order = 3;
+                action = QFUNC(taskDefend);
             };
             
             class Patrol {
                 displayName = "Patrol";
                 requiresPosition = true;
-                action = QUOTE(_this call FUNC(taskPatrol));
-                order = 4;
+                action = QFUNC(taskPatrol);
             };
             
             class Suppress {
                 displayName = "Suppress";
                 requiresPosition = true;
-                action = QUOTE(_this call FUNC(suppress));
-                order = 5;
+                action = QFUNC(suppress);
+            };
+            
+            class FireLauncher {
+                displayName = "Fire Launcher";
+                requiresPosition = true;
+                action = QFUNC(fireLauncher);
             };
             
             class SearchNearest {
                 displayName = "Search Nearby";
-                action = QUOTE(_this call FUNC(searchNearby));
-                order = 6;
+                action = QFUNC(searchNearby);
             };
             
             class Garrison {
                 displayName = "Garrison";
                 requiresPosition = true;
-                action = QUOTE(_this call FUNC(garrison));
-                order = 7;
+                action = QFUNC(garrison);
             };
         };
         
