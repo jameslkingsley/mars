@@ -114,7 +114,20 @@ switch (toLower _mode) do {
                 if (isNull _selectedGroup) then {
                     [] call FUNC(selectObject);
                 } else {
-                    [(units _selectedGroup apply {vehicle _x})] call FUNC(selectObject);
+                    private _selectedGroupUnits = units _selectedGroup;
+                    private _selectObjects = _selectedGroupUnits apply {vehicle _x};
+                    
+                    private _virtualGroupOwner = _selectedGroupUnits select {
+                        !isNull ([_x] call CFUNC(getVirtualGroup))
+                    };
+                    
+                    if !(_virtualGroupOwner isEqualTo []) then {
+                        private _virtualGroup = [(_virtualGroupOwner select 0)] call CFUNC(getVirtualGroup);
+                        _selectObjects = _virtualGroup getVariable "members";
+                        _selectObjects = _selectObjects apply {vehicle _x};
+                    };
+                    
+                    [_selectObjects] call FUNC(selectObject);
                 };
             };
 
