@@ -25,6 +25,14 @@ if (count _contexts > 0) then {
     _contexts sort true;
     _contexts = _contexts apply {(_x select 1)};
 
+    _contexts = _contexts apply {[([getNumber (_x >> "order"), -1] select (isNull (_x >> "order"))), _x]};
+    
+    if ({(_x select 0) > -1} count _contexts > 0) then {
+        _contexts sort true;
+    };
+    
+    _contexts = _contexts apply {(_x select 1)};
+
     _index = 0;
     
     {
