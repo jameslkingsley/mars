@@ -46,39 +46,64 @@ class GVARMAIN(context) {
             };
         };
         
-        class air {
+        class Air {
             displayName = "Air";
             condition = QUOTE(_this isKindOf 'Air' && !isPlayer _this);
             
-            class attack {
+            class Attack {
                 displayName = "Attack";
                 requiresPosition = true;
-                condition = "";
-                action = QUOTE(_this call FUNC(airAttack));
+                action = QFUNC(taskAttack);
             };
             
-            class orbit {
+            class Land {
+                displayName = "Land";
+                requiresPosition = true;
+                action = QFUNC(taskLand);
+            };
+            
+            class Paradrop {
+                displayName = "Paradrop";
+                requiresPosition = true;
+                action = QFUNC(taskParadrop);
+            };
+            
+            class FillCargo {
+                displayName = "Fill Cargo";
+                action = QFUNC(fillCargo);
+            };
+            
+            class Disembark {
+                displayName = "Disembark";
+                action = QFUNC(disembark);
+            };
+            
+            class Orbit {
                 displayName = "Orbit";
                 
-                class low {
+                class Low {
                     displayName = "Low (250m)";
                     requiresPosition = true;
-                    condition = "";
-                    action = QUOTE([ARR_2(_this,250)] call FUNC(airOrbit));
+                    action = QUOTE([ARR_2(_this, 250)] call FUNC(taskOrbit));
+                    order = 1;
                 };
                 
-                class med {
+                class Medium: Low {
                     displayName = "Medium (500m)";
-                    requiresPosition = true;
-                    condition = "";
-                    action = QUOTE([ARR_2(_this,500)] call FUNC(airOrbit));
+                    action = QUOTE([ARR_2(_this, 500)] call FUNC(taskOrbit));
+                    order = 2;
                 };
                 
-                class high {
+                class High: Low {
                     displayName = "High (750m)";
-                    requiresPosition = true;
-                    condition = "";
-                    action = QUOTE([ARR_2(_this,750)] call FUNC(airOrbit));
+                    action = QUOTE([ARR_2(_this, 750)] call FUNC(taskOrbit));
+                    order = 3;
+                };
+                
+                class VeryHigh: Low {
+                    displayName = "Very High (1000m)";
+                    action = QUOTE([ARR_2(_this, 1000)] call FUNC(taskOrbit));
+                    order = 4;
                 };
             };
         };

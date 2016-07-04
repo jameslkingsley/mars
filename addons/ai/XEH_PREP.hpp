@@ -1,5 +1,4 @@
-PREP(airAttack);
-PREP(airOrbit);
+PREP(taskOrbit);
 PREP(taskDefend);
 PREP(taskPatrol);
 PREP(taskAttack);
@@ -12,3 +11,7 @@ PREP(suppress);
 PREP(searchNearby);
 PREP(populateArea);
 PREP(openPopulateArea);
+PREP(taskLand);
+PREP(taskParadrop);
+PREP(fillCargo);
+PREP(disembark);
