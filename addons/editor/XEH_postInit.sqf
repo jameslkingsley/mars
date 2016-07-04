@@ -22,3 +22,9 @@ createCenter west;
 createCenter east;
 createCenter resistance;
 createCenter civilian;
+
+[QGVAR(setDir), {
+    params ["_unit", "_dir"];
+    _unit setFormDir _dir;
+    _unit setDir _dir;
+}] call CBA_fnc_addEventHandler;
