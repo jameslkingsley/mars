@@ -27,6 +27,7 @@ if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 {
     [_x, {
         params ["_unit","_pos"];
+        _unit lookAt _pos;
         _unit doSuppressiveFire _pos;
     }, [_x, _pos]] call CFUNC(execWhereLocal);
     
