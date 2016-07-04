@@ -15,4 +15,6 @@ MARS_virtualPausedTime = 0;
 
 [FUNC(timePFH), 0, []] call CBA_fnc_addPerFrameHandler;
 
+GVAR(virtualGroups) = [];
+
 ADDON = true;
