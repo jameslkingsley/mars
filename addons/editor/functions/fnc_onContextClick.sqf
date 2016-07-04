@@ -62,7 +62,9 @@ if (_requiresPosition) then {
             };
             
             false
-        } count _groups;
+        } count (_groups select {
+            !((getPosASLVisual leader _x) isEqualTo [0,0,0])
+        });
         
         drawIcon3D [
             "\A3\ui_f\data\map\groupicons\waypoint.paa",
