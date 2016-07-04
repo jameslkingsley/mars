@@ -9,7 +9,7 @@
  * None
  *
  * Example:
- * N/A
+ * [] call mars_editor_fnc_handleObjectBoxes;
  *
  * Public: No
  */
