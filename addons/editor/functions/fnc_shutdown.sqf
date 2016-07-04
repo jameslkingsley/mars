@@ -61,7 +61,7 @@ if (!isNil QGVAR(playerKilledHandle)) then {
     _unit removeEventHandler ["Killed", GVAR(playerKilledHandle)];
 };
 
-player allowDamage true;
+player switchCamera "internal";
 GVAR(selection) = [];
 GVAR(isSet) = false;
 

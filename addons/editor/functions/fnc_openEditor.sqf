@@ -23,6 +23,9 @@ disableSerialization;
 
 ["EditorOpen"] call CFUNC(localEvent);
 
+showHUD true;
+player switchCamera "internal";
+
 // Initalize camera variables
 GVAR(camBoom) = 0;
 GVAR(camDolly) = [0,0];
@@ -100,7 +103,6 @@ GVAR(pfh) = [{
     {
         private _color = [[0,0,0,1], MARS_SIDECOLOR(side group _x)] select (alive _x);
         [_x, _color] call FUNC(drawBoundingBox);
-        
         false
     } count (GVAR(selection) select {_x != GVAR(prepSurfaceSphere)});
     
@@ -126,12 +128,11 @@ GVAR(drawingPFH) = [{
 GVAR(playerKilledHandle) = player addEventHandler ["Killed", {
     params [["_unit", objNull]];
     [_unit] call FUNC(shutdown);
+    GVAR(camPos) = [];
 }];
 
 // Set the cursor to default
 [] call FUNC(setCursor);
-
-player allowDamage false;
 
 // Edit Players
 GVAR(editPlayers) = false;
