@@ -85,8 +85,10 @@ GVAR(pfh) = [{
     // BEGIN_COUNTER(marsPFH);
     
     // Tagging handler
-    if (!(GVAR(mouse) select 0) && {(GVAR(canContext) || {!(GVAR(selection) isEqualTo [])})}) then {
-        [] call FUNC(handleObjectBoxes);
+    if (!isNull GVAR(prepDragObjectUnderCursor) || !(GVAR(mouse) select 0)) then {
+        if (GVAR(canContext) || {!(GVAR(selection) isEqualTo [])}) then {
+            [] call FUNC(handleObjectBoxes);
+        };
     };
 
     // Icons handler
