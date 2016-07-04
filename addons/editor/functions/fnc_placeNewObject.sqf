@@ -26,7 +26,7 @@ private _worldPos = [] call FUNC(getSurfaceUnderCursor);
 
 if (_type != "module") then {
     private _spawnMachine = [] call CFUNC(getSpawnMachine);
-    private _args = [_worldPos, player, GVAR(abSelectedObject)];
+    private _args = [_worldPos, player, GVAR(abSelectedObject), GVAR(placeVehiclesWithCrew)];
 
     #ifdef DEBUG_MODE_FULL
         MARS_LOGINFO_1("Targetting machine: %1", _spawnMachine);

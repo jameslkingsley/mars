@@ -21,7 +21,8 @@
 params [
     ["_position", [], [[]]],
     ["_caller", objNull, [objNull]],
-    ["_objectData", [], [[]]]
+    ["_objectData", [], [[]]],
+    ["_placeVehiclesWithCrew", true]
 ];
 
 _objectData params ["_type", "_classname", "_iconPath", "_color", "_side", ["_groupConfigStr", ""]];
@@ -41,8 +42,12 @@ switch (_type) do {
         } else {
             private _group = createGroup _side;
             private _vehicle = createVehicle [_classname, _position, [], 0, "CAN_COLLIDE"];
-            createVehicleCrew _vehicle;
-            {[_x] joinSilent _group;false} count (crew _vehicle);
+            
+            if (_placeVehiclesWithCrew) then {
+                createVehicleCrew _vehicle;
+                {[_x] joinSilent _group;false} count (crew _vehicle);
+            };
+            
             [_vehicle] remoteExecCall [QFUNC(addObjectToStaticCache), _caller];
         };
     };
@@ -88,11 +93,14 @@ switch (_type) do {
                 _groupUnits pushBack _unit;
             } else {
                 private _vehicle = createVehicle [_unitClassname, _unitPos, [], 0, "CAN_COLLIDE"];
-                createVehicleCrew _vehicle;
                 _vehicle setFormDir _unitDir;
                 _vehicle setDir _unitDir;
                 
-                {_groupUnits pushBack _x;false} count (crew _vehicle);
+                if (_placeVehiclesWithCrew) then {
+                    createVehicleCrew _vehicle;
+                    {_groupUnits pushBack _x;false} count (crew _vehicle);
+                };
+                
                 _groupUnits pushBack _vehicle;
                 _cachedUnits pushBack _vehicle;
             };
