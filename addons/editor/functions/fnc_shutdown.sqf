@@ -27,34 +27,42 @@ GETUVAR(GVAR(interface),displayNull) closeDisplay 0;
 if (!isNil QGVAR(freeCamera)) then {
     GVAR(freeCamera) cameraEffect ["terminate","back"];
     camDestroy GVAR(freeCamera);
-    GVAR(freeCamera) = objNull;
+    GVAR(freeCamera) = nil;
 };
 
 BIS_fnc_feedback_allowPP = true;
 
 if (!isNil QGVAR(pfh)) then {
     [GVAR(pfh)] call CBA_fnc_removePerFrameHandler;
+    GVAR(pfh) = nil;
 };
 
 if (!isNil QGVAR(delayedPFH)) then {
     [GVAR(delayedPFH)] call CBA_fnc_removePerFrameHandler;
+    GVAR(delayedPFH) = nil;
 };
 
 if (!isNil QGVAR(camHandler)) then {
     [GVAR(camHandler)] call CBA_fnc_removePerFrameHandler;
+    GVAR(camHandler) = nil;
 };
 
 if (!isNil QGVAR(testPFH)) then {
     [GVAR(testPFH)] call CBA_fnc_removePerFrameHandler;
+    GVAR(testPFH) = nil;
 };
 
 if (!isNil QGVAR(drawingPFH)) then {
     [GVAR(drawingPFH)] call CBA_fnc_removePerFrameHandler;
+    GVAR(drawingPFH) = nil;
 };
 
 if (!isNil QGVAR(playerKilledHandle)) then {
     _unit removeEventHandler ["Killed", GVAR(playerKilledHandle)];
 };
 
+player allowDamage true;
 GVAR(selection) = [];
 GVAR(isSet) = false;
+
+[QGVAR(shutdown), [player]] call CBA_fnc_localEvent;

@@ -131,6 +131,8 @@ GVAR(playerKilledHandle) = player addEventHandler ["Killed", {
 // Set the cursor to default
 [] call FUNC(setCursor);
 
+player allowDamage false;
+
 // Edit Players
 GVAR(editPlayers) = false;
 
