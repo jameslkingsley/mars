@@ -23,6 +23,8 @@ if (isNull _display) exitWith {};
 #define GRID_W (pixelW * pixelScale * pixelGrid)
 #define GRID_H (pixelH * pixelScale * pixelGrid)
 
+GVAR(toolbarControlWatches) = [];
+
 _components = "true" configClasses (configFile >> QGVARMAIN(toolbar));
 
 if (count _components > 0) then {
@@ -40,7 +42,8 @@ if (count _components > 0) then {
             _iconOn = getText (_x >> "iconOn");
             _iconOff = getText (_x >> "iconOff");
             _action = getText (_x >> "action");
-            _default = getNumber (_x >> "default");
+            _watch = getText (_x >> "watch");
+            _default = if (isText (_x >> "default")) then {call compile getText (_x >> "default")} else {getNumber (_x >> "default")};
             _defaultBool = [false,true] select _default;
             _toggle = [getNumber (_x >> "toggle"), 1] select (isNull (_x >> "toggle"));
             _toggleBool = [false,true] select _toggle;
@@ -52,7 +55,6 @@ if (count _components > 0) then {
             
             _pos = [
                 _previousX + _modX,
-                //((_itemIndex * GRID_TOOLBAR_W) + (_componentIndex * GRID_TOOLBAR_W)),
                 0,
                 GRID_TOOLBAR_W,
                 GRID_TOOLBAR_H
@@ -65,6 +67,7 @@ if (count _components > 0) then {
             _ctrl ctrlCommit 0;
             
             _ctrl setVariable [QGVAR(toolbarItemData), [_idc, _tooltipText, _iconOn, _iconOff, _action, _default, _defaultBool, _toggleBool]];
+            _ctrl setVariable [QGVAR(watch), _watch];
             
             if (_defaultBool) then {
                 [_ctrl, true] call FUNC(onToolbarItemClick);
@@ -75,7 +78,35 @@ if (count _components > 0) then {
                 [_control] call FUNC(onToolbarItemClick);
             }];
             
+            GVAR(toolbarControlWatches) pushBack _ctrl;
+            
             _previousX = _previousX + _modX;
         } forEach _children;
     } forEach _components;
 };
+
+if (!isNil QGVAR(toolbarControlWatchHandler)) then {
+    [GVAR(toolbarControlWatchHandler)] call CBA_fnc_removePerFrameHandler;
+};
+
+[{
+    {
+        private _control = _x;
+        private _watch = _control getVariable [QGVAR(watch), ""];
+        
+        if (_watch != "") then {
+            private _data = _control getVariable [QGVAR(toolbarItemData), []];
+            if (count _data == 0) exitWith {};
+            
+            _data params ["_idc", "_tooltipText", "_iconOn", "_iconOff", "_action", "_default", "_status", "_isToggle"];
+            
+            private _state = call compile _watch;
+            
+            _control ctrlSetText ([_iconOff, _iconOn] select _state);
+            _data set [6, _state];
+            _control setVariable [QGVAR(toolbarItemData), _data];
+        };
+        
+        false
+    } count GVAR(toolbarControlWatches);
+}, 0.1, []] call CBA_fnc_addPerFrameHandler;
