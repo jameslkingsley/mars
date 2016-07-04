@@ -57,4 +57,8 @@ if (count _objects > 0) then {
     };
 };
 
+if (isNull _target) exitWith {
+    ([] call FUNC(selectUnitIcon))
+};
+
 _target
