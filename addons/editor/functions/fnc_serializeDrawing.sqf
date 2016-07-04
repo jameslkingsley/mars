@@ -46,6 +46,8 @@ private _outputLines = [];
     private _objectIcon = getText (configfile >> "CfgVehicles" >> _objectClassname >> "icon");
     private _objectIconPath = [getText (configFile >> "CfgVehicleIcons" >> _objectIcon), _objectIcon] select ((toLower _objectIcon) find "\" > -1);
     
+    private _virtualGroup = [_object] call CFUNC(getVirtualGroup);
+    
     if (_isPerson && vehicle _object == _object) then {
         private _playerColor = [0,0,0,0];
         
@@ -69,8 +71,10 @@ private _outputLines = [];
             ];
         };
         
-        if (count units group _object > 1) then {
-            if (leader _object == _object) then {
+        if (count units group _object > 1 || {!isNull _virtualGroup}) then {
+            private _leader = [[_virtualGroup] call CFUNC(getVirtualGroupLeader), leader _object] select (isNull _virtualGroup);
+            
+            if (_leader == _object) then {
                 private _groupIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
                 
                 _outputIcons pushBack [
@@ -93,10 +97,10 @@ private _outputLines = [];
                     _isPerson
                 ];
             } else {
-                if (!isNull leader _object) then {
+                if (!isNull _leader) then {
                     _outputLines pushBack [
                         _object,
-                        leader _object,
+                        _leader,
                         _iconColor,
                         1,
                         1,
