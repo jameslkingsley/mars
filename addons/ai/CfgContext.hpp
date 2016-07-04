@@ -7,36 +7,36 @@ class GVARMAIN(context) {
             class ForceMove {
                 displayName = "Force Move";
                 requiresPosition = true;
-                action = QFUNC(forceMove);
+                action = QUOTE([ARR_2(_this, true)] call FUNC(forceMove));
             };
             
             class Attack {
                 displayName = "Attack";
                 requiresPosition = true;
-                action = QFUNC(taskAttack);
+                action = QUOTE([ARR_2(_this, true)] call FUNC(taskAttack));
             };
             
             class Defend {
                 displayName = "Defend";
                 requiresPosition = true;
-                action = QFUNC(taskDefend);
+                action = QUOTE([ARR_2(_this, true)] call FUNC(taskDefend));
             };
             
             class Patrol {
                 displayName = "Patrol";
                 requiresPosition = true;
-                action = QFUNC(taskPatrol);
+                action = QUOTE([ARR_2(_this, true)] call FUNC(taskPatrol));
             };
             
             class Suppress {
                 displayName = "Suppress";
                 requiresPosition = true;
-                action = QFUNC(suppress);
+                action = QUOTE([ARR_2(_this, true)] call FUNC(suppress));
             };
             
-            class SearchNearest {
+            class SearchNearby {
                 displayName = "Search Nearby";
-                action = QFUNC(searchNearby);
+                action = QUOTE([ARR_2(_this, true)] call FUNC(searchNearby));
             };
             
             class Garrison {
@@ -53,7 +53,7 @@ class GVARMAIN(context) {
             class Attack {
                 displayName = "Attack";
                 requiresPosition = true;
-                action = QFUNC(taskAttack);
+                action = QUOTE([ARR_2(_this, true)] call FUNC(taskAttack));
             };
             
             class Land {

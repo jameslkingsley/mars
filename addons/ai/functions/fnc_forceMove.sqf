@@ -17,25 +17,39 @@
 
 #include "script_component.hpp"
 
-params [
-    ["_units", [], [[]]],
-    ["_pos", [], [[]]]
-];
+params [["_args", []], ["_broadcast", false]];
+_args params [["_units", []], ["_pos", []]];
 
 if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 
-{
-    private _side = _x;
-    private _sideUnits = _units select {side group _x == _side};
+if (_broadcast) then {
+    [QGVAR(forceMove), [_units, _pos], _units] call CBA_fnc_targetEvent;
     
-    if !(_sideUnits isEqualTo []) then {
-        private _virtualGroup = [] call CFUNC(createVirtualGroup);
-        [_virtualGroup, _sideUnits] call CFUNC(addToVirtualGroup);
+    {
+        private _side = _x;
+        private _sideUnits = _units select {side group _x == _side};
+        
+        if !(_sideUnits isEqualTo []) then {
+            private _virtualGroup = [] call CFUNC(createVirtualGroup);
+            [_virtualGroup, _sideUnits] call CFUNC(addToVirtualGroup);
 
-        {
-            [_x, {
-                params ["_unit", "_pos"];
-                
+            private _leader = [_virtualGroup] call CFUNC(getVirtualGroupLeader);
+
+            if (isNull _leader) then {
+                [_virtualGroup, [_sideUnits] call CFUNC(getHighestRank)] call CFUNC(setVirtualGroupLeader);
+            };
+        };
+        
+        false
+    } count [west, east, resistance, civilian];
+} else {
+    {
+        private _side = _x;
+        private _sideUnits = _units select {side group _x == _side};
+        
+        if !(_sideUnits isEqualTo []) then {
+            {
+                private _unit = _x;
                 private _group = group _unit;
                 private _modPos = [_pos, 50] call CBA_fnc_randPos;
                 
@@ -43,27 +57,21 @@ if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
                 
                 _unit setBehaviour "AWARE";
                 _unit setSpeedMode "FULL";
+                _unit setUnitPos "UP";
+                _unit allowFleeing 0;
+                
+                {_unit setSkill [_x, 1]} forEach ["endurance","courage","commanding","general"];
                 
                 if (count units _group == 0) then {
                     deleteGroup _group;
                 };
                 
                 _unit doMove _modPos;
-            }, [_x, _pos]] call CFUNC(execWhereLocal);
-            
-            if (leader _x == _x) then {
-                [_virtualGroup, _x] call CFUNC(setVirtualGroupLeader);
-            };
-            
-            false
-        } count _sideUnits;
-
-        private _leader = [_virtualGroup] call CFUNC(getVirtualGroupLeader);
-
-        if (isNull _leader) then {
-            [_virtualGroup, (_sideUnits select 0)] call CFUNC(setVirtualGroupLeader);
+                
+                false
+            } count _sideUnits; 
         };
-    };
-    
-    false
-} count [west, east, resistance, civilian];
+        
+        false
+    } count [west, east, resistance, civilian];
+};

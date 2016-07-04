@@ -17,19 +17,18 @@
 
 #include "script_component.hpp"
 
-params [
-    ["_units", []],
-    ["_pos", []]
-];
+params [["_args", []], ["_broadcast", false]];
+_args params [["_units", []], ["_pos", []]];
 
 if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 
-{
-    [_x, {
-        params ["_unit","_pos"];
-        _unit lookAt _pos;
-        _unit doSuppressiveFire _pos;
-    }, [_x, _pos]] call CFUNC(execWhereLocal);
-    
-    false
-} count _units;
+if (_broadcast) then {
+    [QGVAR(suppress), [_units, _pos], _units] call CBA_fnc_targetEvent;
+} else {
+    {
+        _x lookAt _pos;
+        _x doSuppressiveFire _pos;
+        
+        false
+    } count _units;
+};

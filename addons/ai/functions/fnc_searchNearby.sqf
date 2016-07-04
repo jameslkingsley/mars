@@ -16,21 +16,19 @@
 
 #include "script_component.hpp"
 
-params [["_units", []]];
+params [["_args", []], ["_broadcast", false]];
+_args params [["_units", []]];
 
 if (_units isEqualTo []) exitWith {};
 
-private _groups = [_units] call CFUNC(unitsToGroups);
-
-{
-    [_x, {
-        params ["_group"];
+if (_broadcast) then {
+    private _groups = [_units] call CFUNC(unitsToGroups);
+    [QGVAR(searchNearby), [_groups], _groups] call CBA_fnc_targetEvent;
+} else {
+    {
+        [_x] call CBA_fnc_clearWaypoints;
+        [_x] call CBA_fnc_searchNearby;
         
-        [_group] call CBA_fnc_clearWaypoints;
-        
-        // These parameters need to be set via a settings menu eventually
-        [_group] call CBA_fnc_searchNearby;
-    }, [_x]] call CFUNC(execWhereLocal);
-    
-    false
-} count _groups;
+        false
+    } count _units;
+};

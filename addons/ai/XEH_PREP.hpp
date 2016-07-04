@@ -15,3 +15,5 @@ PREP(taskLand);
 PREP(taskParadrop);
 PREP(fillCargo);
 PREP(disembark);
+PREP(forceSpeed);
+PREP(setUnitPos);

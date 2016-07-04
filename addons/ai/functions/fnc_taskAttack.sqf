@@ -3,38 +3,35 @@
  * Tasks the given groups/units to attack an area
  *
  * Arguments:
- * 0: Selection <ARRAY>
- * 1: Position <ARRAY>
+ * 0: Args <ARRAY>
+ *    0: Selection <ARRAY>
+ *    1: Position <ARRAY>
+ * 1: Broadcast <BOOL>
  *
  * Return Value:
  * None
  *
  * Example:
- * [[grpOne, unitOne], [1,2,3]] call mars_ai_fnc_taskAttack;
+ * [[[grpOne, unitOne], [1,2,3]], true] call mars_ai_fnc_taskAttack;
  *
  * Public: Yes
  */
 
 #include "script_component.hpp"
 
-params [
-    ["_units", []],
-    ["_pos", []]
-];
+params [["_args", []], ["_broadcast", false]];
+_args params [["_units", []], ["_pos", []]];
 
 if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 
-private _groups = [_units] call CFUNC(unitsToGroups);
-
-{
-    [_x, {
-        params ["_group","_pos"];
+if (_broadcast) then {
+    private _groups = [_units] call CFUNC(unitsToGroups);
+    [QGVAR(taskAttack), [_groups, _pos], _groups] call CBA_fnc_targetEvent;
+} else {
+    {
+        [_x] call CBA_fnc_clearWaypoints;
+        [_x, _pos, 200] call CBA_fnc_taskAttack;
         
-        [_group] call CBA_fnc_clearWaypoints;
-        
-        // These parameters need to be set via a settings menu eventually
-        [_group, _pos, 200] call CBA_fnc_taskAttack;
-    }, [_x, _pos]] call CFUNC(execWhereLocal);
-    
-    false
-} count _groups;
+        false
+    } count _units;
+};

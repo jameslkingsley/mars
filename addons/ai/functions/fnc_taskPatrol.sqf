@@ -17,24 +17,19 @@
 
 #include "script_component.hpp"
 
-params [
-    ["_units", []],
-    ["_pos", []]
-];
+params [["_args", []], ["_broadcast", false]];
+_args params [["_units", []], ["_pos", []]];
 
 if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 
-private _groups = [_units] call CFUNC(unitsToGroups);
-
-{
-    [_x, {
-        params ["_group","_pos"];
+if (_broadcast) then {
+    private _groups = [_units] call CFUNC(unitsToGroups);
+    [QGVAR(taskPatrol), [_groups, _pos], _groups] call CBA_fnc_targetEvent;
+} else {
+    {
+        [_x] call CBA_fnc_clearWaypoints;
+        [_x, _pos, 200, 7, "MOVE", "AWARE", "RED", "FULL", "LINE", "this spawn CBA_fnc_searchNearby", [3,6,9]] call CBA_fnc_taskPatrol;
         
-        [_group] call CBA_fnc_clearWaypoints;
-        
-        // These parameters need to be set via a settings menu eventually
-        [_group, _pos, 200, 7, "MOVE", "AWARE", "RED", "FULL", "LINE", "this spawn CBA_fnc_searchNearby", [3,6,9]] call CBA_fnc_taskPatrol;
-    }, [_x, _pos]] call CFUNC(execWhereLocal);
-    
-    false
-} count _groups;
+        false
+    } count _units;
+};
