@@ -35,3 +35,4 @@ PREP(getVirtualGroup);
 PREP(addToVirtualGroup);
 PREP(setVirtualGroupLeader);
 PREP(getVirtualGroupLeader);
+PREP(getHighestRank);
