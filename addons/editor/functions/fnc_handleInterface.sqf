@@ -291,6 +291,7 @@ switch (toLower _mode) do {
                 GVAR(camBoom) = -0.5 * GVAR(camSpeed) * ([1, CAM_SHIFT_SPEED_COEF] select _shift);
             };
             case 49: { // N
+                [!GVAR(nightVisionEnabled)] call FUNC(toggleNightVision);
             };
             case 50: { // M
                 private _map = _display displayCtrl IDC_MAP;
