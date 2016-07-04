@@ -24,7 +24,17 @@ GVAR(groupIcons) = [];
 GVAR(unitIcons) = [];
 
 {
-    _x params ["_object", "_icon", "_color", ["_zOffset", 0], ["_shadow", 1], ["_isGroupMarker", false], ["_fixedDistance", GVAR(iconDrawDistance)], ["_cursorScale", 0.033], ["_displayText", ""]];
+    _x params [
+        "_object",
+        "_icon",
+        "_color",
+        ["_zOffset", 0],
+        ["_shadow", 1],
+        ["_isGroupMarker", false],
+        ["_fixedDistance", GVAR(iconDrawDistance)],
+        ["_cursorScale", 0.033],
+        ["_displayText", ""]
+    ];
 
     _pos = (getPosASLVisual _object) vectorAdd [0, 0, _zOffset];
     _alpha = linearConversion [0, _fixedDistance, (_pos distance _camPosASL), 1, 0, true];
