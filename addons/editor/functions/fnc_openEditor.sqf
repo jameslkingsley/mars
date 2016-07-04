@@ -85,7 +85,7 @@ GVAR(pfh) = [{
     // BEGIN_COUNTER(marsPFH);
     
     // Tagging handler
-    if (GVAR(canContext) || {!(GVAR(selection) isEqualTo [])}) then {
+    if (!(GVAR(mouse) select 0) && {(GVAR(canContext) || {!(GVAR(selection) isEqualTo [])})}) then {
         [] call FUNC(handleObjectBoxes);
     };
 

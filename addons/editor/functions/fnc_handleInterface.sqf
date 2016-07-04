@@ -203,12 +203,12 @@ switch (toLower _mode) do {
             GVAR(canContext) = false;
         };
 
-        if ((GVAR(mouse) select 0) && GVAR(canContext) && !GVAR(shiftKey) && !GVAR(ctrlKey)) then {
+        if (!isNull GVAR(prepDragObjectUnderCursor) && {(GVAR(mouse) select 0)} && {GVAR(canContext)} && {!GVAR(shiftKey)} && {!GVAR(ctrlKey)}) then {
             GVAR(allowDragging) = true;
             [GVAR(objectDragAnchor)] call FUNC(handleLeftDrag);
         };
 
-        if ((GVAR(mouse) select 0) && GVAR(canContext) && GVAR(shiftKey) && !GVAR(ctrlKey)) then {
+        if ((GVAR(mouse) select 0) && {GVAR(canContext)} && {GVAR(shiftKey)} && {!GVAR(ctrlKey)}) then {
             GVAR(allowDirection) = true;
             [GVAR(objectDirAnchor)] call FUNC(handleSelectionDir);
         };
@@ -224,11 +224,11 @@ switch (toLower _mode) do {
             GVAR(canContext) = true;
         };
         
-        if ((GVAR(mouse) select 0) && GVAR(canContext) && !GVAR(shiftKey) && !GVAR(ctrlKey)) then {
+        if (!isNull GVAR(prepDragObjectUnderCursor) && {(GVAR(mouse) select 0)} && {GVAR(canContext)} && {!GVAR(shiftKey)} && {!GVAR(ctrlKey)}) then {
             [GVAR(objectDragAnchor)] call FUNC(handleLeftDrag);
         };
         
-        if ((GVAR(mouse) select 0) && GVAR(canContext) && GVAR(shiftKey) && !GVAR(ctrlKey)) then {
+        if ((GVAR(mouse) select 0) && {GVAR(canContext)} && {GVAR(shiftKey)} && {!GVAR(ctrlKey)}) then {
             [GVAR(objectDirAnchor)] call FUNC(handleSelectionDir);
         };
     };
