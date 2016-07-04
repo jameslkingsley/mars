@@ -52,7 +52,7 @@ _newLeader addEventHandler ["Killed", {
     private _members = _virtualGroup getVariable "members";
     
     if (!isNil "_members" && {!(_members isEqualTo [])}) then {
-        private _newLeader = (_members select {!isNull _x && {alive _x}}) param [0, objNull];
+        private _newLeader = [(_members select {!isNull _x && {alive _x}})] call FUNC(getHighestRank);
         
         if (!isNull _newLeader) then {
             [_virtualGroup, _newLeader] call CFUNC(setVirtualGroupLeader);
