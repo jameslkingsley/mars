@@ -181,6 +181,9 @@ switch (toLower _mode) do {
                 GVAR(hasLeftClicked) = true;
             };
         };
+        
+        GVAR(prepDragObjectUnderCursor) = objNull;
+        GVAR(objectDragAnchor) = objNull;
 
         // This needs to be executed 2 frames later
         [{
