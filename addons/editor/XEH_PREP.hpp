@@ -63,3 +63,4 @@ PREP(isUnitScreenPosUnderCursor);
 PREP(serializeDrawing);
 PREP(notification);
 PREP(clearABSelection);
+PREP(toggleNightVision);

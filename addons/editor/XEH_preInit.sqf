@@ -27,6 +27,7 @@ GVAR(camVision) = -2;
 GVAR(interrupts) = [];
 GVAR(isSet) = false;
 GVAR(camSlowDownInBuildings) = [QGVAR(camSlowDownInBuildings), true] call CFUNC(loadSetting);
+GVAR(nightVisionEnabled) = false;
 
 // Interface
 GVAR(menus) = [];
@@ -65,6 +66,7 @@ GVAR(abCurrentMode) = 0;
 GVAR(abCurrentSubmode) = 0;
 GVAR(abActiveTree) = -1;
 GVAR(abSelectedObject) = [];
+GVAR(placeVehiclesWithCrew) = [QGVAR(placeVehiclesWithCrew), true] call CFUNC(loadSetting);
 
 // Context Menu
 GVAR(canContext) = true;
