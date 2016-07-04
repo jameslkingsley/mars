@@ -6,10 +6,12 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"mars_editor"};
-        author[] = {"Kingsley"};
-        authorUrl = "https://github.com/jameslkingsley/mars";
+        author = ECSTRING(common,MarsTeam);
+        authors[] = {};
+        PBO_URL;
         VERSION_CONFIG;
     };
 };
 
 #include "CfgEventHandlers.hpp"
+#include "CfgToolbar.hpp"

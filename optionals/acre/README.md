@@ -1,6 +1,6 @@
 mars_acre
 ===========
-Adds ACRE functionality to Mars.
+Adds ACRE support.
 
 ## Maintainers
 The people responsible for merging changes to this component or answering potential questions.
