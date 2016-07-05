@@ -19,7 +19,7 @@
 
 // BEGIN_COUNTER(iconHandler);
 
-_camPosASL = AGLtoASL GVAR(camPos);
+private _camPosASL = AGLtoASL GVAR(camPos);
 GVAR(groupIcons) = [];
 GVAR(unitIcons) = [];
 
@@ -36,11 +36,11 @@ GVAR(unitIcons) = [];
         ["_displayText", ""]
     ];
 
-    _pos = (getPosASLVisual _object) vectorAdd [0, 0, _zOffset];
-    _alpha = linearConversion [0, _fixedDistance, (_pos distance _camPosASL), 1, 0, true];
+    private _pos = (getPosASLVisual _object) vectorAdd [0, 0, _zOffset];
+    private _alpha = linearConversion [0, _fixedDistance, (_pos distance _camPosASL), 1, 0, true];
 
-    _width = 1;
-    _height = 1;
+    private _width = 1;
+    private _height = 1;
 
     if (_isGroupMarker) then {
         GVAR(groupIcons) pushBack [ASLtoAGL _pos, group _object];
@@ -51,7 +51,7 @@ GVAR(unitIcons) = [];
             _height = GVAR(iconHoverSize);
         } else {
             if (_alpha > 0.25) then {
-                _iconScreenPos = worldToScreen (ASLtoAGL _pos);
+                private _iconScreenPos = worldToScreen (ASLtoAGL _pos);
 
                 if (!(_iconScreenPos isEqualTo []) && {(_iconScreenPos distance2D GVAR(mousePos)) <= _cursorScale}) then {
                     _alpha = 1;
