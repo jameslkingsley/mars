@@ -32,7 +32,7 @@ switch (toLower _mode) do {
         [_display] call FUNC(createToolbar);
 
         // Status Bar
-        [] call FUNC(handleStatusBar);
+        [_display] call FUNC(handleStatusBar);
 
         // Invoke the default right-panel state
         ["rightModes", [controlNull, GVAR(abCurrentMode)]] call FUNC(handlePanelSections);

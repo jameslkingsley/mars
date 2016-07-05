@@ -16,12 +16,11 @@
 
 #include "script_component.hpp"
 
+params ["_display"];
+
 disableSerialization;
 
-private ["_display","_statusBar","_version","_server","_worldPos","_camPos"];
-
-_display = findDisplay IDC_DISPLAY;
-_statusBar = _display displayCtrl IDC_STATUSBAR;
+private _statusBar = _display displayCtrl IDC_STATUSBAR;
 
 #define CGCTRL(IDC) (_statusBar controlsGroupCtrl IDC)
 
@@ -29,16 +28,16 @@ CGCTRL(IDC_STATUSBAR_VERSION) ctrlSetText format["MARS %1.%2.%3", MAJOR, MINOR, 
 CGCTRL(IDC_STATUSBAR_SERVER) ctrlSetTooltip serverName;
 
 _coordinateUpdate = {
-    _ctrlMouseArea = _this select 0;
-    _display = ctrlParent _ctrlMouseArea;
+    private _ctrlMouseArea = _this select 0;
+    private _display = ctrlParent _ctrlMouseArea;
 
-    _ctrlX = _display displayCtrl IDC_STATUSBAR_X;
-    _ctrlY = _display displayCtrl IDC_STATUSBAR_Y;
-    _ctrlZ = _display displayCtrl IDC_STATUSBAR_Z;
-    _ctrlDis = _display displayCtrl IDC_STATUSBAR_DIS;
+    private _ctrlX = _display displayCtrl IDC_STATUSBAR_X;
+    private _ctrlY = _display displayCtrl IDC_STATUSBAR_Y;
+    private _ctrlZ = _display displayCtrl IDC_STATUSBAR_Z;
+    private _ctrlDis = _display displayCtrl IDC_STATUSBAR_DIS;
     
-    _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
-    _camPos = getPosASLVisual GVAR(camera);
+    private _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
+    private _camPos = getPosASLVisual GVAR(camera);
     _worldPos params ["_posX","_posY","_posZ"];
     
     _ctrlX ctrlSetText format["%1m", [_posX,2] call EFUNC(common,roundToN)];
