@@ -28,7 +28,7 @@ params [["_newMode",GVAR(camMode)], ["_newVision",GVAR(camVision)]];
 
 private ["_camera"];
 
-_camera = GVAR(freeCamera);
+_camera = GVAR(camera);
 
 // Preserve camUnit value for consistency when manually changing view
 _camera cameraEffect ["internal", "back"];
@@ -52,6 +52,7 @@ if (_newMode in [0,2]) then {
     // Handle camera movement
     if (isNil QGVAR(camHandler)) then {
         GVAR(camHandler) = [FUNC(handleCamera), 0] call CBA_fnc_addPerFrameHandler;
+        GVAR(pfhArray) pushBackUnique GVAR(camHandler);
     };
 
     // If new vision isn't available then keep current (unless current also isn't)

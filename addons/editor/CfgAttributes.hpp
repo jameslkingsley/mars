@@ -4,7 +4,7 @@ class GVARMAIN(attributes) {
             displayName = "Editor Settings";
             actionConfirm = "";
             actionCancel = QUOTE(\
-                GVAR(freeCamera) camSetFov GVAR(camZoom);\
+                GVAR(camera) camSetFov GVAR(camZoom);\
                 GVAR(camSlowDownInBuildings) = [ARR_2(QUOTE(QGVAR(camSlowDownInBuildings)), true)] call CFUNC(loadSetting);\
                 GVAR(iconHoverSize) = [ARR_2(QUOTE(QGVAR(iconHoverSize)), ICON_HOVER_SIZE)] call CFUNC(loadSetting);\
                 GVAR(iconDrawDistance) = [ARR_2(QUOTE(QGVAR(iconDrawDistance)), ICON_FADE_DISTANCE)] call CFUNC(loadSetting);\
@@ -46,13 +46,13 @@ class GVARMAIN(attributes) {
                                     position = QGVAR(camZoom);
                                     expression = QUOTE(\
                                         GVAR(camZoom) = _this;\
-                                        GVAR(freeCamera) camSetFov _this;\
+                                        GVAR(camera) camSetFov _this;\
                                         [ARR_2(QUOTE(QGVAR(camZoom)), _this)] call CFUNC(saveSetting)\
                                     );
                                     onSliderPosChanged = QUOTE(\
                                         _ctrl = _this select 0;\
                                         _ctrl ctrlSetTooltip str([ARR_2(sliderPosition _ctrl, 2)] call CFUNC(roundToN));\
-                                        GVAR(freeCamera) camSetFov (sliderPosition _ctrl);\
+                                        GVAR(camera) camSetFov (sliderPosition _ctrl);\
                                     );
                                 };
                             };

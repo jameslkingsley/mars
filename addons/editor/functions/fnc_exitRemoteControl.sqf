@@ -29,5 +29,5 @@ if (!isNil QGVAR(remoteControlRatingHandler)) then {
 };
 
 if (_openEditor) then {
-    [] spawn FUNC(openEditor);
+    [] call FUNC(openEditor);
 };

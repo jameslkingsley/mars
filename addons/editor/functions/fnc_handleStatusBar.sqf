@@ -38,7 +38,7 @@ _coordinateUpdate = {
     _ctrlDis = _display displayCtrl IDC_STATUSBAR_DIS;
     
     _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
-    _camPos = getPosASLVisual GVAR(freeCamera);
+    _camPos = getPosASLVisual GVAR(camera);
     _worldPos params ["_posX","_posY","_posZ"];
     
     _ctrlX ctrlSetText format["%1m", [_posX,2] call EFUNC(common,roundToN)];

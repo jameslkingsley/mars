@@ -5,7 +5,7 @@
         [false] call FUNC(exitRemoteControl);
     };
     
-    [] spawn FUNC(openEditor);
+    [] call FUNC(openEditor);
 }, ""] call CBA_fnc_addKeybind;
 
 // Object creation handler

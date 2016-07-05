@@ -19,12 +19,9 @@
 if (!hasInterface) exitWith {};
 if (GVAR(isSet)) exitWith {};
 
-disableSerialization;
+[] call FUNC(killPerFrameHandlers);
 
 ["EditorOpen"] call CFUNC(localEvent);
-
-showHUD true;
-player switchCamera "internal";
 
 // Initalize camera variables
 GVAR(camBoom) = 0;
@@ -33,6 +30,9 @@ GVAR(camSpeed) = [QGVAR(camSpeed), CAM_DEFAULT_SPEED] call CFUNC(loadSetting);
 GVAR(camZoom) = [QGVAR(camZoom), CAM_DEFAULT_ZOOM] call CFUNC(loadSetting);
 
 // Initalize display variables
+GVAR(ctrlKey) = false;
+GVAR(altKey) = false;
+GVAR(shiftKey) = false;
 GVAR(heldKeys) = [];
 GVAR(heldKeys) resize 255;
 GVAR(mouse) = [false,false];
@@ -42,12 +42,12 @@ GVAR(mousePos) = [0.5,0.5];
 GVAR(iconHoverSize) = [QGVAR(iconHoverSize), ICON_HOVER_SIZE] call CFUNC(loadSetting);
 GVAR(iconDrawDistance) = [QGVAR(iconDrawDistance), ICON_FADE_DISTANCE] call CFUNC(loadSetting);
 
-// Initalize the camera objects
+// Initalize the camera object
 if (GVAR(camPos) isEqualTo []) then {
     GVAR(camPos) = (getPosASL player) vectorAdd [0, 0, 10];
 };
 
-GVAR(freeCamera) = "Camera" camCreate GVAR(camPos);
+GVAR(camera) = "Camera" camCreate GVAR(camPos);
 
 // Initalize view
 [] call FUNC(transitionCamera);
@@ -63,30 +63,26 @@ while {dialog} do {
     closeDialog 0;
 };
 
-// Create the display
-_display = (findDisplay 46) createDisplay QGVAR(interface);
-    
-_display displayAddEventHandler ["MouseButtonDown", {
-    [{
-        if (!GVAR(hasClickedOnMenuStrip)) then {
-            [] call FUNC(closeMenuStripMenus);
-            GVAR(hasClickedOnMenuStrip) = false;
-        };
-    }, []] call EFUNC(common,execNextFrame);
-}];
+[{
+    disableSerialization;
 
-// Status Bar
-[] call FUNC(handleStatusBar);
-
-// Invoke the default right-panel state
-["rightModes", [controlNull, GVAR(abCurrentMode)]] call FUNC(handlePanelSections);
+    // Create the display
+    private _display = (findDisplay 46) createDisplay QGVAR(interface);
+        
+    _display displayAddEventHandler ["MouseButtonDown", {
+        [{
+            if (!GVAR(hasClickedOnMenuStrip)) then {
+                [] call FUNC(closeMenuStripMenus);
+                GVAR(hasClickedOnMenuStrip) = false;
+            };
+        }, []] call CBA_fnc_execNextFrame;
+    }];
+}, []] call CBA_fnc_execNextFrame;
 
 // Reset interruptions
 GVAR(interrupts) = [];
 
-GVAR(pfh) = [{
-    // BEGIN_COUNTER(marsPFH);
-    
+GVAR(drawingMissionEH) = addMissionEventHandler ["Draw3D", {
     // Tagging handler
     if (!isNull GVAR(prepDragObjectUnderCursor) || !(GVAR(mouse) select 0)) then {
         if (GVAR(canContext) || {!(GVAR(selection) isEqualTo [])}) then {
@@ -105,24 +101,25 @@ GVAR(pfh) = [{
         [_x, _color] call FUNC(drawBoundingBox);
         false
     } count (GVAR(selection) select {_x != GVAR(prepSurfaceSphere)});
+}];
+
+GVAR(pfh) = [{
+    // BEGIN_COUNTER(marsPFH);
     
     // Asset browser placing objects
     [] call FUNC(prepNewObject);
     
     // END_COUNTER(marsPFH);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
-
-GVAR(delayedPFH) = [{
-    private _display = GETUVAR(GVAR(interface),displayNull);
-    (_display displayCtrl IDC_STATUSBAR_FPS) ctrlSetText format ["%1 FPS", round diag_fps];
-    (_display displayCtrl IDC_STATUSBAR_GRID) ctrlSetText format ["%1", mapGridPosition GVAR(freeCamera)];
-}, 1, []] call CBA_fnc_addPerFrameHandler;
+GVAR(pfhArray) pushBackUnique GVAR(pfh);
 
 GVAR(drawingPFH) = [{
-    [] spawn FUNC(serializeDrawing);
+    GVAR(serializeDrawingHandle) = [] spawn FUNC(serializeDrawing);
 }, 3, []] call CBA_fnc_addPerFrameHandler;
+GVAR(pfhArray) pushBackUnique GVAR(drawingPFH);
 
 // GVAR(testPFH) = [{[] call CFUNC(dumpPerformanceCounters)}, 5, []] call CBA_fnc_addPerFrameHandler;
+// GVAR(pfhArray) pushBackUnique GVAR(testPFH);
 
 // Close the editor upon death
 GVAR(playerKilledHandle) = player addEventHandler ["Killed", {
@@ -131,12 +128,9 @@ GVAR(playerKilledHandle) = player addEventHandler ["Killed", {
     GVAR(camPos) = [];
 }];
 
-// Set the cursor to default
-[] call FUNC(setCursor);
-
 // Edit Players
 GVAR(editPlayers) = false;
 
 GVAR(isSet) = true;
 
-["EditorOpened", [_display]] call CFUNC(localEvent);
+["EditorOpened"] call CFUNC(localEvent);

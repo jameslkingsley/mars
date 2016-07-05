@@ -20,12 +20,12 @@ params [["_ignoreObj", objNull]];
 
 _target = objNull;
 private _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
-private _camPos = getPosASLVisual GVAR(freeCamera);
+private _camPos = getPosASLVisual GVAR(camera);
 
 private _objects = lineIntersectsSurfaces [
     _camPos,
     _worldPos,
-    GVAR(freeCamera),
+    GVAR(camera),
     _ignoreObj,
     true,
     1

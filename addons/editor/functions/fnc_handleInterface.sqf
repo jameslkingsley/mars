@@ -10,7 +10,7 @@
  * None <NIL>
  *
  * Example:
- * ["onLoad",_this] call mars_editor_fnc_handleInterface
+ * ["onLoad", _this] call mars_editor_fnc_handleInterface;
  *
  * Public: No
  */
@@ -22,20 +22,36 @@ params ["_mode",["_args",[]]];
 switch (toLower _mode) do {
     case "onload": {
         _args params ["_display"];
-        
+
         SETUVAR(GVAR(interface),_display);
         SETUVAR(GVAR(cursorHelper),(_display displayCtrl IDC_CURSORHELPER));
-        
+
         // [] call FUNC(createEntityList);
         [_display] call FUNC(createAssetBrowser);
         [_display] call FUNC(createMenuStrip);
         [_display] call FUNC(createToolbar);
-        
+
+        // Status Bar
+        [] call FUNC(handleStatusBar);
+
+        // Invoke the default right-panel state
+        ["rightModes", [controlNull, GVAR(abCurrentMode)]] call FUNC(handlePanelSections);
+
+        GVAR(delayedPFH) = [{
+            private _display = GETUVAR(GVAR(interface),displayNull);
+            (_display displayCtrl IDC_STATUSBAR_FPS) ctrlSetText format ["%1 FPS", round diag_fps];
+            (_display displayCtrl IDC_STATUSBAR_GRID) ctrlSetText format ["%1", mapGridPosition GVAR(camera)];
+        }, 1, []] call CBA_fnc_addPerFrameHandler;
+        GVAR(pfhArray) pushBackUnique GVAR(delayedPFH);
+
+        // Set the cursor to default
+        [] call FUNC(setCursor);
+
         // Disable and hide map
         _map = _display displayCtrl IDC_MAP;
         _map ctrlShow false;
         _map ctrlEnable false;
-        
+
         // Disable search controls
         {(_display displayCtrl _x) ctrlEnable false} forEach [
             IDC_ASSETBROWSER_SEARCH_CREATE,
@@ -58,6 +74,8 @@ switch (toLower _mode) do {
         GVAR(heldKeys) resize 255;
         GVAR(mouse) = [false,false];
         GVAR(mousePos) = [0.5,0.5];
+        
+        [] call FUNC(killPerFrameHandlers);
     };
     case "onmousebuttondown": {
         _args params ["_ctrl","_button"];
@@ -65,7 +83,7 @@ switch (toLower _mode) do {
 
         if ((_button == 0) && GVAR(canContext)) then {
             [GVAR(ctrlKey)] call FUNC(placeNewObject);
-            
+
             GVAR(prepDragObjectUnderCursor) = [] call FUNC(objectUnderCursor);
             GVAR(prepDirObjectUnderCursor) = [] call FUNC(objectUnderCursor);
         };
@@ -82,7 +100,7 @@ switch (toLower _mode) do {
 
         GVAR(mouse) set [_button,false];
         [] call FUNC(closeContextMenu);
-        
+
         if (GVAR(isDragging)) then {
             if (GVAR(prepDragObjectUnderCursor) != GVAR(objectDragAnchor)) then {
                 GVAR(allowDragging) = false;
@@ -91,7 +109,7 @@ switch (toLower _mode) do {
                 [GVAR(objectDragAnchor), true, true] call FUNC(handleLeftDrag);
             };
         };
-        
+
         if (GVAR(isDirection)) then {
             if (GVAR(prepDirObjectUnderCursor) != GVAR(objectDirAnchor)) then {
                 GVAR(allowDirection) = false;
@@ -116,17 +134,17 @@ switch (toLower _mode) do {
                 } else {
                     private _selectedGroupUnits = units _selectedGroup;
                     private _selectObjects = _selectedGroupUnits apply {vehicle _x};
-                    
+
                     private _virtualGroupOwner = _selectedGroupUnits select {
                         !isNull ([_x] call CFUNC(getVirtualGroup))
                     };
-                    
+
                     if !(_virtualGroupOwner isEqualTo []) then {
                         private _virtualGroup = [(_virtualGroupOwner select 0)] call CFUNC(getVirtualGroup);
                         _selectObjects = _virtualGroup getVariable "members";
                         _selectObjects = _selectObjects apply {vehicle _x};
                     };
-                    
+
                     [_selectObjects] call FUNC(selectObject);
                 };
             };
@@ -139,13 +157,13 @@ switch (toLower _mode) do {
                 if (count GVAR(selection) > 0 && count GVAR(abSelectedObject) == 0 && !GVAR(isWaitingForLeftClick)) then {
                     // Already has objects in selection
                     private _target = [] call FUNC(objectUnderCursor);
-                    
+
                     if (_target in GVAR(selection)) then {
                         [] call FUNC(handleContextMenu);
                     } else {
                         private _cursorWorldPos = AGLtoASL (screenToWorld GVAR(mousePos));
                         _cursorWorldPos resize 2;
-                        
+
                         // The distance used here might need to be tweaked - further testing needed
                         if ({(_cursorWorldPos distance2D _x) < 20} count GVAR(selection) > 0) then {
                             [] call FUNC(handleContextMenu);
@@ -159,14 +177,14 @@ switch (toLower _mode) do {
                     [] call FUNC(selectObject);
                     [] call FUNC(handleContextMenu);
                 };
-                
+
                 [{
                     [{
                         GVAR(abSelectedObject) = [];
                         deleteVehicle GVAR(prepSurfaceSphere);
                         GVAR(prepSurfaceSphere) = objNull;
                         [] call FUNC(clearABSelection);
-                        
+
                         if (!isNil QGVAR(contextPosLinePFH)) then {
                             [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
                         };
@@ -181,7 +199,7 @@ switch (toLower _mode) do {
                 GVAR(hasLeftClicked) = true;
             };
         };
-        
+
         GVAR(prepDragObjectUnderCursor) = objNull;
         GVAR(objectDragAnchor) = objNull;
 
@@ -199,7 +217,7 @@ switch (toLower _mode) do {
     };
     case "onmousemoving": {
         _args params ["_ctrl","_x","_y"];
-        
+
         [_x,_y] call FUNC(handleCursor);
 
         if (GVAR(mouse) select 1) then {
@@ -220,17 +238,17 @@ switch (toLower _mode) do {
     };
     case "onmouseholding": {
         _args params ["_ctrl","_x","_y"];
-        
+
         [_x,_y] call FUNC(handleCursor);
-        
+
         if !(GVAR(mouse) select 1) then {
             GVAR(canContext) = true;
         };
-        
+
         if (!isNull GVAR(prepDragObjectUnderCursor) && {(GVAR(mouse) select 0)} && {GVAR(canContext)} && {!GVAR(shiftKey)} && {!GVAR(ctrlKey)}) then {
             [GVAR(objectDragAnchor)] call FUNC(handleLeftDrag);
         };
-        
+
         if ((GVAR(mouse) select 0) && {GVAR(canContext)} && {GVAR(shiftKey)} && {!GVAR(ctrlKey)}) then {
             [GVAR(objectDirAnchor)] call FUNC(handleSelectionDir);
         };
@@ -252,7 +270,7 @@ switch (toLower _mode) do {
             case 1: { // Esc
                 //[QGVAR(escape)] call FUNC(interrupt);
                 //["escape"] call FUNC(handleInterface);
-                [] call FUNC(shutdown);
+                [player] call FUNC(shutdown);
             };
             case 211: { // Delete
                 [] call FUNC(deleteSelection);
@@ -330,7 +348,7 @@ switch (toLower _mode) do {
     };
     case "onkeyup": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
-        
+
         // TRACE_1("onkeyup",_dik);
 
         if (!isNil QGVAR(selectionDirPFH)) then {

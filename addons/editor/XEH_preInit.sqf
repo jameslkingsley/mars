@@ -11,6 +11,8 @@ if (isDedicated) exitWith {
 // Reset the stored display
 SETUVAR(GVAR(interface),displayNull);
 
+GVAR(pfhArray) = [];
+
 // Camera
 GVAR(availableModes) = [0];
 GVAR(availableVisions) = [-2,-1,0,1];

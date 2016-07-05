@@ -24,44 +24,30 @@ while {dialog} do {
 
 GETUVAR(GVAR(interface),displayNull) closeDisplay 0;
 
-if (!isNil QGVAR(freeCamera)) then {
-    GVAR(freeCamera) cameraEffect ["terminate","back"];
-    camDestroy GVAR(freeCamera);
-    GVAR(freeCamera) = nil;
-};
+GVAR(camera) cameraEffect ["terminate","back"];
+camDestroy GVAR(camera);
 
+// Return to player view
+player switchCamera "internal";
+
+// Disable BI damage effects
 BIS_fnc_feedback_allowPP = true;
 
-if (!isNil QGVAR(pfh)) then {
-    [GVAR(pfh)] call CBA_fnc_removePerFrameHandler;
-    GVAR(pfh) = nil;
-};
+GVAR(camera) = nil;
 
-if (!isNil QGVAR(delayedPFH)) then {
-    [GVAR(delayedPFH)] call CBA_fnc_removePerFrameHandler;
-    GVAR(delayedPFH) = nil;
-};
+[] call FUNC(killPerFrameHandlers);
 
-if (!isNil QGVAR(camHandler)) then {
-    [GVAR(camHandler)] call CBA_fnc_removePerFrameHandler;
-    GVAR(camHandler) = nil;
-};
-
-if (!isNil QGVAR(testPFH)) then {
-    [GVAR(testPFH)] call CBA_fnc_removePerFrameHandler;
-    GVAR(testPFH) = nil;
-};
-
-if (!isNil QGVAR(drawingPFH)) then {
-    [GVAR(drawingPFH)] call CBA_fnc_removePerFrameHandler;
-    GVAR(drawingPFH) = nil;
-};
+GVAR(ctrlKey) = nil;
+GVAR(altKey) = nil;
+GVAR(shiftKey) = nil;
+GVAR(heldKeys) = nil;
+GVAR(mouse) = nil;
+GVAR(mousePos) = nil;
 
 if (!isNil QGVAR(playerKilledHandle)) then {
     _unit removeEventHandler ["Killed", GVAR(playerKilledHandle)];
 };
 
-player switchCamera "internal";
 GVAR(selection) = [];
 GVAR(isSet) = false;
 

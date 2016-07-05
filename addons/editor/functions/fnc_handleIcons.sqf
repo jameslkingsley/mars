@@ -38,13 +38,13 @@ GVAR(unitIcons) = [];
 
     _pos = (getPosASLVisual _object) vectorAdd [0, 0, _zOffset];
     _alpha = linearConversion [0, _fixedDistance, (_pos distance _camPosASL), 1, 0, true];
-    
+
     _width = 1;
     _height = 1;
-    
+
     if (_isGroupMarker) then {
         GVAR(groupIcons) pushBack [ASLtoAGL _pos, group _object];
-        
+
         if (_object in GVAR(selection)) then {
             _alpha = 1;
             _width = GVAR(iconHoverSize);
@@ -52,7 +52,7 @@ GVAR(unitIcons) = [];
         } else {
             if (_alpha > 0.25) then {
                 _iconScreenPos = worldToScreen (ASLtoAGL _pos);
-                
+
                 if (!(_iconScreenPos isEqualTo []) && {(_iconScreenPos distance2D GVAR(mousePos)) <= _cursorScale}) then {
                     _alpha = 1;
                     _width = GVAR(iconHoverSize);
@@ -64,7 +64,7 @@ GVAR(unitIcons) = [];
     } else {
         GVAR(unitIcons) pushBack [ASLtoAGL _pos, _object];
     };
-    
+
     _color set [3, [_alpha, 1] select (_object in GVAR(selection))];
 
     drawIcon3D [

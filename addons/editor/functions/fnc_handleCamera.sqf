@@ -26,7 +26,7 @@ _pan = (GVAR(camPan) + 360) % 360;
 _tilt = GVAR(camTilt);
 
 private ["_oldPos","_altMod","_zoomMod","_mX","_mY","_mZ","_x","_y","_z"];
-_camera = GVAR(freeCamera);
+_camera = GVAR(camera);
 _oldPos = GVAR(camPos);
 
 // Dolly/Boom amount should be influnced by zoom level (it should really be exponential)
