@@ -16,6 +16,8 @@
 
 #include "script_component.hpp"
 
+// BEGIN_COUNTER(handleObjectBoxes);
+
 _object = [] call FUNC(objectUnderCursor);
 
 if (isNull _object) exitWith {
@@ -38,3 +40,5 @@ if (_object in GVAR(selection)) exitWith {};
 
 private _color = [[0,0,0,1], MARS_SIDECOLOR(side group _object)] select (alive _object);
 [_object, _color] call FUNC(drawBoundingBox);
+
+// END_COUNTER(handleObjectBoxes);

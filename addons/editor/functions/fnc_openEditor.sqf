@@ -83,6 +83,8 @@ while {dialog} do {
 GVAR(interrupts) = [];
 
 GVAR(drawingMissionEH) = addMissionEventHandler ["Draw3D", {
+    // BEGIN_COUNTER(draw3D);
+    
     // Tagging handler
     if (!isNull GVAR(prepDragObjectUnderCursor) || !(GVAR(mouse) select 0)) then {
         if (GVAR(canContext) || {!(GVAR(selection) isEqualTo [])}) then {
@@ -101,15 +103,13 @@ GVAR(drawingMissionEH) = addMissionEventHandler ["Draw3D", {
         [_x, _color] call FUNC(drawBoundingBox);
         false
     } count (GVAR(selection) select {_x != GVAR(prepSurfaceSphere)});
+    
+    // END_COUNTER(draw3D);
 }];
 
 GVAR(pfh) = [{
-    // BEGIN_COUNTER(marsPFH);
-    
     // Asset browser placing objects
     [] call FUNC(prepNewObject);
-    
-    // END_COUNTER(marsPFH);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 GVAR(pfhArray) pushBackUnique GVAR(pfh);
 
