@@ -1,5 +1,5 @@
 /*
- * Author: ACE3 Project, Kingsley
+ * Author: SilentSpike, Kingsley
  * Opens editor for local client
  *
  * Arguments:
