@@ -26,9 +26,7 @@
 
 params [["_newMode",GVAR(camMode)], ["_newVision",GVAR(camVision)]];
 
-private ["_camera"];
-
-_camera = GVAR(camera);
+private _camera = GVAR(camera);
 
 // Preserve camUnit value for consistency when manually changing view
 _camera cameraEffect ["internal", "back"];
@@ -37,12 +35,7 @@ _camera cameraEffect ["internal", "back"];
 _camera camSetFov GVAR(camZoom);
 _camera camCommit 0;
 
-// Agent is switched to in free cam to hide death table and prevent AI chat while allowing icons to draw (also prevents systemChat and unit HUD)
-if (isNull GVAR(camAgent)) then {
-    GVAR(camAgent) = player;
-};
-
-GVAR(camAgent) switchCamera "internal";
+player switchCamera "internal";
 
 if (_newMode in [0,2]) then {
     // Set up camera UI
