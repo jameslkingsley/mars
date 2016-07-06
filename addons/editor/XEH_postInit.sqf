@@ -2,10 +2,21 @@
 
 if (isServer) then {
     private _settings = (configFile >> QGVARMAIN(serverSettings) >> QGVAR(players));
+    
     if (isClass _settings) then {
+        missionNamespace setVariable [QGVAR(alwaysAllowLoginWhenEmpty), INT2BOOL(getNumber (_settings >> "alwaysAllowLoginWhenEmpty")), true];
         missionNamespace setVariable [QGVAR(whitelisted), getArray (_settings >> "whitelisted"), true];
         missionNamespace setVariable [QGVAR(blacklisted), getArray (_settings >> "blacklisted"), true];
+    } else {
+        GVAR(alwaysAllowLoginWhenEmpty) = true;
+        GVAR(whitelisted) = [];
+        GVAR(blacklisted) = [];
     };
+};
+
+if (isNil QGVAR(initialLoginPlayer)) then {
+    GVAR(initialLoginPlayer) = objNull;
+    publicVariable QGVAR(initialLoginPlayer);
 };
 
 [QMODNAME, "OpenMissionEditor", ["Open Mission Editor", "Press to open the mission editor interface"], {
