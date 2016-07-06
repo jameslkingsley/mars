@@ -68,8 +68,6 @@
 
 #define PREP_MODULE(folder) [] call compile preprocessFileLineNumbers QPATHTOF(folder\__PREP__.sqf)
 
-#define MARS_tickTime (MARS_time + (diag_tickTime - MARS_diagTime))
-
 #define MARS_isHC (!hasInterface && !isDedicated)
 
 #define IDC_STAMINA_BAR 193
