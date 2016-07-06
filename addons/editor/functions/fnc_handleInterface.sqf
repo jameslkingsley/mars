@@ -81,7 +81,7 @@ switch (toLower _mode) do {
         _args params ["_ctrl","_button"];
         GVAR(mouse) set [_button,true];
 
-        if ((_button == 0) && GVAR(canContext)) then {
+        if ((_button == 0) && {GVAR(canContext)}) then {
             [GVAR(ctrlKey)] call FUNC(placeNewObject);
 
             GVAR(prepDragObjectUnderCursor) = [] call FUNC(objectUnderCursor);
@@ -89,7 +89,7 @@ switch (toLower _mode) do {
         };
 
         // Detect right click
-        if ((_button == 1) && (GVAR(camMode) == 1)) then {
+        if ((_button == 1) && {(GVAR(camMode) == 1)}) then {
             // In first person toggle sights mode
             // Is this needed?
             [] call FUNC(transitionCamera);
