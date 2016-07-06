@@ -25,3 +25,5 @@ if (_object isEqualType []) then {
 } else {
     GVAR(placedStaticObjects) pushBackUnique _object;
 };
+
+publicVariable QGVAR(placedStaticObjects);

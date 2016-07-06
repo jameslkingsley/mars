@@ -33,6 +33,11 @@ if !(_uid in GVAR(whitelisted)) then {
     };
 };
 
+if (isNil QGVAR(placedStaticObjects)) then {
+    GVAR(placedStaticObjects) = [];
+    publicVariable QGVAR(placedStaticObjects);
+};
+
 [] call FUNC(killPerFrameHandlers);
 
 ["EditorOpen"] call CFUNC(localEvent);
