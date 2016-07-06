@@ -30,6 +30,16 @@ if (_broadcast) then {
         private _sideUnits = _units select {side group _x == _side};
         
         if !(_sideUnits isEqualTo []) then {
+            {
+                private _existingVirtualGroup = [_x] call CFUNC(getVirtualGroup);
+                
+                if (!isNull _existingVirtualGroup) then {
+                    [_existingVirtualGroup] call CFUNC(deleteVirtualGroup);
+                };
+                
+                false
+            } count _sideUnits;
+            
             private _virtualGroup = [] call CFUNC(createVirtualGroup);
             [_virtualGroup, _sideUnits] call CFUNC(addToVirtualGroup);
 

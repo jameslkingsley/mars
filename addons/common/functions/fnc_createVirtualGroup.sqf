@@ -2,7 +2,7 @@
  * Author: Kingsley
  * Creates a virtual group with the given units
  * Used for when you want to remove units from their group but retain a common group handler
- * Must be executed where you want the virtual group to be local (doesn't broadcast virtual group)
+ * Virtual group is created globally
  *
  * Arguments:
  * 0: Leader of the group <OBJECT>
@@ -25,8 +25,8 @@ params [
     ["_data", [], [[]]]
 ];
 
-// Returned type is locationNull
-_group = call CBA_fnc_createNamespace;
+// Returned type is location
+_group = [true] call CBA_fnc_createNamespace;
 
 _group setVariable ["leader", _leader];
 _group setVariable ["members", _members];
@@ -42,9 +42,10 @@ _group setVariable ["members", _members];
 } forEach _data;
 
 GVAR(virtualGroups) pushBack _group;
+publicVariable QGVAR(virtualGroups);
 
 {
-    _x setVariable ["virtualGroup", _group];
+    _x setVariable ["virtualGroup", _group, true];
 } forEach (_members + [_leader]);
 
 _group

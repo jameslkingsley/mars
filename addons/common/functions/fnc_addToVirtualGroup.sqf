@@ -27,7 +27,10 @@ private _members = _group getVariable "members";
 
 {
     _members pushBackUnique _x;
-    _x setVariable ["virtualGroup", _group];
+    _x setVariable ["virtualGroup", _group, true];
 } forEach _units;
 
 _group setVariable ["members", _members];
+
+GVAR(virtualGroups) set [(GVAR(virtualGroups) find _group), _group];
+publicVariable QGVAR(virtualGroups);

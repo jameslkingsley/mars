@@ -25,6 +25,7 @@ params [
     ["_deleteOldLeader", false, [false]]
 ];
 
+private _groupIndex = GVAR(virtualGroups) find _group;
 private _oldLeader = _group getVariable "leader";
 
 if (!isNil "_oldLeader") then {
@@ -40,6 +41,9 @@ if (!isNil "_oldLeader") then {
 };
 
 _group setVariable ["leader", _newLeader];
+
+GVAR(virtualGroups) set [_groupIndex, _group];
+publicVariable QGVAR(virtualGroups);
 
 // Pick a new leader if this one dies
 _newLeader addEventHandler ["Killed", {

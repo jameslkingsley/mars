@@ -25,6 +25,12 @@
         deleteVehicle _x;
     };
     
+    private _virtualGroup = [_x] call CFUNC(getVirtualGroup);
+    
+    if (!isNull _virtualGroup) then {
+        [_virtualGroup] call CFUNC(deleteVirtualGroup);
+    };
+    
     false
 } count GVAR(selection);
 

@@ -23,7 +23,10 @@ private _leader = _group getVariable "leader";
 private _members = _group getVariable "members";
 
 {
-    _x setVariable ["virtualGroup", nil];
+    _x setVariable ["virtualGroup", nil, true];
 } forEach (_members + [_leader]);
+
+GVAR(virtualGroups) deleteAt (GVAR(virtualGroups) find _group);
+publicVariable QGVAR(virtualGroups);
 
 _group call CBA_fnc_deleteNamespace;
