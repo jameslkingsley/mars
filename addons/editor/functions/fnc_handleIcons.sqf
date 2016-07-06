@@ -26,8 +26,8 @@ GVAR(unitIcons) = [];
 {
     _x params [
         "_object",
-        "_icon",
-        "_color",
+        ["_icon", ""],
+        ["_color", [0,0,0,0]],
         ["_zOffset", 0],
         ["_shadow", 1],
         ["_isGroupMarker", false],
