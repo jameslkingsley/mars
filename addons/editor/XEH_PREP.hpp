@@ -65,3 +65,4 @@ PREP(notification);
 PREP(clearABSelection);
 PREP(toggleNightVision);
 PREP(killPerFrameHandlers);
+PREP(nearestToCamera);
