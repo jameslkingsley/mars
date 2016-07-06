@@ -18,6 +18,7 @@
 
 if (!hasInterface) exitWith {};
 if (GVAR(isSet)) exitWith {};
+if !([player] call FUNC(canLogin)) exitWith {};
 
 // Register player ID in global whitelist
 private _uid = getPlayerUID player;
@@ -36,6 +37,11 @@ if !(_uid in GVAR(whitelisted)) then {
 if (isNil QGVAR(placedStaticObjects)) then {
     GVAR(placedStaticObjects) = [];
     publicVariable QGVAR(placedStaticObjects);
+};
+
+if (isNull GVAR(initialLoginPlayer)) then {
+    GVAR(initialLoginPlayer) = player;
+    publicVariable QGVAR(initialLoginPlayer);
 };
 
 [] call FUNC(killPerFrameHandlers);
