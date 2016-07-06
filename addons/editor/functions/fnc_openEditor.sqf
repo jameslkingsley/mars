@@ -19,6 +19,20 @@
 if (!hasInterface) exitWith {};
 if (GVAR(isSet)) exitWith {};
 
+// Register player ID in global whitelist
+private _uid = getPlayerUID player;
+if !(_uid in GVAR(whitelisted)) then {
+    if (_uid in GVAR(blacklisted)) then {
+        if (true) exitWith {
+            MARS_LOGERROR("Your Steam account has been blacklisted. You are unable to login to Mars on this server.");
+        };
+    } else {
+        GVAR(whitelisted) pushBackUnique _uid;
+        publicVariable QGVAR(whitelisted);
+        MARS_LOGINFO("Logged into Mars.");
+    };
+};
+
 [] call FUNC(killPerFrameHandlers);
 
 ["EditorOpen"] call CFUNC(localEvent);

@@ -1,5 +1,13 @@
 #include "script_component.hpp"
 
+if (isServer) then {
+    private _settings = (configFile >> QGVARMAIN(serverSettings) >> QGVAR(players));
+    if (isClass _settings) then {
+        missionNamespace setVariable [QGVAR(whitelisted), getArray (_settings >> "whitelisted"), true];
+        missionNamespace setVariable [QGVAR(blacklisted), getArray (_settings >> "blacklisted"), true];
+    };
+};
+
 [QMODNAME, "OpenMissionEditor", ["Open Mission Editor", "Press to open the mission editor interface"], {
     if (GVAR(isRemoteControl)) then {
         [false] call FUNC(exitRemoteControl);
