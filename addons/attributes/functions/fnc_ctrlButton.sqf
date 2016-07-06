@@ -44,6 +44,10 @@ _text = [(EGVAR(editor,selection) call compile getText (_config >> "textCode")),
 _tooltip = [getText (_config >> "tooltipText"), ""] select (isNull (_config >> "tooltipText"));
 _action = getText (_config >> "action");
 
+if (!isNil _action) then {
+    _action = format ["_this call %1", _action];
+};
+
 _ctrlButton setVariable [QGVAR(label), (_display displayCtrl _labelIDC)];
 _ctrlButton setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
 _ctrlButton setVariable [QGVAR(execReturnData), _action];
