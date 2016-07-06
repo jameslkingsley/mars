@@ -9,9 +9,8 @@ class GVARMAIN(context) {
         };*/
         class RemoteControl {
             displayName = "Remote Control";
-            requiresPosition = false;
             condition = QUOTE(!isPlayer _this && {count GVAR(selection) == 1} && {count crew vehicle _this > 0});
-            action = QUOTE(_this call FUNC(remoteControl));
+            action = QFUNC(remoteControl);
         };
     };
 };
