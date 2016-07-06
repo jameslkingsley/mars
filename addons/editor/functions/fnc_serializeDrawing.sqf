@@ -77,25 +77,27 @@ private _outputLines = [];
             if (_leader == _object) then {
                 private _groupIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
                 
-                _outputIcons pushBack [
-                    _object,
-                    _groupIcon,
-                    _iconColor,
-                    10,
-                    0,
-                    true,
-                    nil,
-                    _cursorScale
-                ];
-                
-                _outputLines pushBack [
-                    _object,
-                    _object,
-                    [0,0,0,1],
-                    0,
-                    10,
-                    _isPerson
-                ];
+                if (!isNil "_groupIcon" && {_groupIcon != ""}) then {
+                    _outputIcons pushBack [
+                        _object,
+                        _groupIcon,
+                        _iconColor,
+                        10,
+                        0,
+                        true,
+                        nil,
+                        _cursorScale
+                    ];
+                    
+                    _outputLines pushBack [
+                        _object,
+                        _object,
+                        [0,0,0,1],
+                        0,
+                        10,
+                        _isPerson
+                    ];
+                };
             } else {
                 if (!isNull _leader) then {
                     _outputLines pushBack [
