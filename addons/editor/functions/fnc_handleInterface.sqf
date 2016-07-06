@@ -228,6 +228,10 @@ switch (toLower _mode) do {
         if (GVAR(mouse) select 1) then {
             GVAR(canContext) = false;
         };
+        
+        if ((GVAR(mouse) select 1) && {!GVAR(canContext)}) then {
+            [] call FUNC(setCursor);
+        };
 
         if (!isNull GVAR(prepDragObjectUnderCursor) && {(GVAR(mouse) select 0)} && {GVAR(canContext)} && {!GVAR(shiftKey)} && {!GVAR(ctrlKey)}) then {
             GVAR(allowDragging) = true;
