@@ -91,20 +91,18 @@ if (isNull _anchorObject) then {
     _anchorPos = getPosASL GVAR(objectDragAnchor);
 
     {
-        private ["_object", "_positionASL", "_positionATL", "_offset", "_newPos", "_boundingPos"];
-
-        _object = _x;
-        _positionASL = getPosASL _object;
-        _positionATL = getPosATL _object;
-        _positionAGL = ASLtoAGL _positionASL;
-        _boundingPos = _worldPos vectorDiff _positionASL;
+        private _object = _x;
+        private _positionASL = getPosASL _object;
+        private _positionATL = getPosATL _object;
+        private _positionAGL = ASLtoAGL _positionASL;
+        private _boundingPos = _worldPos vectorDiff _positionASL;
+        private _newPos = _worldPos;
+        private _offset = [0,0,0];
 
         if (_x != GVAR(objectDragAnchor)) then {
             _offset = _positionASL vectorDiff _anchorPos;
             _newPos = _worldPos vectorAdd _offset;
             _boundingPos = _boundingPos vectorAdd _offset;
-        } else {
-            _newPos = _worldPos;
         };
         
         _finalPosATL = ASLtoATL _newPos;
