@@ -1,5 +1,5 @@
 class mars_editor_players {
-	alwaysAllowLoginWhenEmpty = true;
+    alwaysAllowLoginWhenEmpty = true;
     whitelisted[] = {};
     blacklisted[] = {};
 };
