@@ -32,8 +32,8 @@
 #define pixelScale 1.25
 #define pixelGrid 4
 
-#define GRID_TOOLBAR_W	(5 * (pixelW * pixelScale * pixelGrid))
-#define GRID_TOOLBAR_H	(5 * (pixelH * pixelScale * pixelGrid))
+#define GRID_TOOLBAR_W	(5.5 * (pixelW * pixelScale * pixelGrid))
+#define GRID_TOOLBAR_H	(5.5 * (pixelH * pixelScale * pixelGrid))
 
 #define MENU_Y safezoneY
 #define MENU_HEIGHT (MENUBAR_H * (pixelH * pixelScale * pixelGrid))

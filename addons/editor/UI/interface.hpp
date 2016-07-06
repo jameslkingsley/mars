@@ -103,8 +103,8 @@ class GVAR(interface) {
                 };
                 class Items: MARS_gui_ctrlControlsGroupNoScrollbars {
                     idc = IDC_TOOLBAR_ITEMS;
-                    x = 1 * GRID_W;
-                    y = 1 * GRID_H;
+                    x = 0.75 * GRID_W;
+                    y = 0.75 * GRID_H;
                     w = safezoneW;
                     h = GRID_TOOLBAR_H;
                     class Controls {};

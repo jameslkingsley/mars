@@ -25,36 +25,38 @@ if (isNull _display) exitWith {};
 
 GVAR(toolbarControlWatches) = [];
 
-_components = "true" configClasses (configFile >> QGVARMAIN(toolbar));
+private _components = "true" configClasses (configFile >> QGVARMAIN(toolbar));
 
 if (count _components > 0) then {
-    _componentIndex = 0;
-    _previousX = 0;
-    _isFirst = true;
+    private _componentIndex = 0;
+    private _previousX = 0;
+    private _isFirst = true;
     
     {
         _children = "true" configClasses (_x);
         _componentIndex = _forEachIndex;
         
         {
-            _idc = parseNumber (format ["4700%1%2", _componentIndex, _forEachIndex]);
-            _tooltipText = getText (_x >> "tooltipText");
-            _iconOn = getText (_x >> "iconOn");
-            _iconOff = getText (_x >> "iconOff");
-            _action = getText (_x >> "action");
-            _watch = getText (_x >> "watch");
-            _default = if (isText (_x >> "default")) then {call compile getText (_x >> "default")} else {getNumber (_x >> "default")};
-            _defaultBool = [false,true] select _default;
-            _toggle = [getNumber (_x >> "toggle"), 1] select (isNull (_x >> "toggle"));
-            _toggleBool = [false,true] select _toggle;
+            private _idc = parseNumber (format ["4700%1%2", _componentIndex, _forEachIndex]);
+            private _tooltipText = getText (_x >> "tooltipText");
+            private _iconOn = getText (_x >> "iconOn");
+            private _iconOff = getText (_x >> "iconOff");
+            private _action = getText (_x >> "action");
+            private _watch = getText (_x >> "watch");
+            private _default = if (isText (_x >> "default")) then {call compile getText (_x >> "default")} else {getNumber (_x >> "default")};
+            private _defaultBool = [false,true] select _default;
+            private _toggle = [getNumber (_x >> "toggle"), 1] select (isNull (_x >> "toggle"));
+            private _toggleBool = [false,true] select _toggle;
             
-            _ctrl = _display ctrlCreate ["MARS_gui_ctrlButtonToolbar", _idc, (_display displayCtrl IDC_TOOLBAR_ITEMS)];
+            private _ctrl = _display ctrlCreate ["MARS_gui_ctrlButtonToolbar", _idc, (_display displayCtrl IDC_TOOLBAR_ITEMS)];
             
-            _modX = [GRID_TOOLBAR_W, 0] select _isFirst;
+            private _modX = [GRID_TOOLBAR_W, -(0.75 * GRID_W)] select _isFirst;
             if (_isFirst) then {_isFirst = false};
             
-            _pos = [
-                _previousX + _modX,
+            private _xOffset = [GRID_W, 0] select _isFirst;
+            
+            private _pos = [
+                _previousX + _modX + _xOffset,
                 0,
                 GRID_TOOLBAR_W,
                 GRID_TOOLBAR_H
@@ -81,6 +83,7 @@ if (count _components > 0) then {
             GVAR(toolbarControlWatches) pushBack _ctrl;
             
             _previousX = _previousX + _modX;
+            _previousX = _previousX + _xOffset;
         } forEach _children;
     } forEach _components;
 };
