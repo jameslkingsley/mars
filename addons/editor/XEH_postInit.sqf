@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 if (isServer) then {
-    private _settings = (configFile >> QGVARMAIN(serverSettings) >> QGVAR(players));
+    private _settings = (configFile >> "ACE_ServerSettings" >> QGVAR(players));
     
     if (isClass _settings) then {
         missionNamespace setVariable [QGVAR(alwaysAllowLoginWhenEmpty), INT2BOOL(getNumber (_settings >> "alwaysAllowLoginWhenEmpty")), true];
