@@ -66,3 +66,4 @@ PREP(clearABSelection);
 PREP(toggleNightVision);
 PREP(killPerFrameHandlers);
 PREP(nearestToCamera);
+PREP(canLogin);
