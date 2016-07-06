@@ -16,4 +16,4 @@
 
 #include "script_component.hpp"
 
-[QUOTE(ADDON), "interface", [100, 72]] call AFUNC(openAttributes);
+[QUOTE(ADDON), "interface", [100, 100]] call AFUNC(openAttributes);

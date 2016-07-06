@@ -47,22 +47,22 @@
             <Czech>View distance affects how far you can see. Note that this does not affect object view distance (you can change that in your Arma 3 settings).</Czech>
         </Key>
         <Key ID="STR_MARS_ClientMenu_Editor_Name">
-            <English>Zeus</English>
-            <German>Zeus</German>
-            <Polish>Zeus</Polish>
-            <French>Zeus</French>
-            <Spanish>Zeus</Spanish>
-            <Italian>Zeus</Italian>
-            <Czech>Zeus</Czech>
+            <English>Mars Editor</English>
+            <German>Mars Editor</German>
+            <Polish>Mars Editor</Polish>
+            <French>Mars Editor</French>
+            <Spanish>Mars Editor</Spanish>
+            <Italian>Mars Editor</Italian>
+            <Czech>Mars Editor</Czech>
         </Key>
         <Key ID="STR_MARS_ClientMenu_Editor_Tooltip">
-            <English>Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.</English>
-            <German>Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.</German>
-            <Polish>Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.</Polish>
-            <French>Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.</French>
-            <Spanish>Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.</Spanish>
-            <Italian>Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.</Italian>
-            <Czech>Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.</Czech>
+            <English>Login to the Mars editor. You will either have to be the first person to login (if allowed by server), or have a whitelisted Steam account on this server.</English>
+            <German>Login to the Mars editor. You will either have to be the first person to login (if allowed by server), or have a whitelisted Steam account on this server.</German>
+            <Polish>Login to the Mars editor. You will either have to be the first person to login (if allowed by server), or have a whitelisted Steam account on this server.</Polish>
+            <French>Login to the Mars editor. You will either have to be the first person to login (if allowed by server), or have a whitelisted Steam account on this server.</French>
+            <Spanish>Login to the Mars editor. You will either have to be the first person to login (if allowed by server), or have a whitelisted Steam account on this server.</Spanish>
+            <Italian>Login to the Mars editor. You will either have to be the first person to login (if allowed by server), or have a whitelisted Steam account on this server.</Italian>
+            <Czech>Login to the Mars editor. You will either have to be the first person to login (if allowed by server), or have a whitelisted Steam account on this server.</Czech>
         </Key>
     </Package>
 </Project>

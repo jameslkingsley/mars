@@ -49,9 +49,24 @@ class GVARMAIN(attributes) {
                 };
                 class Editor {
                     class AttributeItems {
-                        class Login {
+                        class Mars {
                             displayName = CSTRING(Editor_Name);
                             tooltipText = CSTRING(Editor_Tooltip);
+                            class AttributeControls {
+                                class Button {
+                                    condition = QUOTE([player] call EFUNC(editor,canLogin));
+                                    type = "BUTTON";
+                                    textCode = QUOTE(\
+                                        private _canLogin = [player] call EFUNC(editor,canLogin);\
+                                        ([ARR_2('Editor Unavailable', 'Open Editor')] select (_canLogin))\
+                                    );
+                                    action = QEFUNC(editor,openEditor);
+                                };
+                            };
+                        };
+                        class Zeus {
+                            displayName = "Zeus";
+                            tooltipText = "Login to Zeus to start editing the current running mission. Only one person can be logged into Zeus.";
                             class AttributeControls {
                                 class Label {
                                     condition = "(true)";
@@ -63,9 +78,6 @@ class GVARMAIN(attributes) {
                                         } else {\
                                             'Undefined'\
                                         };\
-                                    );
-                                    expression = QUOTE(\
-                                        systemChat str _this;\
                                     );
                                 };
                                 class Button {
