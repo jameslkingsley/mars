@@ -48,6 +48,11 @@ if (!isNil QGVAR(playerKilledHandle)) then {
     _unit removeEventHandler ["Killed", GVAR(playerKilledHandle)];
 };
 
+if (_unit == GVAR(initialLoginPlayer)) then {
+    GVAR(initialLoginPlayer) = objNull;
+    publicVariable QGVAR(initialLoginPlayer);
+};
+
 GVAR(selection) = [];
 GVAR(isSet) = false;
 
