@@ -72,7 +72,7 @@ key = ""
 dssignfile = ""
 prefix = "mars"
 pbo_name_prefix = "mars_"
-signature_blacklist = []
+signature_blacklist = ["mars_server.pbo"]
 importantFiles = ["mod.cpp", "README.md", "AUTHORS.txt", "LICENSE", "mars_logo.paa"]
 versionFiles = ["README.md", "mod.cpp"]
 
