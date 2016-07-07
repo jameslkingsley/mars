@@ -4,10 +4,6 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-if (isDedicated) exitWith {
-    ADDON = true;
-};
-
 // Reset the stored display
 SETUVAR(GVAR(interface),displayNull);
 
