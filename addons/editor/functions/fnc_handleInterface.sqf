@@ -51,6 +51,9 @@ switch (toLower _mode) do {
         _map = _display displayCtrl IDC_MAP;
         _map ctrlShow false;
         _map ctrlEnable false;
+        
+        // Initialize map
+        [_display, _map] call FUNC(handleMap);
 
         // Disable search controls
         {(_display displayCtrl _x) ctrlEnable false} forEach [
@@ -330,6 +333,8 @@ switch (toLower _mode) do {
                 _map ctrlShow _newState;
                 _map ctrlEnable _newState;
                 GVAR(mapOpen) = _newState;
+                _map ctrlMapAnimAdd [0, 0.25, GVAR(camPos)];
+                ctrlMapAnimCommit _map;
             };
             case 57: { // Spacebar
             };
