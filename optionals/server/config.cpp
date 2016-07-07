@@ -10,6 +10,7 @@ class CfgPatches {
         authors[] = {"Kingsley"};
         PBO_URL;
         VERSION_CONFIG;
+        ACE_isOptional = 1;
     };
 };
 
