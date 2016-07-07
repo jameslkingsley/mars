@@ -29,7 +29,7 @@ params [
 
 if (isNull _target) exitWith {};
 
-_color set [3, [0.33, 1] select (_target in GVAR(selection))];
+_color set [3, [0.5, 1] select (_target in GVAR(selection))];
 (boundingBoxReal _target) params ["_box0", "_box1"];
 
 {
