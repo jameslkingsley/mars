@@ -148,7 +148,6 @@ class GVAR(interface) {
                     text = "«";
                     sizeEx = SIZE_PURISTA_XL;
                     colorBackground[] = {COLOR_TAB_RGBA};
-                    onbuttonclick = "";
                 };
                 class TabLeftSections: MARS_gui_ctrlToolbox {
                     idc = IDC_LEFTPANEL_TAB_SECTIONS;
@@ -271,8 +270,7 @@ class GVAR(interface) {
                     h = TAB_H * GRID_H;
                     text = "»";
                     sizeEx = SIZE_PURISTA_XL;
-                    colorBackground[] = {0,0,0,0};
-                    onButtonClick = QUOTE(['right'] call FUNC(togglePanel));
+                    colorBackground[] = {COLOR_TAB_RGBA};
                 };
                 class TabRightSections: MARS_gui_ctrlToolbox {
                     idc = IDC_ASSETBROWSER_SECTIONS;

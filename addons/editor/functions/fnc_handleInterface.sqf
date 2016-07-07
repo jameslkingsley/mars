@@ -59,6 +59,10 @@ switch (toLower _mode) do {
             IDC_LEFTPANEL_EDIT_SEARCH,
             IDC_LEFTPANEL_EDIT_SEARCHBTN
         ];
+        
+        // Add panel toggle event handlers
+        (_display displayCtrl IDC_LEFTPANEL_TAB_TOGGLE) ctrlAddEventHandler ["ButtonClick", {["toggleLeftPanel", _this] call FUNC(handleInterface)}];
+        (_display displayCtrl IDC_ASSETBROWSER_TOGGLE) ctrlAddEventHandler ["ButtonClick", {["toggleRightPanel", _this] call FUNC(handleInterface)}];
     };
     case "onunload": {
         // Kill GUI PFHs
@@ -406,5 +410,23 @@ switch (toLower _mode) do {
         _args params ["_map","_button","_x","_y","_shift","_ctrl","_alt"];
     };
     case "escape": {
+    };
+    case "toggleleftpanel": {
+        private _display = GETUVAR(GVAR(interface),displayNull);
+        
+        {
+            private _control = _display displayCtrl _x;
+            _control ctrlSetFade ([1,0] select (ctrlFade _control > 0));
+            _control ctrlCommit 0;
+        } forEach [IDC_LEFTPANEL_TAB_BG, IDC_LEFTPANEL_TAB_SECTIONS, IDC_LEFTPANEL_BG, IDC_LEFTPANEL_EDIT, IDC_LEFTPANEL_LOCS];
+    };
+    case "togglerightpanel": {
+        private _display = GETUVAR(GVAR(interface),displayNull);
+        
+        {
+            private _control = _display displayCtrl _x;
+            _control ctrlSetFade ([1,0] select (ctrlFade _control > 0));
+            _control ctrlCommit 0;
+        } forEach [IDC_ASSETBROWSER_SECTIONS_BG, IDC_ASSETBROWSER_SECTIONS, IDC_ASSETBROWSER_BG, IDC_ASSETBROWSER_NOTES, IDC_ASSETBROWSER_CREATE];
     };
 };
