@@ -104,6 +104,8 @@ switch (toLower _mode) do {
     };
     case "onmousebuttonup": {
         _args params ["_ctrl","_button"];
+        
+        private _wasContextOpen = GVAR(contextMenuOpen);
 
         GVAR(mouse) set [_button,false];
         [] call FUNC(closeContextMenu);
@@ -161,7 +163,7 @@ switch (toLower _mode) do {
 
             // Right Click & Can Context
             case (_button == 1 && GVAR(canContext)): {
-                if (count GVAR(selection) > 0 && count GVAR(abSelectedObject) == 0 && !GVAR(isWaitingForLeftClick)) then {
+                if (count GVAR(selection) > 0 && count GVAR(abSelectedObject) == 0 && !GVAR(isWaitingForLeftClick) && {!_wasContextOpen}) then {
                     // Already has objects in selection
                     private _target = [] call FUNC(objectUnderCursor);
 

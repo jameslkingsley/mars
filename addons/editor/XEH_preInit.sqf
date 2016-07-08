@@ -68,6 +68,7 @@ GVAR(placeVehiclesWithCrew) = [QGVAR(placeVehiclesWithCrew), true] call CFUNC(lo
 GVAR(canContext) = true;
 GVAR(allContextControls) = [];
 GVAR(indexedContexts) = [];
+GVAR(contextMenuOpen) = false;
 
 // Toolbar
 GVAR(allMenuStripMenus) = [];

@@ -21,11 +21,11 @@ params [["_contexts", []], ["_xIndex", 0], ["_yIndex", 0], ["_startYPos", -1]];
 if (!isNull GVAR(prepSurfaceSphere)) exitWith {};
 
 if (count _contexts > 0) then {
-    _contexts = _contexts apply {[([getText (_x >> "displayName"), ""] select (isNull (_x >> "displayName"))), _x]};
+    _contexts = _contexts apply {[[_x, "displayName", ""] call FUNC(getContextValue), _x]};
     _contexts sort true;
     _contexts = _contexts apply {(_x select 1)};
 
-    _contexts = _contexts apply {[([getNumber (_x >> "order"), -1] select (isNull (_x >> "order"))), _x]};
+    _contexts = _contexts apply {[[_x, "order", -1] call FUNC(getContextValue), _x]};
     
     if ({(_x select 0) > -1} count _contexts > 0) then {
         _contexts sort true;
@@ -36,24 +36,45 @@ if (count _contexts > 0) then {
     _index = 0;
     
     {
-        private ["_config", "_condition"];
-        _config = _x;
-        _condition = ["", (getText (_config >> "condition"))] select (!isNull (_config >> "condition"));
-        if (_condition == "") then {_condition = "(true)"};
+        private _config = _x;
+        private _condition = [_config, "condition", "true"] call FUNC(getContextValue);
         
         // Run the condition for all in selection
         if (({_x call compile _condition} count GVAR(selection)) > 0) then {
-            _idc = (9630 + _index) * ((10 * _xIndex) max 1);
-            _children = "true" configClasses (_config);
-            _hasChildren = (count _children > 0);
-            _displayName = getText (_config >> "displayName");
-            _action = ["", (getText (_config >> "action"))] select (isText (_config >> "action"));
-            _preAction = ["", (getText (_config >> "preAction"))] select (isText (_config >> "preAction"));
-            _requiresPosition = [false, [false,true] select (getNumber (_config >> "requiresPosition"))] select (!isNull (_config >> "requiresPosition"));
+            private _idc = (9630 + _index) * ((10 * _xIndex) max 1);
+            private _children = [];
+            
+            if (_config isEqualType configNull) then {
+                private _childrenRaw = [_config, "children", ""] call FUNC(getContextValue);
+                
+                if (_childrenRaw == "") then {
+                    _children = ("true" configClasses (_config));
+                } else {
+                    if (isNil _childrenRaw) then {
+                        _children = (GVAR(selection) call compile _childrenRaw);
+                    } else {
+                        _children = (GVAR(selection) call compile format ["_this call %1", _childrenRaw]);
+                    };
+                };
+            } else {
+                private _childrenRaw = [_config, "children", "[]"] call FUNC(getContextValue);
+                
+                if (isNil _childrenRaw) then {
+                    _children = (GVAR(selection) call compile _childrenRaw);
+                } else {
+                    _children = (GVAR(selection) call compile format ["_this call %1", _childrenRaw]);
+                };
+            };
+            
+            private _hasChildren = !(_children isEqualTo []);
+            private _displayName = [_config, "displayName", ""] call FUNC(getContextValue);
+            private _action = [_config, "action", ""] call FUNC(getContextValue);
+            private _preAction = [_config, "preAction", ""] call FUNC(getContextValue);
+            private _requiresPosition = [false,true] select ([_config, "requiresPosition", 0] call FUNC(getContextValue));
             
             disableSerialization;
             
-            _control = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_contextBase", _idc];
+            private _control = GETUVAR(GVAR(interface),displayNull) ctrlCreate ["MARS_gui_contextBase", _idc];
             _control ctrlSetText (format ["%1%2", _displayName, (["","..."] select _hasChildren)]);
 
             _startYPos = if (_startYPos > -1) then {
@@ -62,8 +83,8 @@ if (count _contexts > 0) then {
                 GVAR(currentMousePos) select 1
             };
             
-            _cordX = (GVAR(currentMousePos) select 0) + (_xIndex * CONTEXT_OPTION_WIDTH) + (_xIndex * 0.005);
-            _cordY = _startYPos + ((_yIndex * CONTEXT_OPTION_HEIGHT) + (_index * CONTEXT_OPTION_HEIGHT));
+            private _cordX = (GVAR(currentMousePos) select 0) + (_xIndex * CONTEXT_OPTION_WIDTH) + (_xIndex * 0.005);
+            private _cordY = _startYPos + ((_yIndex * CONTEXT_OPTION_HEIGHT) + (_index * CONTEXT_OPTION_HEIGHT));
 
             _control ctrlSetPosition [
                 _cordX,
@@ -110,7 +131,7 @@ if (count _contexts > 0) then {
         false
     } count _contexts;
 } else {
-    _contexts = [];
+    private _contexts = [];
     
     {
         {
@@ -120,3 +141,5 @@ if (count _contexts > 0) then {
     
     [_contexts, _xIndex, _yIndex] call FUNC(createContextMenu);
 };
+
+GVAR(contextMenuOpen) = true;

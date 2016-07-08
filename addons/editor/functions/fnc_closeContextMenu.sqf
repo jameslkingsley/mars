@@ -19,3 +19,4 @@
 {ctrlDelete (GETUVAR(GVAR(interface),displayNull) displayCtrl _x)} forEach GVAR(allContextControls);
 
 GVAR(allContextControls) = [];
+GVAR(contextMenuOpen) = false;

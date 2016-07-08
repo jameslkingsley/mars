@@ -68,3 +68,4 @@ PREP(killPerFrameHandlers);
 PREP(nearestToCamera);
 PREP(canLogin);
 PREP(handleMap);
+PREP(getContextValue);
