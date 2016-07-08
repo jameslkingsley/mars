@@ -41,7 +41,7 @@ private _result = [];
     _result pushBack [
         ["displayName", _text],
         ["action", format ["[_this, '%2'] call %1", QFUNC(fireArtillery), _classname]],
-        ["requiresPosition", true]
+        ["requiresPosition", format ["params ['_vehicles', '_pos']; [[1,0,0,1], [0,1,0,1]] select ([_vehicles, '%2', _pos] call %1)", QFUNC(inRange), _classname]]
     ];
 } forEach _ammo;
 
