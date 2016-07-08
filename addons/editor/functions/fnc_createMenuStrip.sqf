@@ -35,6 +35,11 @@ if (count _components > 0) then {
     } forEach _components;
 
     {
+        private _menus = "true" configClasses (_x);
+        _menus = _menus apply {[getText (_x >> "displayName"), _x]};
+        _menus sort true;
+        _menus = _menus apply {_x select 1};
+        
         {
             _idc = 4600 + _forEachIndex;
             _displayName = getText (_x >> "displayName");
@@ -78,6 +83,6 @@ if (count _components > 0) then {
 
             _axisX = _axisX + _width;
             GVAR(topNavControls) pushBack _idc;
-        } forEach ("true" configClasses (_x));
+        } forEach _menus;
     } forEach _components;
 };
