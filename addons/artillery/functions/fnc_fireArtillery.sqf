@@ -81,7 +81,7 @@ _args params [
                     1,
                     1,
                     0,
-                    format ["%1m", round (_round distance _targetPos)],
+                    format ["%1m", round (_round distance2D _targetPos)],
                     1,
                     0.036,
                     "RobotoCondensed",
