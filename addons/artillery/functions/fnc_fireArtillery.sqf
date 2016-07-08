@@ -20,15 +20,17 @@
 #include "script_component.hpp"
 
 params [
-    ["_units", []],
-    ["_pos", []],
+    ["_args", []],
     ["_ammo", ""],
     ["_count", 1]
 ];
 
+_args params [
+    ["_units", []],
+    ["_pos", []]
+];
+
 {
-    private _ammo = getArtilleryAmmo [_x];
-    
     (vehicle _x) setVariable [QGVAR(targetPos), _pos];
     
     (vehicle _x) addEventHandler ["Fired", {
@@ -85,7 +87,7 @@ params [
         }, 0, [_shooter, _targetPos, _round]] call CBA_fnc_addPerFrameHandler;
     }];
     
-    _x doArtilleryFire [_pos, selectRandom _ammo, _count];
+    _x doArtilleryFire [_pos, _ammo, _count];
     
     false
 } count _units;
