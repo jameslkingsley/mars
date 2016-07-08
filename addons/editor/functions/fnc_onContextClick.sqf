@@ -19,6 +19,8 @@
 
 params [["_action", ""], ["_requiresPosition", false], ["_preAction", ""]];
 
+private _requiresPositionBool = if (_requiresPosition isEqualType false) then {_requiresPosition} else {if (count _requiresPosition > 0) then {true}};
+
 if (!isNil _action) then {
     _action = format ["_this call %1", _action];
 };
@@ -30,13 +32,13 @@ if (!isNil _preAction) then {
 [] call FUNC(closeContextMenu);
 [GVAR(selection)] call compile _preAction;
 
-if (_requiresPosition) then {
+if (_requiresPositionBool) then {
     GVAR(hasLeftClicked) = false;
     GVAR(isWaitingForLeftClick) = true;
     
     GVAR(contextPosLinePFH) = [{
-        params ["_args","_handle"];
-        _args params ["_selection","_action"];
+        params ["_args", "_handle"];
+        _args params ["_selection", "_action", ["_requiresPosition", ""]];
         
         if (GVAR(hasLeftClicked)) exitWith {
             _worldPos = [] call FUNC(getSurfaceUnderCursor);
@@ -51,6 +53,16 @@ if (_requiresPosition) then {
         _groups = [_selection] call CFUNC(unitsToGroups);
         _worldPos = ASLtoAGL ([] call FUNC(getSurfaceUnderCursor));
         
+        private _color = if (_requiresPosition isEqualType "") then {
+            if (isNil _requiresPosition) then {
+                ([_selection, _worldPos] call compile _requiresPosition)
+            } else {
+                ([_selection, _worldPos] call compile format ["_this call %1", _requiresPosition])
+            };
+        } else {
+            [0,0,0,1]
+        };
+        
         {
             _leader = leader _x;
             _objectPos = ASLtoAGL (getPosASLVisual _leader);
@@ -58,7 +70,7 @@ if (_requiresPosition) then {
             
             // Do drawLine3D 50 times to make it thicker (cheers BIS)
             for "_i" from 0 to 50 do {
-                drawLine3D [_objectPos, _worldPos, [0,0,0,1]];
+                drawLine3D [_objectPos, _worldPos, _color];
             };
             
             false
@@ -68,7 +80,7 @@ if (_requiresPosition) then {
         
         drawIcon3D [
             "\A3\ui_f\data\map\groupicons\waypoint.paa",
-            [0,0,0,1],
+            _color,
             _worldPos,
             1,
             1,
@@ -79,7 +91,7 @@ if (_requiresPosition) then {
             "PuristaBold",
             "center"
         ];
-    }, 0, [GVAR(selection), _action]] call CBA_fnc_addPerFrameHandler;
+    }, 0, [GVAR(selection), _action, _requiresPosition]] call CBA_fnc_addPerFrameHandler;
 } else {
     [GVAR(selection)] call compile _action;
 };
