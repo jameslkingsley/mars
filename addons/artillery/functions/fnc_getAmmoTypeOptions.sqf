@@ -1,17 +1,17 @@
 /*
  * Author: Kingsley
- * 
+ * Creates the context options with the given vehicles magazines types
  *
  * Arguments:
- * 
+ * 0: Vehicles <ARRAY>
  *
  * Return Value:
- * 
+ * Context options <ARRAY>
  *
  * Example:
- * 
+ * N/A
  *
- * Public: 
+ * Public: No
  */
 
 #include "script_component.hpp"
