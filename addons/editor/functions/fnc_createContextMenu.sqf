@@ -51,18 +51,18 @@ if (count _contexts > 0) then {
                     _children = ("true" configClasses (_config));
                 } else {
                     if (isNil _childrenRaw) then {
-                        _children = (GVAR(selection) call compile _childrenRaw);
+                        _children = ([GVAR(selection)] call compile _childrenRaw);
                     } else {
-                        _children = (GVAR(selection) call compile format ["_this call %1", _childrenRaw]);
+                        _children = ([GVAR(selection)] call compile format ["_this call %1", _childrenRaw]);
                     };
                 };
             } else {
                 private _childrenRaw = [_config, "children", "[]"] call FUNC(getContextValue);
                 
                 if (isNil _childrenRaw) then {
-                    _children = (GVAR(selection) call compile _childrenRaw);
+                    _children = ([GVAR(selection)] call compile _childrenRaw);
                 } else {
-                    _children = (GVAR(selection) call compile format ["_this call %1", _childrenRaw]);
+                    _children = ([GVAR(selection)] call compile format ["_this call %1", _childrenRaw]);
                 };
             };
             
