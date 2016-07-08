@@ -1,0 +1,1 @@
+#include "\z\mars\addons\artillery\script_component.hpp"
