@@ -2,7 +2,7 @@ class GVARMAIN(menu) {
     class GVARMAIN(editor) {
         class Settings {
             class ADDON {
-                displayName = "Artillery";
+                displayName = CSTRING(Name);
                 action = QFUNC(openArtillerySettings);
             };
         };

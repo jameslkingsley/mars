@@ -1,5 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project name="MARS">
     <Package name="Artillery">
+        <Key ID="STR_MARS_Artillery_Name">
+            <English>Artillery</English>
+            <German>Artillery</German>
+            <Polish>Artillery</Polish>
+            <French>Artillery</French>
+            <Spanish>Artillery</Spanish>
+            <Italian>Artillery</Italian>
+            <Czech>Artillery</Czech>
+        </Key>
+        <Key ID="STR_MARS_Artillery_Settings">
+            <English>Artillery Settings</English>
+            <German>Artillery Settings</German>
+            <Polish>Artillery Settings</Polish>
+            <French>Artillery Settings</French>
+            <Spanish>Artillery Settings</Spanish>
+            <Italian>Artillery Settings</Italian>
+            <Czech>Artillery Settings</Czech>
+        </Key>
     </Package>
 </Project>

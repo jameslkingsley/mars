@@ -1,7 +1,7 @@
 class GVARMAIN(attributes) {
     class ADDON {
         class Settings {
-            displayName = "Artillery Settings";
+            displayName = CSTRING(Settings);
             actionConfirm = "";
             actionCancel = QUOTE(\
                 GVAR(roundCount) = [ARR_2(QUOTE(QGVAR(roundCount)), 1)] call CFUNC(loadSetting);\
