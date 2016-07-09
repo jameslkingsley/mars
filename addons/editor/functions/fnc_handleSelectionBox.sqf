@@ -1,17 +1,17 @@
 /*
  * Author: Kingsley
- * 
+ * Handles the selection box
  *
  * Arguments:
- * 
+ * 0: Mode <STRING>
  *
  * Return Value:
- * 
+ * None
  *
  * Example:
- * 
+ * N/A
  *
- * Public: 
+ * Public: No
  */
 
 #include "script_component.hpp"
