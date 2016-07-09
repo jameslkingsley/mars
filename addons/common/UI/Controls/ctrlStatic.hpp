@@ -65,6 +65,17 @@ class MARS_gui_ctrlStaticBackground: MARS_gui_ctrlStatic {
     colorBackground[] = {COLOR_BACKGROUND_RGBA};
 };
 
+class MARS_gui_ctrlStaticSelectionBox: MARS_gui_ctrlStaticBackground {
+    type = CT_STATIC;
+    style = ST_FRAME;
+    shadow = 1;
+    colorBackground[] = {0,0,0,0};
+    colorShadow[] = {1,1,1,1};
+    colorText[] = {0,1,0,1};
+    sizeEx = 0.02;
+    text = "";
+};
+
 class MARS_gui_ctrlStaticBackgroundAlignCenter: MARS_gui_ctrlStaticBackground {
     style = ST_CENTER + ST_VCENTER;
 };

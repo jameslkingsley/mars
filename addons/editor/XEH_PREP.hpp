@@ -69,3 +69,4 @@ PREP(nearestToCamera);
 PREP(canLogin);
 PREP(handleMap);
 PREP(getContextValue);
+PREP(handleSelectionBox);

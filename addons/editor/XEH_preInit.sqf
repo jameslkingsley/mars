@@ -44,6 +44,10 @@ GVAR(currentCursor) = "";
 GVAR(isInputActive) = false;
 GVAR(mapOpen) = false;
 
+// Selection Box
+GVAR(selectionBoxStartPos) = [];
+GVAR(isSelectionBoxSpawned) = false;
+
 // Icons
 GVAR(serializedIcons) = [];
 GVAR(serializedLines) = [];

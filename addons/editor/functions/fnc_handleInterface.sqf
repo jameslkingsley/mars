@@ -224,6 +224,10 @@ switch (toLower _mode) do {
                     [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;
                 };
             }, []] call EFUNC(common,execNextFrame);
+            
+            if (GVAR(isSelectionBoxSpawned)) then {
+                ["end"] call FUNC(handleSelectionBox);
+            };
         }, []] call EFUNC(common,execNextFrame);
     };
     case "onmousezchanged": {
@@ -250,6 +254,18 @@ switch (toLower _mode) do {
         if ((GVAR(mouse) select 0) && {GVAR(canContext)} && {GVAR(shiftKey)} && {!GVAR(ctrlKey)}) then {
             GVAR(allowDirection) = true;
             [GVAR(objectDirAnchor)] call FUNC(handleSelectionDir);
+        };
+
+        if (
+            (GVAR(mouse) select 0) &&
+            {GVAR(canContext)} &&
+            {!GVAR(shiftKey)} &&
+            {!GVAR(ctrlKey)} &&
+            {isNull GVAR(objectDragAnchor)} &&
+            {isNull GVAR(objectDirAnchor)} &&
+            {!EGVAR(attributes,isOpen)}
+        ) then {
+            [["update","init"] select !GVAR(isSelectionBoxSpawned)] call FUNC(handleSelectionBox);
         };
 
         [_x,_y] call FUNC(handleMouse);
