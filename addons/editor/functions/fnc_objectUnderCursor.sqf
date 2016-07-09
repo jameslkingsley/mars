@@ -61,4 +61,4 @@ if (isNull _target) exitWith {
     ([] call FUNC(selectUnitIcon))
 };
 
-_target
+vehicle _target
