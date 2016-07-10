@@ -17,3 +17,4 @@ PREP(fillCargo);
 PREP(disembark);
 PREP(forceSpeed);
 PREP(setUnitPos);
+PREP(getWaypointOptions);

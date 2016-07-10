@@ -1,5 +1,11 @@
 class GVARMAIN(context) {
     class ADDON {
+        class Waypoints {
+            displayName = "Waypoints";
+            condition = QUOTE(!isPlayer _this);
+            children = QFUNC(getWaypointOptions);
+        };
+        
         class Infantry {
             displayName = "Infantry";
             condition = QUOTE(_this isKindOf 'Man' && !isPlayer _this);
