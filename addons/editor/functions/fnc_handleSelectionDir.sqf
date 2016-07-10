@@ -96,13 +96,13 @@ if (isNull _anchorObject) then {
 
     {
         private _object = _x;
-        private _positionASL = getPosASL _object;
+        private _positionASL = getPosASLVisual _object;
         private _dir = _positionASL getDir _worldPos;
         
         _object setVariable [QGVAR(leftDirFinalPos), _dir];
         _object setVariable [QGVAR(isDirectionChanging), true];
         
-        [_object, [side (group _object)] call EFUNC(common,getSideColor), [0,0,0], _dir] call FUNC(drawBoundingBox);
+        [_object, [side group _object] call CFUNC(getSideColor), [0,0,0], _dir] call FUNC(drawBoundingBox);
 
         false
     } count GVAR(selection);
