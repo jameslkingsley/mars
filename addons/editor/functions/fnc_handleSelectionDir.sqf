@@ -69,7 +69,7 @@ if (!GVAR(allowDirection) || _cancel) exitWith {};
 GVAR(isDirection) = true;
 
 if (isNull _anchorObject) then {
-    if (count GVAR(selection) == 0) then {
+    if (GVAR(selection) isEqualTo []) then {
         GVAR(selection) = [([] call FUNC(objectUnderCursor))];
     };
 
@@ -81,7 +81,7 @@ if (isNull _anchorObject) then {
 
     GVAR(objectDirAnchor) = _nearest;
 } else {
-    if (count GVAR(selection) == 0) then {
+    if (GVAR(selection) isEqualTo []) then {
         GVAR(selection) = [([] call FUNC(objectUnderCursor))];
     };
 
