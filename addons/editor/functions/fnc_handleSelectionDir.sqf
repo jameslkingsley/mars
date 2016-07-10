@@ -45,11 +45,13 @@ if (_update) then {
 if (_cancel) then {
     GVAR(allowDirection) = false;
     GVAR(isDirection) = false;
+    
     [] call FUNC(setCursor);
     
     {
         _x setVariable [QGVAR(leftDirFinalPos), nil];
         _x setVariable [QGVAR(isDirectionChanging), nil];
+        
         false
     } count GVAR(selection);
     
@@ -89,15 +91,14 @@ if (isNull _anchorObject) then {
 
     GVAR(objectsDirection) = GVAR(selection);
 
-    _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
-    _anchorPos = getPosASL GVAR(objectDirAnchor);
+    private _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
+    private _anchorPos = getPosASL GVAR(objectDirAnchor);
 
     {
-        private ["_object", "_positionASL", "_dir"];
-
-        _object = _x;
-        _positionASL = getPosASL _object;
-        _dir = _positionASL getDir _worldPos;
+        private _object = _x;
+        private _positionASL = getPosASL _object;
+        private _dir = _positionASL getDir _worldPos;
+        
         _object setVariable [QGVAR(leftDirFinalPos), _dir];
         _object setVariable [QGVAR(isDirectionChanging), true];
         
