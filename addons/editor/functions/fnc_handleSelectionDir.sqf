@@ -32,6 +32,7 @@ if (_update) then {
 
     {
         private _newDir = _x getVariable [QGVAR(leftDirFinalPos), nil];
+        _x setVariable [QGVAR(isDirectionChanging), nil];
         
         if (!isNil "_newDir") then {
             [QGVAR(setDir), [_x, _newDir], _x] call CBA_fnc_targetEvent;
@@ -48,6 +49,7 @@ if (_cancel) then {
     
     {
         _x setVariable [QGVAR(leftDirFinalPos), nil];
+        _x setVariable [QGVAR(isDirectionChanging), nil];
         false
     } count GVAR(selection);
     
@@ -97,6 +99,7 @@ if (isNull _anchorObject) then {
         _positionASL = getPosASL _object;
         _dir = _positionASL getDir _worldPos;
         _object setVariable [QGVAR(leftDirFinalPos), _dir];
+        _object setVariable [QGVAR(isDirectionChanging), true];
         
         [_object, [side (group _object)] call EFUNC(common,getSideColor), [0,0,0], _dir] call FUNC(drawBoundingBox);
 

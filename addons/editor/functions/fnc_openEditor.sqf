@@ -125,7 +125,12 @@ GVAR(drawingMissionEH) = addMissionEventHandler ["Draw3D", {
     // Selection handler
     {
         private _color = [[0,0,0,1], [side group _x] call CFUNC(getSideColor)] select (alive _x);
-        [_x, _color] call FUNC(drawBoundingBox);
+        private _isDirectionChanging = _x getVariable [QGVAR(isDirectionChanging), false];
+        
+        if (!_isDirectionChanging) then {
+            [_x, _color] call FUNC(drawBoundingBox);
+        };
+
         false
     } count (GVAR(selection) select {!(_x isEqualTo GVAR(prepSurfaceSphere))});
     
