@@ -25,6 +25,8 @@
 #define CT_XSLIDER 43
 #define CT_XCOMBO 44
 #define CT_ANIMATED_TEXTURE 45
+#define CT_MENU 46
+#define CT_MENU_STRIP 47
 #define CT_OBJECT 80
 #define CT_OBJECT_ZOOM 81
 #define CT_OBJECT_CONTAINER 82

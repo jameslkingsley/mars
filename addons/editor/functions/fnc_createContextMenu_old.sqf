@@ -16,24 +16,6 @@
 
 #include "script_component.hpp"
 
-/*if (true) exitWith {
-    private _display = GETUVAR(GVAR(interface),displayNull);
-    private _control = _display ctrlCreate ["ctrlMenu", 123456];
-    
-    _control ctrlSetPosition [
-        GVAR(mousePos) select 0,
-        GVAR(mousePos) select 1
-    ];
-    
-    private _path = _control menuAdd [[], "Option 1"];
-    _control menuAdd [[_path], "Option 2"];
-    _control menuAdd [[_path], "Option 3"];
-    _control menuAdd [[_path], "Option 4"];
-    _control menuAdd [[_path], "Option 5"];
-    
-    _control ctrlCommit 0;
-};*/
-
 params [["_contexts", []], ["_xIndex", 0], ["_yIndex", 0], ["_startYPos", -1]];
 
 if (!isNull GVAR(prepSurfaceSphere)) exitWith {};
@@ -52,6 +34,11 @@ if (count _contexts > 0) then {
     _contexts = _contexts apply {(_x select 1)};
 
     _index = 0;
+    
+    private _totalHeight = count _contexts * CONTEXT_OPTION_HEIGHT;
+    private _isBeyondSafezone = (_startYPos + _totalHeight) >= safeZoneH;
+    
+    systemChat format ["%1    %2    %3", _totalHeight, (_startYPos + _totalHeight), safeZoneH];
     
     {
         private _config = _x;
@@ -89,6 +76,10 @@ if (count _contexts > 0) then {
             private _action = [_config, "action", ""] call FUNC(getContextValue);
             private _preAction = [_config, "preAction", ""] call FUNC(getContextValue);
             private _requiresPosition = [_config, "requiresPosition", 0] call FUNC(getContextValue);
+            
+            if (_requiresPosition isEqualType 0) then {
+                _requiresPosition = [false,true] select _requiresPosition;
+            };
             
             disableSerialization;
             

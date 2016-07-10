@@ -70,12 +70,13 @@ class GVAR(interface) {
             offsetPressedX = 0;
             offsetPressedY = 0;
         };
-        class MenuStrip: MARS_gui_ctrlMenuStrip {
+        class MenuStrip: MARS_gui_ctrlMenuStripFake {
             idc = IDC_MENUSTRIP;
             x = safezoneX;
             y = safezoneY;
             w = safezoneW - SIZE_M * GRID_W;
             h = MENUBAR_H * GRID_H;
+            text = "";
             colorBackground[] = {COLOR_TAB_RGBA};
         };
         class Toolbar: MARS_gui_ctrlControlsGroupNoScrollbars {

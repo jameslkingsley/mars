@@ -1,5 +1,5 @@
 class MARS_gui_ctrlMenu: MARS_gui_ctrlDefaultText {
-    type = CT_STATIC;
+    type = CT_MENU;
     font = FONT_NORMAL;
     colorBorder[] = {0,0,0,0};
     colorBackground[] = {0,0,0,1};
@@ -18,5 +18,5 @@ class MARS_gui_ctrlMenu: MARS_gui_ctrlDefaultText {
     pictureCheckboxDisabled= "#(argb,8,8,3)color(0,0,0,0)";
     pictureRadioEnabled = "\a3\3DEN\Data\Controls\CtrlMenu\pictureRadioEnabled_ca.paa";
     pictureRadioDisabled= "#(argb,8,8,3)color(0,0,0,0)";
-    text = "";
+    // items[] = {};
 };
