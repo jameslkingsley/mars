@@ -18,14 +18,15 @@
 
 /*if (true) exitWith {
     private _display = GETUVAR(GVAR(interface),displayNull);
-    private _control = _display ctrlCreate ["ctrlMenu", 123456];
+    private _control = _display ctrlCreate ["MARS_gui_ctrlMenu", 123456];
     
     _control ctrlSetPosition [
         GVAR(mousePos) select 0,
         GVAR(mousePos) select 1
     ];
     
-    private _path = _control menuAdd [[], "Option 1"];
+    menuAdd [123456, [], "Option 1"];
+    menuAdd [123456, [0], "Option 2"];
     _control menuAdd [[_path], "Option 2"];
     _control menuAdd [[_path], "Option 3"];
     _control menuAdd [[_path], "Option 4"];
@@ -88,7 +89,7 @@ if (count _contexts > 0) then {
             private _displayName = [_config, "displayName", ""] call FUNC(getContextValue);
             private _action = [_config, "action", ""] call FUNC(getContextValue);
             private _preAction = [_config, "preAction", ""] call FUNC(getContextValue);
-            private _requiresPosition = [_config, "requiresPosition", 0] call FUNC(getContextValue);
+            private _requiresPosition = [_config, "requiresPosition", false] call FUNC(getContextValue);
             
             disableSerialization;
             

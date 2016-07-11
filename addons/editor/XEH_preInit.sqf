@@ -56,6 +56,7 @@ GVAR(unitIcons) = [];
 GVAR(activeGroupIcon) = grpNull;
 GVAR(iconHoverSize) = [QGVAR(iconHoverSize), ICON_HOVER_SIZE] call CFUNC(loadSetting);
 GVAR(iconDrawDistance) = [QGVAR(iconDrawDistance), ICON_FADE_DISTANCE] call CFUNC(loadSetting);
+GVAR(linesFollowTerrain) = [QGVAR(linesFollowTerrain), false] call CFUNC(loadSetting);
 
 // Asset Browser
 GVAR(serializedABData) = uiNamespace getVariable [QGVAR(serializedABData), []];

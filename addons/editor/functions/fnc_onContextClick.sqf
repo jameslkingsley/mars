@@ -19,7 +19,13 @@
 
 params [["_action", ""], ["_requiresPosition", false], ["_preAction", ""]];
 
-private _requiresPositionBool = if (_requiresPosition isEqualType false) then {_requiresPosition} else {if (count _requiresPosition > 0) then {true}};
+private _requiresPositionBool = if (_requiresPosition isEqualType false) then {
+    _requiresPosition
+} else {
+    if (count _requiresPosition > 0) then {
+        true
+    };
+};
 
 if (!isNil _action) then {
     _action = format ["_this call %1", _action];
@@ -35,24 +41,29 @@ if (!isNil _preAction) then {
 if (_requiresPositionBool) then {
     GVAR(hasLeftClicked) = false;
     GVAR(isWaitingForLeftClick) = true;
-    
+
     GVAR(contextPosLinePFH) = [{
         params ["_args", "_handle"];
-        _args params ["_selection", "_action", ["_requiresPosition", ""]];
-        
+        _args params ["_selection", "_action", ["_requiresPosition", false], ["_preAction", ""]];
+
         if (GVAR(hasLeftClicked)) exitWith {
-            _worldPos = [] call FUNC(getSurfaceUnderCursor);
+            private _worldPos = [] call FUNC(getSurfaceUnderCursor);
             [_selection, _worldPos] call compile _action;
-            
-            [_handle] call CBA_fnc_removePerFrameHandler;
-            
-            GVAR(hasLeftClicked) = false;
-            GVAR(isWaitingForLeftClick) = false;
+
+            if (!GVAR(ctrlKey)) then {
+                [_handle] call CBA_fnc_removePerFrameHandler;
+
+                GVAR(hasLeftClicked) = false;
+                GVAR(isWaitingForLeftClick) = false;
+            } else {
+                GVAR(hasLeftClicked) = false;
+                GVAR(isWaitingForLeftClick) = true;
+            };
         };
-        
-        _groups = [_selection] call CFUNC(unitsToGroups);
-        _worldPos = ASLtoAGL ([] call FUNC(getSurfaceUnderCursor));
-        
+
+        private _groups = [_selection] call CFUNC(unitsToGroups);
+        private _worldPos = ASLtoAGL ([] call FUNC(getSurfaceUnderCursor));
+
         private _color = if (_requiresPosition isEqualType "") then {
             if (isNil _requiresPosition) then {
                 ([_selection, _worldPos] call compile _requiresPosition)
@@ -60,38 +71,64 @@ if (_requiresPositionBool) then {
                 ([_selection, _worldPos] call compile format ["_this call %1", _requiresPosition])
             };
         } else {
-            [0,0,0,1]
+            [0,0.5,1,1]
         };
-        
-        {
-            _leader = leader _x;
-            _objectPos = ASLtoAGL (getPosASLVisual _leader);
-            _objectPos = _objectPos vectorAdd [0, 0, ((_leader selectionPosition "pelvis") param [2, 1])];
-            
-            // Do drawLine3D 50 times to make it thicker (cheers BIS)
-            for "_i" from 0 to 50 do {
-                drawLine3D [_objectPos, _worldPos, _color];
-            };
-            
-            false
-        } count (_groups select {
-            !((getPosASLVisual leader _x) isEqualTo [0,0,0])
-        });
-        
+
+        if (GVAR(linesFollowTerrain)) then {
+            {
+                private _leader = leader _x;
+                private _objectPos = ASLtoAGL (getPosASLVisual _leader);
+                private _meters = round (_objectPos distance _worldPos);
+                private _iterationPos = _objectPos;
+
+                for "_i" from 1 to _meters step 2 do {
+                    private _currentDistance = round (_iterationPos distance _worldPos);
+                    private _endPos = _iterationPos vectorAdd (vectorNormalized (_worldPos vectorDiff _iterationPos));
+
+                    _iterationPos set [2, 5];
+                    _endPos set [2, [5, (_worldPos select 2)] select (_currentDistance == 0)];
+
+                    drawLine3D [_iterationPos, _endPos, _color];
+
+                    _iterationPos = _endPos;
+                };
+
+                drawLine3D [_iterationPos, _worldPos, _color];
+
+                false
+            } count (_groups select {
+                !((getPosASLVisual leader _x) isEqualTo [0,0,0])
+            });
+        } else {
+            {
+                private _leader = leader _x;
+                private _objectPos = ASLtoAGL (getPosASLVisual _leader);
+                _objectPos = _objectPos vectorAdd [0, 0, 1];
+
+                for "_i" from 0 to 50 do {
+                    drawLine3D [_objectPos, _worldPos, _color];
+                };
+
+                false
+            } count (_groups select {
+                !((getPosASLVisual leader _x) isEqualTo [0,0,0])
+            });
+        };
+
         drawIcon3D [
             "\A3\ui_f\data\map\groupicons\waypoint.paa",
             _color,
             _worldPos,
-            1,
-            1,
+            1.25,
+            1.25,
             0,
             "",
-            2,
+            0,
             0.03,
             "PuristaBold",
             "center"
         ];
-    }, 0, [GVAR(selection), _action, _requiresPosition]] call CBA_fnc_addPerFrameHandler;
+    }, 0, [GVAR(selection), _action, _requiresPosition, _preAction]] call CBA_fnc_addPerFrameHandler;
 } else {
     [GVAR(selection)] call compile _action;
 };

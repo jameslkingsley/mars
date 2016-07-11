@@ -8,6 +8,7 @@ class GVARMAIN(attributes) {
                 GVAR(camSlowDownInBuildings) = [ARR_2(QUOTE(QGVAR(camSlowDownInBuildings)), true)] call CFUNC(loadSetting);\
                 GVAR(iconHoverSize) = [ARR_2(QUOTE(QGVAR(iconHoverSize)), ICON_HOVER_SIZE)] call CFUNC(loadSetting);\
                 GVAR(iconDrawDistance) = [ARR_2(QUOTE(QGVAR(iconDrawDistance)), ICON_FADE_DISTANCE)] call CFUNC(loadSetting);\
+                GVAR(linesFollowTerrain) = [ARR_2(QUOTE(QGVAR(linesFollowTerrain)), false)] call CFUNC(loadSetting);\
             );
             class AttributeCategories {
                 class Camera {
@@ -119,6 +120,21 @@ class GVARMAIN(attributes) {
                                         _pos = sliderPosition _ctrl;\
                                         _ctrl ctrlSetTooltip format [ARR_3('%1%2', round (_pos * 100), '%')];\
                                         GVAR(iconHoverSize) = _pos;\
+                                    );
+                                };
+                            };
+                        };
+                        class LinesFollowTerrain {
+                            displayName = "Lines follow terrain";
+                            tooltipText = "3D lines that are part of the context system can either follow the terrain or just go as the crow flies. Following the terrain can decrease FPS significantly.";
+                            class AttributeControls {
+                                class Bool {
+                                    condition = "(true)";
+                                    type = "CHECKBOX";
+                                    checked = QGVAR(linesFollowTerrain);
+                                    expression = QUOTE(\
+                                        GVAR(linesFollowTerrain) = _this;\
+                                        [ARR_2(QUOTE(QGVAR(linesFollowTerrain)), _this)] call CFUNC(saveSetting);\
                                     );
                                 };
                             };
