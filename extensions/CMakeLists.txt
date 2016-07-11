@@ -63,6 +63,5 @@ message("Building for: " ${MARS_VERSION_MAJOR}.${MARS_VERSION_MINOR}.${MARS_VERS
 
 # Extensions
 add_subdirectory(editor)
-add_subdirectory(ai)
 
 message("Build Type: ${CMAKE_BUILD_TYPE}")
