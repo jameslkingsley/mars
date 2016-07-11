@@ -10,4 +10,6 @@ namespace Helpers {
     sqf::rv_color GetSideColor(const side& side_);
     sqf::rv_color GetSideColor(const object& unit_);
     sqf::rv_color GetSideColor(const group& grp_);
+
+    vector3 CursorWorldPos();
 }

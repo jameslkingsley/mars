@@ -4,7 +4,7 @@ using namespace std;
 using namespace intercept;
 
 namespace Helpers {
-    vector<object> Helpers::GameValueToObjectVector(const game_value& array_) {
+    vector<object> GameValueToObjectVector(const game_value& array_) {
         vector<object> result;
 
         for (int i = 0; i < array_.length(); i++) {
@@ -13,7 +13,7 @@ namespace Helpers {
 
         return result;
     }
-    
+
 #define GET_SIDE_COLOR_SWITCH \
     case SIDE_WEST:\
         return vector<game_value>{RGBA_WEST};\
@@ -26,23 +26,27 @@ namespace Helpers {
     default:\
         return vector<game_value>{0.0f, 0.0f, 0.0f, 1.0f};
 
-    sqf::rv_color Helpers::GetSideColor(const side& side_) {
+    sqf::rv_color GetSideColor(const side& side_) {
         switch (int(side_)) {
             GET_SIDE_COLOR_SWITCH
         }
     }
 
-    sqf::rv_color Helpers::GetSideColor(const object& unit_) {
+    sqf::rv_color GetSideColor(const object& unit_) {
         side unitSide = sqf::get_side(sqf::get_group(unit_));
         switch (int(unitSide)) {
             GET_SIDE_COLOR_SWITCH
         }
     }
 
-    sqf::rv_color Helpers::GetSideColor(const group& grp_) {
+    sqf::rv_color GetSideColor(const group& grp_) {
         side grpSide = sqf::get_side(grp_);
         switch (int(grpSide)) {
             GET_SIDE_COLOR_SWITCH
         }
+    }
+
+    vector3 CursorWorldPos() {
+        return sqf::screen_to_world(sqf::get_variable(sqf::mission_namespace(), "mars_editor_mousePos", game_value(vector2{0, 0})));
     }
 }
