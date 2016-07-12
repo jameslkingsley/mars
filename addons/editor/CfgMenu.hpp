@@ -1,9 +1,9 @@
 class GVARMAIN(menu) {
     class ADDON {
-        class settings {
+        class Settings {
             displayName = "Settings";
             
-            class camera {
+            class Camera {
                 displayName = "Editor";
                 action = QFUNC(openEditorSettings);
             };

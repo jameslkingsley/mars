@@ -1,8 +1,6 @@
-class MARS_gui_ctrlMenu: MARS_gui_ctrlDefaultText {
-    type = CT_MENU;
-    font = FONT_NORMAL;
+class MARS_gui_ctrlMenu: ctrlMenu {
     colorBorder[] = {0,0,0,0};
-    colorBackground[] = {0,0,0,1};
+    colorBackground[] = {COLOR_TAB_RGBA};
     colorText[] = {COLOR_TEXT_RGBA};
     colorSelect[] = {0,0,0,1};
     colorSelectBackground[] = {COLOR_ACTIVE_RGBA};
@@ -11,12 +9,18 @@ class MARS_gui_ctrlMenu: MARS_gui_ctrlDefaultText {
     colorPictureSelect[] = {0,0,0,1};
     colorPictureDisabled[] = {1,1,1,0.5};
     arrow = "\a3\3DEN\Data\Controls\ctrlMenu\arrow_ca.paa";
-    rowHeight = 0;
-    itemSpacingW = 0.01;
-    itemSpacingH = 0.01;
-    pictureCheckboxEnabled = "\a3\3DEN\Data\Controls\CtrlMenu\pictureCheckboxEnabled_ca.paa";
-    pictureCheckboxDisabled= "#(argb,8,8,3)color(0,0,0,0)";
-    pictureRadioEnabled = "\a3\3DEN\Data\Controls\CtrlMenu\pictureRadioEnabled_ca.paa";
-    pictureRadioDisabled= "#(argb,8,8,3)color(0,0,0,0)";
-    // items[] = {};
+    font = FONT_THIN;
+    size = SIZEEX_PURISTA_M;
+    sizeEx = SIZEEX_PURISTA_M;
+};
+
+class MARS_gui_ctrlContextMenu: MARS_gui_ctrlMenu {
+    class Items {
+        items[] = {};
+        class Default {
+            text = "Empty";
+            data = "Empty";
+            enable = 0;
+        };
+    };
 };

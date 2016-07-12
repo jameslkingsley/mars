@@ -1,6 +1,6 @@
 /*
  * Author: Kingsley
- * Redraws the top navigation bar menus
+ * Builds the top navigation bar menus
  *
  * Arguments:
  * 0: Editor's main display <DISPLAY>
@@ -9,80 +9,57 @@
  * None
  *
  * Example:
- * [] call mars_editor_fnc_createMenuStrip;
+ * [_display] call mars_editor_fnc_createMenuStrip;
  *
  * Public: No
  */
 
 #include "script_component.hpp"
 
-params ["_display"];
+params [["_display", displayNull]];
 
-disableSerialization;
+private _ctrlMenu = _display displayCtrl IDC_MENUSTRIP;
+private _menus = [];
 
-_components = "true" configClasses (configFile >> QGVARMAIN(menu));
+{_menus append ("true" configClasses (_x));false} count ("true" configClasses (configFile >> QGVARMAIN(menu)));
 
-if (count _components > 0) then {
-    _axisX = safeZoneX;
-    _maxNameCount = 0;
-
-    {
-        {
-            _name = getText (_x >> "displayName");
-            _count = count _name;
-            if (_count > _maxNameCount) then {_maxNameCount = _count};
-        } forEach ("true" configClasses (_x));
-    } forEach _components;
+private _add = {
+    params ["_ctrlMenu", "_menus", "_path"];
 
     {
-        private _menus = "true" configClasses (_x);
-        _menus = _menus apply {[getText (_x >> "displayName"), _x]};
-        _menus sort true;
-        _menus = _menus apply {_x select 1};
-        
-        {
-            _idc = 4600 + _forEachIndex;
-            _displayName = getText (_x >> "displayName");
-            _action = getText (_x >> "action");
-            _children = "true" configClasses (_x);
-            _nameCount = count _displayName;
-            _padding = (pixelW * 6.5) * (sqrt _maxNameCount);
-            _width = (_nameCount * (pixelW * 6.5)) + _padding;
-            
-            if (!isNil _action) then {
-                _action = format ["_this call %1", _action];
-            };
-            
-            _ctrl = _display ctrlCreate ["MARS_gui_menuTopBase", _idc];
-            _ctrl ctrlSetPosition [_axisX, (0 * safeZoneH + safeZoneY), _width, MENUSTRIP_CONTEXT_HEIGHT];
-            _ctrl ctrlSetText _displayName;
-            _ctrl ctrlShow true;
-            _ctrl ctrlCommit 0;
-            
-            _ctrl setVariable [QGVAR(display), _display];
-            _ctrl setVariable [QGVAR(children), _children];
-            
-            _ctrl ctrlAddEventHandler ["MouseButtonDown", {
-                GVAR(hasClickedOnMenuStrip) = true;
-            }];
-            
-            _ctrl ctrlAddEventHandler ["MouseEnter", {
-                if (GVAR(menuStripMenuOpen)) then {
-                    [] call FUNC(closeMenuStripMenus);
-                    _this call FUNC(onMenuStripClick);
-                };
-            }];
-            
-            if (count _children > 0) then {
-                _ctrl ctrlAddEventHandler ["MouseButtonUp", {
-                    _this call FUNC(onMenuStripClick);
-                }];
-            } else {
-                _ctrl ctrlAddEventHandler ["MouseButtonUp", QUOTE([true] call FUNC(closeMenuStripMenus);) + _action];
-            };
+        private _displayName = getText (_x >> "displayName");
+        private _action = getText (_x >> "action");
+        private _children = "true" configClasses (_x);
 
-            _axisX = _axisX + _width;
-            GVAR(topNavControls) pushBack _idc;
-        } forEach _menus;
-    } forEach _components;
+        if (!isNil _action) then {
+            _action = format ["_this call %1", _action];
+        };
+
+        private _iPath = _ctrlMenu menuAdd [_path, _displayName];
+
+        _ctrlMenu menuSetAction [(_path + [_iPath]), _action];
+        _ctrlMenu menuSort [_path, false];
+
+        if !(_children isEqualTo []) then {
+            [_ctrlMenu, _children, (_path + [_iPath])] call _add;
+        };
+
+        false
+    } count _menus;
 };
+
+{
+    private _displayName = getText (_x >> "displayName");
+    private _action = getText (_x >> "action");
+    private _children = "true" configClasses (_x);
+
+    if (!isNil _action) then {
+        _action = format ["_this call %1", _action];
+    };
+
+    private _iPath = _ctrlMenu menuAdd [[], _displayName];
+
+    [_ctrlMenu, _children, [_iPath]] call _add;
+
+    false
+} count _menus;

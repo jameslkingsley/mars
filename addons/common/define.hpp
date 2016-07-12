@@ -101,6 +101,9 @@ class RscVignette;
 class RscMap;
 class RscCombo;
 
+class ctrlMenu;
+class ctrlMenuStrip;
+
 #include "macros.hpp"
 
 #include "UI\Controls\ctrlDefault.hpp"

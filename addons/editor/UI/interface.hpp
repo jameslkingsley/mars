@@ -8,6 +8,7 @@ class GVAR(interface) {
     onUnload = QUOTE([ARR_2('onUnload',_this)] call FUNC(handleInterface));
     onKeyDown = QUOTE([ARR_2('onKeyDown',_this)] call FUNC(handleInterface));
     onKeyUp = QUOTE([ARR_2('onKeyUp',_this)] call FUNC(handleInterface));
+
     class ControlsBackground {
         class MouseHandler: RscControlsGroupNoScrollbars {
             idc = IDC_MOUSEHANDLER;
@@ -70,14 +71,20 @@ class GVAR(interface) {
             offsetPressedX = 0;
             offsetPressedY = 0;
         };
-        class MenuStrip: MARS_gui_ctrlMenuStripFake {
+        class MenuStrip: MARS_gui_ctrlMenuStrip {
             idc = IDC_MENUSTRIP;
             x = safezoneX;
             y = safezoneY;
             w = safezoneW - SIZE_M * GRID_W;
             h = MENUBAR_H * GRID_H;
-            text = "";
-            colorBackground[] = {COLOR_TAB_RGBA};
+            class Items {
+                items[] = {};
+                class Default {
+                    text = "Empty";
+                    data = "Empty";
+                    enable = 0;
+                };
+            };
         };
         class Toolbar: MARS_gui_ctrlControlsGroupNoScrollbars {
             idc = IDC_TOOLBAR;

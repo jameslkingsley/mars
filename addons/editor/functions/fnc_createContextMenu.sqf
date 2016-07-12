@@ -18,20 +18,25 @@
 
 /*if (true) exitWith {
     private _display = GETUVAR(GVAR(interface),displayNull);
-    private _control = _display ctrlCreate ["MARS_gui_ctrlMenu", 123456];
+    private _control = _display ctrlCreate ["MARS_gui_ctrlContextMenu", IDC_CONTEXTMENU];
     
+    systemChat format ["%1 - %2", _display, _control];
+    
+    menuClear _control;
+
     _control ctrlSetPosition [
         GVAR(mousePos) select 0,
         GVAR(mousePos) select 1
     ];
     
-    menuAdd [123456, [], "Option 1"];
-    menuAdd [123456, [0], "Option 2"];
-    _control menuAdd [[_path], "Option 2"];
-    _control menuAdd [[_path], "Option 3"];
-    _control menuAdd [[_path], "Option 4"];
-    _control menuAdd [[_path], "Option 5"];
-    
+    for "_i" from 1 to 10 do {
+        private _path = _control menuAdd [[], format ["Option %1", _i]];
+        
+        for "_n" from 1 to (round (random 10)) do {
+            _control menuAdd [[_path], format ["Option %1", _n]];
+        };
+    };
+
     _control ctrlCommit 0;
 };*/
 
