@@ -163,8 +163,8 @@ switch (toLower _mode) do {
 
             // Right Click & Can Context
             case (_button == 1 && GVAR(canContext)): {
-                if (count GVAR(selection) > 0 && count GVAR(abSelectedObject) == 0 && !GVAR(isWaitingForLeftClick) && {!_wasContextOpen}) then {
-                    // Already has objects in selection
+                if (!(GVAR(selection) isEqualTo []) && {GVAR(abSelectedObject) isEqualTo []} && {!GVAR(isWaitingForLeftClick)} && {!_wasContextOpen}) then {
+                    // systemChat "Already has objects in selection";
                     private _target = [] call FUNC(objectUnderCursor);
 
                     if (_target in GVAR(selection)) then {
@@ -187,7 +187,7 @@ switch (toLower _mode) do {
                         };
                     };
                 } else {
-                    // No objects in selection, proceed to handle context menu
+                    // systemChat "No objects in selection, proceed to handle context menu";
                     [] call FUNC(selectObject);
                     [] call FUNC(handleContextMenu);
                 };
@@ -201,6 +201,8 @@ switch (toLower _mode) do {
 
                         if (!isNil QGVAR(contextPosLinePFH)) then {
                             [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
+                            GVAR(contextMenuOpen) = false;
+                            GVAR(isWaitingForLeftClick) = false;
                         };
                     }, []] call EFUNC(common,execNextFrame);
                 }, []] call EFUNC(common,execNextFrame);
