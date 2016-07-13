@@ -19,7 +19,7 @@
 
 #define SMALL_ICON_DISTANCE 500
 
-private _camPosASL = AGLtoASL GVAR(camPos);
+private _camPosASL = GVAR(camPos);
 private _outputIcons = [];
 private _outputLines = [];
 

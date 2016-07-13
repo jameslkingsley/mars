@@ -19,7 +19,7 @@
 
 BEGIN_COUNTER(lineHandler);
 
-_camPosASL = AGLtoASL GVAR(camPos);
+_camPosASL = GVAR(camPos);
 
 {
     _x params ["_object1", "_object2", "_color", ["_zOffset1", 0], ["_zOffset2", 0], ["_isPerson", false]];

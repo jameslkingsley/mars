@@ -19,7 +19,7 @@
 
 // BEGIN_COUNTER(iconHandler);
 
-private _camPosASL = AGLtoASL GVAR(camPos);
+private _camPosASL = GVAR(camPos);
 GVAR(groupIcons) = [];
 GVAR(unitIcons) = [];
 
