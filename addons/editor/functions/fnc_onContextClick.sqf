@@ -48,7 +48,9 @@ if (_requiresPositionBool) then {
 
         if (GVAR(hasLeftClicked)) exitWith {
             private _worldPos = [] call FUNC(getSurfaceUnderCursor);
-            [_selection, _worldPos] call compile _action;
+            private _target = [] call FUNC(objectUnderCursor);
+            
+            [_selection, _worldPos, _target] call compile _action;
 
             if (!GVAR(ctrlKey)) then {
                 [_handle] call CBA_fnc_removePerFrameHandler;
@@ -71,59 +73,30 @@ if (_requiresPositionBool) then {
                 ([_selection, _worldPos] call compile format ["_this call %1", _requiresPosition])
             };
         } else {
-            [0,0.5,1,1]
+            [COLOR_ACTIVE_RGB_S,1]
         };
 
-        if (GVAR(linesFollowTerrain)) then {
-            {
-                private _leader = leader _x;
-                private _objectPos = ASLtoAGL (getPosASLVisual _leader);
-                private _meters = round (_objectPos distance _worldPos);
-                private _iterationPos = _objectPos;
+        {
+            private _leader = leader _x;
+            private _objectPos = ASLtoAGL (getPosASLVisual _leader);
+            _objectPos = _objectPos vectorAdd [0, 0, 1];
 
-                for "_i" from 1 to _meters step 2 do {
-                    private _currentDistance = round (_iterationPos distance _worldPos);
-                    private _endPos = _iterationPos vectorAdd (vectorNormalized (_worldPos vectorDiff _iterationPos));
+            drawLine3D [_objectPos, _worldPos, _color];
 
-                    _iterationPos set [2, 5];
-                    _endPos set [2, [5, (_worldPos select 2)] select (_currentDistance == 0)];
-
-                    drawLine3D [_iterationPos, _endPos, _color];
-
-                    _iterationPos = _endPos;
-                };
-
-                drawLine3D [_iterationPos, _worldPos, _color];
-
-                false
-            } count (_groups select {
-                !((getPosASLVisual leader _x) isEqualTo [0,0,0])
-            });
-        } else {
-            {
-                private _leader = leader _x;
-                private _objectPos = ASLtoAGL (getPosASLVisual _leader);
-                _objectPos = _objectPos vectorAdd [0, 0, 1];
-
-                for "_i" from 0 to 50 do {
-                    drawLine3D [_objectPos, _worldPos, _color];
-                };
-
-                false
-            } count (_groups select {
-                !((getPosASLVisual leader _x) isEqualTo [0,0,0])
-            });
-        };
+            false
+        } count (_groups select {
+            !((getPosASLVisual leader _x) isEqualTo [0,0,0])
+        });
 
         drawIcon3D [
             "\A3\ui_f\data\map\groupicons\waypoint.paa",
             _color,
             _worldPos,
-            1.25,
-            1.25,
+            1,
+            1,
             0,
             "",
-            0,
+            1,
             0.03,
             "PuristaBold",
             "center"
