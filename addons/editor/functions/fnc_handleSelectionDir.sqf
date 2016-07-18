@@ -102,7 +102,13 @@ if (isNull _anchorObject) then {
         _object setVariable [QGVAR(leftDirFinalPos), _dir];
         _object setVariable [QGVAR(isDirectionChanging), true];
         
-        [_object, [side group _object] call CFUNC(getSideColor), [0,0,0], _dir] call FUNC(drawBoundingBox);
+        [_object, [side group _object] call CFUNC(getSideColor), nil, _dir] call FUNC(drawBoundingBox);
+        
+        drawLine3D [
+            (getPos _object) vectorAdd [0, 0, 1],
+            ASLtoAGL _worldPos,
+            [1, 0.25, 0, 1]
+        ];
 
         false
     } count GVAR(selection);
