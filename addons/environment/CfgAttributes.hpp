@@ -174,6 +174,26 @@ class GVARMAIN(attributes) {
                         };
                     };
                 };
+                class Tools {
+                    class AttributeItems {
+                        class Random {
+                            displayName = "Randomize";
+                            tooltipText = "Apply random environment settings to the mission";
+                            class AttributeControls {
+                                class Button {
+                                    condition = "(true)";
+                                    type = "BUTTON";
+                                    textPlain = "Randomize Environment";
+                                    width = 0.5;
+                                    action = QUOTE(\
+                                        [] remoteExec [ARR_2(QQFUNC(randomizeEnvironment), REMOTE_SERVER)];\
+                                        [ARR_3(QUOTE(QUOTE(ADDON)), 'environment', [ARR_2(nil, 120)])] call AFUNC(openAttributes);\
+                                    );
+                                };
+                            };
+                        };
+                    };
+                };
             };
         };
     };
