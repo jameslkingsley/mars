@@ -2,6 +2,7 @@ class GVARMAIN(attributes) {
     class ADDON {
         #include "attributes\reinforcements.hpp"
         #include "attributes\teleport.hpp"
+        #include "attributes\execution.hpp"
         
         class AdminMenu {
             displayName = "Administration";
@@ -10,6 +11,18 @@ class GVARMAIN(attributes) {
             class AttributeCategories {
                 class Gameplay {
                     class AttributeItems {
+                        class Exec {
+                            displayName = "Execution";
+                            tooltipText = "Execute code on the server, global, headless clients or local.";
+                            class AttributeControls {
+                                class Button {
+                                    condition = "(true)";
+                                    type = "BUTTON";
+                                    textPlain = "Open Execution Menu";
+                                    action = QUOTE([ARR_4(QUOTE(QUOTE(ADDON)), 'Execution', [ARR_2(150, 116)], [ARR_2(0.15, 0.85)])] call AFUNC(openAttributes));
+                                };
+                            };
+                        };
                         class Teleport {
                             displayName = "Teleport";
                             tooltipText = "Teleport a selection of players to a desired location.";
