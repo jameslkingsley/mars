@@ -28,7 +28,9 @@ switch (toLower _target) do {
         _code remoteExecCall ['BIS_fnc_call', 0];
     };
     case "hc": {
-        _code remoteExecCall ['BIS_fnc_call', ((entities 'HeadlessClient_F') select {isPlayer _x})];
+        {
+            _code remoteExecCall ['BIS_fnc_call', _x];
+        } forEach ((entities 'HeadlessClient_F') select {isPlayer _x});
     };
     case "local": {
         call _code;
