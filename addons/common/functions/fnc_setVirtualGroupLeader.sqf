@@ -25,6 +25,10 @@ params [
     ["_deleteOldLeader", false, [false]]
 ];
 
+if (isNull _group) exitWith {
+    MARS_LOGERROR("Virtual group passed into setVirtualGroupLeader is null");
+};
+
 private _groupIndex = GVAR(virtualGroups) find _group;
 private _oldLeader = _group getVariable "leader";
 

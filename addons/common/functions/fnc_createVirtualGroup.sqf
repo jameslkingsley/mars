@@ -26,7 +26,7 @@ params [
 ];
 
 // Returned type is location
-_group = [true] call CBA_fnc_createNamespace;
+_group = call CBA_fnc_createNamespace;
 
 _group setVariable ["leader", _leader];
 _group setVariable ["members", _members];
