@@ -14,7 +14,7 @@ class Teleport {
                             type = "LIST";
                             multi = true;
                             labels = QUOTE(\
-                                private _labels = allPlayers select {alive _x && vehicle _x == _x};\
+                                private _labels = allPlayers select {alive _x};\
                                 _labels = _labels apply {name _x};\
                                 _labels\
                             );
