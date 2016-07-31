@@ -1,11 +1,5 @@
 class GVARMAIN(context) {
     class ADDON {
-        class Waypoints {
-            displayName = "Waypoints";
-            condition = QUOTE(!isPlayer _this);
-            children = QFUNC(getWaypointOptions);
-        };
-        
         class Infantry {
             displayName = "Infantry";
             condition = QUOTE(_this isKindOf 'Man' && !isPlayer _this);
@@ -65,7 +59,7 @@ class GVARMAIN(context) {
             class Land {
                 displayName = "Land";
                 requiresPosition = true;
-                action = QFUNC(taskLand);
+                action = QUOTE([ARR_2(_this, true)] call FUNC(taskLand));
             };
             
             class Paradrop {
