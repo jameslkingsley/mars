@@ -3,6 +3,7 @@
 ["selectionToPosition", QFUNC(selectionToPosition)] call CFUNC(addEventHandler);
 
 [QGVAR(taskAttack), {[_this] call FUNC(taskAttack)}] call CBA_fnc_addEventHandler;
+[QGVAR(taskLand), {[_this] call FUNC(taskLand)}] call CBA_fnc_addEventHandler;
 [QGVAR(taskDefend), {[_this] call FUNC(taskDefend)}] call CBA_fnc_addEventHandler;
 [QGVAR(taskPatrol), {[_this] call FUNC(taskPatrol)}] call CBA_fnc_addEventHandler;
 [QGVAR(forceSpeed), {_this call FUNC(forceSpeed)}] call CBA_fnc_addEventHandler;
