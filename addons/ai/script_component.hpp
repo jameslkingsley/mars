@@ -15,3 +15,5 @@
 #endif
 
 #include "\z\mars\addons\main\script_macros.hpp"
+
+#define HELIPAD_INVISIBLE "Land_HelipadEmpty_F"
