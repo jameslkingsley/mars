@@ -3,7 +3,7 @@ class MARS_gui_ctrlSliderV: MARS_gui_ctrlDefault {
     style = SL_VERT;
     color[] = {0,0,0,1};
     colorDisabled[] = {1,1,1,0.25};
-    colorActive[] = {COLOR_ACTIVE_RGBA};
+    colorActive[] = {QCOLOR_ACTIVE_RGBA};
     sliderRange[] = {0,1};
     sliderPosition = 1;
     lineSize = 0.1;
@@ -26,7 +26,7 @@ class MARS_gui_ctrlSliderV: MARS_gui_ctrlDefault {
     class Title {
         idc = -1;
         colorBase[] = {1,1,1,1};
-        colorActive[] = {COLOR_ACTIVE_RGBA};
+        colorActive[] = {QCOLOR_ACTIVE_RGBA};
     };
 
     class Value {
@@ -34,7 +34,7 @@ class MARS_gui_ctrlSliderV: MARS_gui_ctrlDefault {
         format = "%.f";
         type = SPTPlain;
         colorBase[] = {1,1,1,1};
-        colorActive[] = {COLOR_ACTIVE_RGBA};
+        colorActive[] = {QCOLOR_ACTIVE_RGBA};
     };
 };
 

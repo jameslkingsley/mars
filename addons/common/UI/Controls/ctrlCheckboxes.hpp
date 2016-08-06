@@ -11,7 +11,7 @@ class MARS_gui_ctrlCheckboxes: MARS_gui_ctrlDefaultText {
     colorSelect[] = {0,0,0,0};
     colorTextDisable[] = {0,0,0,0};
     colorDisable[] = {0,0,0,0};
-    colorSelectedBg[] = {COLOR_ACTIVE_RGBA};
+    colorSelectedBg[] = {QCOLOR_ACTIVE_RGBA};
     onCanDestroy = "";
     onDestroy = "";
     onMouseEnter = "";

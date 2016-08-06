@@ -2,9 +2,9 @@ class MARS_gui_ctrlXListbox: MARS_gui_ctrlDefaultText {
     type = CT_XLISTBOX;
     style = SL_HORZ + ST_CENTER + LB_TEXTURES;
     color[] = {1,1,1,1};
-    colorActive[] = {COLOR_ACTIVE_RGBA};
+    colorActive[] = {QCOLOR_ACTIVE_RGBA};
     colorText[] = {COLOR_TEXT_RGBA};
-    colorSelect[] = {COLOR_ACTIVE_RGBA};
+    colorSelect[] = {QCOLOR_ACTIVE_RGBA};
     colorDisabled[] = {COLOR_TEXT_RGB,0.25};
     colorPicture[] = {1,1,1,1};
     cycle = 1;

@@ -4,7 +4,7 @@ class MARS_gui_ctrlHTML: MARS_gui_ctrlDefaultText {
     colorText[] = {COLOR_TEXT_RGBA};
     colorBold[] = {COLOR_TEXT_RGB,0.5};
     colorLink[] = {COLOR_TEXT_RGBA};
-    colorLinkActive[] = {COLOR_ACTIVE_RGBA};
+    colorLinkActive[] = {QCOLOR_ACTIVE_RGBA};
     colorPicture[] = {1,1,1,1};
     colorPictureBorder[] = {0,0,0,0};
     colorPictureLink[] = {1,1,1,1};

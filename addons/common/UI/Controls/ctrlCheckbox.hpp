@@ -50,8 +50,8 @@ class MARS_gui_ctrlCheckbox: MARS_gui_ctrlDefault {
 
 class MARS_gui_ctrlCheckboxToolbar: MARS_gui_ctrlCheckbox {
     color[] = {1,1,1,1};
-    colorBackgroundHover[] = {COLOR_ACTIVE_RGBA};
-    colorBackgroundPressed[] = {COLOR_ACTIVE_RGBA};
+    colorBackgroundHover[] = {QCOLOR_ACTIVE_RGBA};
+    colorBackgroundPressed[] = {QCOLOR_ACTIVE_RGBA};
 };
 
 class MARS_gui_ctrlCheckboxBaseline: MARS_gui_ctrlCheckbox {

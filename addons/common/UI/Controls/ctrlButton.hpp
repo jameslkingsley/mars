@@ -3,8 +3,8 @@ class MARS_gui_ctrlButton: MARS_gui_ctrlDefaultButton {
     style = ST_CENTER + ST_UPPERCASE;
     colorBackground[] = {0,0,0,1};
     colorBackgroundDisabled[] = {0,0,0,0.5};
-    colorBackgroundActive[] = {COLOR_ACTIVE_RGBA};
-    colorFocused[] = {COLOR_ACTIVE_RGBA};
+    colorBackgroundActive[] = {QCOLOR_ACTIVE_RGBA};
+    colorFocused[] = {QCOLOR_ACTIVE_RGBA};
     font = FONT_THIN;
     text = "";
     size = SIZEEX_PURISTA_M;

@@ -86,7 +86,7 @@ class MARS_gui_ctrlStaticOverlay: MARS_gui_ctrlStatic {
 
 class MARS_gui_ctrlStaticTitle: MARS_gui_ctrlStatic {
     moving = 1;
-    colorBackground[] = {COLOR_ACTIVE_RGBA};
+    colorBackground[] = {QCOLOR_ACTIVE_RGBA};
     colorText[] = {1,1,1,1};
 };
 

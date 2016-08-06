@@ -29,7 +29,7 @@ class MARS_gui_ctrlXSliderV: MARS_gui_ctrlDefault {
     class Title {
         idc = -1;
         colorBase[] = {1,1,1,1};
-        colorActive[] = {COLOR_ACTIVE_RGBA};
+        colorActive[] = {QCOLOR_ACTIVE_RGBA};
     };
 
     class Value {
@@ -37,7 +37,7 @@ class MARS_gui_ctrlXSliderV: MARS_gui_ctrlDefault {
         format = "%.f";
         type = SPTPlain;
         colorBase[] = {1,1,1,1};
-        colorActive[] = {COLOR_ACTIVE_RGBA};
+        colorActive[] = {QCOLOR_ACTIVE_RGBA};
     };
 };
 

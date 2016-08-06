@@ -1,8 +1,8 @@
 class MARS_gui_ctrlListNBox: MARS_gui_ctrlDefaultText {
     type = CT_LISTNBOX;
     style = ST_LEFT + LB_TEXTURES;
-    colorSelectBackground[] = {COLOR_ACTIVE_RGBA};
-    colorSelectBackground2[] = {COLOR_ACTIVE_RGBA};
+    colorSelectBackground[] = {QCOLOR_ACTIVE_RGBA};
+    colorSelectBackground2[] = {QCOLOR_ACTIVE_RGBA};
     colorText[] = {COLOR_TEXT_RGBA};
     colorDisabled[] = {COLOR_TEXT_RGB,0.25};
     colorSelect[] = {1,1,1,1};

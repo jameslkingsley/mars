@@ -1,9 +1,9 @@
 class MARS_gui_ctrlActiveText: MARS_gui_ctrlDefaultButton {
     type = CT_ACTIVETEXT;
     text = "";
-    color[] = {COLOR_ACTIVE_RGB,0.75};
-    colorActive[] = {COLOR_ACTIVE_RGBA};
-    colorDisabled[] = {COLOR_ACTIVE_RGBA};
+    color[] = {QCOLOR_ACTIVE_RGB,0.75};
+    colorActive[] = {QCOLOR_ACTIVE_RGBA};
+    colorDisabled[] = {QCOLOR_ACTIVE_RGBA};
     onCanDestroy = "";
     onDestroy = "";
     onMouseEnter = "";

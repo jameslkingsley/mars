@@ -180,51 +180,52 @@
 #define COLOR_DEFAULT_RGB COLOR_DEFAULT_RGB_R,COLOR_DEFAULT_RGB_G,COLOR_DEFAULT_RGB_B
 #define COLOR_DEFAULT_RGBA COLOR_DEFAULT_RGB,COLOR_DEFAULT_RGB_A
 
-#define COLOR_ACTIVE_RGB_R_S (profileNamespace getVariable ['MARS_ACCENT_R',0.741])
-#define COLOR_ACTIVE_RGB_G_S (profileNamespace getVariable ['MARS_ACCENT_G',0.173])
-#define COLOR_ACTIVE_RGB_B_S (profileNamespace getVariable ['MARS_ACCENT_B',0.173])
-#define COLOR_ACTIVE_RGB_S COLOR_ACTIVE_RGB_R_S,COLOR_ACTIVE_RGB_G_S,COLOR_ACTIVE_RGB_B_S
-#define COLOR_ACTIVE_RGBA_S COLOR_ACTIVE_RGB_S,COLOR_ACTIVE_RGB_A
-
-#define COLOR_ACTIVE_RGB_R QUOTE(COLOR_ACTIVE_RGB_R_S)
-#define COLOR_ACTIVE_RGB_G QUOTE(COLOR_ACTIVE_RGB_G_S)
-#define COLOR_ACTIVE_RGB_B QUOTE(COLOR_ACTIVE_RGB_B_S)
-#define COLOR_ACTIVE_RGB_A 1
+#define COLOR_ACTIVE_RGB_R (profileNamespace getVariable ['MARS_ACCENT_R',COLOR_DEFAULT_RGB_R])
+#define COLOR_ACTIVE_RGB_G (profileNamespace getVariable ['MARS_ACCENT_G',COLOR_DEFAULT_RGB_G])
+#define COLOR_ACTIVE_RGB_B (profileNamespace getVariable ['MARS_ACCENT_B',COLOR_DEFAULT_RGB_B])
+#define COLOR_ACTIVE_RGB_A COLOR_DEFAULT_RGB_A
 #define COLOR_ACTIVE_RGB COLOR_ACTIVE_RGB_R,COLOR_ACTIVE_RGB_G,COLOR_ACTIVE_RGB_B
 #define COLOR_ACTIVE_RGBA COLOR_ACTIVE_RGB,COLOR_ACTIVE_RGB_A
 
-#define COLOR_WEST_R 0
-#define COLOR_WEST_G 0.3
-#define COLOR_WEST_B 0.6
-#define COLOR_WEST_A 1
+#define QCOLOR_ACTIVE_RGB_R QUOTE(COLOR_ACTIVE_RGB_R)
+#define QCOLOR_ACTIVE_RGB_G QUOTE(COLOR_ACTIVE_RGB_G)
+#define QCOLOR_ACTIVE_RGB_B QUOTE(COLOR_ACTIVE_RGB_B)
+#define QCOLOR_ACTIVE_RGB_A QUOTE(COLOR_ACTIVE_RGB_A)
+#define QCOLOR_ACTIVE_RGB QCOLOR_ACTIVE_RGB_R,QCOLOR_ACTIVE_RGB_G,QCOLOR_ACTIVE_RGB_B
+#define QCOLOR_ACTIVE_RGBA QCOLOR_ACTIVE_RGB,QCOLOR_ACTIVE_RGB_A
+
+#define COLOR_WEST_R (profileNamespace getVariable ['map_blufor_r',0])
+#define COLOR_WEST_G (profileNamespace getVariable ['map_blufor_g',0.3])
+#define COLOR_WEST_B (profileNamespace getVariable ['map_blufor_b',0.6])
+#define COLOR_WEST_A (profileNamespace getVariable ['map_blufor_a',1])
 #define COLOR_WEST_RGB COLOR_WEST_R,COLOR_WEST_G,COLOR_WEST_B
 #define COLOR_WEST_RGBA COLOR_WEST_RGB,COLOR_WEST_A
 
-#define COLOR_EAST_R 0.5
-#define COLOR_EAST_G 0
-#define COLOR_EAST_B 0
-#define COLOR_EAST_A 1
+#define COLOR_EAST_R (profileNamespace getVariable ['map_opfor_r',0.5])
+#define COLOR_EAST_G (profileNamespace getVariable ['map_opfor_g',0])
+#define COLOR_EAST_B (profileNamespace getVariable ['map_opfor_b',0])
+#define COLOR_EAST_A (profileNamespace getVariable ['map_opfor_a',1])
 #define COLOR_EAST_RGB COLOR_EAST_R,COLOR_EAST_G,COLOR_EAST_B
 #define COLOR_EAST_RGBA COLOR_EAST_RGB,COLOR_EAST_A
 
-#define COLOR_GUER_R 0
-#define COLOR_GUER_G 0.5
-#define COLOR_GUER_B 0
-#define COLOR_GUER_A 1
+#define COLOR_GUER_R (profileNamespace getVariable ['map_independent_r',0])
+#define COLOR_GUER_G (profileNamespace getVariable ['map_independent_g',0.5])
+#define COLOR_GUER_B (profileNamespace getVariable ['map_independent_b',0])
+#define COLOR_GUER_A (profileNamespace getVariable ['map_independent_a',1])
 #define COLOR_GUER_RGB COLOR_GUER_R,COLOR_GUER_G,COLOR_GUER_B
 #define COLOR_GUER_RGBA COLOR_GUER_RGB,COLOR_GUER_A
 
-#define COLOR_CIV_R 0.4
-#define COLOR_CIV_G 0
-#define COLOR_CIV_B 0.5
-#define COLOR_CIV_A 1
+#define COLOR_CIV_R (profileNamespace getVariable ['map_independent_r',0.4])
+#define COLOR_CIV_G (profileNamespace getVariable ['map_independent_g',0])
+#define COLOR_CIV_B (profileNamespace getVariable ['map_independent_b',0.5])
+#define COLOR_CIV_A (profileNamespace getVariable ['map_independent_a',1])
 #define COLOR_CIV_RGB COLOR_CIV_R,COLOR_CIV_G,COLOR_CIV_B
 #define COLOR_CIV_RGBA COLOR_CIV_RGB,COLOR_CIV_A
 
-#define COLOR_EMPTY_R 0.698
-#define COLOR_EMPTY_G 0.6
-#define COLOR_EMPTY_B 0
-#define COLOR_EMPTY_A 1
+#define COLOR_EMPTY_R (profileNamespace getVariable ['map_unknown_r',0.7])
+#define COLOR_EMPTY_G (profileNamespace getVariable ['map_unknown_g',0.6])
+#define COLOR_EMPTY_B (profileNamespace getVariable ['map_unknown_b',0])
+#define COLOR_EMPTY_A (profileNamespace getVariable ['map_unknown_a',1])
 #define COLOR_EMPTY_RGB COLOR_EMPTY_R,COLOR_EMPTY_G,COLOR_EMPTY_B
 #define COLOR_EMPTY_RGBA COLOR_EMPTY_RGB,COLOR_EMPTY_A
 

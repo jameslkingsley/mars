@@ -7,7 +7,7 @@ class MARS_gui_ctrlEdit: RscEdit {
     colorText[] = {COLOR_TEXT_RGBA};
     colorBackground[] = {COLOR_OVERLAY_RGBA};
     colorDisabled[] = {COLOR_TEXT_RGB,0.25};
-    colorSelection[] = {COLOR_ACTIVE_RGBA};
+    colorSelection[] = {QCOLOR_ACTIVE_RGBA};
     onCanDestroy = "";
     onDestroy = "";
     onSetFocus = "";

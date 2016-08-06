@@ -3,7 +3,7 @@ class MARS_gui_ctrlMenu: ctrlMenu {
     colorBackground[] = {COLOR_TAB_RGBA};
     colorText[] = {COLOR_TEXT_RGBA};
     colorSelect[] = {0,0,0,1};
-    colorSelectBackground[] = {COLOR_ACTIVE_RGBA};
+    colorSelectBackground[] = {QCOLOR_ACTIVE_RGBA};
     colorDisabled[] = {COLOR_TEXT_RGB,0.25};
     colorPicture[] = {1,1,1,1};
     colorPictureSelect[] = {0,0,0,1};

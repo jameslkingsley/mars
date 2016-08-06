@@ -10,9 +10,9 @@ class MARS_gui_ctrlShortcutButton: MARS_gui_ctrlDefaultButton {
     colorFocused[] = {COLOR_TEXT_RGBA};
     colorDisabled[] = {COLOR_TEXT_RGB,0.25};
     colorBackground[] = {0,0,0,1};
-    colorBackground2[] = {COLOR_ACTIVE_RGBA};
-    colorBackgroundFocused[] = {COLOR_ACTIVE_RGBA};
-    colorBackgroundActive[] = {COLOR_ACTIVE_RGBA};
+    colorBackground2[] = {QCOLOR_ACTIVE_RGBA};
+    colorBackgroundFocused[] = {QCOLOR_ACTIVE_RGBA};
+    colorBackgroundActive[] = {QCOLOR_ACTIVE_RGBA};
     animTextureNormal = "#(argb,8,8,3)color(1,1,1,1)";
     animTextureOver = "#(argb,8,8,3)color(1,1,1,1)";
     animTexturePressed = "#(argb,8,8,3)color(1,1,1,1)";

@@ -147,9 +147,9 @@ class MARS_gui_treeBase {
     h = 0;
     colorBorder[] = {0,0,0,0};
     colorBackground[] = {0,0,0,0}; // Fill color
-    colorSelect[] = {COLOR_ACTIVE_RGB,0.5}; // Selected item fill color (when multiselectEnabled is 0)
-    colorMarked[] = {COLOR_ACTIVE_RGB,0.25}; // Marked item fill color (when multiselectEnabled is 1)
-    colorMarkedSelected[] = {COLOR_ACTIVE_RGB,0.5}; // Selected item fill color (when multiselectEnabled is 1)
+    colorSelect[] = {QCOLOR_ACTIVE_RGB,0.5}; // Selected item fill color (when multiselectEnabled is 0)
+    colorMarked[] = {QCOLOR_ACTIVE_RGB,0.25}; // Marked item fill color (when multiselectEnabled is 1)
+    colorMarkedSelected[] = {QCOLOR_ACTIVE_RGB,0.5}; // Selected item fill color (when multiselectEnabled is 1)
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
     font = "RobotoCondensedLight";
     shadow = 0;
@@ -272,7 +272,7 @@ class MARS_gui_backgroundBaseSolid : MARS_gui_backgroundBase {
 };
 
 class MARS_gui_accentBase : MARS_gui_backgroundBase {
-    colorBackground[] = {COLOR_ACTIVE_RGBA};
+    colorBackground[] = {QCOLOR_ACTIVE_RGBA};
 };
 
 class MARS_gui_editBase {
@@ -505,7 +505,7 @@ class MARS_gui_menuBase {
     sizeEx = 0.032;
     borderSize = 0;
     colorBorder[] = {0,0,0,0};
-    colorBackgroundActive[] = {COLOR_ACTIVE_RGBA};
+    colorBackgroundActive[] = {QCOLOR_ACTIVE_RGBA};
     colorBackgroundDisabled[] = {1,1,1,0.25};
     colorDisabled[] = {1,1,1,0.5};
     colorFocused[] = {0,0,0,0};
@@ -548,7 +548,7 @@ class MARS_gui_contextBase {
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
     borderSize = 0;
     colorBorder[] = {0.1,0.1,0.1,0.8};
-    colorBackgroundActive[] = {COLOR_ACTIVE_RGBA};
+    colorBackgroundActive[] = {QCOLOR_ACTIVE_RGBA};
     colorBackgroundDisabled[] = {1,1,1,0.25};
     colorDisabled[] = {1,1,1,0.5};
     colorFocused[] = {0.1,0.1,0.1,0.8};
@@ -570,7 +570,7 @@ class MARS_gui_contextBase {
 class MARS_gui_toolbarContextBase: MARS_gui_contextBase {
     sizeEx = 0.032;
     colorBorder[] = {0,0,0,0};
-    colorBackgroundActive[] = {COLOR_ACTIVE_RGBA};
+    colorBackgroundActive[] = {QCOLOR_ACTIVE_RGBA};
     colorBackgroundDisabled[] = {COLOR_TAB_RGB,0.25};
     colorDisabled[] = {1,1,1,0.5};
     colorFocused[] = {0,0,0,0};

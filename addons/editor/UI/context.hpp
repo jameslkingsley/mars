@@ -15,7 +15,7 @@ class GVAR(contextControl): MARS_gui_ctrlControlsGroupNoScrollbars {
             y = 0;
             w = 1;
             h = 1;
-            colorBackground[] = {COLOR_ACTIVE_RGB, 1};
+            colorBackground[] = {QCOLOR_ACTIVE_RGB, 1};
         };
         
         class IconLeft: MARS_gui_ctrlActivePictureKeepAspect {

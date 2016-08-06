@@ -7,9 +7,9 @@ class MARS_gui_ctrlTree: MARS_gui_ctrlDefaultText {
     colorPictureRightSelected[] = {0,0,0,0};
     colorPictureSelected[] = {0,0,0,0};
     colorPictureDisabled[] = {0,0,0,0};
-    colorSelect[] = {COLOR_ACTIVE_RGBA};
-    colorMarked[] = {COLOR_ACTIVE_RGB,0.5};
-    colorMarkedSelected[] = {COLOR_ACTIVE_RGBA};
+    colorSelect[] = {QCOLOR_ACTIVE_RGBA};
+    colorMarked[] = {QCOLOR_ACTIVE_RGB,0.5};
+    colorMarkedSelected[] = {QCOLOR_ACTIVE_RGBA};
     colorText[] = {COLOR_TEXT_RGBA};
     colorSelectText[] = {1,1,1,1};
     colorMarkedText[] = {1,1,1,1};
