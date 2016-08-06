@@ -28,9 +28,9 @@ _ctrlR sliderSetPosition COLOR_DEFAULT_RGB_R;
 _ctrlG sliderSetPosition COLOR_DEFAULT_RGB_G;
 _ctrlB sliderSetPosition COLOR_DEFAULT_RGB_B;
 
-profileNamespace setVariable ['MARS_ACCENT_R', COLOR_DEFAULT_RGB_R];
-profileNamespace setVariable ['MARS_ACCENT_G', COLOR_DEFAULT_RGB_G];
-profileNamespace setVariable ['MARS_ACCENT_B', COLOR_DEFAULT_RGB_B];
+SETPRVAR(MARS_ACCENT_R,COLOR_DEFAULT_RGB_R);
+SETPRVAR(MARS_ACCENT_G,COLOR_DEFAULT_RGB_G);
+SETPRVAR(MARS_ACCENT_B,COLOR_DEFAULT_RGB_B);
 
 _ctrlSample ctrlSetBackgroundColor [COLOR_DEFAULT_RGBA];
 _ctrlSample ctrlSetForegroundColor [COLOR_DEFAULT_RGBA];
