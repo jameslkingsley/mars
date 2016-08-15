@@ -20,6 +20,15 @@ params [["_unit", objNull, [objNull]]];
 
 if (isNull _unit) exitWith {false};
 
+private _curators = [];
+
+{
+    _curators pushBackUnique (getAssignedCuratorUnit _x);
+    false
+} count allCurators;
+
+if (_unit in _curators) exitWith {true};
+
 private _adminList = [
     "76561198011054794",
     "76561197971299792",
