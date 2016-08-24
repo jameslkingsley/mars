@@ -19,10 +19,12 @@
 
 params [["_action", ""], ["_requiresPosition", false], ["_preAction", ""]];
 
+TRACE_1("onContextClick", _requiresPosition);
+
 private _requiresPositionBool = if (_requiresPosition isEqualType false) then {
     _requiresPosition
 } else {
-    if (count _requiresPosition > 0) then {
+    if (_requiresPosition isEqualType "" && {count _requiresPosition > 0}) then {
         true
     };
 };
