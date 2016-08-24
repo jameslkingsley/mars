@@ -18,7 +18,7 @@
 
 params [["_ignoreObj", objNull]];
 
-_target = objNull;
+private _target = objNull;
 private _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
 private _camPos = getPosASLVisual GVAR(camera);
 
@@ -31,7 +31,7 @@ private _objects = lineIntersectsSurfaces [
     1
 ];
 
-if (count _objects > 0) then {
+if !(_objects isEqualTo []) then {
     {
         private _obj = _x select 2;
 
@@ -40,9 +40,9 @@ if (count _objects > 0) then {
                 _target = _obj;
             };
         } else {
-            _nearest = nearestObjects [(ASLtoAGL (_x select 0)), TYPE_SEARCH, 2];
+            private _nearest = nearestObjects [(ASLtoAGL (_x select 0)), TYPE_SEARCH, 2];
             
-            if (count _nearest > 0) exitWith {
+            if !(_nearest isEqualTo []) exitWith {
                 _target = _nearest select 0;
             };
         };
@@ -50,9 +50,9 @@ if (count _objects > 0) then {
         false
     } count _objects;
 } else {
-    _nearest = nearestObjects [(ASLtoAGL _worldPos), TYPE_SEARCH, 2];
+    private _nearest = nearestObjects [(ASLtoAGL _worldPos), TYPE_SEARCH, 2];
     
-    if (count _nearest > 0) exitWith {
+    if !(_nearest isEqualTo []) exitWith {
         _target = _nearest select 0;
     };
 };
