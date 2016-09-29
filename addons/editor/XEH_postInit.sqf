@@ -12,6 +12,12 @@ if (isServer) then {
         GVAR(whitelisted) = [];
         GVAR(blacklisted) = [];
     };
+
+    // Server/HC FPS
+    [{
+        GVAR(fps_server) = diag_fps;
+        publicVariable QGVAR(fps_server);
+    }, 5, []] call CBA_fnc_addPerFrameHandler;
 };
 
 if (isNil QGVAR(initialLoginPlayer)) then {

@@ -110,4 +110,7 @@ GVAR(prepDirObjectUnderCursor) = objNull;
 // Remote Control
 GVAR(isRemoteControl) = false;
 
+// Server/HC FPS
+GVAR(fps_server) = 0;
+
 ADDON = true;

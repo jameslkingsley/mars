@@ -638,6 +638,7 @@ class GVAR(interface) {
                     x = STATUSBAR_W - (34) * GRID_W;
                     w = 13 * GRID_W;
                     text = "0 FPS";
+                    tooltip = "Server FPS";
                 };
                 class Version: ValueX {
                     idc = IDC_STATUSBAR_VERSION;

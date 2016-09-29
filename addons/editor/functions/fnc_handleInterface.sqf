@@ -39,7 +39,7 @@ switch (toLower _mode) do {
 
         GVAR(delayedPFH) = [{
             private _display = GETUVAR(GVAR(interface),displayNull);
-            (_display displayCtrl IDC_STATUSBAR_FPS) ctrlSetText format ["%1 FPS", round diag_fps];
+            (_display displayCtrl IDC_STATUSBAR_FPS) ctrlSetText format ["%1 FPS", round GVAR(fps_server)];
             (_display displayCtrl IDC_STATUSBAR_GRID) ctrlSetText format ["%1", mapGridPosition GVAR(camera)];
         }, 1, []] call CBA_fnc_addPerFrameHandler;
         GVAR(pfhArray) pushBackUnique GVAR(delayedPFH);
