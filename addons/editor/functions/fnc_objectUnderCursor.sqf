@@ -61,3 +61,4 @@ if (isNull _target) then {
 };
 
 vehicle _target
+
