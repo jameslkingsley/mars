@@ -32,7 +32,7 @@ _args params [
 
 {
     if (GVAR(showLines)) then {
-        (vehicle _x) setVariable [QGVAR(targetPos), _pos];
+        (vehicle _x) setVariable [QGVAR(targetPos), _pos, true];
         
         (vehicle _x) addEventHandler ["Fired", {
             if !(GVAR(showLines)) exitWith {};
@@ -91,7 +91,7 @@ _args params [
         }];
     };
     
-    _x doArtilleryFire [_pos, _ammo, _count];
+    [_x, _pos, _ammo, _count] remoteExecCall ["doArtilleryFire", _x];
     
     false
 } count _units;
