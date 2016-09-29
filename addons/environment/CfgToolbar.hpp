@@ -1,8 +1,8 @@
 class GVARMAIN(toolbar) {
     class ADDON {
         class environment {
-            default = false;
-            toggle = false;
+            default = 0;
+            toggle = 0;
             tooltipText = CSTRING(Toolbar_Tooltip);
             iconOn = QPATHTOF(data\environment_ca.paa);
             iconOff = QPATHTOF(data\environment_ca.paa);

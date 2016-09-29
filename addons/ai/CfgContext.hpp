@@ -6,31 +6,31 @@ class GVARMAIN(context) {
             
             class ForceMove {
                 displayName = "Force Move";
-                requiresPosition = true;
+                requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(forceMove));
             };
             
             class Attack {
                 displayName = "Attack";
-                requiresPosition = true;
+                requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(taskAttack));
             };
             
             class Defend {
                 displayName = "Defend";
-                requiresPosition = true;
+                requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(taskDefend));
             };
             
             class Patrol {
                 displayName = "Patrol";
-                requiresPosition = true;
+                requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(taskPatrol));
             };
             
             class Suppress {
                 displayName = "Suppress";
-                requiresPosition = true;
+                requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(suppress));
             };
             
@@ -41,7 +41,7 @@ class GVARMAIN(context) {
             
             class Garrison {
                 displayName = "Garrison";
-                requiresPosition = true;
+                requiresPosition = 1;
                 action = QFUNC(garrison);
             };
         };
@@ -52,19 +52,19 @@ class GVARMAIN(context) {
             
             class Attack {
                 displayName = "Attack";
-                requiresPosition = true;
+                requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(taskAttack));
             };
             
             class Land {
                 displayName = "Land";
-                requiresPosition = true;
+                requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(taskLand));
             };
             
             class Paradrop {
                 displayName = "Paradrop";
-                requiresPosition = true;
+                requiresPosition = 1;
                 action = QFUNC(taskParadrop);
             };
             
@@ -83,7 +83,7 @@ class GVARMAIN(context) {
                 
                 class Low {
                     displayName = "Low (250m)";
-                    requiresPosition = true;
+                    requiresPosition = 1;
                     action = QUOTE([ARR_2(_this, 250)] call FUNC(taskOrbit));
                     order = 1;
                 };

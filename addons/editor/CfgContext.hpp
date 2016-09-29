@@ -2,7 +2,7 @@ class GVARMAIN(context) {
     class ADDON {
         /*class Attributes {
             displayName = "Attributes";
-            requiresPosition = false;
+            requiresPosition = 0;
             condition = QUOTE('CAManBase' countType GVAR(selection) == count GVAR(selection));
             action = QUOTE([ARR_2('__objects', 'CAManBase')] call AFUNC(openAttributes));
             order = 100;

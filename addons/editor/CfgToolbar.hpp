@@ -1,14 +1,14 @@
 class GVARMAIN(toolbar) {
     class ADDON {
         class EditPlayers {
-            default = false;
+            default = 0;
             tooltipText = "Edit players";
             iconOn = QPATHTOF(data\Toolbar\player_on_ca.paa);
             iconOff = QPATHTOF(data\Toolbar\player_off_ca.paa);
             action = QFUNC(toggleEditPlayers);
         };
         class NightVision {
-            default = false;
+            default = 0;
             tooltipText = "Night Vision";
             iconOn = QPATHTOF(data\Toolbar\vision_nvg_ca.paa);
             iconOff = QPATHTOF(data\Toolbar\vision_normal_ca.paa);

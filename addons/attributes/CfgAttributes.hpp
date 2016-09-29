@@ -22,7 +22,7 @@ class GVARMAIN(attributes) {
                                 class Control {
                                     condition = "(true)";
                                     type = "CHECKBOX";
-                                    checked = false;
+                                    checked = 0;
                                     textPlain = "Checkbox label";
                                     expression = "";
                                 };
