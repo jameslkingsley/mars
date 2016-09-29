@@ -40,6 +40,18 @@ _camPosASL = GVAR(camPos);
     ];
 
     false
-} count GVAR(serializedLines);
+} count (GVAR(serializedLines) select {
+    private _obj1 = _x param [0, objNull];
+    private _isPerson = _x param [5, false];
+
+    (
+        !isNull _obj1 &&
+        {(
+            !(vehicle _obj1 isKindOf "CAManBase") ||
+            {leader _obj1 == _obj1} ||
+            {{_x in GVAR(selection)} count (units group _obj1) > 0}
+        )}
+    )
+});
 
 END_COUNTER(lineHandler);

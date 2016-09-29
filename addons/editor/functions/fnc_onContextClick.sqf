@@ -75,7 +75,7 @@ if (_requiresPositionBool) then {
                 ([_selection, _worldPos] call compile format ["_this call %1", _requiresPosition])
             };
         } else {
-            [COLOR_ACTIVE_RGB,1]
+            [0, 0, 1, 1]
         };
 
         {
