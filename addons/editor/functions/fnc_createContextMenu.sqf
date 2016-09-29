@@ -71,6 +71,7 @@ if (count _contexts > 0) then {
             private _action = [_config, "action", ""] call FUNC(getContextValue);
             private _preAction = [_config, "preAction", ""] call FUNC(getContextValue);
             private _requiresPosition = [_config, "requiresPosition", false] call FUNC(getContextValue);
+            if (_requiresPosition isEqualType 0) then {_requiresPosition = INT2BOOL(_requiresPosition)};
             
             disableSerialization;
             
