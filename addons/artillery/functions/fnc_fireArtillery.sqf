@@ -31,7 +31,7 @@ _args params [
 ];
 
 {
-    if (GVAR(showLines)) then {
+    if (GVAR(showLines) && hasInterface) then {
         (vehicle _x) setVariable [QGVAR(targetPos), _pos, true];
         
         (vehicle _x) addEventHandler ["Fired", {
@@ -91,7 +91,7 @@ _args params [
         }];
     };
     
-    [_x, _pos, _ammo, _count] remoteExecCall ["doArtilleryFire", _x];
+    [QGVAR(fireArtillery), [_x, _pos, _ammo, _count], _x] call CBA_fnc_targetEvent;
     
     false
 } count _units;
