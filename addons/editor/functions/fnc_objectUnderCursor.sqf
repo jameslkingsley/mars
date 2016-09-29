@@ -20,7 +20,7 @@ params [["_ignoreObj", objNull]];
 
 private _target = [] call FUNC(selectUnitIcon);
 
-if (isNull _target) exitWith {
+if (isNull _target) then {
     private _worldPos = AGLtoASL (screenToWorld GVAR(mousePos));
     private _camPos = getPosASLVisual GVAR(camera);
 
@@ -54,7 +54,7 @@ if (isNull _target) exitWith {
     } else {
         private _nearest = nearestObjects [(ASLtoAGL _worldPos), TYPE_SEARCH, 2];
         
-        if !(_nearest isEqualTo []) exitWith {
+        if !(_nearest isEqualTo []) then {
             _target = _nearest select 0;
         };
     };
