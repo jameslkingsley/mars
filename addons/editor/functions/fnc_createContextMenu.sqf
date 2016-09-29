@@ -16,30 +16,6 @@
 
 #include "script_component.hpp"
 
-/*if (true) exitWith {
-    private _display = GETUVAR(GVAR(interface),displayNull);
-    private _control = _display ctrlCreate ["MARS_gui_ctrlContextMenu", IDC_CONTEXTMENU];
-    
-    systemChat format ["%1 - %2", _display, _control];
-    
-    menuClear _control;
-
-    _control ctrlSetPosition [
-        GVAR(mousePos) select 0,
-        GVAR(mousePos) select 1
-    ];
-    
-    for "_i" from 1 to 10 do {
-        private _path = _control menuAdd [[], format ["Option %1", _i]];
-        
-        for "_n" from 1 to (round (random 10)) do {
-            _control menuAdd [[_path], format ["Option %1", _n]];
-        };
-    };
-
-    _control ctrlCommit 0;
-};*/
-
 params [["_contexts", []], ["_xIndex", 0], ["_yIndex", 0], ["_startYPos", -1]];
 
 if (!isNull GVAR(prepSurfaceSphere)) exitWith {};
