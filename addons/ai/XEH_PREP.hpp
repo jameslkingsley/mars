@@ -18,3 +18,5 @@ PREP(disembark);
 PREP(forceSpeed);
 PREP(setUnitPos);
 PREP(getWaypointOptions);
+PREP(ungarrison);
+PREP(disableAI);

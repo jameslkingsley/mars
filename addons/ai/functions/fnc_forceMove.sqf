@@ -22,6 +22,8 @@ _args params [["_units", []], ["_pos", []]];
 
 if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 
+[_units] call FUNC(ungarrison);
+
 if (_broadcast) then {
     [QGVAR(forceMove), [_units, _pos], _units] call CBA_fnc_targetEvent;
     
@@ -61,7 +63,7 @@ if (_broadcast) then {
             {
                 private _unit = _x;
                 private _group = group _unit;
-                private _modPos = [_pos, 50] call CBA_fnc_randPos;
+                private _modPos = linearConversion [0, 1000, (_unit distance _pos), _pos, ([_pos, 100] call CBA_fnc_randPos), true];
                 
                 [_unit] joinSilent grpNull;
                 

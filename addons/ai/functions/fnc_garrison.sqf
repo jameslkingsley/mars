@@ -24,4 +24,4 @@ params [
 
 if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 
-[_pos, nil, _units, 150] remoteExecCall [QFUNC(_garrison), REMOTE_SERVER];
+[QGVAR(garrison), [_pos, nil, _units, 150]] call CBA_fnc_serverEvent;

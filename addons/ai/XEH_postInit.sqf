@@ -11,3 +11,5 @@
 [QGVAR(forceMove), {[_this] call FUNC(forceMove)}] call CBA_fnc_addEventHandler;
 [QGVAR(suppress), {[_this] call FUNC(suppress)}] call CBA_fnc_addEventHandler;
 [QGVAR(searchNearby), {[_this] call FUNC(searchNearby)}] call CBA_fnc_addEventHandler;
+[QGVAR(disableAI), {_this call FUNC(disableAI)}] call CBA_fnc_addEventHandler;
+[QGVAR(garrison), {_this call FUNC(_garrison)}] call CBA_fnc_addEventHandler;
