@@ -234,6 +234,8 @@ switch (toLower _mode) do {
     };
     case "onmousezchanged": {
         _args params ["_ctrl","_zChange"];
+    
+        systemChat str _zChange;
     };
     case "onmousemoving": {
         _args params ["_ctrl","_x","_y"];

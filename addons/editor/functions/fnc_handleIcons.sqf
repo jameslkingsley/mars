@@ -38,7 +38,6 @@ GVAR(unitIcons) = [];
 
     private _pos = (getPosASLVisual _object) vectorAdd [0, 0, _zOffset];
     private _alpha = linearConversion [0, _fixedDistance, (_pos distance _camPosASL), 1, 0, true];
-
     private _width = 1;
     private _height = 1;
 

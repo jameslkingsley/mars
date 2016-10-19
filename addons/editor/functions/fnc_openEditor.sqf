@@ -107,7 +107,7 @@ while {dialog} do {
 // Reset interruptions
 GVAR(interrupts) = [];
 
-GVAR(drawingMissionEH) = addMissionEventHandler ["Draw3D", {
+GVAR(drawingMissionEH) = addMissionEventHandler ["EachFrame", {
     // BEGIN_COUNTER(draw3D);
     
     // Tagging handler

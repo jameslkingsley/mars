@@ -56,6 +56,8 @@ class GVAR(interface) {
             y = safezoneY;
             w = safezoneWAbs;
             h = safezoneH;
+            onDraw = QUOTE(_this call FUNC(handleMapIcons));
+            onMouseButtonUp = QUOTE(_this call FUNC(handleCameraTeleport));
         };
     };
     class Controls {

@@ -70,3 +70,5 @@ PREP(canLogin);
 PREP(handleMap);
 PREP(getContextValue);
 PREP(handleSelectionBox);
+PREP(handleMapIcons);
+PREP(handleCameraTeleport);

@@ -17,7 +17,9 @@
 
 #include "script_component.hpp"
 
-BEGIN_COUNTER(lineHandler);
+// BEGIN_COUNTER(lineHandler);
+
+if (GVAR(mapOpen)) exitWith {};
 
 _camPosASL = GVAR(camPos);
 
@@ -54,4 +56,4 @@ _camPosASL = GVAR(camPos);
     )
 });
 
-END_COUNTER(lineHandler);
+// END_COUNTER(lineHandler);
