@@ -69,8 +69,8 @@ if (!isNull _target) exitWith {
 };
 
 {
-    [_x] call CBA_fnc_clearWaypoints;
-    [_x, _pos, 0, "MOVE", "AWARE", "RED", "FULL", "LINE"] call CBA_fnc_addWaypoint;
+    // [_x] call CBA_fnc_clearWaypoints;
+    [[_x, _pos], true] call FUNC(groupMove);
     
     false
 } count ([_selection] call CFUNC(unitsToGroups));

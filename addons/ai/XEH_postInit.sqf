@@ -13,3 +13,14 @@
 [QGVAR(searchNearby), {[_this] call FUNC(searchNearby)}] call CBA_fnc_addEventHandler;
 [QGVAR(disableAI), {_this call FUNC(disableAI)}] call CBA_fnc_addEventHandler;
 [QGVAR(garrison), {_this call FUNC(_garrison)}] call CBA_fnc_addEventHandler;
+[QGVAR(groupMove), {[_this] call FUNC(groupMove)}] call CBA_fnc_addEventHandler;
+
+[{
+    private _hint = "";
+
+    {
+        _hint = format ["%1\n%2: %3", _hint, _x, moveToCompleted _x];
+    } forEach EGVAR(editor,selection);
+
+    hintSilent _hint;
+}, 0, []] call CBA_fnc_addPerFrameHandler;
