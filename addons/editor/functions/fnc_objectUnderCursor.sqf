@@ -18,6 +18,8 @@
 
 params [["_ignoreObj", objNull]];
 
+if (isNil QGVAR(camera) || {isNil QGVAR(mousePos)}) exitWith {};
+
 private _target = [] call FUNC(selectUnitIcon);
 
 if (isNull _target) then {
