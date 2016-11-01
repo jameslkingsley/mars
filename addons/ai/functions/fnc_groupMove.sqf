@@ -27,11 +27,11 @@ if (isNull _group || {_pos isEqualTo []}) exitWith {};
 if (_broadcast) then {
     [QGVAR(groupMove), [_group, _pos], _group] call CBA_fnc_targetEvent;
 } else {
-    // _group move _pos;
+    _group move _pos;
 
-    (units _group) doMove _pos;
+    /*(units _group) doMove _pos;
 
     {
         _x setDestination [_pos, "LEADER PLANNED", true];
-    } forEach units _group;
+    } forEach units _group;*/
 };
