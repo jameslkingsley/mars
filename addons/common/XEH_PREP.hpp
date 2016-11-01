@@ -36,3 +36,4 @@ PREP(setVirtualGroupLeader);
 PREP(getVirtualGroupLeader);
 PREP(getHighestRank);
 PREP(isAllSameClass);
+PREP(drawThickLine3D);
