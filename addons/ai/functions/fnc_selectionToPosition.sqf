@@ -75,6 +75,7 @@ if (!isNull _target) exitWith {
 {
     if (!EGVAR(editor,ctrlKey)) then {
         [_x] call CBA_fnc_clearWaypoints;
+        EGVAR(editor,selection) = [];
     };
 
     
