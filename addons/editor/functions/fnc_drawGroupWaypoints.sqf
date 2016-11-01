@@ -52,6 +52,6 @@ _groups = _groups arrayIntersect _groups;
 
         false
     } count _waypoints;
-    
+
     false
 } count _groups;
