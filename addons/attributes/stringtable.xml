@@ -3,21 +3,9 @@
     <Package name="Attributes">
         <Key ID="STR_MARS_Attributes_GUI_BTN_OK">
             <English>OK</English>
-            <German>OK</German>
-            <Polish>OK</Polish>
-            <French>OK</French>
-            <Spanish>OK</Spanish>
-            <Italian>OK</Italian>
-            <Czech>OK</Czech>
         </Key>
         <Key ID="STR_MARS_Attributes_GUI_BTN_CANCEL">
             <English>CANCEL</English>
-            <German>CANCEL</German>
-            <Polish>CANCEL</Polish>
-            <French>CANCEL</French>
-            <Spanish>CANCEL</Spanish>
-            <Italian>CANCEL</Italian>
-            <Czech>CANCEL</Czech>
         </Key>
     </Package>
 </Project>

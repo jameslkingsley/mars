@@ -3,30 +3,12 @@
     <Package name="AI">
         <Key ID="STR_MARS_AI_Name">
             <English>AI</English>
-            <German>AI</German>
-            <Polish>AI</Polish>
-            <French>AI</French>
-            <Spanish>AI</Spanish>
-            <Italian>AI</Italian>
-            <Czech>AI</Czech>
         </Key>
         <Key ID="STR_MARS_AI_PopulateArea_Name">
             <English>Populate Area</English>
-            <German>Populate Area</German>
-            <Polish>Populate Area</Polish>
-            <French>Populate Area</French>
-            <Spanish>Populate Area</Spanish>
-            <Italian>Populate Area</Italian>
-            <Czech>Populate Area</Czech>
         </Key>
         <Key ID="STR_MARS_AI_PopulateArea_Tooltip">
             <English>Populate Area</English>
-            <German>Populate Area</German>
-            <Polish>Populate Area</Polish>
-            <French>Populate Area</French>
-            <Spanish>Populate Area</Spanish>
-            <Italian>Populate Area</Italian>
-            <Czech>Populate Area</Czech>
         </Key>
     </Package>
 </Project>
