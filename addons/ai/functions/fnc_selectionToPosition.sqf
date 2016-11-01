@@ -34,7 +34,9 @@ if (!isNull _target) exitWith {
     private _groups = [_selection] call CFUNC(unitsToGroups);
     
     {
-        [_x] call CBA_fnc_clearWaypoints;
+        if (!EGVAR(editor,ctrlKey)) then {
+            [_x] call CBA_fnc_clearWaypoints;
+        };
         
         private _isEnemy = (side _x) getFriend (side group _target) < 0.6;
         
@@ -71,8 +73,10 @@ if (!isNull _target) exitWith {
 };
 
 {
-    // [_x] call CBA_fnc_clearWaypoints;
-    [[_x, _pos], true] call FUNC(groupMove);
+    if (!EGVAR(editor,ctrlKey)) then {
+        [_x] call CBA_fnc_clearWaypoints;
+    };
+
     
     false
 } count ([_selection] call CFUNC(unitsToGroups));
