@@ -30,6 +30,8 @@ _groups = _groups arrayIntersect _groups;
         private _waypoint = _x;
         private _pos = waypointPosition _waypoint;
 
+        _pos set [2, 0.25];
+
         [_previousPos, _pos, [1,1,1,1]] call CFUNC(drawThickLine3D);
 
         drawIcon3D [
