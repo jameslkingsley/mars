@@ -121,6 +121,7 @@ GVAR(drawingMissionEH) = addMissionEventHandler ["EachFrame", {
     [] call FUNC(handleIcons);
     [] call FUNC(handleLines);
     [] call FUNC(handleLocationIcons);
+    [] call FUNC(drawGroupWaypoints);
 
     // Selection handler
     {
