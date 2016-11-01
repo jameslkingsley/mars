@@ -29,5 +29,3 @@ if (_target in GVAR(selection)) then {
 };
 
 ["selectionToPosition", [_worldPos, GVAR(selection), _target]] call CFUNC(localEvent);
-
-GVAR(selection) = [];
