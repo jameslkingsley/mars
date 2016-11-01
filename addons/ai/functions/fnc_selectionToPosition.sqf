@@ -24,6 +24,8 @@ params [
     ["_target", objNull, [objNull]]
 ];
 
+[_selection] call FUNC(ungarrison);
+
 if (!isNull _target) exitWith {
     #ifdef DEBUG_MODE_FULL
         MARS_LOGINFO_1("Targetting unit: %1", _target);
