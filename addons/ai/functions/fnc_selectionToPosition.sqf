@@ -78,6 +78,7 @@ if (!isNull _target) exitWith {
         EGVAR(editor,selection) = [];
     };
 
+    [_x, _pos, 0, "MOVE", "AWARE", "RED", "FULL", "LINE"] call CBA_fnc_addWaypoint;
     
     false
 } count ([_selection] call CFUNC(unitsToGroups));
