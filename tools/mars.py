@@ -165,9 +165,5 @@ def main():
         moveFunction(args[2], args[3], args[4])
         sys.exit(2)
 
-    if "-test" in args:
-        replaceFunctionInCode("editor", "shutdown", "editor", "shutdownEditor")
-        sys.exit(2)
-
 if __name__ == '__main__':
     main()
