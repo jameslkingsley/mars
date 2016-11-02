@@ -131,7 +131,7 @@ switch (toLower _mode) do {
         switch (true) do {
             // Left Click
             case (_button == 0 && !GVAR(canContext)): {
-                GVAR(camDolly) = [0,0];
+                // GVAR(camDolly) = [0,0];
             };
 
             // Left Click & Can Context
@@ -178,7 +178,10 @@ switch (toLower _mode) do {
                             _cursorWorldPos resize 2;
 
                             // The distance used here might need to be tweaked - further testing needed
-                            if ({(_cursorWorldPos distance2D _x) < 10} count GVAR(selection) > 0) then {
+                            if (
+                                {(_cursorWorldPos distance2D _x) < 10} count GVAR(selection) > 0 ||
+                                {[_cursorWorldPos, GVAR(selection)] call FUNC(nearSelectionGroupIcon)}
+                            ) then {
                                 [] call FUNC(handleContextMenu);
                             } else {
                                 [] call FUNC(closeContextMenu);
