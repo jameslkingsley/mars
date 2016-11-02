@@ -24,6 +24,8 @@ _args params [["_units", []], ["_pos", []]];
 
 if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 
+[_units] call FUNC(ungarrison);
+
 if (_broadcast) then {
     private _groups = [_units] call CFUNC(unitsToGroups);
     [QGVAR(taskAttack), [_groups, _pos], _groups] call CBA_fnc_targetEvent;

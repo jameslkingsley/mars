@@ -21,6 +21,8 @@ _args params [["_units", []]];
 
 if (_units isEqualTo []) exitWith {};
 
+[_units] call FUNC(ungarrison);
+
 if (_broadcast) then {
     private _groups = [_units] call CFUNC(unitsToGroups);
     [QGVAR(searchNearby), [_groups], _groups] call CBA_fnc_targetEvent;
