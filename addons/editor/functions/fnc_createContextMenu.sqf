@@ -18,13 +18,14 @@
 
 params [["_contexts", []], ["_xIndex", 0], ["_yIndex", 0], ["_startYPos", -1]];
 
+if (GVAR(selection) isEqualTo []) exitWith {};
+
 if (!isNull GVAR(prepSurfaceSphere)) exitWith {};
 
 if (count _contexts > 0) then {
     _contexts = _contexts apply {[[_x, "displayName", ""] call FUNC(getContextValue), _x]};
     _contexts sort true;
     _contexts = _contexts apply {(_x select 1)};
-
     _contexts = _contexts apply {[[_x, "order", -1] call FUNC(getContextValue), _x]};
     
     if ({(_x select 0) > -1} count _contexts > 0) then {
@@ -38,9 +39,15 @@ if (count _contexts > 0) then {
     {
         private _config = _x;
         private _condition = [_config, "condition", "true"] call FUNC(getContextValue);
-        
+        private _exceptions = [_config, "exceptions", []] call FUNC(getContextValue);
+        private _only = [_config, "only", []] call FUNC(getContextValue);
+        private _except = [_config, "except", []] call FUNC(getContextValue);
+
         // Run the condition for all in selection
-        if (({_x call compile _condition} count GVAR(selection)) > 0) then {
+        if (
+            ({_x call compile _condition} count GVAR(selection)) >= count GVAR(selection) &&
+            {{[_x, GVAR(selection)] call CFUNC(passesException)} count _exceptions == count _exceptions}
+        ) then {
             private _idc = (9630 + _index) * ((10 * _xIndex) max 1);
             private _children = [];
             

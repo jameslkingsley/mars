@@ -53,3 +53,8 @@ createCenter civilian;
     _unit setFormDir _dir;
     _unit setDir _dir;
 }] call CBA_fnc_addEventHandler;
+
+["isNotPlayer", {!isPlayer _this}] call CFUNC(addException);
+["isAlive", {alive _this}] call CFUNC(addException);
+["isDead", {!alive _this}] call CFUNC(addException);
+["isLeader", {leader _this == _this}] call CFUNC(addException);
