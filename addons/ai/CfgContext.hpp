@@ -45,6 +45,50 @@ class GVARMAIN(context) {
                 action = QFUNC(garrison);
             };
         };
+
+        class Formation {
+            displayName = "Formation";
+            condition = "(true)";
+            exceptions[] = {"isNotPlayer"};
+            only[] = {Groups};
+
+            class Column {
+                displayName = "Column";
+                action = QUOTE([ARR_2('COLUMN', _this)] call FUNC(setFormation));
+            };
+            class StagColumn {
+                displayName = "Staggered Column";
+                action = QUOTE([ARR_2('STAG COLUMN', _this)] call FUNC(setFormation));
+            };
+            class Wedge {
+                displayName = "Wedge";
+                action = QUOTE([ARR_2('WEDGE', _this)] call FUNC(setFormation));
+            };
+            class EchLeft {
+                displayName = "Echelon Left";
+                action = QUOTE([ARR_2('ECH LEFT', _this)] call FUNC(setFormation));
+            };
+            class EchRight {
+                displayName = "Echelon Right";
+                action = QUOTE([ARR_2('ECH RIGHT', _this)] call FUNC(setFormation));
+            };
+            class Vee {
+                displayName = "Vee";
+                action = QUOTE([ARR_2('VEE', _this)] call FUNC(setFormation));
+            };
+            class Line {
+                displayName = "Line";
+                action = QUOTE([ARR_2('LINE', _this)] call FUNC(setFormation));
+            };
+            class File {
+                displayName = "File";
+                action = QUOTE([ARR_2('FILE', _this)] call FUNC(setFormation));
+            };
+            class Diamond {
+                displayName = "Diamond";
+                action = QUOTE([ARR_2('DIAMOND', _this)] call FUNC(setFormation));
+            };
+        };
         
         class Air {
             displayName = "Air";
