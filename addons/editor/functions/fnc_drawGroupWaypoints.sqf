@@ -26,32 +26,34 @@ _groups = _groups arrayIntersect _groups;
     private _waypoints = waypoints _group;
     private _previousPos = getPosVisual leader _group;
 
+    _waypoints deleteAt 0;
+
     {
         private _waypoint = _x;
         private _pos = waypointPosition _waypoint;
 
-        _pos set [2, 0.25];
+        if (currentWaypoint _group <= (_forEachIndex + 1)) then {
+            _pos set [2, 0.25];
 
-        [_previousPos, _pos, [1,1,1,1]] call CFUNC(drawThickLine3D);
+            [_previousPos, _pos, [1,1,1,1]] call CFUNC(drawThickLine3D);
 
-        drawIcon3D [
-            QPATHTOF(data\waypoint_ca.paa),
-            [1,1,1,1],
-            _pos,
-            1,
-            1,
-            0,
-            "",
-            1,
-            0.03,
-            "PuristaBold",
-            "center"
-        ];
+            drawIcon3D [
+                QPATHTOF(data\waypoint_ca.paa),
+                [1,1,1,1],
+                _pos,
+                1,
+                1,
+                0,
+                "",
+                1,
+                0.03,
+                "PuristaBold",
+                "center"
+            ];
 
-        _previousPos = _pos;
-
-        false
-    } count _waypoints;
+            _previousPos = _pos;
+        };
+    } forEach _waypoints;
 
     false
 } count _groups;
