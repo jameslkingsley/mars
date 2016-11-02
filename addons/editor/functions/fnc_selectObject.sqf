@@ -24,12 +24,15 @@ if (_objects isEqualTo []) then {
     if (_target == GVAR(prepSurfaceSphere)) exitWith {};
 
     if (isNull _target) then {
-        private _selectedUnit = [] call FUNC(selectUnitIcon);
+        private _selectedGroup = [] call FUNC(selectGroupIcon);
 
-        if (isNull _selectedUnit) then {
+        if (isNull _selectedGroup) then {
             GVAR(selection) = [];
         } else {
-            [_selectedUnit, !(vehicle _selectedUnit == _selectedUnit)] call FUNC(highlightObject);
+            {
+                [_x, !(vehicle _x == _x), false] call FUNC(highlightObject);
+                false
+            } count units _selectedGroup;
         };
     } else {
         [_target, !(vehicle _target == _target)] call FUNC(highlightObject);
