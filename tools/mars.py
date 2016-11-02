@@ -29,13 +29,13 @@ def createFunction(addon, name):
  * \n\
  *\n\
  * Example:\n\
- * \n\
+ * [] call mars_{}_fnc_{};\n\
  *\n\
  * Public: \n\
  */\n\
 \n\
 #include "script_component.hpp"\n\
-\n'.format(AUTHOR))
+\n'.format(AUTHOR, addon, name))
     func.close()
 
     prep = open(prepPath, "a")
