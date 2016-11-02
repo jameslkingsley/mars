@@ -253,4 +253,7 @@
 
 #define IS_SERVER_OR_HC (isServer || !hasInterface)
 
+#define Groups "grpNull"
+#define Objects "objNull"
+
 #include "script_debug.hpp"
