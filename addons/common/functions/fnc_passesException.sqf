@@ -29,14 +29,4 @@ if (_except isEqualTo []) exitWith {true};
 
 _except params ["_key", "_code"];
 
-private _result = true;
-
-{
-    if !(_x call _code) then {
-        _result = false;
-    };
-
-    false
-} count _objects;
-
-_result
+(_objects call _code)

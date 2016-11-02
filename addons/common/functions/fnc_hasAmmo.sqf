@@ -9,7 +9,7 @@
  * Has ammo <BOOL>
  *
  * Example:
- * _hasAmmo = [mortar] call mars_artillery_fnc_hasAmmo;
+ * _hasAmmo = [mortar] call mars_common_fnc_hasAmmo;
  *
  * Public: Yes
  */
