@@ -187,6 +187,5 @@ switch (_type) do {
         };
 
         GVAR(abCurrentSubmode) = _index;
-        [true] call FUNC(openMap);
     };
 };
