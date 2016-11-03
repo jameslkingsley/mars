@@ -64,6 +64,7 @@ GVAR(serializedABData) params ["_units", "_objects", "_groups", "_modules", "_ma
                 _tree tvSetTooltip [[_factionPath, _catPath, _objectPath], _objectClassname];
                 _tree tvSetPicture [[_factionPath, _catPath, _objectPath], _iconPath];
                 _tree tvSetPictureColor [[_factionPath, _catPath, _objectPath], [_side] call CFUNC(getSideColorByInt)];
+                _tree tvSetPictureColorSelected [[_factionPath, _catPath, _objectPath], [1,1,1,1]];
 
                 false
             } count _objects;
@@ -119,6 +120,7 @@ GVAR(serializedABData) params ["_units", "_objects", "_groups", "_modules", "_ma
                     _tree tvSetTooltip [[_catPath, _subCatPath, _objectPath], _objectClassname];
                     _tree tvSetPicture [[_catPath, _subCatPath, _objectPath], _iconPath];
                     _tree tvSetPictureColor [[_catPath, _subCatPath, _objectPath], [_side] call CFUNC(getSideColorByInt)];
+                    _tree tvSetPictureColorSelected [[_catPath, _subCatPath, _objectPath], [1,1,1,1]];
                 };
 
                 false
@@ -184,6 +186,7 @@ GVAR(serializedABData) params ["_units", "_objects", "_groups", "_modules", "_ma
                     _tree tvSetTooltip [[_factionPath, _grpCatPath, _objectPath], _objectClassname];
                     _tree tvSetPicture [[_factionPath, _grpCatPath, _objectPath], _icon];
                     _tree tvSetPictureColor [[_factionPath, _grpCatPath, _objectPath], _color];
+                    _tree tvSetPictureColorSelected [[_factionPath, _grpCatPath, _objectPath], [1,1,1,1]];
                 };
 
                 false
@@ -228,6 +231,7 @@ GVAR(serializedABData) params ["_units", "_objects", "_groups", "_modules", "_ma
             _tree tvSetTooltip [[_componentPath, _modulePath], _tooltipText];
             _tree tvSetPicture [[_componentPath, _modulePath], _icon];
             _tree tvSetPictureColor [[_componentPath, _modulePath], [1,1,1,1]];
+            _tree tvSetPictureColorSelected [[_componentPath, _modulePath], [1,1,1,1]];
             
             private _data = format ["['module', '(configFile >> ''%1'' >> ''%2'' >> ''%3'')']", QGVARMAIN(modules), _compClassname, _modClassname];
             _tree tvSetData [[_componentPath, _modulePath], _data];
@@ -265,12 +269,11 @@ GVAR(serializedABData) params ["_units", "_objects", "_groups", "_modules", "_ma
             _x params ["_mrkClassname", "_mrkData"];
             _mrkData params ["_displayName", "_tooltipText", "_icon", "_color"];
 
-            diag_log str _color;
-
             private _markerPath = _tree tvAdd [[_componentPath], _displayName];
             _tree tvSetTooltip [[_componentPath, _markerPath], _tooltipText];
             _tree tvSetPicture [[_componentPath, _markerPath], _icon];
             _tree tvSetPictureColor [[_componentPath, _markerPath], [1,1,1,1]];
+            _tree tvSetPictureColorSelected [[_componentPath, _markerPath], [1,1,1,1]];
             
             private _data = format ["['marker', '(configFile >> ''CfgMarkers'' >> ''%1'')']", _mrkClassname];
             _tree tvSetData [[_componentPath, _markerPath], _data];

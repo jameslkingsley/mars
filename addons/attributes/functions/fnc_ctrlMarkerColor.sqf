@@ -45,6 +45,7 @@ _selected = getText (_config >> "selected");
     _ctrlCombo lbSetData [_i, _x];
     _ctrlCombo lbSetPicture [_i, "#(rgb,8,8,3)color(1,1,1,1)"];
     _ctrlCombo lbSetPictureColor [_i, _color];
+    _ctrlCombo lbSetPictureColorSelected [_i, _color];
     if (_x == _selected) then {
         _ctrlCombo lbSetCurSel _i;
     };

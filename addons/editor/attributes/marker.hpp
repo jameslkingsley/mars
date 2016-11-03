@@ -3,7 +3,7 @@ class Marker {
     evalDisplayName = 1;
     actionConfirm = "";
     actionCancel = "";
-    class General {
+    class All {
         class Name {
             displayName = "Name";
             tooltipText = "Variable name of the marker.";
@@ -18,8 +18,6 @@ class Marker {
                 type = "EDIT";
             };
         };
-    };
-    class Coordinates {
         class Position {
             displayName = "Position";
             tooltipText = "Position of the marker.";
@@ -34,14 +32,14 @@ class Marker {
             class EditW {
                 type = "EDIT";
                 textPlain = "1";
+                width = 0.25;
             };
             class EditH {
                 type = "EDIT";
                 textPlain = "1";
+                width = 0.25;
             };
         };
-    };
-    class Color {
         class Color {
             displayName = "Color";
             tooltipText = "Color of the marker.";
@@ -60,5 +58,27 @@ class Marker {
                 position = 1;
             };
         };
+        class Visible {
+            displayName = "Visible";
+            tooltipText = "Which sides will this marker be visible to.";
+            class Checkbox {
+                type = "CHECKBOX";
+                textPlain = "BLUFOR";
+                checked = 1;
+            };
+        };
+
+        #define SIDE_CHECKBOX(CNAME)\
+            class CNAME {\
+                class Checkbox {\
+                    type = "CHECKBOX";\
+                    textPlain = QUOTE(CNAME);\
+                    checked = 1;\
+                };\
+            }
+
+        SIDE_CHECKBOX(OPFOR);
+        SIDE_CHECKBOX(INDFOR);
+        SIDE_CHECKBOX(CIVILIAN);
     };
 };
