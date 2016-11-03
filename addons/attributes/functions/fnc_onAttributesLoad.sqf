@@ -108,7 +108,11 @@ GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
     GVAR(isOpen) = false;
 }] call EFUNC(common,addEventHandler);
 
-CONTROL(IDC_EDITATTRIBUTES_TITLE) ctrlSetText getText (_header >> "displayName");
+private _windowTitle = getText (_header >> "displayName");
+private _evalWindowTitle = getNumber (_header >> "evalDisplayName");
+if (_evalWindowTitle == 1) then {_windowTitle = GVAR(AttributesWindow_GlobalArgs) call compile _windowTitle};
+
+CONTROL(IDC_EDITATTRIBUTES_TITLE) ctrlSetText _windowTitle;
 _headerCtrlGroup = CONTROL(IDC_EDITATTRIBUTES_CATEGORIES);
 
 _categories = "true" configClasses (_header >> "AttributeCategories");
