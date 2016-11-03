@@ -45,10 +45,9 @@ class Marker {
         class Color {
             displayName = "Color";
             tooltipText = "Color of the marker.";
-            class Combo {
-                type = "COMBO";
-                values = QUOTE((('true' configClasses (configFile >> 'CfgMarkerColors')) apply {configName _x}));
-                labels = QUOTE((('true' configClasses (configFile >> 'CfgMarkerColors')) apply {getText (_x >> 'name')}));
+            class MarkerColor {
+                type = "MARKERCOLOR";
+                selected = "Default";
             };
         };
         class Alpha {

@@ -41,3 +41,4 @@ PREP(setVirtualGroupLeader);
 PREP(unitsToGroups);
 PREP(waitAndExecute);
 PREP(waitUntilAndExecute);
+PREP(evalColor);
