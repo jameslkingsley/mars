@@ -115,7 +115,7 @@ if (_evalWindowTitle == 1) then {_windowTitle = GVAR(AttributesWindow_GlobalArgs
 CONTROL(IDC_EDITATTRIBUTES_TITLE) ctrlSetText _windowTitle;
 _headerCtrlGroup = CONTROL(IDC_EDITATTRIBUTES_CATEGORIES);
 
-_categories = "true" configClasses (_header >> "AttributeCategories");
+_categories = "true" configClasses (_header);
 _categoryIndex = 0;
 _categoryIDC = IDC_EDITATTRIBUTES_CATEGORIES * 10;
 _ctrlIDC = IDC_EDITATTRIBUTES_CATEGORIES * 1000;
@@ -125,14 +125,14 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
 {
     // Categories
     _catConfig = _x;
-    _items = "true" configClasses (_catConfig >> "AttributeItems");
+    _items = "true" configClasses (_catConfig);
     _itemIDC = (_categoryIDC * 10) + _categoryIndex;
     _itemIndex = 0;
     
     {
         // Items
         _itemConfig = _x;
-        _itemControls = "true" configClasses (_itemConfig >> "AttributeControls");
+        _itemControls = "true" configClasses (_itemConfig);
         _itemLabelY = LABEL_HEIGHT + ITEM_SPACING;
         _itemLabel = _display ctrlCreate ["MARS_gui_ctrlButtonStaticAlignRight", _itemIDC, _headerCtrlGroup];
         
@@ -169,11 +169,8 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
                 format ["'%1'", QGVARMAIN(attributes)],
                 format ["'%1'", _component],
                 format ["'%1'", _attribute],
-                "'AttributeCategories'",
                 format ["'%1'", configName _catConfig],
-                "'AttributeItems'",
                 format ["'%1'", configName _itemConfig],
-                "'AttributeControls'",
                 format ["'%1'", configName _ctrlConfig]
             ] joinString " >> ";
             

@@ -20,22 +20,6 @@ params [["_config", configNull, [configNull]]];
 
 if (isNull _config) exitWith {};
 
-private _parents = configHierarchy _config;
-private _appendNext = false;
-private _nameArray = [];
+private _parents = (configHierarchy _config) apply {configName _x};
 
-{
-    private _className = configName _x;
-
-    if (_appendNext) then {
-        _nameArray pushBack _className;
-    };
-
-    if (_className in ["AttributeCategories","AttributeItems","AttributeControls"]) then {
-        _appendNext = true;
-    } else {
-        _appendNext = false;
-    };
-} forEach _parents;
-
-_nameArray joinString "_"
+_parents joinString "_"
