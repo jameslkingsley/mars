@@ -548,6 +548,14 @@ class GVAR(interface) {
                                     idc = IDC_ASSETBROWSER_TREE_MODULES;
                                     defaultItem[] = {};
                                 };
+                                class CreateMarker: CreateObjectWEST {
+                                    idc = IDC_ASSETBROWSER_TREE_MARKERS;
+                                    defaultItem[] = {};
+                                };
+                                class CreateMarkerAreas: CreateObjectWEST {
+                                    idc = IDC_ASSETBROWSER_TREE_MARKERS_AREAS;
+                                    defaultItem[] = {};
+                                };
                             };
                         };
                     };

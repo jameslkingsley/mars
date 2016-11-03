@@ -74,3 +74,4 @@ PREP(toggleEditPlayers);
 PREP(toggleNightVision);
 PREP(transitionCamera);
 PREP(nearSelectionGroupIcon);
+PREP(openMap);

@@ -237,8 +237,6 @@ switch (toLower _mode) do {
     };
     case "onmousezchanged": {
         _args params ["_ctrl","_zChange"];
-    
-        systemChat str _zChange;
     };
     case "onmousemoving": {
         _args params ["_ctrl","_x","_y"];
@@ -355,11 +353,7 @@ switch (toLower _mode) do {
             case 50: { // M
                 private _map = _display displayCtrl IDC_MAP;
                 private _newState = !(ctrlShown _map);
-                _map ctrlShow _newState;
-                _map ctrlEnable _newState;
-                GVAR(mapOpen) = _newState;
-                _map ctrlMapAnimAdd [0, 0.25, GVAR(camPos)];
-                ctrlMapAnimCommit _map;
+                [_newState] call FUNC(openMap);
             };
             case 57: { // Spacebar
             };

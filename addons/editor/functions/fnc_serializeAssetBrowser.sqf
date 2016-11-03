@@ -242,4 +242,37 @@ _moduleResult pushBack [
     _iModuleComponents
 ];
 
-[_unitResult, _objectResult, _groupResult, _moduleResult]
+_treeIDC = IDC_ASSETBROWSER_TREE_MARKERS;
+private _markerResult = [];
+private _markerComponents = "true" configClasses (configFile >> "CfgMarkerClasses");
+private _iMarkerComponents = [];
+
+{
+    private _markerClass = configName _x;
+    private _classMarkers = format ["getText (_x >> 'markerClass') == '%1' && getNumber (_x >> 'scope') != 0", _markerClass] configClasses (configFile >> "CfgMarkers");
+    private _iMarkers = [];
+
+    {
+        private _marker = _x;
+
+        _iMarkers pushBack [configName _marker, [
+            getText (_marker >> "name"),
+            configName _marker,
+            getText (_marker >> "icon"),
+            getArray (_marker >> "color")
+        ]];
+
+        false
+    } count _classMarkers;
+
+    _iMarkerComponents pushBack [_markerClass, _iMarkers];
+
+    false
+} count _markerComponents;
+
+_markerResult pushBack [
+    _treeIDC,
+    _iMarkerComponents
+];
+
+[_unitResult, _objectResult, _groupResult, _moduleResult, _markerResult]

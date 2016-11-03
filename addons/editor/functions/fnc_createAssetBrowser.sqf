@@ -25,7 +25,7 @@ params [["_display", displayNull, [displayNull]]];
         _tree tvSort [PATH, false];\
     };
 
-GVAR(serializedABData) params ["_units", "_objects", "_groups", "_modules"];
+GVAR(serializedABData) params ["_units", "_objects", "_groups", "_modules", "_markers"];
 
 {
     // Trees
@@ -244,3 +244,46 @@ GVAR(serializedABData) params ["_units", "_objects", "_groups", "_modules"];
 
     false
 } count _modules;
+
+{
+    // Trees
+    _x params ["_treeIDC", "_components"];
+
+    private _tree = _display displayCtrl _treeIDC;
+    tvClear _tree;
+
+    {
+        // Components
+        _x params ["_compClassname", "_compMarkers"];
+
+        private _config = (configFile >> "CfgMarkerClasses" >> _compClassname);
+        private _displayName = getText (_config >> "displayName");
+        private _componentPath = _tree tvAdd [[], _displayName];
+
+        {
+            // Modules
+            _x params ["_mrkClassname", "_mrkData"];
+            _mrkData params ["_displayName", "_tooltipText", "_icon", "_color"];
+
+            diag_log str _color;
+
+            private _markerPath = _tree tvAdd [[_componentPath], _displayName];
+            _tree tvSetTooltip [[_componentPath, _markerPath], _tooltipText];
+            _tree tvSetPicture [[_componentPath, _markerPath], _icon];
+            _tree tvSetPictureColor [[_componentPath, _markerPath], [1,1,1,1]];
+            
+            private _data = format ["['marker', '(configFile >> ''%1'' >> ''%2'')']", "CfgMarkers", _mrkClassname];
+            _tree tvSetData [[_componentPath, _markerPath], _data];
+
+            false
+        } count _compMarkers;
+
+        CLEANUP([_componentPath]);
+
+        false
+    } count _components;
+
+    CLEANUP([]);
+
+    false
+} count _markers;

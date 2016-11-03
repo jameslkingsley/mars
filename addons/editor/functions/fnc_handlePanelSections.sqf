@@ -27,9 +27,9 @@ _args params [
     ["_index", 0]
 ];
 
-if (count _args == 0 || _type == "" || _index < 0) exitWith {};
+if (count _args == 0 || {_type == ""} || {_index < 0}) exitWith {};
 
-_display = GETUVAR(GVAR(interface),displayNull);
+private _display = GETUVAR(GVAR(interface),displayNull);
 
 switch (_type) do {
     case "rightTabs": {
@@ -64,7 +64,9 @@ switch (_type) do {
             [IDC_ASSETBROWSER_TREE_GROUPS_GUER, false],\
             [IDC_ASSETBROWSER_TREE_GROUPS_CIV, false],\
             [IDC_ASSETBROWSER_TREE_GROUPS_EMPTY, false],\
-            [IDC_ASSETBROWSER_TREE_MODULES, false]
+            [IDC_ASSETBROWSER_TREE_MODULES, false],\
+            [IDC_ASSETBROWSER_TREE_MARKERS, false],\
+            [IDC_ASSETBROWSER_TREE_MARKERS_AREAS, false]
         switch (_index) do {
             case 0: { // Objects
                 {(_display displayCtrl (_x select 0)) ctrlShow (_x select 1)} forEach [
@@ -105,7 +107,11 @@ switch (_type) do {
         
         GVAR(abCurrentMode) = _index;
         
-        ["rightSides", [controlNull, GVAR(abCurrentSubmode)]] call FUNC(handlePanelSections);
+        if (GVAR(abCurrentMode) == 3) then {
+            ["rightBrushes", [controlNull, GVAR(abCurrentSubmode)]] call FUNC(handlePanelSections);
+        } else {
+            ["rightSides", [controlNull, GVAR(abCurrentSubmode)]] call FUNC(handlePanelSections);
+        };
     };
     case "rightSides": {
         _sideInt = switch (_index) do {
@@ -117,20 +123,20 @@ switch (_type) do {
         };
         
         _treeParent = _display displayCtrl IDC_ASSETBROWSER_TREE;
-        
         _treeIDC = -1;
-        
-        if (GVAR(abCurrentMode) == 0) then {
-            // Objects
-            _treeIDC = switch (_sideInt) do {
-                case SIDE_WEST: {IDC_ASSETBROWSER_TREE_UNITS_WEST};
-                case SIDE_EAST: {IDC_ASSETBROWSER_TREE_UNITS_EAST};
-                case SIDE_GUER: {IDC_ASSETBROWSER_TREE_UNITS_GUER};
-                case SIDE_CIV: {IDC_ASSETBROWSER_TREE_UNITS_CIV};
-                case SIDE_EMPTY: {IDC_ASSETBROWSER_TREE_UNITS_EMPTY};
+
+        switch (GVAR(abCurrentMode)) do {
+            case 0: {
+                // Objects
+                _treeIDC = switch (_sideInt) do {
+                    case SIDE_WEST: {IDC_ASSETBROWSER_TREE_UNITS_WEST};
+                    case SIDE_EAST: {IDC_ASSETBROWSER_TREE_UNITS_EAST};
+                    case SIDE_GUER: {IDC_ASSETBROWSER_TREE_UNITS_GUER};
+                    case SIDE_CIV: {IDC_ASSETBROWSER_TREE_UNITS_CIV};
+                    case SIDE_EMPTY: {IDC_ASSETBROWSER_TREE_UNITS_EMPTY};
+                };
             };
-        } else {
-            if (GVAR(abCurrentMode) == 1) then {
+            case 1: {
                 // Compositions
                 _treeIDC = switch (_sideInt) do {
                     case SIDE_WEST: {IDC_ASSETBROWSER_TREE_GROUPS_WEST};
@@ -139,11 +145,10 @@ switch (_type) do {
                     case SIDE_CIV: {IDC_ASSETBROWSER_TREE_GROUPS_CIV};
                     case SIDE_EMPTY: {IDC_ASSETBROWSER_TREE_GROUPS_EMPTY};
                 };
-            } else {
-                if (GVAR(abCurrentMode) == 2) then {
-                    // Modules
-                    _treeIDC = IDC_ASSETBROWSER_TREE_MODULES;
-                };
+            };
+            case 2: {
+                // Modules
+                _treeIDC = IDC_ASSETBROWSER_TREE_MODULES;
             };
         };
         
@@ -165,9 +170,23 @@ switch (_type) do {
             IDC_ASSETBROWSER_TREE_GROUPS_GUER,
             IDC_ASSETBROWSER_TREE_GROUPS_CIV,
             IDC_ASSETBROWSER_TREE_GROUPS_EMPTY,
-            IDC_ASSETBROWSER_TREE_MODULES
+            IDC_ASSETBROWSER_TREE_MODULES,
+            IDC_ASSETBROWSER_TREE_MARKERS,
+            IDC_ASSETBROWSER_TREE_MARKERS_AREAS
         ];
         
         GVAR(abCurrentSubmode) = _index;
+    };
+    case "rightBrushes": {
+        switch (_index) do {
+            case 0: {
+                (_display displayCtrl IDC_ASSETBROWSER_TREE_MARKERS) ctrlShow true;
+                (_display displayCtrl IDC_ASSETBROWSER_TREE_MARKERS) ctrlEnable true;
+            };
+            case 1: {/* TODO Areas */};
+        };
+
+        GVAR(abCurrentSubmode) = _index;
+        [true] call FUNC(openMap);
     };
 };
