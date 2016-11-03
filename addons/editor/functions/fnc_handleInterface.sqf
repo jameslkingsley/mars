@@ -23,8 +23,8 @@ switch (toLower _mode) do {
     case "onload": {
         _args params ["_display"];
 
-        SETUVAR(GVAR(interface),_display);
-        SETUVAR(GVAR(cursorHelper),(_display displayCtrl IDC_CURSORHELPER));
+        SETUVAR(GVAR(interface), _display);
+        SETUVAR(GVAR(cursorHelper), (_display displayCtrl IDC_CURSORHELPER));
 
         // [] call FUNC(createEntityList);
         [_display] call FUNC(createAssetBrowser);
@@ -197,16 +197,7 @@ switch (toLower _mode) do {
 
                 [{
                     [{
-                        GVAR(abSelectedObject) = [];
-                        deleteVehicle GVAR(prepSurfaceSphere);
-                        GVAR(prepSurfaceSphere) = objNull;
-                        [] call FUNC(clearABSelection);
-
-                        if (!isNil QGVAR(contextPosLinePFH)) then {
-                            [GVAR(contextPosLinePFH)] call CBA_fnc_removePerFrameHandler;
-                            GVAR(contextMenuOpen) = false;
-                            GVAR(isWaitingForLeftClick) = false;
-                        };
+                        [] call FUNC(killRightClickPenders);
                     }, []] call EFUNC(common,execNextFrame);
                 }, []] call EFUNC(common,execNextFrame);
             };

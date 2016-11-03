@@ -5,7 +5,7 @@ ADDON = false;
 #include "XEH_PREP.hpp"
 
 // Reset the stored display
-SETUVAR(GVAR(interface),displayNull);
+SETUVAR(GVAR(interface), displayNull);
 
 GVAR(pfhArray) = [];
 
