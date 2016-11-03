@@ -24,35 +24,45 @@ GVAR(abSelectedObject) params ["_type", "_classname", "_iconPath", "_color", "_s
 
 private _worldPos = [] call FUNC(getSurfaceUnderCursor);
 
-if (_type != "module") then {
-    private _spawnMachine = [] call CFUNC(getSpawnMachine);
-    private _args = [_worldPos, player, GVAR(abSelectedObject), GVAR(placeVehiclesWithCrew)];
-
-    #ifdef DEBUG_MODE_FULL
-        MARS_LOGINFO_1("Targetting machine: %1", _spawnMachine);
-    #endif
-
-    if (_spawnMachine isEqualTo REMOTE_SERVER) then {
-        [QGVAR(spawnObject), _args] call CBA_fnc_serverEvent;
+switch (_type) do {
+    case "module": {
+        private _config = call compile _groupConfigStr;
+        private _action = getText (_config >> "action");
         
-        #ifdef DEBUG_MODE_FULL
-            MARS_LOGINFO("Spawning on server");
-        #endif
-    } else {
-        [QGVAR(spawnObject), _args, _spawnMachine] call CBA_fnc_targetEvent;
-        
-        #ifdef DEBUG_MODE_FULL
-            MARS_LOGINFO("Spawning on target");
-        #endif
+        if (isNil _action) then {
+            [_worldPos] call compile _action;
+        } else {
+            [_worldPos] call compile format ["_this call %1", _action];
+        };
     };
-} else {
-    private _config = call compile _groupConfigStr;
-    private _action = getText (_config >> "action");
-    
-    if (isNil _action) then {
-        [_worldPos] call compile _action;
-    } else {
-        [_worldPos] call compile format ["_this call %1", _action];
+    case "marker": {
+        private _config = (configFile >> "CfgMarkers" >> _classname);
+        [QADDON, "Marker", [100, 100], [0.2, 0.8], [
+            getText (_config >> "name"),
+            _worldPos
+        ]] call AFUNC(openAttributes);
+    };
+    default {
+        private _spawnMachine = [] call CFUNC(getSpawnMachine);
+        private _args = [_worldPos, player, GVAR(abSelectedObject), GVAR(placeVehiclesWithCrew)];
+
+        #ifdef DEBUG_MODE_FULL
+            MARS_LOGINFO_1("Targetting machine: %1", _spawnMachine);
+        #endif
+
+        if (_spawnMachine isEqualTo REMOTE_SERVER) then {
+            [QGVAR(spawnObject), _args] call CBA_fnc_serverEvent;
+            
+            #ifdef DEBUG_MODE_FULL
+                MARS_LOGINFO("Spawning on server");
+            #endif
+        } else {
+            [QGVAR(spawnObject), _args, _spawnMachine] call CBA_fnc_targetEvent;
+            
+            #ifdef DEBUG_MODE_FULL
+                MARS_LOGINFO("Spawning on target");
+            #endif
+        };
     };
 };
 

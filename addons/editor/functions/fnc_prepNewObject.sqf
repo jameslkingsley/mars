@@ -65,7 +65,7 @@ if (_groupConfigStr != "" && {_type != "module"}) then {
     ];
 };
 
-if (_type != "module") then {
+if !(_type in ["module", "marker"]) then {
     _surfacePos = ASLtoAGL ([GVAR(prepSurfaceSphere)] call FUNC(getSurfaceUnderCursor));
 
     if (round (_surfacePos select 2) > round (_worldPos select 2)) then {
