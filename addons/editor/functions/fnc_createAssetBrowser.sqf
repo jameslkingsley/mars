@@ -272,7 +272,7 @@ GVAR(serializedABData) params ["_units", "_objects", "_groups", "_modules", "_ma
             _tree tvSetPicture [[_componentPath, _markerPath], _icon];
             _tree tvSetPictureColor [[_componentPath, _markerPath], [1,1,1,1]];
             
-            private _data = format ["['marker', '(configFile >> ''%1'' >> ''%2'')']", "CfgMarkers", _mrkClassname];
+            private _data = format ["['marker', '(configFile >> ''CfgMarkers'' >> ''%1'')']", _mrkClassname];
             _tree tvSetData [[_componentPath, _markerPath], _data];
 
             false
