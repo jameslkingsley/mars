@@ -28,7 +28,7 @@ _controlData params [
     ["_configStr", "", [""]]
 ];
 
-if (_type == "" || _config == "") exitWith {};
+if (_type == "" || {_config == ""}) exitWith {};
 
 switch (_type) do {
     case "unit": {
@@ -60,7 +60,16 @@ switch (_type) do {
     case "module": {
         private _config = call compile _configStr;
         private _classname = configName _config;
-        private _icon = [getText (_config >> "icon"), QPATHTOF(data\PanelRight\modemodules_ca.paa)] select (isNull (_config >> "icon") || {getText (_config >> "icon") == ""});
+        private _icon = [
+            getText (_config >> "icon"),
+            QPATHTOF(data\PanelRight\modemodules_ca.paa)
+        ] select (isNull (_config >> "icon") || {getText (_config >> "icon") == ""});
         GVAR(abSelectedObject) = [_type, _classname, _icon, [1,1,1,1], -1, _configStr];
+    };
+    case "marker": {
+        private _config = call compile _configStr;
+        private _classname = configName _config;
+        private _icon = getText (_config >> "icon");
+        GVAR(abSelectedObject) = [_type, _classname, _icon, [1,1,1,1], -1];
     };
 };

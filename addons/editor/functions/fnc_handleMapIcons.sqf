@@ -82,3 +82,21 @@ _map drawIcon [
 
     false
 } count GVAR(serializedIcons);
+
+// Asset browser markers
+if (GVAR(abSelectedObject) isEqualTo []) exitWith {};
+
+GVAR(abSelectedObject) params ["_type", "_classname", "_iconPath", "_color"];
+private _worldPos = _map ctrlMapScreenToWorld getMousePosition;
+
+_map drawIcon [
+    _iconPath,
+    _color,
+    _worldPos,
+    24,
+    24,
+    0,
+    "",
+    0,
+    0.032
+];

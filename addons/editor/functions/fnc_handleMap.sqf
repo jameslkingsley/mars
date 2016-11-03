@@ -33,6 +33,10 @@ _ctrlMap ctrlAddEventHandler ["MouseMoving", {
         ["_mouseIn", false, [true]]
     ];
 
+    if (_ctrlMap getVariable [QGVAR(rightButton), false]) then {
+        GVAR(canContext) = false;
+    };
+
     private _mouseOver = ctrlMapMouseOver _ctrlMap;
     private _rightButton = _ctrlMap getVariable [QGVAR(rightButton), false];
 
@@ -49,14 +53,26 @@ _ctrlMap ctrlAddEventHandler ["MouseMoving", {
     };
 }];
 
+_ctrlMap ctrlAddEventHandler ["MouseHolding", {
+    params [
+        ["_ctrlMap", controlNull, [controlNull]],
+        ["_xPos", -1, [0]],
+        ["_yPos", -1, [0]],
+        "_mouseOver"
+    ];
+
+    if !(_ctrlMap getVariable [QGVAR(rightButton), false]) then {
+        GVAR(canContext) = true;
+    };
+}];
+
 _ctrlMap ctrlAddEventHandler ["MouseButtonDown", {
     params ["_control", "_button", "_screenPosX", "_screenPosY"];
 
     if (_button == 0) then {
+        _control ctrlMapCursor ["", "Track"];
         _control setVariable [QGVAR(leftButton), true];
         _control setVariable [QGVAR(rightButton), false];
-
-        _control ctrlMapCursor ["", "Track"];
     } else {
         _control ctrlMapCursor ["", "Move"];
         _control setVariable [QGVAR(leftButton), false];
@@ -70,6 +86,16 @@ _ctrlMap ctrlAddEventHandler ["MouseButtonUp", {
     _control ctrlMapCursor ["", "Track"];
     _control setVariable [QGVAR(leftButton), false];
     _control setVariable [QGVAR(rightButton), false];
+
+    switch (true) do {
+        case (_button == 1 && GVAR(canContext)): {
+            [{
+                [{
+                    [] call FUNC(killRightClickPenders);
+                }, []] call EFUNC(common,execNextFrame);
+            }, []] call EFUNC(common,execNextFrame);
+        };
+    };
 }];
 
 _ctrlMap ctrlAddEventHandler ["Draw", {
