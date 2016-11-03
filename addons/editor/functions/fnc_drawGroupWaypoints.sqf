@@ -35,7 +35,7 @@ _groups = _groups arrayIntersect _groups;
         if (currentWaypoint _group <= (_forEachIndex + 1)) then {
             _pos set [2, 0.25];
 
-            [_previousPos, _pos, [1,1,1,1]] call CFUNC(drawThickLine3D);
+            drawLine3D [_previousPos, _pos, [1,1,1,1]];
 
             drawIcon3D [
                 QPATHTOF(data\waypoint_ca.paa),
@@ -44,9 +44,9 @@ _groups = _groups arrayIntersect _groups;
                 1,
                 1,
                 0,
-                "",
+                str (_forEachIndex + 1),
                 1,
-                0.03,
+                0.032,
                 "PuristaBold",
                 "center"
             ];
