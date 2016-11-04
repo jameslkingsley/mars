@@ -43,6 +43,10 @@ if (_name in allMapMarkers) then {
     _name = [_name, round time] joinString "_";
 };
 
+if (getText (configFile >> "CfgMarkers" >> _type >> "markerClass") == "Flags") then {
+    _color = "ColorWhite";
+};
+
 private _marker = createMarkerLocal [_name, _pos];
 _marker setMarkerShapeLocal "ICON";
 _marker setMarkerTypeLocal _type;

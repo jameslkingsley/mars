@@ -206,11 +206,13 @@ private _outputLines = [];
 private _outputMarkers = [];
 
 {
-    private _texture = getText (configfile >> "CfgMarkers" >> markerType _x >> "icon");
+    private _icon = (configfile >> "CfgMarkers" >> markerType _x >> "icon");
+    private _texture = (configfile >> "CfgMarkers" >> markerType _x >> "texture");
+    private _useTexture = if (isNull _texture) then {getText _icon} else {getText _texture};
     private _color = [getArray (configFile >> "CfgMarkerColors" >> markerColor _x >> "color")] call CFUNC(evalColor);
 
     _outputMarkers pushBack [
-        _texture,
+        _useTexture,
         _color,
         markerPos _x,
         (markerSize _x) select 0,
