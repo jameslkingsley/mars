@@ -20,25 +20,9 @@
 private _camPosASL = GVAR(camPos);
 
 {
-    private _texture = getText (configfile >> "CfgMarkers" >> markerType _x >> "icon");
-    private _color = [getArray (configFile >> "CfgMarkerColors" >> markerColor _x >> "color")] call CFUNC(evalColor);
-    private _alpha = linearConversion [0, GVAR(iconDrawDistance), ((markerPos _x) distance _camPosASL), 0.75, 0, true];
-
-    _color set [3, _alpha];
-
-    drawIcon3D [
-        _texture,
-        _color,
-        markerPos _x,
-        (markerSize _x) select 0,
-        (markerSize _x) select 1,
-        markerDir _x,
-        markerText _x,
-        0,
-        0.032,
-        "PuristaBold",
-        "center"
-    ];
-
+    private _color = _x select 1;
+    _color set [3, linearConversion [0, GVAR(iconDrawDistance), ((_x select 2) distance _camPosASL), 0.75, 0, true]];
+    _x set [1, _color];
+    drawIcon3D _x;
     false
-} count allMapMarkers;
+} count GVAR(serializedMarkers);

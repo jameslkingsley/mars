@@ -51,6 +51,7 @@ GVAR(isSelectionBoxSpawned) = false;
 // Icons
 GVAR(serializedIcons) = [];
 GVAR(serializedLines) = [];
+GVAR(serializedMarkers) = [];
 GVAR(groupIcons) = [];
 GVAR(unitIcons) = [];
 GVAR(activeGroupIcon) = grpNull;

@@ -203,5 +203,29 @@ private _outputLines = [];
     !(typeOf _x in ["GroundWeaponHolder","WeaponHolderSimulated"])
 }) - (entities "Animal"));
 
+private _outputMarkers = [];
+
+{
+    private _texture = getText (configfile >> "CfgMarkers" >> markerType _x >> "icon");
+    private _color = [getArray (configFile >> "CfgMarkerColors" >> markerColor _x >> "color")] call CFUNC(evalColor);
+
+    _outputMarkers pushBack [
+        _texture,
+        _color,
+        markerPos _x,
+        (markerSize _x) select 0,
+        (markerSize _x) select 1,
+        markerDir _x,
+        markerText _x,
+        0,
+        0.032,
+        "PuristaBold",
+        "center"
+    ];
+
+    false
+} count allMapMarkers;
+
 GVAR(serializedIcons) = _outputIcons;
 GVAR(serializedLines) = _outputLines;
+GVAR(serializedMarkers) = _outputMarkers;

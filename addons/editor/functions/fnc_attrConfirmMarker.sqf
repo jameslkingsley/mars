@@ -51,3 +51,4 @@ private _sides = [];
 ]] call CBA_fnc_globalEventJIP;
 
 ["Marker Created"] call FUNC(notification);
+[] call FUNC(serializeDrawing);
