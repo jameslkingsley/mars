@@ -1,7 +1,7 @@
 class Marker {
     displayName = QUOTE(format [ARR_2('%1 Marker', (_this select 0))]);
     evalDisplayName = 1;
-    actionConfirm = "";
+    actionConfirm = QFUNC(attrConfirmMarker);
     actionCancel = "";
     class All {
         class Name {
@@ -58,7 +58,7 @@ class Marker {
                 position = 1;
             };
         };
-        class Visible {
+        class BLUFOR {
             displayName = "Visible";
             tooltipText = "Which sides will this marker be visible to.";
             class Checkbox {

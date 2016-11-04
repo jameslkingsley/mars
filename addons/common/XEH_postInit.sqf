@@ -12,3 +12,7 @@ if (isServer) then {
 ["isLeader", {{leader _x == _x} count _this == count _this}] call FUNC(addException);
 ["allSameClass", {[_this] call FUNC(isAllSameClass)}] call FUNC(addException);
 ["vehicleHasAmmo", {{[_x] call FUNC(hasAmmo)} count _this == count _this}] call FUNC(addException);
+
+[QGVAR(createMarkerLocal), {
+    _this call FUNC(createMarkerLocal);
+}] call CBA_fnc_addEventHandler;

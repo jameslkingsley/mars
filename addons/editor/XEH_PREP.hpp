@@ -76,3 +76,5 @@ PREP(transitionCamera);
 PREP(nearSelectionGroupIcon);
 PREP(openMap);
 PREP(killRightClickPenders);
+PREP(attrConfirmMarker);
+PREP(drawMarkers);

@@ -39,7 +39,8 @@ switch (_type) do {
         private _config = (configFile >> "CfgMarkers" >> _classname);
         [QADDON, "Marker", [100, 100], [0.2, 0.8], [
             getText (_config >> "name"),
-            _worldPos
+            _worldPos,
+            _classname
         ]] call AFUNC(openAttributes);
     };
     default {
