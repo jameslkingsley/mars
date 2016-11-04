@@ -19,7 +19,7 @@
 {[_x] call CBA_fnc_removePerFrameHandler} forEach GVAR(pfhArray);
 
 if (!isNil QGVAR(drawingMissionEH)) then {
-    removeMissionEventHandler ["Draw3D", GVAR(drawingMissionEH)];
+    removeMissionEventHandler ["EachFrame", GVAR(drawingMissionEH)];
     GVAR(drawingMissionEH) = nil;
 };
 
