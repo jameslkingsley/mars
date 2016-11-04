@@ -22,9 +22,9 @@ params [
     ["_key", "", [""]]
 ];
 
-if (_controls isEqualTo [] || _key isEqualTo "") exitWith {};
+if (_controls isEqualTo [] || {_key isEqualTo ""}) exitWith {};
 
-private _result = "Error: Could not find control";
+private _result = "_ERROR_";
 
 {
     if ((_x select 0) isEqualType []) then {
@@ -40,7 +40,9 @@ private _result = "Error: Could not find control";
             false
         } count _x;
 
-        _result = _combinedData;
+        if !(_combinedData isEqualTo []) then {
+            _result = _combinedData;
+        };
     } else {
         _x params ["_id", "_data"];
 

@@ -21,5 +21,6 @@ params [["_config", configNull, [configNull]]];
 if (isNull _config) exitWith {};
 
 private _parents = (configHierarchy _config) apply {configName _x};
+_parents deleteRange [0, (count _parents) - 3];
 
 _parents joinString "_"

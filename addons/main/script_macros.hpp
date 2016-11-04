@@ -249,6 +249,7 @@
 #define AFUNC(A) EFUNC(attributes,A)
 
 #define ATTR_ARGS EGVAR(attributes,AttributesWindow_GlobalArgs)
+#define ATTR_VALUE(ARG0) ([ARR_2(_data, QUOTE(ARG0))] call AFUNC(getControlValue))
 
 #define INT2BOOL(A) ([false,true] select A)
 #define BOOL2INT(A) ([0,1] select A)
