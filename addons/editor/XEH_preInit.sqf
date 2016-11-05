@@ -8,6 +8,10 @@ ADDON = false;
 SETUVAR(GVAR(interface), displayNull);
 
 GVAR(pfhArray) = [];
+GVAR(objectUnderCursor) = objNull;
+
+GVAR(capturedEntities) = [];
+GVAR(capturedMarkers) = [];
 
 // Camera
 GVAR(availableModes) = [0];

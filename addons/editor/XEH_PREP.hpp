@@ -79,3 +79,6 @@ PREP(killRightClickPenders);
 PREP(attrConfirmMarker);
 PREP(drawMarkers);
 PREP(getSelectedMarker);
+PREP(drawAll3D);
+PREP(drawAll2D);
+PREP(captureEntities);

@@ -111,21 +111,21 @@ GVAR(drawingMissionEH) = addMissionEventHandler ["EachFrame", {
     // BEGIN_COUNTER(draw3D);
     
     // Tagging handler
-    if (!isNull GVAR(prepDragObjectUnderCursor) || !(GVAR(mouse) select 0)) then {
+    /*if (!isNull GVAR(prepDragObjectUnderCursor) || !(GVAR(mouse) select 0)) then {
         if (GVAR(canContext) || {!(GVAR(selection) isEqualTo [])}) then {
             [] call FUNC(handleObjectBoxes);
         };
-    };
+    };*/
 
     // Icons handler
-    [] call FUNC(handleIcons);
+    /*[] call FUNC(handleIcons);
     [] call FUNC(handleLines);
     [] call FUNC(handleLocationIcons);
     [] call FUNC(drawGroupWaypoints);
-    [] call FUNC(drawMarkers);
+    [] call FUNC(drawMarkers);*/
 
     // Selection handler
-    {
+    /*{
         private _color = [[0,0,0,1], [side group _x] call CFUNC(getSideColor)] select (alive _x);
         private _isDirectionChanging = _x getVariable [QGVAR(isDirectionChanging), false];
         
@@ -134,19 +134,35 @@ GVAR(drawingMissionEH) = addMissionEventHandler ["EachFrame", {
         };
 
         false
-    } count (GVAR(selection) select {!(_x isEqualTo GVAR(prepSurfaceSphere))});
+    } count (GVAR(selection) select {!(_x isEqualTo GVAR(prepSurfaceSphere))});*/
     
     // END_COUNTER(draw3D);
 }];
 
 GVAR(pfh) = [{
+    BEGIN_COUNTER(onFrame);
+
+    GVAR(objectUnderCursor) = [] call FUNC(objectUnderCursor);
+    [] call FUNC(captureEntities);
+
+    if (GVAR(mapOpen)) then {
+        // Map Open
+        [] call FUNC(drawAll2D);
+    } else {
+        // Map Closed
+        [] call FUNC(drawAll3D);
+    };
+
     // Asset browser placing objects
-    [] call FUNC(prepNewObject);
+    // [] call FUNC(prepNewObject);
+
+    END_COUNTER(onFrame);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 GVAR(pfhArray) pushBackUnique GVAR(pfh);
 
 GVAR(drawingPFH) = [{
     GVAR(serializeDrawingHandle) = [] spawn FUNC(serializeDrawing);
+    [] call CFUNC(dumpPerformanceCounters);
 }, 3, []] call CBA_fnc_addPerFrameHandler;
 GVAR(pfhArray) pushBackUnique GVAR(drawingPFH);
 
