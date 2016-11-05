@@ -54,7 +54,10 @@ GVAR(serializedLines) = [];
 GVAR(serializedMarkers) = [];
 GVAR(groupIcons) = [];
 GVAR(unitIcons) = [];
+GVAR(markerIcons) = [];
 GVAR(activeGroupIcon) = grpNull;
+GVAR(hoveredMarker) = "";
+GVAR(selectedMarkers) = [];
 GVAR(iconHoverSize) = [QGVAR(iconHoverSize), ICON_HOVER_SIZE] call CFUNC(loadSetting);
 GVAR(iconDrawDistance) = [QGVAR(iconDrawDistance), ICON_FADE_DISTANCE] call CFUNC(loadSetting);
 

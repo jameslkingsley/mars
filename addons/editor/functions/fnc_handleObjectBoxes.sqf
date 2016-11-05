@@ -25,8 +25,16 @@ if (isNull _object) exitWith {
         private _selectedGroup = [] call FUNC(selectGroupIcon);
 
         if (isNull _selectedGroup) then {
-            GVAR(activeGroupIcon) = objNull;
-            [] call FUNC(setCursor);
+            private _selectedMarker = [] call FUNC(getSelectedMarker);
+
+            if (_selectedMarker != "") then {
+                GVAR(hoveredMarker) = _selectedMarker;
+                ["select"] call FUNC(setCursor);
+            } else {
+                GVAR(hoveredMarker) = "";
+                GVAR(activeGroupIcon) = objNull;
+                [] call FUNC(setCursor);
+            };
         } else {
             GVAR(activeGroupIcon) = _selectedGroup;
             ["select"] call FUNC(setCursor);

@@ -78,3 +78,4 @@ PREP(openMap);
 PREP(killRightClickPenders);
 PREP(attrConfirmMarker);
 PREP(drawMarkers);
+PREP(getSelectedMarker);

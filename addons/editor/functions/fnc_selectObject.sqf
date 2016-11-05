@@ -27,7 +27,21 @@ if (_objects isEqualTo []) then {
         private _selectedGroup = [] call FUNC(selectGroupIcon);
 
         if (isNull _selectedGroup) then {
-            GVAR(selection) = [];
+            private _selectedMarker = [] call FUNC(getSelectedMarker);
+
+            if (_selectedMarker != "") then {
+                if (!GVAR(ctrlKey)) then {
+                    GVAR(hoveredMarker) = _selectedMarker;
+                    GVAR(selectedMarkers) = [_selectedMarker];
+                } else {
+                    GVAR(hoveredMarker) = "";
+                    GVAR(selectedMarkers) pushBackUnique _selectedMarker;
+                };
+            } else {
+                GVAR(selection) = [];
+                GVAR(selectedMarkers) = [];
+                GVAR(hoveredMarker) = "";
+            };
         } else {
             {
                 [_x, !(vehicle _x == _x), false] call FUNC(highlightObject);
