@@ -5,4 +5,4 @@
     _unit doArtilleryFire [_pos, _ammo, _count];
 }] call CBA_fnc_addEventHandler;
 
-["isArtillery", {[_this] call FUNC(isArtillery)}] call FUNC(addException);
+["isArtillery", {[_this] call FUNC(isArtillery)}] call CFUNC(addException);

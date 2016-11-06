@@ -25,7 +25,7 @@ params [
 
 private _except = (GVAR(exceptions) select {(_x select 0) == _name}) param [0, []];
 
-if (_except isEqualTo []) exitWith {true};
+if (_except isEqualTo []) exitWith {systemChat format ["Couldn't find %1", _name];true};
 
 _except params ["_key", "_code"];
 

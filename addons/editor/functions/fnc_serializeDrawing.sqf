@@ -212,6 +212,7 @@ private _outputMarkers = [];
     private _color = [getArray (configFile >> "CfgMarkerColors" >> markerColor _x >> "color")] call CFUNC(evalColor);
 
     _outputMarkers pushBack [
+        _x,
         _useTexture,
         _color,
         markerPos _x,
