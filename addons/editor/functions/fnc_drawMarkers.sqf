@@ -17,8 +17,6 @@
 
 #include "script_component.hpp"
 
-systemChat str GVAR(selectedMarkers);
-
 {
     _x params ["_name", "_texture", "_color", "_pos", "_width", "_height", "_dir", "_text"];
 

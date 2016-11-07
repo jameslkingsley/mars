@@ -83,6 +83,8 @@ _ctrlMap ctrlAddEventHandler ["MouseButtonDown", {
 _ctrlMap ctrlAddEventHandler ["MouseButtonUp", {
     params ["_control", "_button", "_screenPosX", "_screenPosY"];
 
+    _this call FUNC(handleCameraTeleport);
+
     _control ctrlMapCursor ["", "Track"];
     _control setVariable [QGVAR(leftButton), false];
     _control setVariable [QGVAR(rightButton), false];
@@ -134,7 +136,7 @@ _ctrlMap ctrlAddEventHandler ["Draw", {
     } count GVAR(serializedIcons);
 }];
 
-GVAR(mapPFH) = [{
+/*GVAR(mapPFH) = [{
     if !(GVAR(mapOpen)) exitWith {};
 }, 0, []] call CBA_fnc_addPerFrameHandler;
-GVAR(pfhArray) pushBackUnique GVAR(mapPFH);
+GVAR(pfhArray) pushBackUnique GVAR(mapPFH);*/

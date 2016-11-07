@@ -20,13 +20,25 @@
 #include "script_component.hpp"
 
 params [
-    ["_unit", objNull, [objNull]],
+    ["_unit", objNull, [objNull, grpNull]],
     ["_attr", "", [""]],
     ["_state", true, [true]]
 ];
 
-if (_state) then {
-    _unit disableAI _attr;
+private _units = [];
+
+if (_unit isEqualType objNull) then {
+    _units = [_unit];
 } else {
-    _unit enableAI _attr;
+    if (_unit isEqualType grpNull) then {
+        _units = units _unit;
+    };
 };
+
+{
+    if (_state) then {
+        _x disableAI _attr;
+    } else {
+        _x enableAI _attr;
+    };
+} forEach _units;
