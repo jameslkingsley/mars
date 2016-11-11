@@ -142,15 +142,17 @@ GVAR(drawingMissionEH) = addMissionEventHandler ["EachFrame", {
 GVAR(pfh) = [{
     BEGIN_COUNTER(onFrame);
 
+    private _display = GETUVAR(GVAR(interface), displayNull);
     GVAR(objectUnderCursor) = [] call FUNC(objectUnderCursor);
-    [] call FUNC(captureEntities);
+    // [] call FUNC(captureEntities);
 
     if (GVAR(mapOpen)) then {
         // Map Open
-        [] call FUNC(drawAll2D);
+        [_display] call FUNC(drawAll2D);
     } else {
         // Map Closed
-        [] call FUNC(drawAll3D);
+        [_display] call FUNC(drawAll3D);
+        [_display] call FUNC(updateIcons);
     };
 
     // Asset browser placing objects
@@ -161,9 +163,9 @@ GVAR(pfh) = [{
 GVAR(pfhArray) pushBackUnique GVAR(pfh);
 
 GVAR(drawingPFH) = [{
-    GVAR(serializeDrawingHandle) = [] spawn FUNC(serializeDrawing);
+    GVAR(serializeIconHandle) = [] spawn FUNC(serializeIcons);
     [] call CFUNC(dumpPerformanceCounters);
-}, 3, []] call CBA_fnc_addPerFrameHandler;
+}, 5, []] call CBA_fnc_addPerFrameHandler;
 GVAR(pfhArray) pushBackUnique GVAR(drawingPFH);
 
 // GVAR(testPFH) = [{[] call CFUNC(dumpPerformanceCounters)}, 5, []] call CBA_fnc_addPerFrameHandler;

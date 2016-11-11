@@ -82,3 +82,5 @@ PREP(getSelectedMarker);
 PREP(drawAll3D);
 PREP(drawAll2D);
 PREP(captureEntities);
+PREP(updateIcons);
+PREP(serializeIcons);

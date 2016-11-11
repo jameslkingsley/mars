@@ -1,5 +1,7 @@
 #include "script_component.hpp"
 
+enableSaving [false, false];
+
 if (isServer) then {
     private _settings = (configFile >> "ACE_ServerSettings" >> QGVAR(players));
     

@@ -16,75 +16,68 @@
  */
 
 #include "script_component.hpp"
+#include "\z\mars\addons\common\macros.hpp"
+
+//--- GVAR(camPos) is ASL
 
 BEGIN_COUNTER(drawAll3D);
 
-private _camPosASL = GVAR(camPos);
-GVAR(groupIcons) = [];
-GVAR(unitIcons) = [];
+params ["_display"];
 
-private _rendered = 0;
+private _index = 0;
 
 {
-    _x params [
-        "_object",
-        ["_icon", ""],
-        ["_color", [0,0,0,0]],
-        ["_zOffset", 0],
-        ["_shadow", 1],
-        ["_isGroupMarker", false],
-        ["_fixedDistance", GVAR(iconDrawDistance)],
-        ["_cursorScale", 0.033],
-        ["_displayText", ""]
-    ];
-
-    private _pos = (getPosASLVisual _object) vectorAdd [0, 0, _zOffset];
-    private _alpha = linearConversion [0, _fixedDistance, (_pos distance _camPosASL), 1, 0, true];
-    private _width = 1;
-    private _height = 1;
-
-    if (_isGroupMarker) then {
-        GVAR(groupIcons) pushBack [ASLtoAGL _pos, group _object];
-
-        if (_object in GVAR(selection)) then {
-            _alpha = 1;
-            _width = GVAR(iconHoverSize);
-            _height = GVAR(iconHoverSize);
-        } else {
-            if (_alpha > 0.25) then {
-                private _iconScreenPos = worldToScreen (ASLtoAGL _pos);
-
-                if (!(_iconScreenPos isEqualTo []) && {(_iconScreenPos distance2D GVAR(mousePos)) <= _cursorScale}) then {
-                    _alpha = 1;
-                    _width = GVAR(iconHoverSize);
-                    _height = GVAR(iconHoverSize);
-                    ["select"] call FUNC(setCursor);
-                };
-            };
-        };
-    } else {
-        GVAR(unitIcons) pushBack [ASLtoAGL _pos, _object];
-    };
-
-    _color set [3, [_alpha, 1] select (_object in GVAR(selection))];
+    private _object = _x;
+    private _posAGL = getPosVisual _object;
+    private _screenPos = worldToScreen _posAGL;
+    private _inViewport = !(_screenPos isEqualTo []);
+    private _iconIDC = _object getVariable [QGVAR(iconIDC), -1];
+    private _thisIDC = 6562 + _index;
 
     drawIcon3D [
-        _icon,
-        _color,
-        ASLtoAGL _pos,
-        _width,
-        _height,
+        "",
+        [1,0,0,1],
+        _posAGL,
+        1,
+        1,
         0,
-        _displayText,
-        _shadow,
-        0.031
+        str _thisIDC
     ];
 
-    _rendered = _rendered + 1;
+    if (_iconIDC == -1) then {
+        private _iconCtrl = _display ctrlCreate ["MARS_gui_ctrlStaticBackground", _thisIDC];
+
+        if (_inViewport) then {
+            private _ctrlPos = _screenPos;
+            _ctrlPos append [5 * GRID_W, 5 * GRID_H];
+            _iconCtrl ctrlEnable true;
+            _iconCtrl ctrlShow true;
+            _iconCtrl ctrlSetPosition _ctrlPos;
+        } else {
+            _iconCtrl ctrlEnable false;
+            _iconCtrl ctrlShow false;
+        };
+
+        _iconCtrl ctrlCommit 0;
+        _object setVariable [QGVAR(iconIDC), _thisIDC];
+    } else {
+        private _iconCtrl = _display displayCtrl _iconIDC;
+
+        if (_inViewport) then {
+            _iconCtrl ctrlEnable true;
+            _iconCtrl ctrlShow true;
+            _iconCtrl ctrlSetPosition _screenPos;
+        } else {
+            _iconCtrl ctrlEnable false;
+            _iconCtrl ctrlShow false;
+        };
+
+        _iconCtrl ctrlCommit 0;
+    };
+
+    INC(_index);
 
     false
-} count GVAR(serializedIcons);
-
-systemChat format ["Drew %1 / %2 Entities", _rendered, count GVAR(serializedIcons)];
+} count (entities "All");
 
 END_COUNTER(drawAll3D);

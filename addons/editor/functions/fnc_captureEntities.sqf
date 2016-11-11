@@ -19,12 +19,12 @@
 
 private _entities = (entities "All") select {
     !((worldToScreen (getPos _x)) isEqualTo []) &&
-    {(_x distance GVAR(camPos)) <= GVAR(iconDrawDistance)}
+    {(_x distance GVAR(camera)) <= GVAR(iconDrawDistance)}
 };
 
 private _markers = allMapMarkers select {
     !((worldToScreen (markerPos _x)) isEqualTo []) &&
-    {((markerPos _x) distance GVAR(camPos)) <= GVAR(iconDrawDistance)}
+    {((markerPos _x) distance GVAR(camera)) <= GVAR(iconDrawDistance)}
 };
 
 GVAR(capturedEntities) = _entities;
