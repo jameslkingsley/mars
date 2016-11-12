@@ -4,8 +4,6 @@
     <sup>
         <strong>
             Requires the latest version of <a href="https://github.com/CBATeam/CBA_A3/releases">CBA A3</a>
-            <br />
-            Using Arma 3 1.60 (Stable)
         </strong>
         <br /><br />
     </sup>
