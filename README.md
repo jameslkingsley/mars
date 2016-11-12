@@ -13,9 +13,6 @@
     <a href="https://github.com/marseditor/mars/blob/master/LICENSE">
         <img src="https://img.shields.io/badge/License-GPLv3-red.svg?label=license" alt="Mars License">
     </a>
-    <a href="https://mars-slackin.herokuapp.com/">
-        <img src="https://mars-slackin.herokuapp.com/badge.svg?label=slack" alt="Mars Slack">
-    </a>
     <a href="https://travis-ci.org/marseditor/mars">
         <img src="https://img.shields.io/travis/marseditor/mars.svg?label=build" alt="Mars Build Status">
     </a>
