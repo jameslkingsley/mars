@@ -16,28 +16,42 @@
  */
 
 #include "script_component.hpp"
+#include "\z\mars\addons\common\macros.hpp"
+
+BEGIN_COUNTER(updateIcons);
+
+private _index = 0;
 
 {
     private _ctrl = _x;
     private _object = _ctrl getVariable [QGVAR(object), objNull];
-    private _hovered = _ctrl getVariable [QGVAR(hovered), false];
 
     if (!isNull _object) then {
         private _posAGLWorld = getPosVisual _object;
-        private _posScreen = worldToScreen _posAGLWorld;
+        private _posASLWorld = getPosASLVisual _object;
+        private _posScreen = worldToScreen (ASLtoAGL _posASLWorld);
 
-        if !(_posScreen isEqualTo []) then {
+        if (!(_posScreen isEqualTo []) && {_posASLWorld distance GVAR(camPos) <= GVAR(iconDrawDistance)}) then {
             // In viewport
+            private _hovered = _ctrl getVariable [QGVAR(hovered), false];
+            private _dimensions = _ctrl getVariable [QGVAR(dimensions), [5 * GRID_W, 5 * GRID_H]];
+            private _color = _ctrl getVariable [QGVAR(color), [0,0,0,1]];
+
+            _posScreen params ["_psX", "_psY"];
+            _dimensions params ["_sizeW", "_sizeH"];
+
             _ctrl ctrlEnable true;
             _ctrl ctrlShow true;
-            _ctrl ctrlSetPosition _posScreen;
-            _ctrl ctrlCommit 0;
 
-            if (_hovered) then {
-                _ctrl ctrlSetTextColor [0,0,1,1];
-            } else {
-                _ctrl ctrlSetTextColor [1,0,0,1];
-            };
+            _ctrl ctrlSetPosition [
+                // Subtract safezones since control is inside
+                // the mouse handler controls group
+                (_psX - (_sizeW / 2)) - safeZoneX,
+                (_psY - (_sizeH / 2)) - safeZoneY
+            ];
+
+            _ctrl ctrlCommit 0;
+            _ctrl ctrlSetTextColor _color;
         } else {
             // Not in viewport
             _ctrl ctrlEnable false;
@@ -46,9 +60,16 @@
     } else {
         // Object no longer exists
         ctrlDelete _ctrl;
+        private _currentControls = GETUVAR(GVAR(iconControls), []);
+        _currentControls deleteAt _index;
+        SETUVAR(GVAR(iconControls), _currentControls);
     };
 
-    _ctrl ctrlCommit ([0, 0.1] select _hovered);
+    _ctrl ctrlCommit 0;
+
+    INC(_index);
 
     false
 } count GETUVAR(GVAR(iconControls), []);
+
+END_COUNTER(updateIcons);

@@ -29,8 +29,6 @@ params [
 
 if (isNull _target) exitWith {};
 
-// _color set [3, [0.5, 1] select (_target in GVAR(selection))];
-_color set [3, 1];
 (boundingBoxReal _target) params ["_box0", "_box1"];
 
 {

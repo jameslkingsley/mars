@@ -144,19 +144,9 @@ GVAR(pfh) = [{
 
     private _display = GETUVAR(GVAR(interface), displayNull);
     GVAR(objectUnderCursor) = [] call FUNC(objectUnderCursor);
-    // [] call FUNC(captureEntities);
-
-    if (GVAR(mapOpen)) then {
-        // Map Open
-        // [_display] call FUNC(drawAll2D);
-    } else {
-        // Map Closed
-        // [_display] call FUNC(drawAll3D);
-        // [] call FUNC(updateIcons);
-    };
 
     // Asset browser placing objects
-    // [] call FUNC(prepNewObject);
+    [] call FUNC(prepNewObject);
 
     END_COUNTER(onFrame);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
@@ -164,7 +154,26 @@ GVAR(pfhArray) pushBackUnique GVAR(pfh);
 
 GVAR(draw3DEH) = addMissionEventHandler ["Draw3D", {
     BEGIN_COUNTER(Draw3D);
+
+    if (!isNull GVAR(prepDragObjectUnderCursor) || {!(GVAR(mouse) select 0)}) then {
+        if (GVAR(canContext) || {!(GVAR(selection) isEqualTo [])}) then {
+            if (!isNull GVAR(objectUnderCursor)) then {
+                [
+                    GVAR(objectUnderCursor),
+                    (GVAR(objectUnderCursor) getVariable [QGVAR(color), [0,0,0,1]])
+                ] call FUNC(drawBoundingBox);
+                ["select"] call FUNC(setCursor);
+                GVAR(bbOpen) = false;
+            } else {
+                [] call FUNC(setCursor);
+                GVAR(bbOpen) = true;
+            };
+        };
+    };
+
+    [] call FUNC(handleCursor);
     [] call FUNC(updateIcons);
+
     END_COUNTER(Draw3D);
 }];
 

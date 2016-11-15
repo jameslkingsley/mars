@@ -17,6 +17,8 @@
 
 #include "script_component.hpp"
 
+if (true) exitWith {};
+
 BEGIN_COUNTER(serializeDrawing);
 
 #define SMALL_ICON_DISTANCE 250

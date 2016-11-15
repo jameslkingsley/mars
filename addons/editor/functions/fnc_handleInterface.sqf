@@ -66,6 +66,9 @@ switch (toLower _mode) do {
         // Add panel toggle event handlers
         (_display displayCtrl IDC_LEFTPANEL_TAB_TOGGLE) ctrlAddEventHandler ["ButtonClick", {["toggleLeftPanel", _this] call FUNC(handleInterface)}];
         (_display displayCtrl IDC_ASSETBROWSER_TOGGLE) ctrlAddEventHandler ["ButtonClick", {["toggleRightPanel", _this] call FUNC(handleInterface)}];
+
+        // Run initial icon serialization
+        GVAR(serializeIconHandle) = [GETUVAR(GVAR(interface), displayNull)] call FUNC(serializeIcons);
     };
     case "onunload": {
         // Kill GUI PFHs
@@ -228,11 +231,10 @@ switch (toLower _mode) do {
     };
     case "onmousezchanged": {
         _args params ["_ctrl","_zChange"];
+        if (true) exitWith {false};
     };
     case "onmousemoving": {
         _args params ["_ctrl","_x","_y"];
-
-        getMousePosition call FUNC(handleCursor);
 
         if (GVAR(mouse) select 1) then {
             GVAR(canContext) = false;
@@ -268,8 +270,6 @@ switch (toLower _mode) do {
     };
     case "onmouseholding": {
         _args params ["_ctrl","_x","_y"];
-
-        getMousePosition call FUNC(handleCursor);
 
         if !(GVAR(mouse) select 1) then {
             GVAR(canContext) = true;

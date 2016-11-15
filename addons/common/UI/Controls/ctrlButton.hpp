@@ -173,8 +173,8 @@ class MARS_gui_ctrlUnitButton: MARS_gui_ctrlButtonPictureKeepAspect {
     w = 5 * GRID_W;
     h = 5 * GRID_H;
     text = "\A3\ui_f\data\map\vehicleicons\iconMan_ca.paa";
-    colorBackground[] = {0,0,0,0.25};
-    colorBackgroundActive[] = {0,0,0,0.25};
+    colorBackground[] = {0,0,0,0};
+    colorBackgroundActive[] = {0,0,0,0};
     offsetPressedX = 0;
     offsetPressedY = 0;
 };

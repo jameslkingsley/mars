@@ -31,6 +31,7 @@ GVAR(interrupts) = [];
 GVAR(isSet) = false;
 GVAR(camSlowDownInBuildings) = [QGVAR(camSlowDownInBuildings), true] call CFUNC(loadSetting);
 GVAR(nightVisionEnabled) = false;
+GVAR(preventCamHandler) = false;
 
 // Interface
 GVAR(menus) = [];
