@@ -148,11 +148,11 @@ GVAR(pfh) = [{
 
     if (GVAR(mapOpen)) then {
         // Map Open
-        [_display] call FUNC(drawAll2D);
+        // [_display] call FUNC(drawAll2D);
     } else {
         // Map Closed
-        [_display] call FUNC(drawAll3D);
-        [_display] call FUNC(updateIcons);
+        // [_display] call FUNC(drawAll3D);
+        // [] call FUNC(updateIcons);
     };
 
     // Asset browser placing objects
@@ -162,8 +162,14 @@ GVAR(pfh) = [{
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 GVAR(pfhArray) pushBackUnique GVAR(pfh);
 
+GVAR(draw3DEH) = addMissionEventHandler ["Draw3D", {
+    BEGIN_COUNTER(Draw3D);
+    [] call FUNC(updateIcons);
+    END_COUNTER(Draw3D);
+}];
+
 GVAR(drawingPFH) = [{
-    GVAR(serializeIconHandle) = [] spawn FUNC(serializeIcons);
+    GVAR(serializeIconHandle) = [GETUVAR(GVAR(interface), displayNull)] spawn FUNC(serializeIcons);
     [] call CFUNC(dumpPerformanceCounters);
 }, 5, []] call CBA_fnc_addPerFrameHandler;
 GVAR(pfhArray) pushBackUnique GVAR(drawingPFH);

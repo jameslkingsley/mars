@@ -84,3 +84,4 @@ PREP(drawAll2D);
 PREP(captureEntities);
 PREP(updateIcons);
 PREP(serializeIcons);
+PREP(getObjectIconControls);

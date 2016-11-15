@@ -28,4 +28,9 @@ if (!isNil QGVAR(serializeDrawingHandle)) then {
     GVAR(serializeDrawingHandle) = nil;
 };
 
+if (!isNil QGVAR(draw3DEH)) then {
+    removeMissionEventHandler ["Draw3D", GVAR(draw3DEH)];
+    GVAR(draw3DEH) = nil;
+};
+
 GVAR(pfhArray) = [];
