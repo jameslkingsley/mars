@@ -29,7 +29,7 @@ Mars follows the same development environment and coding guidelines as ACE3 - fo
 ![Image](https://mars.arcomm.co/images/posts/framework-release/interface_03.jpg)
 
 ## Contributing
-You can help out with the ongoing development by looking for potential bugs in the code base, or by contributing new features. To help out, simply fork the repository and submit your pull requests for review by other collaborators. Feel free to also join the [Discord](https://discord.gg/0vfzEmmrAOu1T2uk) and [Slack](https://mars-slackin.herokuapp.com/) servers to discuss, develop and troubleshoot.
+You can help out with the ongoing development by looking for potential bugs in the code base, or by contributing new features. To help out, simply fork the repository and submit your pull requests for review by other collaborators. Feel free to also join the [Discord](https://discord.gg/0vfzEmmrAOu1T2uk) server to discuss, develop and troubleshoot.
 
 ![Image](https://mars.arcomm.co/images/posts/framework-release/interface_04.jpg)
 
