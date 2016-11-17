@@ -23,6 +23,7 @@ player switchCamera "internal";
 
 GVAR(remoteControlUnit) = objNull;
 GVAR(isRemoteControl) = false;
+BIS_fnc_moduleRemoteControl_unit = nil;
 
 if (!isNil QGVAR(remoteControlRatingHandler)) then {
     player removeEventHandler ["HandleRating", GVAR(remoteControlRatingHandler)];

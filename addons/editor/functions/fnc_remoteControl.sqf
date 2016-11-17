@@ -28,6 +28,7 @@ if (isNull _target) exitWith {};
     T addEventHandler ["Killed", {[] call FUNC(exitRemoteControl)}];\
     GVAR(remoteControlRatingHandler) = player addEventHandler ["HandleRating", {0}];\
     GVAR(remoteControlUnit) = T;\
+    BIS_fnc_moduleRemoteControl_unit = T;\
     GVAR(isRemoteControl) = true
 
 _target spawn {
