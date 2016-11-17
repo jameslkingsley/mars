@@ -19,3 +19,4 @@
 params [["_state", false]];
 
 [_state] call acre_api_fnc_setSpectator;
+GVAR(spectatorOn) = _state;
