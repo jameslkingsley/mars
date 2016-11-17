@@ -55,14 +55,11 @@ switch (_type) do {
                     false
                 } count (crew _vehicle);
             };
-            
-            [_vehicle] remoteExecCall [QFUNC(addObjectToStaticCache), _caller];
         };
     };
     case "object": {
         private _object = createVehicle [_classname, _position, [], 0, "CAN_COLLIDE"];
         _newObjects pushBackUnique _object;
-        [_object] remoteExecCall [QFUNC(addObjectToStaticCache), _caller];
     };
     case "group": {
         private _group = createGroup _side;
@@ -120,8 +117,6 @@ switch (_type) do {
         _groupUnits joinSilent _group;
         _group selectLeader _highestRankObj;
         _newObjects append _groupUnits;
-        
-        [_cachedUnits] remoteExecCall [QFUNC(addObjectToStaticCache), _caller];
     };
 };
 

@@ -128,7 +128,7 @@ private _addEventHandlers = {
 };
 
 {
-    private _object = _x;
+    private _object = vehicle _x;
     private _color = [side group _object] call CFUNC(getSideColor);
     private _existingControls = GETUVAR(GVAR(iconControls), []);
     private _idcIndex = (count _existingControls) + 1;
