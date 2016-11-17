@@ -37,6 +37,7 @@ private _index = 0;
 
         if (!(_posScreen isEqualTo []) && {_worldDistance <= _distance}) then {
             // In viewport
+            _ctrl setVariable [QGVAR(eligibleForSelection), true];
             private _hovered = _ctrl getVariable [QGVAR(hovered), false];
             private _dimensions = _ctrl getVariable [QGVAR(dimensions), [5 * GRID_W, 5 * GRID_H]];
             private _color = _ctrl getVariable [QGVAR(color), [0,0,0,1]];
@@ -93,6 +94,7 @@ private _index = 0;
             _ctrl ctrlCommit 0;
         } else {
             // Not in viewport
+            _ctrl setVariable [QGVAR(eligibleForSelection), false];
             _ctrl ctrlEnable false;
             _ctrl ctrlShow false;
         };

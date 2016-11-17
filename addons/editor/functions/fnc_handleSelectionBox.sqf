@@ -46,7 +46,7 @@ switch (_mode) do {
         _ctrl ctrlCommit 0;
     };
     case "end": {
-        private _display = GETUVAR(GVAR(interface),displayNull);
+        private _display = GETUVAR(GVAR(interface), displayNull);
         private _ctrl = _display displayCtrl IDC_SELBOX;
         private _boxPos = ctrlPosition _ctrl;
         
@@ -57,43 +57,38 @@ switch (_mode) do {
         
         ctrlDelete _ctrl;
         
-        private _allIcons = GVAR(groupIcons) + GVAR(unitIcons) + GVAR(markerIcons);
+        GVAR(selection) = [];
+        GVAR(selectedMarkers) = [];
+        GVAR(hoveredMarker) = "";
         
-        if !(_allIcons isEqualTo []) then {
-            GVAR(selection) = [];
-            GVAR(selectedMarkers) = [];
-            GVAR(hoveredMarker) = "";
+        {
+            private _object = _x getVariable [QGVAR(object), objNull];
+            private _group = _x getVariable [QGVAR(group), grpNull];
+
+            if (!isNull _group) then {
+                {GVAR(selection) pushBack (vehicle _x);false} count units _group;
+            };
+
+            GVAR(selection) pushBack (vehicle _object);
             
-            {
-                _x params ["_posAGL", "_object"];
-                
-                if (_object isEqualType grpNull) then {
-                    {GVAR(selection) pushBack vehicle _x;false} count (units _object);
-                } else {
-                    if (_object isEqualType objNull) then {
-                        GVAR(selection) pushBack vehicle _object;
-                    } else {
-                        GVAR(selectedMarkers) pushBackUnique _object;
-                    };
-                };
-                
-                false
-            } count (_allIcons select {
-                _x params ["_posAGL", "_object"];
-                
-                private _screenPos = worldToScreen _posAGL;
-                
-                if (_screenPos isEqualTo []) then {false} else {
-                    (_screenPos inArea [
-                        _boxCenter,
-                        ((_boxPos select 2) / 2),
-                        ((_boxPos select 3) / 2),
-                        0,
-                        true
-                    ])
-                };
-            });
-        };
+            false
+        } count (GETUVAR(GVAR(iconControls), []) select {
+            private _ctrl = _x;
+            private _object = _ctrl getVariable [QGVAR(object), objNull];
+            private _offset = _ctrl getVariable [QGVAR(offset), [0,0,0]];
+            private _posASLWorld = (getPosASLVisual _object) vectorAdd _offset;
+            private _posScreen = worldToScreen (ASLtoAGL _posASLWorld);
+
+            !(_posScreen isEqualTo []) &&
+            {(_ctrl getVariable [QGVAR(eligibleForSelection), false])} &&
+            {(_posScreen inArea [
+                _boxCenter,
+                ((_boxPos select 2) / 2),
+                ((_boxPos select 3) / 2),
+                0,
+                true
+            ])}
+        });
         
         GVAR(selectionBoxStartPos) = [];
         GVAR(isSelectionBoxSpawned) = false;
