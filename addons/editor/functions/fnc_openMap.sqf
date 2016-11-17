@@ -25,5 +25,9 @@ _map ctrlShow _state;
 _map ctrlEnable _state;
 GVAR(mapOpen) = _state;
 
+private _mouseHandler = _display displayCtrl IDC_MOUSEHANDLER;
+_mouseHandler ctrlEnable !_state;
+_mouseHandler ctrlShow !_state;
+
 _map ctrlMapAnimAdd [0, 0.25, GVAR(camPos)];
 ctrlMapAnimCommit _map;
