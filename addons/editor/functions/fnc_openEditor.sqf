@@ -46,7 +46,7 @@ if (isNull GVAR(initialLoginPlayer)) then {
 
 [] call FUNC(killPerFrameHandlers);
 
-["EditorOpen"] call CFUNC(localEvent);
+[QGVAR(EditorOpen)] call CFUNC(localEvent);
 
 // Initalize camera variables
 GVAR(camBoom) = 0;
@@ -178,4 +178,4 @@ GVAR(editPlayers) = false;
 
 GVAR(isSet) = true;
 
-["EditorOpened"] call CFUNC(localEvent);
+[QGVAR(EditorOpened)] call CFUNC(localEvent);
