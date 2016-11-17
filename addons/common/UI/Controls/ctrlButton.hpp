@@ -178,3 +178,9 @@ class MARS_gui_ctrlUnitButton: MARS_gui_ctrlButtonPictureKeepAspect {
     offsetPressedX = 0;
     offsetPressedY = 0;
 };
+
+class MARS_gui_ctrlGroupButton: MARS_gui_ctrlUnitButton {
+    w = 10 * GRID_W;
+    h = 10 * GRID_H;
+    text = "\A3\ui_f\data\map\markers\nato\b_unknown.paa";
+};

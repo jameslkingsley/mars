@@ -18,14 +18,9 @@
 
 {[_x] call CBA_fnc_removePerFrameHandler} forEach GVAR(pfhArray);
 
-if (!isNil QGVAR(drawingMissionEH)) then {
-    removeMissionEventHandler ["EachFrame", GVAR(drawingMissionEH)];
-    GVAR(drawingMissionEH) = nil;
-};
-
-if (!isNil QGVAR(serializeDrawingHandle)) then {
-    terminate GVAR(serializeDrawingHandle);
-    GVAR(serializeDrawingHandle) = nil;
+if (!isNil QGVAR(serializeIconHandle)) then {
+    terminate GVAR(serializeIconHandle);
+    GVAR(serializeIconHandle) = nil;
 };
 
 if (!isNil QGVAR(draw3DEH)) then {

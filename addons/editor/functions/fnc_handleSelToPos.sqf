@@ -22,7 +22,7 @@ private _worldPos = screenToWorld GVAR(mousePos);
 
 if (count GVAR(selection) == 0 || count _worldPos == 0) exitWith {};
 
-private _target = [] call FUNC(objectUnderCursor);
+private _target = GVAR(objectUnderCursor);
 
 if (_target in GVAR(selection)) then {
     _target = objNull;

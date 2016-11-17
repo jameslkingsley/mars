@@ -70,7 +70,7 @@ GVAR(isDirection) = true;
 
 if (isNull _anchorObject) then {
     if (GVAR(selection) isEqualTo []) then {
-        GVAR(selection) = [([] call FUNC(objectUnderCursor))];
+        GVAR(selection) = [(GVAR(objectUnderCursor))];
     };
 
     private _nearest = [GVAR(selection)] call FUNC(getNearestUnderCursor);
@@ -82,7 +82,7 @@ if (isNull _anchorObject) then {
     GVAR(objectDirAnchor) = _nearest;
 } else {
     if (GVAR(selection) isEqualTo []) then {
-        GVAR(selection) = [([] call FUNC(objectUnderCursor))];
+        GVAR(selection) = [(GVAR(objectUnderCursor))];
     };
 
     if ({isPlayer _x} count GVAR(selection) > 0 && !GVAR(editPlayers)) exitWith {};

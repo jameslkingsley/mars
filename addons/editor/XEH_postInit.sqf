@@ -55,3 +55,8 @@ createCenter civilian;
     _unit setFormDir _dir;
     _unit setDir _dir;
 }] call CBA_fnc_addEventHandler;
+
+[QGVAR(serializeIconsForObjects), {
+    params ["_objects"];
+    [GETUVAR(GVAR(interface), displayNull), _objects] call FUNC(serializeIcons);
+}] call CBA_fnc_addEventHandler;

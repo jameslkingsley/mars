@@ -50,7 +50,7 @@ if (_requiresPositionBool) then {
 
         if (GVAR(hasLeftClicked)) exitWith {
             private _worldPos = [] call FUNC(getSurfaceUnderCursor);
-            private _target = [] call FUNC(objectUnderCursor);
+            private _target = GVAR(objectUnderCursor);
             
             [_selection, _worldPos, _target] call compile _action;
 

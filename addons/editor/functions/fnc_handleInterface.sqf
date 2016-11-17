@@ -17,7 +17,7 @@
 
 #include "script_component.hpp"
 
-params ["_mode",["_args",[]]];
+params ["_mode", ["_args", []]];
 
 switch (toLower _mode) do {
     case "onload": {
@@ -67,8 +67,7 @@ switch (toLower _mode) do {
         (_display displayCtrl IDC_LEFTPANEL_TAB_TOGGLE) ctrlAddEventHandler ["ButtonClick", {["toggleLeftPanel", _this] call FUNC(handleInterface)}];
         (_display displayCtrl IDC_ASSETBROWSER_TOGGLE) ctrlAddEventHandler ["ButtonClick", {["toggleRightPanel", _this] call FUNC(handleInterface)}];
 
-        // Run initial icon serialization
-        GVAR(serializeIconHandle) = [GETUVAR(GVAR(interface), displayNull)] call FUNC(serializeIcons);
+        [_display] call FUNC(serializeIcons);
     };
     case "onunload": {
         // Kill GUI PFHs
@@ -93,9 +92,8 @@ switch (toLower _mode) do {
 
         if ((_button == 0) && {GVAR(canContext)}) then {
             [GVAR(ctrlKey)] call FUNC(placeNewObject);
-
-            GVAR(prepDragObjectUnderCursor) = [] call FUNC(objectUnderCursor);
-            GVAR(prepDirObjectUnderCursor) = [] call FUNC(objectUnderCursor);
+            GVAR(prepDragObjectUnderCursor) = GVAR(objectUnderCursor);
+            GVAR(prepDirObjectUnderCursor) = GVAR(objectUnderCursor);
         };
 
         // Detect right click
@@ -139,25 +137,8 @@ switch (toLower _mode) do {
 
             // Left Click & Can Context
             case (_button == 0 && GVAR(canContext)): {
-                private _selectedGroup = [] call FUNC(selectGroupIcon);
-
-                if (isNull _selectedGroup) then {
+                if (!GVAR(hoveringOverGroupIcon)) then {
                     [] call FUNC(selectObject);
-                } else {
-                    private _selectedGroupUnits = units _selectedGroup;
-                    private _selectObjects = _selectedGroupUnits apply {vehicle _x};
-
-                    private _virtualGroupOwner = _selectedGroupUnits select {
-                        !isNull ([_x] call CFUNC(getVirtualGroup))
-                    };
-
-                    if !(_virtualGroupOwner isEqualTo []) then {
-                        private _virtualGroup = [(_virtualGroupOwner select 0)] call CFUNC(getVirtualGroup);
-                        _selectObjects = _virtualGroup getVariable "members";
-                        _selectObjects = _selectObjects apply {vehicle _x};
-                    };
-
-                    [_selectObjects] call FUNC(selectObject);
                 };
             };
 
@@ -168,7 +149,7 @@ switch (toLower _mode) do {
             case (_button == 1 && GVAR(canContext)): {
                 if (!(GVAR(selection) isEqualTo []) && {GVAR(abSelectedObject) isEqualTo []} && {!GVAR(isWaitingForLeftClick)} && {!_wasContextOpen}) then {
                     // systemChat "Already has objects in selection";
-                    private _target = [] call FUNC(objectUnderCursor);
+                    private _target = GVAR(objectUnderCursor);
 
                     if (_target in GVAR(selection)) then {
                         [] call FUNC(handleContextMenu);

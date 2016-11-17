@@ -19,39 +19,36 @@
 params [["_objects", [], [[]]]];
 
 if (_objects isEqualTo []) then {
-    private _target = [] call FUNC(objectUnderCursor);
+    private _target = GVAR(objectUnderCursor);
 
     if (_target == GVAR(prepSurfaceSphere)) exitWith {};
 
     if (isNull _target) then {
-        private _selectedGroup = [] call FUNC(selectGroupIcon);
+        GVAR(selection) = [];
+        GVAR(selectedMarkers) = [];
+        GVAR(hoveredMarker) = "";
+        /*private _selectedMarker = [] call FUNC(getSelectedMarker);
 
-        if (isNull _selectedGroup) then {
-            private _selectedMarker = [] call FUNC(getSelectedMarker);
-
-            if (_selectedMarker != "") then {
-                if (!GVAR(ctrlKey)) then {
-                    GVAR(hoveredMarker) = _selectedMarker;
-                    GVAR(selectedMarkers) = [_selectedMarker];
-                } else {
-                    GVAR(hoveredMarker) = "";
-                    GVAR(selectedMarkers) pushBackUnique _selectedMarker;
-                };
+        if (_selectedMarker != "") then {
+            if (!GVAR(ctrlKey)) then {
+                GVAR(hoveredMarker) = _selectedMarker;
+                GVAR(selectedMarkers) = [_selectedMarker];
             } else {
-                GVAR(selection) = [];
-                GVAR(selectedMarkers) = [];
                 GVAR(hoveredMarker) = "";
+                GVAR(selectedMarkers) pushBackUnique _selectedMarker;
             };
         } else {
-            {
-                [_x, !(vehicle _x == _x), false] call FUNC(highlightObject);
-                false
-            } count units _selectedGroup;
-        };
+            GVAR(selection) = [];
+            GVAR(selectedMarkers) = [];
+            GVAR(hoveredMarker) = "";
+        };*/
     } else {
         [_target, !(vehicle _target == _target)] call FUNC(highlightObject);
     };
 } else {
+    _objects = _objects apply {vehicle _x};
+    _objects = _objects arrayIntersect _objects;
+
     if (!GVAR(ctrlKey)) then {
         GVAR(selection) = [];
     };

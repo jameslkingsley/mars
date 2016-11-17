@@ -18,7 +18,7 @@
 
 BEGIN_COUNTER(handleObjectBoxes);
 
-private _object = [] call FUNC(objectUnderCursor);
+private _object = GVAR(objectUnderCursor);
 
 if (isNull _object) exitWith {
     if (!GVAR(isDragging)) then {

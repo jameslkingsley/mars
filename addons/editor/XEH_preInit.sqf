@@ -67,6 +67,8 @@ GVAR(hoveredMarker) = "";
 GVAR(selectedMarkers) = [];
 GVAR(iconHoverSize) = [QGVAR(iconHoverSize), ICON_HOVER_SIZE] call CFUNC(loadSetting);
 GVAR(iconDrawDistance) = [QGVAR(iconDrawDistance), ICON_FADE_DISTANCE] call CFUNC(loadSetting);
+GVAR(hoveringOverIcon) = false;
+GVAR(hoveringOverGroupIcon) = false;
 
 // Asset Browser
 GVAR(serializedABData) = uiNamespace getVariable [QGVAR(serializedABData), []];

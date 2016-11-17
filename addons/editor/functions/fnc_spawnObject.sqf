@@ -30,6 +30,8 @@ _objectData params ["_type", "_classname", "_iconPath", "_color", "_side", ["_gr
 _position = ASLtoAGL _position;
 _side = [_side] call CFUNC(getSideByInt);
 
+private _newObjects = [];
+
 switch (_type) do {
     case "unit": {
         private _config = (configFile >> "CfgVehicles" >> _classname);
@@ -39,13 +41,19 @@ switch (_type) do {
             private _group = createGroup _side;
             private _unit = _group createUnit [_classname, _position, [], 0, "CAN_COLLIDE"];
             [_unit] joinSilent _group;
+            _newObjects pushBackUnique _unit;
         } else {
             private _group = createGroup _side;
             private _vehicle = createVehicle [_classname, _position, [], 0, "CAN_COLLIDE"];
+            _newObjects pushBackUnique _vehicle;
             
             if (_placeVehiclesWithCrew) then {
                 createVehicleCrew _vehicle;
-                {[_x] joinSilent _group;false} count (crew _vehicle);
+                {
+                    [_x] joinSilent _group;
+                    _newObjects pushBackUnique _x;
+                    false
+                } count (crew _vehicle);
             };
             
             [_vehicle] remoteExecCall [QFUNC(addObjectToStaticCache), _caller];
@@ -53,6 +61,7 @@ switch (_type) do {
     };
     case "object": {
         private _object = createVehicle [_classname, _position, [], 0, "CAN_COLLIDE"];
+        _newObjects pushBackUnique _object;
         [_object] remoteExecCall [QFUNC(addObjectToStaticCache), _caller];
     };
     case "group": {
@@ -110,7 +119,10 @@ switch (_type) do {
         
         _groupUnits joinSilent _group;
         _group selectLeader _highestRankObj;
+        _newObjects append _groupUnits;
         
         [_cachedUnits] remoteExecCall [QFUNC(addObjectToStaticCache), _caller];
     };
 };
+
+[QGVAR(serializeIconsForObjects), [_newObjects], _caller] call CBA_fnc_targetEvent;
