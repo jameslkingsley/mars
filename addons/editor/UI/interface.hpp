@@ -12,9 +12,9 @@ class GVAR(interface) {
     class ControlsBackground {
         class MouseHandler: RscControlsGroupNoScrollbars {
             idc = IDC_MOUSEHANDLER;
-            x = safeZoneXAbs;
+            x = safeZoneX;
             y = safeZoneY;
-            w = safeZoneWAbs;
+            w = safeZoneW;
             h = safeZoneH;
             onMouseButtonDown = QUOTE([ARR_2('onMouseButtonDown',_this)] call FUNC(handleInterface));
             onMouseButtonUp = QUOTE([ARR_2('onMouseButtonUp',_this)] call FUNC(handleInterface));
@@ -57,7 +57,6 @@ class GVAR(interface) {
             w = safezoneWAbs;
             h = safezoneH;
             onDraw = QUOTE(_this call FUNC(handleMapIcons));
-            onMouseButtonUp = QUOTE(_this call FUNC(handleCameraTeleport));
         };
     };
     class Controls {

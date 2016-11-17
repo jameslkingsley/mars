@@ -57,10 +57,12 @@ switch (_mode) do {
         
         ctrlDelete _ctrl;
         
-        private _allIcons = GVAR(groupIcons) + GVAR(unitIcons);
+        private _allIcons = GVAR(groupIcons) + GVAR(unitIcons) + GVAR(markerIcons);
         
         if !(_allIcons isEqualTo []) then {
             GVAR(selection) = [];
+            GVAR(selectedMarkers) = [];
+            GVAR(hoveredMarker) = "";
             
             {
                 _x params ["_posAGL", "_object"];
@@ -68,7 +70,11 @@ switch (_mode) do {
                 if (_object isEqualType grpNull) then {
                     {GVAR(selection) pushBack vehicle _x;false} count (units _object);
                 } else {
-                    GVAR(selection) pushBack vehicle _object;
+                    if (_object isEqualType objNull) then {
+                        GVAR(selection) pushBack vehicle _object;
+                    } else {
+                        GVAR(selectedMarkers) pushBackUnique _object;
+                    };
                 };
                 
                 false

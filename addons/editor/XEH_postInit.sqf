@@ -1,5 +1,7 @@
 #include "script_component.hpp"
 
+enableSaving [false, false];
+
 if (isServer) then {
     private _settings = (configFile >> "ACE_ServerSettings" >> QGVAR(players));
     
@@ -52,4 +54,9 @@ createCenter civilian;
     params ["_unit", "_dir"];
     _unit setFormDir _dir;
     _unit setDir _dir;
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(serializeIconsForObjects), {
+    params ["_objects"];
+    [GETUVAR(GVAR(interface), displayNull), _objects] call FUNC(serializeIcons);
 }] call CBA_fnc_addEventHandler;

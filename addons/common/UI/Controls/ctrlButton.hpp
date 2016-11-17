@@ -168,3 +168,19 @@ class MARS_gui_ctrlButtonAttributes: MARS_gui_ctrlButton {
     size = SIZEEX_PURISTA_S;
     sizeEx = SIZEEX_PURISTA_S;
 };
+
+class MARS_gui_ctrlUnitButton: MARS_gui_ctrlButtonPictureKeepAspect {
+    w = 5 * GRID_W;
+    h = 5 * GRID_H;
+    text = "\A3\ui_f\data\map\vehicleicons\iconMan_ca.paa";
+    colorBackground[] = {0,0,0,0};
+    colorBackgroundActive[] = {0,0,0,0};
+    offsetPressedX = 0;
+    offsetPressedY = 0;
+};
+
+class MARS_gui_ctrlGroupButton: MARS_gui_ctrlUnitButton {
+    w = 10 * GRID_W;
+    h = 10 * GRID_H;
+    text = "\A3\ui_f\data\map\markers\nato\b_unknown.paa";
+};

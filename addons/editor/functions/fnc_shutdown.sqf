@@ -24,8 +24,10 @@ while {dialog} do {
 
 GETUVAR(GVAR(interface),displayNull) closeDisplay 0;
 
-GVAR(camera) cameraEffect ["terminate","back"];
-camDestroy GVAR(camera);
+if (!isNil QGVAR(camera) && {!isNull GVAR(camera)}) then {
+    GVAR(camera) cameraEffect ["terminate","back"];
+    camDestroy GVAR(camera);
+};
 
 // Return to player view
 player switchCamera "internal";

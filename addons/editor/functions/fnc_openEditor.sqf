@@ -107,51 +107,64 @@ while {dialog} do {
 // Reset interruptions
 GVAR(interrupts) = [];
 
-GVAR(drawingMissionEH) = addMissionEventHandler ["EachFrame", {
-    // BEGIN_COUNTER(draw3D);
-    
-    // Tagging handler
-    if (!isNull GVAR(prepDragObjectUnderCursor) || !(GVAR(mouse) select 0)) then {
-        if (GVAR(canContext) || {!(GVAR(selection) isEqualTo [])}) then {
-            [] call FUNC(handleObjectBoxes);
-        };
-    };
-
-    // Icons handler
-    [] call FUNC(handleIcons);
-    [] call FUNC(handleLines);
-    [] call FUNC(handleLocationIcons);
-    [] call FUNC(drawGroupWaypoints);
-    [] call FUNC(drawMarkers);
-
-    // Selection handler
-    {
-        private _color = [[0,0,0,1], [side group _x] call CFUNC(getSideColor)] select (alive _x);
-        private _isDirectionChanging = _x getVariable [QGVAR(isDirectionChanging), false];
-        
-        if (!_isDirectionChanging) then {
-            [_x, _color] call FUNC(drawBoundingBox);
-        };
-
-        false
-    } count (GVAR(selection) select {!(_x isEqualTo GVAR(prepSurfaceSphere))});
-    
-    // END_COUNTER(draw3D);
-}];
-
 GVAR(pfh) = [{
+    BEGIN_COUNTER(onFrame);
+
+    private _display = GETUVAR(GVAR(interface), displayNull);
+    GVAR(objectUnderCursor) = [] call FUNC(objectUnderCursor);
+
     // Asset browser placing objects
     [] call FUNC(prepNewObject);
+
+    END_COUNTER(onFrame);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 GVAR(pfhArray) pushBackUnique GVAR(pfh);
 
-GVAR(drawingPFH) = [{
-    GVAR(serializeDrawingHandle) = [] spawn FUNC(serializeDrawing);
-}, 3, []] call CBA_fnc_addPerFrameHandler;
-GVAR(pfhArray) pushBackUnique GVAR(drawingPFH);
+GVAR(draw3DEH) = addMissionEventHandler ["Draw3D", {
+    BEGIN_COUNTER(Draw3D);
 
-// GVAR(testPFH) = [{[] call CFUNC(dumpPerformanceCounters)}, 5, []] call CBA_fnc_addPerFrameHandler;
-// GVAR(pfhArray) pushBackUnique GVAR(testPFH);
+    if (!isNull GVAR(prepDragObjectUnderCursor) || {!(GVAR(mouse) select 0)}) then {
+        if (GVAR(canContext) || {!(GVAR(selection) isEqualTo [])}) then {
+            if (!isNull GVAR(objectUnderCursor)) then {
+                [
+                    GVAR(objectUnderCursor),
+                    (GVAR(objectUnderCursor) getVariable [QGVAR(color), [0,0,0,1]])
+                ] call FUNC(drawBoundingBox);
+                ["select"] call FUNC(setCursor);
+                GVAR(bbOpen) = false;
+            } else {
+                GVAR(bbOpen) = true;
+                if (!GVAR(hoveringOverIcon)) then {
+                    [] call FUNC(setCursor);
+                };
+            };
+        };
+    };
+
+    [] call FUNC(handleCursor);
+    [] call FUNC(updateIcons);
+    [] call FUNC(drawGroupWaypoints);
+
+    {
+        private _color = (vehicle _x) getVariable [QGVAR(color), [0,0,0,1]];
+        [(vehicle _x), _color] call FUNC(drawBoundingBox);
+        false
+    } count (GVAR(selection) select {
+        !((vehicle _x) getVariable [QGVAR(isDirectionChanging), false])
+    });
+
+    END_COUNTER(Draw3D);
+}];
+
+GVAR(drawingPFH) = [{
+    if (!isNil QGVAR(serializeIconHandle)) then {
+        terminate GVAR(serializeIconHandle);
+    };
+
+    GVAR(serializeIconHandle) = [GETUVAR(GVAR(interface), displayNull)] spawn FUNC(serializeIcons);
+    // [] spawn CFUNC(dumpPerformanceCounters);
+}, 5, []] call CBA_fnc_addPerFrameHandler;
+GVAR(pfhArray) pushBackUnique GVAR(drawingPFH);
 
 // Close the editor upon death
 GVAR(playerKilledHandle) = player addEventHandler ["Killed", {

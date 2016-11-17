@@ -17,12 +17,30 @@
 
 #include "script_component.hpp"
 
-private _camPosASL = GVAR(camPos);
-
 {
-    private _color = _x select 1;
-    _color set [3, linearConversion [0, GVAR(iconDrawDistance), ((_x select 2) distance _camPosASL), 0.75, 0, true]];
-    _x set [1, _color];
-    drawIcon3D _x;
+    _x params ["_name", "_texture", "_color", "_pos", "_width", "_height", "_dir", "_text"];
+
+    if (_name == GVAR(hoveredMarker) || {_name in GVAR(selectedMarkers)}) then {
+        _color set [3, 1];
+    } else {
+        _color set [3, linearConversion [0, GVAR(iconDrawDistance), (_pos distance GVAR(camPos)), 0.75, 0, true]];
+    };
+
+    GVAR(markerIcons) pushBack [_pos, _name];
+
+    drawIcon3D [
+        _texture,
+        _color,
+        _pos,
+        _width,
+        _height,
+        _dir,
+        _text,
+        0,
+        0.032,
+        "PuristaBold",
+        "center"
+    ];
+
     false
 } count GVAR(serializedMarkers);
