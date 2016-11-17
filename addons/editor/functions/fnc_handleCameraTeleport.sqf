@@ -23,6 +23,6 @@ if (!GVAR(mapOpen) || {!_alt}) exitWith {};
 private _worldPos = _map ctrlMapScreenToWorld [_cordX, _cordY];
 
 // Add the Z coordinate
-_worldPos pushBack 20;
+_worldPos pushBack 50;
 
-GVAR(camPos) = _worldPos;
+GVAR(camPos) = AGLtoASL _worldPos;

@@ -6,8 +6,14 @@ ADDON = false;
 
 // Reset the stored display
 SETUVAR(GVAR(interface), displayNull);
+SETUVAR(GVAR(iconControls), []);
 
 GVAR(pfhArray) = [];
+GVAR(objectUnderCursor) = objNull;
+GVAR(drawingControls) = [];
+
+GVAR(capturedEntities) = [];
+GVAR(capturedMarkers) = [];
 
 // Camera
 GVAR(availableModes) = [0];
@@ -25,6 +31,7 @@ GVAR(interrupts) = [];
 GVAR(isSet) = false;
 GVAR(camSlowDownInBuildings) = [QGVAR(camSlowDownInBuildings), true] call CFUNC(loadSetting);
 GVAR(nightVisionEnabled) = false;
+GVAR(preventCamHandler) = false;
 
 // Interface
 GVAR(menus) = [];
@@ -60,6 +67,8 @@ GVAR(hoveredMarker) = "";
 GVAR(selectedMarkers) = [];
 GVAR(iconHoverSize) = [QGVAR(iconHoverSize), ICON_HOVER_SIZE] call CFUNC(loadSetting);
 GVAR(iconDrawDistance) = [QGVAR(iconDrawDistance), ICON_FADE_DISTANCE] call CFUNC(loadSetting);
+GVAR(hoveringOverIcon) = false;
+GVAR(hoveringOverGroupIcon) = false;
 
 // Asset Browser
 GVAR(serializedABData) = uiNamespace getVariable [QGVAR(serializedABData), []];

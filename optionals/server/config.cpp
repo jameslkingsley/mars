@@ -17,3 +17,7 @@ class CfgPatches {
 class GVARMAIN(serverSettings) {
     #include "\userconfig\mars\serverconfig.hpp"
 };
+
+class ACE_ServerSettings {
+    #include "\userconfig\mars\serverconfig.hpp"
+};

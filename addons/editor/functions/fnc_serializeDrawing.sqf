@@ -17,7 +17,11 @@
 
 #include "script_component.hpp"
 
-#define SMALL_ICON_DISTANCE 500
+if (true) exitWith {};
+
+BEGIN_COUNTER(serializeDrawing);
+
+#define SMALL_ICON_DISTANCE 250
 
 private _camPosASL = GVAR(camPos);
 private _outputIcons = [];
@@ -46,12 +50,10 @@ private _outputLines = [];
     private _objectIcon = getText (configfile >> "CfgVehicles" >> _objectClassname >> "icon");
     private _objectIconPath = [getText (configFile >> "CfgVehicleIcons" >> _objectIcon), _objectIcon] select ((toLower _objectIcon) find "\" > -1);
     
-    private _virtualGroup = [_object] call CFUNC(getVirtualGroup);
-    
     if (_isPerson && vehicle _object == _object) then {
         private _playerColor = [0,0,0,0];
         
-        if (isPlayer _object) then {
+        if (isPlayer _object && {_object distance _camPosASL <= SMALL_ICON_DISTANCE}) then {
             _playerColor = [
                 [0,0,0,1],
                 [[1,0,0.5,1], [1,0,0,1]] select (local _object)
@@ -71,8 +73,8 @@ private _outputLines = [];
             ];
         };
         
-        if (count units group _object > 1 || {!isNull _virtualGroup}) then {
-            private _leader = [[_virtualGroup] call CFUNC(getVirtualGroupLeader), leader _object] select (isNull _virtualGroup);
+        if (count units group _object > 1) then {
+            private _leader = leader _object;
             
             if (_leader == _object) then {
                 private _groupIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
@@ -112,15 +114,17 @@ private _outputLines = [];
             };
         };
         
-        _outputIcons pushBack [
-            _object,
-            _objectIconPath,
-            _iconColor,
-            nil,
-            nil,
-            nil,
-            SMALL_ICON_DISTANCE
-        ];
+        if (_object distance _camPosASL <= SMALL_ICON_DISTANCE) then {
+            _outputIcons pushBack [
+                _object,
+                _objectIconPath,
+                _iconColor,
+                nil,
+                nil,
+                nil,
+                SMALL_ICON_DISTANCE
+            ];
+        };
     } else {
         private _vehicleIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
         
@@ -197,9 +201,8 @@ private _outputLines = [];
     };
     
     false
-} count (((entities "All") select {
+} count ((GVAR(capturedEntities) select {
     !(side _x in [sideAmbientLife, sideLogic, sideUnknown]) &&
-    ((_x distance GVAR(camPos)) <= GVAR(iconDrawDistance)) &&
     !(typeOf _x in ["GroundWeaponHolder","WeaponHolderSimulated"])
 }) - (entities "Animal"));
 
@@ -212,22 +215,21 @@ private _outputMarkers = [];
     private _color = [getArray (configFile >> "CfgMarkerColors" >> markerColor _x >> "color")] call CFUNC(evalColor);
 
     _outputMarkers pushBack [
+        _x,
         _useTexture,
         _color,
         markerPos _x,
         (markerSize _x) select 0,
         (markerSize _x) select 1,
         markerDir _x,
-        markerText _x,
-        0,
-        0.032,
-        "PuristaBold",
-        "center"
+        markerText _x
     ];
 
     false
-} count allMapMarkers;
+} count GVAR(capturedMarkers);
 
 GVAR(serializedIcons) = _outputIcons;
 GVAR(serializedLines) = _outputLines;
 GVAR(serializedMarkers) = _outputMarkers;
+
+END_COUNTER(serializeDrawing);

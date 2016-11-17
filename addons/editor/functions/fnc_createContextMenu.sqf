@@ -3,7 +3,7 @@
  * Creates the context menu with all relevant event handlers
  *
  * Arguments:
- * None (uses GVAR(selection))
+ * None (uses mars_editor_selection)
  *
  * Return Value:
  * None

@@ -79,3 +79,6 @@ PREP(killRightClickPenders);
 PREP(attrConfirmMarker);
 PREP(drawMarkers);
 PREP(getSelectedMarker);
+PREP(updateIcons);
+PREP(serializeIcons);
+PREP(getObjectIconControls);

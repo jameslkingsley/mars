@@ -16,9 +16,9 @@
 
 #include "script_component.hpp"
 
-// BEGIN_COUNTER(handleObjectBoxes);
+BEGIN_COUNTER(handleObjectBoxes);
 
-private _object = [] call FUNC(objectUnderCursor);
+private _object = GVAR(objectUnderCursor);
 
 if (isNull _object) exitWith {
     if (!GVAR(isDragging)) then {
@@ -52,4 +52,4 @@ if (_isDirectionChanging) exitWith {};
 private _color = [[0,0,0,1], MARS_SIDECOLOR(side group _object)] select (alive _object);
 [_object, _color] call FUNC(drawBoundingBox);
 
-// END_COUNTER(handleObjectBoxes);
+END_COUNTER(handleObjectBoxes);

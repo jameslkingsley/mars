@@ -4,8 +4,6 @@
     <sup>
         <strong>
             Requires the latest version of <a href="https://github.com/CBATeam/CBA_A3/releases">CBA A3</a>
-            <br />
-            Using Arma 3 1.60 (Stable)
         </strong>
         <br /><br />
     </sup>
@@ -14,9 +12,6 @@
     </a>
     <a href="https://github.com/marseditor/mars/blob/master/LICENSE">
         <img src="https://img.shields.io/badge/License-GPLv3-red.svg?label=license" alt="Mars License">
-    </a>
-    <a href="https://mars-slackin.herokuapp.com/">
-        <img src="https://mars-slackin.herokuapp.com/badge.svg?label=slack" alt="Mars Slack">
     </a>
     <a href="https://travis-ci.org/marseditor/mars">
         <img src="https://img.shields.io/travis/marseditor/mars.svg?label=build" alt="Mars Build Status">
@@ -34,7 +29,7 @@ Mars follows the same development environment and coding guidelines as ACE3 - fo
 ![Image](https://mars.arcomm.co/images/posts/framework-release/interface_03.jpg)
 
 ## Contributing
-You can help out with the ongoing development by looking for potential bugs in the code base, or by contributing new features. To help out, simply fork the repository and submit your pull requests for review by other collaborators. Feel free to also join the [Discord](https://discord.gg/0vfzEmmrAOu1T2uk) and [Slack](https://mars-slackin.herokuapp.com/) servers to discuss, develop and troubleshoot.
+You can help out with the ongoing development by looking for potential bugs in the code base, or by contributing new features. To help out, simply fork the repository and submit your pull requests for review by other collaborators. Feel free to also join the [Discord](https://discord.gg/0vfzEmmrAOu1T2uk) server to discuss, develop and troubleshoot.
 
 ![Image](https://mars.arcomm.co/images/posts/framework-release/interface_04.jpg)
 
