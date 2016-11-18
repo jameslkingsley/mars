@@ -294,6 +294,11 @@ _footer = _display ctrlCreate ["MARS_gui_ctrlButtonStaticFooter", (_categoryIDC 
 _footer ctrlSetPosition [0, _totalLabel, (GVAR(AttributesWindow_GlobalWidth) * GRID_W), LABEL_HEIGHT];
 _footer ctrlCommit 0;
 
+//--- Disable editor mouse handler and icons
+if (!isNil QEFUNC(editor,toggleMouseHandler)) then {
+    [false, false] call EFUNC(editor,toggleMouseHandler);
+};
+
 GVAR(tempActionConfirm) = getText (_header >> "actionConfirm");
 if (!isNil GVAR(tempActionConfirm)) then {GVAR(tempActionConfirm) = format ["_this call %1", GVAR(tempActionConfirm)]};
 

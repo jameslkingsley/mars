@@ -82,3 +82,4 @@ PREP(getSelectedMarker);
 PREP(updateIcons);
 PREP(serializeIcons);
 PREP(getObjectIconControls);
+PREP(toggleMouseHandler);

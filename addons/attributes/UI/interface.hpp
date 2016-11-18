@@ -4,8 +4,8 @@ class GVAR(AttributesWindow) {
     idd = IDD_EDITATTRIBUTES;
     enableSimulation = 1;
     enableDisplay = 1;
-    onLoad = QUOTE([ARR_2('AttributesWindow_onLoad', _this)] call EFUNC(common,localEvent));
-    onUnload = QUOTE([ARR_2('AttributesWindow_onUnload', _this)] call EFUNC(common,localEvent));
+    onLoad = QUOTE([ARR_2('AttributesWindow_onLoad', _this)] call CFUNC(localEvent));
+    onUnload = QUOTE([ARR_2('AttributesWindow_onUnload', _this)] call CFUNC(localEvent));
 
     class ControlsBackground {
         class Background: MARS_gui_ctrlStaticBackground {

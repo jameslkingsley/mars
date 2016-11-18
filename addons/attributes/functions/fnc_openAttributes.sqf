@@ -52,34 +52,38 @@ _this spawn {
         GVAR(AttributesWindow_ItemControls) = [];
         GVAR(identifyControls) = [];
         GVAR(AttributesWindow_GlobalArgs) = [];
-        ["AttributesWindow_onLoad", GVAR(AttributesWindow_onLoad)] call EFUNC(common,removeEventHandler);
-        ["AttributesWindow_onUnload", GVAR(AttributesWindow_onUnload)] call EFUNC(common,removeEventHandler);
-        ["AttributesWindow_onConfirm", GVAR(AttributesWindow_onConfirm)] call EFUNC(common,removeEventHandler);
-        ["AttributesWindow_onCancel", GVAR(AttributesWindow_onCancel)] call EFUNC(common,removeEventHandler);
+        ["AttributesWindow_onLoad", GVAR(AttributesWindow_onLoad)] call CFUNC(removeEventHandler);
+        ["AttributesWindow_onUnload", GVAR(AttributesWindow_onUnload)] call CFUNC(removeEventHandler);
+        ["AttributesWindow_onConfirm", GVAR(AttributesWindow_onConfirm)] call CFUNC(removeEventHandler);
+        ["AttributesWindow_onCancel", GVAR(AttributesWindow_onCancel)] call CFUNC(removeEventHandler);
     };
 
     GVAR(AttributesWindow_onLoad) = ["AttributesWindow_onLoad",
         compile format ["[(_this select 0), '%1', '%2'] call " + QUOTE(FUNC(onAttributesLoad)), _component, _attribute]
-    ] call EFUNC(common,addEventHandler);
+    ] call CFUNC(addEventHandler);
     
     GVAR(AttributesWindow_onUnload) = ["AttributesWindow_onUnload", {
         GVAR(isOpen) = false;
         GVAR(AttributesWindow_ItemControls) = [];
         GVAR(identifyControls) = [];
         GVAR(AttributesWindow_GlobalArgs) = [];
-        ["AttributesWindow_onLoad", GVAR(AttributesWindow_onLoad)] call EFUNC(common,removeEventHandler);
-        ["AttributesWindow_onUnload", GVAR(AttributesWindow_onUnload)] call EFUNC(common,removeEventHandler);
-        ["AttributesWindow_onConfirm", GVAR(AttributesWindow_onConfirm)] call EFUNC(common,removeEventHandler);
-        ["AttributesWindow_onCancel", GVAR(AttributesWindow_onCancel)] call EFUNC(common,removeEventHandler);
-    }] call EFUNC(common,addEventHandler);
+        ["AttributesWindow_onLoad", GVAR(AttributesWindow_onLoad)] call CFUNC(removeEventHandler);
+        ["AttributesWindow_onUnload", GVAR(AttributesWindow_onUnload)] call CFUNC(removeEventHandler);
+        ["AttributesWindow_onConfirm", GVAR(AttributesWindow_onConfirm)] call CFUNC(removeEventHandler);
+        ["AttributesWindow_onCancel", GVAR(AttributesWindow_onCancel)] call CFUNC(removeEventHandler);
+
+        if (!isNil QEFUNC(editor,toggleMouseHandler)) then {
+            [true, true] call EFUNC(editor,toggleMouseHandler);
+        };
+    }] call CFUNC(addEventHandler);
 
     GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
         closeDialog 0;
-    }] call EFUNC(common,addEventHandler);
+    }] call CFUNC(addEventHandler);
     
     GVAR(AttributesWindow_onCancel) = ["AttributesWindow_onCancel", {
         closeDialog 0;
-    }] call EFUNC(common,addEventHandler);
+    }] call CFUNC(addEventHandler);
     
     createDialog QGVAR(attributesWindow);
 };
