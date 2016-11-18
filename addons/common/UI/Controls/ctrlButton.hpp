@@ -177,6 +177,10 @@ class MARS_gui_ctrlUnitButton: MARS_gui_ctrlButtonPictureKeepAspect {
     colorBackgroundActive[] = {0,0,0,0};
     offsetPressedX = 0;
     offsetPressedY = 0;
+    soundClick[] = {};
+    soundEnter[] = {};
+    soundPush[] = {};
+    soundEscape[] = {};
 };
 
 class MARS_gui_ctrlGroupButton: MARS_gui_ctrlUnitButton {
