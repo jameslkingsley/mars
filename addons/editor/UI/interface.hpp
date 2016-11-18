@@ -124,7 +124,7 @@ class GVAR(interface) {
                 align = "center";
             };
         };
-        class PanelLeft: MARS_gui_ctrlControlsGroupNoScrollbars {
+        /*class PanelLeft: MARS_gui_ctrlControlsGroupNoScrollbars {
             idc = IDC_LEFTPANEL;
             x = safezoneX;
             y = safezoneY + (MENUBAR_H + TOOLBAR_H) * GRID_H;
@@ -246,7 +246,7 @@ class GVAR(interface) {
                     };
                 };
             };
-        };
+        };*/
         class PanelRight: MARS_gui_ctrlControlsGroupNoScrollbars {
             idc = IDC_RIGHTPANEL;
             x = safezoneX + safezoneW - PANEL_W * GRID_W;
