@@ -39,6 +39,7 @@ private _index = 0;
             // In viewport
             _ctrl setVariable [QGVAR(eligibleForSelection), true];
             private _hovered = _ctrl getVariable [QGVAR(hovered), false];
+            private _isGroup = _ctrl getVariable [QGVAR(isGroup), false];
             private _dimensions = _ctrl getVariable [QGVAR(dimensions), [5 * GRID_W, 5 * GRID_H]];
             private _color = _ctrl getVariable [QGVAR(color), [0,0,0,1]];
             private _texture = _ctrl getVariable [QGVAR(texture), ""];
@@ -47,19 +48,24 @@ private _index = 0;
 
             if (!alive _object) then {
                 _color = [0,0,0,1];
+
+                if (_isGroup) then {
+                    _ctrl setVariable [QGVAR(deleteNext), true];
+                };
             };
 
             if (_hovered || {_inSelection}) then {
                 _color set [3, 1];
             } else {
-                _color set [3, linearConversion [(_distance / 2), _distance, _worldDistance, 0.75, 0, true]];
+                _color set [3, linearConversion [(_distance / 2), _distance, _worldDistance, 0.66, 0, true]];
             };
 
-            if !(_lineData isEqualTo []) then {
+            if !(_lineData isEqualTo [] && {_worldDistance <= (_distance / 4)}) then {
                 _lineData params ["_start", "_end", "_endOffset", "_startSelection", "_endSelection", "_lineColor"];
                 if (!isNull _start && {!isNull _end}) then {
                     private _zOffset1 = (_start selectionPosition _startSelection) param [2, 0];
                     private _zOffset2 = (_end selectionPosition _endSelection) param [2, 0];
+                    if (!alive _start) then {_lineColor = [0,0,0,1]};
                     drawLine3D [
                         (ASLtoAGL (getPosASLVisual _start)) vectorAdd [0, 0, _zOffset1],
                         (ASLtoAGL (getPosASLVisual _end)) vectorAdd (_endOffset vectorAdd [0, 0, _zOffset2]),

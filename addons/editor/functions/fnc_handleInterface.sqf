@@ -279,8 +279,8 @@ switch (toLower _mode) do {
 
         switch (_dik) do {
             case 1: { // Esc
-                //[QGVAR(escape)] call FUNC(interrupt);
-                //["escape"] call FUNC(handleInterface);
+                // [QGVAR(escape)] call FUNC(interrupt);
+                // ["escape"] call FUNC(handleInterface);
                 [player] call FUNC(shutdown);
             };
             case 211: { // Delete

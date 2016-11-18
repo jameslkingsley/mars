@@ -140,7 +140,7 @@ private _addEventHandlers = {
 
     if (_isPerson) then {
         // Is person
-        if (leader _object == _object) then {
+        if (leader _object == _object && {{!isNull _x && {alive _x}} count units group _object > 0}) then {
             // Create group control
             private _grpIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
             private _grpCtrl = [_object, "unit_group"] call _getControlByKey;
@@ -164,6 +164,7 @@ private _addEventHandlers = {
             _grpCtrl setVariable [QGVAR(color), _color];
             _grpCtrl setVariable [QGVAR(lineData), [_object, _object, [0, 0, 10], "pelvis", "", [0,0,0,1]]];
             _grpCtrl setVariable [QGVAR(distance), GROUP_DISTANCE_COEF];
+            _grpCtrl setVariable [QGVAR(isGroup), true];
         };
 
         private _ctrl = [_object, "unit"] call _getControlByKey;
@@ -217,7 +218,7 @@ private _addEventHandlers = {
         _ctrl setVariable [QGVAR(color), _color];
         _ctrl setVariable [QGVAR(distance), UNIT_DISTANCE_COEF];
 
-        if !(crew _object isEqualTo []) then {
+        if (!(crew _object isEqualTo []) && {{!isNull _x && {alive _x}} count crew _object > 0}) then {
             private _vehicleGrpIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
 
             if (isNull _vehicleGrpCtrl) then {
@@ -242,6 +243,7 @@ private _addEventHandlers = {
             _vehicleGrpCtrl setVariable [QGVAR(color), _color];
             _vehicleGrpCtrl setVariable [QGVAR(lineData), [_object, _object, [0, 0, 10], "", "", [0,0,0,1]]];
             _vehicleGrpCtrl setVariable [QGVAR(distance), GROUP_DISTANCE_COEF];
+            _vehicleGrpCtrl setVariable [QGVAR(isGroup), true];
         } else {
             if (!isNull _vehicleGrpCtrl) then {
                 _vehicleGrpCtrl setVariable [QGVAR(deleteNext), true];
