@@ -50,6 +50,7 @@ GVAR(prepSurfaceSphere) = objNull;
 GVAR(currentCursor) = "";
 GVAR(isInputActive) = false;
 GVAR(mapOpen) = false;
+GVAR(isGameMaster) = false;
 
 // Selection Box
 GVAR(selectionBoxStartPos) = [];

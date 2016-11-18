@@ -83,3 +83,4 @@ PREP(updateIcons);
 PREP(serializeIcons);
 PREP(getObjectIconControls);
 PREP(toggleMouseHandler);
+PREP(initGameMaster);
