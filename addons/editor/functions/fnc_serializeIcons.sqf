@@ -37,13 +37,15 @@ params [
 ];
 
 if (_entities isEqualTo []) then {
-    _entities = (((entities "All") select {
+    _entities = ((((entities "All") select {
         !((worldToScreen (getPos _x)) isEqualTo []) &&
         {_x distance GVAR(camera) <= GVAR(iconDrawDistance)} &&
         {!(side group _x in [sideAmbientLife, sideLogic])} &&
         {!(typeOf _x in ["GroundWeaponHolder","WeaponHolderSimulated"])}
-    }) - (entities "Animal"));
+    }) + (allMissionObjects "Static")) - (entities "Animal"));
 };
+
+_entities = _entities arrayIntersect _entities;
 
 private _getControlByKey = {
     params ["_object", "_key"];
@@ -129,7 +131,8 @@ private _addEventHandlers = {
 
 {
     private _object = vehicle _x;
-    private _color = [side group _object] call CFUNC(getSideColor);
+    private _side = side group _object;
+    private _color = [_side] call CFUNC(getSideColor);
     private _existingControls = GETUVAR(GVAR(iconControls), []);
     private _idcIndex = (count _existingControls) + 1;
     private _idc = IDC_ICONCONTROL_PREFIX + _idcIndex;
@@ -140,7 +143,7 @@ private _addEventHandlers = {
 
     if (_isPerson) then {
         // Is person
-        if (leader _object == _object && {{!isNull _x && {alive _x}} count units group _object > 0}) then {
+        if (_side != sideLogic && {leader _object == _object} && {{!isNull _x && {alive _x}} count units group _object > 0}) then {
             // Create group control
             private _grpIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
             private _grpCtrl = [_object, "unit_group"] call _getControlByKey;
@@ -218,7 +221,7 @@ private _addEventHandlers = {
         _ctrl setVariable [QGVAR(color), _color];
         _ctrl setVariable [QGVAR(distance), UNIT_DISTANCE_COEF];
 
-        if (!(crew _object isEqualTo []) && {{!isNull _x && {alive _x}} count crew _object > 0}) then {
+        if (_side != sideLogic && {!(crew _object isEqualTo [])} && {{!isNull _x && {alive _x}} count crew _object > 0}) then {
             private _vehicleGrpIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
 
             if (isNull _vehicleGrpCtrl) then {
