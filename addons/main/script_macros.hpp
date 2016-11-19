@@ -215,10 +215,10 @@
 #define COLOR_GUER_RGB COLOR_GUER_R,COLOR_GUER_G,COLOR_GUER_B
 #define COLOR_GUER_RGBA COLOR_GUER_RGB,COLOR_GUER_A
 
-#define COLOR_CIV_R (profileNamespace getVariable ['map_independent_r',0.4])
-#define COLOR_CIV_G (profileNamespace getVariable ['map_independent_g',0])
-#define COLOR_CIV_B (profileNamespace getVariable ['map_independent_b',0.5])
-#define COLOR_CIV_A (profileNamespace getVariable ['map_independent_a',1])
+#define COLOR_CIV_R (profileNamespace getVariable ['map_civilian_r',0.4])
+#define COLOR_CIV_G (profileNamespace getVariable ['map_civilian_g',0])
+#define COLOR_CIV_B (profileNamespace getVariable ['map_civilian_b',0.5])
+#define COLOR_CIV_A (profileNamespace getVariable ['map_civilian_a',1])
 #define COLOR_CIV_RGB COLOR_CIV_R,COLOR_CIV_G,COLOR_CIV_B
 #define COLOR_CIV_RGBA COLOR_CIV_RGB,COLOR_CIV_A
 
