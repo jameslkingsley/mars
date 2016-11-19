@@ -161,10 +161,9 @@ switch (toLower _mode) do {
                             private _cursorWorldPos = AGLtoASL (screenToWorld GVAR(mousePos));
                             _cursorWorldPos resize 2;
 
-                            // The distance used here might need to be tweaked - further testing needed
                             if (
                                 {(_cursorWorldPos distance2D _x) < 10} count GVAR(selection) > 0 ||
-                                {[_cursorWorldPos, GVAR(selection)] call FUNC(nearSelectionGroupIcon)}
+                                {GVAR(hoveringOverGroupIcon)}
                             ) then {
                                 [] call FUNC(handleContextMenu);
                             } else {

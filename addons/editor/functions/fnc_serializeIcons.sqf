@@ -124,8 +124,11 @@ private _addEventHandlers = {
 
     _ctrl ctrlAddEventHandler ["MouseButtonDown", {
         params ["_ctrl", "_button"];
+        private _isGroup = _ctrl getVariable [QGVAR(isGroup), false];
         GVAR(objectUnderCursor) = _ctrl getVariable [QGVAR(object), objNull];
-        ["onmousebuttondown", _this] call FUNC(handleInterface);
+        if (!_isGroup) then {
+            ["onmousebuttondown", _this] call FUNC(handleInterface);
+        };
     }];
 };
 
