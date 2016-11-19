@@ -86,7 +86,7 @@ private _unitResult = [];
 ];
 
 private _objectResult = [];
-private _objects = "getNumber (_x >> 'side') in [-1,3] && {getNumber (_x >> 'scope') in [1,2]} && {!isNull (_x >> 'editorCategory')} && {getText (_x >> 'editorCategory') != ''}" configClasses (configFile >> "CfgVehicles");
+private _objects = "getNumber (_x >> 'side') in [-1,3,4] && {getNumber (_x >> 'scope') == 2} && {!isNull (_x >> 'editorCategory')} && {getText (_x >> 'editorCategory') != ''}" configClasses (configFile >> "CfgVehicles");
 private _cats = [];
 
 {
