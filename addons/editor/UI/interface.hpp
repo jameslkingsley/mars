@@ -2,7 +2,7 @@ class GVAR(interface) {
     idd = IDC_DISPLAY;
     enableSimulation = 1;
     enableDisplay = 1;
-    closeOnMissionEnd = 0;
+    closeOnMissionEnd = 1;
     movingEnable = 0;
     onLoad = QUOTE([ARR_2('onLoad',_this)] call FUNC(handleInterface));
     onUnload = QUOTE([ARR_2('onUnload',_this)] call FUNC(handleInterface));
