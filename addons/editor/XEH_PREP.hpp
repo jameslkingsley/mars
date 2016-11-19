@@ -84,3 +84,4 @@ PREP(serializeIcons);
 PREP(getObjectIconControls);
 PREP(toggleMouseHandler);
 PREP(initGameMaster);
+PREP(spawnArsenal);

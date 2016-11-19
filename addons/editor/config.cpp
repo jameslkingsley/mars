@@ -33,3 +33,4 @@ class Intercept {
 #include "CfgAttributes.hpp"
 #include "CfgCursors.hpp"
 #include "CfgVehicles.hpp"
+#include "CfgModules.hpp"

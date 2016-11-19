@@ -10,12 +10,12 @@ if (isServer) then {
         missionNamespace setVariable [QGVAR(whitelisted), getArray (_settings >> "whitelisted"), true];
         missionNamespace setVariable [QGVAR(blacklisted), getArray (_settings >> "blacklisted"), true];
     } else {
-        GVAR(alwaysAllowLoginWhenEmpty) = true;
-        GVAR(whitelisted) = [];
-        GVAR(blacklisted) = [];
+        missionNamespace setVariable [QGVAR(alwaysAllowLoginWhenEmpty), true, true];
+        missionNamespace setVariable [QGVAR(whitelisted), [], true];
+        missionNamespace setVariable [QGVAR(blacklisted), [], true];
     };
 
-    // Server/HC FPS
+    // Server FPS
     [{
         GVAR(fps_server) = diag_fps;
         publicVariable QGVAR(fps_server);
@@ -37,11 +37,7 @@ if (isNil QGVAR(initialLoginPlayer)) then {
 
 // Object creation handler
 [QGVAR(spawnObject), {
-    _this call FUNC(spawnObject);
-    
-    #ifdef DEBUG_MODE_FULL
-        MARS_LOGINFO("Spawned object(s)");
-    #endif
+    _this spawn FUNC(spawnObject);
 }] call CBA_fnc_addEventHandler;
 
 // Is this needed?
@@ -54,6 +50,10 @@ createCenter civilian;
     params ["_unit", "_dir"];
     _unit setFormDir _dir;
     _unit setDir _dir;
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(spawnArsenal), {
+    _this call FUNC(spawnArsenal);
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(serializeIconsForObjects), {
