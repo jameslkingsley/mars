@@ -21,3 +21,4 @@ PREP(taskOrbit);
 PREP(taskParadrop);
 PREP(taskPatrol);
 PREP(ungarrison);
+PREP(setStance);

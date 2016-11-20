@@ -28,7 +28,6 @@ if (_entities isEqualTo []) exitWith {};
 
 if (_broadcast) then {
     _entities = _entities select 0;
-    systemChat str _entities;
     private _groups = [_entities] call CFUNC(unitsToGroups);
     {[QGVAR(setFormation), [_formation, [_x]], _x] call CBA_fnc_targetEvent;false} count _groups;
 } else {

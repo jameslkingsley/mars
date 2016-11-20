@@ -4,37 +4,68 @@ class GVARMAIN(context) {
             displayName = "Infantry";
             condition = QUOTE(_this isKindOf 'Man');
             exceptions[] = {"isNotPlayer"};
+            class Stance {
+                displayName = "Stance";
+                order = 1;
+                class Prone {
+                    displayName = "Prone";
+                    action = QUOTE([ARR_3('DOWN', _this, true)] call FUNC(setStance));
+                    order = 1;
+                };
+                class Crouch {
+                    displayName = "Crouch";
+                    action = QUOTE([ARR_3('MIDDLE', _this, true)] call FUNC(setStance));
+                    order = 2;
+                };
+                class Stand {
+                    displayName = "Stand";
+                    action = QUOTE([ARR_3('UP', _this, true)] call FUNC(setStance));
+                    order = 3;
+                };
+                class Auto {
+                    displayName = "Auto";
+                    action = QUOTE([ARR_3('AUTO', _this, true)] call FUNC(setStance));
+                    order = 4;
+                };
+            };
             class ForceMove {
                 displayName = "Force Move";
+                order = 2;
                 requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(forceMove));
             };
             class Attack {
                 displayName = "Attack";
+                order = 3;
                 requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(taskAttack));
             };
             class Defend {
                 displayName = "Defend";
+                order = 4;
                 requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(taskDefend));
             };
             class Patrol {
                 displayName = "Patrol";
+                order = 5;
                 requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(taskPatrol));
             };
             class Suppress {
                 displayName = "Suppress";
+                order = 6;
                 requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(suppress));
             };
             class SearchNearby {
                 displayName = "Search Nearby";
+                order = 7;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(searchNearby));
             };
             class Garrison {
                 displayName = "Garrison";
+                order = 8;
                 requiresPosition = 1;
                 action = QFUNC(garrison);
             };
