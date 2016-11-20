@@ -30,15 +30,25 @@ if (_update) then {
     
     if ({isPlayer _x} count GVAR(selection) > 0 && {!GVAR(editPlayers)}) exitWith {};
 
-    {
-        private _newPos = _x getVariable [QGVAR(leftDragFinalPos), []];
-        
-        if !(_newPos isEqualTo []) then {
-            _x setPosATL _newPos;
-        };
-        
-        false
-    } count GVAR(selection);
+    private _objectUnderCursor = [GVAR(objectDragAnchor)] call FUNC(objectUnderCursor);
+    systemChat str [_objectUnderCursor, (_objectUnderCursor in GVAR(selection))];
+
+    if (!isNull _objectUnderCursor && {!(_objectUnderCursor in GVAR(selection))}) then {
+        {
+            [QGVAR(moveInAny), [_x, _objectUnderCursor], _x] call CBA_fnc_targetEvent;
+            false
+        } count GVAR(selection);
+    } else {        
+        {
+            private _newPos = _x getVariable [QGVAR(leftDragFinalPos), []];
+            
+            if !(_newPos isEqualTo []) then {
+                _x setPosATL _newPos;
+            };
+            
+            false
+        } count GVAR(selection);
+    };
 };
 
 if (_cancel) then {

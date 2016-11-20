@@ -32,7 +32,7 @@ if (isNull _target) then {
         GVAR(camera),
         _ignoreObj,
         true,
-        1
+        3
     ];
 
     if !(_objects isEqualTo []) then {

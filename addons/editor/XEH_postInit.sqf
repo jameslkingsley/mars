@@ -48,8 +48,14 @@ createCenter civilian;
 
 [QGVAR(setDir), {
     params ["_unit", "_dir"];
+    doStop _unit;
     _unit setFormDir _dir;
     _unit setDir _dir;
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(moveInAny), {
+    params ["_unit", "_vehicle"];
+    _unit moveInAny _vehicle;
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(spawnArsenal), {
