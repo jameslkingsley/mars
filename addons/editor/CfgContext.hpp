@@ -11,6 +11,7 @@ class GVARMAIN(context) {
             displayName = "Remote Control";
             condition = QUOTE(!isPlayer _this && {count GVAR(selection) == 1} && {count crew vehicle _this > 0});
             action = QFUNC(remoteControl);
+            order = 100;
         };
     };
 };
