@@ -23,6 +23,7 @@ _args params [["_units", []], ["_pos", []]];
 if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 
 [_units] call FUNC(ungarrison);
+doStop _units;
 
 if (_broadcast) then {
     [QGVAR(forceMove), [_units, _pos], _units] call CBA_fnc_targetEvent;
