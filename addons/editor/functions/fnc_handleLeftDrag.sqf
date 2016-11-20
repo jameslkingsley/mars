@@ -31,7 +31,6 @@ if (_update) then {
     if ({isPlayer _x} count GVAR(selection) > 0 && {!GVAR(editPlayers)}) exitWith {};
 
     private _objectUnderCursor = [GVAR(objectDragAnchor)] call FUNC(objectUnderCursor);
-    systemChat str [_objectUnderCursor, (_objectUnderCursor in GVAR(selection))];
 
     if (!isNull _objectUnderCursor && {!(_objectUnderCursor in GVAR(selection))}) then {
         {
