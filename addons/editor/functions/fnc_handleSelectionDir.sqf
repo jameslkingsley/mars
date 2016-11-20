@@ -103,10 +103,14 @@ if (isNull _anchorObject) then {
         _object setVariable [QGVAR(isDirectionChanging), true];
         
         [_object, [side group _object] call CFUNC(getSideColor), nil, _dir] call FUNC(drawBoundingBox);
+
+        private _startPos = _object modelToWorldVisual (_object selectionPosition "pelvis");
+        private _endPos = (ASLtoAGL _worldPos);
+        _endPos set [2, (_startPos select 2)];
         
         drawLine3D [
-            (getPos _object) vectorAdd [0, 0, 1],
-            ASLtoAGL _worldPos,
+            _startPos,
+            _endPos,
             [1, 0.25, 0, 1]
         ];
 
