@@ -14,3 +14,5 @@
 [QGVAR(disableAI), {_this call FUNC(disableAI)}] call CBA_fnc_addEventHandler;
 [QGVAR(garrison), {_this call FUNC(_garrison)}] call CBA_fnc_addEventHandler;
 [QGVAR(groupMove), {[_this] call FUNC(groupMove)}] call CBA_fnc_addEventHandler;
+[QGVAR(disembark), {[_this] call FUNC(disembark)}] call CBA_fnc_addEventHandler;
+[QGVAR(setFormation), {_this call FUNC(setFormation)}] call CBA_fnc_addEventHandler;

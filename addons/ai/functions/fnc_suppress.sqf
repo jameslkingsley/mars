@@ -26,8 +26,8 @@ if (_broadcast) then {
     [QGVAR(suppress), [_units, _pos], _units] call CBA_fnc_targetEvent;
 } else {
     {
-        _x lookAt _pos;
-        _x doSuppressiveFire _pos;
+        (vehicle _x) lookAt _pos;
+        (vehicle _x) doSuppressiveFire _pos;
         
         false
     } count _units;

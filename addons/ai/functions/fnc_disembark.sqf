@@ -1,6 +1,6 @@
 /*
  * Author: Kingsley
- * Disembarks all units inside the given vehicle
+ * Disembarks all units inside the given vehicles
  *
  * Arguments:
  * 0: Vehicles <ARRAY>
@@ -16,22 +16,21 @@
 
 #include "script_component.hpp"
 
-params [["_vehicles", []]];
+params [["_args", []], ["_broadcast", false]];
 
 if (_vehicles isEqualTo []) exitWith {};
 
-{
-    [_x, {
-        params ["_vehicle"];
+if (_broadcast) then {
+    _args params [["_vehicles", []]];
+    {[QGVAR(disembark), [_x], _x] call CBA_fnc_targetEvent;false} count _vehicles;
+} else {
+    _args params [["_vehicle", objNull]];
+
+    {
+        unassignVehicle _x;
+        _x leaveVehicle _vehicle;
+        _x action ["Eject", _vehicle];
         
-        {
-            unassignVehicle _x;
-            _x leaveVehicle _vehicle;
-            _x action ["Eject", _vehicle];
-            
-            false
-        } count crew _vehicle;
-    }, [_x]] call CFUNC(execWhereLocal);
-    
-    false
-} count _vehicles;
+        false
+    } count crew _vehicle;
+};

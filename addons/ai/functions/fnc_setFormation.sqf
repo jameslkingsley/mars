@@ -20,15 +20,18 @@
 
 params [
     ["_formation", "", [""]],
-    ["_entities", [], [[]]]
+    ["_entities", [], [[]]],
+    ["_broadcast", false, [false]]
 ];
 
-_entities = _entities select 0; // Something weird with context menu
+if (_entities isEqualTo []) exitWith {};
 
-private _groups = [_entities] call CFUNC(unitsToGroups);
-
-{
-    _x setFormation _formation;
-
-    false
-} count _groups;
+if (_broadcast) then {
+    _entities = _entities select 0;
+    systemChat str _entities;
+    private _groups = [_entities] call CFUNC(unitsToGroups);
+    {[QGVAR(setFormation), [_formation, [_x]], _x] call CBA_fnc_targetEvent;false} count _groups;
+} else {
+    private _group = _entities param [0, grpNull];
+    _group setFormation _formation;
+};
