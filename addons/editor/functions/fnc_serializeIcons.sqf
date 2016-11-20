@@ -111,7 +111,7 @@ private _addEventHandlers = {
     _ctrl ctrlAddEventHandler ["MouseButtonUp", {
         params ["_ctrl", "_button"];
 
-        if (_button == 0) then {
+        if !(!(GVAR(selection) isEqualTo []) && _button == 1) then {
             private _group = _ctrl getVariable [QGVAR(group), grpNull];
             private _units = units _group;
             _units append [_object];
@@ -146,7 +146,7 @@ private _addEventHandlers = {
 
     if (_isPerson) then {
         // Is person
-        if (_side != sideLogic && {leader _object == _object} && {{!isNull _x && {alive _x}} count units group _object > 0}) then {
+        if (vehicle _object == _object && {_side != sideLogic} && {leader _object == _object} && {{!isNull _x && {alive _x}} count units group _object > 0}) then {
             // Create group control
             private _grpIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
             private _grpCtrl = [_object, "unit_group"] call _getControlByKey;
@@ -223,6 +223,7 @@ private _addEventHandlers = {
         _ctrl setVariable [QGVAR(dimensions), DIM_UNIT];
         _ctrl setVariable [QGVAR(color), _color];
         _ctrl setVariable [QGVAR(distance), UNIT_DISTANCE_COEF];
+        _ctrl setVariable [QGVAR(isVehicle), true];
 
         if (_side != sideLogic && {!(crew _object isEqualTo [])} && {{!isNull _x && {alive _x}} count crew _object > 0}) then {
             private _vehicleGrpIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);

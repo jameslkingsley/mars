@@ -45,6 +45,11 @@ private _index = 0;
             private _texture = _ctrl getVariable [QGVAR(texture), ""];
             private _lineData = _ctrl getVariable [QGVAR(lineData), []];
             private _inSelection = _object in GVAR(selection);
+            private _isVehicle = _ctrl getVariable [QGVAR(isVehicle), false];
+
+            if (!_isVehicle && {vehicle _object != _object}) then {
+                _ctrl setVariable [QGVAR(deleteNext), true];
+            };
 
             if (!alive _object) then {
                 _color = [0,0,0,1];
