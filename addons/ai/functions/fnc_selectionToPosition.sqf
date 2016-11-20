@@ -79,6 +79,7 @@ if (!isNull _target) exitWith {
     };
 
     [_x, _pos, 0, "MOVE", "AWARE", "RED", "FULL", "LINE"] call CBA_fnc_addWaypoint;
+    ["Group waypoint given"] call EFUNC(editor,notification);
     
     false
 } count ([_selection] call CFUNC(unitsToGroups));
