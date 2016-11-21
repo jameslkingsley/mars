@@ -24,15 +24,13 @@ if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 
 [_units] call FUNC(ungarrison);
 {[_x, "run"] call CFUNC(setGroupStatus)} forEach ([_units] call CFUNC(unitsToGroups));
-doStop _units;
 
 if (_broadcast) then {
     [QGVAR(forceMove), [_units, _pos], _units] call CBA_fnc_targetEvent;
 } else {
     {
         _x setUnitPos "UP";
-        _x doMove _pos;
-        
+        _x doMove _pos;        
         false
     } count _units;
 };

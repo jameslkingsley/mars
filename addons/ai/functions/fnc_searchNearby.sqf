@@ -22,7 +22,6 @@ _args params [["_units", []]];
 if (_units isEqualTo []) exitWith {};
 
 [_units] call FUNC(ungarrison);
-doStop _units;
 
 if (_broadcast) then {
     private _groups = [_units] call CFUNC(unitsToGroups);
