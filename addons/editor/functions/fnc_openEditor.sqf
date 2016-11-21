@@ -113,6 +113,11 @@ GVAR(pfh) = [{
     private _display = GETUVAR(GVAR(interface), displayNull);
     GVAR(objectUnderCursor) = [] call FUNC(objectUnderCursor);
 
+    private _hotbar = _display displayCtrl IDC_HOTBAR;
+    private _hasSelection = !(GVAR(selection) isEqualTo []);
+    _hotbar ctrlEnable _hasSelection;
+    _hotbar ctrlShow _hasSelection;
+
     // Asset browser placing objects
     [] call FUNC(prepNewObject);
 

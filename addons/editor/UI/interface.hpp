@@ -114,9 +114,9 @@ class GVAR(interface) {
         };
         class Notification: MARS_gui_ctrlStructuredText {
             idc = IDC_NOTIFICATION;
-            x = safezoneX + PANEL_W * GRID_W;
-            y = safezoneY + (MENUBAR_H + TOOLBAR_H) * GRID_H;
-            w = safezoneW - 2 * PANEL_W * GRID_W;
+            x = safeZoneX + PANEL_W * GRID_W;
+            y = safeZoneY + (MENUBAR_H + TOOLBAR_H) * GRID_H;
+            w = safeZoneW - 2 * PANEL_W * GRID_W;
             h = 0;
             colorBackground[] = {1,0,1,1};
             shadow = 0;
@@ -124,7 +124,55 @@ class GVAR(interface) {
                 align = "center";
             };
         };
-        /*class PanelLeft: MARS_gui_ctrlControlsGroupNoScrollbars {
+        class HotBar: MARS_gui_ctrlControlsGroupNoScrollbars {
+            idc = IDC_HOTBAR;
+            x = CENTER_X - (33 * GRID_W);
+            y = safeZoneY + (MENUBAR_H + TOOLBAR_H + 10) * GRID_H;
+            w = 66 * GRID_W;
+            h = 12 * GRID_H;
+            class Controls {
+                class Background: MARS_gui_ctrlStatic {
+                    x = 0;
+                    y = 0;
+                    w = 66 * GRID_W;
+                    h = 12 * GRID_H;
+                    colorBackground[] = {COLOR_BACKGROUND_RGB,TRANSPARENT_A};
+                };
+                class Inner: MARS_gui_ctrlControlsGroupNoScrollbars {
+                    idc = IDC_HOTBAR_INNER;
+                    x = GRID_W;
+                    y = GRID_H;
+                    w = 64 * GRID_W;
+                    h = 10 * GRID_H;
+                    class Controls {
+                        #define HOTBAR_ITEM_WIDTH ((64 * GRID_W) / 6)
+                        #define HOTBAR_ITEM_X(ARG0) (HOTBAR_ITEM_WIDTH * ARG0)
+                        #define HOTBAR_ACTION(ARG0)\
+                            class Action##ARG0: EntityInfo {\
+                                x = HOTBAR_ITEM_X(ARG0);\
+                            }
+
+                        class EntityInfo: MARS_gui_ctrlButtonPictureKeepAspect {
+                            x = HOTBAR_ITEM_X(0);
+                            y = 0;
+                            w = HOTBAR_ITEM_WIDTH;
+                            h = 10 * GRID_H;
+                            text = "\a3\ui_f\data\igui\cfg\simpletasks\types\rearm_ca.paa";
+                            colorText[] = {1,1,1,1};
+                            colorBackground[] = {0,0,0,0};
+                            colorBackgroundActive[] = {QCOLOR_ACTIVE_RGBA};
+                        };
+
+                        HOTBAR_ACTION(1);
+                        HOTBAR_ACTION(2);
+                        HOTBAR_ACTION(3);
+                        HOTBAR_ACTION(4);
+                        HOTBAR_ACTION(5);
+                    };
+                };
+            };
+        };
+        class PanelLeft: MARS_gui_ctrlControlsGroupNoScrollbars {
             idc = IDC_LEFTPANEL;
             x = safezoneX;
             y = safezoneY + (MENUBAR_H + TOOLBAR_H) * GRID_H;
@@ -246,7 +294,7 @@ class GVAR(interface) {
                     };
                 };
             };
-        };*/
+        };
         class PanelRight: MARS_gui_ctrlControlsGroupNoScrollbars {
             idc = IDC_RIGHTPANEL;
             x = safezoneX + safezoneW - PANEL_W * GRID_W;
