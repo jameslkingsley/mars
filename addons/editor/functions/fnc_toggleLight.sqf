@@ -23,7 +23,7 @@ if (GVAR(camLightOn)) then {
 } else {
     // Turn light on
     private _intensity = GVAR(camLightIntensity);
-    private _light = "#lightpoint" createVehicle (position GVAR(camera));
+    private _light = "#lightpoint" createVehicleLocal (position GVAR(camera));
     _light setLightBrightness _intensity;
     _light setLightAmbient [1, 1, 1];
     _light setLightColor [0, 0, 0];
