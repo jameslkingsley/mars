@@ -183,6 +183,29 @@ class MARS_gui_ctrlUnitButton: MARS_gui_ctrlButtonPictureKeepAspect {
     soundEscape[] = {};
 };
 
+class MARS_gui_ctrlCallsignText: MARS_gui_ctrlButtonStatic {
+    style = ST_MULTI + ST_NO_RECT + ST_RIGHT + ST_VCENTER;
+    w = 5 * GRID_W;
+    h = 5 * GRID_H;
+    font = FONT2_NORMAL;
+    text = "";
+    size = SIZEEX_PURISTA_S;
+    sizeEx = SIZEEX_PURISTA_S;
+    colorText[] = {0,0,0,1};
+    colorBackground[] = {0,0,0,0};
+    colorFocused[] = {0,0,0,0};
+    colorBackgroundActive[] = {0,0,0,0};
+    colorShadow[] = {0,0,0,0};
+    offsetPressedX = 0;
+    offsetPressedY = 0;
+    soundClick[] = {};
+    soundEnter[] = {};
+    soundPush[] = {};
+    soundEscape[] = {};
+};
+
+class MARS_gui_ctrlCallsignImage: MARS_gui_ctrlUnitButton {};
+
 class MARS_gui_ctrlGroupButton: MARS_gui_ctrlUnitButton {
     w = 10 * GRID_W;
     h = 10 * GRID_H;

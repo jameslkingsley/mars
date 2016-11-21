@@ -46,6 +46,10 @@ private _index = 0;
             private _lineData = _ctrl getVariable [QGVAR(lineData), []];
             private _inSelection = _object in GVAR(selection);
             private _isVehicle = _ctrl getVariable [QGVAR(isVehicle), false];
+            private _group = _ctrl getVariable [QGVAR(group), grpNull];
+
+            _posScreen params ["_psX", "_psY"];
+            _dimensions params ["_sizeW", "_sizeH"];
 
             if (!_isVehicle && {vehicle _object != _object}) then {
                 _ctrl setVariable [QGVAR(deleteNext), true];
@@ -79,9 +83,6 @@ private _index = 0;
                 };
             };
 
-            _posScreen params ["_psX", "_psY"];
-            _dimensions params ["_sizeW", "_sizeH"];
-
             if (_hovered || {_inSelection}) then {
                 _sizeW = _sizeW * GVAR(iconHoverSize);
                 _sizeH = _sizeH * GVAR(iconHoverSize);
@@ -103,6 +104,35 @@ private _index = 0;
             _ctrl ctrlSetTextColor _color;
 
             _ctrl ctrlCommit 0;
+
+            if (_isGroup) then {
+                private _ctrlTextLeft = _ctrl getVariable [QGVAR(ctrlTextLeft), controlNull];
+                private _ctrlTextRight = _ctrl getVariable [QGVAR(ctrlTextRight), controlNull];
+                private _ctrlTextLeftPos = ctrlPosition _ctrlTextLeft;
+                private _ctrlTextRightPos = ctrlPosition _ctrlTextRight;
+                private _textLeft = _ctrlTextLeft getVariable [QGVAR(text), ""];
+                private _textRight = _ctrlTextRight getVariable [QGVAR(text), ""];
+                private _colorLeft = _ctrlTextLeft getVariable [QGVAR(color), [0,0,0,1]];
+
+                if (_textLeft == "" || {_worldDistance >= (_distance / 2)}) then {
+                    _ctrlTextLeft ctrlEnable false;
+                    _ctrlTextLeft ctrlShow false;
+                } else {
+                    _colorLeft set [3, linearConversion [0, _distance, _worldDistance, 1, 0, true]];
+                    private _mainPos = ctrlPosition _ctrl;
+                    private _leftPos = [
+                        (_mainPos select 0) - (_ctrlTextLeftPos select 2),
+                        (_mainPos select 1) + (5 * pixelH)
+                    ];
+
+                    _ctrlTextLeft ctrlEnable true;
+                    _ctrlTextLeft ctrlShow true;
+                    _ctrlTextLeft ctrlSetPosition _leftPos;
+                    _ctrlTextLeft ctrlSetText _textLeft;
+                    _ctrlTextLeft ctrlSetTextColor _colorLeft;
+                    _ctrlTextLeft ctrlCommit 0;
+                };
+            };
         } else {
             // Not in viewport
             _ctrl setVariable [QGVAR(eligibleForSelection), false];
@@ -112,7 +142,9 @@ private _index = 0;
     } else {
         // Object no longer exists
         // Or marked for deletion
-        ctrlDelete _ctrl;
+        private _ctrlTextLeft = _ctrl getVariable [QGVAR(ctrlTextLeft), controlNull];
+        private _ctrlTextRight = _ctrl getVariable [QGVAR(ctrlTextRight), controlNull];
+        {ctrlDelete _x;false} count [_ctrl, _ctrlTextLeft, _ctrlTextRight];
         private _currentControls = GETUVAR(GVAR(iconControls), []);
         _currentControls deleteAt _index;
         SETUVAR(GVAR(iconControls), _currentControls);

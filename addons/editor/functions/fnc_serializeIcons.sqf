@@ -139,6 +139,8 @@ private _addEventHandlers = {
     private _existingControls = GETUVAR(GVAR(iconControls), []);
     private _idcIndex = (count _existingControls) + 1;
     private _idc = IDC_ICONCONTROL_PREFIX + _idcIndex;
+    private _idcTextLeft = IDC_ICONCONTROL_L_PREFIX + _idcIndex;
+    private _idcTextRight = IDC_ICONCONTROL_R_PREFIX + _idcIndex;
     private _idcGrp = IDC_GRPICONCONTROL_PREFIX + _idcIndex;
     private _isPerson = (typeOf _object) call CBA_fnc_isPerson;
 
@@ -156,10 +158,9 @@ private _addEventHandlers = {
                 [_grpCtrl] call _addEventHandlers;
                 _existingControls pushBack _grpCtrl;
                 SETUVAR(GVAR(iconControls), _existingControls);
+                _grpCtrl ctrlSetPosition [0, 0, DIM_GROUP select 0, DIM_GROUP select 1];
+                _grpCtrl ctrlCommit 0;
             };
-
-            _grpCtrl ctrlSetPosition [0, 0, DIM_GROUP select 0, DIM_GROUP select 1];
-            _grpCtrl ctrlCommit 0;
 
             _grpCtrl setVariable [QGVAR(key), "unit_group"];
             _grpCtrl setVariable [QGVAR(object), _object];
@@ -171,6 +172,35 @@ private _addEventHandlers = {
             _grpCtrl setVariable [QGVAR(lineData), [_object, _object, [0, 0, 10], "pelvis", "", [0,0,0,1]]];
             _grpCtrl setVariable [QGVAR(distance), GROUP_DISTANCE_COEF];
             _grpCtrl setVariable [QGVAR(isGroup), true];
+
+            private _ctrlTextLeft = _grpCtrl getVariable [QGVAR(ctrlTextLeft), controlNull];
+            if (isNull _ctrlTextLeft) then {
+                _ctrlTextLeft = _display ctrlCreate [
+                    (["MARS_gui_ctrlCallsignImage","MARS_gui_ctrlCallsignText"] select (isPlayer leader _object)),
+                    _idcTextLeft,
+                    (_display displayCtrl IDC_MOUSEHANDLER)
+                ];
+                _ctrlTextLeft ctrlSetPosition [0, 0, (DIM_UNIT select 0) * ([1,4] select (isPlayer leader _object)), (DIM_UNIT select 1) * 0.75];
+                _ctrlTextLeft ctrlCommit 0;
+                _grpCtrl setVariable [QGVAR(ctrlTextLeft), _ctrlTextLeft];
+            };
+
+            if (isPlayer leader _object) then {
+                _ctrlTextLeft setVariable [QGVAR(text), groupId (group _object)];
+                _ctrlTextLeft setVariable [QGVAR(color), [0,0,0,1]];
+            } else {
+                _ctrlTextLeft setVariable [QGVAR(text), [group _object, true] call CFUNC(getGroupStatus)];
+                _ctrlTextLeft setVariable [QGVAR(color), [1,1,1,1]];
+            };
+
+            private _ctrlTextRight = _grpCtrl getVariable [QGVAR(ctrlTextRight), controlNull];
+            if (isNull _ctrlTextRight) then {
+                _ctrlTextRight = _display ctrlCreate ["MARS_gui_ctrlCallsignText", _idcTextRight, (_display displayCtrl IDC_MOUSEHANDLER)];
+                _ctrlTextRight ctrlSetPosition [0, 0, DIM_UNIT select 0, DIM_UNIT select 1];
+                _ctrlTextRight ctrlCommit 0;
+                _grpCtrl setVariable [QGVAR(ctrlTextRight), _ctrlTextRight];
+            };
+            _ctrlTextRight setVariable [QGVAR(text), count ((units (group _object)) select {alive _x})];
         };
 
         private _ctrl = [_object, "unit"] call _getControlByKey;
@@ -180,13 +210,12 @@ private _addEventHandlers = {
             [_ctrl] call _addEventHandlers;
             _existingControls pushBack _ctrl;
             SETUVAR(GVAR(iconControls), _existingControls);
+            _ctrl ctrlSetPosition [0, 0, DIM_UNIT select 0, DIM_UNIT select 1];
+            _ctrl ctrlCommit 0;
         };
 
         private _objectIcon = getText (configfile >> "CfgVehicles" >> (typeOf _object) >> "icon");
         private _objectIconPath = [getText (configFile >> "CfgVehicleIcons" >> _objectIcon), _objectIcon] select ((toLower _objectIcon) find "\" > -1);
-
-        _ctrl ctrlSetPosition [0, 0, DIM_UNIT select 0, DIM_UNIT select 1];
-        _ctrl ctrlCommit 0;
 
         _ctrl setVariable [QGVAR(key), "unit"];
         _ctrl setVariable [QGVAR(object), _object];
@@ -208,14 +237,13 @@ private _addEventHandlers = {
             [_ctrl] call _addEventHandlers;
             _existingControls pushBack _ctrl;
             SETUVAR(GVAR(iconControls), _existingControls);
+            _ctrl ctrlSetPosition [0, 0, DIM_UNIT select 0, DIM_UNIT select 1];
+            _ctrl ctrlCommit 0;
         };
 
         private _vehicleIcon = getText (configfile >> "CfgVehicles" >> (typeOf _object) >> "icon");
         private _vehicleIconPath = [getText (configFile >> "CfgVehicleIcons" >> _vehicleIcon), _vehicleIcon] select ((toLower _vehicleIcon) find "\" > -1);
         private _vehicleGrpCtrl = [_object, "vehicle_group"] call _getControlByKey;
-
-        _ctrl ctrlSetPosition [0, 0, DIM_UNIT select 0, DIM_UNIT select 1];
-        _ctrl ctrlCommit 0;
 
         _ctrl setVariable [QGVAR(key), "vehicle"];
         _ctrl setVariable [QGVAR(object), _object];
@@ -227,6 +255,7 @@ private _addEventHandlers = {
 
         if (_side != sideLogic && {!(crew _object isEqualTo [])} && {{!isNull _x && {alive _x}} count crew _object > 0}) then {
             private _vehicleGrpIcon = [[group _object] call CFUNC(getMarkerType)] call CFUNC(getMarkerTexture);
+            private _vehicleGrpDimensions = [CTRLSIZE_GROUP * GRID_W, CTRLSIZE_GROUP * GRID_H];
 
             if (isNull _vehicleGrpCtrl) then {
                 _vehicleGrpCtrl = _display ctrlCreate ["MARS_gui_ctrlGroupButton", _idcGrp, (_display displayCtrl IDC_MOUSEHANDLER)];
@@ -234,12 +263,9 @@ private _addEventHandlers = {
                 [_vehicleGrpCtrl] call _addEventHandlers;
                 _existingControls pushBack _vehicleGrpCtrl;
                 SETUVAR(GVAR(iconControls), _existingControls);
+                _vehicleGrpCtrl ctrlSetPosition [0, 0, _vehicleGrpDimensions select 0, _vehicleGrpDimensions select 1];
+                _vehicleGrpCtrl ctrlCommit 0;
             };
-
-            private _vehicleGrpDimensions = [CTRLSIZE_GROUP * GRID_W, CTRLSIZE_GROUP * GRID_H];
-
-            _vehicleGrpCtrl ctrlSetPosition [0, 0, _vehicleGrpDimensions select 0, _vehicleGrpDimensions select 1];
-            _vehicleGrpCtrl ctrlCommit 0;
 
             _vehicleGrpCtrl setVariable [QGVAR(key), "vehicle_group"];
             _vehicleGrpCtrl setVariable [QGVAR(object), _object];
