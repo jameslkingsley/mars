@@ -350,6 +350,10 @@ switch (toLower _mode) do {
             };
             case 63: { // F5
             };
+            case 38: { // L
+                // Light
+                [] call FUNC(toggleLight);
+            };
         };
 
         true
@@ -357,7 +361,7 @@ switch (toLower _mode) do {
     case "onkeyup": {
         _args params ["_display","_dik","_shift","_ctrl","_alt"];
 
-        // TRACE_1("onkeyup",_dik);
+        // systemChat str _dik;
 
         if (!isNil QGVAR(selectionDirPFH)) then {
             [GVAR(selectionDirPFH)] call CBA_fnc_removePerFrameHandler;

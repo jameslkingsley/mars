@@ -84,3 +84,4 @@ PREP(toggleMouseHandler);
 PREP(toggleNightVision);
 PREP(transitionCamera);
 PREP(updateIcons);
+PREP(toggleLight);

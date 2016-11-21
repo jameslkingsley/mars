@@ -62,6 +62,20 @@ class Settings_Editor {
                 );
             };
         };
+        class LightIntensity {
+            displayName = "Light Intensity";
+            tooltipText = "Intensity of the camera light (toggled by L)";
+            class EditNumber {
+                condition = "(true)";
+                type = "EDIT";
+                textCode = QUOTE(str GVAR(camLightIntensity));
+                expression = QUOTE(\
+                    GVAR(camLightIntensity) = parseNumber _this;\
+                    [ARR_2(QQGVAR(camLightIntensity), parseNumber _this)] call CFUNC(saveSetting);\
+                    if (GVAR(camLightOn)) then {call FUNC(toggleLight);call FUNC(toggleLight)};\
+                );
+            };
+        };
     };
     class Icons {
         class DrawDistance {
