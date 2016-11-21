@@ -21,9 +21,11 @@ params [["_openEditor", true, [true]]];
 objNull remoteControl GVAR(remoteControlUnit);
 player switchCamera "internal";
 
+GVAR(remoteControlUnit) setVariable ["BIS_fnc_moduleRemoteControl_owner", nil, true];
+BIS_fnc_moduleRemoteControl_unit = nil;
+
 GVAR(remoteControlUnit) = objNull;
 GVAR(isRemoteControl) = false;
-BIS_fnc_moduleRemoteControl_unit = nil;
 
 if (!isNil QGVAR(remoteControlRatingHandler)) then {
     player removeEventHandler ["HandleRating", GVAR(remoteControlRatingHandler)];

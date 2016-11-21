@@ -22,41 +22,54 @@ private _target = _targets param [0, objNull];
 
 if (isNull _target) exitWith {};
 
-#define SET_TARGET(T)\
-    player remoteControl T;\
-    T switchCamera "internal";\
-    T addEventHandler ["Killed", {[] call FUNC(exitRemoteControl)}];\
-    GVAR(remoteControlRatingHandler) = player addEventHandler ["HandleRating", {0}];\
-    GVAR(remoteControlUnit) = T;\
-    BIS_fnc_moduleRemoteControl_unit = T;\
-    GVAR(isRemoteControl) = true
+_target = effectiveCommander _target;
 
-_target spawn {
+if !(side group _target in [east,west,resistance,civilian]) exitWith {};
+if (isPlayer _target) exitWith {};
+if (!alive _target) exitWith {};
+if (isNull _target) exitWith {};
+if !(isNull (_target getVariable ["BIS_fnc_moduleRemoteControl_owner", objnull])) exitWith {};
+if (isUAVConnected vehicle _target) exitWith {};
+
+[_target] spawn {
     params ["_target"];
     
     [] call FUNC(shutdown);
     
-    if (vehicle _target != _target) then {
-        // Is a vehicle
-        if (!isNull gunner vehicle _target) then {
-            // Prioritise gunner of vehicle
-            private _gunner = gunner vehicle _target;
-            SET_TARGET(_gunner);
-        } else {
-            if (!isNull driver vehicle _target) then {
-                // Next in priority is driver
-                private _driver = driver vehicle _target;
-                SET_TARGET(_driver);
-            } else {
-                if (!isNull commander vehicle _target) then {
-                    // Lastly pick commander
-                    private _commander = commander vehicle _target;
-                    SET_TARGET(_commander);
-                };
-            };
-        };
-    } else {
-        // Is a man
-        SET_TARGET(_target);
+    BIS_fnc_moduleRemoteControl_unit = _target;
+    _target setVariable ["BIS_fnc_moduleRemoteControl_owner", player, true];
+
+    player remoteControl _target;
+
+    if (cameraOn != (vehicle _target)) then {
+        (vehicle _target) switchCamera cameraView;
     };
+
+    GVAR(remoteControlRatingHandler) = player addEventHandler ["HandleRating", {0}];
+    GVAR(remoteControlUnit) = _target;
+    GVAR(isRemoteControl) = true;
+
+    //--- Back to player
+    GVAR(rcVehicle) = vehicle _target;
+    GVAR(rcVehicleRole) = str assignedVehicleRole _target;
+
+    [{
+        if (
+            (
+                vehicle GVAR(remoteControlUnit) != GVAR(rcVehicle) ||
+                {str assignedVehicleRole GVAR(remoteControlUnit) != GVAR(rcVehicleRole)}
+            ) &&
+            {alive GVAR(remoteControlUnit)}
+        ) then {
+            player remoteControl GVAR(remoteControlUnit);
+            GVAR(rcVehicle) = vehicle GVAR(remoteControlUnit);
+            GVAR(rcVehicleRole) = str assignedVehicleRole GVAR(remoteControlUnit);
+        };
+
+        (cameraOn == vehicle player) ||
+        {!alive GVAR(remoteControlUnit)} ||
+        {!alive player}
+    }, {
+        [] call FUNC(exitRemoteControl);
+    }, []] call CBA_fnc_waitUntilAndExecute;
 };
