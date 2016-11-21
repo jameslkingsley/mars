@@ -23,6 +23,7 @@ _args params [["_units", []], ["_pos", []]];
 if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 
 [_units] call FUNC(ungarrison);
+{[_x, "run"] call CFUNC(setGroupStatus)} forEach ([_units] call CFUNC(unitsToGroups));
 doStop _units;
 
 if (_broadcast) then {

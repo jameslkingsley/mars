@@ -43,3 +43,6 @@ PREP(setVirtualGroupLeader);
 PREP(unitsToGroups);
 PREP(waitAndExecute);
 PREP(waitUntilAndExecute);
+PREP(getStatusImage);
+PREP(setGroupStatus);
+PREP(getGroupStatus);

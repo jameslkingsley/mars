@@ -24,4 +24,6 @@ params [
 
 if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 
+{[_x, "defend"] call CFUNC(setGroupStatus)} forEach ([_units] call CFUNC(unitsToGroups));
+
 [QGVAR(garrison), [_pos, nil, _units, 150]] call CBA_fnc_serverEvent;

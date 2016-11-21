@@ -26,6 +26,7 @@ if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 
 if (_broadcast) then {
     private _groups = [_units] call CFUNC(unitsToGroups);
+    {[_x, "defend"] call CFUNC(setGroupStatus)} forEach _groups;
     [QGVAR(taskDefend), [_groups, _pos], _groups] call CBA_fnc_targetEvent;
 } else {
     {

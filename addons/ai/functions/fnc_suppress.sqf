@@ -22,6 +22,8 @@ _args params [["_units", []], ["_pos", []]];
 
 if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 
+{[_x, "rifle", 15] call CFUNC(setGroupStatus)} forEach ([_units] call CFUNC(unitsToGroups));
+
 if (_broadcast) then {
     [QGVAR(suppress), [_units, _pos], _units] call CBA_fnc_targetEvent;
 } else {
