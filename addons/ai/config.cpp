@@ -17,3 +17,4 @@ class CfgPatches {
 #include "CfgContext.hpp"
 #include "CfgModules.hpp"
 #include "CfgAttributes.hpp"
+#include "CfgStateMachine.hpp"
