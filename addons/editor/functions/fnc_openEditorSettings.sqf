@@ -16,4 +16,4 @@
 
 #include "script_component.hpp"
 
-[QUOTE(ADDON), 'settings_editor', [100, 100], [0.33, 0.66]] call AFUNC(openAttributes);
+[QADDON, 'settings_editor', [100, 100], [0.33, 0.66]] call AFUNC(openAttributes);
