@@ -114,7 +114,7 @@ private _index = 0;
                 private _textRight = _ctrlTextRight getVariable [QGVAR(text), ""];
                 private _colorLeft = _ctrlTextLeft getVariable [QGVAR(color), [0,0,0,1]];
 
-                if (_textLeft == "" || {_worldDistance >= (_distance / 2)}) then {
+                if (_textLeft == "" || {_worldDistance >= (_distance / 2)} || {!GVAR(showGroupIconCallsigns)}) then {
                     _ctrlTextLeft ctrlEnable false;
                     _ctrlTextLeft ctrlShow false;
                 } else {
@@ -131,6 +131,25 @@ private _index = 0;
                     _ctrlTextLeft ctrlSetText _textLeft;
                     _ctrlTextLeft ctrlSetTextColor _colorLeft;
                     _ctrlTextLeft ctrlCommit 0;
+                };
+            } else {
+                if (isPlayer _object) then {
+                    private _playerColor = [
+                        [0, 0, 0, (_color select 3)],
+                        [1, 0, 0, (_color select 3)]
+                    ] select (alive _object);
+
+                    drawIcon3D [
+                        "\A3\ui_f\data\igui\cfg\islandmap\iconplayer_ca.paa",
+                        _playerColor,
+                        _posAGLWorld,
+                        1,
+                        1,
+                        0,
+                        name _object,
+                        0,
+                        0.032
+                    ];
                 };
             };
         } else {

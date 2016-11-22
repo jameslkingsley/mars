@@ -73,6 +73,7 @@ GVAR(iconHoverSize) = [QGVAR(iconHoverSize), ICON_HOVER_SIZE] call CFUNC(loadSet
 GVAR(iconDrawDistance) = [QGVAR(iconDrawDistance), ICON_FADE_DISTANCE] call CFUNC(loadSetting);
 GVAR(hoveringOverIcon) = false;
 GVAR(hoveringOverGroupIcon) = false;
+GVAR(showGroupIconCallsigns) = [QGVAR(showGroupIconCallsigns), true] call CFUNC(loadSetting);
 
 // Asset Browser
 GVAR(serializedABData) = uiNamespace getVariable [QGVAR(serializedABData), []];

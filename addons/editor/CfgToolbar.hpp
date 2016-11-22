@@ -25,5 +25,16 @@ class GVARMAIN(toolbar) {
                 GVAR(placeVehiclesWithCrew) = _enabled;\
             );
         };
+        class IconCallsigns {
+            default = QGVAR(showGroupIconCallsigns);
+            tooltipText = "Show group icon callsigns";
+            iconOn = QPATHTOF(data\Letters\c_on_ca.paa);
+            iconOff = QPATHTOF(data\Letters\c_ca.paa);
+            action = QUOTE(\
+                params [[ARR_2('_enabled', false)]];\
+                GVAR(showGroupIconCallsigns) = _enabled;\
+                [ARR_2(QQGVAR(showGroupIconCallsigns), _enabled)] call CFUNC(saveSetting);\
+            );
+        };
     };
 };
