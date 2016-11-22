@@ -3,6 +3,7 @@
 
 #define QCOMPONENT QUOTE(COMPONENT)
 #define QADDON QUOTE(ADDON)
+#define QQADDON QUOTE(QADDON)
 
 // Default versioning level
 #define DEFAULT_VERSIONING_LEVEL 2
