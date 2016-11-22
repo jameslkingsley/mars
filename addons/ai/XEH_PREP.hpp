@@ -22,3 +22,4 @@ PREP(taskParadrop);
 PREP(taskPatrol);
 PREP(ungarrison);
 PREP(setStance);
+PREP(handleStateMachine);

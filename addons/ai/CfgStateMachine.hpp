@@ -15,19 +15,8 @@ class GVARMAIN(StateMachines) {
         };
 
         class Moving {
-            //--- When unit is moving, disable their targetting abilities
-            //--- This lets them focus on moving to cover
-            onStateEntered = "\
-                _this disableAI 'TARGET';\
-                _this disableAI 'AUTOTARGET';\
-            ";
-
-            //--- When unit stops, enable their targetting abilities
-            //--- When they're in cover they'll start targetting again
-            onStateLeaving = "\
-                _this enableAI 'TARGET';\
-                _this enableAI 'AUTOTARGET';\
-            ";
+            onStateEntered = QUOTE([ARR_2('MovingEntered', _this)] call FUNC(handleStateMachine));
+            onStateLeaving = QUOTE([ARR_2('MovingLeaving', _this)] call FUNC(handleStateMachine));
 
             class Stopped {
                 targetState = "Initial";

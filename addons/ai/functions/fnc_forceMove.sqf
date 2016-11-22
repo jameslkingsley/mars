@@ -30,7 +30,7 @@ if (_broadcast) then {
 } else {
     {
         _x setUnitPos "UP";
-        _x doMove _pos;        
+        _x doMove _pos;
         false
     } count _units;
 };
