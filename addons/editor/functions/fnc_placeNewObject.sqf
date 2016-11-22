@@ -47,22 +47,13 @@ switch (_type) do {
         private _spawnMachine = [] call CFUNC(getSpawnMachine);
         private _args = [_worldPos, player, GVAR(abSelectedObject), GVAR(placeVehiclesWithCrew)];
 
-        #ifdef DEBUG_MODE_FULL
-            MARS_LOGINFO_1("Targetting machine: %1", _spawnMachine);
-        #endif
-
-        if (_spawnMachine isEqualTo REMOTE_SERVER) then {
+        if (_spawnMachine isEqualTo REMOTE_SERVER || {
+            // If a static/empty object, spawn on server
+            _type == "object"
+        }) then {
             [QGVAR(spawnObject), _args] call CBA_fnc_serverEvent;
-            
-            #ifdef DEBUG_MODE_FULL
-                MARS_LOGINFO("Spawning on server");
-            #endif
         } else {
             [QGVAR(spawnObject), _args, _spawnMachine] call CBA_fnc_targetEvent;
-            
-            #ifdef DEBUG_MODE_FULL
-                MARS_LOGINFO("Spawning on target");
-            #endif
         };
     };
 };
