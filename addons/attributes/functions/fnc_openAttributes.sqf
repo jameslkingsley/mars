@@ -75,6 +75,10 @@ _this spawn {
         if (!isNil QEFUNC(editor,toggleMouseHandler)) then {
             [true, true] call EFUNC(editor,toggleMouseHandler);
         };
+
+        if (!isNil QEGVAR(editor,disableSelectionBox)) then {
+            EGVAR(editor,disableSelectionBox) = false;
+        };
     }] call CFUNC(addEventHandler);
 
     GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {

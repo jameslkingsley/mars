@@ -16,6 +16,8 @@
 
 #include "script_component.hpp"
 
+if (GVAR(disableSelectionBox)) exitWith {};
+
 params [["_mode", "init", [""]]];
 
 switch (_mode) do {

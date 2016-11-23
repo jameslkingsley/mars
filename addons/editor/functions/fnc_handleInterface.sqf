@@ -250,7 +250,7 @@ switch (toLower _mode) do {
             [["update","init"] select !GVAR(isSelectionBoxSpawned)] call FUNC(handleSelectionBox);
         };
 
-        [_x,_y] call FUNC(handleMouse);
+        [_x, _y] call FUNC(handleMouse);
     };
     case "onmouseholding": {
         _args params ["_ctrl","_x","_y"];

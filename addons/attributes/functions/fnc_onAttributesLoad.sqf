@@ -299,6 +299,10 @@ if (!isNil QEFUNC(editor,toggleMouseHandler)) then {
     [false, false] call EFUNC(editor,toggleMouseHandler);
 };
 
+if (!isNil QEGVAR(editor,disableSelectionBox)) then {
+    EGVAR(editor,disableSelectionBox) = true;
+};
+
 GVAR(tempActionConfirm) = getText (_header >> "actionConfirm");
 if (!isNil GVAR(tempActionConfirm)) then {GVAR(tempActionConfirm) = format ["_this call %1", GVAR(tempActionConfirm)]};
 

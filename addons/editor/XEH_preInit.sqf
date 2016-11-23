@@ -61,6 +61,7 @@ GVAR(showDebugPanel) = [QGVAR(showDebugPanel), false] call CFUNC(loadSetting);
 // Selection Box
 GVAR(selectionBoxStartPos) = [];
 GVAR(isSelectionBoxSpawned) = false;
+GVAR(disableSelectionBox) = false;
 
 // Icons
 GVAR(serializedIcons) = [];
