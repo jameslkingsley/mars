@@ -38,7 +38,7 @@
 #define MENU_Y safezoneY
 #define MENU_HEIGHT (MENUBAR_H * (pixelH * pixelScale * pixelGrid))
 #define CAM_SHIFT_SPEED_COEF 5
-#define CAM_DEFAULT_SPEED 1.5
+#define CAM_DEFAULT_SPEED 2.5
 #define CAM_DEFAULT_ZOOM 1
 
 #define TYPE_SEARCH ["Man","Car","Air","Tank","Truck","Ship"]
