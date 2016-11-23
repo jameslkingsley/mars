@@ -18,6 +18,8 @@
 
 params [["_unit", player]];
 
+[] call FUNC(killPerFrameHandlers);
+
 while {dialog} do {
     closeDialog 0;
 };
@@ -36,8 +38,6 @@ player switchCamera "internal";
 BIS_fnc_feedback_allowPP = true;
 
 GVAR(camera) = nil;
-
-[] call FUNC(killPerFrameHandlers);
 
 GVAR(ctrlKey) = nil;
 GVAR(altKey) = nil;
