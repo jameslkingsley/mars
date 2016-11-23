@@ -19,7 +19,7 @@
 
 params [["_unit", objNull]];
 
-if (isNull _unit || {!local _unit}) exitWith {};
+if (isNull _unit || {!local _unit} || {player != _unit}) exitWith {};
 
 [{time > 0}, {
     GVAR(isGameMaster) = true;
