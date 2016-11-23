@@ -26,12 +26,25 @@ if (isNull _unit || {_state == ""}) exitWith {};
 
 switch (_state) do {
     case "MovingEntered": {
-        _unit disableAI 'TARGET';
-        _unit disableAI 'AUTOTARGET';
+        _unit disableAI "TARGET";
+        _unit disableAI "AUTOTARGET";
+        _unit disableAI "SUPPRESSION";
+
+        private _isForceMove = _unit getVariable [QGVAR(forceMove), false];
+        if (_isForceMove) then {
+            _unit disableAI "FSM";
+        };
     };
 
     case "MovingLeaving": {
-        _unit enableAI 'TARGET';
-        _unit enableAI 'AUTOTARGET';
+        _unit enableAI "TARGET";
+        _unit enableAI "AUTOTARGET";
+        _unit enableAI "SUPPRESSION";
+
+        private _isForceMove = _unit getVariable [QGVAR(forceMove), false];
+        if (_isForceMove) then {
+            _unit enableAI "FSM";
+            _unit setVariable [QGVAR(forceMove), false, true];
+        };
     };
 };

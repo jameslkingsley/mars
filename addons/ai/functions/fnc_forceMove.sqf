@@ -31,6 +31,7 @@ if (_broadcast) then {
     {
         _x setUnitPos "UP";
         _x doMove _pos;
+        _x setVariable [QGVAR(forceMove), true, true];
         false
     } count _units;
 };
