@@ -120,6 +120,7 @@ GVAR(pfh) = [{
 
     // Asset browser placing objects
     [] call FUNC(prepNewObject);
+    [_display] call FUNC(updateDebugPanel);
 
     END_COUNTER(onFrame);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
