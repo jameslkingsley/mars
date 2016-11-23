@@ -320,10 +320,11 @@ class GVAR(interface) {
         };
         class PanelRight: MARS_gui_ctrlControlsGroupNoScrollbars {
             idc = IDC_RIGHTPANEL;
-            x = safezoneX + safezoneW - PANEL_W * GRID_W;
-            y = safezoneY + (SIZE_M + TOOLBAR_H) * GRID_H;
+            x = safeZoneX + safeZoneW - PANEL_W * GRID_W;
+            y = safeZoneY + (SIZE_M + TOOLBAR_H) * GRID_H;
             w = PANEL_W * GRID_W;
-            h = safezoneH - (MENUBAR_H + TOOLBAR_H + STATUSBAR_H) * GRID_H;
+            h = safeZoneH - (MENUBAR_H + TOOLBAR_H + STATUSBAR_H) * GRID_H;
+            #define PANEL_RIGHT_HEIGHT (safeZoneH - (MENUBAR_H + TOOLBAR_H + STATUSBAR_H) * GRID_H)
             class Controls {
                 class TabRightBackground: MARS_gui_ctrlStatic {
                     idc = IDC_ASSETBROWSER_SECTIONS_BG;
@@ -369,7 +370,7 @@ class GVAR(interface) {
                     x = 0;
                     y = TAB_H * GRID_H;
                     w = PANEL_W * GRID_W;
-                    h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H) * GRID_H;
+                    h = PANEL_RIGHT_HEIGHT - (TAB_H * GRID_H);
                     colorBackground[] = {COLOR_BACKGROUND_RGB,TRANSPARENT_A};
                 };
                 class PanelRightNotes: MARS_gui_ctrlControlsGroupNoScrollbars {
@@ -377,7 +378,7 @@ class GVAR(interface) {
                     x = 0;
                     y = TAB_H * GRID_H;
                     w = PANEL_W * GRID_W;
-                    h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H) * GRID_H;
+                    h = PANEL_RIGHT_HEIGHT - (TAB_H * GRID_H);
                     show = 0;
                     class Controls {
                         class PanelRightNotesBackground: MARS_gui_ctrlStatic {
@@ -415,7 +416,7 @@ class GVAR(interface) {
                     x = 0;
                     y = TAB_H * GRID_H;
                     w = PANEL_W * GRID_W;
-                    h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H) * GRID_H;
+                    h = PANEL_RIGHT_HEIGHT - (TAB_H * GRID_H);
                     class Controls {
                         #define MOD_COLUMNS	5
                         class PanelRightCreateBackground: MARS_gui_ctrlStatic {
