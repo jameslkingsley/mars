@@ -90,18 +90,8 @@ while {dialog} do {
 
 [{
     disableSerialization;
-
     // Create the display
     private _display = (findDisplay 46) createDisplay QGVAR(interface);
-        
-    _display displayAddEventHandler ["MouseButtonDown", {
-        [{
-            if (!GVAR(hasClickedOnMenuStrip)) then {
-                [] call FUNC(closeMenuStripMenus);
-                GVAR(hasClickedOnMenuStrip) = false;
-            };
-        }, []] call CBA_fnc_execNextFrame;
-    }];
 }, []] call CBA_fnc_execNextFrame;
 
 // Reset interruptions
