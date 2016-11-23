@@ -48,6 +48,7 @@ if (!isNull _target) exitWith {
             if (_isEnemy) then {
                 [_x, _target, 0, "DESTROY", "AWARE", "RED", "FULL", "LINE"] call CBA_fnc_addWaypoint;
                 ["Group ordered to destroy target"] call EFUNC(editor,notification);
+                [_x, "destroy"] call CFUNC(setGroupStatus);
             } else {
                 if !(_target call CBA_fnc_isPerson) then {
                     private _emptyPositions = 0;
@@ -79,7 +80,7 @@ if (!isNull _target) exitWith {
     };
 
     [_x, _pos, 0, "MOVE", "AWARE", "RED", "FULL", "LINE"] call CBA_fnc_addWaypoint;
-    ["Group waypoint given"] call EFUNC(editor,notification);
+    ["Group Waypoint Given"] call EFUNC(editor,notification);
     
     false
 } count ([_selection] call CFUNC(unitsToGroups));
