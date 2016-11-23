@@ -14,3 +14,9 @@ class MARS_gui_ctrlStructuredText: MARS_gui_ctrlDefaultText {
         font = FONT_NORMAL;
     };
 };
+
+class MARS_gui_ctrlDebugPanelText: MARS_gui_ctrlStructuredText {
+    size = SIZE_PURISTA_S;
+    sizeEx = SIZEEX_PURISTA_S;
+    shadow = 0;
+};

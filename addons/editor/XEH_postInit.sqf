@@ -66,3 +66,11 @@ createCenter civilian;
     params ["_objects"];
     [GETUVAR(GVAR(interface), displayNull), _objects] call FUNC(serializeIcons);
 }] call CBA_fnc_addEventHandler;
+
+["Selected", {count _this}] call FUNC(addToDebugPanel);
+["In Serializer", {_this in GVAR(capturedEntities)}, true] call FUNC(addToDebugPanel);
+["Icon Control", {
+    private _idc = _this getVariable [format ["%1_unit_idc", QADDON], -1];
+    if (_idc == -1) exitWith {controlNull};
+    ((GETUVAR(GVAR(interface), displayNull) displayCtrl IDC_MOUSEHANDLER) controlsGroupCtrl _idc)
+}, true] call FUNC(addToDebugPanel);

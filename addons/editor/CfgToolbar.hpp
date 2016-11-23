@@ -36,5 +36,16 @@ class GVARMAIN(toolbar) {
                 [ARR_2(QQGVAR(showGroupIconCallsigns), _enabled)] call CFUNC(saveSetting);\
             );
         };
+        class DebugPanel {
+            default = QGVAR(showDebugPanel);
+            tooltipText = "Show debug panel";
+            iconOn = QPATHTOF(data\Toolbar\cog_on_ca.paa);
+            iconOff = QPATHTOF(data\Toolbar\cog_off_ca.paa);
+            action = QUOTE(\
+                params [[ARR_2('_enabled', false)]];\
+                GVAR(showDebugPanel) = _enabled;\
+                [ARR_2(QQGVAR(showDebugPanel), _enabled)] call CFUNC(saveSetting);\
+            );
+        };
     };
 };

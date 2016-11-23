@@ -18,3 +18,9 @@
 [QGVAR(setFormation), {_this call FUNC(setFormation)}] call CBA_fnc_addEventHandler;
 
 GVAR(stateMachine) = [configFile >> QGVARMAIN(StateMachines) >> QADDON] call CBA_statemachine_fnc_createFromConfig;
+
+["Assigned Target", {assignedTarget _this}, true] call EFUNC(editor,addToDebugPanel);
+["Suppression", {getSuppression _this}, true] call EFUNC(editor,addToDebugPanel);
+["Fleeing", {fleeing _this}, true] call EFUNC(editor,addToDebugPanel);
+["Behaviour", {behaviour _this}, true] call EFUNC(editor,addToDebugPanel);
+["Combat Mode", {combatMode _this}, true] call EFUNC(editor,addToDebugPanel);

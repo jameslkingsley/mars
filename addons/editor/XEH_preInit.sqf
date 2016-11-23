@@ -54,6 +54,7 @@ GVAR(currentCursor) = "";
 GVAR(isInputActive) = false;
 GVAR(mapOpen) = false;
 GVAR(isGameMaster) = false;
+GVAR(showDebugPanel) = [QGVAR(showDebugPanel), false] call CFUNC(loadSetting);
 
 // Selection Box
 GVAR(selectionBoxStartPos) = [];

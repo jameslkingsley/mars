@@ -85,3 +85,5 @@ PREP(toggleNightVision);
 PREP(transitionCamera);
 PREP(updateIcons);
 PREP(toggleLight);
+PREP(addToDebugPanel);
+PREP(updateDebugPanel);

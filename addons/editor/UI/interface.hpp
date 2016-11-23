@@ -172,6 +172,29 @@ class GVAR(interface) {
                 };
             };
         };*/
+        class DebugPanel: MARS_gui_ctrlControlsGroupNoScrollbars {
+            idc = IDC_DEBUGPANEL;
+            x = safeZoneX + ((PANEL_W + 1) * GRID_W);
+            y = safeZoneY + (safeZoneH - (55 * GRID_H));
+            w = 50 * GRID_W;
+            h = 50 * GRID_H;
+            class Controls {
+                class Background: MARS_gui_ctrlStatic {
+                    x = 0;
+                    y = 0;
+                    w = 50 * GRID_W;
+                    h = 50 * GRID_H;
+                    colorBackground[] = {COLOR_BACKGROUND_RGB,TRANSPARENT_A};
+                };
+                class Content: MARS_gui_ctrlDebugPanelText {
+                    idc = IDC_DEBUGPANEL_CONTENT;
+                    x = GRID_W;
+                    y = GRID_H;
+                    w = (50 * GRID_W) - (2 * GRID_W);
+                    h = (50 * GRID_H) - (2 * GRID_H);
+                };
+            };
+        };
         class PanelLeft: MARS_gui_ctrlControlsGroupNoScrollbars {
             idc = IDC_LEFTPANEL;
             x = safezoneX;
