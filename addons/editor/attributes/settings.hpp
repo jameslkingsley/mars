@@ -9,7 +9,7 @@ class Settings_Editor {
     );
     class Camera {
         class Speed {
-            displayName = "Camera speed";
+            displayName = "Movement speed";
             tooltipText = "Speed of the camera movement";
             class Speed {
                 condition = "(true)";
@@ -27,29 +27,27 @@ class Settings_Editor {
                 );
             };
         };
-        class Zoom {
-            displayName = "Camera zoom";
-            tooltipText = "Field of view of the camera";
-            class Zoom {
+        class Pan {
+            displayName = "Pan speed";
+            tooltipText = "Speed of the camera pan movement. Lower is faster, higher is slower.";
+            class Speed {
                 condition = "(true)";
                 type = "SLIDER";
-                range[] = {0, 2};
-                step = 0.01;
-                position = QGVAR(camZoom);
+                range[] = {0, 5};
+                step = 0.1;
+                position = QGVAR(camPanSpeedCoef);
                 expression = QUOTE(\
-                    GVAR(camZoom) = _this;\
-                    GVAR(camera) camSetFov _this;\
-                    [ARR_2(QQGVAR(camZoom), _this)] call CFUNC(saveSetting);\
+                    GVAR(camPanSpeedCoef) = _this;\
+                    [ARR_2(QQGVAR(camPanSpeedCoef), _this)] call CFUNC(saveSetting);\
                 );
                 onSliderPosChanged = QUOTE(\
                     _ctrl = _this select 0;\
                     _ctrl ctrlSetTooltip str([ARR_2(sliderPosition _ctrl, 2)] call CFUNC(roundToN));\
-                    GVAR(camera) camSetFov (sliderPosition _ctrl);\
                 );
             };
         };
         class BuildingSpeed {
-            displayName = "Camera indoors";
+            displayName = "Adaptive speed";
             tooltipText = "";
             class Bool {
                 condition = "(true)";
@@ -80,7 +78,7 @@ class Settings_Editor {
     class Icons {
         class DrawDistance {
             displayName = "Icon draw distance";
-            tooltipText = "Draw distance of icons (larger distance will reduce FPS)";
+            tooltipText = "Draw distance of icons";
             class Slider {
                 condition = "(true)";
                 type = "SLIDER";
@@ -101,7 +99,7 @@ class Settings_Editor {
         };
         class HoverSize {
             displayName = "Icon hover scale";
-            tooltipText = "Scale of group icons when hovering over them";
+            tooltipText = "Scale of icons when hovering over them";
             class Slider {
                 condition = "(true)";
                 type = "SLIDER";

@@ -35,6 +35,7 @@ GVAR(preventCamHandler) = false;
 GVAR(camLightOn) = false;
 GVAR(camLight) = objNull;
 GVAR(camLightIntensity) = [QGVAR(camLightIntensity), 20] call CFUNC(loadSetting);
+GVAR(camPanSpeedCoef) = [QGVAR(camPanSpeedCoef), 1.5] call CFUNC(loadSetting);
 
 // Interface
 GVAR(menus) = [];

@@ -48,7 +48,7 @@ private _y = (_oldPos select 1) - (_mX * sin(_pan)) + (_mY * cos(_pan));
 private _z = (_oldPos select 2) + _mZ;
 
 // Prevent camera going under terrain
-GVAR(camPos) = [_x, _y, _z max (getTerrainHeightASL [_x, _y])];
+GVAR(camPos) = [_x, _y, _z max ((getTerrainHeightASL [_x, _y]) + 0.1)];
 
 // Update camera position and rotation
 _camera setPosASL GVAR(camPos);
