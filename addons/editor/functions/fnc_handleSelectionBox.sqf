@@ -66,10 +66,10 @@ switch (_mode) do {
             private _group = _x getVariable [QGVAR(group), grpNull];
 
             if (!isNull _group) then {
-                {GVAR(selection) pushBack (vehicle _x);false} count units _group;
+                {GVAR(selection) pushBackUnique (vehicle _x);false} count units _group;
             };
 
-            GVAR(selection) pushBack (vehicle _object);
+            GVAR(selection) pushBackUnique (vehicle _object);
             
             false
         } count (GETUVAR(GVAR(iconControls), []) select {
