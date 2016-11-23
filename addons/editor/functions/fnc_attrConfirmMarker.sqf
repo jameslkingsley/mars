@@ -30,7 +30,6 @@ private _visibleBLUFOR = ATTR_VALUE(All_BLUFOR_Checkbox);
 private _visibleOPFOR = ATTR_VALUE(All_OPFOR_Checkbox);
 private _visibleINDFOR = ATTR_VALUE(All_INDFOR_Checkbox);
 private _visibleCIVILIAN = ATTR_VALUE(All_CIVILIAN_Checkbox);
-
 private _sides = [];
 
 {
@@ -38,6 +37,8 @@ private _sides = [];
         _sides pushBack ([west, east, resistance, civilian] select _forEachIndex);
     };
 } forEach [_visibleBLUFOR, _visibleOPFOR, _visibleINDFOR, _visibleCIVILIAN];
+
+_sides pushBackUnique sideLogic;
 
 [QEGVAR(common,createMarkerLocal), [
     _classname,
@@ -51,4 +52,3 @@ private _sides = [];
 ]] call CBA_fnc_globalEventJIP;
 
 ["Marker Created"] call FUNC(notification);
-[] call FUNC(serializeDrawing);
