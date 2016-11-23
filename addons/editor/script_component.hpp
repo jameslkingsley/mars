@@ -41,7 +41,7 @@
 #define CAM_DEFAULT_SPEED 2.5
 #define CAM_DEFAULT_ZOOM 1
 
-#define TYPE_SEARCH ["Man","Car","Air","Tank","Truck","Ship"]
+#define TYPE_SEARCH ["Man","Car","Air","Tank","Truck","Ship","StaticWeapon"]
 #define FULL_TYPE_SEARCH [(screenToWorld GVAR(mousePos)), TYPE_SEARCH, 4]
 
 #define MENUSTRIP_CONTEXT_WIDTH (0.12 * safeZoneW)
