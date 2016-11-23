@@ -67,6 +67,10 @@ switch (toLower _mode) do {
         (_display displayCtrl IDC_LEFTPANEL_TAB_TOGGLE) ctrlAddEventHandler ["ButtonClick", {["toggleLeftPanel", _this] call FUNC(handleInterface)}];
         (_display displayCtrl IDC_ASSETBROWSER_TOGGLE) ctrlAddEventHandler ["ButtonClick", {["toggleRightPanel", _this] call FUNC(handleInterface)}];
 
+        // Set vehicle crew checkbox
+        private _vehicleCrewCheckBox = _display displayCtrl IDC_VEHICLE_TOGGLE;
+        _vehicleCrewCheckBox cbSetChecked ([QGVAR(placeVehiclesWithCrew), true] call CFUNC(loadSetting));
+
         [_display] call FUNC(serializeIcons);
     };
     case "onunload": {

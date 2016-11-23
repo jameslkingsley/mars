@@ -319,12 +319,12 @@ class GVAR(interface) {
             };
         };
         class PanelRight: MARS_gui_ctrlControlsGroupNoScrollbars {
+            #define PANEL_RIGHT_HEIGHT (safeZoneH - (MENUBAR_H + TOOLBAR_H + STATUSBAR_H) * GRID_H)
             idc = IDC_RIGHTPANEL;
             x = safeZoneX + safeZoneW - PANEL_W * GRID_W;
             y = safeZoneY + (SIZE_M + TOOLBAR_H) * GRID_H;
             w = PANEL_W * GRID_W;
-            h = safeZoneH - (MENUBAR_H + TOOLBAR_H + STATUSBAR_H) * GRID_H;
-            #define PANEL_RIGHT_HEIGHT (safeZoneH - (MENUBAR_H + TOOLBAR_H + STATUSBAR_H) * GRID_H)
+            h = PANEL_RIGHT_HEIGHT;
             class Controls {
                 class TabRightBackground: MARS_gui_ctrlStatic {
                     idc = IDC_ASSETBROWSER_SECTIONS_BG;
@@ -522,19 +522,20 @@ class GVAR(interface) {
                             onMouseButtonUp = QUOTE(_this call FUNC(handleABSearch));
                         };
                         class Create: MARS_gui_ctrlControlsGroupNoScrollbars {
+                            #define PANEL_RIGHT_CREATE_HEIGHT (safeZoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + 25 + SIZE_M) * GRID_H)
                             idc = IDC_ASSETBROWSER_TREE;
                             x = 0;
                             y = 26 * GRID_H;
                             w = PANEL_W * GRID_W;
-                            h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + 25 + SIZE_M) * GRID_H;
+                            h = PANEL_RIGHT_CREATE_HEIGHT;
                             class Controls {
-                                /*#define CREATE_H safezoneH
+                                #define CREATE_H safeZoneH
                                 #define CREATE_OFFSET (MENUBAR_H + TOOLBAR_H + TAB_H + 25 + SIZE_M)
 
                                 class VehiclePanel: MARS_gui_ctrlControlsGroupNoScrollbars {
                                     idc = IDC_VEHICLE_CONTROLPANEL;
-                                    show = 0;
-                                    y = CREATE_H - (CREATE_OFFSET + 14 + SIZE_M + (SIZE_M + 2)) * GRID_H;
+                                    show = 1;
+                                    y = PANEL_RIGHT_CREATE_HEIGHT - (7 * GRID_H);
                                     w = PANEL_W * GRID_W;
                                     h = (SIZE_M + 2) * GRID_H;
                                     class Controls {
@@ -545,13 +546,14 @@ class GVAR(interface) {
                                         };
                                         class ToggleEmpty: MARS_gui_ctrlCheckbox {
                                             idc = IDC_VEHICLE_TOGGLE;
-                                            x = 1 * GRID_W;
+                                            x = GRID_W;
                                             y = GRID_H;
                                             w = SIZE_M * GRID_W;
                                             h = SIZE_M * GRID_H;
                                             onCheckedChanged = QUOTE(\
                                                 params [ARR_2('_control', '_state')];\
                                                 GVAR(placeVehiclesWithCrew) = INT2BOOL(_state);\
+                                                [ARR_2(QQGVAR(placeVehiclesWithCrew), INT2BOOL(_state))] call CFUNC(saveSetting);\
                                             );
                                         };
                                         class TextEmpty: MARS_gui_ctrlStatic {
@@ -563,11 +565,11 @@ class GVAR(interface) {
                                             h = SIZE_M * GRID_H;
                                         };
                                     };
-                                };*/
+                                };
                                 class CreateObjectWEST: MARS_gui_ctrlTree {
                                     idc = IDC_ASSETBROWSER_TREE_UNITS_WEST;
                                     w = PANEL_W * GRID_W;
-                                    h = safezoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + 25 + SIZE_M) * GRID_H;
+                                    h = (safeZoneH - (MENUBAR_H + TOOLBAR_H + TAB_H + 25 + SIZE_M) * GRID_H) - ((SIZE_M + 2) * GRID_H);
                                     defaultItem[] = {};
                                     sizeEx = SIZEEX_PURISTA_S;
                                     font = FONT_NORMAL;

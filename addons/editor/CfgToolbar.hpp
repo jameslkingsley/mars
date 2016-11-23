@@ -15,16 +15,6 @@ class GVARMAIN(toolbar) {
             action = QFUNC(toggleNightVision);
             watch = QGVAR(nightVisionEnabled);
         };
-        class VehicleCrew {
-            default = QGVAR(placeVehiclesWithCrew);
-            tooltipText = "Place vehicles with crew";
-            iconOn = QPATHTOF(data\Toolbar\truck_on_ca.paa);
-            iconOff = QPATHTOF(data\Toolbar\truck_off_ca.paa);
-            action = QUOTE(\
-                params [[ARR_2('_enabled', false)]];\
-                GVAR(placeVehiclesWithCrew) = _enabled;\
-            );
-        };
         class IconCallsigns {
             default = QGVAR(showGroupIconCallsigns);
             tooltipText = "Show group icon callsigns";
