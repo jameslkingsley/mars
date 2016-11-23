@@ -24,3 +24,4 @@ GVAR(stateMachine) = [configFile >> QGVARMAIN(StateMachines) >> QADDON] call CBA
 ["Fleeing", {fleeing _this}, true] call EFUNC(editor,addToDebugPanel);
 ["Behaviour", {behaviour _this}, true] call EFUNC(editor,addToDebugPanel);
 ["Combat Mode", {combatMode _this}, true] call EFUNC(editor,addToDebugPanel);
+["Group Status", {[group _this] call CFUNC(getGroupStatus)}, true] call EFUNC(editor,addToDebugPanel);
