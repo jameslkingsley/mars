@@ -26,13 +26,11 @@ _groups = _groups arrayIntersect _groups;
     private _waypoints = waypoints _group;
     private _previousPos = getPosVisual leader _group;
 
-    _waypoints deleteAt 0;
-
     {
         private _waypoint = _x;
         private _pos = waypointPosition _waypoint;
 
-        if (currentWaypoint _group <= (_forEachIndex + 1)) then {
+        if ((getPosVisual (leader _group)) distance _pos > 5) then {
             _pos set [2, 0.25];
 
             drawLine3D [_previousPos, _pos, [1,1,1,1]];
@@ -44,7 +42,7 @@ _groups = _groups arrayIntersect _groups;
                 1,
                 1,
                 0,
-                str (_forEachIndex + 1),
+                str _forEachIndex,
                 1,
                 0.032,
                 "PuristaBold",
