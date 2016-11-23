@@ -18,8 +18,8 @@ class GVARMAIN(toolbar) {
         class VehicleCrew {
             default = QGVAR(placeVehiclesWithCrew);
             tooltipText = "Place vehicles with crew";
-            iconOn = QPATHTOF(data\Toolbar\vision_nvg_ca.paa);
-            iconOff = QPATHTOF(data\Toolbar\vision_normal_ca.paa);
+            iconOn = QPATHTOF(data\Toolbar\truck_on_ca.paa);
+            iconOff = QPATHTOF(data\Toolbar\truck_off_ca.paa);
             action = QUOTE(\
                 params [[ARR_2('_enabled', false)]];\
                 GVAR(placeVehiclesWithCrew) = _enabled;\
@@ -28,8 +28,8 @@ class GVARMAIN(toolbar) {
         class IconCallsigns {
             default = QGVAR(showGroupIconCallsigns);
             tooltipText = "Show group icon callsigns";
-            iconOn = QPATHTOF(data\Letters\c_on_ca.paa);
-            iconOff = QPATHTOF(data\Letters\c_ca.paa);
+            iconOn = QPATHTOF(data\Toolbar\a_on_ca.paa);
+            iconOff = QPATHTOF(data\Toolbar\a_off_ca.paa);
             action = QUOTE(\
                 params [[ARR_2('_enabled', false)]];\
                 GVAR(showGroupIconCallsigns) = _enabled;\
@@ -39,8 +39,8 @@ class GVARMAIN(toolbar) {
         class DebugPanel {
             default = QGVAR(showDebugPanel);
             tooltipText = "Show debug panel";
-            iconOn = QPATHTOF(data\Toolbar\cog_on_ca.paa);
-            iconOff = QPATHTOF(data\Toolbar\cog_off_ca.paa);
+            iconOn = QPATHTOF(data\Toolbar\debug_on_ca.paa);
+            iconOff = QPATHTOF(data\Toolbar\debug_off_ca.paa);
             action = QUOTE(\
                 params [[ARR_2('_enabled', false)]];\
                 GVAR(showDebugPanel) = _enabled;\
