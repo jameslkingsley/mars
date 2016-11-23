@@ -46,6 +46,7 @@ if (_entities isEqualTo []) then {
 };
 
 _entities = _entities arrayIntersect _entities;
+GVAR(capturedEntities) = _entities;
 
 private _getControlByKey = {
     params ["_object", "_key"];
