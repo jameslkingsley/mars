@@ -153,13 +153,9 @@ GVAR(draw3DEH) = addMissionEventHandler ["Draw3D", {
 }];
 
 GVAR(drawingPFH) = [{
-    if (!isNil QGVAR(serializeIconHandle)) then {
-        terminate GVAR(serializeIconHandle);
-    };
-
     GVAR(serializeIconHandle) = [GETUVAR(GVAR(interface), displayNull)] spawn FUNC(serializeIcons);
     // [] spawn CFUNC(dumpPerformanceCounters);
-}, 5, []] call CBA_fnc_addPerFrameHandler;
+}, 1.5, []] call CBA_fnc_addPerFrameHandler;
 GVAR(pfhArray) pushBackUnique GVAR(drawingPFH);
 
 // Close the editor upon death
