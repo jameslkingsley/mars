@@ -87,3 +87,5 @@ PREP(updateIcons);
 PREP(toggleLight);
 PREP(addToDebugPanel);
 PREP(updateDebugPanel);
+PREP(updateMarkers);
+PREP(serializeMarkers);

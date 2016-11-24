@@ -7,6 +7,7 @@ ADDON = false;
 // Reset the stored display
 SETUVAR(GVAR(interface), displayNull);
 SETUVAR(GVAR(iconControls), []);
+SETUVAR(GVAR(markerControls), []);
 
 GVAR(pfhArray) = [];
 GVAR(objectUnderCursor) = objNull;
