@@ -142,7 +142,7 @@ private _index = 0;
                     drawIcon3D [
                         "\A3\ui_f\data\igui\cfg\islandmap\iconplayer_ca.paa",
                         _playerColor,
-                        _posAGLWorld,
+                        ASLtoAGL _posASLWorld,
                         1,
                         1,
                         0,
