@@ -15,7 +15,7 @@
 #define WEB_URL ""
 #define PBO_URL url = WEB_URL
 
-#define REQUIRED_VERSION 1.60
+#define REQUIRED_VERSION 1.64
 #define REQUIRED_CBA_VERSION {2,4,0}
 
 #define SIDE_WEST 1
