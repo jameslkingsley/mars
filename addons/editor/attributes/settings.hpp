@@ -2,7 +2,6 @@ class Settings_Editor {
     displayName = "Editor Settings";
     actionConfirm = "";
     actionCancel = QUOTE(\
-        GVAR(camera) camSetFov GVAR(camZoom);\
         GVAR(camSlowDownInBuildings) = [ARR_2(QUOTE(QGVAR(camSlowDownInBuildings)), true)] call CFUNC(loadSetting);\
         GVAR(iconHoverSize) = [ARR_2(QUOTE(QGVAR(iconHoverSize)), ICON_HOVER_SIZE)] call CFUNC(loadSetting);\
         GVAR(iconDrawDistance) = [ARR_2(QUOTE(QGVAR(iconDrawDistance)), ICON_FADE_DISTANCE)] call CFUNC(loadSetting);\
