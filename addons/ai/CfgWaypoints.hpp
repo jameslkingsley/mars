@@ -1,4 +1,4 @@
-class CfgWaypoints {
+/*class CfgWaypoints {
     class ADDON {
         displayName = QMODNAME;
         class Paradrop {
@@ -8,4 +8,4 @@ class CfgWaypoints {
             icon = "\A3\ui_f\data\map\vehicleicons\iconParachute_ca.paa";
         };
     };
-};
+};*/
