@@ -64,11 +64,11 @@ class Settings_Editor {
             tooltipText = "Intensity of the camera light (toggled by L)";
             class EditNumber {
                 condition = "(true)";
-                type = "EDIT";
-                textCode = QUOTE(str GVAR(camLightIntensity));
+                type = "NUMBER";
+                value = QGVAR(camLightIntensity);
                 expression = QUOTE(\
-                    GVAR(camLightIntensity) = parseNumber _this;\
-                    [ARR_2(QQGVAR(camLightIntensity), parseNumber _this)] call CFUNC(saveSetting);\
+                    GVAR(camLightIntensity) = _this;\
+                    [ARR_2(QQGVAR(camLightIntensity), _this)] call CFUNC(saveSetting);\
                     if (GVAR(camLightOn)) then {call FUNC(toggleLight);call FUNC(toggleLight)};\
                 );
             };
