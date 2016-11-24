@@ -30,13 +30,13 @@ class Marker {
             displayName = "Size";
             tooltipText = "Size of the marker.";
             class EditW {
-                type = "EDIT";
-                textPlain = "1";
+                type = "NUMBER";
+                value = 1;
                 width = 0.25;
             };
             class EditH {
-                type = "EDIT";
-                textPlain = "1";
+                type = "NUMBER";
+                value = 1;
                 width = 0.25;
             };
         };

@@ -45,7 +45,7 @@ _sides pushBackUnique sideLogic;
     _name,
     _text,
     _pos,
-    [parseNumber _sizeWidth, parseNumber _sizeHeight],
+    [_sizeWidth, _sizeHeight],
     _color,
     _alpha,
     _sides
