@@ -38,7 +38,7 @@ private _add = {
         private _iPath = _ctrlMenu menuAdd [_path, _displayName];
 
         _ctrlMenu menuSetAction [(_path + [_iPath]), _action];
-        _ctrlMenu menuSort [_path, false];
+        // _ctrlMenu menuSort [_path, true];
 
         if !(_children isEqualTo []) then {
             [_ctrlMenu, _children, (_path + [_iPath])] call _add;
