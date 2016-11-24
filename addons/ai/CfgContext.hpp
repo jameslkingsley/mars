@@ -34,29 +34,29 @@ class GVARMAIN(context) {
                 requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(forceMove));
             };
+            class Suppress {
+                displayName = "Suppress";
+                order = 3;
+                requiresPosition = 1;
+                action = QUOTE([ARR_2(_this, true)] call FUNC(suppress));
+            };
             class Attack {
                 displayName = "Attack";
-                order = 3;
+                order = 4;
                 requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(taskAttack));
             };
             class Defend {
                 displayName = "Defend";
-                order = 4;
+                order = 5;
                 requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(taskDefend));
             };
             class Patrol {
                 displayName = "Patrol";
-                order = 5;
-                requiresPosition = 1;
-                action = QUOTE([ARR_2(_this, true)] call FUNC(taskPatrol));
-            };
-            class Suppress {
-                displayName = "Suppress";
                 order = 6;
                 requiresPosition = 1;
-                action = QUOTE([ARR_2(_this, true)] call FUNC(suppress));
+                action = QUOTE([ARR_2(_this, true)] call FUNC(taskPatrol));
             };
             class SearchNearby {
                 displayName = "Search Nearby";
@@ -143,11 +143,6 @@ class GVARMAIN(context) {
                 requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(taskLand));
             };
-            class Paradrop {
-                displayName = "Paradrop";
-                requiresPosition = 1;
-                action = QFUNC(taskParadrop);
-            };
             class FillCargo {
                 displayName = "Fill Cargo";
                 action = QFUNC(fillCargo);
@@ -157,25 +152,30 @@ class GVARMAIN(context) {
                 class Low {
                     displayName = "Low (250m)";
                     requiresPosition = 1;
-                    action = QUOTE([ARR_2(_this, 250)] call FUNC(taskOrbit));
+                    action = QUOTE([ARR_3(_this, 250, true)] call FUNC(taskOrbit));
                     order = 1;
                 };
                 class Medium: Low {
                     displayName = "Medium (500m)";
-                    action = QUOTE([ARR_2(_this, 500)] call FUNC(taskOrbit));
+                    action = QUOTE([ARR_3(_this, 500, true)] call FUNC(taskOrbit));
                     order = 2;
                 };
                 class High: Low {
                     displayName = "High (750m)";
-                    action = QUOTE([ARR_2(_this, 750)] call FUNC(taskOrbit));
+                    action = QUOTE([ARR_3(_this, 750, true)] call FUNC(taskOrbit));
                     order = 3;
                 };
                 class VeryHigh: Low {
                     displayName = "Very High (1000m)";
-                    action = QUOTE([ARR_2(_this, 1000)] call FUNC(taskOrbit));
+                    action = QUOTE([ARR_3(_this, 1000, true)] call FUNC(taskOrbit));
                     order = 4;
                 };
             };
+            /*class Paradrop {
+                displayName = "Paradrop";
+                requiresPosition = 1;
+                action = QUOTE([ARR_2(_this, true)] call FUNC(taskParadrop));
+            };*/
         };
     };
 };
