@@ -18,20 +18,30 @@
 
 #include "script_component.hpp"
 
-params ["_args","_height"];
-_args params ["_units","_pos"];
+params [["_args", []], ["_height", 500], ["_broadcast", false]];
+_args params [["_units", []], ["_pos", []]];
 
-private _groups = [_units] call EFUNC(common,unitsToGroups);
+if (_units isEqualTo [] || {_pos isEqualTo []}) exitWith {};
 
-{
-    [_x, {
-        params ["_grp","_pos","_height"];
-        [_grp] call EFUNC(common,removeAllWaypoints);
-        {if (vehicle _x != _x) then {(vehicle _x) flyInHeight _height}} forEach (units _grp);
-        _wp = _grp addWaypoint [_pos, 0];
+if (_broadcast) then {
+    private _groups = [_units] call CFUNC(unitsToGroups);
+    [QGVAR(taskOrbit), [[_groups, _pos], _height], _groups] call CBA_fnc_targetEvent;
+} else {
+    {
+        [_x] call CBA_fnc_clearWaypoints;
+
+        {
+            if (vehicle _x != _x) then {
+                (vehicle _x) flyInHeight _height;
+            };
+        } forEach (units _x);
+
+        private _wp = _x addWaypoint [_pos, 0];
         _wp setWaypointType "LOITER";
         _wp setWaypointBehaviour "AWARE";
-        _wp setWaypointLoiterRadius 750;
+        _wp setWaypointLoiterRadius (_height * 2);
         _wp setWaypointLoiterType "CIRCLE";
-    }, [_x, _pos, _height]] call EFUNC(common,execWhereLocal);
-} forEach _groups;
+        
+        false
+    } count _units;
+};
