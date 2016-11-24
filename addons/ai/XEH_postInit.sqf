@@ -4,6 +4,7 @@
 
 [QGVAR(taskAttack), {[_this] call FUNC(taskAttack)}] call CBA_fnc_addEventHandler;
 [QGVAR(taskOrbit), {_this call FUNC(taskOrbit)}] call CBA_fnc_addEventHandler;
+[QGVAR(taskParadrop), {[_this] call FUNC(taskParadrop)}] call CBA_fnc_addEventHandler;
 [QGVAR(taskLand), {[_this] call FUNC(taskLand)}] call CBA_fnc_addEventHandler;
 [QGVAR(taskDefend), {[_this] call FUNC(taskDefend)}] call CBA_fnc_addEventHandler;
 [QGVAR(taskPatrol), {[_this] call FUNC(taskPatrol)}] call CBA_fnc_addEventHandler;

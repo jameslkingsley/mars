@@ -23,3 +23,4 @@ PREP(taskPatrol);
 PREP(ungarrison);
 PREP(setStance);
 PREP(handleStateMachine);
+PREP(wpParadrop);

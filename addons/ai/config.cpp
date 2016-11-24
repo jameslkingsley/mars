@@ -18,3 +18,4 @@ class CfgPatches {
 #include "CfgModules.hpp"
 #include "CfgAttributes.hpp"
 #include "CfgStateMachine.hpp"
+#include "CfgWaypoints.hpp"
