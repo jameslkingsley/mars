@@ -354,5 +354,10 @@ if (_evalButtonText) then {
     _cancelText = GVAR(AttributesWindow_GlobalArgs) call compile _cancelText;
 };
 
-(_display displayCtrl IDC_EDITATTRIBUTES_BTN_OK) ctrlSetText _confirmText;
-(_display displayCtrl IDC_EDITATTRIBUTES_BTN_CANCEL) ctrlSetText _cancelText;
+if (_confirmText != "") then {
+    (_display displayCtrl IDC_EDITATTRIBUTES_BTN_OK) ctrlSetText _confirmText;
+};
+
+if (_cancelText != "") then {
+    (_display displayCtrl IDC_EDITATTRIBUTES_BTN_CANCEL) ctrlSetText _cancelText;
+};
