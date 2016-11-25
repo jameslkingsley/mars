@@ -1,7 +1,7 @@
 class Execution {
     displayName = "Execution";
-    actionConfirm = "";
-    actionCancel = "";
+    actionConfirm = "saveProfileNamespace";
+    actionCancel = "saveProfileNamespace";
     class Main {
         class Code {
             displayName = "Code";
@@ -11,7 +11,12 @@ class Execution {
                 identifier = "CodeBox";
                 type = "EDIT";
                 rows = 15;
+                textCode = QUOTE(profileNamespace getVariable [ARR_2(QQGVAR(execContent), '')]);
                 expression = "";
+                onKeyUp = QUOTE(\
+                    params ['_ctrl'];\
+                    profileNamespace setVariable [ARR_2(QQGVAR(execContent), ctrlText _ctrl)];\
+                );
             };
         };
         class Targets {
