@@ -1,12 +1,12 @@
 class GVARMAIN(attributes) {
     class ADDON {
         class Confirmation {
-            displayName = QUOTE(ATTR_ARGS select 0);
+            displayName = QUOTE(ARG_1(ATTR_ARGS,0));
             evalDisplayName = 1;
-            actionConfirm = QUOTE((ATTR_ARGS select 6) call (ATTR_ARGS select 4));
-            actionCancel = QUOTE((ATTR_ARGS select 6) call (ATTR_ARGS select 5));
-            confirmText = QUOTE(ATTR_ARGS select 2);
-            cancelText = QUOTE(ATTR_ARGS select 3);
+            actionConfirm = QUOTE(ARG_1(ATTR_ARGS,6) call ARG_1(ATTR_ARGS,4));
+            actionCancel = QUOTE(ARG_1(ATTR_ARGS,6) call ARG_1(ATTR_ARGS,5));
+            confirmText = QUOTE(ARG_1(ATTR_ARGS,2));
+            cancelText = QUOTE(ARG_1(ATTR_ARGS,3));
             evalButtonText = 1;
             class Main {
                 class Message {
@@ -14,7 +14,7 @@ class GVARMAIN(attributes) {
                     class Text {
                         type = "LABEL";
                         height = 3;
-                        textCode = QUOTE(format [ARR_2('<t align=''center''>%1</t>', ATTR_ARGS select 1)]);
+                        textCode = QUOTE(format [ARR_2('<t align=''center''>%1</t>', ARG_1(ATTR_ARGS,1))]);
                     };
                 };
             };
