@@ -46,3 +46,4 @@ PREP(waitUntilAndExecute);
 PREP(getStatusImage);
 PREP(setGroupStatus);
 PREP(getGroupStatus);
+PREP(getServerSetting);

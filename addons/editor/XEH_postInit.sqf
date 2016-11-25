@@ -1,22 +1,10 @@
 #include "script_component.hpp"
 
-enableSaving [false, false];
-
 if (isServer) then {
-    private _settings = (configFile >> QGVARMAIN(serverSettings) >> QGVAR(players));
-    
-    if (isClass _settings) then {
-        missionNamespace setVariable [QGVAR(alwaysAllowLoginWhenEmpty), INT2BOOL(getNumber (_settings >> "alwaysAllowLoginWhenEmpty")), true];
-        missionNamespace setVariable [QGVAR(whitelisted), getArray (_settings >> "whitelisted"), true];
-        missionNamespace setVariable [QGVAR(blacklisted), getArray (_settings >> "blacklisted"), true];
-    } else {
-        missionNamespace setVariable [QGVAR(alwaysAllowLoginWhenEmpty), true, true];
-        missionNamespace setVariable [QGVAR(whitelisted), [], true];
-        missionNamespace setVariable [QGVAR(blacklisted), [], true];
-    };
+    [QADDON, "whitelisted", []] call CFUNC(getServerSetting);
+    [QADDON, "blacklisted", []] call CFUNC(getServerSetting);
 
-    // Server FPS
-    [{
+    [{  // Server FPS
         GVAR(fps_server) = diag_fps;
         publicVariable QGVAR(fps_server);
     }, 5, []] call CBA_fnc_addPerFrameHandler;
