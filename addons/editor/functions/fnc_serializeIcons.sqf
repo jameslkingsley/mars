@@ -112,14 +112,20 @@ private _addEventHandlers = {
     _ctrl ctrlAddEventHandler ["MouseButtonUp", {
         params ["_ctrl", "_button"];
 
+        private _object = _ctrl getVariable [QGVAR(object), objNull];
+
         if !(!(GVAR(selection) isEqualTo []) && _button == 1) then {
             private _group = _ctrl getVariable [QGVAR(group), grpNull];
-            private _units = units _group;
-            _units append [_object];
+            private _units = [_object];
+
+            if (!isNull _group) then {
+                _units append units _group;
+            };
+
             [_units] call FUNC(selectObject);
         };
 
-        GVAR(objectUnderCursor) = _ctrl getVariable [QGVAR(object), objNull];
+        GVAR(objectUnderCursor) = _object;
         ["onmousebuttonup", _this] call FUNC(handleInterface);
     }];
 

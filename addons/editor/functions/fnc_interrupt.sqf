@@ -19,7 +19,6 @@
 
 params [["_reason", "", [""]], ["_interrupt", true, [true]]];
 
-// Nothing to do when spectator is closed
 if !(GVAR(isSet)) exitWith {};
 
 if (_reason == "") exitWith { ERROR("Invalid Reason"); };
