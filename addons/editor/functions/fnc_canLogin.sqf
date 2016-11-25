@@ -24,6 +24,8 @@ private _uid = getPlayerUID _unit;
 
 if (_uid in GVAR(blacklisted)) exitWith {false};
 
+if (GVAR(allowLoginIfCurator) && {{getAssignedCuratorUnit _x == _unit} count allCurators > 0}) exitWith {true};
+
 if (typeOf _unit == "MARS_GameMaster") exitWith {true};
 
 if (_uid in GVAR(whitelisted)) exitWith {true};
