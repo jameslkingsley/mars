@@ -7,5 +7,17 @@
         <Key ID="STR_MARS_Attributes_GUI_BTN_CANCEL">
             <English>CANCEL</English>
         </Key>
+        <Key ID="STR_MARS_Attributes_Confirmation_Title">
+            <English>Confirmation</English>
+        </Key>
+        <Key ID="STR_MARS_Attributes_Confirmation_Message">
+            <English>Are you sure?</English>
+        </Key>
+        <Key ID="STR_MARS_Attributes_Confirmation_YesText">
+            <English>Yes</English>
+        </Key>
+        <Key ID="STR_MARS_Attributes_Confirmation_NoText">
+            <English>No</English>
+        </Key>
     </Package>
 </Project>

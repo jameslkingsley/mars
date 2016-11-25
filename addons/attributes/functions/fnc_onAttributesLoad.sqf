@@ -343,3 +343,16 @@ GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
 
 (_display displayCtrl IDC_EDITATTRIBUTES_BTN_OK) ctrlAddEventHandler ["MouseButtonClick", {["AttributesWindow_onConfirm", _this] call EFUNC(common,localEvent)}];
 (_display displayCtrl IDC_EDITATTRIBUTES_BTN_CANCEL) ctrlAddEventHandler ["MouseButtonClick", {["AttributesWindow_onCancel", _this] call EFUNC(common,localEvent)}];
+
+//--- Set button text if defined
+private _confirmText = getText (_header >> "confirmText");
+private _cancelText = getText (_header >> "cancelText");
+private _evalButtonText = (getNumber (_header >> "evalButtonText")) > 0;
+
+if (_evalButtonText) then {
+    _confirmText = GVAR(AttributesWindow_GlobalArgs) call compile _confirmText;
+    _cancelText = GVAR(AttributesWindow_GlobalArgs) call compile _cancelText;
+};
+
+(_display displayCtrl IDC_EDITATTRIBUTES_BTN_OK) ctrlSetText _confirmText;
+(_display displayCtrl IDC_EDITATTRIBUTES_BTN_CANCEL) ctrlSetText _cancelText;

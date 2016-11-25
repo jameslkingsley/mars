@@ -18,6 +18,7 @@
  */
 
 #include "script_component.hpp"
+#include "\z\mars\addons\common\macros.hpp"
 
 params [
     ["_config", "", [""]],
@@ -31,8 +32,10 @@ _config = call compile _config;
 _display = GETUVAR(GVAR(interface),displayNull);
 
 _controlGroup = _display displayCtrl _group;
-
 _ctrlLabel = _display ctrlCreate ["MARS_gui_ctrlStructuredText", _idc, _controlGroup];
+
+private _height = [getNumber (_config >> "height"), 1] select (isNull (_config >> "height"));
+_position set [3, (_height * (SIZE_M * GRID_H))];
 
 _ctrlLabel ctrlSetPosition _position;
 
@@ -46,7 +49,7 @@ _ctrlLabel setVariable [QGVAR(label), (_display displayCtrl _labelIDC)];
 _ctrlLabel setVariable [QGVAR(controlKey), [_config] call FUNC(createControlKey)];
 _ctrlLabel setVariable [QGVAR(execReturnData), _text];
 
-_ctrlLabel ctrlSetText _text;
+_ctrlLabel ctrlSetStructuredText parseText _text;
 _ctrlLabel ctrlCommit 0;
 
 _ctrlLabel

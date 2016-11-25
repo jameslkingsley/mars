@@ -20,3 +20,4 @@ PREP(getControlValue);
 PREP(onAttributesLoad);
 PREP(openAttributes);
 PREP(ctrlNumber);
+PREP(confirmation);
