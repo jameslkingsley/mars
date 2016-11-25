@@ -149,11 +149,9 @@ class Reinforcements {
             class Color {
                 condition = "(false)";
                 identifier = "GroupDetails_Color";
-                type = "COMBO";
+                type = "MARKERCOLOR";
                 width = 0.33;
-                labels[] = {"Black", "Red", "Green", "Blue", "Yellow", "Orange", "Pink"};
-                values[] = {"ColorBlack", "ColorRed", "ColorGreen", "ColorBlue", "ColorYellow", "ColorOrange", "ColorPink"};
-                selected = 0;
+                selected = "ColorBlack";
                 expression = "";
             };
         };

@@ -27,7 +27,7 @@ private _destination = [_data, 'Basic_Destination_Control'] call AFUNC(getContro
 private _configureGroup = [_data, 'Advanced_AdvancedToggle_Control'] call AFUNC(getControlValue);
 private _groupLeader = ([_data, 'Advanced_GroupLeader_Control'] call AFUNC(getControlValue)) param [1, ""];
 private _groupName = [_data, 'Advanced_GroupDetails_Name'] call AFUNC(getControlValue);
-private _groupColor = ([_data, 'Advanced_GroupDetails_Color'] call AFUNC(getControlValue)) param [1, "ColorBlack"];
+private _groupColor = [_data, 'Advanced_GroupDetails_Color'] call AFUNC(getControlValue);
 private _loadoutsStr = [_data, 'Advanced_Loadouts_List'] call AFUNC(getControlValue);
 
 if (_unitSelection isEqualTo []) exitWith {};
