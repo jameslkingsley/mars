@@ -4,6 +4,10 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
+[QGVAR(alwaysAllowLoginWhenEmpty), "CHECKBOX", "Allow login when empty", "Mars", nil, true] call CBA_Settings_fnc_init;
+[QGVAR(allowLoginIfCurator), "CHECKBOX", "Allow login if curator", "Mars", nil, true] call CBA_Settings_fnc_init;
+[QGVAR(allowLoginIfAdmin), "CHECKBOX", "Allow login if admin", "Mars", nil, true] call CBA_Settings_fnc_init;
+
 // Reset the stored display
 SETUVAR(GVAR(interface), displayNull);
 SETUVAR(GVAR(iconControls), []);

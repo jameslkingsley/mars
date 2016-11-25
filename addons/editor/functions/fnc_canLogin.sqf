@@ -20,6 +20,10 @@ params [["_unit", objNull, [objNull]]];
 
 if (isNull _unit) exitWith {false};
 
+if (GVAR(allowLoginIfAdmin) && {serverCommandAvailable "#kick"}) exitWith {true};
+
+if (_unit getVariable [QGVAR(allowLogin), false]) exitWith {true};
+
 private _uid = getPlayerUID _unit;
 
 if (_uid in GVAR(blacklisted)) exitWith {false};
