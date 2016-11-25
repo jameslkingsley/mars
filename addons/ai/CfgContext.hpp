@@ -4,6 +4,7 @@ class GVARMAIN(context) {
             displayName = "Infantry";
             condition = QUOTE(_this isKindOf 'Man');
             exceptions[] = {"isNotPlayer"};
+            order = 1;
             class Stance {
                 displayName = "Stance";
                 order = 1;
@@ -76,6 +77,7 @@ class GVARMAIN(context) {
             condition = "(true)";
             exceptions[] = {"isNotPlayer"};
             only[] = {Groups};
+            order = 4;
             class Column {
                 displayName = "Column";
                 action = QUOTE([ARR_3('COLUMN', _this, true)] call FUNC(setFormation));
@@ -118,14 +120,28 @@ class GVARMAIN(context) {
             displayName = "Vehicle";
             condition = "!(_this call CBA_fnc_isPerson)";
             exceptions[] = {"isNotPlayer"};
-            class Disembark {
-                displayName = "Disembark";
-                action = QUOTE([ARR_2(_this, true)] call FUNC(disembark));
-            };
+            order = 3;
             class Suppress {
                 displayName = "Suppress";
                 requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(suppress));
+                order = 1;
+            };
+            class Patrol {
+                displayName = "Patrol";
+                requiresPosition = 1;
+                action = QUOTE([ARR_2(_this, true)] call FUNC(taskPatrol));
+                order = 2;
+            };
+            class DisembarkCargo {
+                displayName = "Disembark Cargo";
+                action = QUOTE([ARR_3(_this, 'cargo', true)] call FUNC(disembark));
+                order = 3;
+            };
+            class DisembarkAll {
+                displayName = "Disembark All";
+                action = QUOTE([ARR_3(_this, 'all', true)] call FUNC(disembark));
+                order = 4;
             };
         };
         
@@ -133,10 +149,12 @@ class GVARMAIN(context) {
             displayName = "Air";
             condition = QUOTE(_this isKindOf 'Air');
             exceptions[] = {"isNotPlayer"};
+            order = 2;
             class Attack {
                 displayName = "Attack";
                 requiresPosition = 1;
                 action = QUOTE([ARR_2(_this, true)] call FUNC(taskAttack));
+                order = 1;
             };
             /*class Land {
                 displayName = "Land";
@@ -149,6 +167,7 @@ class GVARMAIN(context) {
             };*/
             class Orbit {
                 displayName = "Orbit";
+                order = 2;
                 class Low {
                     displayName = "Low (250m)";
                     requiresPosition = 1;

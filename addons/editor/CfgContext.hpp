@@ -10,6 +10,7 @@ class GVARMAIN(context) {
         class Teleport {
             displayName = "Teleport";
             requiresPosition = 1;
+            order = 99;
             action = QUOTE(\
                 params [ARR_2('_units', '_pos')];\
                 {(vehicle _x) setPosASL _pos} forEach _units;\
