@@ -52,7 +52,9 @@ _ctrlNotification ctrlSetPosition _ctrlNotificationPos;
 _ctrlNotification ctrlCommit 0;
 
 //--- Expand
-if (_delay < 0) then {_delay = 2 + (ctrlTextHeight _ctrlNotification / _ctrlNotificationTextHeight)}; //--- Sleep longer for each text line
+if (_delay < 0) then {
+    _delay = 3;
+};
 
 _ctrlNotificationPos set [3, ctrlTextHeight _ctrlNotification];
 _ctrlNotification ctrlSetPosition _ctrlNotificationPos;

@@ -25,32 +25,30 @@ _groups = _groups arrayIntersect _groups;
     private _group = _x;
     private _waypoints = waypoints _group;
     private _previousPos = getPosVisual leader _group;
+    _waypoints deleteAt 0;
 
     {
         private _waypoint = _x;
         private _pos = waypointPosition _waypoint;
 
-        if ((getPosVisual (leader _group)) distance _pos > 5) then {
-            _pos set [2, 0.25];
+        _pos set [2, 0.25];
 
-            drawLine3D [_previousPos, _pos, [1,1,1,1]];
+        drawLine3D [_previousPos, _pos, [1,1,1,1]];
+        drawIcon3D [
+            QPATHTOF(data\waypoint_ca.paa),
+            [1,1,1,1],
+            _pos,
+            1,
+            1,
+            0,
+            str (_forEachIndex + 1),
+            1,
+            0.032,
+            "PuristaBold",
+            "center"
+        ];
 
-            drawIcon3D [
-                QPATHTOF(data\waypoint_ca.paa),
-                [1,1,1,1],
-                _pos,
-                1,
-                1,
-                0,
-                str _forEachIndex,
-                1,
-                0.032,
-                "PuristaBold",
-                "center"
-            ];
-
-            _previousPos = _pos;
-        };
+        _previousPos = _pos;
     } forEach _waypoints;
 
     false
