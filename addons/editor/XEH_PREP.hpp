@@ -89,3 +89,4 @@ PREP(addToDebugPanel);
 PREP(updateDebugPanel);
 PREP(updateMarkers);
 PREP(serializeMarkers);
+PREP(endMission);

@@ -55,6 +55,10 @@ createCenter civilian;
     [GETUVAR(GVAR(interface), displayNull), _objects] call FUNC(serializeIcons);
 }] call CBA_fnc_addEventHandler;
 
+[QGVAR(endMission), {
+    _this call FUNC(endMission);
+}] call CBA_fnc_addEventHandler;
+
 ["Selected", {count _this}] call FUNC(addToDebugPanel);
 ["In Serializer", {_this in GVAR(capturedEntities)}, true] call FUNC(addToDebugPanel);
 ["Icon Control", {

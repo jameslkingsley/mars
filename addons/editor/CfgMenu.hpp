@@ -10,35 +10,35 @@ class GVARMAIN(menu) {
                 displayName = "End Mission";
                 class Completed {
                     displayName = "Mission Complete";
-                    action = QUOTE([QQGVAR(completed)] remoteExecCall [ARR_2('BIS_fnc_endMission', 0)]);
+                    action = QUOTE([ARR_3(QQGVAR(completed), true, true)] call FUNC(endMission));
                 };
                 class Failed {
                     displayName = "Mission Failed";
-                    action = QUOTE([QQGVAR(failed)] remoteExecCall [ARR_2('BIS_fnc_endMission', 0)]);
+                    action = QUOTE([ARR_3(QQGVAR(failed), true, true)] call FUNC(endMission));
                 };
                 class Cancelled {
                     displayName = "Mission Cancelled";
-                    action = QUOTE([QQGVAR(cancelled)] remoteExecCall [ARR_2('BIS_fnc_endMission', 0)]);
+                    action = QUOTE([ARR_3(QQGVAR(cancelled), true, true)] call FUNC(endMission));
                 };
                 class BLUFOR {
                     displayName = "BLUFOR Wins";
-                    action = QUOTE([QQGVAR(blufor)] remoteExecCall [ARR_2('BIS_fnc_endMission', 0)]);
+                    action = QUOTE([ARR_3(QQGVAR(blufor), true, true)] call FUNC(endMission));
                 };
                 class OPFOR {
                     displayName = "OPFOR Wins";
-                    action = QUOTE([QQGVAR(opfor)] remoteExecCall [ARR_2('BIS_fnc_endMission', 0)]);
+                    action = QUOTE([ARR_3(QQGVAR(opfor), true, true)] call FUNC(endMission));
                 };
                 class INDFOR {
                     displayName = "INDFOR Wins";
-                    action = QUOTE([QQGVAR(indfor)] remoteExecCall [ARR_2('BIS_fnc_endMission', 0)]);
+                    action = QUOTE([ARR_3(QQGVAR(indfor), true, true)] call FUNC(endMission));
                 };
                 class Civilian {
                     displayName = "Civilians Win";
-                    action = QUOTE([QQGVAR(civilian)] remoteExecCall [ARR_2('BIS_fnc_endMission', 0)]);
+                    action = QUOTE([ARR_3(QQGVAR(civilian), true, true)] call FUNC(endMission));
                 };
                 class Draw {
                     displayName = "Draw";
-                    action = QUOTE([QQGVAR(draw)] remoteExecCall [ARR_2('BIS_fnc_endMission', 0)]);
+                    action = QUOTE([ARR_3(QQGVAR(draw), true, true)] call FUNC(endMission));
                 };
             };
         };
