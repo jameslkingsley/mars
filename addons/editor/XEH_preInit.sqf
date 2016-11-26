@@ -62,6 +62,7 @@ GVAR(mapOpen) = false;
 GVAR(isGameMaster) = false;
 GVAR(debugPaneLines) = [];
 GVAR(showDebugPanel) = [QGVAR(showDebugPanel), false] call CFUNC(loadSetting);
+GVAR(showMapMarkers3D) = [QGVAR(showMapMarkers3D), true] call CFUNC(loadSetting);
 
 // Selection Box
 GVAR(selectionBoxStartPos) = [];

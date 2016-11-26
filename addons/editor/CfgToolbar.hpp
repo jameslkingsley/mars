@@ -26,6 +26,17 @@ class GVARMAIN(toolbar) {
                 [ARR_2(QQGVAR(showGroupIconCallsigns), _enabled)] call CFUNC(saveSetting);\
             );
         };
+        class MapMarkers3D {
+            default = QGVAR(showMapMarkers3D);
+            tooltipText = "Show map markers in 3D";
+            iconOn = QPATHTOF(data\Toolbar\marker_on_ca.paa);
+            iconOff = QPATHTOF(data\Toolbar\marker_off_ca.paa);
+            action = QUOTE(\
+                params [[ARR_2('_enabled', false)]];\
+                GVAR(showMapMarkers3D) = _enabled;\
+                [ARR_2(QQGVAR(showMapMarkers3D), _enabled)] call CFUNC(saveSetting);\
+            );
+        };
         class DebugPanel {
             default = QGVAR(showDebugPanel);
             tooltipText = "Show debug panel";
