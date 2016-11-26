@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Menu Strip - Mars - Arma 3 Mod</title>
+
+<meta charset="utf-8" />
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+
+<meta name="description" content="Mars gives players full control over how their mission is played, in real time.">
+<meta property="og:description" content="Mars gives players full control over how their mission is played, in real time." />
+
+<meta name="author" content="Mars" />
+
+
+<meta property="og:title" content="Menu Strip" />
+<meta property="twitter:title" content="Menu Strip" />
+
+
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<link rel="stylesheet" href="https://mars.arcomm.co/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://mars.arcomm.co/style.css">
+<link rel="alternate" type="application/rss+xml" title="Mars - Mars gives players full control over how their mission is played, in real time." href="https://mars.arcomm.co/feed.xml">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/favicon.png">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://mars.arcomm.co/js/toc.js"></script>
+
+    </head>
+
+    <body>
+        <header>
+    <div class="logo">
+        <div class="nav_left">
+            <a href="https://github.com/marseditor/mars" class="fa fa-github"></a>
+            <a href="https://twitter.com/marsmod" class="fa fa-twitter"></a>
+        </div>
+        <a href="https://mars.arcomm.co" class="logo_img">
+            <span class="mars-version">1.0.0</span>
+        </a>
+        <div class="nav_right">
+            <a href="https://mars.arcomm.co/docs" class="nav_link" style="padding-right: 0 !important">Docs</a>
+            <a href="https://mars.arcomm.co/news" class="nav_link">News</a>
+            <a href="https://mars.arcomm.co/faq" class="nav_link">FAQ</a>
+        </div>
+    </div>
+</header>
+
+<div class="separator"></div>
+        
+        <main>
+            <div class="inner">
+                <div class="toc_wrapper">
+    <div class="toc_title">Contents</div>
+    <div id="toc"></div>
+</div>
+
+<span class="docs_title">Menu Strip</span>
+<div class="docs_content" id="content"><h1 id="overview">Overview</h1>
+<p>The menu strip appears at the top of the Mars interface and hosts context menus. It is used for when you want to do something that doesn’t necessarily require a position or object selection. An example of this would be an ‘End Scenario’ option that would open an attributes window.</p>
+
+<h1 id="usage">Usage</h1>
+<p>All menus should be defined in a <code class="highlighter-rouge">CfgMenu.hpp</code> file, included in the <code class="highlighter-rouge">config.cpp</code>. Below you will find an example config.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">mars</span><span class="n">_menu</span> <span class="p">{</span>
+    <span class="k">class</span> <span class="nc">MyAddonName</span> <span class="p">{</span>
+        <span class="k">class</span> <span class="nc">settings</span> <span class="p">{</span>
+            <span class="n">displayName</span> <span class="o">=</span> <span class="s">"Settings"</span><span class="p">;</span>
+            <span class="k">class</span> <span class="nc">camera</span> <span class="p">{</span>
+                <span class="n">displayName</span> <span class="o">=</span> <span class="s">"Camera"</span><span class="p">;</span>
+                <span class="n">action</span> <span class="o">=</span> <span class="s">"['MyAddonName', 'settings_camera'] call mars_attributes_fnc_openAttributes"</span><span class="p">;</span>
+            <span class="p">};</span>
+        <span class="p">};</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<p><strong>Note: Menus can only be one level deep (as shown above) - recursive menus are planned for the future.</strong></p>
+
+<h1 id="attributes">Attributes</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Optional</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>displayName</td>
+      <td>string</td>
+      <td>no</td>
+      <td>""</td>
+      <td>Text to show to the end user in the menu</td>
+    </tr>
+    <tr>
+      <td>action</td>
+      <td>string</td>
+      <td>no</td>
+      <td>""</td>
+      <td>Code to execute upon clicking the menu</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<script>
+    $(document).ready(function(e) {
+        $("#toc").toc({
+            headers: "#content h1, #content h2, #content h3, #content h4",
+            showEffect: "none"
+        });
+    });
+</script>
+
+            </div>
+
+            <footer></footer>
+        </main>
+
+        
+
+    </body>
+</html>

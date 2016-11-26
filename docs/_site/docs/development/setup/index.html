@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Setup - Mars - Arma 3 Mod</title>
+
+<meta charset="utf-8" />
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+
+<meta name="description" content="Mars gives players full control over how their mission is played, in real time.">
+<meta property="og:description" content="Mars gives players full control over how their mission is played, in real time." />
+
+<meta name="author" content="Mars" />
+
+
+<meta property="og:title" content="Setup" />
+<meta property="twitter:title" content="Setup" />
+
+
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<link rel="stylesheet" href="https://mars.arcomm.co/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://mars.arcomm.co/style.css">
+<link rel="alternate" type="application/rss+xml" title="Mars - Mars gives players full control over how their mission is played, in real time." href="https://mars.arcomm.co/feed.xml">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/favicon.png">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://mars.arcomm.co/js/toc.js"></script>
+
+    </head>
+
+    <body>
+        <header>
+    <div class="logo">
+        <div class="nav_left">
+            <a href="https://github.com/marseditor/mars" class="fa fa-github"></a>
+            <a href="https://twitter.com/marsmod" class="fa fa-twitter"></a>
+        </div>
+        <a href="https://mars.arcomm.co" class="logo_img">
+            <span class="mars-version">1.0.0</span>
+        </a>
+        <div class="nav_right">
+            <a href="https://mars.arcomm.co/docs" class="nav_link" style="padding-right: 0 !important">Docs</a>
+            <a href="https://mars.arcomm.co/news" class="nav_link">News</a>
+            <a href="https://mars.arcomm.co/faq" class="nav_link">FAQ</a>
+        </div>
+    </div>
+</header>
+
+<div class="separator"></div>
+        
+        <main>
+            <div class="inner">
+                <div class="toc_wrapper">
+    <div class="toc_title">Contents</div>
+    <div id="toc"></div>
+</div>
+
+<span class="docs_title">Setup</span>
+<div class="docs_content" id="content"><h1 id="dependencies">Dependencies</h1>
+<ul>
+  <li>Arma 3</li>
+  <li>CBA_A3</li>
+</ul>
+
+<h1 id="addons">Addons</h1>
+
+<h2 class="no-margin" id="prerequisites">Prerequisites</h2>
+<p>Mars follows the same build process and guidelines as the <a href="http://ace3mod.com/">ACE3</a> project. Make sure you’ve read through their <a href="http://ace3mod.com/wiki/development/">documentation</a> and setup your <code class="highlighter-rouge">P</code> drive accordingly.</p>
+
+<h2 id="writing-addons">Writing Addons</h2>
+<p>Writing addons for Mars should be fairly simple as long as you’re following the guidelines linked above. If your addon depends on another mod that isn’t listed in the above dependencies then make sure you place it in the <code class="highlighter-rouge">optionals</code> folder.</p>
+
+<h1 id="extensions">Extensions</h1>
+
+<h2 class="no-margin" id="prerequisites-1">Prerequisites</h2>
+<p>In order to write extensions for Mars you’ll first off want the Intercept source code.</p>
+
+<ol>
+  <li>Navigate to <code class="highlighter-rouge">\tools\</code> inside the Mars root directory</li>
+  <li>Open up command prompt in this folder (<em>Shift+Right-Click &gt; Open command window here</em>)</li>
+  <li>Type <code class="highlighter-rouge">git clone https://github.com/intercept/intercept.git</code></li>
+  <li>Follow the <a href="https://github.com/intercept/intercept/wiki/Building-and-installing-Intercept-from-source#build-intercept-core-project-windows">build steps for Intercept</a></li>
+  <li>Open the <code class="highlighter-rouge">Intercept.sln</code> solution file in Visual Studio and then build the solution</li>
+  <li>Once Intercept has been built, close Visual Studio and navigate to <code class="highlighter-rouge">\extensions\</code> in the Mars root directory</li>
+  <li>Create your extension folder and files with the appropriate <code class="highlighter-rouge">CMakeLists.txt</code> configuration (copy it from another extension and just rename <code class="highlighter-rouge">MARS_EXTENSION_NAME</code> at the top)</li>
+  <li>Run CMake with the source directory as <code class="highlighter-rouge">\extensions\</code> and the build directory as <code class="highlighter-rouge">\vcproj\</code></li>
+  <li>Open the <code class="highlighter-rouge">MARS.sln</code> solution file in Visual Studio and start coding!</li>
+</ol>
+
+<h2 id="using-intercept">Using Intercept</h2>
+<p>Intercept should already be linked in your extension as well as the various include directories. You can simply include the Intercept header and start writing! It’s important to note however that Intercept is still quite experimental and should only be used when performance is critical.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;cstdint&gt;
+#include &lt;atomic&gt;
+</span>
+<span class="cp">#include "intercept.hpp"
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">intercept</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="kr">__cdecl</span> <span class="n">intercept</span><span class="o">::</span><span class="n">api_version</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="kr">__cdecl</span> <span class="n">intercept</span><span class="o">::</span><span class="n">post_init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Post init code
+</span><span class="p">}</span>
+</code></pre>
+</div>
+</div>
+
+<script>
+    $(document).ready(function(e) {
+        $("#toc").toc({
+            headers: "#content h1, #content h2, #content h3, #content h4",
+            showEffect: "none"
+        });
+    });
+</script>
+
+            </div>
+
+            <footer></footer>
+        </main>
+
+        
+
+    </body>
+</html>

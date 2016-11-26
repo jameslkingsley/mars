@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Attributes - Mars - Arma 3 Mod</title>
+
+<meta charset="utf-8" />
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+
+<meta name="description" content="Mars gives players full control over how their mission is played, in real time.">
+<meta property="og:description" content="Mars gives players full control over how their mission is played, in real time." />
+
+<meta name="author" content="Mars" />
+
+
+<meta property="og:title" content="Attributes" />
+<meta property="twitter:title" content="Attributes" />
+
+
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<link rel="stylesheet" href="https://mars.arcomm.co/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://mars.arcomm.co/style.css">
+<link rel="alternate" type="application/rss+xml" title="Mars - Mars gives players full control over how their mission is played, in real time." href="https://mars.arcomm.co/feed.xml">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/favicon.png">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://mars.arcomm.co/js/toc.js"></script>
+
+    </head>
+
+    <body>
+        <header>
+    <div class="logo">
+        <div class="nav_left">
+            <a href="https://github.com/marseditor/mars" class="fa fa-github"></a>
+            <a href="https://twitter.com/marsmod" class="fa fa-twitter"></a>
+        </div>
+        <a href="https://mars.arcomm.co" class="logo_img">
+            <span class="mars-version">1.0.0</span>
+        </a>
+        <div class="nav_right">
+            <a href="https://mars.arcomm.co/docs" class="nav_link" style="padding-right: 0 !important">Docs</a>
+            <a href="https://mars.arcomm.co/news" class="nav_link">News</a>
+            <a href="https://mars.arcomm.co/faq" class="nav_link">FAQ</a>
+        </div>
+    </div>
+</header>
+
+<div class="separator"></div>
+        
+        <main>
+            <div class="inner">
+                <div class="toc_wrapper">
+    <div class="toc_title">Contents</div>
+    <div id="toc"></div>
+</div>
+
+<span class="docs_title">Attributes</span>
+<div class="docs_content" id="content"><h1 id="what-is-the-attributes-framework">What is the attributes framework?</h1>
+<p>The attributes framework is quite simply a set of code that handles the UI stuff for you. This means you don’t have to spend dozens of hours making your own UI dialog just to set some values. Instead you just write a simple attributes config and call the function to open it.</p>
+
+<h1 id="why-do-i-have-to-use-it">Why do I have to use it?</h1>
+<p>A consistent UI design throughout Mars is a main priority and in order to achieve this, <em>almost</em> all dialogs must be created using the attributes framework. Not only that but it centralises the UI code into a single component, as appose to multiple components all doing their own thing when it comes to UI.</p>
+
+<h1 id="how-do-i-use-it">How do I use it?</h1>
+<ol>
+  <li>Add a <code class="highlighter-rouge">CfgAttributes.hpp</code> file to your component’s root folder</li>
+  <li>Place the following config in the file</li>
+  <li>Include <code class="highlighter-rouge">CfgAttributes.hpp</code> in your <code class="highlighter-rouge">config.cpp</code> <strong>after</strong> the <code class="highlighter-rouge">script_component.hpp</code> include</li>
+  <li>Go through the various control types available in the sidebar</li>
+  <li>When you’re ready to use your attributes class, just call it using <code class="highlighter-rouge">["MyAddonName", "YourAttributeName"] call mars_attributes_fnc_openAttributes</code></li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">mars</span><span class="n">_attributes</span> <span class="p">{</span>
+    <span class="k">class</span> <span class="nc">MyAddonName</span> <span class="p">{</span>
+        <span class="k">class</span> <span class="nc">YourAttributeName</span> <span class="p">{</span>
+            <span class="n">displayName</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+            <span class="n">actionConfirm</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+            <span class="n">actionCancel</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+            <span class="k">class</span> <span class="nc">YourCategoryOne</span> <span class="p">{</span>
+                <span class="k">class</span> <span class="nc">YourItemOne</span> <span class="p">{</span>
+                    <span class="n">displayName</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+                    <span class="n">tooltipText</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+                    <span class="k">class</span> <span class="nc">YourControlOne</span> <span class="p">{};</span>
+                <span class="p">};</span>
+            <span class="p">};</span>
+        <span class="p">};</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<p>A more fuller example can be found <a href="https://github.com/jameslkingsley/Mars/blob/master/addons/environment/CfgAttributes.hpp">here</a>.</p>
+
+<h2 id="identifiers">Identifiers</h2>
+<p>Identifiers will allow you to return a control from another part of your attribute config. An example usage would be to have a combo box populated with all groups in the mission, and then an edit box with the group ID of the selected group. When you change the combo box, ideally you want it to change the value of the edit box. See below for an example.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">mars</span><span class="n">_attributes</span> <span class="p">{</span>
+    <span class="k">class</span> <span class="nc">MyAddonName</span> <span class="p">{</span>
+        <span class="k">class</span> <span class="nc">groups</span> <span class="p">{</span>
+            <span class="n">displayName</span> <span class="o">=</span> <span class="s">"Group Management"</span><span class="p">;</span>
+            <span class="n">actionConfirm</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+            <span class="n">actionCancel</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+            <span class="k">class</span> <span class="nc">Basics</span> <span class="p">{</span>
+                <span class="k">class</span> <span class="nc">Select</span> <span class="p">{</span>
+                    <span class="n">displayName</span> <span class="o">=</span> <span class="s">"Group"</span><span class="p">;</span>
+                    <span class="n">tooltipText</span> <span class="o">=</span> <span class="s">"Select the group to edit."</span><span class="p">;</span>
+                    <span class="k">class</span> <span class="nc">List</span> <span class="p">{</span>
+                        <span class="n">condition</span> <span class="o">=</span> <span class="s">"true"</span><span class="p">;</span>
+                        <span class="n">identifier</span> <span class="o">=</span> <span class="s">"GroupList"</span><span class="p">;</span>
+                        <span class="n">type</span> <span class="o">=</span> <span class="s">"COMBO"</span><span class="p">;</span>
+                        <span class="n">labels</span> <span class="o">=</span> <span class="s">"\
+                            (allGroups select {\
+                                {!isPlayer _x} count (units _x) == 0\
+                            }) apply {format ['%1 (%2)', groupID _x, name leader _x]}\
+                        "</span><span class="p">;</span>
+                        <span class="n">values</span> <span class="o">=</span> <span class="s">"\
+                            (allGroups select {\
+                                {!isPlayer _x} count (units _x) == 0\
+                            }) apply {getPlayerUID (leader _x)}\
+                        "</span><span class="p">;</span>
+                        <span class="n">selected</span> <span class="o">=</span> <span class="s">"getPlayerUID (leader player)"</span><span class="p">;</span>
+                        <span class="n">expression</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+                    <span class="p">};</span>
+                <span class="p">};</span>
+                <span class="k">class</span> <span class="nc">Name</span> <span class="p">{</span>
+                    <span class="n">displayName</span> <span class="o">=</span> <span class="s">"Name"</span><span class="p">;</span>
+                    <span class="n">tooltipText</span> <span class="o">=</span> <span class="s">"The name of the group appears on its map marker."</span><span class="p">;</span>
+                    <span class="k">class</span> <span class="nc">Name</span> <span class="p">{</span>
+                        <span class="n">condition</span> <span class="o">=</span> <span class="s">"true"</span><span class="p">;</span>
+                        <span class="n">type</span> <span class="o">=</span> <span class="s">"EDIT"</span><span class="p">;</span>
+                        <span class="n">textCode</span> <span class="o">=</span> <span class="s">"\
+                            private _groupCtrl = ['GroupList'] call mars_attributes_fnc_getControl;\
+                            private _leaderUID = _groupCtrl lbData (lbCurSel _groupCtrl);\
+                            private _group = (allGroups select {getPlayerUID (leader _x) == _leaderUID}) select 0;\
+                            groupID _group\
+                        "</span><span class="p">;</span>
+                        <span class="n">expression</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+                    <span class="p">};</span>
+                <span class="p">};</span>
+            <span class="p">};</span>
+        <span class="p">};</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<h2 id="control-values">Control values</h2>
+<p>This only applies to the <code class="highlighter-rouge">actionConfirm</code> property. If you want the user to fill out a form with some data and then process it all at once in one place then you would call a function in <code class="highlighter-rouge">actionConfirm</code>. From there you can get the value of each control by doing the following:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">mars</span><span class="n">_attributes</span> <span class="p">{</span>
+    <span class="k">class</span> <span class="nc">MyAddonName</span> <span class="p">{</span>
+        <span class="k">class</span> <span class="nc">Example</span> <span class="p">{</span>
+            <span class="n">displayName</span> <span class="o">=</span> <span class="s">"Example"</span><span class="p">;</span>
+            <span class="n">actionConfirm</span> <span class="o">=</span> <span class="s">"\
+                _myControl = [_this, 'MyCategory_MyItem_MyControl'] call mars_attributes_fnc_getControlValue;\
+                systemChat str _myControl;\
+            "</span><span class="p">;</span>
+            <span class="k">class</span> <span class="nc">MyCategory</span> <span class="p">{</span>
+                <span class="k">class</span> <span class="nc">MyItem</span> <span class="p">{</span>
+                    <span class="k">class</span> <span class="nc">MyControl</span> <span class="p">{};</span>
+                <span class="p">};</span>
+            <span class="p">};</span>
+        <span class="p">};</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<p>The string represents the control key (generated for every control) which is simply the category class name, item class name and control class name joined by underscores. This allows you to reorder your attribute config and not worry about parameter order.</p>
+
+<h2 id="enablingdisabling-control-sets">Enabling/Disabling Control Sets</h2>
+<p>A control set is a collection of controls and their labels. This would typically be all the controls in an item as well as the item label. You can enable/disable control sets by doing the following.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>private _control = ["ControlIdentifier"] call mars_attributes_fnc_getControl;
+[_control, false] call mars_attributes_fnc_enableControlSet;
+</code></pre>
+</div>
+
+<p>This is particularly useful for disabling controls when changing a value of another control.</p>
+
+<h2 id="control-functions">Control Functions</h2>
+<p>Some control types have functions embedded in them that you can execute to reduce duplicate code. For example if you have a list box and a combo box, and you want to have the combo box update with the values selected in the list box, you can add an event handler to the list box to update the combo box, such as the following.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>private _comboBox = ["ComboBox"] call mars_attributes_fnc_getControl;
+[_comboBox, "update"] call mars_attributes_fnc_execControlFunction;
+</code></pre>
+</div>
+
+<h2 id="window-size">Window Size</h2>
+<p>You can change the size of the overall window by simply providing another parameter to <code class="highlighter-rouge">openAttributes</code> such as <code class="highlighter-rouge">["MyAddonName", "YourAttributeName", [75, 50]] call mars_attributes_fnc_openAttributes</code>. The first element in the array is the width, the second is the height.</p>
+
+<h2 id="label-and-field-ratios">Label and field ratios</h2>
+<p>You can change the ratio of the labels and fields by providing another parameter to <code class="highlighter-rouge">openAttributes</code> such as <code class="highlighter-rouge">["MyAddonName", "YourAttributeName", nil, [0.33, 0.66]] call mars_attributes_fnc_openAttributes</code>. The first element in the array is the scale of the label, the second element is the scale of the field.</p>
+
+<h2 id="storing-attributes-in-the-mission-config">Storing attributes in the mission config</h2>
+<p>You can also create attribute configs straight into the mission by placing the config in the <code class="highlighter-rouge">description.ext</code>. The attributes framework will first search for the given config in the main <code class="highlighter-rouge">configFile</code> and lastly check <code class="highlighter-rouge">missionConfigFile</code>.</p>
+
+<h2 id="control-types">Control Types</h2>
+<table><tr><th>Name</th><th>Description</th></tr><tr><td><a href="/docs/development/frameworks/attributes/button/">Button</a></td><td>A button control that can only be pressed (does not store a value).</td></tr><tr><td><a href="/docs/development/frameworks/attributes/checkbox/">Checkbox</a></td><td>Checkbox control containing a true/false boolean value.</td></tr><tr><td><a href="/docs/development/frameworks/attributes/combo/">Combo</a></td><td>Combo box control. Contains the label and value in the returned data.</td></tr><tr><td><a href="/docs/development/frameworks/attributes/date/">Date</a></td><td>Date control (year, month, day). Shows full/half moons and also handles leap years.</td></tr><tr><td><a href="/docs/development/frameworks/attributes/edit/">Edit</a></td><td>Edit text box control. Can have a custom number of rows (more than one turns it into a code box).</td></tr><tr><td><a href="/docs/development/frameworks/attributes/label/">Label</a></td><td>Label text. Can be given plain text or a code string that returns a string.</td></tr><tr><td><a href="/docs/development/frameworks/attributes/list/">List</a></td><td>List box containing labels and hidden values. Can also be a multi-select list.</td></tr><tr><td><a href="/docs/development/frameworks/attributes/map/">Map</a></td><td>Map control that shows markers. Returns the selected position (3D).</td></tr><tr><td><a href="/docs/development/frameworks/attributes/slider/">Slider</a></td><td>Slider control that returns the position within the given range.</td></tr><tr><td><a href="/docs/development/frameworks/attributes/vector/">Vector</a></td><td>Vector control containing three edit boxes (X, Y, Z).</td></tr></table>
+</div>
+
+<script>
+    $(document).ready(function(e) {
+        $("#toc").toc({
+            headers: "#content h1, #content h2, #content h3, #content h4",
+            showEffect: "none"
+        });
+    });
+</script>
+
+            </div>
+
+            <footer></footer>
+        </main>
+
+        
+
+    </body>
+</html>

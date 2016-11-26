@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Framework Release - Mars - Arma 3 Mod</title>
+
+<meta charset="utf-8" />
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+
+<meta name="description" content="What is Mars?
+Mars is a total Zeus replacement providing Arma communities with a customisable editor capable of realtime mission creation and enhancement. Mars provides integrated mod support; enabling the community to expand its capabilities far beyond Zeus’ limited modules. With Mars, you can add context options, toolbar buttons, menus, modules, and more. Mars is an extensible in-game editor built for communities.
+
+" />
+<meta property="og:description" content="What is Mars?
+Mars is a total Zeus replacement providing Arma communities with a customisable editor capable of realtime mission creation and enhancement. Mars provides integrated mod support; enabling the community to expand its capabilities far beyond Zeus’ limited modules. With Mars, you can add context options, toolbar buttons, menus, modules, and more. Mars is an extensible in-game editor built for communities.
+
+" />
+
+<meta name="author" content="Mars" />
+
+
+<meta property="og:title" content="Framework Release" />
+<meta property="twitter:title" content="Framework Release" />
+
+
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<link rel="stylesheet" href="https://mars.arcomm.co/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://mars.arcomm.co/style.css">
+<link rel="alternate" type="application/rss+xml" title="Mars - Mars gives players full control over how their mission is played, in real time." href="https://mars.arcomm.co/feed.xml">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/favicon.png">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://mars.arcomm.co/js/toc.js"></script>
+
+    </head>
+
+    <body>
+        <header>
+    <div class="logo">
+        <div class="nav_left">
+            <a href="https://github.com/marseditor/mars" class="fa fa-github"></a>
+            <a href="https://twitter.com/marsmod" class="fa fa-twitter"></a>
+        </div>
+        <a href="https://mars.arcomm.co" class="logo_img">
+            <span class="mars-version">1.0.0</span>
+        </a>
+        <div class="nav_right">
+            <a href="https://mars.arcomm.co/docs" class="nav_link" style="padding-right: 0 !important">Docs</a>
+            <a href="https://mars.arcomm.co/news" class="nav_link">News</a>
+            <a href="https://mars.arcomm.co/faq" class="nav_link">FAQ</a>
+        </div>
+    </div>
+</header>
+
+<div class="separator"></div>
+        
+        <main>
+            <div class="inner">
+                
+    <div class="post-banner" style="background-image:url(https://mars.arcomm.co/images/posts/framework-release/banner.jpg); background-position: center 92%;">
+        
+    </div>
+
+
+<article class="post post-with-banner">
+    <h1 class="p-title">Framework Release</h1>
+
+    <div class="date p-date">
+        Published on June 30, 2016 by <a href="https://github.com/jameslkingsley">Kingsley</a>
+    </div>
+
+    <div class="entry p-content">
+        <h2 id="what-is-mars">What is Mars?</h2>
+<p>Mars is a total Zeus replacement providing Arma communities with a customisable editor capable of realtime mission creation and enhancement. Mars provides integrated mod support; enabling the community to expand its capabilities far beyond Zeus’ limited modules. With Mars, you can add context options, toolbar buttons, menus, modules, and more. Mars is an extensible in-game editor built for communities.</p>
+
+<h2 id="what-is-the-framework">What is the framework?</h2>
+<p>The Mars framework is a set of components that handle all of the tricky parts of a realtime editor for you. Without writing UI’s or messing about with controls, you can create new features very quickly. Most of the features currently implemented in the framework are still a work-in-progress but their implementation is unlikely to change.</p>
+
+<h2 id="whats-available">What’s available?</h2>
+<ul>
+  <li><a href="https://mars.arcomm.co/docs/development/frameworks/attributes/">Attributes UI Framework</a></li>
+  <li><a href="https://mars.arcomm.co/docs/development/frameworks/context-menus/">Context Menus</a></li>
+  <li><a href="https://mars.arcomm.co/docs/development/frameworks/menu-strip/">Menu Strip Items</a></li>
+  <li><a href="https://mars.arcomm.co/docs/development/frameworks/toolbar/">Toolbar Options</a></li>
+</ul>
+
+<h2 id="user-interface">User Interface</h2>
+<p>As you can probably tell, the Mars interface is practically identical to the Eden interface. This is mainly to reduce the amount of UI work required and also to provide users with a familiar environment. There are still some parts to be built such as the entity list and map but the main parts are functional and relatively bug-free.</p>
+
+<p><img src="https://mars.arcomm.co/images/posts/framework-release/interface_01n.jpg" alt="Garrison Units, Suppress Position" /></p>
+
+<p>Using the attributes framework you can create menus with various control types that are perfectly aligned. You’ll never again have to write another UI config or mess about with safezones or grids. Check out the <a href="https://github.com/marseditor/mars/blob/master/addons/editor/CfgAttributes.hpp">config</a> for the menu shown below.</p>
+
+<p><img src="https://mars.arcomm.co/images/posts/framework-release/interface_03.jpg" alt="Attributes UI" /></p>
+
+<p>Placing objects is also extremely easy. With surface detection you can quickly and easily piece together detailed bases, garrison units and more. Any object can be placed on any surface, you just have to hover over it.</p>
+
+<p><img src="https://mars.arcomm.co/images/posts/framework-release/interface_04.jpg" alt="Surface Detection" /></p>
+
+<h2 id="roadmap">Roadmap</h2>
+<p>There is still a lot more to do, but I’m happy with the progress so far and as you can see below we are currently sitting on this framework release. Over the next couple of months the <a href="https://github.com/marseditor/mars/issues/1">1.0 features</a> will hopefully all be ticked off, with perhaps some additions. Once we are content with its features we will start testing Mars with communities that would otherwise use Zeus. This is to get feedback on its ease of use and tidy up any bugs there might be. If that all goes to plan and we are confident it’s not going to spoil a mission for someone, then queue the 1.0 release.</p>
+
+<p><img src="https://mars.arcomm.co/images/posts/framework-release/roadmap.jpg" alt="Roadmap" /></p>
+
+<h2 id="contributing">Contributing</h2>
+<p>While I could write all of the features myself, it would take considerably less time if there were other developers working on it with me. If you are familiar with the ACE/CBA development environment and are interested in Mars, then I encourage you to contribute. There is a comprehensive list of features that need to be built over on the <a href="https://github.com/marseditor/mars/issues/1">GitHub issues</a> page. If you have an idea that’s not on the list, you can submit it as a feature request or speak to me directly - I’m eager to hear what you can come up with.</p>
+
+<p><strong>Feel free to also join the Mars <a href="https://discord.gg/0vfzEmmrAOu1T2uk">Discord</a> and <a href="https://mars-slackin.herokuapp.com/">Slack</a> servers to discuss, develop and troubleshoot.</strong>
+<br />Thank you for reading and stay tuned for more to come.</p>
+
+    </div>
+</article>
+
+            </div>
+
+            <footer></footer>
+        </main>
+
+        
+
+    </body>
+</html>

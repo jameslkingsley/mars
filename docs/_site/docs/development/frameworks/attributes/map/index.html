@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Map - Mars - Arma 3 Mod</title>
+
+<meta charset="utf-8" />
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+
+<meta name="description" content="Mars gives players full control over how their mission is played, in real time.">
+<meta property="og:description" content="Mars gives players full control over how their mission is played, in real time." />
+
+<meta name="author" content="Mars" />
+
+
+<meta property="og:title" content="Map" />
+<meta property="twitter:title" content="Map" />
+
+
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<link rel="stylesheet" href="https://mars.arcomm.co/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://mars.arcomm.co/style.css">
+<link rel="alternate" type="application/rss+xml" title="Mars - Mars gives players full control over how their mission is played, in real time." href="https://mars.arcomm.co/feed.xml">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/favicon.png">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://mars.arcomm.co/js/toc.js"></script>
+
+    </head>
+
+    <body>
+        <header>
+    <div class="logo">
+        <div class="nav_left">
+            <a href="https://github.com/marseditor/mars" class="fa fa-github"></a>
+            <a href="https://twitter.com/marsmod" class="fa fa-twitter"></a>
+        </div>
+        <a href="https://mars.arcomm.co" class="logo_img">
+            <span class="mars-version">1.0.0</span>
+        </a>
+        <div class="nav_right">
+            <a href="https://mars.arcomm.co/docs" class="nav_link" style="padding-right: 0 !important">Docs</a>
+            <a href="https://mars.arcomm.co/news" class="nav_link">News</a>
+            <a href="https://mars.arcomm.co/faq" class="nav_link">FAQ</a>
+        </div>
+    </div>
+</header>
+
+<div class="separator"></div>
+        
+        <main>
+            <div class="inner">
+                <div class="toc_wrapper">
+    <div class="toc_title">Contents</div>
+    <div id="toc"></div>
+</div>
+
+<span class="docs_title">Map</span>
+<div class="docs_content" id="content"><h1 id="properties">Properties</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>condition</td>
+      <td>string</td>
+      <td>"true"</td>
+      <td>Condition that must return true to show the control.</td>
+    </tr>
+    <tr>
+      <td>position</td>
+      <td>array/string</td>
+      <td>[]</td>
+      <td>Position array to center the map control on. If string is provided, it will be compiled and must return a position array</td>
+    </tr>
+    <tr>
+      <td>expression</td>
+      <td>string</td>
+      <td>""</td>
+      <td>Code to run when the user presses the final OK button. It will only run if the designated position of the map control changes (user clicks a position on the map)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="examples">Examples</h1>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Map1</span> <span class="p">{</span>
+    <span class="n">condition</span> <span class="o">=</span> <span class="s">"true"</span><span class="p">;</span>
+    <span class="n">type</span> <span class="o">=</span> <span class="s">"MAP"</span><span class="p">;</span>
+    <span class="n">position</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Map2</span> <span class="p">{</span>
+    <span class="n">condition</span> <span class="o">=</span> <span class="s">"true"</span><span class="p">;</span>
+    <span class="n">type</span> <span class="o">=</span> <span class="s">"MAP"</span><span class="p">;</span>
+    <span class="n">position</span> <span class="o">=</span> <span class="s">"getPos player"</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+</div>
+
+<script>
+    $(document).ready(function(e) {
+        $("#toc").toc({
+            headers: "#content h1, #content h2, #content h3, #content h4",
+            showEffect: "none"
+        });
+    });
+</script>
+
+            </div>
+
+            <footer></footer>
+        </main>
+
+        
+
+    </body>
+</html>

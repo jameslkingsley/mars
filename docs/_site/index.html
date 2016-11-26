@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Mars - Arma 3 Mod</title>
+
+<meta charset="utf-8" />
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+
+<meta name="description" content="Mars gives players full control over how their mission is played, in real time.">
+<meta property="og:description" content="Mars gives players full control over how their mission is played, in real time." />
+
+<meta name="author" content="Mars" />
+
+
+
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<link rel="stylesheet" href="https://mars.arcomm.co/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://mars.arcomm.co/style.css">
+<link rel="alternate" type="application/rss+xml" title="Mars - Mars gives players full control over how their mission is played, in real time." href="https://mars.arcomm.co/feed.xml">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/favicon.png">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://mars.arcomm.co/js/toc.js"></script>
+
+        <script src="https://mars.arcomm.co/js/jquery.waypoints.min.js"></script>
+    </head>
+
+    <body class="body-wide">
+        <header>
+    <div class="logo">
+        <div class="nav_left">
+            <a href="https://github.com/marseditor/mars" class="fa fa-github"></a>
+            <a href="https://twitter.com/marsmod" class="fa fa-twitter"></a>
+        </div>
+        <a href="https://mars.arcomm.co" class="logo_img">
+            <span class="mars-version">1.0.0</span>
+        </a>
+        <div class="nav_right">
+            <a href="https://mars.arcomm.co/docs" class="nav_link" style="padding-right: 0 !important">Docs</a>
+            <a href="https://mars.arcomm.co/news" class="nav_link">News</a>
+            <a href="https://mars.arcomm.co/faq" class="nav_link">FAQ</a>
+        </div>
+    </div>
+</header>
+
+<div class="separator"></div>
+        
+        <main class="main-wide">
+            <div class="inner-wide">
+                <script>
+    $(document).ready(function(e) {
+        var offsetHeight = $(window).innerHeight() * 0.75;
+        new Waypoint({
+            offset: offsetHeight,
+            element: document.getElementById('features'),
+            handler: function(direction) {
+                $('#features-list .slideUp').addClass("slideUp_anim");
+            }
+        });
+        
+        new Waypoint({
+            offset: offsetHeight,
+            element: document.getElementById('quotes'),
+            handler: function(direction) {
+                $('#quotes-list .slideUp').addClass("slideUp_anim");
+            }
+        });
+    });
+</script>
+
+<div class="news-latest">
+    
+    <a href="https://mars.arcomm.co/marsrep-0001/">MARSREP 0001</a>
+</div>
+
+<article class="panel panel-wide panel-odd panel-first">
+    <div class="panel-inner panel-center" style="padding-top:0">
+        <h1 id="godlike-title" class="scaleOnLoad">Godlike Control</h1>
+        <p id="godlike-tagline" class="scaleOnLoad">Mars is a total Zeus replacement built for communities.</p>
+        <a href="javascript:void(0)" id="godlike-download" class="button-big button-disabled scaleOnLoad-disabled" title="Coming soon!">Download 1.0.0</a>
+        <div class="sword-accent scaleOnLoad-sword"></div>
+    </div>
+</article>
+
+<article id="features" class="panel panel-wide panel-dark">
+    <div id="features-list" class="panel-inner" style="padding: 150px 50px">
+        <div class="panel-box-4 slideUp">
+            <h1 class="invert">Interface</h1>
+            <p class="invert">The attributes framework is a toolset for creating user interfaces. Create powerful menus, unified by one style, and let Mars handle the tricky stuff.</p>
+        </div>
+        <div class="panel-box-4 slideUp">
+            <h1 class="invert">Contextual</h1>
+            <p class="invert">The right-click context menu allows you to quickly alter any object; from ordering a unit to suppress a position, to damaging a helicopter's tail rotor.</p>
+        </div>
+        <div class="panel-box-4 slideUp">
+            <h1 class="invert">Persistence</h1>
+            <p class="invert">Tweak the editor to your liking, save object collections and more. Reduce the amount of work required to create and control a quality mission.</p>
+        </div>
+        <div class="panel-box-4 slideUp">
+            <h1 class="invert">Customisation</h1>
+            <p class="invert">Creating new features is quick<br />and simple. Anyone with a basic understanding of Arma scripting will be able to bring their ideas to life.</p>
+        </div>
+        <span class="panel-footnote slideUp">
+            <a href="https://mars.arcomm.co/docs/user" class="button-big">Learn More</a>
+        </span>
+    </div>
+</article>
+
+<article id="quotes" class="panel panel-wide panel-even">
+    <div id="quotes-list" class="panel-inner">
+        <div class="panel-cbox-wide slideUp">
+            <h1>Motivation</h1>
+            <p>Mars is designed with large communities in mind. When you are the game master for a mission, you take on a big responsibility to deliver a fun experience to the players. Current implementations for real-time control don't offer enough detail and cause a lot of headaches when trying to do specific things. The goal of Mars is to create a platform that is extensible and robust, allowing communities to create their own additions and customise it to suit their needs<a href="https://www.youtube.com/watch?v=XEPNvdn-As4" class="nolink">.</a></p>
+        </div>
+        
+        <div class="panel-cbox-wide slideUp">
+            <h1>Extensibility</h1>
+            <p>Mars follows the same development environment and coding guidelines as <a href="http://ace3mod.com">ACE3</a> - for a strong foundation, and familiar design. With it you can easily adapt the editor to your community's modset and playstyle. All it takes is a few config files and functions, and in a short amount of time you'll be able to improve the quality of a mission, and with it the players' experience.</p>
+        </div>
+        
+        <div class="panel-cbox-wide slideUp">
+            <h1>Contributing</h1>
+            <p>You can help out with the ongoing development by looking for potential bugs in the code base, or by contributing new features. To help out, simply fork the <a href="https://github.com/marseditor/mars">repository</a> and submit your pull requests for review by other collaborators. Feel free to also join the <a href="https://discord.gg/0vfzEmmrAOu1T2uk">Discord</a> and <a href="https://mars-slackin.herokuapp.com/">Slack</a> servers to discuss, develop and troubleshoot.</p>
+        </div>
+    </div>
+</article>
+
+<article class="panel panel-wide panel-odd">
+    <div class="panel-inner">
+        <div class="panel-center panel-vcenter">
+            <a href="javascript:void(0)" class="button-big button-disabled" title="Coming soon!">Download 1.0.0</a>
+            <br />
+            <a href="https://github.com/marseditor/mars/commits/master" class="link-light" style="margin-top: 25px;display: inline-block;">View Changelog</a>
+        </div>
+    </div>
+</article>
+
+<article class="panel panel-wide panel-even panel-footer" style="margin-top: -110px">
+    <div class="panel-inner">
+        <div class="panel-left">
+            <span class="bis">Mars is a community made mod for <a href="https://arma3.com/">Arma 3</a>; a great game created by <a href="http://www.bistudio.com">Bohemia Interactive</a>.</span>
+        </div>
+    </div>
+</article>
+
+            </div>
+        </main>
+
+        
+
+    </body>
+</html>
