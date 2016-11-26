@@ -63,7 +63,6 @@ _this spawn {
     ] call CFUNC(addEventHandler);
     
     GVAR(AttributesWindow_onUnload) = ["AttributesWindow_onUnload", {
-        GVAR(isOpen) = false;
         GVAR(AttributesWindow_ItemControls) = [];
         GVAR(identifyControls) = [];
         GVAR(AttributesWindow_GlobalArgs) = [];
@@ -79,6 +78,12 @@ _this spawn {
         if (!isNil QEGVAR(editor,disableSelectionBox)) then {
             EGVAR(editor,disableSelectionBox) = false;
         };
+
+        if (!isNil QEGVAR(editor,mouse)) then {
+            EGVAR(editor,mouse) set [0, false];
+        };
+
+        GVAR(isOpen) = false;
     }] call CFUNC(addEventHandler);
 
     GVAR(AttributesWindow_onConfirm) = ["AttributesWindow_onConfirm", {
