@@ -1,0 +1,32 @@
+<title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.name }} - Arma 3 Mod</title>
+
+<meta charset="utf-8" />
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+{% if page.excerpt %}
+<meta name="description" content="{{ page.excerpt| strip_html }}" />
+<meta property="og:description" content="{{ page.excerpt| strip_html }}" />
+{% else %}
+<meta name="description" content="{{ site.description }}">
+<meta property="og:description" content="{{ site.description }}" />
+{% endif %}
+<meta name="author" content="{{ site.name }}" />
+
+{% if page.title %}
+<meta property="og:title" content="{{ page.title }}" />
+<meta property="twitter:title" content="{{ page.title }}" />
+{% endif %}
+
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<link rel="stylesheet" href="{{ site.url }}/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{ site.url }}/style.css">
+<link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.url }}/feed.xml">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jameslkingsley/Mars/master/extras/logo/favicon.png">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="{{ site.url }}/js/toc.js"></script>

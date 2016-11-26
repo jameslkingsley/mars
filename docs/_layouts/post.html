@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+{% if page.banner %}
+    <div class="post-banner" style="background-image:url({{ site.url }}/{{ page.banner }}); {% if page.bannerPos %}background-position: {{ page.bannerPos }};{% endif %}">
+        {% if page.bannerDim %}
+            <div class="dim"></div>
+        {% endif %}
+    </div>
+{% endif %}
+
+<article class="post {% if page.banner %}post-with-banner{% endif %}">
+    <h1 class="p-title">{{ page.title }}</h1>
+
+    <div class="date p-date">
+        Published on {{ page.date | date: "%B %e, %Y" }}{% if page.author %} by <a href="{{ page.authorUrl }}">{{ page.author }}</a>{% endif %}
+    </div>
+
+    <div class="entry p-content">
+        {{ content }}
+    </div>
+</article>

@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div class="toc_wrapper">
+    <div class="toc_title">Contents</div>
+    <div id="toc"></div>
+</div>
+
+<span class="docs_title">{{ page.title }}</span>
+<div class="docs_content" id="content">{{ content }}</div>
+
+<script>
+    $(document).ready(function(e) {
+        $("#toc").toc({
+            headers: "#content h1, #content h2, #content h3, #content h4",
+            showEffect: "none"
+        });
+    });
+</script>

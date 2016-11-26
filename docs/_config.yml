@@ -1,0 +1,51 @@
+name: Mars
+description: Mars gives players full control over how their mission is played, in real time.
+avatar: https://avatars0.githubusercontent.com/u/18232029?v=3&s=200
+
+major: 1
+minor: 0
+patch: 0
+build: 0
+
+footer-links:
+    dribbble:
+    email:
+    facebook:
+    flickr:
+    github: marseditor/mars
+    instagram:
+    linkedin:
+    pinterest:
+    rss:
+    twitter:
+    stackoverflow:
+    youtube:
+    googleplus:
+
+disqus: marseditor
+google_analytics:
+url: https://mars.arcomm.co
+baseurl: ""
+permalink: /:title/
+version: v1.2.0
+
+kramdown:
+    html_to_native: true
+    input: GFM
+    syntax_highlighter: rouge
+    syntax_highlighter_opts:
+        css_class: 'highlight'
+
+sass:
+    style: :compressed
+
+gems:
+    - jekyll-sitemap
+    - jekyll-feed
+
+exclude:
+    - Gemfile
+    - Gemfile.lock
+    - LICENSE
+    - README.md
+    - CNAME

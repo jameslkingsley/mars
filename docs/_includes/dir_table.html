@@ -1,0 +1,26 @@
+{% capture html %}
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    {% assign entries = site.pages | sort: include.order %}
+    {% for entry in entries %}
+
+        {% capture slug    %}{{ entry.url | split: "/"   | last                       }}{% endcapture %}
+        {% capture current %}{{ entry.url | remove: slug | remove: "//" | append: "/" }}{% endcapture %}
+
+        {% if current == include.context %}
+            <tr>
+                <td>
+                    <a href="{{ site.baseurl }}{{ entry.url }}">
+                        {{ entry.title }}
+                    </a>
+                </td>
+                <td>{{ entry.description }}</td>
+            </tr>
+        {% endif %}
+
+    {% endfor %}
+</table>
+{% endcapture %}{{ html | strip_newlines | replace:'    ','' | replace:'    ','' | replace:'  ',' ' }}

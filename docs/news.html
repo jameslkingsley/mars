@@ -1,0 +1,21 @@
+---
+layout: page
+title: News
+permalink: /news/
+---
+
+<div class="posts">
+    {% for post in site.posts %}
+        <article class="post">
+            <h1 class="item"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+
+            <h2 class="item-date">
+                Published on {{ post.date | date: "%B %e, %Y" }}{% if post.author %} by <a href="{{ post.authorUrl }}">{{ post.author }}</a>{% endif %}
+            </h2>
+
+            <div class="entry">
+                {{ post.content | strip_html | truncatewords: 50 }}
+            </div>
+        </article>
+    {% endfor %}
+</div>
