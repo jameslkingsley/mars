@@ -48,7 +48,7 @@ if (_noText == "") then {_noText = localize LSTRING(Confirmation_NoText)};
 _yesCode = [_yesCode] call CFUNC(makeExecutable);
 _noCode = [_noCode] call CFUNC(makeExecutable);
 
-[QADDON, "Confirmation", [80, 50], [0, 1], [
+[QADDON, "Confirmation", [80, 45], [0, 1], [
     _title,
     _message,
     _yesText,
