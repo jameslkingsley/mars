@@ -139,6 +139,7 @@ GVAR(draw3DEH) = addMissionEventHandler ["Draw3D", {
 
     [] call FUNC(handleCursor);
     [] call FUNC(updateIcons);
+    [] call FUNC(updateMarkers);
     [] call FUNC(drawGroupWaypoints);
 
     {
@@ -154,6 +155,7 @@ GVAR(draw3DEH) = addMissionEventHandler ["Draw3D", {
 
 GVAR(drawingPFH) = [{
     GVAR(serializeIconHandle) = [GETUVAR(GVAR(interface), displayNull)] spawn FUNC(serializeIcons);
+    GVAR(serializeMarkerHandle) = [GETUVAR(GVAR(interface), displayNull)] spawn FUNC(serializeMarkers);
     // [] spawn CFUNC(dumpPerformanceCounters);
 }, 1.5, []] call CBA_fnc_addPerFrameHandler;
 GVAR(pfhArray) pushBackUnique GVAR(drawingPFH);

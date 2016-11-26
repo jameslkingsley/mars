@@ -21,6 +21,15 @@ class GVAR(interface) {
             onMouseZChanged = QUOTE([ARR_2('onMouseZChanged',_this)] call FUNC(handleInterface));
             onMouseMoving = QUOTE([ARR_2('onMouseMoving',_this)] call FUNC(handleInterface));
             onMouseHolding = QUOTE([ARR_2('onMouseHolding',_this)] call FUNC(handleInterface));
+            class Controls {
+                class EntityIcons: RscControlsGroupNoScrollbars {
+                    idc = IDC_MOUSEHANDLER_ENTITYICONS;
+                    x = 0;
+                    y = 0;
+                    w = safeZoneW;
+                    h = safeZoneH;
+                };
+            };
         };
         class ScrollBlockTop: MARS_gui_ctrlStatic {
             idc = IDC_SCROLLBLOCK_TOP;

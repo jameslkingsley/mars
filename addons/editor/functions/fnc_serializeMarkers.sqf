@@ -16,6 +16,9 @@
  */
 
 #include "script_component.hpp"
+#include "\z\mars\addons\common\macros.hpp"
+
+BEGIN_COUNTER(serializeMarkers);
 
 disableSerialization;
 
@@ -26,12 +29,48 @@ private _getMarkerControl = {
     ((GETUVAR(GVAR(markerControls), []) select {(_x getVariable [QGVAR(marker), ""]) == _marker}) param [0, controlNull])
 };
 
+private _addEventHandlers = {
+    params ["_ctrl"];
+
+    _ctrl ctrlAddEventHandler ["MouseEnter", {
+        params ["_ctrl"];
+
+        GVAR(hoveringOverIcon) = true;
+        ["select"] call FUNC(setCursor);
+
+        _ctrl setVariable [QGVAR(hovered), true];
+    }];
+
+    _ctrl ctrlAddEventHandler ["MouseExit", {
+        params ["_ctrl"];
+
+        GVAR(hoveringOverIcon) = false;
+        [] call FUNC(setCursor);
+
+        _ctrl setVariable [QGVAR(hovered), false];
+    }];
+
+    _ctrl ctrlAddEventHandler ["MouseButtonUp", {
+        params ["_ctrl", "_button"];
+    }];
+
+    _ctrl ctrlAddEventHandler ["MouseButtonDown", {
+        params ["_ctrl", "_button"];
+    }];
+};
+
 {
     private _marker = _x;
     private _control = [_marker] call _getMarkerControl;
+    private _existingControls = GETUVAR(GVAR(markerControls), []);
+    GVAR(idcsIcons) = GVAR(idcsIcons) + 1;
 
     if (isNull _control) then {
-        _control = _display ctrlCreate ["MARS_gui_ctrlGroupButton"];
+        _control = _display ctrlCreate ["MARS_gui_ctrlUnitButton", GVAR(idcsIcons), (_display displayCtrl IDC_MOUSEHANDLER_ENTITYICONS)];
+        _control ctrlSetPosition [0, 0, 5 * GRID_W, 5 * GRID_H];
+        [_control] call _addEventHandlers;
+        _existingControls pushBack _control;
+        SETUVAR(GVAR(markerControls), _existingControls);
     };
 
     private _icon = (configfile >> "CfgMarkers" >> markerType _marker >> "icon");
@@ -39,16 +78,15 @@ private _getMarkerControl = {
     private _useTexture = if (isNull _texture) then {getText _icon} else {getText _texture};
     private _color = [getArray (configFile >> "CfgMarkerColors" >> markerColor _marker >> "color")] call CFUNC(evalColor);
 
-    _outputMarkers pushBack [
-        _x,
-        _useTexture,
-        _color,
-        markerPos _x,
-        (markerSize _x) select 0,
-        (markerSize _x) select 1,
-        markerDir _x,
-        markerText _x
-    ];
+    _control setVariable [QGVAR(marker), _marker];
+    _control setVariable [QGVAR(pos), markerPos _marker];
+    _control setVariable [QGVAR(texture), _useTexture];
+    _control setVariable [QGVAR(color), _color];
+    _control setVariable [QGVAR(text), markerText _marker];
+
+    _control ctrlCommit 0;
 
     false
 } count allMapMarkers;
+
+END_COUNTER(serializeMarkers);
