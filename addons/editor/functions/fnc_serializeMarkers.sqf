@@ -87,6 +87,8 @@ private _addEventHandlers = {
     _control ctrlCommit 0;
 
     false
-} count allMapMarkers;
+} count (allMapMarkers select {
+    ((toLower _x) find "mars_hidden") == -1
+});
 
 END_COUNTER(serializeMarkers);
