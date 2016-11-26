@@ -24,7 +24,10 @@ if (_objects isEqualTo []) then {
     if (_target == GVAR(prepSurfaceSphere)) exitWith {};
 
     if (isNull _target) then {
-        GVAR(selection) = [];
+        if (!GVAR(ctrlKey)) then {
+            GVAR(selection) = [];
+        };
+        
         GVAR(selectedMarkers) = [];
         GVAR(hoveredMarker) = "";
         
@@ -39,7 +42,10 @@ if (_objects isEqualTo []) then {
                 GVAR(selectedMarkers) pushBackUnique _selectedMarker;
             };
         } else {
-            GVAR(selection) = [];
+            if (!GVAR(ctrlKey)) then {
+                GVAR(selection) = [];
+            };
+
             GVAR(selectedMarkers) = [];
             GVAR(hoveredMarker) = "";
         };
