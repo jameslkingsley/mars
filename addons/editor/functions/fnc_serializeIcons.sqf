@@ -53,7 +53,7 @@ private _getControlByKey = {
     private _fullKey = format ["%1_%2_idc", QADDON, _key];
     private _idc = _object getVariable [_fullKey, -1];
     if (_idc == -1) exitWith {controlNull};
-    ((GETUVAR(GVAR(interface), displayNull) displayCtrl IDC_MOUSEHANDLER) controlsGroupCtrl _idc)
+    ((GETUVAR(GVAR(interface), displayNull) displayCtrl IDC_MOUSEHANDLER_ENTITYICONS) controlsGroupCtrl _idc)
 };
 
 private _setObjectControlKey = {
@@ -156,7 +156,7 @@ private _addEventHandlers = {
             private _grpCtrl = [_object, "unit_group"] call _getControlByKey;
             if (isNull _grpCtrl) then {
                 GVAR(idcsIcons) = GVAR(idcsIcons) + 1;
-                _grpCtrl = _display ctrlCreate ["MARS_gui_ctrlGroupButton", GVAR(idcsIcons), (_display displayCtrl IDC_MOUSEHANDLER)];
+                _grpCtrl = _display ctrlCreate ["MARS_gui_ctrlGroupButton", GVAR(idcsIcons), (_display displayCtrl IDC_MOUSEHANDLER_ENTITYICONS)];
                 [_object, "unit_group", GVAR(idcsIcons)] call _setObjectControlKey;
                 [_grpCtrl] call _addEventHandlers;
                 _existingControls pushBack _grpCtrl;
@@ -182,7 +182,7 @@ private _addEventHandlers = {
                 _ctrlTextLeft = _display ctrlCreate [
                     (["MARS_gui_ctrlCallsignImage","MARS_gui_ctrlCallsignText"] select (isPlayer leader _object)),
                     GVAR(idcsIcons),
-                    (_display displayCtrl IDC_MOUSEHANDLER)
+                    (_display displayCtrl IDC_MOUSEHANDLER_ENTITYICONS)
                 ];
                 _ctrlTextLeft ctrlSetPosition [0, 0, (DIM_UNIT select 0) * ([1,4] select (isPlayer leader _object)), (DIM_UNIT select 1) * 0.75];
                 _ctrlTextLeft ctrlCommit 0;
@@ -200,7 +200,7 @@ private _addEventHandlers = {
             private _ctrlTextRight = _grpCtrl getVariable [QGVAR(ctrlTextRight), controlNull];
             if (isNil "_ctrlTextRight" || {isNull _ctrlTextRight}) then {
                 GVAR(idcsIcons) = GVAR(idcsIcons) + 1;
-                _ctrlTextRight = _display ctrlCreate ["MARS_gui_ctrlCallsignText", GVAR(idcsIcons), (_display displayCtrl IDC_MOUSEHANDLER)];
+                _ctrlTextRight = _display ctrlCreate ["MARS_gui_ctrlCallsignText", GVAR(idcsIcons), (_display displayCtrl IDC_MOUSEHANDLER_ENTITYICONS)];
                 _ctrlTextRight ctrlSetPosition [0, 0, DIM_UNIT select 0, DIM_UNIT select 1];
                 _ctrlTextRight ctrlCommit 0;
                 _grpCtrl setVariable [QGVAR(ctrlTextRight), _ctrlTextRight];
@@ -211,7 +211,7 @@ private _addEventHandlers = {
         private _ctrl = [_object, "unit"] call _getControlByKey;
         if (isNull _ctrl) then {
             GVAR(idcsIcons) = GVAR(idcsIcons) + 1;
-            _ctrl = _display ctrlCreate ["MARS_gui_ctrlUnitButton", GVAR(idcsIcons), (_display displayCtrl IDC_MOUSEHANDLER)];
+            _ctrl = _display ctrlCreate ["MARS_gui_ctrlUnitButton", GVAR(idcsIcons), (_display displayCtrl IDC_MOUSEHANDLER_ENTITYICONS)];
             [_object, "unit", GVAR(idcsIcons)] call _setObjectControlKey;
             [_ctrl] call _addEventHandlers;
             _existingControls pushBack _ctrl;
@@ -239,7 +239,7 @@ private _addEventHandlers = {
         private _ctrl = [_object, "vehicle"] call _getControlByKey;
         if (isNull _ctrl) then {
             GVAR(idcsIcons) = GVAR(idcsIcons) + 1;
-            _ctrl = _display ctrlCreate ["MARS_gui_ctrlUnitButton", GVAR(idcsIcons), (_display displayCtrl IDC_MOUSEHANDLER)];
+            _ctrl = _display ctrlCreate ["MARS_gui_ctrlUnitButton", GVAR(idcsIcons), (_display displayCtrl IDC_MOUSEHANDLER_ENTITYICONS)];
             [_object, "vehicle", GVAR(idcsIcons)] call _setObjectControlKey;
             [_ctrl] call _addEventHandlers;
             _existingControls pushBack _ctrl;
@@ -266,7 +266,7 @@ private _addEventHandlers = {
 
             if (isNull _vehicleGrpCtrl) then {
                 GVAR(idcsIcons) = GVAR(idcsIcons) + 1;
-                _vehicleGrpCtrl = _display ctrlCreate ["MARS_gui_ctrlGroupButton", GVAR(idcsIcons), (_display displayCtrl IDC_MOUSEHANDLER)];
+                _vehicleGrpCtrl = _display ctrlCreate ["MARS_gui_ctrlGroupButton", GVAR(idcsIcons), (_display displayCtrl IDC_MOUSEHANDLER_ENTITYICONS)];
                 [_object, "vehicle_group", GVAR(idcsIcons)] call _setObjectControlKey;
                 [_vehicleGrpCtrl] call _addEventHandlers;
                 _existingControls pushBack _vehicleGrpCtrl;
