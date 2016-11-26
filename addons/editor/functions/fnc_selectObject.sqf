@@ -27,7 +27,8 @@ if (_objects isEqualTo []) then {
         GVAR(selection) = [];
         GVAR(selectedMarkers) = [];
         GVAR(hoveredMarker) = "";
-        /*private _selectedMarker = [] call FUNC(getSelectedMarker);
+        
+        private _selectedMarker = [] call FUNC(getSelectedMarker);
 
         if (_selectedMarker != "") then {
             if (!GVAR(ctrlKey)) then {
@@ -41,7 +42,7 @@ if (_objects isEqualTo []) then {
             GVAR(selection) = [];
             GVAR(selectedMarkers) = [];
             GVAR(hoveredMarker) = "";
-        };*/
+        };
     } else {
         [_target, !(vehicle _target == _target)] call FUNC(highlightObject);
     };

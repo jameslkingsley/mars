@@ -47,6 +47,14 @@ switch (_mode) do {
 
         _ctrl ctrlCommit 0;
     };
+    case "cancel": {
+        private _display = GETUVAR(GVAR(interface), displayNull);
+        private _ctrl = _display displayCtrl IDC_SELBOX;
+        ctrlDelete _ctrl;
+
+        GVAR(selectionBoxStartPos) = [];
+        GVAR(isSelectionBoxSpawned) = false;
+    };
     case "end": {
         private _display = GETUVAR(GVAR(interface), displayNull);
         private _ctrl = _display displayCtrl IDC_SELBOX;
@@ -83,6 +91,25 @@ switch (_mode) do {
 
             !(_posScreen isEqualTo []) &&
             {(_ctrl getVariable [QGVAR(eligibleForSelection), false])} &&
+            {(_posScreen inArea [
+                _boxCenter,
+                ((_boxPos select 2) / 2),
+                ((_boxPos select 3) / 2),
+                0,
+                true
+            ])}
+        });
+        
+        {
+            private _marker = _x getVariable [QGVAR(marker), ""];
+            GVAR(selectedMarkers) pushBackUnique _marker;
+            false
+        } count (GETUVAR(GVAR(markerControls), []) select {
+            private _ctrl = _x;
+            private _posWorld = _ctrl getVariable [QGVAR(pos), [0,0,0]];
+            private _posScreen = worldToScreen _posWorld;
+
+            !(_posScreen isEqualTo []) &&
             {(_posScreen inArea [
                 _boxCenter,
                 ((_boxPos select 2) / 2),
