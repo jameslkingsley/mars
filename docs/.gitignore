@@ -14,3 +14,5 @@ CNAME
 
 *.cache
 *.pbo
+
+.sass-cache/
