@@ -20,7 +20,7 @@ params [["_unit", objNull, [objNull]]];
 
 if (isNull _unit) exitWith {false};
 
-if (GVAR(allowLoginIfAdmin) && {serverCommandAvailable "#kick"}) exitWith {true};
+if (GVAR(allowLoginIfAdmin) && {IS_ADMIN_LOGGED}) exitWith {true};
 
 if (_unit getVariable [QGVAR(allowLogin), false]) exitWith {true};
 
