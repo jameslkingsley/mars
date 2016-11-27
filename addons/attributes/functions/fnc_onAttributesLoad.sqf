@@ -268,6 +268,10 @@ _totalLabel = CATEGORY_Y_IOFFSET + ITEM_SPACING;
         } count _itemControls == 0) then {
             _itemLabel ctrlEnable false;
         };
+
+        if !(isNull (_itemConfig >> "init")) then {
+            call compile getText (_itemConfig >> "init");
+        };
         
         _itemLabelPosY = [(_totalLabel + _itemLabelY), ((_totalLabel + _itemLabelY) - _ctrlLargestHeight) + CATEGORY_SPACING] select (_ctrlLargestHeight > LABEL_HEIGHT);
         _itemLabel ctrlSetPosition [CATEGORY_SPACING, _itemLabelPosY, LABEL_WIDTH, LABEL_HEIGHT];
