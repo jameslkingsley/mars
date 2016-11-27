@@ -38,6 +38,11 @@ _ctrlCombo ctrlSetPosition _position;
 _values = ("getNumber (_x >> 'scope') != 0" configClasses (configFile >> "CfgMarkerColors")) apply {configName _x};
 _labels = ("getNumber (_x >> 'scope') != 0" configClasses (configFile >> "CfgMarkerColors")) apply {getText (_x >> "name")};
 _selected = getText (_config >> "selected");
+_evalSelected = (getNumber (_config >> "evalSelected")) > 0;
+
+if (_evalSelected) then {
+    _selected = call compile _selected;
+};
 
 {
     private _color = [getArray (configFile >> "CfgMarkerColors" >> _x >> "color")] call CFUNC(evalColor);
