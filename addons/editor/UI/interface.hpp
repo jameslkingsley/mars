@@ -725,6 +725,16 @@ class GVAR(interface) {
                     idc = IDC_STATUSBAR_GRID;
                     x = (4 * (TEXT_W + VALUE_W + SPACE_W) + TEXT_W) * GRID_W;
                 };
+                class TextCompass: TextX {
+                    x = 5 * (TEXT_W + VALUE_W + SPACE_W) * GRID_W;
+                    text = QPATHTOF(data\StatusBar\compass_ca.paa);
+                    colorBackground[] = {0,0,0,0};
+                };
+                class ValueCompass: ValueX {
+                    idc = IDC_COMPASS;
+                    x = (5 * (TEXT_W + VALUE_W + SPACE_W) + TEXT_W) * GRID_W;
+                    text = "NW 300";
+                };
                 class FPS: ValueX {
                     idc = IDC_STATUSBAR_FPS;
                     x = STATUSBAR_W - (34) * GRID_W;

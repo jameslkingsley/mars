@@ -33,6 +33,7 @@ switch (toLower _mode) do {
 
         // Status Bar
         [_display] call FUNC(handleStatusBar);
+        [{params ["_display"];[_display] call FUNC(handleCompass);}, 0, _display] call CBA_fnc_addPerFrameHandler;
 
         // Invoke the default right-panel state
         ["rightModes", [controlNull, GVAR(abCurrentMode)]] call FUNC(handlePanelSections);

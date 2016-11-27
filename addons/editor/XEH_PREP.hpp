@@ -90,3 +90,4 @@ PREP(updateDebugPanel);
 PREP(updateMarkers);
 PREP(serializeMarkers);
 PREP(endMission);
+PREP(handleCompass);
