@@ -143,6 +143,33 @@ class GVARMAIN(context) {
             };
         };
 
+        class CombatMode {
+            displayName = "Combat Mode";
+            exceptions[] = {"isNotPlayer"};
+            only[] = {Groups};
+            order = 6;
+            class Red {
+                displayName = "Weapons free";
+                action = QUOTE([ARR_3('RED', _this, true)] call FUNC(setCombatMode));
+                order = 1;
+            };
+            class Yellow {
+                displayName = "Fire at will";
+                action = QUOTE([ARR_3('YELLOW', _this, true)] call FUNC(setCombatMode));
+                order = 2;
+            };
+            class Green {
+                displayName = "Hold fire";
+                action = QUOTE([ARR_3('GREEN', _this, true)] call FUNC(setCombatMode));
+                order = 3;
+            };
+            class Blue {
+                displayName = "Never fire";
+                action = QUOTE([ARR_3('BLUE', _this, true)] call FUNC(setCombatMode));
+                order = 4;
+            };
+        };
+
         class Vehicle {
             displayName = "Vehicle";
             condition = "!(_this call CBA_fnc_isPerson)";
