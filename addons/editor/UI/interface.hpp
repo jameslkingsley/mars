@@ -733,7 +733,6 @@ class GVAR(interface) {
                 class ValueCompass: ValueX {
                     idc = IDC_COMPASS;
                     x = (5 * (TEXT_W + VALUE_W + SPACE_W) + TEXT_W) * GRID_W;
-                    text = "NW 300";
                 };
                 class FPS: ValueX {
                     idc = IDC_STATUSBAR_FPS;
