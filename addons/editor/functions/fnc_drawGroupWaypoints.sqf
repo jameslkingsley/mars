@@ -33,16 +33,31 @@ _groups = _groups arrayIntersect _groups;
 
         _pos set [2, 0.25];
 
-        drawLine3D [_previousPos, _pos, [1,1,1,1]];
+        drawLine3D [_previousPos, _pos, [0,0,0,1]];
+
         drawIcon3D [
-            QPATHTOF(data\waypoint_ca.paa),
-            [1,1,1,1],
+            QPATHTOF(data\Waypoint\background_ca.paa),
+            [0,0,0,0.5],
             _pos,
             1,
             1,
             0,
+            "",
+            0,
+            0.032,
+            "PuristaBold",
+            "center"
+        ];
+
+        drawIcon3D [
+            QPATHTOF(data\Waypoint\move_ca.paa),
+            [1,1,1,1],
+            _pos,
+            0.75,
+            0.75,
+            0,
             str (_forEachIndex + 1),
-            1,
+            0,
             0.032,
             "PuristaBold",
             "center"
