@@ -1,5 +1,5 @@
 class Marker {
-    displayName = QUOTE(format [ARR_2('%1 Marker', (_this select 0))]);
+    displayName = QUOTE(ATTR_ARGS param [ARR_2(0, 'Marker')]);
     evalDisplayName = 1;
     actionConfirm = QFUNC(attrConfirmMarker);
     actionCancel = "";
@@ -9,6 +9,8 @@ class Marker {
             tooltipText = "Variable name of the marker.";
             class Edit {
                 type = "EDIT";
+                condition = QUOTE(ATTR_ARGS param [ARR_2(9, true)]);
+                textCode = QUOTE(ATTR_ARGS param [ARR_2(3, '')]);
             };
         };
         class Text {
@@ -16,6 +18,7 @@ class Marker {
             tooltipText = "Text shown on the marker.";
             class Edit {
                 type = "EDIT";
+                textCode = QUOTE(ATTR_ARGS param [ARR_2(4, '')]);
             };
         };
         class Position {
@@ -31,12 +34,12 @@ class Marker {
             tooltipText = "Size of the marker.";
             class EditW {
                 type = "NUMBER";
-                value = 1;
+                value = QUOTE(ATTR_ARGS param [ARR_2(5, 1)]);
                 width = 0.25;
             };
             class EditH {
                 type = "NUMBER";
-                value = 1;
+                value = QUOTE(ATTR_ARGS param [ARR_2(6, 1)]);
                 width = 0.25;
             };
         };
@@ -45,7 +48,8 @@ class Marker {
             tooltipText = "Color of the marker.";
             class MarkerColor {
                 type = "MARKERCOLOR";
-                selected = "Default";
+                selected = QUOTE(ATTR_ARGS param [ARR_2(7, 'Default')]);
+                evalSelected = 1;
             };
         };
         class Alpha {
@@ -55,24 +59,38 @@ class Marker {
                 type = "SLIDER";
                 range[] = {0, 1};
                 step = 0.1;
-                position = 1;
+                position = QUOTE(ATTR_ARGS param [ARR_2(8, 1)]);
             };
         };
+
+        #define CHECKBOX_INIT(SIDE)\
+            init = QUOTE(\
+                private _enabled = ATTR_ARGS param [ARR_2(9, true)];\
+                if (!_enabled) then {\
+                    private _control = [QUOTE(QUOTE(DOUBLES(Checkbox,SIDE)))] call AFUNC(getControl);\
+                    [ARR_2(_control, false)] call AFUNC(enableControlSet);\
+                };\
+            )
+
         class BLUFOR {
             displayName = "Visible";
             tooltipText = "Which sides will this marker be visible to.";
+            CHECKBOX_INIT(BLUFOR);
             class Checkbox {
                 type = "CHECKBOX";
                 textPlain = "BLUFOR";
+                identifier = "Checkbox_BLUFOR";
                 checked = 1;
             };
         };
 
         #define SIDE_CHECKBOX(CNAME)\
             class CNAME {\
+                CHECKBOX_INIT(CNAME);\
                 class Checkbox {\
                     type = "CHECKBOX";\
                     textPlain = QUOTE(CNAME);\
+                    identifier = QUOTE(DOUBLES(Checkbox,CNAME));\
                     checked = 1;\
                 };\
             }
