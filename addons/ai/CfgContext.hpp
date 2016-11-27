@@ -170,6 +170,28 @@ class GVARMAIN(context) {
             };
         };
 
+        class Speed {
+            displayName = "Speed";
+            exceptions[] = {"isNotPlayer"};
+            only[] = {Groups};
+            order = 7;
+            class Full {
+                displayName = "Full";
+                action = QUOTE([ARR_3('FULL', _this, true)] call FUNC(setSpeedMode));
+                order = 1;
+            };
+            class Normal {
+                displayName = "Normal";
+                action = QUOTE([ARR_3('NORMAL', _this, true)] call FUNC(setSpeedMode));
+                order = 2;
+            };
+            class Limited {
+                displayName = "Limited";
+                action = QUOTE([ARR_3('LIMITED', _this, true)] call FUNC(setSpeedMode));
+                order = 3;
+            };
+        };
+
         class Vehicle {
             displayName = "Vehicle";
             condition = "!(_this call CBA_fnc_isPerson)";

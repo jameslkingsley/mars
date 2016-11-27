@@ -20,6 +20,7 @@
 [QGVAR(setFormation), {_this call FUNC(setFormation)}] call CBA_fnc_addEventHandler;
 [QGVAR(setBehaviour), {_this call FUNC(setBehaviour)}] call CBA_fnc_addEventHandler;
 [QGVAR(setCombatMode), {_this call FUNC(setCombatMode)}] call CBA_fnc_addEventHandler;
+[QGVAR(setSpeedMode), {_this call FUNC(setSpeedMode)}] call CBA_fnc_addEventHandler;
 
 GVAR(stateMachine) = [configFile >> QGVARMAIN(StateMachines) >> QADDON] call CBA_statemachine_fnc_createFromConfig;
 
