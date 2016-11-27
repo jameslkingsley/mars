@@ -108,7 +108,8 @@ private _addEventHandlers = {
 
     false
 } count (allMapMarkers select {
-    ((toLower _x) find "mars_hidden") == -1
+    ((toLower _x) find "mars_hidden") == -1 &&
+    {markerShape _x != "POLYLINE"}
 });
 
 END_COUNTER(serializeMarkers);
