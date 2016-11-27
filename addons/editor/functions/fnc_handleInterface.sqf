@@ -406,6 +406,16 @@ switch (toLower _mode) do {
             case 44: { // Z
                 GVAR(camBoom) = 0;
             };
+            case 13: { // +
+                if (!isMultiplayer) then {
+                    setAccTime 4;
+                };
+            };
+            case 12: { // -
+                if (!isMultiplayer) then {
+                    setAccTime 1;
+                };
+            };
         };
 
         true
