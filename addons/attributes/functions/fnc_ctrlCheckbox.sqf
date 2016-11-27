@@ -82,6 +82,8 @@ _ctrlCheckLabel ctrlAddEventHandler ["MouseButtonUp", {
     private _config = _control getVariable [QGVAR(config), configNull];
     private _newState = !(cbChecked _checkbox);
 
+    if !(ctrlEnabled _checkbox) exitWith {};
+
     _checkbox cbSetChecked _newState;
     
     _startState = _checkbox getVariable [QGVAR(checkStartState), 0];
