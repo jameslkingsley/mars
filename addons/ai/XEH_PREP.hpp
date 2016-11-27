@@ -24,3 +24,4 @@ PREP(ungarrison);
 PREP(setStance);
 PREP(handleStateMachine);
 PREP(wpParadrop);
+PREP(setBehaviour);

@@ -116,6 +116,33 @@ class GVARMAIN(context) {
             };
         };
 
+        class Behaviour {
+            displayName = "Behaviour";
+            exceptions[] = {"isNotPlayer"};
+            only[] = {Groups};
+            order = 5;
+            class Careless {
+                displayName = "Careless";
+                action = QUOTE([ARR_3('CARELESS', _this, true)] call FUNC(setBehaviour));
+            };
+            class Safe {
+                displayName = "Safe";
+                action = QUOTE([ARR_3('SAFE', _this, true)] call FUNC(setBehaviour));
+            };
+            class Aware {
+                displayName = "Aware";
+                action = QUOTE([ARR_3('AWARE', _this, true)] call FUNC(setBehaviour));
+            };
+            class Combat {
+                displayName = "Combat";
+                action = QUOTE([ARR_3('COMBAT', _this, true)] call FUNC(setBehaviour));
+            };
+            class Stealth {
+                displayName = "Stealth";
+                action = QUOTE([ARR_3('STEALTH', _this, true)] call FUNC(setBehaviour));
+            };
+        };
+
         class Vehicle {
             displayName = "Vehicle";
             condition = "!(_this call CBA_fnc_isPerson)";
