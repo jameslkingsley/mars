@@ -57,6 +57,26 @@ private _addEventHandlers = {
     _ctrl ctrlAddEventHandler ["MouseButtonDown", {
         params ["_ctrl", "_button"];
     }];
+
+    _ctrl ctrlAddEventHandler ["MouseButtonDblClick", {
+        params ["_ctrl", "_button"];
+
+        if (_button == 0 && {GVAR(canContext)}) then {
+            private _marker = _ctrl getVariable [QGVAR(marker), ""];
+            [QADDON, "Marker", [100, 100], [0.2, 0.8], [
+                format ["Edit %1 Marker", getText (configFile >> "CfgMarkers" >> markerType _marker >> "name")],
+                markerPos _marker,
+                markerType _marker,
+                _marker,
+                markerText _marker,
+                (markerSize _marker) select 0,
+                (markerSize _marker) select 1,
+                markerColor _marker,
+                markerAlpha _marker,
+                false
+            ]] call AFUNC(openAttributes);
+        };
+    }];
 };
 
 {

@@ -38,7 +38,7 @@ switch (_type) do {
     case "marker": {
         private _config = (configFile >> "CfgMarkers" >> _classname);
         [QADDON, "Marker", [100, 100], [0.2, 0.8], [
-            getText (_config >> "name"),
+            format ["Create %1 Marker", getText (_config >> "name")],
             _worldPos,
             _classname
         ]] call AFUNC(openAttributes);

@@ -40,15 +40,25 @@ private _sides = [];
 
 _sides pushBackUnique sideLogic;
 
-[QEGVAR(common,createMarkerLocal), [
-    _classname,
-    _name,
-    _text,
-    _pos,
-    [_sizeWidth, _sizeHeight],
-    _color,
-    _alpha,
-    _sides
-]] call CBA_fnc_globalEventJIP;
+if (_name in allMapMarkers) then {
+    //--- Update marker
+    _name setMarkerText _text;
+    _name setMarkerPos _pos;
+    _name setMarkerSize [_sizeWidth, _sizeHeight];
+    _name setMarkerColor _color;
+    _name setMarkerAlpha _alpha;
+} else {
+    //--- Create marker
+    [QEGVAR(common,createMarkerLocal), [
+        _classname,
+        _name,
+        _text,
+        _pos,
+        [_sizeWidth, _sizeHeight],
+        _color,
+        _alpha,
+        _sides
+    ]] call CBA_fnc_globalEventJIP;
 
-["Marker Created"] call FUNC(notification);
+    ["Marker Created"] call FUNC(notification);
+};
