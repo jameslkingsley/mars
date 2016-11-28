@@ -141,5 +141,33 @@ You can change the ratio of the labels and fields by providing another parameter
 ## Storing attributes in the mission config
 You can also create attribute configs straight into the mission by placing the config in the `description.ext`. The attributes framework will first search for the given config in the main `configFile` and lastly check `missionConfigFile`.
 
+## Confirmation Function
+If you just need a confirmation box then you can use the built-in function.<br />See below for an example, and see this link for docs.
+
+```
+[
+    // Window title
+    "Kill Unit",
+
+    // Message
+    "Are you sure you want to kill the unit?",
+
+    // Yes button text
+    "Yes",
+
+    // No button text
+    "No",
+
+    // Yes code
+    {_this setDamage 1},
+
+    // No code
+    {},
+
+    // Arguments
+    _unit
+] call mars_attributes_fnc_confirmation;
+```
+
 ## Control Types
 {% include dir_table.html context="/docs/development/frameworks/attributes/" order="path" recursive=false %}
