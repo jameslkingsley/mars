@@ -19,3 +19,4 @@ class CfgPatches {
 #include "CfgAttributes.hpp"
 #include "CfgStateMachine.hpp"
 #include "CfgWaypoints.hpp"
+#include "CfgMenu.hpp"

@@ -27,3 +27,4 @@ PREP(wpParadrop);
 PREP(setBehaviour);
 PREP(setCombatMode);
 PREP(setSpeedMode);
+PREP(openAISettings);
