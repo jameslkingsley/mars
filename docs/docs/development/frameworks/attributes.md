@@ -142,7 +142,7 @@ You can change the ratio of the labels and fields by providing another parameter
 You can also create attribute configs straight into the mission by placing the config in the `description.ext`. The attributes framework will first search for the given config in the main `configFile` and lastly check `missionConfigFile`.
 
 ## Confirmation Function
-If you just need a confirmation box then you can use the built-in function.<br />See below for an example, and see this link for docs.
+If you just need a confirmation box then you can use the built-in function.<br />See below for an example, and see [this link](https://github.com/marseditor/mars/blob/master/addons/attributes/functions/fnc_confirmation.sqf) for docs.
 
 ```
 [
