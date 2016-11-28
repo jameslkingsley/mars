@@ -33,7 +33,7 @@ _groups = _groups arrayIntersect _groups;
 
         _pos set [2, 0.25];
 
-        drawLine3D [_previousPos, _pos, [0,0,0,1]];
+        // drawLine3D [_previousPos, _pos, [0,0,0,1]];
 
         drawIcon3D [
             QPATHTOF(data\Waypoint\background_ca.paa),
