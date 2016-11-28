@@ -1,10 +1,10 @@
 #define COMPONENT editor
 #include "\z\mars\addons\main\script_mod.hpp"
 
-#define DEBUG_MODE_FULL
+// #define DEBUG_MODE_FULL
 // #define DISABLE_COMPILE_CACHE
 // #define CBA_DEBUG_SYNCHRONOUS
-#define ENABLE_PERFORMANCE_COUNTERS
+// #define ENABLE_PERFORMANCE_COUNTERS
 
 #ifdef DEBUG_ENABLED_EDITOR
     #define DEBUG_MODE_FULL
