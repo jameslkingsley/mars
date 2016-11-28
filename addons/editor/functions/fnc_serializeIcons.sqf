@@ -293,6 +293,8 @@ private _addEventHandlers = {
     };
 
     false
-} count _entities;
+} count (_entities select {
+    !(_x getVariable [QGVAR(hidden), false])
+});
 
 END_COUNTER(serializeIcons);
