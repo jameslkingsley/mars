@@ -110,7 +110,7 @@ switch (toLower _mode) do {
     };
     case "onmousebuttonup": {
         _args params ["_ctrl","_button"];
-        
+
         private _wasContextOpen = GVAR(contextMenuOpen);
 
         GVAR(mouse) set [_button,false];

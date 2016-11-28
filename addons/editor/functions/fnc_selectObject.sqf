@@ -18,6 +18,8 @@
 
 params [["_objects", [], [[]]]];
 
+if (GVAR(isWaitingForLeftClick)) exitWith {};
+
 if (_objects isEqualTo []) then {
     private _target = GVAR(objectUnderCursor);
 
