@@ -209,18 +209,24 @@ class GVARMAIN(context) {
                 action = QUOTE([ARR_2(_this, true)] call FUNC(taskPatrol));
                 order = 2;
             };
+            class TransportUnload {
+                displayName = "Transport Unload";
+                requiresPosition = 1;
+                action = QUOTE([ARR_2(_this, true)] call FUNC(transportUnload));
+                order = 3;
+            };
             class DisembarkCargo {
                 displayName = "Disembark Cargo";
                 action = QUOTE([ARR_3(_this, 'cargo', true)] call FUNC(disembark));
-                order = 3;
+                order = 4;
             };
             class DisembarkAll {
                 displayName = "Disembark All";
                 action = QUOTE([ARR_3(_this, 'all', true)] call FUNC(disembark));
-                order = 4;
+                order = 5;
             };
         };
-        
+
         class Air {
             displayName = "Air";
             condition = QUOTE(_this isKindOf 'Air');

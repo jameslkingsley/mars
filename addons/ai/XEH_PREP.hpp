@@ -28,3 +28,4 @@ PREP(setBehaviour);
 PREP(setCombatMode);
 PREP(setSpeedMode);
 PREP(openAISettings);
+PREP(transportUnload);
