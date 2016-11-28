@@ -19,10 +19,9 @@
 
 params [["_unit", objNull]];
 
-if (!local _unit || {isPlayer _unit} || {!([_unit] call CFUNC(isValidSide))}) exitWith {};
-
-_unit disableAI "AUTOCOMBAT";
-_unit allowFleeing 0;
+if (isNull _unit) exitWith {};
+if (isPlayer _unit) exitWith {};
+if (!([_unit] call CFUNC(isValidSide))) exitWith {};
 
 _unit addEventHandler ["Reloaded", {
     params [["_unit", objNull], "_weapon", "_muzzle", "_newMag", ["_oldMag", [""]]];
@@ -31,3 +30,8 @@ _unit addEventHandler ["Reloaded", {
         _unit addMagazine [(_oldMag select 0), 1E6];
     };
 }];
+
+if (!local _unit) exitWith {};
+
+_unit disableAI "AUTOCOMBAT";
+_unit allowFleeing 0;
