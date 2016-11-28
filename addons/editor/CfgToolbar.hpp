@@ -37,7 +37,7 @@ class GVARMAIN(toolbar) {
                 [ARR_2(QQGVAR(showMapMarkers3D), _enabled)] call CFUNC(saveSetting);\
             );
         };
-        class DebugPanel {
+        /*class DebugPanel {
             default = QGVAR(showDebugPanel);
             tooltipText = "Show debug panel";
             iconOn = QPATHTOF(data\Toolbar\debug_on_ca.paa);
@@ -47,6 +47,6 @@ class GVARMAIN(toolbar) {
                 GVAR(showDebugPanel) = _enabled;\
                 [ARR_2(QQGVAR(showDebugPanel), _enabled)] call CFUNC(saveSetting);\
             );
-        };
+        };*/
     };
 };

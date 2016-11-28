@@ -181,7 +181,7 @@ class GVAR(interface) {
                 };
             };
         };*/
-        class DebugPanel: MARS_gui_ctrlControlsGroupNoScrollbars {
+        /*class DebugPanel: MARS_gui_ctrlControlsGroupNoScrollbars {
             idc = IDC_DEBUGPANEL;
             x = safeZoneX + ((PANEL_W + 1) * GRID_W);
             y = safeZoneY + (safeZoneH - (55 * GRID_H));
@@ -203,7 +203,7 @@ class GVAR(interface) {
                     h = (50 * GRID_H) - (2 * GRID_H);
                 };
             };
-        };
+        };*/
         class PanelLeft: MARS_gui_ctrlControlsGroupNoScrollbars {
             idc = IDC_LEFTPANEL;
             x = safezoneX;

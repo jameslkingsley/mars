@@ -25,12 +25,11 @@ private _uid = getPlayerUID player;
 if !(_uid in GVAR(whitelisted)) then {
     if (_uid in GVAR(blacklisted)) then {
         if (true) exitWith {
-            MARS_LOGERROR("Your Steam account has been blacklisted. You are unable to login to Mars on this server.");
+            systemChat "Your Steam account has been blacklisted. You are unable to login to Mars on this server.";
         };
     } else {
         GVAR(whitelisted) pushBackUnique _uid;
         publicVariable QGVAR(whitelisted);
-        MARS_LOGINFO("Logged into Mars.");
     };
 };
 
@@ -110,7 +109,7 @@ GVAR(pfh) = [{
 
     // Asset browser placing objects
     [] call FUNC(prepNewObject);
-    [_display] call FUNC(updateDebugPanel);
+    // [_display] call FUNC(updateDebugPanel);
 
     END_COUNTER(onFrame);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
