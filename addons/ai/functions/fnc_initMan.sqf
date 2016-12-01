@@ -25,7 +25,7 @@ if (!([_unit] call CFUNC(isValidSide))) exitWith {};
 
 _unit addEventHandler ["Reloaded", {
     params [["_unit", objNull], "_weapon", "_muzzle", "_newMag", ["_oldMag", [""]]];
-    if (isNull _unit || {!GVAR(unlimitedMagazines)}) exitWith {};
+    if (isNull _unit || {isPlayer _unit} || {!GVAR(unlimitedMagazines)}) exitWith {};
     if (_oldMag isEqualType [] && {count _oldMag > 0} && {(_oldMag select 0) isEqualType ""}) then {
         _unit addMagazine [(_oldMag select 0), 1E6];
     };
