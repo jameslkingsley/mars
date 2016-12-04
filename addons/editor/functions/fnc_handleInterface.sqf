@@ -282,80 +282,86 @@ switch (toLower _mode) do {
         };
 
         switch (_dik) do {
-            case 1: { // Esc
+            case DIK_ESCAPE: { // Esc
                 // [QGVAR(escape)] call FUNC(interrupt);
                 // ["escape"] call FUNC(handleInterface);
                 [player] call FUNC(shutdown);
             };
-            case 211: { // Delete
+            case DIK_DELETE: { // Delete
                 [] call FUNC(deleteSelection);
             };
-            case 2: { // 1
+            case DIK_1: { // 1
             };
-            case 3: { // 2
+            case DIK_2: { // 2
             };
-            case 4: { // 3
+            case DIK_3: { // 3
             };
-            case 5: { // 4
+            case DIK_4: { // 4
             };
-            case 6: { // 5
+            case DIK_5: { // 5
             };
-            case 14: { // Backspace
+            case DIK_BACK: { // Backspace
             };
-            case 16: { // Q
+            case DIK_Q: { // Q
                 GVAR(camBoom) = 0.5 * GVAR(camSpeed) * ([1, CAM_SHIFT_SPEED_COEF] select _shift);
             };
-            case 17: { // W
+            case DIK_W: { // W
                 GVAR(camDolly) set [1, GVAR(camSpeed) * ([1, CAM_SHIFT_SPEED_COEF] select _shift)];
             };
-            case 29: { // Ctrl
+            case DIK_LCONTROL: { // Ctrl
                 GVAR(ctrlKey) = true;
             };
-            case 30: { // A
+            case DIK_A: { // A
                 GVAR(camDolly) set [0, -GVAR(camSpeed) * ([1, CAM_SHIFT_SPEED_COEF] select _shift)];
             };
-            case 31: { // S
+            case DIK_S: { // S
                 GVAR(camDolly) set [1, -GVAR(camSpeed) * ([1, CAM_SHIFT_SPEED_COEF] select _shift)];
             };
-            case 32: { // D
+            case DIK_D: { // D
                 GVAR(camDolly) set [0, GVAR(camSpeed) * ([1, CAM_SHIFT_SPEED_COEF] select _shift)];
             };
-            case 44: { // Z
+            case DIK_Z: { // Z
                 GVAR(camBoom) = -0.5 * GVAR(camSpeed) * ([1, CAM_SHIFT_SPEED_COEF] select _shift);
             };
-            case 49: { // N
+            case DIK_N: { // N
                 [!GVAR(nightVisionEnabled)] call FUNC(toggleNightVision);
             };
-            case 50: { // M
+            case DIK_M: { // M
                 private _map = _display displayCtrl IDC_MAP;
                 private _newState = !(ctrlShown _map);
                 [_newState] call FUNC(openMap);
             };
-            case 57: { // Spacebar
+            case DIK_E:  { // E
+                ["toggleLeftPanel", _this] call FUNC(handleInterface);
             };
-            case 74: { // Num -
+            case DIK_R:  { // R
+                ["toggleRightPanel", _this] call FUNC(handleInterface);
             };
-            case 78: { // Num +
+            case DIK_SPACE: { // Spacebar
             };
-            case 200: { // Up arrow
+            case DIK_SUBTRACT: { // Num -
             };
-            case 203: { // Left arrow
+            case DIK_ADD: { // Num +
             };
-            case 205: { // Right arrow
+            case DIK_UP: { // Up arrow
             };
-            case 208: { // Down arrow
+            case DIK_LEFT: { // Left arrow
             };
-            case 59: { // F1
+            case DIK_RIGHT: { // Right arrow
             };
-            case 60: { // F2
+            case DIK_DOWN: { // Down arrow
             };
-            case 61: { // F3
+            case DIK_F1: { // F1
             };
-            case 62: { // F4
+            case DIK_F2: { // F2
             };
-            case 63: { // F5
+            case DIK_F3: { // F3
             };
-            case 38: { // L
+            case DIK_F4: { // F4
+            };
+            case DIK_F5: { // F5
+            };
+            case DIK_L: { // L
                 // Light
                 [] call FUNC(toggleLight);
             };

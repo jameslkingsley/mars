@@ -54,3 +54,5 @@
 #define BOX_FADE_DISTANCE 500
 #define ICON_LEADER_HEIGHT 7.5
 #define ICON_HOVER_SIZE 1.5
+
+#include "\z\mars\addons\common\dikCodes.hpp"
