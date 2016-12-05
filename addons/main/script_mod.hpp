@@ -1,8 +1,8 @@
 // COMPONENT should be defined in the script_component.hpp and included BEFORE this hpp
 
 #define MAINPREFIX z
-#define PREFIX mars
-#define QMODNAME "Mars"
+#define PREFIX /\/\4Я$
+#define QMODNAME "/\/\4Я$"
 
 #define MAJOR 0
 #define MINOR 1
