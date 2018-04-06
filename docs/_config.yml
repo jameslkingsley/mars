@@ -24,7 +24,7 @@ footer-links:
 
 disqus: marseditor
 google_analytics:
-url: https://mars.arcomm.co
+url: https://mars.smallstone.uk
 baseurl: ""
 permalink: /:title/
 version: v1.2.0

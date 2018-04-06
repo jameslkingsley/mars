@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="https://mars.arcomm.co/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mars.arcomm.co/" rel="alternate" type="text/html" /><updated>2016-11-28T18:25:34+00:00</updated><id>https://mars.arcomm.co/</id><title>Mars</title><subtitle>Mars gives players full control over how their mission is played, in real time.</subtitle><entry><title>MARSREP 0001</title><link href="https://mars.arcomm.co/marsrep-0001/" rel="alternate" type="text/html" title="MARSREP 0001" /><published>2016-11-13T00:00:00+00:00</published><updated>2016-11-13T00:00:00+00:00</updated><id>https://mars.arcomm.co/marsrep-0001</id><content type="html" xml:base="https://mars.arcomm.co/marsrep-0001/">&lt;h2 id=&quot;first-community-test&quot;&gt;First community test&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="https://mars.smallstone.uk/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mars.smallstone.uk/" rel="alternate" type="text/html" /><updated>2018-04-06T13:50:35+01:00</updated><id>https://mars.smallstone.uk/</id><title>Mars</title><subtitle>Mars gives players full control over how their mission is played, in real time.</subtitle><entry><title>MARSREP 0001</title><link href="https://mars.smallstone.uk/marsrep-0001/" rel="alternate" type="text/html" title="MARSREP 0001" /><published>2016-11-13T00:00:00+00:00</published><updated>2016-11-13T00:00:00+00:00</updated><id>https://mars.smallstone.uk/marsrep-0001</id><content type="html" xml:base="https://mars.smallstone.uk/marsrep-0001/">&lt;h2 id=&quot;first-community-test&quot;&gt;First community test&lt;/h2&gt;
 &lt;p&gt;Mars was kindly tested in a couple of communities recently; &lt;a href=&quot;http://www.arcomm.co/&quot;&gt;ARCOMM&lt;/a&gt; and &lt;a href=&quot;https://ddca3.com/&quot;&gt;DDCA3&lt;/a&gt;. While still very buggy and not feature-complete, the feedback was mostly positive. There are some significant issues with FPS at the moment, where your game would freeze when highlighting units, but other than that it is currently a usable infantry controller.&lt;/p&gt;
 
 &lt;p&gt;Moving forward I definitely want more groups to try it out; the usability feedback is incredibly useful. The development process is ongoing so there will never be a final version - there are endless possibilities for what you can add to it (within the constraints of Arma). One thing I’m particularly excited about implementing is an &lt;code class=&quot;highlighter-rouge&quot;&gt;attachTo&lt;/code&gt; system for when you need biplane dog fights with M2’s. It’s the little things in life, right?&lt;/p&gt;
@@ -7,9 +7,9 @@
 
 &lt;iframe width=&quot;1000&quot; height=&quot;563&quot; src=&quot;https://www.youtube.com/embed/hepzndGzhho&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://mars.arcomm.co/images/posts/marsrep-0001/ps1.jpg&quot; alt=&quot;Screenshot 1&quot; /&gt;
-&lt;img src=&quot;https://mars.arcomm.co/images/posts/marsrep-0001/ps3.jpg&quot; alt=&quot;Screenshot 2&quot; /&gt;
-&lt;img src=&quot;https://mars.arcomm.co/images/posts/marsrep-0001/ps4.jpg&quot; alt=&quot;Screenshot 3&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://mars.smallstone.uk/images/posts/marsrep-0001/ps1.jpg&quot; alt=&quot;Screenshot 1&quot; /&gt;
+&lt;img src=&quot;https://mars.smallstone.uk/images/posts/marsrep-0001/ps3.jpg&quot; alt=&quot;Screenshot 2&quot; /&gt;
+&lt;img src=&quot;https://mars.smallstone.uk/images/posts/marsrep-0001/ps4.jpg&quot; alt=&quot;Screenshot 3&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;looking-ahead&quot;&gt;Looking ahead&lt;/h2&gt;
 &lt;p&gt;By the end of 2016 I’m hoping to have the FPS issues resolved and a much more stable build for groups to try out. There are still lots of AI commands to add, particularly for vehicles but now that the underlying framework is solid those &lt;em&gt;shouldn’t&lt;/em&gt; take long to implement.&lt;/p&gt;
@@ -17,7 +17,7 @@
 &lt;p&gt;If you have an idea for Mars then feel free to post it on the &lt;a href=&quot;https://github.com/marseditor/mars/issues/32&quot;&gt;feature requests&lt;/a&gt;. It’s nice to be able to see the progress of the baseline features and what people are interested in most.&lt;/p&gt;
 
 &lt;p&gt;If you’re not on Mars’ Discord server then I urge you to &lt;a href=&quot;https://discord.gg/0vfzEmmrAOu1T2uk&quot;&gt;join&lt;/a&gt;! There’s also a &lt;a href=&quot;https://twitter.com/marsmod&quot;&gt;Twitter&lt;/a&gt; account for Mars now so I also urge you to follow that for sporadic updates and terrible attempts at humour.&lt;/p&gt;</content><author><name>Kingsley</name></author><summary>First community test
-Mars was kindly tested in a couple of communities recently; ARCOMM and DDCA3. While still very buggy and not feature-complete, the feedback was mostly positive. There are some significant issues with FPS at the moment, where your game would freeze when highlighting units, but other than that it is currently a usable infantry controller.</summary></entry><entry><title>Framework Release</title><link href="https://mars.arcomm.co/framework-release/" rel="alternate" type="text/html" title="Framework Release" /><published>2016-06-30T00:00:00+01:00</published><updated>2016-06-30T00:00:00+01:00</updated><id>https://mars.arcomm.co/framework-release</id><content type="html" xml:base="https://mars.arcomm.co/framework-release/">&lt;h2 id=&quot;what-is-mars&quot;&gt;What is Mars?&lt;/h2&gt;
+Mars was kindly tested in a couple of communities recently; ARCOMM and DDCA3. While still very buggy and not feature-complete, the feedback was mostly positive. There are some significant issues with FPS at the moment, where your game would freeze when highlighting units, but other than that it is currently a usable infantry controller.</summary></entry><entry><title>Framework Release</title><link href="https://mars.smallstone.uk/framework-release/" rel="alternate" type="text/html" title="Framework Release" /><published>2016-06-30T00:00:00+01:00</published><updated>2016-06-30T00:00:00+01:00</updated><id>https://mars.smallstone.uk/framework-release</id><content type="html" xml:base="https://mars.smallstone.uk/framework-release/">&lt;h2 id=&quot;what-is-mars&quot;&gt;What is Mars?&lt;/h2&gt;
 &lt;p&gt;Mars is a total Zeus replacement providing Arma communities with a customisable editor capable of realtime mission creation and enhancement. Mars provides integrated mod support; enabling the community to expand its capabilities far beyond Zeus’ limited modules. With Mars, you can add context options, toolbar buttons, menus, modules, and more. Mars is an extensible in-game editor built for communities.&lt;/p&gt;
 
 &lt;h2 id=&quot;what-is-the-framework&quot;&gt;What is the framework?&lt;/h2&gt;
@@ -25,29 +25,29 @@ Mars was kindly tested in a couple of communities recently; ARCOMM and DDCA3. Wh
 
 &lt;h2 id=&quot;whats-available&quot;&gt;What’s available?&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mars.arcomm.co/docs/development/frameworks/attributes/&quot;&gt;Attributes UI Framework&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mars.arcomm.co/docs/development/frameworks/context-menus/&quot;&gt;Context Menus&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mars.arcomm.co/docs/development/frameworks/menu-strip/&quot;&gt;Menu Strip Items&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mars.arcomm.co/docs/development/frameworks/toolbar/&quot;&gt;Toolbar Options&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mars.smallstone.uk/docs/development/frameworks/attributes/&quot;&gt;Attributes UI Framework&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mars.smallstone.uk/docs/development/frameworks/context-menus/&quot;&gt;Context Menus&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mars.smallstone.uk/docs/development/frameworks/menu-strip/&quot;&gt;Menu Strip Items&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mars.smallstone.uk/docs/development/frameworks/toolbar/&quot;&gt;Toolbar Options&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;user-interface&quot;&gt;User Interface&lt;/h2&gt;
 &lt;p&gt;As you can probably tell, the Mars interface is practically identical to the Eden interface. This is mainly to reduce the amount of UI work required and also to provide users with a familiar environment. There are still some parts to be built such as the entity list and map but the main parts are functional and relatively bug-free.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://mars.arcomm.co/images/posts/framework-release/interface_01n.jpg&quot; alt=&quot;Garrison Units, Suppress Position&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://mars.smallstone.uk/images/posts/framework-release/interface_01n.jpg&quot; alt=&quot;Garrison Units, Suppress Position&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Using the attributes framework you can create menus with various control types that are perfectly aligned. You’ll never again have to write another UI config or mess about with safezones or grids. Check out the &lt;a href=&quot;https://github.com/marseditor/mars/blob/master/addons/editor/CfgAttributes.hpp&quot;&gt;config&lt;/a&gt; for the menu shown below.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://mars.arcomm.co/images/posts/framework-release/interface_03.jpg&quot; alt=&quot;Attributes UI&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://mars.smallstone.uk/images/posts/framework-release/interface_03.jpg&quot; alt=&quot;Attributes UI&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Placing objects is also extremely easy. With surface detection you can quickly and easily piece together detailed bases, garrison units and more. Any object can be placed on any surface, you just have to hover over it.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://mars.arcomm.co/images/posts/framework-release/interface_04.jpg&quot; alt=&quot;Surface Detection&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://mars.smallstone.uk/images/posts/framework-release/interface_04.jpg&quot; alt=&quot;Surface Detection&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;roadmap&quot;&gt;Roadmap&lt;/h2&gt;
 &lt;p&gt;There is still a lot more to do, but I’m happy with the progress so far and as you can see below we are currently sitting on this framework release. Over the next couple of months the &lt;a href=&quot;https://github.com/marseditor/mars/issues/1&quot;&gt;1.0 features&lt;/a&gt; will hopefully all be ticked off, with perhaps some additions. Once we are content with its features we will start testing Mars with communities that would otherwise use Zeus. This is to get feedback on its ease of use and tidy up any bugs there might be. If that all goes to plan and we are confident it’s not going to spoil a mission for someone, then queue the 1.0 release.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://mars.arcomm.co/images/posts/framework-release/roadmap.jpg&quot; alt=&quot;Roadmap&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://mars.smallstone.uk/images/posts/framework-release/roadmap.jpg&quot; alt=&quot;Roadmap&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;contributing&quot;&gt;Contributing&lt;/h2&gt;
 &lt;p&gt;While I could write all of the features myself, it would take considerably less time if there were other developers working on it with me. If you are familiar with the ACE/CBA development environment and are interested in Mars, then I encourage you to contribute. There is a comprehensive list of features that need to be built over on the &lt;a href=&quot;https://github.com/marseditor/mars/issues/1&quot;&gt;GitHub issues&lt;/a&gt; page. If you have an idea that’s not on the list, you can submit it as a feature request or speak to me directly - I’m eager to hear what you can come up with.&lt;/p&gt;
