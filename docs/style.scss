@@ -1070,7 +1070,7 @@ $slideDownEnd: 0;
 }
 
 .post-with-banner {
-    margin-top: 400px;
+    margin-top: calc((75vh / 1.618) - 200px);
 }
 
 .post-with-banner .p-title {
